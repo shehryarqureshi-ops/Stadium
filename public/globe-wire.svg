@@ -1,0 +1,11 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#0B7AFC" stroke-width="1.25">
+    <circle cx="300" cy="300" r="299" />
+    <ellipse cx="300" cy="300" rx="199" ry="299" />
+    <ellipse cx="300" cy="300" rx="99" ry="299" />
+    <line x1="300" y1="1" x2="300" y2="599" />
+    <ellipse cx="300" cy="300" rx="299" ry="199" />
+    <ellipse cx="300" cy="300" rx="299" ry="99" />
+    <line x1="1" y1="300" x2="599" y2="300" />
+  </g>
+</svg>

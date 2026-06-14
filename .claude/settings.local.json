@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\shehr\\\\Documents\\\\stadium\\\\node_modules\\\\next\\\\dist\\\\docs\" -Recurse -Name)",
+      "Bash(Select-Object -First 30)",
+      "PowerShell(npm run *)",
+      "PowerShell(Get-ChildItem -Recurse -File C:\\\\Users\\\\shehr\\\\Documents\\\\stadium -Exclude node_modules | Where-Object { $_.FullName -notmatch 'node_modules|\\\\.next' } | Sort-Object LastWriteTime -Descending | Select-Object -First 20 LastWriteTime, FullName)",
+      "PowerShell($f = \"$env:USERPROFILE\\\\.claude\\\\projects\\\\C--Users-shehr-Documents-stadium\\\\47d4e19b-65e7-48c3-aa29-1cccbb0ff1b4.jsonl\"; $lines = Get-Content $f -Tail 30; foreach \\($l in $lines\\) { try { $o = $l | ConvertFrom-Json } catch { continue }; if \\($o.type -eq 'assistant'\\) { foreach \\($c in $o.message.content\\) { if \\($c.type -eq 'text'\\) { Write-Output \"--- ASSISTANT ---\"; Write-Output $c.text } } } elseif \\($o.type -eq 'user'\\) { if \\($o.message.content -is [string]\\) { Write-Output \"--- USER ---\"; Write-Output $o.message.content.Substring\\(0, [Math]::Min\\(500, $o.message.content.Length\\)\\) } } })",
+      "PowerShell($f = \"C:\\\\Users\\\\shehr\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-shehr-Documents-stadium\\\\5b0b105b-8380-4b7b-b3d4-f9752a698b1e\\\\tasks\\\\brnne669g.output\"; $deadline = \\(Get-Date\\).AddSeconds\\(45\\); while \\(\\(Get-Date\\) -lt $deadline\\) { if \\(Test-Path $f\\) { $c = Get-Content $f -Raw; if \\($c -match \"Ready in|Local:|error|EADDRINUSE\"\\) { break } }; Start-Sleep -Milliseconds 800 }; Get-Content $f -Raw)",
+      "PowerShell($ws = New-Object -ComObject WScript.Shell; foreach \\($p in @\\(\"C:\\\\Users\\\\shehr\\\\OneDrive\\\\Desktop\\\\Stadium dev server.lnk\", \"C:\\\\Users\\\\shehr\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup\\\\Stadium dev server.lnk\"\\)\\) { $s = $ws.CreateShortcut\\($p\\); \"$p`n  -> $\\($s.TargetPath\\) $\\($s.Arguments\\) [style $\\($s.WindowStyle\\)]\" }; $listen = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -eq 3000 }; if \\($listen\\) { \"SERVER: still up on 3000\" } else { \"SERVER: down\" })",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "mcp__plugin_figma_figma__get_design_context",
+      "PowerShell(npx eslint app/components/Infrastructure.tsx app/layout.tsx; if \\($?\\) { \"LINT OK\" }; $l = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -eq 3000 }; if \\($l\\) { \"SERVER UP \\(PID $\\($l[0].OwningProcess\\)\\)\" } else { \"SERVER DOWN\" })"
+    ]
+  }
+}

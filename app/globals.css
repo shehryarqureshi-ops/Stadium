@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Hero background scrim — left-to-right dark overlay (see design.md).
+     Stops recomputed 2026-06-12 from pixel-sampled worst case (white wall
+     behind text at lg widths): >=0.62 alpha through x=50% floors small
+     text at 4.5:1 over pure white; >=0.46 through x=66% floors the
+     headline (large text) at 3:1. Old stops (.65/.45/.2/.05 @ 0/30/60/100)
+     sampled as low as 1.58:1 under the headline. */
+  --gradient-hero-scrim: linear-gradient(
+    90deg,
+    rgba(24, 24, 24, 0.68) 0%,
+    rgba(24, 24, 24, 0.62) 50%,
+    rgba(24, 24, 24, 0.54) 66%,
+    rgba(24, 24, 24, 0.5) 80%,
+    rgba(24, 24, 24, 0.12) 92%,
+    rgba(24, 24, 24, 0.06) 100%
+  );
+  /* Top scrim for the transparent fixed nav: holds >=0.62 alpha through
+     the 4rem nav band (white links stay ~5:1 AA over white clouds in the
+     photo), then fades out by 10rem. */
+  --gradient-hero-top-scrim: linear-gradient(
+    180deg,
+    rgba(24, 24, 24, 0.7) 0%,
+    rgba(24, 24, 24, 0.62) 4rem,
+    rgba(24, 24, 24, 0) 10rem
+  );
+}
+
+/* Site-wide keyboard focus ring (quality bar 2026-06-12: every
+   interactive element gets a visible :focus-visible ring, ≥2px, ≥3:1).
+   Ink works on light surfaces; dark/photo-context elements override
+   with `focus-visible:outline-white` utilities. */
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* All design values are authored in rem (Figma px ÷ 16) so user browser
+   font-size preferences are respected. The root font size is NOT scaled
+   with the viewport (a proportional-zoom clamp was tried 2026-06-11 and
+   rejected) — above 1440 the layout rows stretch while type keeps its
+   designed size. */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Fonts — loaded via next/font in app/layout.tsx */
+  --font-sans: var(--font-overpass);
+  --font-display: var(--font-satoshi);
+}
+
+@theme {
+  /* ===== Colors (Figma variables) ===== */
+  --color-brand-hero: #181818; /* color/brand/hero */
+  --color-hero-body: rgba(255, 255, 255, 0.86); /* hero supporting copy */
+  --color-ink: #181818; /* color/text/ink, ink/primary */
+  --color-cta-fill: #181818; /* color/brand/cta-fill */
+  --color-cta-on: #ffffff; /* color/brand/cta-on */
+  --color-surface-base: #ffffff; /* surface/base */
+  --color-surface-subtle: #f8f8f8; /* surface/subtle */
+  --color-accent-lilac: #8d12e7; /* Stadium/Accents/Lilac */
+  --color-accent-water: #0b7afc; /* Stadium/Accents/Water */
+  --color-accent-turmeric: #ffb800; /* Stadium/Accents/Turmeric */
+  --color-accent-lime: #00c036; /* Stadium/Accents/Lime */
+  --color-accent-punch: #ff5b77; /* Stadium/Accents/Punch */
+  --color-grey-100: #f8f8f8; /* Universal/Greyscale/100-Primary Surface Light */
+  --color-grey-200: #eff0f2; /* Universal/Greyscale/200-Selected Surface-Divider Light */
+  --color-grey-300: #cdced0; /* Universal/Greyscale/300 — borders/dividers */
+  --color-grey-400: #9fa0a2; /* Universal/Greyscale/400-Lightest Text */
+  --color-grey-500: #6f7072; /* Universal/Greyscale/500 — muted eyebrow on light */
+  --color-grey-600: #4f5052; /* Universal/Greyscale/600 */
+  --color-grey-700: #2c2d2e; /* Universal/Greyscale/700-Main Text */
+  --color-grey-800: #181818; /* Universal/Greyscale/800-Buttons+Selected Tabs Nav */
+
+  /* ===== Infrastructure dark section (Figma 205:12251 / 1:66998 / 1:62790) ===== */
+  --color-infra-base-1: #1c1d1f; /* section gradient start */
+  --color-infra-base-2: #0e0f11; /* section gradient end */
+  --color-infra-card: #17181b; /* chapter card surface */
+  --color-infra-border: #26282c; /* card + video panel hairline */
+  --color-infra-panel-1: #202227; /* video panel gradient start */
+  --color-infra-panel-2: #121316; /* video panel gradient end */
+  --color-infra-eyebrow: #6b6e74; /* desktop card header label */
+  --color-infra-row: #c9cbcf; /* desktop inactive row label */
+
+  /* ===== Type — universal text styles (Figma) ===== */
+  --text-small: 0.875rem; /* Type/10 Small */
+  --text-small--line-height: 1.25rem;
+  --text-small--letter-spacing: 0.00625rem;
+  --text-label: 0.875rem; /* Type/13 Label */
+  --text-label--line-height: 1.25rem;
+  --text-label--font-weight: 600;
+
+  /* ===== Spacing (section padding) =====
+     Horizontal margins follow shopify.com (measured 2026-06-11: 16/30/90px,
+     content cap 1420px) — supersedes Figma's 24/48/120/1200 by user
+     decision. Vertical paddings remain the Figma values. */
+  --spacing-section-x-sm: 1rem; /* mobile section margin-x (Shopify 16px) */
+  --spacing-section-y-sm: 2rem; /* mobile section padding-y */
+  --spacing-section-x-md: 1.875rem; /* tablet section margin-x (Shopify 30px) */
+  --spacing-section-y-md: 4rem; /* tablet section padding-y */
+  --spacing-section-x-lg: 5.625rem; /* desktop section margin-x (Shopify 90px) */
+  --spacing-section-y-lg: 6rem; /* desktop section padding-y */
+  --spacing-button-h: 2.5rem; /* button height — 40px system-wide (user decision 2026-06-12; was 44px) */
+  --spacing-button-x: 1.5rem; /* button padding-x (spacing/24) */
+  --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */
+  --spacing-hero-md: 24.875rem; /* hero fixed frame height, tablet (398px) */
+  --spacing-hero-lg: 42.25rem; /* hero fixed frame height, desktop (676px) */
+
+  /* ===== Breakpoints =====
+     Default Tailwind sm/md/lg are untouched (md 768, lg 1024 already map to
+     the Figma tablet/desktop frames). `wide` (1300px) is a code-only
+     threshold — NOT a Figma frame — for desktop layouts that need more room
+     than the lg content box. ScaleMap's two-column header + 1200×512 reach
+     map need ~1254px to fit (486+588px columns + 2×90px margins), so they
+     hold the stacked treatment until `wide` instead of overflowing the
+     viewport across the 1024–1300 "narrow desktop" band (the same band the
+     footer link columns wrap in). */
+  --breakpoint-wide: 81.25rem; /* 1300px — narrow-desktop → full-desktop */
+
+  /* ===== Containers — Shopify-style centered content above 1440 =====
+     Full-bleed backgrounds stay on the section; content caps and centers.
+     max-w-section = capped section that carries its own side padding;
+     max-w-content = inner content row inside a full-bleed section. */
+  --container-content: 88.75rem; /* 1420px — Shopify content cap */
+  --container-section: 100rem; /* 1600px — content cap + 2 × 90px margin */
+  --container-band: 60rem; /* 960px — narrow-desktop (1024–1300) single-column
+                              cap: keeps the stacked ScaleMap treatment from
+                              sprawling across desktop-width viewports */
+
+  /* ===== Radii ===== */
+  --radius-button: 1.375rem; /* pill buttons */
+  --radius-card: 0.75rem; /* card containers */
+
+  /* ===== Type scale — section heading (Satoshi Bold) ===== */
+  --text-heading-sm: 1.5rem;
+  --text-heading-sm--line-height: 2rem;
+  --text-heading-sm--font-weight: 700;
+  --text-heading-md: 2rem;
+  --text-heading-md--line-height: 2.5rem;
+  --text-heading-md--letter-spacing: -0.03rem;
+  --text-heading-md--font-weight: 700;
+  --text-heading-lg: 3rem;
+  --text-heading-lg--line-height: 3.375rem;
+  --text-heading-lg--letter-spacing: -0.0625rem;
+  --text-heading-lg--font-weight: 700;
+
+  /* ===== Type scale — narrative (Satoshi BOLD, large statement headlines) =====
+     For long multi-sentence flowing headlines (EveryWay etc.) — LARGER
+     than the bold section headings (`text-heading-*`) so they have
+     presence and fill the content width, but the SAME Bold 700 weight
+     (Stadium's confident voice). A Medium-weight variant was trialed
+     2026-06-12 and reverted — the win is size + width-fill, not weight.
+     Tracking tightened (bold display likes negative tracking). */
+  --text-narrative-sm: 1.625rem; /* 26/32 */
+  --text-narrative-sm--line-height: 2rem;
+  --text-narrative-sm--letter-spacing: -0.025rem;
+  --text-narrative-sm--font-weight: 700;
+  --text-narrative-md: 2.375rem; /* 38/44 */
+  --text-narrative-md--line-height: 2.75rem;
+  --text-narrative-md--letter-spacing: -0.04375rem;
+  --text-narrative-md--font-weight: 700;
+  --text-narrative-lg: 3.375rem; /* 54/62 −1px */
+  --text-narrative-lg--line-height: 3.875rem;
+  --text-narrative-lg--letter-spacing: -0.0625rem;
+  --text-narrative-lg--font-weight: 700;
+
+  /* ===== Type scale — statement (Overpass, poster sections) ===== */
+  --text-statement-sm: 0.875rem;
+  --text-statement-sm--line-height: 1.25rem;
+  --text-statement-md: 1.125rem;
+  --text-statement-md--line-height: 1.625rem;
+  --text-statement-lg: 1.5rem;
+  --text-statement-lg--line-height: 2rem;
+
+  /* ===== Type scale — callout (Satoshi Bold card copy) ===== */
+  --text-callout-sm: 1.125rem;
+  --text-callout-sm--line-height: 1.5rem;
+  --text-callout-sm--font-weight: 700;
+  --text-callout-md: 1.25rem;
+  --text-callout-md--line-height: 1.75rem;
+  --text-callout-md--font-weight: 700;
+
+  /* ===== Type scale — display (Satoshi Bold headline; 2026-06-11 rev) ===== */
+  --text-display-sm: 2rem; /* 32/40 −0.5px */
+  --text-display-sm--line-height: 2.5rem;
+  --text-display-sm--letter-spacing: -0.03125rem;
+  --text-display-sm--font-weight: 700;
+  --text-display-md: 3.25rem; /* 52/60 −1.25px */
+  --text-display-md--line-height: 3.75rem;
+  --text-display-md--letter-spacing: -0.078125rem;
+  --text-display-md--font-weight: 700;
+  --text-display-lg: 4rem; /* 64/72 −1.5px */
+  --text-display-lg--line-height: 4.5rem;
+  --text-display-lg--letter-spacing: -0.09375rem;
+  --text-display-lg--font-weight: 700;
+
+  /* ===== Type scale — eyebrow (Overpass Bold, uppercase; 2026-06-11 rev:
+     solid leading, 10% tracking) ===== */
+  --text-eyebrow-sm: 0.75rem; /* 12/12 +1.6px (DS: eyebrow tracking is a flat 1.6) */
+  --text-eyebrow-sm--line-height: 0.75rem;
+  --text-eyebrow-sm--letter-spacing: 0.1rem;
+  --text-eyebrow-sm--font-weight: 700;
+  --text-eyebrow-md: 0.875rem; /* 14/14 +1.6px (DS: eyebrow tracking is a flat 1.6) */
+  --text-eyebrow-md--line-height: 0.875rem;
+  --text-eyebrow-md--letter-spacing: 0.1rem;
+  --text-eyebrow-md--font-weight: 700;
+  --text-eyebrow-lg: 1rem; /* 16/16 +1.6px */
+  --text-eyebrow-lg--line-height: 1rem;
+  --text-eyebrow-lg--letter-spacing: 0.1rem;
+  --text-eyebrow-lg--font-weight: 700;
+
+  /* ===== Type scale — body (Overpass Regular) ===== */
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.375rem;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+
+  /* ===== Type scale — button label (Overpass SemiBold, uppercase) =====
+     All button variants (filled/white/outline) share this one label style
+     (Figma "Universal/Button/Desktop"). */
+  --text-button-primary: 0.75rem;
+  --text-button-primary--line-height: 1rem;
+  --text-button-primary--letter-spacing: 0.0725rem;
+  --text-button-primary--font-weight: 600;
+
+  /* ===== Shadows ===== */
+  --shadow-button: 0px 1px 1px rgba(0, 0, 0, 0.04);
+  --inset-shadow-button: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.6);
+  --inset-shadow-button-dark: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.08); /* dark/filled CTA highlight */
+  --shadow-card: 0px 0.25rem 0.75rem 0px rgba(0, 0, 0, 0.08); /* active/elevated cards */
+  --shadow-card-soft: 0px 0.25rem 0.375rem 0px rgba(0, 0, 0, 0.08); /* resting cards */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-overpass), Arial, Helvetica, sans-serif;
+}
+
+/* Scroll-reveal (Apple-style): sections fade + rise into place the first time
+   they enter the viewport. Driven by <Reveal> (an IntersectionObserver adds
+   .reveal-in). Hidden by default so the entrance always plays; shown
+   immediately under reduced-motion and with no JS. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+[data-reveal].reveal-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+@media (scripting: none) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
