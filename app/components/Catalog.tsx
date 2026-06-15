@@ -39,7 +39,11 @@ export default function Catalog() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
   /* null = not pinned (mobile / reduced-motion / pre-measure): plain swipe-scroll */
-  const [pin, setPin] = useState<{ height: number; x: number } | null>(null);
+  const [pin, setPin] = useState<{
+    height: number;
+    x: number;
+    padLeft: number;
+  } | null>(null);
 
   useEffect(() => {
     const lg = window.matchMedia("(min-width: 64rem)");
@@ -63,7 +67,11 @@ export default function Catalog() {
         1,
         Math.max(0, scrolled / Math.max(1, height - window.innerHeight)),
       );
-      setPin({ height, x: -(progress * overflow) });
+      // Start the first card at the heading's left edge: the heading sits in a
+      // centered max-w-section (1600px) container + 90px margin, so above 1600
+      // the content edge moves inward. Cards still overflow rightward.
+      const padLeft = Math.max(90, (window.innerWidth - 1600) / 2 + 90);
+      setPin({ height, x: -(progress * overflow), padLeft });
     };
 
     const onScroll = () => {
@@ -113,7 +121,11 @@ export default function Catalog() {
             swipe-scroll otherwise */}
         <ul
           ref={trackRef}
-          style={pin ? { transform: `translate3d(${pin.x}px,0,0)` } : undefined}
+          style={
+            pin
+              ? { transform: `translate3d(${pin.x}px,0,0)`, paddingLeft: pin.padLeft }
+              : undefined
+          }
           className={
             pin
               ? "flex w-full gap-4 px-section-x-lg will-change-transform"

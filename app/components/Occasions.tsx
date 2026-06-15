@@ -68,8 +68,8 @@ export default function Occasions() {
       <style>{`
         @keyframes occ-ltr { from { transform: translateX(0); } to { transform: translateX(-25%); } }
         @keyframes occ-rtl { from { transform: translateX(-25%); } to { transform: translateX(0); } }
-        .occ-ltr { animation: occ-ltr 40s linear infinite; }
-        .occ-rtl { animation: occ-rtl 48s linear infinite; }
+        .occ-ltr { animation: occ-ltr 72s linear infinite; }
+        .occ-rtl { animation: occ-rtl 88s linear infinite; }
         @media (prefers-reduced-motion: reduce) {
           .occ-ltr, .occ-rtl { animation: none; }
         }

@@ -93,20 +93,25 @@ export default function SiteHeader() {
   const engageOpen = activeMenu !== null;
   const menuIndex = MENU_KEYS.indexOf(shownMenu);
 
-  /* Height-morph for the horizontal slide track: the drawer resizes to the
-     active section's height as it slides (Linear). Panels are always mounted
-     (so the track can slide), measured here. */
+  /* Fixed-height slide surface: the drawer takes the TALLEST section's height,
+     so switching sections only slides horizontally and never animates layout
+     — the previous per-section height-morph reflowed the menu content every
+     frame and made the open feel laggy. Panels are always mounted so the
+     track can slide; measured here. */
   const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [viewportHeight, setViewportHeight] = useState<number | undefined>(undefined);
   useEffect(() => {
     const measure = () => {
-      const el = panelRefs.current[MENU_KEYS.indexOf(shownMenu)];
-      if (el) setViewportHeight(el.offsetHeight);
+      const h = panelRefs.current.reduce(
+        (m, el) => Math.max(m, el ? el.offsetHeight : 0),
+        0,
+      );
+      if (h) setViewportHeight(h);
     };
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, [shownMenu]);
+  }, []);
 
   /* Close sequencing (user-flagged 2026-06-12): the drawer retracts over
      350ms — the nav holds solid for the whole retract and only THEN fades
@@ -165,11 +170,10 @@ export default function SiteHeader() {
   });
 
   const solid = scrolled || menuOpen || engageOpen || drawerSettling;
-  /* Non-active nav uses Universal 300 (user 2026-06-14: the previous ink
-     inactive read too heavy); hover + the open trigger resolve to ink. Over
-     the hero the links stay white. */
+  /* hover dims in both states (Shopify: every nav item responds); the
+     transparent state swaps the global ink focus ring for white */
   const baseLink = solid
-    ? "text-grey-300 hover:text-ink"
+    ? "text-ink hover:text-grey-600"
     : "text-white hover:text-white/75 focus-visible:outline-white";
 
   return (
@@ -180,7 +184,7 @@ export default function SiteHeader() {
       <div
         aria-hidden
         onClick={closeMenu}
-        className={`fixed inset-0 z-40 hidden bg-ink/[0.06] backdrop-blur-[6px] transition-opacity duration-300 motion-reduce:transition-none lg:block ${
+        className={`fixed inset-0 z-40 hidden bg-ink/[0.06] backdrop-blur-[4px] transition-opacity duration-300 motion-reduce:transition-none lg:block ${
           engageOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -216,9 +220,9 @@ export default function SiteHeader() {
                   onClick={() =>
                     activeMenu === item.menu ? closeMenu() : openMenu(item.menu!)
                   }
-                  className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${
-                    activeMenu === item.menu ? "text-ink" : baseLink
-                  } ${item.active ? "font-bold" : "font-normal"}`}
+                  className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${
+                    item.active ? "font-bold" : "font-normal"
+                  }`}
                 >
                   {item.label}
                   <ChevronDown open={activeMenu === item.menu} />
@@ -305,6 +309,7 @@ export default function SiteHeader() {
             .engage-body {
               transform: translateY(-100%);
               visibility: hidden;
+              will-change: transform;
               transition:
                 transform 0.35s cubic-bezier(0.215, 0.61, 0.355, 1),
                 visibility 0s linear 0.35s;
@@ -330,8 +335,8 @@ export default function SiteHeader() {
                 opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.05s,
                 transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
             }
-            /* horizontal slide track + height morph (Linear) */
-            .engage-viewport { transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+            /* horizontal slide track (Linear) — fixed-height surface, so the
+               slide never animates layout (kept the open snappy) */
             .engage-track { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
             /* shared item-hover choreography for the mega-menus (Shopify):
                same-group siblings dim to 50%, hidden arrow fades in, hovered

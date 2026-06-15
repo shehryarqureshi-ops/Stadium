@@ -114,7 +114,7 @@ export default function Testimonials() {
               aria-hidden="true"
               className="absolute inset-x-0 bottom-0 h-[9.9375rem] bg-gradient-to-t from-[#202020] to-[rgba(32,32,32,0)]"
             />
-            <PlayButton className="left-1/2 top-1/2" />
+            <PlayButton className="flex left-1/2 top-1/2" />
             <div className="absolute left-6 top-[11.375rem] flex flex-col gap-0.5 md:left-8 lg:left-6">
               <p className="font-sans text-[1rem] font-semibold leading-[1.375rem] text-white">
                 Marie Belingard

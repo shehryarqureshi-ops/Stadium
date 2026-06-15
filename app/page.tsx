@@ -33,10 +33,10 @@ export default function Home() {
         <Reveal>
           <RedactedPoster />
         </Reveal>
+        {/* Infrastructure + Stadium Way are one continuous dark block (#181818) —
+            a single Reveal so it settles once, with no re-reveal between the two. */}
         <Reveal>
           <Infrastructure />
-        </Reveal>
-        <Reveal>
           <StadiumWay />
         </Reveal>
         <Catalog />

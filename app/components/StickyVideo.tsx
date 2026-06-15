@@ -13,18 +13,32 @@ const VIDEO_SRC = "";
    below the nav (z-30) so the dropdown's backdrop blur covers it too. */
 export default function StickyVideo() {
   const [past, setPast] = useState(false);
+  const [pastGlobe, setPastGlobe] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [playing, setPlaying] = useState(Boolean(VIDEO_SRC));
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setPast(window.scrollY > window.innerHeight * 0.7);
+    const onScroll = () => {
+      setPast(window.scrollY > window.innerHeight * 0.7);
+      // Hide once the globe / redacted section has scrolled past (its end reaches
+      // the upper half of the viewport) — keeps the corner player off the
+      // Infrastructure section that follows it.
+      const globe = document.getElementById("redacted-poster");
+      setPastGlobe(
+        globe ? globe.getBoundingClientRect().bottom <= window.innerHeight * 0.5 : false,
+      );
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
-  const visible = past && !dismissed;
+  const visible = past && !pastGlobe && !dismissed;
 
   const togglePlay = () => {
     const v = videoRef.current;

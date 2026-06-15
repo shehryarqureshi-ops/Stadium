@@ -14,7 +14,7 @@ import ChaosGlobe from "./ChaosGlobe";
 
 export default function RedactedPoster() {
   return (
-    <section className="bg-white px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-section-y-lg">
+    <section id="redacted-poster" className="bg-white px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-section-y-lg">
       <div className="mx-auto grid w-full max-w-content items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         {/* LEFT — problem block, then the calm answer block (system tokens) */}
         <div className="flex flex-col gap-8 lg:gap-10">

@@ -199,6 +199,7 @@ function NetworkOverlay() {
 export default function ScaleMap() {
   const [active, setActive] = useState(0);
   const [scale, setScale] = useState(1);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
   const mapWrapRef = useRef<HTMLDivElement>(null);
 
   const { sectionRef, takeOver } = useAutoAdvance(() =>
@@ -209,14 +210,21 @@ export default function ScaleMap() {
     setActive(i);
   };
 
-  // Uniform scale so the 1200px design canvas fills its column width (capped at
-  // max-w-content). Height comes from aspect-ratio, so there's no layout jump
-  // before measuring. Scales above 1 on wide viewports so the map fills the
-  // content width and left-aligns with the heading + neighbouring sections.
+  // Fit the 1200×512 design canvas inside its slot — scale to whichever of
+  // width/height binds, then centre it. On desktop the slot is a flex-1 box
+  // sized to the leftover viewport height (the section is min-h screen), so the
+  // whole global section reads in a single view; on mobile the slot keeps its
+  // aspect ratio and the width binds (unchanged behaviour).
   useEffect(() => {
     const el = mapWrapRef.current;
     if (!el) return;
-    const measure = () => setScale(el.clientWidth / CANVAS_W);
+    const measure = () => {
+      const w = el.clientWidth;
+      const h = el.clientHeight;
+      const s = Math.min(w / CANVAS_W, h / CANVAS_H);
+      setScale(s);
+      setOffset({ x: (w - CANVAS_W * s) / 2, y: (h - CANVAS_H * s) / 2 });
+    };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
@@ -226,9 +234,9 @@ export default function ScaleMap() {
   return (
     <section
       ref={sectionRef}
-      className="bg-gradient-to-b from-[#fafafb] to-white px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:pb-16 lg:pt-20"
+      className="bg-gradient-to-b from-[#fafafb] to-white px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:flex lg:min-h-[calc(100svh-4rem)] lg:flex-col lg:px-section-x-lg lg:pb-10 lg:pt-[5.5rem]"
     >
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-8 lg:gap-10">
+      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-8 lg:min-h-0 lg:flex-1 lg:gap-6">
         {/* Heading + interactive stats */}
         <div className="flex w-full flex-col gap-8 wide:flex-row wide:items-start wide:justify-between wide:gap-12">
           <div className="flex flex-col gap-4 wide:w-[30.375rem] wide:shrink-0">
@@ -285,12 +293,16 @@ export default function ScaleMap() {
         {/* Map canvas — design coords (1200×512), uniformly scaled to fit */}
         <div
           ref={mapWrapRef}
-          className="relative aspect-[1200/512] w-full max-w-content overflow-hidden"
+          className="relative aspect-[1200/512] w-full max-w-content overflow-hidden lg:aspect-auto lg:min-h-0 lg:flex-1"
           aria-hidden="true"
         >
           <div
             className="absolute left-0 top-0 origin-top-left"
-            style={{ width: CANVAS_W, height: CANVAS_H, transform: `scale(${scale})` }}
+            style={{
+              width: CANVAS_W,
+              height: CANVAS_H,
+              transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
+            }}
           >
             {active === 3 ? (
               <ReachBase />
