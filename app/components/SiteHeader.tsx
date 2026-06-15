@@ -178,13 +178,14 @@ export default function SiteHeader() {
 
   return (
     <>
-      {/* Page backdrop while a mega-menu is open — a subtle premium blur so
-          the drawer reads as a focused surface (desktop only, where the
-          mega-menu lives). Click anywhere to dismiss. */}
+      {/* Page backdrop while a mega-menu is open — a plain dim scrim. NOT a
+          backdrop-blur: blurring the whole viewport every frame, over the
+          looping marquees (TrustBand/Occasions) behind it, made the dropdown
+          stutter. The scrim is free. Desktop only; click anywhere to dismiss. */}
       <div
         aria-hidden
         onClick={closeMenu}
-        className={`fixed inset-0 z-40 hidden bg-ink/[0.06] backdrop-blur-[4px] transition-opacity duration-300 motion-reduce:transition-none lg:block ${
+        className={`fixed inset-0 z-40 hidden bg-ink/30 transition-opacity duration-300 motion-reduce:transition-none lg:block ${
           engageOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
