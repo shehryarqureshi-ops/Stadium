@@ -1,6 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState } from "react";
+import TeamPermissionsLoop from "./TeamPermissions";
 import { useAutoAdvance } from "./useAutoAdvance";
 
 /* "We build your program in four phases" — synced to Figma 2:33499
@@ -29,6 +31,7 @@ type Card = {
   desc: string;
   mock?: Mock;
   image?: string;
+  component?: ReactNode;
 };
 type Phase = { num: string; title: string; desc: string; cards: Card[] };
 
@@ -39,7 +42,7 @@ const PHASES: Phase[] = [
     desc: "Connect Slack and Teams so recognition and rewards reach people in the tools they already use and celebrate each win.",
     cards: [
       {
-        image: "/sw-card-1-roles.svg",
+        component: <TeamPermissionsLoop />,
         tag: "Setup · Team",
         mockTitle: "Invite your team",
         desc: "Add members and assign who does what.",
@@ -373,7 +376,11 @@ function DeckCard({ card }: { card: Card }) {
   return (
     <div className="flex flex-col gap-8 overflow-hidden rounded-2xl border border-[#ededed] bg-white p-4 pb-8 shadow-[0_12px_32px_-10px_rgba(16,24,40,0.18)]">
       <div className="overflow-hidden rounded-xl">
-        {card.image ? (
+        {card.component ? (
+          <div className="aspect-[313/340] w-full overflow-hidden">
+            {card.component}
+          </div>
+        ) : card.image ? (
           <div className="aspect-[313/340] w-full overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
