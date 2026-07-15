@@ -66,7 +66,10 @@ export default function Catalog() {
               Every recipient covered
             </h2>
           </div>
-          <p className="font-sans text-[1rem] font-semibold leading-6 text-ink">
+          <p
+            data-animation="reveal"
+            className="font-sans text-[1rem] font-semibold leading-6 text-ink"
+          >
             30K+ items from leading brands, with locally relevant options
             wherever you&rsquo;re sending.
           </p>

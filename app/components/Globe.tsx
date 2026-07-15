@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import createGlobe from "cobe";
 import type { COBEOptions } from "cobe";
+import createGlobe from "cobe";
+import { useEffect, useRef } from "react";
 
 /* Interactive cobe globe for the "We simplify global shipping" beat.
    Config ported from the cobe.html prototype: a grey base rendered with
@@ -18,8 +18,16 @@ const ARCS: COBEOptions["arcs"] = [
    CSS anchor `--cobe-<id>` and a `--cobe-visible-<id>` var per marker; the
    label divs attach to those via anchor positioning + fade with visibility. */
 const MARKERS = [
-  { id: "sf", location: [37.78, -122.44] as [number, number], label: "San Francisco" },
-  { id: "nyc", location: [40.71, -74.01] as [number, number], label: "New York" },
+  {
+    id: "sf",
+    location: [37.78, -122.44] as [number, number],
+    label: "San Francisco",
+  },
+  {
+    id: "nyc",
+    location: [40.71, -74.01] as [number, number],
+    label: "New York",
+  },
   { id: "dxb", location: [25.2, 55.27] as [number, number], label: "Dubai" },
 ];
 
@@ -60,7 +68,11 @@ export default function Globe({ className = "" }: { className?: string }) {
       baseColor: [0.2, 0.2, 0.2],
       markerColor: [0.2, 0.2, 0.2],
       glowColor: [0.1, 0.1, 0.1],
-      markers: MARKERS.map((m) => ({ location: m.location, size: 0, id: m.id })),
+      markers: MARKERS.map((m) => ({
+        location: m.location,
+        size: 0,
+        id: m.id,
+      })),
       arcs: ARCS,
       arcColor: [0.3, 0.5, 1],
       arcWidth: 0.3,
@@ -130,8 +142,12 @@ export default function Globe({ className = "" }: { className?: string }) {
             pointerMovement.current = e.clientX - pointerInteracting.current;
           }
         }}
-        className="h-full w-full cursor-grab touch-none [mix-blend-mode:luminosity]"
-        style={{ opacity: 0, transition: "opacity 1s ease", aspectRatio: "1 / 1" }}
+        className="h-full w-full cursor-grab touch-none mix-blend-luminosity"
+        style={{
+          opacity: 0,
+          transition: "opacity 1s ease",
+          aspectRatio: "1 / 1",
+        }}
       />
       {MARKERS.map((m) => (
         <div

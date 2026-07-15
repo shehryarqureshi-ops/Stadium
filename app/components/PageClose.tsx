@@ -76,37 +76,26 @@ export default function PageClose() {
         <div className="relative mx-auto flex w-full max-w-content flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center gap-3">
-              <p
-                data-animation="reveal"
-                className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#9fa0a2]"
-              >
+              <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#9fa0a2]">
                 Get started
               </p>
-              <h2
-                data-animation="reveal"
-                className="font-display text-heading-sm text-white md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
-              >
+              <h2 className="font-display text-heading-sm text-white md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
                 Ready to build your program?
               </h2>
             </div>
-            <p
-              data-animation="reveal"
-              className="max-w-[38rem] font-sans text-body-md text-[#e6e6e6] lg:text-[1.0625rem] lg:leading-7"
-            >
+            <p className="max-w-[38rem] font-sans text-body-md text-[#e6e6e6] lg:text-[1.0625rem] lg:leading-7">
               Get a 15-minute walkthrough. We&rsquo;ll show you live campaigns,
               sample boxes, and how teams use Stadium at scale.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3.5">
             <a
-              data-animation="reveal"
               href="#"
               className="inline-flex h-button-h items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-200 active:scale-[0.98] focus-visible:outline-white"
             >
               Book a demo
             </a>
             <a
-              data-animation="reveal"
               href="#"
               className="inline-flex h-button-h items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
             >

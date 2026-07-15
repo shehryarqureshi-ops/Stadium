@@ -57,7 +57,7 @@ export default function Infrastructure() {
   const [active, setActive] = useState(2); // 03 — Shipping & Delivery
 
   return (
-    <section className="relative overflow-hidden bg-[#040405] px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-section-y-lg">
+    <section className="relative overflow-hidden bg-[#000000] px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-section-y-lg">
       <div className="relative mx-auto flex w-full max-w-content flex-col gap-10 lg:gap-20">
         {/* centered header */}
         <div className="flex flex-col items-center gap-2 text-center">

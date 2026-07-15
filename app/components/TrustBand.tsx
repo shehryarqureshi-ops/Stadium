@@ -78,6 +78,7 @@ export default function TrustBand() {
 
       {/* tap toggles only on coarse pointers — mouse users have hover */}
       <div
+        data-animation="reveal"
         className="trust-strip relative h-[1.75rem] w-full overflow-hidden lg:h-[2.5rem]"
         onClick={tapToggle}
       >

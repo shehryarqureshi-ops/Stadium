@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
-import "./globals.css";
 import RevealOnScroll from "./components/RevealOnScroll";
+import SmoothScroll from "./components/SmoothScroll";
+import "./globals.css";
 
 const overpass = Overpass({
   variable: "--font-overpass",
@@ -79,9 +80,9 @@ export default function RootLayout({
             transform: translateY(1.5rem);
             filter: blur(0.5rem);
             transition:
-              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+              opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 2.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 2.5s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform, filter;
           }
           [data-animation="reveal"].is-revealed {
@@ -112,7 +113,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <RevealOnScroll />
       </body>
     </html>

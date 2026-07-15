@@ -105,5 +105,11 @@ export default function Starfield({ className = "" }: { className?: string }) {
     };
   }, []);
 
-  return <canvas ref={ref} aria-hidden className={`pointer-events-none ${className}`} />;
+  return (
+    <canvas
+      ref={ref}
+      aria-hidden
+      className={`pointer-events-none ${className}`}
+    />
+  );
 }

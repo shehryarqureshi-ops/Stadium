@@ -55,10 +55,10 @@ export default function RedactedPoster() {
       <Starfield className="absolute inset-0 h-full w-full" />
 
       {/* DESKTOP — 1440×1000 proportional canvas */}
-      <div className="relative z-10 mx-auto hidden aspect-[1440/1000] w-full max-w-[90rem] lg:block">
+      <div className="relative mx-auto hidden aspect-[1440/1000] w-full max-w-[90rem] lg:block">
         {/* interactive cobe globe — Figma placement (3D Globe 2:33352:
             abs x508 / y-351 / 1250², offset off the top-right) */}
-        <div className="absolute left-[35.3%] top-[-35.1%] aspect-square w-[86.8%]">
+        <div className="absolute left-[35.3%] top-[-25.1%] aspect-square w-[86.8%]">
           <Globe />
         </div>
         {/* text block at frame coords (x120 / y~305 / w573) */}

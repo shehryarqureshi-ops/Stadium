@@ -116,7 +116,7 @@
   --spacing-section-x-md: 1.875rem; /* tablet section margin-x (Shopify 30px) */
   --spacing-section-y-md: 4rem; /* tablet section padding-y */
   --spacing-section-x-lg: 5.625rem; /* desktop section margin-x (Shopify 90px) */
-  --spacing-section-y-lg: 6rem; /* desktop section padding-y */
+  --spacing-section-y-lg: 7.5rem; /* desktop section padding-y */
   --spacing-button-h: 2.5rem; /* button height — 40px system-wide (user decision 2026-06-12; was 44px) */
   --spacing-button-x: 1.5rem; /* button padding-x (spacing/24) */
   --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */

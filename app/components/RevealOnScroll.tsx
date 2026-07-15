@@ -32,7 +32,7 @@ export default function RevealOnScroll() {
       },
       // Match the section-level reveal trigger: a touch after the element's
       // top clears the fold, so it eases in as you arrive at it.
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.33, rootMargin: "0px 0px -8% 0px" },
     );
 
     const observeAll = () => pending().forEach((el) => io.observe(el));
