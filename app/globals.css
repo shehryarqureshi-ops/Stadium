@@ -122,6 +122,9 @@
   --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */
   --spacing-hero-md: 24.875rem; /* hero fixed frame height, tablet (398px) */
   --spacing-hero-lg: 42.25rem; /* hero fixed frame height, desktop (676px) */
+  --spacing-scale-map-sm: 20rem; /* ScaleMap particle canvas height, mobile — no Figma frame */
+  --spacing-scale-map-md: 26rem; /* ScaleMap particle canvas height, tablet */
+  --spacing-scale-map-lg: 32rem; /* ScaleMap particle canvas height, desktop — matches the old 512px map height for continuity */
 
   /* ===== Breakpoints =====
      Default Tailwind sm/md/lg are untouched (md 768, lg 1024 already map to
@@ -421,4 +424,13 @@ body {
     transform: scale(3);
     opacity: 0;
   }
+}
+
+.bg-particles {
+  background: radial-gradient(
+    circle,
+    hsla(228, 100, 95, 1) 0%,
+    hsla(228, 100, 97, 1) 50%,
+    hsla(228, 100, 99, 1) 90%
+  );
 }

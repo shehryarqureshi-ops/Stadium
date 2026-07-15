@@ -171,7 +171,7 @@ be reopened; that failure mode is now structurally blocked.
 | Hero | ✅ RE-SIGNED 2026-06-12 with FULL matrix — glyph-accurate contrast at 375/768/1024/1440/1880 all pass (h1 ≥4.21 vs 3 needed; small text ≥5.69 vs 4.5; CTAs ≥7.83); fixes: below-lg `bg-ink/60` floor + recomputed 90deg scrim stops; 40px CTAs, 2px outline, drift, rings, skip link verified; WIP heroes synced (scrim rect + flat overlays) | `#` CTAs launch-gated; drift interim until brand video. History: signed desktop-only, REOPENED when the matrix caught mobile 1.51:1 — and the matrix then caught the unverified "desktop passes" claim too (1024 h1 was 1.58) |
 | Every Way | 🟡 IN REVIEW 2026-06-12 — geometry + aspect-lock matrix GREEN at 320/375/768/1024/1440 (5 cards every state; 0.691 every card type every width; no orphan headline; descs surfaced; mobile thumb 64px; no page overflow — confirmed EveryWay clean, the 1024 overflow is ScaleMap's). Viewport decision: LEAVE AS-IS (fits standard phones). WIP synced (mobile thumbs 64, headline line-breaks, captions present via accordion component). ONE CELL OPEN: 5s rotation + hover/focus pause needs a 20-second user eyeball in a visible window (occluded remote window keeps it correctly idle) | Pending assets (states 2–4 tiles); "Candidates"/"Life Moments" PROPOSED copy; sub-lg patterns designed in code (no Figma frames) |
 | Trust band | ✅ SIGNED 2026-06-12 (rev 2) — invisible 2.2.2 mechanism verified per modality: hover pause/resume (real mouse), focus-revealed keyboard control (transition-off probe), coarse-pointer tap toggle; matrix at 375/768/1024/1440; h2, dupes aria-hidden, eyebrow 4.66:1; WIP synced (buttons removed) | none — copy real, hrefs n/a, no imagery text |
-| Scale Map | 🟡 OVERFLOW FIXED 2026-06-13 — reflow/aesthetic lens GREEN: document scrollWidth ≤ clientWidth at 320/375/768/1024/1200/1280/1300/1440/1600 (was 155px over at 1024). New `wide` (1300px) breakpoint gates the desktop two-column + reach treatment; the 1024–1300 band holds the stacked coverage treatment capped/centred at `max-w-band` (960px, measured 63/62px symmetric gaps at 1280) with the 170+-Countries highlight matching the coverage state; desktop (≥1300) reproduces the prior `lg` layout (1440 pixel-identical, heading text clears stats by 116px at the 1300 activation). Rogue `#262728` label hex → `text-ink`. **Full multi-lens sign-off still PENDING** — contrast pixel-sampled over the reach-map faces photo, keyboard/motion, and the per-breakpoint WIP review not yet done | Desktop band (1024–1300) is code-designed (extrapolated; no Figma frame), like EveryWay's sub-lg patterns |
+| Scale Map | 🔴 REBUILT 2026-07-16 — the `wide`-breakpoint two-column/reach-map layout this row previously tracked is gone; component rewritten to a single light layout with a decorative particle canvas (see section above). **Sign-off not yet run against the new build** — this row's prior overflow/contrast findings are void, need a fresh full-matrix pass | Particle visualization is code-designed with no Figma frame at all (approved one-off exception, not an extrapolation like EveryWay's sub-lg patterns) |
 | (remaining sections) | pending | — |
 
 ## Units (2026-06-11)
@@ -1086,42 +1086,58 @@ Figma: 1:62312 / 1:67145 / 1:62935.
 - White pill label: Overpass SemiBold 12/16 uppercase; mobile short name, md+ "NAME · DETAIL"; desktop h-8 px-24 inset 20px
 - Assets: catalog-snack-boxes/branded-merch/gift-cards/luxury-goods/experiences/work-essentials/lifestyle-hobbies.png
 
-## Scale Map (`ScaleMap.tsx`)
+## Scale Map (`ScaleMap.tsx`, `ScaleMapParticles.tsx`)
 
-Figma: 1:62352 / 1:67172 / 1:62961.
+Rebuilt 2026-07-16 — the dark two-column layout previously documented here
+(Figma `1:62352`/`1:67172`/`1:62961`, `wide`-breakpoint two-column header +
+reach-map canvas, `max-w-band` narrow-desktop band) no longer exists; this
+section describes the current build. `--breakpoint-wide` / `--container-band`
+tokens in `globals.css` are leftover from that prior layout and are unused by
+any current component — left in place, not cleaned up as part of this change.
 
-- Dark gradient `grey-700 → grey-800`. Three layouts across the range
-  (overflow fix 2026-06-13 — the desktop treatment now gates on `wide`):
-  - **Mobile/tablet (< `wide`):** stacked — heading, full-width stats list,
-    coverage-state dot map; 170+ Countries highlighted (white card).
-  - **Narrow-desktop band (1024–1300, code-designed — no Figma frame):** same
-    stacked coverage treatment, on the desktop section chrome (90px margins,
-    48px gap), with the content capped/centred at `max-w-band` (960px) and
-    the coverage-map height set to auto (`lg:h-auto`) so the aspect-locked
-    map grows past the tablet slot instead of overflowing it.
-  - **Desktop (≥ `wide` / 1300px):** two-column header (heading
-    `wide:w-[30.375rem]` + stats `wide:w-[36.75rem]`, justify-between) +
-    1200×512 reach-state map canvas; 1M+ Lives touched highlighted (per
-    Figma instance states). Held until `wide` because the 486+588px fixed
-    columns need ~1254px to clear the 90px margins; below that they packed
-    and overflowed the page (see sign-off ledger).
-- Heading `text-heading-sm/md/lg` tokens (normalized 2026-06-12 — the old
-  48/58 −0.72px arbitrary value is retired); body Overpass `grey-400`. The
-  desktop h2 keeps `lg:w-[32.8125rem]` (525px, breathes into the column
-  gutter); its rendered text clears the stats column by 116px at the 1300
-  activation, so the box-overflow is never visible.
-- Stats rows (170+ Countries, 100K+ Items, 100+ Integrations, 1M+ Lives
-  touched): `rounded-card`, dividers white/12 (`wide:white/10`); highlighted
-  row = white card, number `accent-water`, label `text-ink` (was a rogue
-  `#262728` hex on the lg highlight — fixed to the token 2026-06-13). The
-  highlight + stat desktop styling move at `wide`, so the band's highlight
-  (170+) matches its coverage map.
-- Maps: dot-matrix SVGs + overlays (see public/map-*.svg|jpg); reach-map pins
-  = blue halo + glow + white core with tooltip cards (bg grey-700, border
-  white/16). The reach map is `overflow-hidden`, so its %-positioned
-  pins/cards never push page width; the band deliberately uses the coverage
-  map (no fixed-position children) — it scales cleanly where the reach
-  tooltips, sized for 1200px, would crowd.
+- Single light layout at all breakpoints (`bg-gradient-to-b from-[#fafafb]
+  to-white`), no `wide:` split: centered heading, a 4-stat row
+  (Countries/Items/Integrations/Recipients), and a canvas visualization below.
+- **Figma exception:** the visualization is a decorative Canvas-2D particle
+  system ported directly from a user-supplied prototype — like EveryWay's
+  sub-lg patterns, this is code-designed with no Figma frame, but unlike
+  those, it isn't even an extrapolation of a Figma frame; it's an approved
+  one-off exception to "all designs come from Figma."
+- **Interaction:** the 4 existing stat buttons double as the visualization's
+  tab switcher (no separate nav) — clicking/hovering/focusing a stat sets
+  `active`, passed to `<ScaleMapParticles activeTab={active} />` as a plain
+  prop. Click/hover-only, no auto-advance (no `useAutoAdvance`). Mapping is an
+  assumed default, not a confirmed pairing — easy to reorder later: Countries
+  → rotating particle globe (procedural continent detection, not real
+  marker/coverage data — purely decorative), Items → pulsating flat grid,
+  Integrations → flowing "hourglass" wave, Recipients → rotating Milky Way
+  spiral.
+- **Sizing:** no Figma spec exists for this component, so canvas wrapper
+  height is a new bespoke token set (`--spacing-scale-map-sm/md/lg` = 20/26/32
+  rem mobile/tablet/desktop; desktop matches the old 512px map height for
+  continuity). The canvas's internal particle-space math is authored against
+  a fixed 800×900 reference frame and uniformly scaled to the actual rendered
+  size via `Math.min(W/REF_W, H/REF_H)` — only the final projected screen
+  coordinates are scaled, not the particle system's tuning constants, so
+  perspective/depth proportions stay correct at any container size. Edge fade
+  via `[mask-image:radial-gradient(circle_at_center,black_40%,transparent_90%)]`.
+- **Color reuse:** the 5 particle colors are decimal-RGB transcriptions of
+  `--color-accent-water/lime/lilac/punch/turmeric` (`#0b7afc`/`#00c036`/
+  `#8d12e7`/`#ff5b77`/`#ffb800`), manually kept in sync in
+  `ScaleMapParticles.tsx` (canvas `fillStyle` can't read CSS custom
+  properties directly — same convention as `ChaosGlobe.tsx`/`Starfield.tsx`).
+  Note these hex values also match the org brand guideline's palette, under
+  different names — this repo's `water`/`turmeric` tokens are the guideline's
+  `Morocco`/`Tuscany`; pre-existing, intentional naming difference, not a bug.
+- **Motion:** one-time `prefers-reduced-motion` check at mount (no live
+  listener, matches every other animated component in this repo) gates only
+  continuous motion (globe rotation, grid pulsing, wave flow, galaxy
+  rotation, float wobble). A tab click still plays its lerp-based
+  settle-into-new-arrangement transition even under reduced motion — a
+  discrete, user-initiated change, not decorative continuous motion.
+- The old dot-matrix SVG map (`map-dots-coverage.svg` + `map-coverage-overlay.svg`)
+  and its hardcoded marker pins are gone; those two files are now unreferenced
+  in `public/` (left in place — deleting orphaned assets was out of scope).
 
 ## TeamsTabs (`TeamsTabs.tsx`)
 

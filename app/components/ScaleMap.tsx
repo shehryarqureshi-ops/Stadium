@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import ScaleMapParticles from "./ScaleMapParticles";
 
 /* "Scale to wherever your people are" — synced to Figma 2:33685. Interactive:
    a centered 55px header, a 4-stat row where hovering/selecting a stat makes it
    the active one (dark, the rest grey) with a blue gradient line above AND below
-   it (Figma), and the dotted world map re-plots its live markers per active stat
-   ("every state changes the map underneath"). Auto-advances while in view. */
-
-const CANVAS_W = 1200;
-const CANVAS_H = 512;
+   it (Figma). The visualization below is a decorative particle system (NOT
+   Figma-sourced — see design.md) with 4 arrangements, one per stat: Countries →
+   globe, Items → grid, Integrations → wave, Recipients → galaxy. */
 
 const STATS = [
   { value: "170+", label: "Countries", sub: "with local fulfillment" },
@@ -21,41 +20,6 @@ const STATS = [
   },
   { value: "1M+", label: "Recipients", sub: "across the globe" },
 ];
-
-/* marker centres on the 1200×512 canvas (roughly matching the Figma clusters) */
-const MARKERS: [number, number][] = [
-  [232, 196],
-  [296, 206],
-  [345, 188],
-  [278, 250],
-  [402, 346],
-  [560, 158],
-  [604, 172],
-  [642, 316],
-  [700, 256],
-  [852, 202],
-  [906, 192],
-  [978, 386],
-];
-
-/* each stat lights a different set of the coverage markers, so the map visibly
-   re-plots as you move across the stats */
-const MARKER_SETS: number[][] = [
-  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], // Countries — widest coverage
-  [1, 3, 5, 7, 9, 11], // Items — fulfillment hubs
-  [0, 2, 4, 6, 8, 10], // Integrations — tech hubs
-  [2, 3, 5, 6, 8, 9, 10, 11], // Recipients — dense
-];
-
-function Marker({ left, top }: { left: number; top: number }) {
-  return (
-    <div className="absolute size-8" style={{ left: left - 16, top: top - 16 }}>
-      <span className="absolute inset-0 rounded-full bg-accent-water/15" />
-      <span className="absolute left-1/2 top-1/2 size-[0.8125rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-water/35" />
-      <span className="absolute left-1/2 top-1/2 size-[0.3125rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-water" />
-    </div>
-  );
-}
 
 /* one full-width grey rail with a blue gradient highlight that slides under the
    active stat (top and bottom lines of the stats row) */
@@ -71,29 +35,10 @@ function StatRule({ active }: { active: number }) {
 }
 
 export default function ScaleMap() {
-  const [scale, setScale] = useState(1);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(0);
-  const mapWrapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = mapWrapRef.current;
-    if (!el) return;
-    const measure = () => {
-      const w = el.clientWidth;
-      const h = el.clientHeight;
-      const s = Math.min(w / CANVAS_W, h / CANVAS_H);
-      setScale(s);
-      setOffset({ x: (w - CANVAS_W * s) / 2, y: (h - CANVAS_H * s) / 2 });
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
 
   return (
-    <section className="bg-gradient-to-b from-[#fafafb] to-white px-section-x-sm py-16 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-[7.5rem]">
+    <section className="bg-[#fafafb] px-section-x-sm pt-16 md:px-section-x-md md:pt-24 lg:px-section-x-lg lg:pt-[7.5rem] rounded-tr-4xl rounded-tl-4xl">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-16 lg:gap-20">
         {/* header */}
         <div className="flex flex-col items-center gap-6 text-center">
@@ -159,88 +104,55 @@ export default function ScaleMap() {
           </div>
           <StatRule active={active} />
         </div>
+      </div>
 
-        {/* map — re-plots its markers for the active stat */}
-        <div
-          data-animation="reveal"
-          ref={mapWrapRef}
-          className="relative aspect-[1200/512] w-full max-w-content overflow-hidden"
-          aria-hidden="true"
-        >
-          <div
-            className="absolute left-0 top-0 origin-top-left"
-            style={{
-              width: CANVAS_W,
-              height: CANVAS_H,
-              transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
-            }}
+      {/* particle visualization — one arrangement per active stat */}
+      <div className="mx-auto w-full max-w-content">
+        <div data-animation="reveal" className="w-full max-w-content relative">
+          <svg
+            className="absolute inset-0"
+            width="1200"
+            height="512"
+            viewBox="0 0 1200 512"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/map-dots-coverage.svg"
-              alt=""
-              className="absolute max-w-none"
-              style={{ left: 89, top: 85, width: 990.08, height: 392.916 }}
-            />
-            {/* routing arcs */}
-            <div
-              className="absolute"
-              style={{
-                left: 226.68,
-                top: 142.99,
-                width: 729.232,
-                height: 269.589,
-              }}
-            >
-              <div className="absolute" style={{ inset: "-2.6% -0.96%" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/map-coverage-overlay.svg"
-                  alt=""
-                  className="block size-full max-w-none"
+            <g clip-path="url(#clip0_199_5250)">
+              <rect width="1200" height="512" fill="#FAFAFB" />
+              <g filter="url(#filter0_f_199_5250)">
+                <ellipse cx="600" cy="476" rx="436" ry="223" fill="#B3C2FF" />
+                <circle cx="600" cy="416" r="107" fill="#8099FF" />
+              </g>
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_199_5250"
+                x="-287"
+                y="-200"
+                width="1774"
+                height="1099"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
                 />
-              </div>
-            </div>
-            <div key={active} className="map-markers">
-              {MARKER_SETS[active].map((idx) => (
-                <Marker
-                  key={idx}
-                  left={MARKERS[idx][0]}
-                  top={MARKERS[idx][1]}
+                <feGaussianBlur
+                  stdDeviation="100"
+                  result="effect1_foregroundBlur_199_5250"
                 />
-              ))}
-            </div>
-          </div>
-          <style>{`
-            .map-markers { animation: map-fade 0.35s ease-out both; }
-            @keyframes map-fade { from { opacity: 0; } to { opacity: 1; } }
-            @media (prefers-reduced-motion: reduce) { .map-markers { animation: none; } }
-          `}</style>
-        </div>
+              </filter>
+              <clipPath id="clip0_199_5250">
+                <rect width="1200" height="512" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
 
-        {/* legend */}
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-full border border-grey-200 bg-white px-6 py-3 font-sans text-[0.75rem] text-[#4f5052] shadow-[0px_0.125rem_0.375rem_0px_rgba(16,24,40,0.06)]">
-          <span className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-grey-400" />
-            Coverage network
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="flex size-[0.8125rem] items-center justify-center rounded-full bg-accent-water/30">
-              <span className="size-[0.4375rem] rounded-full bg-accent-water" />
-            </span>
-            Local fulfillment regions
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="flex gap-[0.1875rem]">
-              {[0, 1, 2, 3].map((d) => (
-                <span
-                  key={d}
-                  className="size-[0.1625rem] rounded-full bg-accent-water"
-                />
-              ))}
-            </span>
-            Cross-region routing
-          </span>
+          <ScaleMapParticles activeTab={active} />
         </div>
       </div>
     </section>
