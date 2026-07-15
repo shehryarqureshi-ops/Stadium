@@ -12,18 +12,30 @@ function Copy() {
   return (
     <>
       <div className="flex flex-col gap-3">
-        <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#a4cefe]">
+        <p
+          data-animation="reveal"
+          className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#a4cefe]"
+        >
           Built for global scale
         </p>
-        <h2 className="font-display text-heading-md text-white lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
-          We simplify<br />global shipping.
+        <h2
+          data-animation="reveal"
+          className="font-display text-heading-md text-white lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+        >
+          We simplify
+          <br />
+          global shipping.
         </h2>
       </div>
-      <p className="max-w-[30rem] font-sans text-body-md text-[#cccccc] lg:max-w-[25rem] lg:text-[1.125rem] lg:leading-7 lg:tracking-[0.0156rem]">
+      <p
+        data-animation="reveal"
+        className="max-w-[30rem] font-sans text-body-md text-[#cccccc] lg:max-w-[25rem] lg:text-[1.125rem] lg:leading-7 lg:tracking-[0.0156rem]"
+      >
         More countries mean more customs rules, VAT rates, and restricted items.
         Stadium covers all of it across 170+ countries.
       </p>
       <a
+        data-animation="reveal"
         href="#"
         className="mt-2 inline-flex h-button-h w-fit items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white"
       >

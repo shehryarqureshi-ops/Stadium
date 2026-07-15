@@ -1,5 +1,5 @@
-import Image from "next/image";
 import heroBg from "@/public/hero-bg.png";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -50,17 +50,26 @@ export default function Hero() {
         {/* Header: title (eyebrow + headline) + supporting copy */}
         <div className="flex w-full flex-col items-start gap-3 md:gap-6">
           <div className="flex w-full flex-col items-start gap-2 text-white">
-            <p className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6">
+            <p
+              className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6"
+              data-animation="reveal"
+            >
               Global engagement infrastructure
             </p>
-            <h1 className="w-full font-display text-ds-h4 md:text-ds-h2 lg:text-ds-hero">
-              Show up for your people.{" "}
-              {/* hard line break on desktop only (per Figma) */}
+            <h1
+              data-animation="reveal"
+              className="w-full font-display text-ds-h4 md:text-ds-h2 lg:text-ds-hero"
+            >
+              Show up for your <span data-animation="word-shuffle">people</span>
+              . {/* hard line break on desktop only (per Figma) */}
               <br aria-hidden className="hidden lg:block" />
               Everywhere, every time.
             </h1>
           </div>
-          <p className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem]">
+          <p
+            data-animation="reveal"
+            className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem]"
+          >
             The platform behind recognition, swag, and gifting worldwide.
           </p>
         </div>
@@ -70,6 +79,7 @@ export default function Hero() {
             Hover + focus-visible per the quality bar. */}
         <div className="flex w-full flex-col items-start gap-2 md:w-auto md:flex-row md:items-center md:gap-3 lg:gap-4">
           <a
+            data-animation="reveal"
             href="#"
             className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
@@ -78,6 +88,7 @@ export default function Hero() {
             </span>
           </a>
           <a
+            data-animation="reveal"
             href="#"
             className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >

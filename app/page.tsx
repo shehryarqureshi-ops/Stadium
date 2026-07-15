@@ -1,24 +1,28 @@
-import SiteHeader from "./components/SiteHeader";
-import Hero from "./components/Hero";
-import TrustBand from "./components/TrustBand";
-import EveryWay from "./components/EveryWay";
-import RedactedPoster from "./components/RedactedPoster";
-import Infrastructure from "./components/Infrastructure";
-import StadiumWay from "./components/StadiumWay";
 import Catalog from "./components/Catalog";
-import ScaleMap from "./components/ScaleMap";
-import TeamsTabs from "./components/TeamsTabs";
+import EveryWay from "./components/EveryWay";
+import Hero from "./components/Hero";
+import Infrastructure from "./components/Infrastructure";
 import Occasions from "./components/Occasions";
-import Testimonials from "./components/Testimonials";
 import PageClose from "./components/PageClose";
+import RedactedPoster from "./components/RedactedPoster";
 import Reveal from "./components/Reveal";
+import ScaleMap from "./components/ScaleMap";
+import SiteHeader from "./components/SiteHeader";
+import StadiumWay from "./components/StadiumWay";
 import StickyVideo from "./components/StickyVideo";
+import TeamsTabs from "./components/TeamsTabs";
+import Testimonials from "./components/Testimonials";
+import TrustBand from "./components/TrustBand";
 
 export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none">
+      <main
+        id="main"
+        tabIndex={-1}
+        className="flex flex-1 flex-col outline-none"
+      >
         {/* Hero stays un-revealed (above the fold). Each section below fades +
             rises as it scrolls into view. Catalog is excluded — its pinned,
             scroll-driven carousel reads getBoundingClientRect, which a reveal

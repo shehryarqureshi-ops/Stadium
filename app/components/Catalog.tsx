@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
-import { useRef } from "react";
-import snackBoxesImg from "@/public/catalog-snack-boxes.jpg";
 import brandedMerchImg from "@/public/catalog-branded-merch.jpg";
 import giftCardsImg from "@/public/catalog-gift-cards.jpg";
 import luxuryGoodsImg from "@/public/catalog-luxury-goods.jpg";
+import snackBoxesImg from "@/public/catalog-snack-boxes.jpg";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
+import { useRef } from "react";
 
 /* "Every recipient covered" — synced to Figma 2:33654. White section, 55px
    heading, then a horizontal card carousel with prev/next arrows. Each 348×460
@@ -23,8 +23,21 @@ const categories: Category[] = [
 
 function Arrow({ dir }: { dir: "prev" | "next" }) {
   return (
-    <svg viewBox="0 0 24 24" className="size-4 text-ink" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      {dir === "prev" ? <path d="M19 12H5M12 19l-7-7 7-7" /> : <path d="M5 12h14M12 5l7 7-7 7" />}
+    <svg
+      viewBox="0 0 24 24"
+      className="size-4 text-ink"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {dir === "prev" ? (
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      ) : (
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      )}
     </svg>
   );
 }
@@ -40,15 +53,22 @@ export default function Catalog() {
         {/* header */}
         <div className="flex max-w-[52.5rem] flex-col gap-6 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
           <div className="flex flex-col gap-2">
-            <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60">
+            <p
+              data-animation="reveal"
+              className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+            >
               The Stadium Catalog
             </p>
-            <h2 className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
+            <h2
+              data-animation="reveal"
+              className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+            >
               Every recipient covered
             </h2>
           </div>
           <p className="font-sans text-[1rem] font-semibold leading-6 text-ink">
-            30K+ items from leading brands, with locally relevant options wherever you&rsquo;re sending.
+            30K+ items from leading brands, with locally relevant options
+            wherever you&rsquo;re sending.
           </p>
         </div>
 
@@ -60,6 +80,7 @@ export default function Catalog() {
           >
             {categories.map((c) => (
               <li
+                data-animation="reveal"
                 key={c.name}
                 className="group flex aspect-[348/460] w-[17rem] shrink-0 flex-col overflow-hidden rounded-2xl bg-[#f9f7f8] lg:w-[21.75rem]"
               >
@@ -67,7 +88,9 @@ export default function Catalog() {
                   <span className="font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-ink">
                     {c.eyebrow}
                   </span>
-                  <span className="font-display text-heading-sm text-ink">{c.name}</span>
+                  <span className="font-display text-heading-sm text-ink">
+                    {c.name}
+                  </span>
                 </div>
                 <div className="relative min-h-0 flex-1">
                   <Image
@@ -83,7 +106,10 @@ export default function Catalog() {
           </ul>
 
           {/* prev / next */}
-          <div className="flex justify-end gap-2.5 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+          <div
+            data-animation="reveal"
+            className="flex justify-end gap-2.5 px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
+          >
             <button
               type="button"
               aria-label="Previous"

@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
-import { useAutoAdvance } from "./useAutoAdvance";
-import recognitionImg from "@/public/ewysu-recognition.jpg";
-import swagImg from "@/public/ewysu-swag.jpg";
-import giftingImg from "@/public/ewysu-gifting.jpg";
-import snacksImg from "@/public/ewysu-snacks.jpg";
 import eventsImg from "@/public/ewysu-events.jpg";
+import giftingImg from "@/public/ewysu-gifting.jpg";
+import recognitionImg from "@/public/ewysu-recognition.jpg";
+import snacksImg from "@/public/ewysu-snacks.jpg";
+import swagImg from "@/public/ewysu-swag.jpg";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
+import { useState } from "react";
+import { useAutoAdvance } from "./useAutoAdvance";
 
 /* "One platform." — synced to the behavior spec (Figma 50:725). The headline is
    FOUR clickable lines that highlight one at a time (active = ink, rest = grey),
@@ -66,7 +66,7 @@ const SEGMENTS: Segment[] = [
 function PhotoCard({ card }: { card: Card }) {
   /* real product card — label BELOW the photo */
   return (
-    <div className="group flex flex-col gap-4">
+    <div data-animation="reveal" className="group flex flex-col gap-4">
       <div className="relative aspect-[221/320] w-full overflow-hidden rounded-card bg-grey-200">
         <Image
           src={card.image!}
@@ -93,7 +93,12 @@ function PendingCard({ card }: { card: Card }) {
           </span>
         </span>
       </div>
-      <h3 className="font-display text-heading-sm text-ink">{card.label}</h3>
+      <h3
+        data-animation="reveal"
+        className="font-display text-heading-sm text-ink"
+      >
+        {card.label}
+      </h3>
     </div>
   );
 }
@@ -116,7 +121,10 @@ export default function EveryWay() {
       className="mx-auto flex w-full max-w-section flex-col gap-10 bg-surface-base px-section-x-sm pt-16 pb-20 md:px-section-x-md md:pt-20 md:pb-28 lg:gap-14 lg:px-section-x-lg lg:pt-[7.5rem] lg:pb-[11.25rem]"
     >
       {/* Four cycling lines — every line is clickable and owns its own deck */}
-      <h2 className="font-display text-heading-sm md:text-heading-md lg:text-heading-lg lg:tracking-[-0.075rem]">
+      <h2
+        data-animation="reveal"
+        className="font-display text-heading-sm md:text-heading-md lg:text-heading-lg lg:tracking-[-0.075rem]"
+      >
         {SEGMENTS.map((seg, i) => (
           <span key={seg.label}>
             <button
@@ -124,7 +132,9 @@ export default function EveryWay() {
               onClick={() => select(i)}
               aria-pressed={i === active}
               className={`cursor-pointer rounded-sm outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#0b7afc]/40 ${
-                i === active ? "text-[#1b1b1b]" : "text-[#c9c9c9] hover:text-[#9a9a9a]"
+                i === active
+                  ? "text-[#1b1b1b]"
+                  : "text-[#c9c9c9] hover:text-[#9a9a9a]"
               }`}
             >
               {seg.label}
@@ -147,7 +157,11 @@ export default function EveryWay() {
             >
               {seg.cards.map((card) => (
                 <li key={card.label}>
-                  {card.image ? <PhotoCard card={card} /> : <PendingCard card={card} />}
+                  {card.image ? (
+                    <PhotoCard card={card} />
+                  ) : (
+                    <PendingCard card={card} />
+                  )}
                 </li>
               ))}
             </ul>

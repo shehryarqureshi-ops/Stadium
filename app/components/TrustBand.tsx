@@ -69,7 +69,10 @@ export default function TrustBand() {
 
       {/* h2 (was a p, 2026-06-12): the band is a real section of social
           proof — the eyebrow IS its heading, styled unchanged */}
-      <h2 className="px-section-x-sm text-center font-sans text-eyebrow-sm uppercase tracking-[0.0625rem] text-[#919295] md:whitespace-nowrap md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6">
+      <h2
+        className="px-section-x-sm text-center font-sans text-eyebrow-sm uppercase tracking-[0.0625rem] text-[#919295] md:whitespace-nowrap md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6"
+        data-animation="reveal"
+      >
         10,000+ companies count on Stadium
       </h2>
 
@@ -136,11 +139,21 @@ export default function TrustBand() {
           className="trust-pause absolute right-2 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-grey-200 bg-surface-base text-grey-500 md:right-4"
         >
           {paused ? (
-            <svg className="size-3.5 translate-x-px" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+            <svg
+              className="size-3.5 translate-x-px"
+              viewBox="0 0 14 14"
+              fill="currentColor"
+              aria-hidden="true"
+            >
               <path d="M3.5 2.3c0-.6.65-.97 1.16-.66l7.06 4.2a.77.77 0 0 1 0 1.32l-7.06 4.2a.77.77 0 0 1-1.16-.66V2.3Z" />
             </svg>
           ) : (
-            <svg className="size-3.5" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+            <svg
+              className="size-3.5"
+              viewBox="0 0 14 14"
+              fill="currentColor"
+              aria-hidden="true"
+            >
               <rect x="3" y="2" width="3" height="10" rx="1" />
               <rect x="8" y="2" width="3" height="10" rx="1" />
             </svg>

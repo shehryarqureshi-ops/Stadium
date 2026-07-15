@@ -14,14 +14,28 @@ const CANVAS_H = 512;
 const STATS = [
   { value: "170+", label: "Countries", sub: "with local fulfillment" },
   { value: "100K+", label: "Items", sub: "in the global catalog" },
-  { value: "100+", label: "Integrations", sub: "with the tools you already use" },
+  {
+    value: "100+",
+    label: "Integrations",
+    sub: "with the tools you already use",
+  },
   { value: "1M+", label: "Recipients", sub: "across the globe" },
 ];
 
 /* marker centres on the 1200×512 canvas (roughly matching the Figma clusters) */
 const MARKERS: [number, number][] = [
-  [232, 196], [296, 206], [345, 188], [278, 250], [402, 346],
-  [560, 158], [604, 172], [642, 316], [700, 256], [852, 202], [906, 192], [978, 386],
+  [232, 196],
+  [296, 206],
+  [345, 188],
+  [278, 250],
+  [402, 346],
+  [560, 158],
+  [604, 172],
+  [642, 316],
+  [700, 256],
+  [852, 202],
+  [906, 192],
+  [978, 386],
 ];
 
 /* each stat lights a different set of the coverage markers, so the map visibly
@@ -83,18 +97,30 @@ export default function ScaleMap() {
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-16 lg:gap-20">
         {/* header */}
         <div className="flex flex-col items-center gap-6 text-center">
-          <h2 className="font-display text-heading-sm text-[#181818] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
-            Scale to wherever<br className="hidden md:block" /> your people are
+          <h2
+            data-animation="reveal"
+            className="font-display text-heading-sm text-[#181818] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+          >
+            Scale to wherever
+            <br className="hidden md:block" /> your people are
           </h2>
-          <p className="font-sans text-body-md text-[#4f5052] lg:text-[1.125rem] lg:leading-7">
-            Recognition, swag, and gifting.<br className="hidden md:block" /> Delivered to teams around the world.
+          <p
+            data-animation="reveal"
+            className="font-sans text-body-md text-[#4f5052] lg:text-[1.125rem] lg:leading-7"
+          >
+            Recognition, swag, and gifting.
+            <br className="hidden md:block" /> Delivered to teams around the
+            world.
           </p>
         </div>
 
         {/* stats row — selectable; active stat is dark with a blue line above + below */}
         <div className="w-full">
           <StatRule active={active} />
-          <div className="grid grid-cols-2 md:grid-cols-4">
+          <div
+            data-animation="reveal"
+            className="grid grid-cols-2 md:grid-cols-4"
+          >
             {STATS.map((s, i) => (
               <button
                 key={s.label}
@@ -136,13 +162,18 @@ export default function ScaleMap() {
 
         {/* map — re-plots its markers for the active stat */}
         <div
+          data-animation="reveal"
           ref={mapWrapRef}
           className="relative aspect-[1200/512] w-full max-w-content overflow-hidden"
           aria-hidden="true"
         >
           <div
             className="absolute left-0 top-0 origin-top-left"
-            style={{ width: CANVAS_W, height: CANVAS_H, transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})` }}
+            style={{
+              width: CANVAS_W,
+              height: CANVAS_H,
+              transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
+            }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -152,15 +183,31 @@ export default function ScaleMap() {
               style={{ left: 89, top: 85, width: 990.08, height: 392.916 }}
             />
             {/* routing arcs */}
-            <div className="absolute" style={{ left: 226.68, top: 142.99, width: 729.232, height: 269.589 }}>
+            <div
+              className="absolute"
+              style={{
+                left: 226.68,
+                top: 142.99,
+                width: 729.232,
+                height: 269.589,
+              }}
+            >
               <div className="absolute" style={{ inset: "-2.6% -0.96%" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/map-coverage-overlay.svg" alt="" className="block size-full max-w-none" />
+                <img
+                  src="/map-coverage-overlay.svg"
+                  alt=""
+                  className="block size-full max-w-none"
+                />
               </div>
             </div>
             <div key={active} className="map-markers">
               {MARKER_SETS[active].map((idx) => (
-                <Marker key={idx} left={MARKERS[idx][0]} top={MARKERS[idx][1]} />
+                <Marker
+                  key={idx}
+                  left={MARKERS[idx][0]}
+                  top={MARKERS[idx][1]}
+                />
               ))}
             </div>
           </div>
@@ -186,7 +233,10 @@ export default function ScaleMap() {
           <span className="flex items-center gap-1.5">
             <span className="flex gap-[0.1875rem]">
               {[0, 1, 2, 3].map((d) => (
-                <span key={d} className="size-[0.1625rem] rounded-full bg-accent-water" />
+                <span
+                  key={d}
+                  className="size-[0.1625rem] rounded-full bg-accent-water"
+                />
               ))}
             </span>
             Cross-region routing
