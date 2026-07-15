@@ -49,52 +49,70 @@ const LINK_COLUMNS: { heading: string; links: string[] }[] = [
 
 export default function PageClose() {
   return (
-    <section>
-      {/* ===== Final CTA ===== */}
-      <div className="flex w-full flex-col items-center gap-6 bg-surface-subtle px-section-x-sm py-[3.5rem] md:px-section-x-md md:py-[4.5rem] lg:gap-8 lg:px-section-x-lg lg:py-section-y-md">
-        <div className="flex w-full flex-col items-center gap-4 text-center">
-          <h2 className="w-full font-display text-heading-sm text-ink md:text-heading-md lg:max-w-[45.125rem] lg:text-heading-lg">
-            Ready to send something unforgettable?
-          </h2>
-          <p className="w-full font-sans text-body-md text-grey-600 md:text-body-lg lg:max-w-[42.5rem] lg:text-ink">
-            <span className="lg:hidden">
-              Get a 15-minute walkthrough — see live campaigns, sample kits,
-              and how Stadium fits your stack.
-            </span>
-            <span className="hidden lg:inline">
-              Get a 15-minute walkthrough — see live campaigns, sample boxes,
-              and how teams ship at scale.
-            </span>
-          </p>
-        </div>
-
-        <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row">
-          <a
-            href="#"
-            className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button inset-shadow-button-dark md:w-auto"
-          >
-            Book a demo
-          </a>
-          <a
-            href="#"
-            className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-cta-fill px-button-x font-sans text-button-primary uppercase text-ink md:w-auto"
-          >
-            Talk to sales
-          </a>
+    <section className="bg-[#181818]">
+      {/* ===== Final CTA — centered on the dark block ===== */}
+      <div className="relative overflow-hidden px-section-x-sm py-20 text-center md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-[7.5rem]">
+        {/* deep-blue bloom in the lower center (behind the dot dome) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-24 left-1/2 h-96 w-[85%] -translate-x-1/2 rounded-[50%] bg-[#0b52c0]/40 blur-[120px]"
+        />
+        {/* dot-field texture masked into a dome in the lower center
+            (Figma "image 13611" — /pageclose-dots.png) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-70 [mix-blend-mode:screen]"
+          style={{
+            backgroundImage: "url(/pageclose-dots.png)",
+            backgroundSize: "60rem auto",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+            maskImage: "radial-gradient(55% 78% at 50% 102%, #000 18%, transparent 82%)",
+            WebkitMaskImage: "radial-gradient(55% 78% at 50% 102%, #000 18%, transparent 82%)",
+          }}
+        />
+        <div className="relative mx-auto flex w-full max-w-content flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-3">
+              <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#9fa0a2]">
+                Get started
+              </p>
+              <h2 className="font-display text-heading-sm text-white md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
+                Ready to build your program?
+              </h2>
+            </div>
+            <p className="max-w-[38rem] font-sans text-body-md text-[#e6e6e6] lg:text-[1.0625rem] lg:leading-7">
+              Get a 15-minute walkthrough. We&rsquo;ll show you live campaigns, sample boxes, and how teams use Stadium at scale.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3.5">
+            <a
+              href="#"
+              className="inline-flex h-button-h items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-200 active:scale-[0.98] focus-visible:outline-white"
+            >
+              Book a demo
+            </a>
+            <a
+              href="#"
+              className="inline-flex h-button-h items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
+            >
+              Talk to sales
+            </a>
+          </div>
         </div>
       </div>
 
       {/* ===== Footer ===== */}
-      <footer className="bg-grey-800 px-section-x-sm py-12 md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-20">
+      <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pb-36 pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pb-56 lg:pt-20">
         {/* content caps + centers above 1440; bg stays full-bleed */}
         <div className="mx-auto flex w-full max-w-content flex-col gap-8 lg:gap-12">
         {/* lg:flex-wrap lets the link columns drop below the brand column on
             narrow desktop widths (1024–1300) instead of overflowing */}
-        <div className="flex w-full flex-col gap-8 lg:flex-row lg:flex-wrap lg:items-stretch lg:gap-[4.9375rem]">
+        <div className="flex w-full flex-col gap-8 lg:flex-row lg:flex-wrap lg:items-stretch lg:gap-6">
           {/* Brand column: logo lockup + tagline + social, OUR BRANDS pinned to bottom on desktop */}
-          <div className="flex flex-col gap-6 lg:w-[25.5625rem] lg:shrink-0 lg:justify-between">
+          <div className="flex flex-col gap-6 lg:w-[24rem] lg:shrink-0 lg:justify-between">
             <div className="flex flex-col gap-4">
-              <a href="#" className="inline-flex">
+              <a href="#" className="inline-flex transition-opacity hover:opacity-80">
                 <img
                   src="/footer-logo-lockup.svg"
                   alt="Stadium"
@@ -110,7 +128,7 @@ export default function PageClose() {
                 <a
                   href="#"
                   aria-label="LinkedIn"
-                  className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white md:size-[1.53125rem] lg:size-[1.90625rem]"
+                  className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                 >
                   <img
                     src="/footer-social-linkedin.svg"
@@ -123,7 +141,7 @@ export default function PageClose() {
                 <a
                   href="#"
                   aria-label="YouTube"
-                  className="block size-[1.4375rem] md:size-[1.53125rem] lg:size-[1.90625rem]"
+                  className="block size-[1.4375rem] transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                 >
                   <img
                     src="/footer-social-youtube.svg"
@@ -136,7 +154,7 @@ export default function PageClose() {
                 <a
                   href="#"
                   aria-label="Instagram"
-                  className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white md:size-[1.53125rem] lg:size-[1.90625rem]"
+                  className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                 >
                   <img
                     src="/footer-social-instagram.svg"
@@ -151,7 +169,7 @@ export default function PageClose() {
 
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
-                <p className="font-sans text-label uppercase tracking-[0.07rem] text-grey-400">
+                <p className="whitespace-nowrap font-sans text-[1rem] font-semibold uppercase tracking-[0.07rem] text-grey-400">
                   Our Brands
                 </p>
                 <span
@@ -160,7 +178,7 @@ export default function PageClose() {
                 />
               </div>
               <div className="flex items-center gap-8 lg:gap-[2.1875rem]">
-                <a href="#" aria-label="Swagmagic" className="inline-flex">
+                <a href="#" aria-label="Swagmagic" className="inline-flex transition-opacity hover:opacity-70">
                   <img
                     src="/footer-brand-swagmagic.svg"
                     alt="Swagmagic"
@@ -172,7 +190,7 @@ export default function PageClose() {
                 <a
                   href="#"
                   aria-label="Snackmagic"
-                  className="inline-flex items-center gap-[0.1875rem]"
+                  className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                 >
                   <img
                     src="/footer-brand-snackmagic-mark.svg"
@@ -196,14 +214,14 @@ export default function PageClose() {
           {/* Link columns: stacked on mobile, 4-up from tablet */}
           <nav
             aria-label="Footer"
-            className="flex flex-col gap-12 md:flex-row md:gap-6 lg:gap-10"
+            className="flex flex-col gap-12 md:flex-row md:gap-6 lg:gap-6"
           >
             {LINK_COLUMNS.map((column) => (
               <div
                 key={column.heading}
-                className="flex flex-col gap-5 md:min-w-0 md:flex-1 md:gap-10 lg:flex-none"
+                className="flex flex-col gap-5 md:min-w-0 md:flex-1 md:gap-10 lg:w-[11.25rem] lg:flex-none"
               >
-                <p className="font-sans text-label uppercase tracking-[0.07rem] text-white">
+                <p className="font-sans text-[1rem] font-semibold text-white">
                   {column.heading}
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -211,7 +229,7 @@ export default function PageClose() {
                     <li key={link}>
                       <a
                         href="#"
-                        className="font-sans text-body-md text-grey-400"
+                        className="font-sans text-body-md text-grey-400 transition-colors hover:text-white"
                       >
                         {link}
                       </a>
@@ -232,9 +250,9 @@ export default function PageClose() {
             </p>
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-[0.375rem] border border-white/20 px-3 py-1.5"
+              className="flex items-center gap-1.5 rounded-[0.375rem] border border-white/20 px-3 py-1.5 transition-colors hover:border-white/40 hover:bg-white/5"
             >
-              <span className="font-sans text-[0.8125rem] leading-none text-white">
+              <span className="font-sans text-[0.75rem] leading-none text-white">
                 English
               </span>
               <img
@@ -248,6 +266,12 @@ export default function PageClose() {
           </div>
         </div>
         </div>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-[-2.5vw] block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04]"
+        >
+          Stadium
+        </span>
       </footer>
     </section>
   );

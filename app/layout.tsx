@@ -9,16 +9,23 @@ const overpass = Overpass({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-/* Single display weight: Satoshi Bold 700. A two-weight system (Bold +
-   Medium for long "statement" headlines) was trialed 2026-06-12 and
-   REVERTED — Bold fits Stadium's confident/energetic personality; the
-   Medium register read too restrained/corporate. The presence win for
-   statement headlines comes from SIZE (the `text-narrative-*` scale) +
-   filling the width, not weight. */
+/* Satoshi Bold 700 is the primary display weight — Bold fits Stadium's
+   confident/energetic personality (a Bold-only system; an earlier Bold+Medium
+   trial for *headlines* was reverted 2026-06-12). Satoshi Medium 500 was added
+   back 2026-07-15 as an ISOLATED, opt-in weight (`--font-display-medium` /
+   `font-display-medium`) ONLY for the specific spots the Figma specs it —
+   the StadiumWay accordion and testimonial quotes. It does NOT change the
+   default `font-display` (Bold) matching anywhere else. */
 const satoshi = localFont({
   variable: "--font-satoshi",
   src: "./fonts/Satoshi-Bold.woff2",
   weight: "700",
+});
+
+const satoshiMedium = localFont({
+  variable: "--font-satoshi-medium",
+  src: "./fonts/Satoshi-Medium.woff2",
+  weight: "500",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${overpass.variable} ${satoshi.variable} h-full antialiased`}
+      className={`${overpass.variable} ${satoshi.variable} ${satoshiMedium.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {/* Quality bar: first tab stop jumps past the nav (Shopify ships

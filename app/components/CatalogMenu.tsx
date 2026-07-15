@@ -1,20 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import type { StaticImageData } from "next/image";
+import { MenuSwitcher, MenuFeaturePanel } from "@/app/components/MegaMenu";
+import brandedImg from "@/public/catalog-branded-merch.jpg";
+import snacksImg from "@/public/catalog-snack-boxes.jpg";
+import lifestyleImg from "@/public/catalog-lifestyle-hobbies.jpg";
+import experiencesImg from "@/public/catalog-experiences.jpg";
 
-/* "Catalog" mega-menu — Figma 249:20269 ("Col 6 — 05 / Catalog"). A tabbed
-   storefront menu: a left sidebar switches between Swag / Snacks / Lifestyle /
-   Events; each tab shows an EXPLORE category list, two secondary link groups, a
-   featured card, and a brands row. Shares the hover choreography
-   (.engage-row / .engage-group / .engage-arrow) from SiteHeader. Featured-card
-   art + per-tab brand logos are pending — dark gradient + placeholder marks. */
+/* "Catalog" mega-menu — synced to Figma 1350:36111 (2026-06-20). Tabbed
+   storefront: a white-pill switcher (Swag / Snacks / Lifestyle / Events), a
+   clean-text EXPLORE list + two secondary link groups, a connected region
+   selector, and a featured image card. Shares the hover choreography
+   (.engage-row / .engage-group / .engage-arrow) from SiteHeader. */
 
 type Group = { label: string; items: string[] };
 type Tab = {
   name: string;
   explore: string[];
   groups: [Group, Group];
-  featured: { title: string; body: string; cta: string };
+  featured: { title: string; body: string; cta: string; image: StaticImageData };
 };
 
 /* Exported for the mobile nav accordion */
@@ -30,6 +35,7 @@ export const CATALOG_TABS: Tab[] = [
       title: "Branded swag that doesn't sit in a drawer.",
       body: "Premium brands, print-on-demand, and global fulfillment — built for teams that actually want to wear it.",
       cta: "Shop swag",
+      image: brandedImg,
     },
   },
   {
@@ -43,6 +49,7 @@ export const CATALOG_TABS: Tab[] = [
       title: "Snacks teams actually fight over.",
       body: "Curated assortments, dietary-aware boxes, and same-day delivery across 30+ countries.",
       cta: "Shop snacks",
+      image: snacksImg,
     },
   },
   {
@@ -56,6 +63,7 @@ export const CATALOG_TABS: Tab[] = [
       title: "Gifts that say you paid attention.",
       body: "Curated picks across luxury, lifestyle, and experiences — sent anywhere, with controls built in.",
       cta: "Shop lifestyle",
+      image: lifestyleImg,
     },
   },
   {
@@ -69,33 +77,15 @@ export const CATALOG_TABS: Tab[] = [
       title: "Live experiences that bring teams closer.",
       body: "Virtual, hybrid, and in-person experiences — booked and managed in one place.",
       cta: "Book events",
+      image: experiencesImg,
     },
   },
-];
-
-/* Placeholder brand marks (Figma's per-tab logos are flagged WIP). width:height
-   gives each SVG its aspect ratio so the rem height constrains it. */
-const BRANDS = [
-  { src: "/trust-google.svg", alt: "Google", width: 80, height: 26 },
-  { src: "/trust-amazon.svg", alt: "Amazon", width: 77, height: 23 },
-  { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 20 },
-  { src: "/trust-spotify.svg", alt: "Spotify", width: 81, height: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
 ];
 
 function ChevronDown({ className = "" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="m3 4.5 3 3 3-3" />
-    </svg>
-  );
-}
-
-function ChevronRight() {
-  return (
-    <svg className="size-2.5 shrink-0 text-ink" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="m3 1.5 4 3.5-4 3.5" />
     </svg>
   );
 }
@@ -109,139 +99,117 @@ function ArrowRight({ className = "" }: { className?: string }) {
   );
 }
 
-function LinkRow({ label }: { label: string }) {
+/* US flag — exact export from the Figma region selector (instance 1583:970):
+   a 16×16 round flag. Lives at public/flag-us.svg. */
+function FlagUS({ className = "" }: { className?: string }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/flag-us.svg" alt="" className={className} />;
+}
+
+function LinkRow({ label, active = false }: { label: string; active?: boolean }) {
+  /* items are grey #4f5052; the active/first item is black with a persistent arrow */
   return (
     <li>
-      <a href="#" className="engage-row flex h-8 items-center gap-2 font-sans text-[0.875rem] font-medium leading-5 text-ink">
-        <span className="-translate-y-px">{label}</span>
-        <ArrowRight className="engage-arrow size-3 shrink-0 text-ink" />
+      <a
+        href="#"
+        className={`engage-row flex h-7 items-center gap-2 font-sans text-[0.875rem] font-normal leading-5 ${
+          active ? "text-black" : "text-[#4f5052]"
+        }`}
+      >
+        <span>{label}</span>
+        <ArrowRight className={`size-3 shrink-0 ${active ? "text-black" : "engage-arrow text-[#4f5052]"}`} />
       </a>
     </li>
   );
 }
 
 function GroupHeading({ label }: { label: string }) {
+  /* header + 1px divider rule — grey at rest; Stadium gradient wipes in on column hover */
   return (
-    <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water">
-      {label}
-    </p>
+    <div className="flex flex-col gap-4">
+      <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[rgba(27,27,27,0.6)] transition-colors duration-200 group-hover/col:text-[#181818]">
+        {label}
+      </p>
+      <span aria-hidden className="relative block h-px w-full bg-[#d9d9d9]">
+        <span className="absolute inset-0 origin-left scale-x-0 bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)] transition-transform duration-500 ease-out group-hover/col:scale-x-100" />
+      </span>
+    </div>
   );
 }
+
+/* Per-category brand logo shown at the right of the top band (Figma 91:597).
+   Extracted from the file; Lifestyle has no sub-brand logo so it falls back to a
+   wordmark. */
+const BRAND_LOGOS: ({ src: string; w: number } | null)[] = [
+  { src: "/catalog-brand-swagmagic.svg", w: 138 },
+  null, // Snackmagic — Figma export nested the wordmark differently; wordmark fallback for now
+  null, // Lifestyle — no sub-brand logo in the export
+  { src: "/catalog-brand-events.svg", w: 100 },
+];
 
 export default function CatalogMenu() {
   const [active, setActive] = useState(0);
   const tab = CATALOG_TABS[active];
+  const brand = BRAND_LOGOS[active];
 
   return (
     <div className="mx-auto w-full max-w-section">
-      <div className="flex gap-10 px-section-x-lg py-8">
-        {/* Sidebar — tab switcher (hover/click) */}
-        <nav aria-label="Catalog categories" className="flex w-[11rem] shrink-0 flex-col self-start py-2">
-          <ul className="flex flex-col">
-            {CATALOG_TABS.map((t, i) => (
-              <li key={t.name}>
-                <button
-                  type="button"
-                  aria-pressed={i === active}
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  className={`flex h-12 w-full cursor-pointer items-center justify-between text-left font-sans text-[0.875rem] leading-5 transition-colors duration-150 ${
-                    i === active ? "font-semibold text-ink" : "font-medium text-grey-500 hover:text-ink"
-                  }`}
-                >
-                  {t.name}
-                  {i === active && <ChevronRight />}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      {/* Top band — region selector (left) + the category's brand logo (right),
+          under a hairline divider (Figma 91:597 / node 99:570). */}
+      <div className="flex items-center justify-between border-b border-grey-200 px-section-x-lg py-3">
+        <button
+          type="button"
+          className="flex h-10 items-center gap-2 rounded-button border border-grey-200 px-3.5 shadow-[0_3px_6px_rgba(0,0,0,0.06)] transition-colors hover:bg-grey-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-grey-300"
+        >
+          <FlagUS className="size-4" />
+          <span className="font-sans text-[0.875rem] text-ink">United States</span>
+          <ChevronDown className="size-3 text-grey-500" />
+        </button>
+        {brand ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={brand.src} alt={tab.name} height={22} className="h-[1.375rem] w-auto" />
+        ) : (
+          <span className="font-display text-[1.25rem] font-bold text-ink">{tab.name}</span>
+        )}
+      </div>
 
-        {/* Content for the active tab */}
-        <div className="flex min-w-0 flex-1 flex-col gap-6">
-          {/* Region bar */}
-          <div className="flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              className="flex h-9 cursor-pointer items-center gap-2 rounded-button border border-grey-200 px-3.5 font-sans text-[0.8125rem] font-medium text-ink"
-            >
-              United States
-              <ChevronDown className="size-3 text-grey-500" />
-            </button>
-            <button
-              type="button"
-              className="flex h-9 cursor-pointer items-center justify-center rounded-button bg-cta-fill px-5 font-sans text-button-primary uppercase text-cta-on shadow-button"
-            >
-              Go
-            </button>
-          </div>
-
-          {/* keyed so switching tabs cross-fades the content */}
-          <div key={tab.name} className="menu-swap flex items-stretch gap-10">
-            {/* EXPLORE */}
-            <div className="flex w-[11rem] shrink-0 flex-col gap-3">
-              <GroupHeading label="Explore" />
-              <ul className="engage-group flex flex-col">
-                {tab.explore.map((c) => (
-                  <LinkRow key={c} label={c} />
-                ))}
-              </ul>
-            </div>
-
-            {/* Two secondary groups */}
-            <div className="flex w-[12rem] shrink-0 flex-col gap-6">
-              {tab.groups.map((g) => (
-                <div key={g.label} className="flex flex-col gap-3">
-                  <GroupHeading label={g.label} />
-                  <ul className="engage-group flex flex-col">
-                    {g.items.map((it) => (
-                      <LinkRow key={it} label={it} />
-                    ))}
-                  </ul>
-                </div>
+      {/* Content — category rail + Explore + For/Quick Links + featured */}
+      <div className="flex items-stretch gap-[2.8125rem] px-section-x-lg pt-8 pb-[5.25rem]">
+        <MenuSwitcher
+          label="Catalog categories"
+          items={CATALOG_TABS.map((t) => t.name)}
+          active={active}
+          onSelect={setActive}
+        />
+        <div className="flex min-w-0 flex-1 items-stretch gap-[2.8125rem]">
+          <div className="group/col flex w-[15.8125rem] shrink-0 flex-col gap-4">
+            <GroupHeading label="Explore the Catalog" />
+            <ul className="engage-group flex flex-col gap-2">
+              {tab.explore.map((c, idx) => (
+                <LinkRow key={c} label={c} active={idx === 0} />
               ))}
-            </div>
-
-            {/* Featured card (art pending; dark gradient stand-in) */}
-            <aside className="flex min-w-0 flex-1 flex-col justify-end gap-4 overflow-hidden rounded-card bg-gradient-to-br from-infra-base-1 to-infra-base-2 p-7">
-              <div className="flex flex-col gap-2.5">
-                <h3 className="font-display text-callout-md text-white md:text-heading-sm">
-                  {tab.featured.title}
-                </h3>
-                <p className="max-w-[24rem] font-sans text-body-sm text-white/75">
-                  {tab.featured.body}
-                </p>
-              </div>
-              <a
-                href="#"
-                className="inline-flex h-button-h w-fit items-center justify-center gap-2 rounded-button border border-white/30 px-button-x font-sans text-button-primary uppercase text-white transition-colors duration-200 hover:bg-white/10"
-              >
-                {tab.featured.cta}
-                <ArrowRight className="size-4" />
-              </a>
-            </aside>
+            </ul>
           </div>
-
-          {/* Featured brands */}
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-grey-100 pt-5">
-            <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-grey-500">
-              Featured brands
-            </p>
-            {BRANDS.map((logo) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={logo.alt}
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-                style={{ height: `${(logo.height * 0.7) / 16}rem` }}
-                className="w-auto max-w-none shrink-0 opacity-70"
-              />
+          <div className="flex w-[15.8125rem] shrink-0 flex-col gap-11">
+            {tab.groups.map((g) => (
+              <div key={g.label} className="group/col flex flex-col gap-4">
+                <GroupHeading label={g.label} />
+                <ul className="engage-group flex flex-col gap-2">
+                  {g.items.map((it) => (
+                    <LinkRow key={it} label={it} />
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
+        <MenuFeaturePanel
+          eyebrow="Featured"
+          image={tab.featured.image}
+          aspect="384 / 432"
+          title={tab.featured.title.replace(/\.$/, "")}
+          cta={tab.featured.cta}
+        />
       </div>
     </div>
   );

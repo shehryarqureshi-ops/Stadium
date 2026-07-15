@@ -30,12 +30,11 @@ export default function Home() {
         <Reveal>
           <EveryWay />
         </Reveal>
+        {/* Globe + Infrastructure + Stadium Way are ONE continuous dark block —
+            a single Reveal so they settle together, with no white gap or
+            re-reveal between the dark sections (globe → doorstep → phases). */}
         <Reveal>
           <RedactedPoster />
-        </Reveal>
-        {/* Infrastructure + Stadium Way are one continuous dark block (#181818) —
-            a single Reveal so it settles once, with no re-reveal between the two. */}
-        <Reveal>
           <Infrastructure />
           <StadiumWay />
         </Reveal>

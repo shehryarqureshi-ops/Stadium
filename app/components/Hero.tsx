@@ -31,6 +31,7 @@ export default function Hero() {
           sizes="100vw"
           className="hero-kenburns object-cover"
         />
+        <div className="absolute inset-0 bg-[image:var(--gradient-hero-base-scrim)]" />
         <div className="absolute inset-0 bg-[image:var(--gradient-hero-scrim)]" />
         {/* contrast scrim for the transparent fixed nav — the photo's sky
             and clouds are near-white at the top, where the nav's white
@@ -44,24 +45,23 @@ export default function Hero() {
         <div className="absolute inset-0 bg-ink/60 lg:hidden" />
       </div>
 
-      {/* content row caps at 1420 and centers above 1600 (background stays full-bleed) */}
-      <div className="relative mx-auto flex w-full max-w-content flex-col items-start gap-5 md:gap-6">
+      {/* content row caps at 1200 and centers above 1380 (background stays full-bleed) */}
+      <div className="relative mx-auto flex w-full max-w-content flex-col items-start gap-5 md:gap-9 lg:gap-8">
         {/* Header: title (eyebrow + headline) + supporting copy */}
-        <div className="flex w-full flex-col items-start gap-3 md:gap-4">
+        <div className="flex w-full flex-col items-start gap-3 md:gap-6">
           <div className="flex w-full flex-col items-start gap-2 text-white">
-            <p className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg">
+            <p className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6">
               Global engagement infrastructure
             </p>
-            <h1 className="w-full font-display text-display-sm md:text-display-md lg:text-display-lg">
-              Show up for your crowd.{" "}
+            <h1 className="w-full font-display text-ds-h4 md:text-ds-h2 lg:text-ds-hero">
+              Show up for your people.{" "}
               {/* hard line break on desktop only (per Figma) */}
               <br aria-hidden className="hidden lg:block" />
               Everywhere, every time.
             </h1>
           </div>
-          <p className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg">
-            Most companies have the intention. Stadium provides the
-            infrastructure to power every engagement moment globally.
+          <p className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem]">
+            The platform behind recognition, swag, and gifting worldwide.
           </p>
         </div>
 
@@ -71,15 +71,19 @@ export default function Hero() {
         <div className="flex w-full flex-col items-start gap-2 md:w-auto md:flex-row md:items-center md:gap-3 lg:gap-4">
           <a
             href="#"
-            className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-colors duration-200 hover:bg-grey-100 focus-visible:outline-white md:w-auto"
+            className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
-            Get started
+            <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
+              Get started
+            </span>
           </a>
           <a
             href="#"
-            className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-colors duration-200 hover:bg-white/10 focus-visible:outline-white md:w-auto"
+            className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
-            Talk to sales
+            <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
+              Talk to sales
+            </span>
           </a>
         </div>
       </div>

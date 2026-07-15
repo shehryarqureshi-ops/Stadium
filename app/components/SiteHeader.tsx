@@ -55,7 +55,7 @@ function Logo({ light }: { light: boolean }) {
     <a
       href="#"
       aria-label="Stadium home"
-      className={`flex h-8 w-[8.25rem] items-center gap-2 ${
+      className={`flex h-8 w-[8.25rem] items-center gap-2 transition-opacity hover:opacity-80 ${
         light ? "focus-visible:outline-white" : ""
       }`}
     >
@@ -93,22 +93,21 @@ export default function SiteHeader() {
   const engageOpen = activeMenu !== null;
   const menuIndex = MENU_KEYS.indexOf(shownMenu);
 
-  /* Fixed-height slide surface: the drawer takes the TALLEST section's height,
-     so switching sections only slides horizontally and never animates layout
-     — the previous per-section height-morph reflowed the menu content every
-     frame and made the open feel laggy. Panels are always mounted so the
-     track can slide; measured here. */
+  /* Per-menu height slide surface: the drawer matches the ACTIVE section's own
+     height (like the Figma — each menu is content-sized) and animates the height
+     when switching sections, in step with the horizontal slide. Panels are
+     always mounted (so the track can slide) and NOT stretched (track is
+     items-start), so each one's natural height is measurable here. Re-measures
+     after fonts load (text reflow) and on resize. */
   const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [viewportHeight, setViewportHeight] = useState<number | undefined>(undefined);
+  const [panelHeights, setPanelHeights] = useState<number[]>([]);
   useEffect(() => {
     const measure = () => {
-      const h = panelRefs.current.reduce(
-        (m, el) => Math.max(m, el ? el.offsetHeight : 0),
-        0,
-      );
-      if (h) setViewportHeight(h);
+      const hs = panelRefs.current.map((el) => (el ? el.offsetHeight : 0));
+      if (hs.some((h) => h > 0)) setPanelHeights(hs);
     };
     measure();
+    if (document.fonts) document.fonts.ready.then(measure);
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
   }, []);
@@ -120,14 +119,30 @@ export default function SiteHeader() {
      350ms settle hold; opening cancels it. */
   const [drawerSettling, setDrawerSettling] = useState(false);
   const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /* The slide-track animates ONLY when switching menus inside an already-open
+     drawer. On a fresh open it must SNAP to the hovered menu (no horizontal
+     drag as the drawer drops in) — managed in openMenu. */
+  const [trackAnim, setTrackAnim] = useState(false);
+  const trackAnimTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openMenu = (menu: MenuKey) => {
     if (settleTimer.current) {
       clearTimeout(settleTimer.current);
       settleTimer.current = null;
     }
+    const wasOpen = activeMenu !== null;
     setDrawerSettling(false);
     setActiveMenu(menu);
     setLastMenu(menu);
+    /* Switching inside an open drawer slides; a fresh open snaps to the menu
+       (transition off), then re-enables sliding a couple frames later so a
+       subsequent in-drawer switch still animates. */
+    if (wasOpen) {
+      setTrackAnim(true);
+    } else {
+      setTrackAnim(false);
+      if (trackAnimTimer.current) clearTimeout(trackAnimTimer.current);
+      trackAnimTimer.current = setTimeout(() => setTrackAnim(true), 60);
+    }
   };
   const closeMenu = () => {
     if (activeMenu !== null) {
@@ -144,6 +159,7 @@ export default function SiteHeader() {
   useEffect(
     () => () => {
       if (settleTimer.current) clearTimeout(settleTimer.current);
+      if (trackAnimTimer.current) clearTimeout(trackAnimTimer.current);
     },
     [],
   );
@@ -294,11 +310,10 @@ export default function SiteHeader() {
 
         {/* Mega-menu panel — desktop only. OPEN = body slides
             translateY(−100% → 0) over 300ms while content fades in; CLOSE =
-            pure slide-up retract. INSIDE, the four sections live in one
-            horizontal track that slides left/right between them (Linear) and
-            morphs height to the active section — a single continuous surface,
-            no cross-fade swap. Always mounted so the transitions can play and
-            reverse mid-flight. */}
+            pure slide-up retract. INSIDE, the four sections are stacked panes;
+            switching sections CROSS-FADES the active one in place while the
+            panel height morphs to it (Shopify) — no horizontal slide. Always
+            mounted so the transitions can play and reverse mid-flight. */}
         <div
           id="engage-menu"
           aria-hidden={!engageOpen}
@@ -336,14 +351,17 @@ export default function SiteHeader() {
                 opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.05s,
                 transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
             }
-            /* horizontal slide track (Linear) — fixed-height surface, so the
-               slide never animates layout (kept the open snappy) */
-            .engage-track { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
-            /* shared item-hover choreography for the mega-menus (Shopify):
-               same-group siblings dim to 50%, hidden arrow fades in, hovered
-               row keeps full color. */
-            .engage-row { transition: opacity 0.3s; }
-            .engage-group:has(.engage-row:hover) .engage-row:not(:hover) { opacity: 0.5; }
+            /* Shopify-style switch: the active section's content cross-fades in
+               place while the panel height morphs to it — NO horizontal slide.
+               Panes stack (absolute); only the active one is opaque + interactive.
+               A fresh open snaps the height; in-drawer switches morph it. */
+            .menu-pane { opacity: 0; pointer-events: none; transition: opacity 0.16s ease; }
+            .menu-pane--on { opacity: 1; pointer-events: auto; }
+            .engage-viewport { transition: none; }
+            .engage-viewport.is-animating { transition: height 0.33s cubic-bezier(0.22, 1, 0.36, 1); }
+            /* item-hover choreography for the mega-menus: the hovered row's
+               hidden arrow fades in. No sibling dimming — the Figma keeps
+               every item at full color. */
             .engage-arrow {
               opacity: 0;
               transform: translateX(-0.25rem);
@@ -353,7 +371,7 @@ export default function SiteHeader() {
             .engage-heading:hover .engage-arrow { opacity: 1; transform: none; }
             @media (prefers-reduced-motion: reduce) {
               .engage-body, .engage-inner, .engage-open .engage-body, .engage-open .engage-inner { transition: none; }
-              .engage-viewport, .engage-track { transition: none; }
+              .engage-viewport, .menu-pane { transition: none; }
               .engage-row, .engage-arrow { transition: none; }
               .engage-arrow { transform: none; }
             }
@@ -361,32 +379,30 @@ export default function SiteHeader() {
           <div className={engageOpen ? "engage-open" : ""}>
             <div className="engage-body border-t border-grey-300 bg-surface-base shadow-[0px_1.5rem_3rem_-0.75rem_rgba(0,0,0,0.18)]">
               <div className="engage-inner">
-                <div className="engage-viewport overflow-hidden" style={{ height: viewportHeight }}>
-                  <div
-                    className="engage-track flex"
-                    style={{ transform: `translateX(-${menuIndex * 100}%)` }}
-                  >
-                    {MENU_KEYS.map((key, i) => (
-                      <div
-                        key={key}
-                        ref={(el) => {
-                          panelRefs.current[i] = el;
-                        }}
-                        aria-hidden={shownMenu !== key}
-                        className="w-full shrink-0"
-                      >
-                        {key === "engage" ? (
-                          <EngageMenu />
-                        ) : key === "impact" ? (
-                          <ImpactMenu />
-                        ) : key === "proof" ? (
-                          <ProofMenu />
-                        ) : (
-                          <CatalogMenu />
-                        )}
-                      </div>
-                    ))}
-                  </div>
+                <div
+                  className={`engage-viewport relative overflow-hidden ${trackAnim ? "is-animating" : ""}`}
+                  style={{ height: panelHeights[menuIndex] }}
+                >
+                  {MENU_KEYS.map((key, i) => (
+                    <div
+                      key={key}
+                      ref={(el) => {
+                        panelRefs.current[i] = el;
+                      }}
+                      aria-hidden={shownMenu !== key}
+                      className={`menu-pane absolute inset-x-0 top-0 ${shownMenu === key ? "menu-pane--on" : ""}`}
+                    >
+                      {key === "engage" ? (
+                        <EngageMenu />
+                      ) : key === "impact" ? (
+                        <ImpactMenu />
+                      ) : key === "proof" ? (
+                        <ProofMenu />
+                      ) : (
+                        <CatalogMenu />
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -446,7 +462,7 @@ export default function SiteHeader() {
                                     <a
                                       href="#"
                                       onClick={() => setMenuOpen(false)}
-                                      className="flex h-10 items-center font-sans text-small text-grey-700"
+                                      className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >
                                       {label}
                                     </a>
@@ -483,7 +499,7 @@ export default function SiteHeader() {
                                     <a
                                       href="#"
                                       onClick={() => setMenuOpen(false)}
-                                      className="flex h-10 items-center font-sans text-small text-grey-700"
+                                      className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >
                                       {title}
                                     </a>
@@ -506,7 +522,7 @@ export default function SiteHeader() {
                                     <a
                                       href="#"
                                       onClick={() => setMenuOpen(false)}
-                                      className="flex h-10 items-center font-sans text-small text-grey-700"
+                                      className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >
                                       {c}
                                     </a>
@@ -538,14 +554,14 @@ export default function SiteHeader() {
             <a
               href="#"
               onClick={() => setMenuOpen(false)}
-              className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button inset-shadow-[0_1px_0_0_rgba(255,255,255,0.08)]"
+              className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button inset-shadow-[0_1px_0_0_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water focus-visible:ring-offset-2"
             >
               Talk to sales
             </a>
             <a
               href="#"
               onClick={() => setMenuOpen(false)}
-              className="inline-flex h-button-h items-center justify-center rounded-button border border-ink px-button-x font-sans text-button-primary uppercase text-ink"
+              className="inline-flex h-button-h items-center justify-center rounded-button border border-ink px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
             >
               Login/sign up
             </a>

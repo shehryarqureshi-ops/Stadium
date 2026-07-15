@@ -1,197 +1,80 @@
-﻿import Image from "next/image";
-import maximeVideoImg from "@/public/testimonial-video-maxime.png";
-import marieVideoImg from "@/public/testimonial-video-marie.png";
-import marcusAvatarImg from "@/public/testimonial-avatar-marcus.png";
-import logoMarkImg from "@/public/testimonial-logo-mark.svg";
-import logoWordImg from "@/public/testimonial-logo-word.svg";
+/* "The proof is in the people" — synced to Figma 2:37569. Two columns: left =
+   55px heading + G2 rating + a large featured quote (Maxime); right = a vertical
+   auto-scrolling column of #f2f2f2 testimonial cards (avatar + quote + name). */
 
-/** Centered dark play badge — video testimonial cards. Caller passes the display utility (`flex` / `hidden lg:flex`) plus position. */
-function PlayButton({ className }: { className: string }) {
+type Quote = { quote: string; name: string; role: string; grad: string };
+
+const TESTIMONIALS: Quote[] = [
+  { quote: "The catalog depth is unmatched. Every culture, every preference — they’ve got it covered.", name: "Marcus Chen", role: "Ops Director · Figma", grad: "linear-gradient(135deg,#3b1d5e,#c026d3)" },
+  { quote: "We shipped to 23 countries in a week. Our team just picked the gifts.", name: "Marie Belingard", role: "Marketing Director · TSE", grad: "linear-gradient(135deg,#ff8fab,#ff5d73)" },
+  { quote: "Onboarding kits go out automatically the day someone starts. Zero manual work.", name: "Priya Nair", role: "People Ops · ConstructConnect", grad: "linear-gradient(135deg,#0b7afc,#3ecf8e)" },
+  { quote: "Finance finally has one invoice and clean reporting across every team.", name: "Daniel Weiss", role: "Finance Lead · TSE", grad: "linear-gradient(135deg,#f59e0b,#ef4444)" },
+  { quote: "The same recognition moments, delivered in every market we operate in.", name: "Sofia Alvarez", role: "Brand · Figma", grad: "linear-gradient(135deg,#6366f1,#0b7afc)" },
+];
+
+function Card({ t }: { t: Quote }) {
   return (
-    <button
-      type="button"
-      aria-label="Play video testimonial"
-      className={`absolute size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cta-fill ${className}`}
-    >
-      <svg className="size-[1.3125rem]" viewBox="0 0 21 21" fill="none" aria-hidden="true">
-        <path
-          d="M4.375 2.625L16.625 10.5L4.375 18.375V2.625Z"
-          stroke="white"
-          strokeWidth="1.667"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </button>
+    <figure className="flex items-start gap-4 rounded-3xl bg-[#f2f2f2] p-6">
+      <span aria-hidden className="size-11 shrink-0 rounded-lg" style={{ backgroundImage: t.grad }} />
+      <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)]">
+        <blockquote className="font-sans text-[1rem] leading-6 text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
+        <figcaption className="flex flex-col">
+          <span className="font-sans text-[0.875rem] font-bold text-ink">{t.name}</span>
+          <span className="font-sans text-[0.8125rem] text-grey-500">{t.role}</span>
+        </figcaption>
+      </div>
+    </figure>
   );
 }
 
 export default function Testimonials() {
   return (
-    <section className="mx-auto w-full max-w-section flex flex-col gap-6 bg-surface-base px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:gap-12 lg:px-section-x-lg lg:py-section-y-lg">
-      {/* Heading row — stacked on mobile/tablet, heading left + G2 rating right on desktop */}
-      <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        <h2 className="font-display text-heading-sm text-ink md:text-heading-md lg:max-w-[48.1875rem] lg:text-heading-lg">
-          Hear from our customers about their experience
-        </h2>
-        {/* Rating — G2 */}
-        <div className="flex items-end gap-[1.375rem] text-grey-700">
-          <p className="font-display text-[2rem] leading-[2.375rem] tracking-[-0.02rem] lg:leading-10 lg:tracking-[-0.01563rem] lg:text-ink">
-            4.8
-          </p>
-          <div className="flex flex-col">
-            <p aria-label="5 out of 5 stars" className="font-sans text-label">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
-            </p>
-            <p className="font-sans text-body-md lg:text-ink">
-              on G2 from 1,515 reviews
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Cards — stacked on mobile/tablet (hero, quote, Marie); desktop: hero left, [Marie, quote] right */}
-      <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-end">
-        {/* Hero video testimonial — Maxime */}
-        <div className="relative flex h-[23.75rem] w-full flex-col justify-end overflow-hidden rounded-card p-6 md:h-[26.25rem] md:p-8 lg:h-auto lg:w-[66%] lg:max-w-[49.5rem] lg:self-stretch lg:p-6">
-          <Image
-            src={maximeVideoImg}
-            alt="Maxime Bascon video testimonial"
-            fill
-            sizes="(min-width: 64rem) 49.5rem, (min-width: 48rem) 42rem, 100vw"
-            className="object-cover"
-          />
-          {/* Bottom scrim */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-[rgba(32,32,32,0.8)] via-[rgba(32,32,32,0.35)] via-45% to-[rgba(32,32,32,0)]"
-          />
-          <PlayButton className="hidden lg:flex left-1/2 top-[calc(50%-2.1875rem)]" />
-          <div className="relative flex w-full flex-col gap-3 md:gap-2.5 lg:flex-row lg:items-end lg:justify-between lg:gap-8">
-            <div className="flex flex-col gap-3 md:gap-2.5 lg:max-w-[28.3125rem] lg:gap-8">
-              <p className="font-sans text-body-md text-white md:leading-[1.625rem] lg:leading-6">
-                &ldquo;What sets Stadium apart is their ability to deliver a
-                solution and empower you, no matter the challenges.&rdquo;
-              </p>
-              <div className="flex flex-col gap-0.5">
-                <p className="font-display text-[1.125rem] leading-[1.625rem] text-white lg:text-callout-md">
-                  Maxime Bascon
-                </p>
-                <p className="font-sans text-small text-white/75 lg:text-white">
-                  Chief of Staff @Elktech
-                </p>
-              </div>
-            </div>
-            {/* Stadium logotype — desktop only */}
-            <span className="hidden items-center gap-[0.41875rem] lg:flex">
-              <Image
-                src={logoMarkImg}
-                alt=""
-                aria-hidden="true"
-                className="h-[1.28125rem] w-[0.725rem]"
-              />
-              <Image
-                src={logoWordImg}
-                alt="Stadium"
-                className="h-[1.28125rem] w-[5.79375rem]"
-              />
-            </span>
-          </div>
-        </div>
-
-        {/* Right column — quote first on mobile/tablet, Marie video first on desktop */}
-        <div className="flex w-full flex-col gap-6 lg:min-w-0 lg:flex-1">
-          {/* Video testimonial — Marie */}
-          <div className="relative order-2 h-[15.1875rem] w-full overflow-hidden rounded-card lg:order-1">
-            <Image
-              src={marieVideoImg}
-              alt="Marie Belingard video testimonial"
-              fill
-              sizes="(min-width: 64rem) 24rem, (min-width: 48rem) 42rem, 100vw"
-              className="object-cover"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-[9.9375rem] bg-gradient-to-t from-[#202020] to-[rgba(32,32,32,0)]"
-            />
-            <PlayButton className="flex left-1/2 top-1/2" />
-            <div className="absolute left-6 top-[11.375rem] flex flex-col gap-0.5 md:left-8 lg:left-6">
-              <p className="font-sans text-[1rem] font-semibold leading-[1.375rem] text-white">
-                Marie Belingard
-              </p>
-              <p className="font-sans text-[0.8125rem] leading-[1.125rem] text-white/70">
-                Marketing Director @TSE
-              </p>
+    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-24 lg:px-[6.25rem] lg:py-[7.5rem]">
+      <style>{`
+        @keyframes testi-scroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+        .testi-marquee { animation: testi-scroll 44s linear infinite; }
+        .testi-viewport:hover .testi-marquee { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) { .testi-marquee { animation: none; } }
+      `}</style>
+      <div className="mx-auto flex w-full max-w-[77.5rem] flex-col gap-12 lg:flex-row lg:gap-20">
+        {/* left — heading + rating + featured quote */}
+        <div className="flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem] lg:pt-10">
+          <div className="flex flex-col gap-8">
+            <h2 className="font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
+              The proof is<br className="hidden md:block" /> in the people
+            </h2>
+            <div className="flex items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/g2-logo.svg" alt="G2" width={32} height={32} className="size-8 shrink-0" />
+              <span className="font-display text-[2rem] font-bold leading-none text-ink">4.8</span>
+              <span className="flex flex-col">
+                <span aria-label="5 out of 5" className="text-[0.9375rem] leading-none text-[#ff9c00]">★★★★★</span>
+                <span className="mt-1 font-sans text-[0.8125rem] text-grey-500">on G2 from 1,515 reviews</span>
+              </span>
             </div>
           </div>
-
-          {/* Quote — Marcus Chen */}
-          <figure className="order-1 flex w-full flex-col gap-3 rounded-card bg-surface-subtle p-6 lg:order-2 lg:gap-8">
-            <blockquote className="flex flex-col gap-3 text-ink lg:gap-4">
-              <p
-                aria-hidden="true"
-                className="font-display text-[1.75rem] leading-[2.125rem] md:text-[1.5rem] md:leading-[1.875rem] lg:h-4 lg:text-[2rem] lg:leading-[2.375rem] lg:tracking-[-0.02rem]"
-              >
-                &ldquo;
-              </p>
-              <p className="font-sans text-body-md text-grey-700 lg:text-ink">
-                The catalog depth is unmatched. Every culture, every preference
-                &mdash; they&rsquo;ve got it covered.
-              </p>
+          <div className="flex flex-col gap-8">
+            <span aria-hidden className="-mb-6 font-display text-[4rem] leading-none text-grey-300">&ldquo;</span>
+            <blockquote className="font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] tracking-[-0.02em] text-[#16171b] lg:text-[2rem] lg:leading-[2.5rem]">
+              What sets Stadium apart is their ability to deliver a complete solution and empower our team — no matter the challenge.
             </blockquote>
-            <figcaption className="flex w-full items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Image
-                  src={marcusAvatarImg}
-                  alt="Marcus Chen"
-                  width={32}
-                  height={32}
-                  className="hidden size-8 rounded-full lg:block"
-                />
-                <div className="flex flex-col gap-0.5 text-ink">
-                  <p className="font-display text-[1.125rem] leading-[1.625rem] lg:text-callout-md">
-                    Marcus Chen
-                  </p>
-                  <p className="font-sans text-small text-grey-500 lg:text-ink">
-                    Ops Director &middot; Figma
-                  </p>
-                </div>
-              </div>
-              {/* Carousel controls — desktop only (single quote in design) */}
-              <div className="hidden items-center gap-2 lg:flex">
-                <button
-                  type="button"
-                  aria-label="Previous testimonial"
-                  className="flex size-10 items-center justify-center rounded-full border border-grey-300 bg-surface-base"
-                >
-                  <svg className="size-[1.125rem]" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path
-                      d="M11.25 4.5L6.75 9L11.25 13.5"
-                      stroke="#2C2D2E"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next testimonial"
-                  className="flex size-10 items-center justify-center rounded-full bg-cta-fill"
-                >
-                  <svg className="size-[1.125rem]" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path
-                      d="M6.75 4.5L11.25 9L6.75 13.5"
-                      stroke="white"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </figcaption>
-          </figure>
+            <p className="font-sans text-[0.9375rem] text-[#6b6c71]">Maxime Bascon · Chief of Staff · Elktech</p>
+          </div>
+        </div>
+
+        {/* right — scrolling testimonial cards */}
+        <div
+          className="testi-viewport relative flex-1 overflow-hidden lg:h-[41rem]"
+          style={{
+            maskImage: "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",
+          }}
+        >
+          <div className="testi-marquee flex flex-col gap-4">
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+              <Card key={i} t={t} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

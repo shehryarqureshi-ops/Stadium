@@ -58,18 +58,21 @@ one exists — numbers, not vibes.
   per slot must read identically everywhere; asset specs follow the
   ratio (pillar images: portrait-safe, center-weighted, ~700×1000+)
 - **Display is SINGLE-WEIGHT Satoshi Bold 700** (decided 2026-06-12). A
-  two-weight system (Bold + Medium for long "statement" headlines) was
-  trialed and REVERTED — Bold fits Stadium's confident/energetic
-  personality; the Medium register read too restrained/corporate. **The
-  lesson kept: long narrative headlines get more PRESENCE via SIZE, not
-  weight.** So:
-  - Short section titles → `text-heading-*` (Bold, 24/32/48).
-  - Long multi-sentence narrative headlines (EveryWay) → `text-narrative-*`
-    (Bold, **26/38/54** — larger, fills the content width). Same weight as
-    headings; size is the only difference. RedactedPoster's narrative lead
-    is the other candidate (apply in its round).
-  - Why the original EveryWay looked weak vs shopify.com: too SMALL (48)
-    with trailing whitespace, NOT too bold. The fix was size + width-fill.
+  two-weight system (Bold + Medium) was trialed and REVERTED — Bold fits
+  Stadium's confident/energetic personality.
+- **Headings follow the Figma Universal scale (migrated 2026-06-17): a clean
+  4 sizes — 64 Hero / 42 Section / 32 Secondary / 24 Card-Element** (Satoshi
+  Bold, tracking 0). `text-heading-*` = **24/32/42** (lg was 48, retuned to
+  the Universal 42 SectionHead; heading-md tracking −0.48→0; heading-sm lh
+  32→28).
+  - ALL section titles — including EveryWay's long headline — now use
+    `text-heading-*` at 42. The earlier approach of a larger
+    `text-narrative-*` (26/38/54) for EveryWay was REVERTED to match the
+    Universal scale; every section head reads at 42.
+  - `text-narrative-*`, `text-display-*`, `text-ds-body-big`, `text-subtitle`
+    are now UNUSED (superseded by the Universal scale) — prune when convenient.
+    NOTE: scattered per-section notes below still cite the old 48/54 sizes —
+    the Universal scale above supersedes them.
 - Type from the scale (incl. eyebrow/tracking tokens); margin grid
   16/30/90 shared by nav + sections; container rules per Spacing section
 - Imagery: no placeholders/watermarks in signed sections; sane
@@ -362,7 +365,16 @@ letter-spacing, and weight sub-values baked in).
 | Tablet     | 52px | 60px        | -1.25px  | `text-display-md` |
 | Desktop    | 64px | 72px        | -1.5px   | `text-display-lg` |
 
-Desktop headline has a hard two-line break after "crowd." (per Figma).
+Desktop headline has a hard two-line break after the first sentence (per Figma).
+
+**Homepage hero refresh (Figma `5552:9939`, 2026-06-24):** copy is now "Show up
+for your people. Everywhere, every time."; the desktop headline is **72 / 82 /
+−3px** — token `--text-ds-hero` (`text-ds-hero`), which replaces `text-ds-h1` at
+`lg`. Body copy: "The platform behind recognition, swag, and gifting worldwide.",
+with `--color-hero-body` = `#cccccc` and +0.25px tracking. Scrims: a base 90°
+scrim (`--gradient-hero-base-scrim`, `.65/.45/.2/.05`) sits under the existing
+a11y 90° scrim so the two together match the Figma. `hero-bg.png` (1672×941)
+already is the new building photo.
 
 ### Eyebrow — Overpass Bold, uppercase (`font-sans uppercase`) — 2026-06-11 rev
 
@@ -381,6 +393,16 @@ Solid leading (line-height = size), 10% tracking:
 | Mobile     | 14px | 22px        | `text-body-sm` |
 | Tablet     | 16px | 24px        | `text-body-md` |
 | Desktop    | 18px | 28px        | `text-body-lg` |
+
+### Subtitle — Overpass SemiBold (`font-sans`) — PDL "Big Semi 1.2"
+
+Emphasized supporting line under a headline (e.g. the Catalog subhead).
+In the Catalog, card titles use `text-heading-sm` (Satoshi Bold 24/32) and
+card eyebrows use `text-eyebrow-sm` — both per the Product Design Library.
+
+| Size | Line height | Weight   | Class           |
+| ---- | ----------- | -------- | --------------- |
+| 18px | 24px        | SemiBold | `text-subtitle` |
 
 ### Button labels — Overpass SemiBold, uppercase
 

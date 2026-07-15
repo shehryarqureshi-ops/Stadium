@@ -1,50 +1,46 @@
-/* "The Proof" mega-menu — Figma 249:20136 ("PROOF — Corrected"). Left: a dark
-   "Why Stadium" feature card. Right: a 3-column link grid (Built for Enterprise
-   / Social Proof / Trust & Security) over a trusted-by logo row. Shares the
-   hover choreography (.engage-row / .engage-group / .engage-arrow) defined in
-   SiteHeader's style block. Left-card photo is pending — dark gradient stands in. */
+/* "The Proof" mega-menu — synced to Figma 1350:36111 (2026-06-20). Editorial
+   layout: a 3-column title+description grid (Built for Enterprise / Social
+   Proof / Trust & Security) beside a "Why Stadium" image card. Shares the hover
+   choreography (.engage-row / .engage-group / .engage-arrow) from SiteHeader. */
+
+import { MenuShell, MenuRow, MenuContent, MenuFeaturePanel } from "@/app/components/MegaMenu";
+import whyImg from "@/public/map-faces.jpg";
 
 type Item = { title: string; desc: string };
 type Column = { label: string; items: Item[] };
 
-/* Exported for the mobile nav accordion */
+/* Exported for the mobile nav accordion. Content synced to Figma 2:75894
+   (Enterprise-Ready / Social Proof / Resources). Note: the Figma's middle
+   column header reads "SNACKS" — a copy-paste typo; its items are proof-side,
+   so we use "Social Proof". */
 export const PROOF_COLUMNS: Column[] = [
   {
-    label: "Built for Enterprise",
+    label: "Enterprise-Ready",
     items: [
-      { title: "Workspaces", desc: "Company-first architecture. Roles, permissions, governance." },
-      { title: "Roles & Permissions", desc: "5 roles with a configurable permission matrix." },
+      { title: "Workspaces", desc: "Company-wide collaboration, control, and visibility." },
+      { title: "Roles & Permissions", desc: "Configurable roles and permissions." },
       { title: "Wallet & Budgets", desc: "Workspace-level funds, allocations, custom team budgets." },
-      { title: "HRIS Integration", desc: "Sync employees, trigger gifts, deactivate with resource transfer." },
-      { title: "Single Sign-On", desc: "SSO with your IdP. Enterprise security from day one." },
+      { title: "Integrations", desc: "100+ integrations across your tech stack." },
+      { title: "Single Sign-On", desc: "SSO with your identity provider." },
+      { title: "Security & Compliance", desc: "SOC 2, GDPR, CCPA, and enterprise security." },
     ],
   },
   {
     label: "Social Proof",
     items: [
-      { title: "Case Studies", desc: "Real implementations with measurable business outcomes." },
-      { title: "Reviews & Testimonials", desc: "What customers say and why they chose Stadium." },
+      { title: "Case Studies", desc: "Real customer stories with measurable results." },
+      { title: "Reviews & Testimonials", desc: "What customers say about Stadium." },
+      { title: "Corporate Social Responsibility", desc: "Sustainability, ethical sourcing, and giving back." },
     ],
   },
   {
-    label: "Trust & Security",
+    label: "Resources",
     items: [
-      { title: "Security & Compliance", desc: "SOC 2, GDPR, CCPA. Data, brand, and people protected." },
+      { title: "Learning Center", desc: "Articles, videos, webinars, and best practices." },
+      { title: "Guides & Templates", desc: "RFP templates, ROI calculators, and planning tools." },
+      { title: "Help Center", desc: "Documentation, FAQs, and product support." },
     ],
   },
-];
-
-/* Reuses the TrustBand marks. width:height gives each SVG its aspect ratio so the
-   rem height actually constrains it (without it the SVGs render at full size). */
-const LOGOS = [
-  { src: "/trust-google.svg", alt: "Google", width: 80, height: 26 },
-  { src: "/trust-amazon.svg", alt: "Amazon", width: 77, height: 23 },
-  { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 20 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
-  { src: "/trust-spotify.svg", alt: "Spotify", width: 81, height: 24 },
-  { src: "/trust-accenture.svg", alt: "Accenture", width: 91, height: 26 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
 ];
 
 function ArrowRight({ className = "" }: { className?: string }) {
@@ -67,49 +63,30 @@ function ArrowRight({ className = "" }: { className?: string }) {
 
 export default function ProofMenu() {
   return (
-    <div className="mx-auto w-full max-w-section">
-      <div className="flex items-stretch gap-10 px-section-x-lg py-8">
-        {/* Left — "Why Stadium" feature card (photo pending; dark gradient stand-in) */}
-        <aside className="flex w-[27.5rem] shrink-0 flex-col justify-between gap-8 overflow-hidden rounded-card bg-gradient-to-br from-infra-base-1 to-infra-base-2 p-8">
-          <div className="flex flex-col gap-3">
-            <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.1rem] text-accent-water">
-              Why Stadium
-            </p>
-            <h3 className="font-display text-heading-sm text-white">
-              Global engagement infrastructure
-            </h3>
-            <p className="font-sans text-body-md text-white/75">
-              Real customer outcomes. Enterprise security posture. Local
-              fulfillment in 170+ countries &mdash; built to be the system of
-              record for how modern teams engage.
-            </p>
-          </div>
-          <a
-            href="#"
-            className="inline-flex h-button-h w-fit items-center justify-center gap-2 rounded-button border border-white/30 px-button-x font-sans text-button-primary uppercase text-white transition-colors duration-200 hover:bg-white/10"
-          >
-            View why Stadium
-            <ArrowRight className="size-4" />
-          </a>
-        </aside>
-
-        {/* Right — link grid over a trusted-by row */}
-        <div className="flex min-w-0 flex-1 flex-col justify-between gap-8">
-          <div className="grid grid-cols-3 gap-10">
+    <MenuShell>
+      <MenuRow>
+        {/* Editorial link grid — 3 even 248px columns @ 24px gutter, matching the
+            Figma grid exactly (1350:36111 cols 36115/36133/36142, w 248 each). */}
+        <MenuContent>
+          <div className="grid grid-cols-3 gap-[2.8125rem]">
             {PROOF_COLUMNS.map((col) => (
-              <div key={col.label} className="flex flex-col gap-5">
-                <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water">
+              <div key={col.label} className="group/col flex flex-col gap-4">
+                <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[rgba(27,27,27,0.6)] transition-colors duration-200 group-hover/col:text-[#181818]">
                   {col.label}
                 </p>
-                <ul className="engage-group flex flex-col gap-5">
+                {/* divider rule — grey at rest; Stadium gradient wipes in on column hover */}
+                <span aria-hidden className="relative block h-px w-full bg-[#d9d9d9]">
+                  <span className="absolute inset-0 origin-left scale-x-0 bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)] transition-transform duration-500 ease-out group-hover/col:scale-x-100" />
+                </span>
+                <ul className="engage-group flex flex-col gap-6">
                   {col.items.map(({ title, desc }) => (
                     <li key={title}>
-                      <a href="#" className="engage-row flex flex-col gap-1">
-                        <span className="flex items-center gap-2 font-sans text-[0.875rem] font-semibold leading-5 text-ink">
+                      <a href="#" className="engage-row flex flex-col gap-2">
+                        <span className="flex items-center gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                           {title}
-                          <ArrowRight className="engage-arrow size-3.5 shrink-0 text-ink" />
+                          <ArrowRight className="engage-arrow size-3 shrink-0 text-black" />
                         </span>
-                        <span className="font-sans text-[0.8125rem] leading-[1.125rem] text-grey-500">
+                        <span className="font-sans text-[0.75rem] leading-[1.125rem] text-grey-500">
                           {desc}
                         </span>
                       </a>
@@ -119,28 +96,17 @@ export default function ProofMenu() {
               </div>
             ))}
           </div>
+        </MenuContent>
 
-          {/* Trusted by */}
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-grey-100 pt-6">
-            <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-grey-500">
-              Trusted by
-            </p>
-            {LOGOS.map((logo) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={logo.alt}
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-                style={{ height: `${(logo.height * 0.7) / 16}rem` }}
-                className="w-auto max-w-none shrink-0 opacity-70"
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+        {/* Light editorial feature panel (Figma 2:75960) */}
+        <MenuFeaturePanel
+          eyebrow="Global Engagement Infrastructure"
+          image={whyImg}
+          aspect="384 / 456"
+          title="Why teams choose Stadium"
+          cta="Learn more"
+        />
+      </MenuRow>
+    </MenuShell>
   );
 }

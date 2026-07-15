@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design/Figma scratch (moved to ../stadium-design)
+.figma-tmp/
+shots/
+*_qa.png
+figma-1to1-process.md

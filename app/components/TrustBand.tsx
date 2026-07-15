@@ -8,7 +8,6 @@ import { useState } from "react";
    Bloomberg was 1.78× the median (21→16); Google/Accenture were ~0.8×
    (24→26); Amazon ~1.16× (24→23). Widths follow each SVG's aspect. */
 const LOGOS = [
-  { src: "/trust-google.svg", alt: "Google", width: 80, height: 26 },
   { src: "/trust-spotify.svg", alt: "Spotify", width: 81, height: 24 },
   { src: "/trust-amazon.svg", alt: "Amazon", width: 77, height: 23 },
   { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
@@ -16,6 +15,7 @@ const LOGOS = [
   { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
   { src: "/trust-salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
   { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 20 },
+  { src: "/trust-google.svg", alt: "Google", width: 80, height: 26 },
 ];
 
 /* One copy is ~56–68rem wide (gap-dependent). A seamless loop needs the
@@ -69,8 +69,8 @@ export default function TrustBand() {
 
       {/* h2 (was a p, 2026-06-12): the band is a real section of social
           proof — the eyebrow IS its heading, styled unchanged */}
-      <h2 className="px-section-x-sm text-center font-sans text-eyebrow-sm font-normal uppercase tracking-[0.075rem] text-grey-800 md:whitespace-nowrap md:text-eyebrow-md md:tracking-[0.0875rem] lg:text-eyebrow-lg lg:tracking-[0.1rem]">
-        Powering global engagement for 10,000+ companies
+      <h2 className="px-section-x-sm text-center font-sans text-eyebrow-sm uppercase tracking-[0.0625rem] text-[#919295] md:whitespace-nowrap md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6">
+        10,000+ companies count on Stadium
       </h2>
 
       {/* tap toggles only on coarse pointers — mouse users have hover */}

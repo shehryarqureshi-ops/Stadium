@@ -1,240 +1,91 @@
 "use client";
 
 import { useState } from "react";
+import { useAutoAdvance } from "./useAutoAdvance";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import teamPhoto from "@/public/teams-marketing.png";
-import { useAutoAdvance } from "./useAutoAdvance";
 
-/* Marketing content is from Figma; the other six teams' content is INVENTED
-   (only the tab pills exist in Figma) and their photos use the design
-   system's PENDING ASSET placeholder. Replace when designed. */
+/* "Built for every role" — synced to Figma 2:37377. Centered header, a pill
+   tab-container (active = dark), and a rounded card with a left photo + right
+   content (32px title, +-bulleted list, EXPLORE text link). Marketing copy is
+   from the Figma; the other roles keep placeholder copy in the same shape. */
 
 type Team = {
   name: string;
-  /** Desktop intro title */
+  tab: string;
   title: string;
-  /** Desktop intro body */
   body: string;
-  /** Shorter mobile/tablet body */
-  mobileBody: string;
-  features: { title: string; desc: string }[];
-  cta: string;
+  bullets: string[];
   photo: StaticImageData | null;
-  photoAlt: string;
 };
 
 const teams: Team[] = [
   {
     name: "Marketing",
-    title: "Run brand at scale.",
-    body: "Launch campaigns, gift prospects, and amplify brand moments at scale. Everything a marketing team needs to turn audiences into customers.",
-    mobileBody:
-      "Launch campaigns, gift prospects, and amplify brand moments at scale. Everything on-brand, shipped worldwide.",
-    features: [
-      {
-        title: "Gift prospects at scale",
-        desc: "Branded boxes, bulk sends, and personalized touches that turn leads into conversations.",
-      },
-      {
-        title: "Run employer brand moments",
-        desc: "Conference swag, candidate welcome kits, and campaign merch — all on-brand, all on time.",
-      },
-      {
-        title: "Campaigns with tangible assets",
-        desc: "Event activations, webinar incentives, and field marketing shipped globally.",
-      },
-      {
-        title: "Track ROI on every send",
-        desc: "Spend by campaign, team, and region with clean reporting built into the platform.",
-      },
-    ],
-    cta: "Explore marketing",
+    tab: "Marketing",
+    title: "Full brand control,\nat any scale",
+    body: "Gift prospects, run campaigns, and keep every send on-brand. Logo, colors, and guidelines locked—no matter who’s placing the order.",
+    bullets: ["Swag and gifts for customers", "Campaigns with tangible assets", "Run employer brand moments", "Trade show & event merchandise"],
     photo: teamPhoto,
-    photoAlt: "Marketing team presenting branded merchandise at an event booth",
   },
   {
-    name: "Human Resources",
-    title: "Run people programs at scale.",
+    name: "HR",
+    tab: "Human Resources",
+    title: "Run people programs\nat scale",
     body: "Onboarding, milestones, and recognition for every employee — automated from the systems you already run.",
-    mobileBody:
-      "Onboarding, milestones, and recognition for every employee — automated end to end.",
-    features: [
-      {
-        title: "Automate onboarding kits",
-        desc: "New hires welcomed on day one, in any country.",
-      },
-      {
-        title: "Celebrate every milestone",
-        desc: "Birthdays and anniversaries triggered from your HRIS — never missed.",
-      },
-      {
-        title: "Run recognition programs",
-        desc: "Kudos and rewards tied to your company values.",
-      },
-      {
-        title: "Prove engagement impact",
-        desc: "Participation and redemption reporting in one view.",
-      },
-    ],
-    cta: "Explore HR",
+    bullets: ["Automate onboarding kits", "Celebrate every milestone", "Run recognition programs", "Prove engagement impact"],
     photo: null,
-    photoAlt: "",
   },
   {
     name: "Operations",
-    title: "Keep the machine running.",
-    body: "Vendors, inventory, and shipping consolidated into one pipeline you don't have to babysit.",
-    mobileBody:
-      "Vendors, inventory, and shipping consolidated into one pipeline.",
-    features: [
-      {
-        title: "Consolidate your vendors",
-        desc: "One contract and one invoice replace dozens.",
-      },
-      {
-        title: "Track inventory live",
-        desc: "Warehouse counts without the spreadsheets.",
-      },
-      {
-        title: "Ship anywhere",
-        desc: "170+ countries with duties and customs handled.",
-      },
-      {
-        title: "Cut fulfillment tickets",
-        desc: "Address issues and re-ships resolved automatically.",
-      },
-    ],
-    cta: "Explore operations",
+    tab: "Operations",
+    title: "Keep the machine\nrunning",
+    body: "Vendors, inventory, and shipping consolidated into one pipeline you don’t have to babysit.",
+    bullets: ["Consolidate your vendors", "Track inventory live", "Ship to 170+ countries", "Cut fulfillment tickets"],
     photo: null,
-    photoAlt: "",
   },
   {
     name: "Team Leaders",
-    title: "Celebrate your team without the admin.",
+    tab: "Team Leaders",
+    title: "Celebrate your team,\nno admin",
     body: "Budgets, approvals, and sends scoped to your team — no procurement queue in the way.",
-    mobileBody: "Budgets, approvals, and sends for your team — no queue.",
-    features: [
-      {
-        title: "Send in minutes",
-        desc: "Pick, personalize, and ship without a ticket.",
-      },
-      {
-        title: "Stay inside budget",
-        desc: "Team allowances with approvals built in.",
-      },
-      {
-        title: "Let recipients choose",
-        desc: "Send choice, not guesses — they pick what lands.",
-      },
-      {
-        title: "See what landed",
-        desc: "Delivery and reactions, visible at a glance.",
-      },
-    ],
-    cta: "Explore team leaders",
+    bullets: ["Send in minutes", "Stay inside budget", "Let recipients choose", "See what landed"],
     photo: null,
-    photoAlt: "",
   },
   {
     name: "Finance",
-    title: "Control every dollar of engagement spend.",
+    tab: "Finance",
+    title: "Control every dollar\nof spend",
     body: "One wallet, clean reporting, and no surprise invoices — engagement spend that closes cleanly every month.",
-    mobileBody: "One wallet, clean reporting, no surprise invoices.",
-    features: [
-      {
-        title: "One company wallet",
-        desc: "Every send drawn from a single funded balance.",
-      },
-      {
-        title: "Budget by team and region",
-        desc: "Allocations and caps without spreadsheet policing.",
-      },
-      {
-        title: "Clean tax handling",
-        desc: "Duties, VAT, and import taxes calculated for you.",
-      },
-      {
-        title: "Audit-ready reporting",
-        desc: "Line-item visibility across every program.",
-      },
-    ],
-    cta: "Explore finance",
+    bullets: ["One company wallet", "Budget by team and region", "Clean tax handling", "Audit-ready reporting"],
     photo: null,
-    photoAlt: "",
   },
   {
     name: "Sales",
-    title: "Open doors with memorable sends.",
+    tab: "Sales",
+    title: "Open doors with\nmemorable sends",
     body: "Gifts and experiences that get prospects to reply — triggered straight from your CRM.",
-    mobileBody: "Gifts and experiences that get prospects to reply.",
-    features: [
-      {
-        title: "Break into target accounts",
-        desc: "Memorable sends that earn the first meeting.",
-      },
-      {
-        title: "Trigger sends from your CRM",
-        desc: "Stage changes launch gifts automatically.",
-      },
-      {
-        title: "Stand out at events",
-        desc: "Booth swag and follow-ups that keep momentum.",
-      },
-      {
-        title: "Tie sends to pipeline",
-        desc: "Influence tracked against revenue, not vibes.",
-      },
-    ],
-    cta: "Explore sales",
+    bullets: ["Break into target accounts", "Trigger sends from your CRM", "Stand out at events", "Tie sends to pipeline"],
     photo: null,
-    photoAlt: "",
   },
   {
     name: "C-Suite",
-    title: "One platform, global leverage.",
+    tab: "C-Suite",
+    title: "One platform,\nglobal leverage",
     body: "Engagement infrastructure that scales with headcount — instead of headcount scaling with it.",
-    mobileBody: "Engagement infrastructure that scales with headcount.",
-    features: [
-      {
-        title: "Consolidate spend",
-        desc: "Every team's engagement budget under one roof.",
-      },
-      {
-        title: "Scale culture globally",
-        desc: "The same moments, delivered in 170+ countries.",
-      },
-      {
-        title: "De-risk compliance",
-        desc: "Tax, customs, and data handled by the platform.",
-      },
-      {
-        title: "Measure the return",
-        desc: "Engagement outcomes reported like any other KPI.",
-      },
-    ],
-    cta: "Explore for c-suite",
+    bullets: ["Consolidate spend", "Scale culture globally", "De-risk compliance", "Measure the return"],
     photo: null,
-    photoAlt: "",
   },
 ];
 
-function CheckIcon({ className = "" }: { className?: string }) {
+function PlusIcon() {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M5 10.5 8.5 14 15 6.5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-grey-100">
+      <svg viewBox="0 0 16 16" className="size-3 text-grey-600" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden>
+        <path d="M8 3.5v9M3.5 8h9" />
+      </svg>
+    </span>
   );
 }
 
@@ -242,133 +93,95 @@ export default function TeamsTabs() {
   const [active, setActive] = useState(0);
   const team = teams[active];
 
+  /* Auto-cycle the roles (every 5s in view; pause on hover; click takes over). */
   const { sectionRef, takeOver } = useAutoAdvance(() =>
     setActive((i) => (i + 1) % teams.length),
   );
-
   const select = (i: number) => {
     takeOver();
     setActive(i);
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="mx-auto w-full max-w-section flex flex-col gap-6 bg-surface-base px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:gap-8 lg:px-section-x-lg lg:py-section-y-lg"
-    >
-      <style>{`
-        .teams-panel-in { animation: teams-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        @keyframes teams-in {
-          from { opacity: 0; transform: translateY(0.5rem); }
-          to { opacity: 1; transform: none; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .teams-panel-in { animation: none; }
-        }
-      `}</style>
-
-      {/* Eyebrow + heading — lg:pb-4 widens heading→tabs to 48 (normalization
-          2026-06-12) while the section gap keeps tabs→panel at 32 */}
-      <div className="flex flex-col gap-2 text-ink lg:pb-4">
-        <p className="font-sans text-eyebrow-sm uppercase tracking-[0.045rem] md:text-eyebrow-lg md:tracking-[0.06rem] lg:tracking-[0.1rem]">
-          Built for every team
-        </p>
-        <h2 className="font-display text-heading-sm md:text-heading-md lg:max-w-[40.625rem] lg:text-heading-lg">
-          One solution for all your teams
-        </h2>
-      </div>
-
-      {/* Tab row */}
-      <ul className="flex w-full gap-2 overflow-x-auto [scrollbar-width:none] md:gap-[0.625rem] lg:gap-4 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
-        {teams.map((t, i) => (
-          <li key={t.name} className="shrink-0">
-            <button
-              type="button"
-              onClick={() => select(i)}
-              aria-pressed={i === active}
-              className={`flex cursor-pointer items-center justify-center whitespace-nowrap rounded-full px-4 py-3 font-sans text-label transition-colors duration-200 md:px-6 md:py-2 ${
-                i === active
-                  ? "bg-grey-200 text-ink"
-                  : "text-grey-500 hover:text-ink"
-              }`}
-            >
-              {t.name}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      {/* Active panel — bordered card: photo flush-left, content padded-right
-          (structure per Figma 813:48731; feature list as a checklist). */}
+    <section ref={sectionRef} className="relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-24 lg:px-[6.25rem] lg:pb-[7.5rem] lg:pt-[7.5rem]">
+      {/* Stadium brand aurora — soft mesh gradient behind the header + card,
+          replacing a flat grey gradient (Figma "symbol gradient" 2:37375 @ 33%). */}
       <div
-        key={team.name}
-        className="teams-panel-in flex flex-col overflow-hidden rounded-card border border-grey-200 bg-surface-base shadow-card-soft lg:flex-row lg:items-stretch"
-      >
-        {/* Photo — flush to the card edges (PENDING placeholder when undesigned) */}
-        <div className="relative h-[12.5rem] w-full shrink-0 bg-grey-200 md:h-[20rem] lg:h-auto lg:w-2/5 lg:self-stretch">
-          {team.photo ? (
-            <Image
-              src={team.photo}
-              alt={team.photoAlt}
-              fill
-              sizes="(min-width: 64rem) 30rem, (min-width: 48rem) calc(100vw - 6rem), calc(100vw - 3rem)"
-              className="object-cover"
-            />
-          ) : (
-            <div className="relative h-full w-full border border-dashed border-[#8c94a6] bg-[#f0f0f7]">
-              <span className="absolute left-[0.6875rem] top-[0.6875rem] inline-flex items-center gap-1.5 rounded-full bg-accent-turmeric px-2 py-1">
-                <span
-                  className="size-[0.3125rem] rounded-full bg-[#04050b]"
-                  aria-hidden
-                />
-                <span className="font-display text-[0.5625rem] font-bold tracking-[0.045rem] text-[#04050b]">
-                  PENDING ASSET
-                </span>
-              </span>
-            </div>
-          )}
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-[46%] z-0 aspect-[2880/2708] w-[95rem] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-75"
+        style={{
+          backgroundImage: "url(/teams-aurora.png)",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <div className="relative z-10 mx-auto flex w-full max-w-[77.5rem] flex-col gap-10">
+        {/* centered header */}
+        <div className="flex flex-col items-center gap-2 text-center">
+          <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60">
+            Impact by Team
+          </p>
+          <h2 className="font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
+            Built for every role
+          </h2>
         </div>
 
-        {/* Content — eyebrow + title + body + checklist + CTA */}
-        <div className="flex flex-1 flex-col gap-4 p-6 md:gap-5 md:p-8 lg:gap-6 lg:p-10">
-          <div className="flex flex-col gap-2">
-            <p className="font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-accent-water">
-              {team.name}
-            </p>
-            <h3 className="font-display text-heading-sm text-ink lg:text-heading-md">
-              {team.title}
-            </h3>
-          </div>
-
-          {/* Body — short on mobile/tablet, full on desktop */}
-          <p className="font-sans text-body-md text-grey-600 md:text-statement-md lg:hidden">
-            {team.mobileBody}
-          </p>
-          <p className="hidden font-sans text-body-md text-ink lg:block">
-            {team.body}
-          </p>
-
-          {/* Feature checklist — check + label (Figma 813:48731) */}
-          <ul className="flex flex-col gap-3">
-            {team.features.map((feature) => (
-              <li key={feature.title} className="flex items-center gap-3">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-accent-water text-cta-on">
-                  <CheckIcon className="size-3" />
-                </span>
-                <span className="font-sans text-body-md font-medium text-ink">
-                  {feature.title}
-                </span>
+        {/* tab pill container */}
+        <div className="flex justify-center">
+          <ul className="flex max-w-full gap-2.5 overflow-x-auto rounded-full border border-[#e0e0e0] bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {teams.map((t, i) => (
+              <li key={t.name} className="shrink-0">
+                <button
+                  type="button"
+                  onClick={() => select(i)}
+                  aria-pressed={i === active}
+                  className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
+                    i === active ? "bg-[#16171b] text-white" : "text-[#16171b] hover:bg-grey-100"
+                  }`}
+                >
+                  {t.tab}
+                </button>
               </li>
             ))}
           </ul>
+        </div>
 
-          {/* CTA */}
-          <a
-            href="#"
-            className="inline-flex h-button-h w-full items-center justify-center self-start rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button md:w-fit"
-          >
-            {team.cta}
-          </a>
+        {/* card */}
+        <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
+          {/* photo */}
+          <div className="relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl bg-grey-200 lg:w-[48%]">
+            {team.photo ? (
+              <Image src={team.photo} alt="" fill sizes="(min-width:64rem) 36rem, 100vw" className="object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-grey-100">
+                <span className="font-display text-[1.25rem] font-bold text-grey-400">{team.name}</span>
+              </div>
+            )}
+          </div>
+
+          {/* content */}
+          <div className="flex flex-col justify-center gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10">
+            <div className="flex flex-col gap-5">
+              <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b]">
+                {team.title}
+              </h3>
+              <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#828282]">{team.body}</p>
+            </div>
+            <ul className="flex flex-col gap-3">
+              {team.bullets.map((b) => (
+                <li key={b} className="flex items-center gap-3">
+                  <PlusIcon />
+                  <span className="font-sans text-[1rem] font-semibold text-ink">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#"
+              className="font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#16171b] underline underline-offset-4 transition-opacity hover:opacity-70"
+            >
+              Explore {team.name}
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -1,22 +1,31 @@
-import Image from "next/image";
-import railPhoto from "@/public/menu-engage.png";
+/* "Ways to Engage" mega-menu — PIXEL-MATCHED to Figma 93yVIqVYX6fYKsKbLSWX8k
+   node 5589:23499 (values read from the nodes, 2026-06-24):
+     container: px 120, gap 45 (main ↔ rail)
+     main: py 32, three 255px columns @ 45 gutter; groups stacked @ 45
+     group: col, gap 16 → [12px-Bold-1px heading + arrow] · [1px underline:
+            rainbow #8d12e7→#0b7afc→#ffb800→#ff5b77→#00c036 (accent) / #d9d9d9]
+            · [items, gap 8]
+     row: 28px tall, 20px icon slot, 12px gap, 14px/20 label #181818
+     rail: 300px · #f2f2f2 · px24 py32 · gap 32 → Latest block + Popular block
+   Shares the hover choreography (.engage-row/.engage-group/.engage-arrow)
+   defined in SiteHeader. */
 
-/* "Ways to Engage" mega-menu — redesigned 2026-06-11 on the pattern of
-   shopify.com's "Products" dropdown (measured live): icon+label link rows
-   under accent group headers, a featured right rail, and a bottom band of
-   title+description links. Stadium palette (white panel, ink text,
-   accent-water headers). Capability groups/items are from Figma 249:19205;
-   the rail and bottom-band copy is INVENTED — replace when designed. */
+import Image, { type StaticImageData } from "next/image";
+import latestCover from "@/public/engage-latest-cover.png";
+import store1 from "@/public/engage-store-1.png";
+import store2 from "@/public/engage-store-2.png";
+import store3 from "@/public/engage-store-3.png";
 
 type IconProps = { className?: string };
 
-function iconBase(className?: string) {
+// strokeWidth 2.25 in the 24-unit viewBox renders 1.5px at the 16px icon size
+function iconBase(className?: string, strokeWidth: number = 2.25) {
   return {
     className,
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 2,
+    strokeWidth,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
     "aria-hidden": true as const,
@@ -149,33 +158,39 @@ const I = {
       <path d="M3 10h18" />
     </svg>
   ),
+  store: (p: IconProps) => (
+    <svg {...iconBase(p.className)}>
+      <path d="M4 9V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4" />
+      <path d="M2 9h20l-1.5 4H3.5L2 9Z" />
+      <path d="M4 13v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+    </svg>
+  ),
 };
 
 type Item = { label: string; Icon: (p: IconProps) => React.ReactNode };
-type Group = { label: string; items: Item[] };
+type Group = { label: string; accent?: boolean; items: Item[] };
 
-/* Groups/items from Figma 249:19205; columns balanced Shopify-style
-   (reading order flows down each column, left to right). Exported for the
-   mobile nav accordion (2026-06-12), which flattens the groups. */
+/* From the new Figma (5589:23499). Exported for the mobile-nav accordion. */
 export const COLUMNS: Group[][] = [
   [
     {
       label: "Recognition",
+      accent: true,
       items: [
-        { label: "Kudos & Peer Recognition", Icon: I.heart },
+        { label: "Kudos Programs", Icon: I.heart },
         { label: "Milestone Programs", Icon: I.award },
-        { label: "Incentive Programs", Icon: I.star },
+        { label: "Rewards & Incentives", Icon: I.star },
       ],
     },
     {
       label: "Swag",
       items: [
         { label: "Swag Kits", Icon: I.package },
-        { label: "Branded Stores", Icon: I.bag },
+        { label: "Branded Shops", Icon: I.bag },
         { label: "On-Demand Swag", Icon: I.zap },
         { label: "Bulk Swag", Icon: I.layers },
-        { label: "Virtual Swag Bar", Icon: I.monitor },
-        { label: "Storage", Icon: I.archive },
+        { label: "Self-Serve Swag", Icon: I.monitor },
+        { label: "Swag Storage", Icon: I.archive },
       ],
     },
   ],
@@ -183,9 +198,8 @@ export const COLUMNS: Group[][] = [
     {
       label: "Snacks",
       items: [
-        { label: "Build-Your-Own Box", Icon: I.coffee },
+        { label: "Build-Your-Own Boxes", Icon: I.coffee },
         { label: "Curated Boxes", Icon: I.sparkles },
-        { label: "Goodie Bags", Icon: I.smile },
       ],
     },
     {
@@ -196,6 +210,7 @@ export const COLUMNS: Group[][] = [
         { label: "Client & Prospect Gifting", Icon: I.send },
         { label: "Partner Gifting", Icon: I.globe },
         { label: "Automated Gifting", Icon: I.repeat },
+        { label: "Gift Shops", Icon: I.store },
       ],
     },
   ],
@@ -203,62 +218,57 @@ export const COLUMNS: Group[][] = [
     {
       label: "Events",
       items: [
-        { label: "Virtual Team Building", Icon: I.monitor },
-        { label: "Wellness & DEI", Icon: I.heart },
-        { label: "Holiday & Seasonal", Icon: I.sparkles },
-        { label: "Global Experiences", Icon: I.globe },
-        { label: "Workshops & Classes", Icon: I.calendar },
+        { label: "Team Building", Icon: I.users },
+        { label: "Health & Wellness", Icon: I.heart },
+        { label: "Seasonal Moments", Icon: I.sparkles },
+        { label: "Employee Onboarding", Icon: I.globe },
+        { label: "Learning & Development", Icon: I.calendar },
+        { label: "Diversity, Equity, & Inclusion", Icon: I.smile },
       ],
     },
   ],
 ];
 
-const POPULAR = ["Branded Stores", "Automated Gifting", "Snack Perks"];
-
 const ArrowRight = (p: IconProps) => (
-  <svg {...iconBase(p.className)}>
+  <svg {...iconBase(p.className, 2)}>
     <path d="M5 12h14" />
     <path d="m12 5 7 7-7 7" />
   </svg>
 );
 
-/* Shopify Products-menu metrics + hover choreography (measured 2026-06-11):
-   40px row pitch, bare 20px icons, 12px medium +0.72px headers. On item
-   hover, SIBLINGS IN THE SAME GROUP dim to 50% (300ms) and a hidden 14px
-   arrow fades in after the label — the hovered row itself keeps full color.
-   Row labels SemiBold (2026-06-11 weight bump, was Medium — unified with
-   Impact's use-case titles). */
-function GroupBlock({ group }: { group: Group }) {
+/* Group: 12px-Bold-1px heading (arrow-reveal) · 1px underline (rainbow for the
+   accent group, #d9d9d9 otherwise) · 28px icon rows @ 8px. gap 16 throughout. */
+function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean }) {
   return (
-    <div className="flex flex-col">
-      {/* heading links to the category overview page; same arrow-reveal
-          affordance as the rows */}
+    /* minRow = first group of a two-group column: fixed 149px tall so the
+       second group (Swag / Gifting) top-aligns across columns (Figma 2:75437) */
+    <div className={`group/col flex flex-col gap-4 ${minRow ? "min-h-[9.3125rem]" : ""}`}>
       <a
         href="#"
         aria-label={`View all ${group.label}`}
-        className="engage-heading mb-1.5 flex items-center gap-1.5 font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water underline-offset-[0.1875rem] hover:underline"
+        className="engage-heading flex items-center gap-1 font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60 transition-colors duration-200 group-hover/col:text-[#181818]"
       >
         {group.label}
-        {/* +1px down: Overpass glyphs sit low in their box, so the centered
-            arrow otherwise looks high next to the text */}
-        <ArrowRight className="engage-arrow size-3 shrink-0 translate-y-px" />
+        <ArrowRight className="engage-arrow size-3 shrink-0" />
       </a>
-      <ul className="engage-group flex flex-col">
+      {/* grey rail at rest; the rainbow gradient wipes in left→right on hover
+          of the column (all columns, Recognition included) */}
+      <span aria-hidden className="relative block h-px w-full bg-[#d9d9d9]">
+        <span className="absolute inset-0 origin-left scale-x-0 bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)] transition-transform duration-500 ease-out group-hover/col:scale-x-100" />
+      </span>
+      <ul className="engage-group flex flex-col gap-2">
         {group.items.map(({ label, Icon }) => (
           <li key={label}>
             <a
               href="#"
-              className="engage-row flex h-10 items-center gap-4 font-sans text-[0.875rem] font-medium leading-5 text-ink"
+              className="engage-row flex h-7 items-center gap-3 font-sans text-[0.875rem] font-normal leading-5 text-grey-600"
             >
-              {/* 16px icon in a 20px alignment column — 20px boxes read
-                  oversized next to the 14px labels */}
               <span className="flex size-5 shrink-0 items-center justify-center">
                 <Icon className="size-4 text-grey-600" />
               </span>
-              {/* -1px optical nudge: Overpass glyphs sit low in their box,
-                  making box-centered text look low next to the icon */}
-              <span className="-translate-y-px">{label}</span>
-              <ArrowRight className="engage-arrow size-3.5 shrink-0 text-ink" />
+              <span>{label}</span>
+              {/* arrow reveals on hover only — never a constant */}
+              <ArrowRight className="engage-arrow size-3.5 shrink-0 text-grey-600" />
             </a>
           </li>
         ))}
@@ -267,83 +277,89 @@ function GroupBlock({ group }: { group: Group }) {
   );
 }
 
+/* Right rail — 300px #f2f2f2 panel: a "Latest" white card (232×104 cover, r8;
+   title over #6f7072 desc) + a "Popular" list of white cards (45×35 thumb r6 +
+   14px Medium label). Cover + thumbs use spectrum gradients until the real
+   report cover / branded-store images are dropped in public/. */
+const POPULAR: StaticImageData[] = [store1, store2, store3];
+
+function RailEyebrow({ children }: { children: string }) {
+  return (
+    <p className="font-sans text-[0.75rem] font-semibold uppercase leading-4 tracking-[0.0156rem] text-[#1b1b1b]">
+      {children}
+    </p>
+  );
+}
+
+function RightRail() {
+  return (
+    <div className="flex w-[18.75rem] shrink-0 flex-col gap-8 self-stretch bg-[#f2f2f2] px-6 py-8">
+      {/* Latest block */}
+      <div className="flex flex-col gap-5">
+        <RailEyebrow>Latest at Stadium</RailEyebrow>
+        <a
+          href="#"
+          className="group flex flex-col gap-3 rounded-xl bg-white p-2.5 shadow-[0_3px_6px_rgba(0,0,0,0.06)]"
+        >
+          <span className="relative h-[6.5rem] w-full overflow-hidden rounded-lg">
+            <Image src={latestCover} alt="" fill sizes="232px" className="object-cover" />
+          </span>
+          <span className="flex flex-col gap-1">
+            <span className="font-sans text-[0.875rem] font-semibold leading-5 text-[#181818]">
+              The Global Engagement Report 2026
+            </span>
+            <span className="font-sans text-[0.75rem] font-normal leading-[1.125rem] text-[#6f7072]">
+              How 10,000+ companies show up for their people.
+            </span>
+          </span>
+        </a>
+      </div>
+
+      {/* Popular block */}
+      <div className="flex flex-col gap-5">
+        <RailEyebrow>Popular</RailEyebrow>
+        <div className="flex flex-col gap-1">
+          {POPULAR.map((img, i) => (
+            <a
+              key={i}
+              href="#"
+              className="flex items-center gap-2.5 rounded-xl bg-white p-2 shadow-[0_3px_6px_rgba(0,0,0,0.06)] transition-shadow duration-200 hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+            >
+              <span className="relative h-[2.1875rem] w-[2.8125rem] shrink-0 overflow-hidden rounded-md">
+                <Image src={img} alt="" fill sizes="45px" className="object-cover" />
+              </span>
+              <span className="font-sans text-[0.875rem] font-medium leading-5 text-[#181818]">
+                Branded Stores
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function EngageMenu() {
   return (
     <div className="mx-auto w-full max-w-section">
-      {/* hover choreography classes (.engage-row/.engage-group/.engage-arrow)
-          are defined in SiteHeader's style block — shared by both menus */}
-      <div className="flex items-start gap-10 px-section-x-lg py-8">
-        {/* Main — capability groups in 3 balanced columns (Shopify Products pattern) */}
-        {/* dividers: full-height border-l on cols 2-3 (grid stretches columns);
-            even 40px padding each side lands the hairline at ~1/3 and ~2/3,
-            matching the Figma spec (cols are content-fit there) */}
-        <div className="grid min-w-0 flex-1 grid-cols-3">
+      {/* container: gap 45 (main ↔ rail), 120 side padding */}
+      <div className="flex gap-[2.8125rem] px-section-x-lg">
+        {/* main: three 255px columns @ 45 gutter, 32 top/bottom pad */}
+        <div className="flex flex-1 items-start gap-[2.8125rem] py-8">
           {COLUMNS.map((groups, i) => (
-            <div
-              key={i}
-              className={`flex flex-col gap-7 ${
-                i === 0
-                  ? "pr-10"
-                  : i === 1
-                    ? "border-l-[1.5px] border-grey-100 px-10"
-                    : "border-l-[1.5px] border-grey-100 pl-10"
-              }`}
-            >
-              {groups.map((group) => (
-                <GroupBlock key={group.label} group={group} />
+            <div key={i} className="flex w-[15.9375rem] shrink-0 flex-col gap-[2.8125rem]">
+              {groups.map((group, gi) => (
+                <GroupBlock
+                  key={group.label}
+                  group={group}
+                  minRow={groups.length > 1 && gi === 0}
+                />
               ))}
             </div>
           ))}
         </div>
-
-        {/* Right rail — inset card like Shopify's (content INVENTED, pending design) */}
-        <aside className="flex w-[18.5rem] shrink-0 flex-col gap-5 rounded-card bg-surface-subtle p-6">
-          <p className="font-sans text-[1rem] font-medium leading-6 text-grey-700">
-            Latest at Stadium
-          </p>
-          <a href="#" className="group flex flex-col gap-3">
-            <span className="relative h-[6.5rem] w-full overflow-hidden rounded-lg bg-grey-200">
-              <Image
-                src={railPhoto}
-                alt=""
-                fill
-                sizes="17rem"
-                className="object-cover object-[50%_30%]"
-              />
-            </span>
-            <span className="flex flex-col gap-1">
-              <span className="font-sans text-[1rem] font-semibold leading-[1.375rem] text-ink transition-colors duration-200 group-hover:text-grey-600">
-                The Global Engagement Report 2026
-              </span>
-              <span className="font-sans text-[0.8125rem] leading-[1.125rem] text-grey-500">
-                How 10,000+ companies show up for their people.
-              </span>
-            </span>
-          </a>
-          <div className="flex flex-col gap-2.5">
-            <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-grey-500">
-              Popular
-            </p>
-            <ul className="flex flex-col gap-2">
-              {POPULAR.map((item) => (
-                <li key={item} className="flex items-center gap-2.5">
-                  <span
-                    aria-hidden
-                    className="size-1.5 shrink-0 rounded-full bg-accent-water"
-                  />
-                  <a
-                    href="#"
-                    className="font-sans text-[0.875rem] font-medium leading-5 text-ink transition-colors duration-200 hover:text-grey-600"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+        <RightRail />
       </div>
-
     </div>
   );
 }

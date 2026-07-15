@@ -28,6 +28,15 @@
     rgba(24, 24, 24, 0.62) 4rem,
     rgba(24, 24, 24, 0) 10rem
   );
+  /* Base 90deg scrim = the Figma frame's own gradient fill (5552:9939),
+     layered UNDER the a11y 90deg scrim; the two together match the Figma. */
+  --gradient-hero-base-scrim: linear-gradient(
+    90deg,
+    rgba(24, 24, 24, 0.65) 0%,
+    rgba(24, 24, 24, 0.45) 30%,
+    rgba(24, 24, 24, 0.2) 60%,
+    rgba(24, 24, 24, 0.05) 100%
+  );
 }
 
 /* Site-wide keyboard focus ring (quality bar 2026-06-12: every
@@ -49,7 +58,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Fonts — loaded via next/font in app/layout.tsx */
+  /* Fonts — loaded via next/font in app/layout.tsx. Satoshi Medium 500 is an
+     opt-in weight applied directly via var(--font-satoshi-medium) in the two
+     Figma-specced spots (StadiumWay accordion, testimonial quotes) — NOT a
+     default display weight. */
   --font-sans: var(--font-overpass);
   --font-display: var(--font-satoshi);
 }
@@ -57,7 +69,7 @@
 @theme {
   /* ===== Colors (Figma variables) ===== */
   --color-brand-hero: #181818; /* color/brand/hero */
-  --color-hero-body: rgba(255, 255, 255, 0.86); /* hero supporting copy */
+  --color-hero-body: #cccccc; /* hero supporting copy (Figma 5552:9939) */
   --color-ink: #181818; /* color/text/ink, ink/primary */
   --color-cta-fill: #181818; /* color/brand/cta-fill */
   --color-cta-on: #ffffff; /* color/brand/cta-on */
@@ -126,8 +138,8 @@
      Full-bleed backgrounds stay on the section; content caps and centers.
      max-w-section = capped section that carries its own side padding;
      max-w-content = inner content row inside a full-bleed section. */
-  --container-content: 88.75rem; /* 1420px — Shopify content cap */
-  --container-section: 100rem; /* 1600px — content cap + 2 × 90px margin */
+  --container-content: 75rem; /* 1200px — content container cap → 120px margins at 1440 (user 2026-06-17) */
+  --container-section: 86.25rem; /* 1380px — section cap → 1200 content + 2×90px padding */
   --container-band: 60rem; /* 960px — narrow-desktop (1024–1300) single-column
                               cap: keeps the stacked ScaleMap treatment from
                               sprawling across desktop-width viewports */
@@ -138,15 +150,15 @@
 
   /* ===== Type scale — section heading (Satoshi Bold) ===== */
   --text-heading-sm: 1.5rem;
-  --text-heading-sm--line-height: 2rem;
+  --text-heading-sm--line-height: 1.75rem; /* 28 — Universal Element */
   --text-heading-sm--font-weight: 700;
   --text-heading-md: 2rem;
   --text-heading-md--line-height: 2.5rem;
-  --text-heading-md--letter-spacing: -0.03rem;
+  --text-heading-md--letter-spacing: 0rem; /* Universal Secondary — no tracking */
   --text-heading-md--font-weight: 700;
-  --text-heading-lg: 3rem;
-  --text-heading-lg--line-height: 3.375rem;
-  --text-heading-lg--letter-spacing: -0.0625rem;
+  --text-heading-lg: 2.625rem; /* 42 — Universal SectionHead (was 48; 2026-06-17) */
+  --text-heading-lg--line-height: 3rem; /* 48 */
+  --text-heading-lg--letter-spacing: 0rem;
   --text-heading-lg--font-weight: 700;
 
   /* ===== Type scale — narrative (Satoshi BOLD, large statement headlines) =====
@@ -198,20 +210,48 @@
   --text-display-lg--line-height: 4.5rem;
   --text-display-lg--letter-spacing: -0.09375rem;
   --text-display-lg--font-weight: 700;
+  --text-display-xl: 5rem; /* 80/84 −2px — content-page hero headline, ×1.25 above display-lg (2026-06-21) */
+  --text-display-xl--line-height: 5.25rem;
+  --text-display-xl--letter-spacing: -0.125rem;
+  --text-display-xl--font-weight: 700;
+  --text-display-2xl: 7rem; /* 112/116 −3px — dominant content-page hero headline matching Shopify scale (2026-06-21) */
+  --text-display-2xl--line-height: 7.25rem;
+  --text-display-2xl--letter-spacing: -0.1875rem;
+  --text-display-2xl--font-weight: 700;
+
+  /* ===== DS 2.0 pilot — SwagMagic 2.0 type scale (Hero trial) =====
+     Satoshi headings with tracking 0 (DS 2.0 spec) vs the rebuild's tight
+     display-* (−1.5); Body Big (22) = DS "top-of-page secondary text". */
+  --text-ds-h1: 4rem; /* 64/72/0 */
+  --text-ds-h1--line-height: 4.5rem;
+  --text-ds-h1--font-weight: 700;
+  --text-ds-hero: 4.5rem; /* 72/82/-3 — homepage hero display (Figma 5552:9939) */
+  --text-ds-hero--line-height: 5.125rem;
+  --text-ds-hero--letter-spacing: -0.1875rem;
+  --text-ds-hero--font-weight: 700;
+  --text-ds-h2: 3rem; /* 48/56/0 */
+  --text-ds-h2--line-height: 3.5rem;
+  --text-ds-h2--font-weight: 700;
+  --text-ds-h4: 2rem; /* 32/40/0 */
+  --text-ds-h4--line-height: 2.5rem;
+  --text-ds-h4--font-weight: 700;
+  --text-ds-body-big: 1.375rem; /* 22/32 +0.5px — DS Body Big */
+  --text-ds-body-big--line-height: 2rem;
+  --text-ds-body-big--letter-spacing: 0.03125rem;
 
   /* ===== Type scale — eyebrow (Overpass Bold, uppercase; 2026-06-11 rev:
      solid leading, 10% tracking) ===== */
   --text-eyebrow-sm: 0.75rem; /* 12/12 +1.6px (DS: eyebrow tracking is a flat 1.6) */
   --text-eyebrow-sm--line-height: 0.75rem;
-  --text-eyebrow-sm--letter-spacing: 0.1rem;
+  --text-eyebrow-sm--letter-spacing: 0.0625rem;
   --text-eyebrow-sm--font-weight: 700;
   --text-eyebrow-md: 0.875rem; /* 14/14 +1.6px (DS: eyebrow tracking is a flat 1.6) */
   --text-eyebrow-md--line-height: 0.875rem;
-  --text-eyebrow-md--letter-spacing: 0.1rem;
+  --text-eyebrow-md--letter-spacing: 0.0625rem;
   --text-eyebrow-md--font-weight: 700;
   --text-eyebrow-lg: 1rem; /* 16/16 +1.6px */
   --text-eyebrow-lg--line-height: 1rem;
-  --text-eyebrow-lg--letter-spacing: 0.1rem;
+  --text-eyebrow-lg--letter-spacing: 0.0625rem;
   --text-eyebrow-lg--font-weight: 700;
 
   /* ===== Type scale — body (Overpass Regular) ===== */
@@ -221,6 +261,12 @@
   --text-body-md--line-height: 1.5rem;
   --text-body-lg: 1.125rem;
   --text-body-lg--line-height: 1.75rem;
+
+  /* Subtitle — Overpass SemiBold (PDL "Big Semi 1.2"): 18/24 SemiBold.
+     Emphasized supporting line under a headline (e.g. Catalog subhead). */
+  --text-subtitle: 1.125rem;
+  --text-subtitle--line-height: 1.5rem;
+  --text-subtitle--font-weight: 600;
 
   /* ===== Type scale — button label (Overpass SemiBold, uppercase) =====
      All button variants (filled/white/outline) share this one label style
@@ -278,5 +324,71 @@ body {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Nav-menu text is cap-height box-trimmed so vertical gaps match the Figma
+   design exactly — Figma uses leadingTrim CAP_HEIGHT; the native CSS line-box
+   otherwise inflates every gap by its leading. Scoped via .menu-trim on the
+   MenuShell. (Chrome/Safari 2025+; Firefox falls back to untrimmed = slightly
+   looser, an acceptable degradation.) */
+.menu-trim :is(p, a, span, h3) {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+/* cobe globe markers — pulse dot + glass label that track the rotating globe.
+   cobe exposes a CSS anchor `--cobe-<id>` at each marker's projected point and
+   a `--cobe-visible-<id>` var (1 front / 0 back); the label attaches via anchor
+   positioning and fades with visibility. Ported from the cobe.html prototype.
+   Anchor positioning needs Chrome/Safari 2024+; elsewhere labels sit centered
+   (still legible) — an acceptable degradation. */
+.cobe-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  translate: -0.5rem 0.875rem;
+  /* `bottom: anchor(top)` / `left: anchor(center)` are set via JS setProperty
+     in Globe.tsx — Tailwind v4's Lightning CSS drops the whole rule if these
+     experimental anchor() values are present here. */
+}
+.cobe-marker__label {
+  color: #fff;
+  font-size: 1.25rem; /* 20px — exactly as cobe.html */
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 0.25rem 0.75rem; /* 4px 12px */
+  border-radius: 0.5rem; /* 8px */
+  background: rgba(11, 122, 252, 0.45);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.cobe-marker__dot {
+  position: relative;
+  width: 1rem; /* 16px */
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #3b82f6;
+}
+.cobe-marker__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  animation: cobe-pulse 1.5s ease-out infinite;
+}
+@keyframes cobe-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
   }
 }

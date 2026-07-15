@@ -27,18 +27,9 @@ const OCCASIONS: Occasion[] = [
   { label: "Recognizing DEI Events", icon: "/occasion-recognizing-dei-events.svg" },
 ];
 
-/** Four use-case families (Figma 803:48505). Dots are a single muted grey in the
-    Figma (no color-coding yet); kept as a labeled key — easy to color later. */
-const CATEGORIES = [
-  "Employee Recognition",
-  "Gifting & Distribution",
-  "Incentives & Performance",
-  "Lifecycle & Programs",
-];
-
 function OccasionPill({ occasion }: { occasion: Occasion }) {
   return (
-    <li className="flex shrink-0 items-center gap-2.5 rounded-full bg-grey-100 py-2 pl-2 pr-5">
+    <li className="flex shrink-0 items-center gap-3 rounded-full bg-[#f8f8f8] py-1.5 pl-4 pr-5">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={occasion.icon}
@@ -46,9 +37,9 @@ function OccasionPill({ occasion }: { occasion: Occasion }) {
         width={44}
         height={44}
         loading="lazy"
-        className="size-8 shrink-0"
+        className="size-11 shrink-0"
       />
-      <span className="whitespace-nowrap font-sans text-label font-semibold text-ink">
+      <span className="whitespace-nowrap font-sans text-[1rem] font-semibold text-ink">
         {occasion.label}
       </span>
     </li>
@@ -76,39 +67,35 @@ export default function Occasions() {
       `}</style>
 
       {/* Header — centered */}
-      <div className="flex w-full max-w-content flex-col items-center gap-4 px-section-x-sm text-center md:px-section-x-md lg:px-section-x-lg">
-        <div className="flex flex-col items-center gap-2">
-          <p className="font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-grey-500 md:text-eyebrow-lg">
-            Use cases
-          </p>
-          <h2 className="font-display text-heading-sm text-ink md:text-heading-md lg:text-heading-lg">
-            Count on Stadium for every occasion
+      <div className="flex w-full max-w-content flex-col items-center gap-8 px-section-x-sm text-center md:px-section-x-md lg:px-section-x-lg">
+        <div className="flex flex-col items-center gap-5">
+          <h2 className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
+            100+ use cases and counting
           </h2>
+          <p className="max-w-[38rem] font-sans text-body-md text-[#474b5c] lg:text-[1.125rem] lg:leading-7">
+            Get a 15-minute walkthrough. We&rsquo;ll show you live campaigns, sample boxes, and how teams use Stadium at scale.
+          </p>
         </div>
-        <p className="font-sans text-body-md text-grey-600 md:text-body-lg">
-          There&rsquo;s no moment too big or too small.
-        </p>
-
-        {/* Category legend */}
-        <ul className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          {CATEGORIES.map((cat) => (
-            <li key={cat} className="flex items-center gap-2">
-              <span
-                className="size-2.5 shrink-0 rounded-full bg-grey-400"
-                aria-hidden
-              />
-              <span className="font-sans text-label uppercase tracking-[0.06rem] text-grey-500">
-                {cat}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="flex flex-wrap items-center justify-center gap-3.5">
+          <a
+            href="#"
+            className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water focus-visible:ring-offset-2"
+          >
+            Book a demo
+          </a>
+          <a
+            href="#"
+            className="inline-flex h-button-h items-center justify-center rounded-button border border-ink px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+          >
+            Talk to sales
+          </a>
+        </div>
       </div>
 
       {/* Scrolling rows — full-bleed with edge fades; 4 copies per track keep the
           loop seamless across wide viewports (translateX(-25%) advances one copy). */}
       <div className="relative w-full">
-        <div className="flex w-full flex-col gap-3 lg:gap-4">
+        <div className="flex w-full flex-col gap-6 lg:gap-[2.8125rem]">
           {rows.map((items, r) => (
             <div key={r} className="flex w-full overflow-hidden">
               <div className={`flex w-max ${r % 2 === 1 ? "occ-rtl" : "occ-ltr"}`}>
@@ -136,16 +123,6 @@ export default function Occasions() {
           aria-hidden
           className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-linear-to-l from-surface-base to-transparent md:w-20 lg:w-32"
         />
-      </div>
-
-      {/* Stat */}
-      <div className="flex items-baseline gap-3 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
-        <span className="font-display text-heading-sm font-bold text-ink md:text-heading-md">
-          100+
-        </span>
-        <span className="font-sans text-body-md text-grey-600">
-          use cases covered &mdash; every occasion handled
-        </span>
       </div>
     </section>
   );
