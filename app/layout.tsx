@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import RevealOnScroll from "./components/RevealOnScroll";
 
 const overpass = Overpass({
   variable: "--font-overpass",
@@ -66,6 +67,44 @@ export default function RootLayout({
           @media (prefers-reduced-motion: reduce) {
             .skip-link { transition: none; }
           }
+
+          /* Per-element scroll reveal (data-animation="reveal") — the premium
+             Linear/Apple entrance: fade in + rise from slightly below + de-blur
+             into focus, in parallel on one eased curve. RevealOnScroll adds
+             .is-revealed the first time each element enters the viewport.
+             Inlined here (not globals.css) so it always ships before content
+             paints — no flash. Reduced-motion / no-JS show content instantly. */
+          [data-animation="reveal"] {
+            opacity: 0;
+            transform: translateY(1.5rem);
+            filter: blur(0.5rem);
+            transition:
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform, filter;
+          }
+          [data-animation="reveal"].is-revealed {
+            opacity: 1;
+            transform: none;
+            filter: none;
+            will-change: auto;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            [data-animation="reveal"] {
+              opacity: 1;
+              transform: none;
+              filter: none;
+              transition: none;
+            }
+          }
+          @media (scripting: none) {
+            [data-animation="reveal"] {
+              opacity: 1;
+              transform: none;
+              filter: none;
+            }
+          }
         `}</style>
         <a
           href="#main"
@@ -74,6 +113,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <RevealOnScroll />
       </body>
     </html>
   );

@@ -5,7 +5,6 @@ import Infrastructure from "./components/Infrastructure";
 import Occasions from "./components/Occasions";
 import PageClose from "./components/PageClose";
 import RedactedPoster from "./components/RedactedPoster";
-import Reveal from "./components/Reveal";
 import ScaleMap from "./components/ScaleMap";
 import SiteHeader from "./components/SiteHeader";
 import StadiumWay from "./components/StadiumWay";
@@ -23,38 +22,21 @@ export default function Home() {
         tabIndex={-1}
         className="flex flex-1 flex-col outline-none"
       >
-        {/* Hero stays un-revealed (above the fold). Each section below fades +
-            rises as it scrolls into view. Catalog is excluded — its pinned,
-            scroll-driven carousel reads getBoundingClientRect, which a reveal
-            transform would offset. */}
+        {/* Each section's key elements reveal individually as they enter the
+            viewport via data-animation="reveal" (driven by RevealOnScroll +
+            globals.css) — this per-element entrance replaces the old
+            section-level <Reveal> wrappers. */}
         <Hero />
-        <Reveal>
-          <TrustBand />
-        </Reveal>
-        <Reveal>
-          <EveryWay />
-        </Reveal>
-        {/* Globe + Infrastructure + Stadium Way are ONE continuous dark block —
-            a single Reveal so they settle together, with no white gap or
-            re-reveal between the dark sections (globe → doorstep → phases). */}
-        <Reveal>
-          <RedactedPoster />
-          <Infrastructure />
-          <StadiumWay />
-        </Reveal>
+        <TrustBand />
+        <EveryWay />
+        <RedactedPoster />
+        <Infrastructure />
+        <StadiumWay />
         <Catalog />
-        <Reveal>
-          <ScaleMap />
-        </Reveal>
-        <Reveal>
-          <TeamsTabs />
-        </Reveal>
-        <Reveal>
-          <Occasions />
-        </Reveal>
-        <Reveal>
-          <Testimonials />
-        </Reveal>
+        <ScaleMap />
+        <TeamsTabs />
+        <Occasions />
+        <Testimonials />
       </main>
       <StickyVideo />
       <PageClose />
