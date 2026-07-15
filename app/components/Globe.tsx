@@ -2,7 +2,7 @@
 
 import type { COBEOptions } from "cobe";
 import createGlobe from "cobe";
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 
 /* Interactive cobe globe for the "We simplify global shipping" beat.
    Config ported from the cobe.html prototype: a grey base rendered with
@@ -163,12 +163,19 @@ export default function Globe({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerMovement = useRef(0);
+  // Two <Globe> instances (desktop + mobile) can be mounted at once — one
+  // hidden via CSS display:none per breakpoint. cobe exposes marker state
+  // through global `--cobe-visible-<id>` custom properties on :root, so
+  // reusing the same MARKERS ids across instances lets the hidden instance's
+  // frozen (never-intersecting, never re-rendered) values win the cascade
+  // over the live instance's. Namespacing ids per instance keeps them apart.
+  const instanceId = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    let phi = 0;
+    let phi = 9.5;
     let spring = 0;
     let size = canvas.offsetWidth;
     let visible = true;
@@ -199,7 +206,7 @@ export default function Globe({ className = "" }: { className?: string }) {
       markers: MARKERS.map((m) => ({
         location: m.location,
         size: 0,
-        id: m.id,
+        id: `${instanceId}-${m.id}`,
       })),
       arcs: ARCS,
       arcColor: [0.3, 0.5, 1],
@@ -224,7 +231,7 @@ export default function Globe({ className = "" }: { className?: string }) {
     let raf = 0;
     const render = () => {
       if (visible && !scrolling) {
-        phi += 0.001; // exact cobe.html rotation (never pauses, even on drag)
+        phi += 0.001;
         spring += (pointerMovement.current - spring) * 0.1;
         globe.update({ phi: phi + spring * 0.01, width: size, height: size });
       }
@@ -246,7 +253,7 @@ export default function Globe({ className = "" }: { className?: string }) {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [instanceId]);
 
   return (
     <div className={`relative h-full w-full ${className}`}>
@@ -277,25 +284,31 @@ export default function Globe({ className = "" }: { className?: string }) {
           aspectRatio: "1 / 1",
         }}
       />
-      {MARKERS.map((m) => (
-        <div
-          key={m.id}
-          className={`cobe-marker ${m.danger ? "cobe-marker-danger" : ""}`}
-          ref={(el) => {
-            if (!el) return;
-            // Experimental anchor-positioning props — set via the browser's own
-            // parser (Lightning CSS / React drop these). cobe places an anchor
-            // named --cobe-<id> at each marker's projected point + a visibility var.
-            el.style.setProperty("position-anchor", `--cobe-${m.id}`);
-            el.style.setProperty("bottom", "anchor(top)");
-            el.style.setProperty("left", "anchor(center)");
-            el.style.setProperty("opacity", `var(--cobe-visible-${m.id}, 0)`);
-          }}
-        >
-          <span className="cobe-marker__dot" />
-          <span className="cobe-marker__label">{m.label}</span>
-        </div>
-      ))}
+      {MARKERS.map((m) => {
+        const markerId = `${instanceId}-${m.id}`;
+        return (
+          <div
+            key={m.id}
+            className={`cobe-marker ${m.danger ? "cobe-marker-danger" : ""}`}
+            ref={(el) => {
+              if (!el) return;
+              // Experimental anchor-positioning props — set via the browser's own
+              // parser (Lightning CSS / React drop these). cobe places an anchor
+              // named --cobe-<id> at each marker's projected point + a visibility var.
+              el.style.setProperty("position-anchor", `--cobe-${markerId}`);
+              el.style.setProperty("bottom", "anchor(top)");
+              el.style.setProperty("left", "anchor(center)");
+              el.style.setProperty(
+                "opacity",
+                `var(--cobe-visible-${markerId}, 0)`,
+              );
+            }}
+          >
+            <span className="cobe-marker__dot" />
+            <span className="cobe-marker__label">{m.label}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }

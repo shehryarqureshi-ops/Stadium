@@ -363,13 +363,37 @@ body {
   white-space: nowrap;
   padding: 0.35rem 0.75rem 0.25rem 0.75rem; /* 4px 12px */
   border-radius: 0.5rem; /* 8px */
-  background: rgba(11, 122, 200, 0.85);
+  background: rgba(11, 122, 200, 0.5);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  position: relative;
+}
+.cobe-marker__label::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  height: calc(100% + 4px);
+  width: calc(100% + 4px);
+  background: linear-gradient(
+    to right,
+    hsla(228, 100, 75, 0.85),
+    hsla(228, 100, 75, 0.25)
+  );
+  backdrop-filter: blur(4px);
+  z-index: -1;
+  border-radius: 0.65rem;
 }
 .cobe-marker-danger .cobe-marker__label {
   background: rgba(182, 64, 64, 0.85) !important;
+}
+.cobe-marker-danger .cobe-marker__label::after {
+  background: linear-gradient(
+    to right,
+    rgba(182, 64, 75, 0.85),
+    rgba(182, 64, 75, 0.25)
+  ) !important;
 }
 .cobe-marker__dot {
   display: none;
