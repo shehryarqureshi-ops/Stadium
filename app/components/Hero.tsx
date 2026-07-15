@@ -46,40 +46,38 @@ export default function Hero() {
       </div>
 
       {/* content row caps at 1200 and centers above 1380 (background stays full-bleed) */}
-      <div className="relative mx-auto flex w-full max-w-content flex-col items-start gap-5 md:gap-9 lg:gap-8">
+      <div className="relative mx-auto flex w-full max-w-content flex-col items-start gap-5 md:gap-9 lg:gap-0">
         {/* Header: title (eyebrow + headline) + supporting copy */}
-        <div className="flex w-full flex-col items-start gap-3 md:gap-6">
-          <div className="flex w-full flex-col items-start gap-2 text-white">
-            <p
-              className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6"
-              data-animation="reveal"
-            >
-              Global engagement infrastructure
-            </p>
-            <h1
-              data-animation="reveal"
-              className="w-full font-display text-ds-h4 md:text-ds-h2 lg:text-ds-hero"
-            >
-              Show up for your <span data-animation="word-shuffle">people</span>
-              . {/* hard line break on desktop only (per Figma) */}
-              <br aria-hidden className="hidden lg:block" />
-              Everywhere, every time.
-            </h1>
-          </div>
-          <p
-            data-animation="reveal"
-            className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem]"
-          >
-            The platform behind recognition, swag, and gifting worldwide.
-          </p>
-        </div>
+        <p
+          className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6 text-white lg:mb-2"
+          data-animation="reveal"
+        >
+          Global engagement infrastructure
+        </p>
+        <h1
+          data-animation="reveal"
+          className="w-full font-display text-ds-h4 md:text-ds-h2 lg:text-ds-hero text-white lg:mb-6"
+        >
+          Show up for your <span data-animation="word-shuffle">people</span>.{" "}
+          {/* hard line break on desktop only (per Figma) */}
+          <br aria-hidden className="hidden lg:block" />
+          Everywhere, every time.
+        </h1>
+        <p
+          data-animation="reveal"
+          className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
+        >
+          The platform behind recognition, swag, and gifting worldwide.
+        </p>
 
         {/* CTAs — system pills (h-button-h = 40px since the 2026-06-12
             user decision moved the whole system to 40; no hero exception).
             Hover + focus-visible per the quality bar. */}
-        <div className="flex w-full flex-col items-start gap-2 md:w-auto md:flex-row md:items-center md:gap-3 lg:gap-4">
+        <div
+          data-animation="reveal"
+          className="flex w-full flex-col items-start gap-2 md:w-auto md:flex-row md:items-center md:gap-3 lg:gap-4"
+        >
           <a
-            data-animation="reveal"
             href="#"
             className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
@@ -88,7 +86,6 @@ export default function Hero() {
             </span>
           </a>
           <a
-            data-animation="reveal"
             href="#"
             className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >

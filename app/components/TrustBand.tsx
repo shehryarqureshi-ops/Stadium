@@ -9,13 +9,13 @@ import { useState } from "react";
    (24→26); Amazon ~1.16× (24→23). Widths follow each SVG's aspect. */
 const LOGOS = [
   { src: "/trust-spotify.svg", alt: "Spotify", width: 81, height: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", width: 77, height: 23 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
-  { src: "/trust-accenture.svg", alt: "Accenture", width: 91, height: 26 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
-  { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 20 },
-  { src: "/trust-google.svg", alt: "Google", width: 80, height: 26 },
+  { src: "/trust-amazon.svg", alt: "Amazon", width: 77, height: 20 },
+  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 25 },
+  { src: "/trust-accenture.svg", alt: "Accenture", width: 91, height: 24 },
+  { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 19 },
+  { src: "/trust-salesforce.svg", alt: "Salesforce", width: 37, height: 27 },
+  { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 25 },
+  { src: "/trust-google.svg", alt: "Google", width: 80, height: 25 },
 ];
 
 /* One copy is ~56–68rem wide (gap-dependent). A seamless loop needs the
@@ -85,14 +85,14 @@ export default function TrustBand() {
         {/* Identical copies with trailing padding equal to the gap, so a
             shift of exactly one copy width lands on an identical frame */}
         <div
-          className="trust-marquee-track flex h-full w-max items-center"
+          className="trust-marquee-track flex h-full w-max items-end"
           style={paused ? { animationPlayState: "paused" } : undefined}
         >
           {Array.from({ length: COPIES }, (_, copy) => (
             <div
               key={copy}
               aria-hidden={copy > 0 || undefined}
-              className="flex items-center gap-[2rem] pr-[2rem] md:gap-[2.5rem] md:pr-[2.5rem] lg:gap-[3.5rem] lg:pr-[3.5rem]"
+              className="flex items-end gap-[2rem] pr-[2rem] md:gap-[2.5rem] md:pr-[2.5rem] lg:gap-[3.5rem] lg:pr-[3.5rem]"
             >
               {LOGOS.map((logo) => (
                 <img

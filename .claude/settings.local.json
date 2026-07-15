@@ -11,7 +11,8 @@
       "mcp__Claude_in_Chrome__browser_batch",
       "mcp__Claude_in_Chrome__javascript_tool",
       "mcp__plugin_figma_figma__get_design_context",
-      "PowerShell(npx eslint app/components/Infrastructure.tsx app/layout.tsx; if \\($?\\) { \"LINT OK\" }; $l = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -eq 3000 }; if \\($l\\) { \"SERVER UP \\(PID $\\($l[0].OwningProcess\\)\\)\" } else { \"SERVER DOWN\" })"
+      "PowerShell(npx eslint app/components/Infrastructure.tsx app/layout.tsx; if \\($?\\) { \"LINT OK\" }; $l = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -eq 3000 }; if \\($l\\) { \"SERVER UP \\(PID $\\($l[0].OwningProcess\\)\\)\" } else { \"SERVER DOWN\" })",
+      "Bash(npx eslint *)"
     ]
   }
 }

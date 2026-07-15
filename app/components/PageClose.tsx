@@ -278,7 +278,7 @@ export default function PageClose() {
         </div>
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-[-2.5vw] block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04]"
+          className="pointer-events-none absolute inset-x-0 bottom-[-3vh] lg:bottom-[-8vh] block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04]"
         >
           Stadium
         </span>

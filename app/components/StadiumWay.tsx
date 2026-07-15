@@ -515,7 +515,7 @@ export default function StadiumWay() {
 
             {/* coverflow — the ACTIVE phase's deck of cards */}
             <div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 py-2 lg:py-4">
-              <div className="relative h-[35rem] w-full [clip-path:inset(-200px_0px)]">
+              <div className="relative h-[35rem] w-full [clip-path:inset(-200px_0px)] overflow-clip">
                 {deck.map((cardItem, i) => {
                   const len = deck.length;
                   let d = i - cardIdx;
@@ -533,7 +533,7 @@ export default function StadiumWay() {
                     <div
                       key={i}
                       aria-hidden={d !== 0}
-                      className={`absolute top-1/2 w-[21.5rem] -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${cls} ${Math.abs(d) <= 1 ? "" : "pointer-events-none"}`}
+                      className={`absolute top-1/2 w-[21.5rem] -translate-y-1/2 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${cls} ${Math.abs(d) <= 1 ? "" : "pointer-events-none"}`}
                     >
                       <DeckCard card={cardItem} />
                     </div>

@@ -80,7 +80,7 @@ export default function Infrastructure() {
           {/* #0b7afc glow, bottom-weighted behind the card (Ellipse 22) */}
           <div
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-[68%] z-0 h-[24rem] w-[68.5rem] max-w-[105%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#0b7afc] opacity-70 blur-[170px]"
+            className="pointer-events-none absolute left-1/2 top-[50%] z-0 h-[24rem] w-[68.5rem] max-w-[105%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#0b7afc] opacity-70 blur-[170px]"
           />
           {/* card — step pills + video */}
           <div

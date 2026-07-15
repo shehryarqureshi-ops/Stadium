@@ -116,9 +116,20 @@ export default function Testimonials() {
             <span
               data-animation="reveal"
               aria-hidden
-              className="-mb-6 font-display text-[4rem] leading-none text-grey-300"
+              className="mb-10 font-display text-[4rem] leading-none text-grey-300"
             >
-              &ldquo;
+              <svg
+                width="109"
+                height="79"
+                viewBox="0 0 109 79"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M47.4683 55.9455C47.4683 69.4708 38.2809 79 24.806 79C10.4124 79 0 67.3191 0 48.8755C0 23.0545 17.1498 3.07395 41.6496 0V14.7549C28.481 17.214 19.2936 25.5136 19.2936 36.2724C21.7436 35.3502 24.4998 34.7354 27.8685 34.7354C38.8934 34.7354 47.4683 42.7276 47.4683 55.9455ZM108.105 55.9455C108.105 69.4708 98.9178 79 85.443 79C71.0493 79 60.6369 67.3191 60.6369 48.8755C60.6369 23.0545 77.7868 3.07395 102.287 0V14.7549C89.1179 17.214 79.6243 25.5136 79.6243 36.5798C82.0742 35.3502 84.8305 34.7354 88.1992 34.7354C99.2241 34.7354 108.105 42.7276 108.105 55.9455Z"
+                  fill="#F2F2F2"
+                />
+              </svg>
             </span>
             <blockquote
               data-animation="reveal"

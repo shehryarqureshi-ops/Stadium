@@ -350,24 +350,29 @@ body {
   gap: 0.5rem;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  translate: -0.5rem 0.875rem;
+  /* translate: -0.5rem 0.875rem; */
+  translate: -2.75rem 0.875rem;
   /* `bottom: anchor(top)` / `left: anchor(center)` are set via JS setProperty
      in Globe.tsx — Tailwind v4's Lightning CSS drops the whole rule if these
      experimental anchor() values are present here. */
 }
 .cobe-marker__label {
   color: #fff;
-  font-size: 1.25rem; /* 20px — exactly as cobe.html */
-  line-height: 1.2;
+  font-size: 0.75rem;
+  line-height: 1.5;
   white-space: nowrap;
-  padding: 0.25rem 0.75rem; /* 4px 12px */
+  padding: 0.35rem 0.75rem 0.25rem 0.75rem; /* 4px 12px */
   border-radius: 0.5rem; /* 8px */
-  background: rgba(11, 122, 252, 0.45);
+  background: rgba(11, 122, 200, 0.85);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cobe-marker-danger .cobe-marker__label {
+  background: rgba(182, 64, 64, 0.85) !important;
 }
 .cobe-marker__dot {
+  display: none;
   position: relative;
   width: 1rem; /* 16px */
   height: 1rem;
@@ -376,6 +381,7 @@ body {
 }
 .cobe-marker__dot::after {
   content: "";
+  display: none;
   position: absolute;
   inset: 0;
   border-radius: 50%;

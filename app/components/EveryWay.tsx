@@ -66,7 +66,7 @@ const SEGMENTS: Segment[] = [
 function PhotoCard({ card }: { card: Card }) {
   /* real product card — label BELOW the photo */
   return (
-    <div data-animation="reveal" className="group flex flex-col gap-4">
+    <div className="group flex flex-col gap-4">
       <div className="relative aspect-[221/320] w-full overflow-hidden rounded-card bg-grey-200">
         <Image
           src={card.image!}
@@ -123,7 +123,7 @@ export default function EveryWay() {
       {/* Four cycling lines — every line is clickable and owns its own deck */}
       <h2
         data-animation="reveal"
-        className="font-display text-heading-sm md:text-heading-md lg:text-heading-lg lg:tracking-[-0.075rem]"
+        className="font-display text-heading-sm md:text-heading-md lg:text-heading-lg lg:tracking-[-0.075rem] text-balance"
       >
         {SEGMENTS.map((seg, i) => (
           <span key={seg.label}>
@@ -146,7 +146,7 @@ export default function EveryWay() {
       {/* Card row — slides to the active line's deck */}
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-700 ease-out"
+          className="flex transition-transform duration-1000 ease"
           style={{ transform: `translateX(-${active * 100}%)` }}
         >
           {SEGMENTS.map((seg) => (
@@ -156,7 +156,7 @@ export default function EveryWay() {
               className="grid w-full shrink-0 grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6"
             >
               {seg.cards.map((card) => (
-                <li key={card.label}>
+                <li data-animation="reveal" key={card.label}>
                   {card.image ? (
                     <PhotoCard card={card} />
                   ) : (

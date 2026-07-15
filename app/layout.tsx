@@ -72,7 +72,9 @@ export default function RootLayout({
           /* Per-element scroll reveal (data-animation="reveal") — the premium
              Linear/Apple entrance: fade in + rise from slightly below + de-blur
              into focus, in parallel on one eased curve. RevealOnScroll adds
-             .is-revealed the first time each element enters the viewport.
+             .is-revealed the first time each element enters the viewport, and
+             sets --reveal-delay per element so sibling groups cascade instead
+             of firing together (see RevealOnScroll.tsx for the stagger logic).
              Inlined here (not globals.css) so it always ships before content
              paints — no flash. Reduced-motion / no-JS show content instantly. */
           [data-animation="reveal"] {
@@ -82,7 +84,8 @@ export default function RootLayout({
             transition:
               opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1),
               transform 2.5s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--reveal-delay, 0s);
             will-change: opacity, transform, filter;
           }
           [data-animation="reveal"].is-revealed {
