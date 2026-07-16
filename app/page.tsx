@@ -20,7 +20,7 @@ export default function Home() {
       <main
         id="main"
         tabIndex={-1}
-        className="flex flex-1 flex-col outline-none"
+        className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
         {/* Each section's key elements reveal individually as they enter the
             viewport via data-animation="reveal" (driven by RevealOnScroll +

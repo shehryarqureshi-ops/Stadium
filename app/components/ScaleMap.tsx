@@ -120,8 +120,8 @@ export default function ScaleMap() {
             <g clipPath="url(#clip0_199_5250)">
               <rect width="1200" height="512" fill="#FAFAFB" />
               <g filter="url(#filter0_f_199_5250)">
-                <ellipse cx="600" cy="476" rx="436" ry="223" fill="#B3C2FF" />
-                <circle cx="600" cy="416" r="107" fill="#8099FF" />
+                <ellipse cx="600" cy="476" rx="436" ry="223" fill="#D7E9FF" />
+                <circle cx="600" cy="476" r="107" fill="#72B2FD" />
               </g>
             </g>
             <defs>

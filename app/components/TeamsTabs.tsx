@@ -216,25 +216,34 @@ export default function TeamsTabs() {
           data-animation="reveal"
           className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]"
         >
-          {/* photo */}
-          <div
-            key={`photo-${team.name}`}
-            className="teams-panel-in relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl bg-grey-200 lg:w-[48%]"
-          >
-            {team.photo ? (
-              <Image
-                src={team.photo}
-                alt=""
-                fill
-                sizes="(min-width:64rem) 36rem, 100vw"
-                className="object-cover"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-grey-100">
-                <span className="font-display text-[1.25rem] font-bold text-grey-400">
-                  {team.name}
-                </span>
-              </div>
+          {/* photo — every team's image is mounted and crossfaded, so all are
+              preloaded together (they load once the section enters view) and
+              switching tabs is an instant opacity swap, never a load flash */}
+          <div className="relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl bg-grey-200 lg:w-[48%]">
+            {teams.map((t, i) =>
+              t.photo ? (
+                <Image
+                  key={t.name}
+                  src={t.photo}
+                  alt=""
+                  fill
+                  sizes="(min-width:64rem) 36rem, 100vw"
+                  className={`object-cover transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                    i === active ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ) : (
+                <div
+                  key={t.name}
+                  className={`absolute inset-0 flex items-center justify-center bg-grey-100 transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                    i === active ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <span className="font-display text-[1.25rem] font-bold text-grey-400">
+                    {t.name}
+                  </span>
+                </div>
+              ),
             )}
           </div>
 

@@ -1,9 +1,13 @@
 "use client";
 
-import brandedMerchImg from "@/public/catalog-branded-merch.jpg";
-import giftCardsImg from "@/public/catalog-gift-cards.jpg";
-import luxuryGoodsImg from "@/public/catalog-luxury-goods.jpg";
-import snackBoxesImg from "@/public/catalog-snack-boxes.jpg";
+import brandedMerchImg from "@/public/catalog/brandedmerch.png";
+import expImg from "@/public/catalog/experiences.png";
+import giftCardsImg from "@/public/catalog/giftcards.png";
+import lifestyleImg from "@/public/catalog/hobbies.png";
+import luxuryGoodsImg from "@/public/catalog/luxurygoods.png";
+import snackBoxesImg from "@/public/catalog/snackboxes.png";
+import workImg from "@/public/catalog/workessentials.png";
+
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useRef } from "react";
@@ -19,10 +23,17 @@ const categories: Category[] = [
   { name: "Branded Merch", eyebrow: "25,000 Items", image: brandedMerchImg },
   { name: "Gift Cards", eyebrow: "500+ Retailers", image: giftCardsImg },
   { name: "Luxury Goods", eyebrow: "Premium Brands", image: luxuryGoodsImg },
-  { name: "Snack Boxess", eyebrow: "10K+ Top Brands", image: snackBoxesImg },
-  { name: "Branded Merchs", eyebrow: "25,000 Items", image: brandedMerchImg },
-  { name: "Gift Cardss", eyebrow: "500+ Retailers", image: giftCardsImg },
-  { name: "Luxury Goodss", eyebrow: "Premium Brands", image: luxuryGoodsImg },
+  { name: "Experiences", eyebrow: "50+ Countries", image: expImg },
+  {
+    name: "Work Essentials",
+    eyebrow: "Tech & Ergonomics",
+    image: workImg,
+  },
+  {
+    name: "Lifestyle & Hobbies",
+    eyebrow: "Everyday Living",
+    image: lifestyleImg,
+  },
 ];
 
 function Arrow({ dir }: { dir: "prev" | "next" }) {
@@ -52,7 +63,7 @@ export default function Catalog() {
     trackRef.current?.scrollBy({ left: dir * 372, behavior: "smooth" });
 
   return (
-    <section className="overflow-x-clip bg-white">
+    <section className="overflow-x-clip bg-white w-full">
       <div className="flex flex-col gap-10 py-16 md:py-24 lg:py-[7.5rem]">
         {/* header — capped + centered like the rest of the page */}
         <div className="mx-auto w-full max-w-section px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -82,7 +93,7 @@ export default function Catalog() {
         </div>
 
         {/* cards + nav */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 w-full overflow-clip">
           {/* Full-bleed track: spans the full section width and bleeds past
               the centered cap to the window edge; first card stays aligned to
               the heading via .carousel-bleed's left inset. Its own overflow-x
@@ -95,9 +106,9 @@ export default function Catalog() {
               <li
                 data-animation="reveal"
                 key={c.name}
-                className="group flex aspect-[348/460] w-[17rem] shrink-0 flex-col overflow-hidden rounded-2xl bg-[#f9f7f8] lg:w-[21.75rem]"
+                className="group flex aspect-[348/460] w-[17rem] shrink-0 flex-col overflow-hidden rounded-2xl bg-[#f9f7f8] lg:w-[21.75rem] relative"
               >
-                <div className="flex flex-col gap-1 px-6 pb-4 pt-6">
+                <div className="flex flex-col gap-1 px-6 pb-4 pt-6 relative z-10">
                   <span className="font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-ink">
                     {c.eyebrow}
                   </span>
@@ -105,15 +116,12 @@ export default function Catalog() {
                     {c.name}
                   </span>
                 </div>
-                <div className="relative min-h-0 flex-1">
-                  <Image
-                    src={c.image}
-                    alt={c.name}
-                    fill
-                    sizes="(min-width: 64rem) 21.75rem, 17rem"
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  />
-                </div>
+                <Image
+                  src={c.image}
+                  alt={c.name}
+                  width={440}
+                  className="absolute inset-0 object-cover object-bottom transition-transform duration-500 ease-out group-hover:scale-105 mix-blend-multiply"
+                />
               </li>
             ))}
           </ul>

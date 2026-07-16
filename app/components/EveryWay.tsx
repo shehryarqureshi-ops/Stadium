@@ -1,10 +1,10 @@
 "use client";
 
-import eventsImg from "@/public/oneplatform/events.jpeg";
-import giftingImg from "@/public/oneplatform/gifting.jpeg";
-import recognitionImg from "@/public/oneplatform/recognition.jpeg";
-import snacksImg from "@/public/oneplatform/snacks.jpeg";
-import swagImg from "@/public/oneplatform/swag.jpeg";
+import eventsImg from "@/public/oneplatform/events.jpg";
+import giftingImg from "@/public/oneplatform/gifting.jpg";
+import recognitionImg from "@/public/oneplatform/recognition.jpg";
+import snacksImg from "@/public/oneplatform/snacks.jpg";
+import swagImg from "@/public/oneplatform/swag.jpg";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useState } from "react";
@@ -71,8 +71,7 @@ function PhotoCard({ card }: { card: Card }) {
         <Image
           src={card.image!}
           alt=""
-          fill
-          sizes="(min-width: 64rem) 221px, (min-width: 40rem) 30vw, 45vw"
+          width={440}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
