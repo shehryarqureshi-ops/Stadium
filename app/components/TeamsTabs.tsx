@@ -116,17 +116,21 @@ const teams: Team[] = [
 
 function PlusIcon() {
   return (
-    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-grey-100">
+    <span>
       <svg
-        viewBox="0 0 16 16"
-        className="size-3 text-grey-600"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        aria-hidden
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M8 3.5v9M3.5 8h9" />
+        <path
+          d="M11.6673 3.5L5.25065 9.91667L2.33398 7"
+          stroke="black"
+          strokeWidth="1.16667"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </span>
   );
@@ -187,7 +191,7 @@ export default function TeamsTabs() {
                   type="button"
                   onClick={() => select(i)}
                   aria-pressed={i === active}
-                  className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
+                  className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 cursor-pointer ${
                     i === active
                       ? "bg-[#16171b] text-white"
                       : "text-[#16171b] hover:bg-grey-100"

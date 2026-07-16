@@ -97,7 +97,7 @@ export default function Infrastructure() {
                     type="button"
                     onClick={() => setActive(i)}
                     aria-current={on}
-                    className={`flex h-[3.75rem] w-full items-center gap-3.5 rounded-lg px-3.5 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                    className={`flex h-[3.75rem] w-full items-center gap-3.5 rounded-lg px-3.5 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer ${
                       on
                         ? "bg-white/20 backdrop-blur-[18px]"
                         : "bg-[#1a1a1a] hover:bg-white/[0.08]"

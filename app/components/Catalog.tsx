@@ -19,6 +19,10 @@ const categories: Category[] = [
   { name: "Branded Merch", eyebrow: "25,000 Items", image: brandedMerchImg },
   { name: "Gift Cards", eyebrow: "500+ Retailers", image: giftCardsImg },
   { name: "Luxury Goods", eyebrow: "Premium Brands", image: luxuryGoodsImg },
+  { name: "Snack Boxess", eyebrow: "10K+ Top Brands", image: snackBoxesImg },
+  { name: "Branded Merchs", eyebrow: "25,000 Items", image: brandedMerchImg },
+  { name: "Gift Cardss", eyebrow: "500+ Retailers", image: giftCardsImg },
+  { name: "Luxury Goodss", eyebrow: "Premium Brands", image: luxuryGoodsImg },
 ];
 
 function Arrow({ dir }: { dir: "prev" | "next" }) {
@@ -117,7 +121,7 @@ export default function Catalog() {
               type="button"
               aria-label="Previous"
               onClick={() => scroll(-1)}
-              className="flex size-10 items-center justify-center rounded-full bg-[#f2f5f5] transition-colors hover:bg-grey-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+              className="flex size-10 items-center justify-center rounded-full bg-[#e8e9ed] transition-colors hover:bg-grey-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink cursor-pointer"
             >
               <Arrow dir="prev" />
             </button>
@@ -125,7 +129,7 @@ export default function Catalog() {
               type="button"
               aria-label="Next"
               onClick={() => scroll(1)}
-              className="flex size-10 items-center justify-center rounded-full bg-[#e8e9ed] transition-colors hover:bg-grey-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+              className="flex size-10 items-center justify-center rounded-full bg-[#e8e9ed] transition-colors hover:bg-grey-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink cursor-pointer"
             >
               <Arrow dir="next" />
             </button>

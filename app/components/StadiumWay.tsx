@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import TeamPermissionsLoop from "./TeamPermissions";
 import { useAutoAdvance } from "./useAutoAdvance";
 
@@ -265,37 +265,47 @@ const N = PHASES.length;
 /* Figma 2:33647 — 5 equal 240×4 bands spanning the 1200px content width. */
 const RAINBOW = ["#8d12e7", "#0b7afc", "#ffb800", "#ff5b77", "#00c036"];
 
-function PlusCircle() {
+/* Crossfades the +/close circle in place so the accordion toggle never pops —
+   both states are always mounted and swap via opacity/scale/rotate. */
+function ToggleIcon({ on }: { on: boolean }) {
   return (
-    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#e8e9ed] text-[#9aa0ac]">
-      <svg
-        viewBox="0 0 16 16"
-        className="size-3.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        aria-hidden
+    <span className="relative flex size-7 shrink-0 items-center justify-center">
+      <span
+        className={`absolute inset-0 flex items-center justify-center rounded-full bg-black text-white transition-all duration-300 ease-out ${
+          on
+            ? "rotate-0 scale-100 opacity-100"
+            : "-rotate-45 scale-75 opacity-0"
+        }`}
       >
-        <path d="M8 3.5v9M3.5 8h9" />
-      </svg>
-    </span>
-  );
-}
-function CloseCircle() {
-  return (
-    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-black text-white">
-      <svg
-        viewBox="0 0 16 16"
-        className="size-3.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        aria-hidden
+        <svg
+          viewBox="0 0 16 16"
+          className="size-3.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          aria-hidden
+        >
+          <path d="m4.5 4.5 7 7M11.5 4.5l-7 7" />
+        </svg>
+      </span>
+      <span
+        className={`absolute inset-0 flex items-center justify-center rounded-full bg-[#e8e9ed] text-[#9aa0ac] transition-all duration-300 ease-out ${
+          on ? "rotate-45 scale-75 opacity-0" : "rotate-0 scale-100 opacity-100"
+        }`}
       >
-        <path d="m4.5 4.5 7 7M11.5 4.5l-7 7" />
-      </svg>
+        <svg
+          viewBox="0 0 16 16"
+          className="size-3.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          aria-hidden
+        >
+          <path d="M8 3.5v9M3.5 8h9" />
+        </svg>
+      </span>
     </span>
   );
 }
@@ -408,26 +418,98 @@ function DeckCard({ card }: { card: Card }) {
   );
 }
 
+/* Switching phases swaps the whole deck (different card count, different
+   content) out from under the coverflow's index-keyed slots — animating the
+   slide transition through that swap reads as the new phase's card sliding
+   in from behind the old one. Instead, fade the deck out, snap the coverflow
+   to the new phase's first card while invisible, then fade back in — the
+   coverflow slide stays reserved for navigating cards within one phase. */
+const PHASE_FADE_OUT_MS = 180;
+const PHASE_FADE_IN_MS = 220;
+
+/* The left rail's 3 idle buttons share leftover height via flex-grow, which
+   means the active button's box height is normally left for the browser to
+   discover live from its own animating content (the grid-rows desc reveal).
+   Flexbox only reflows that pooled space in occasional catch-up jumps
+   instead of every frame, so the rail visibly snaps to an even split and
+   holds there before the real target heights arrive. Measuring each phase's
+   open/closed height up front and driving box height via an explicit
+   `flex-basis` transition gives every button its own numeric target from
+   the first frame — no pooled value for the browser to "discover" mid-flight. */
+const RAIL_CLOSED_FALLBACK_PX = 140;
+const RAIL_OPEN_FALLBACK_PX = 174;
+
 export default function StadiumWay() {
   const [phaseIdx, setPhaseIdx] = useState(0);
   const [cardIdx, setCardIdx] = useState(0);
+  const [deckVisible, setDeckVisible] = useState(true);
+  const [skipSlide, setSkipSlide] = useState(false);
+  const fadeOutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fadeInTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const deck = PHASES[phaseIdx].cards;
+
+  const [railClosedH, setRailClosedH] = useState(RAIL_CLOSED_FALLBACK_PX);
+  const [railOpenHs, setRailOpenHs] = useState<number[]>(() =>
+    PHASES.map(() => RAIL_OPEN_FALLBACK_PX),
+  );
+  const closedMeasureRef = useRef<HTMLDivElement | null>(null);
+  const openMeasureRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    return () => {
+      if (fadeOutTimer.current) clearTimeout(fadeOutTimer.current);
+      if (fadeInTimer.current) clearTimeout(fadeInTimer.current);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (closedMeasureRef.current) {
+        setRailClosedH(closedMeasureRef.current.getBoundingClientRect().height);
+      }
+      setRailOpenHs(
+        PHASES.map((_, i) => {
+          const el = openMeasureRefs.current[i];
+          return el
+            ? el.getBoundingClientRect().height
+            : RAIL_OPEN_FALLBACK_PX;
+        }),
+      );
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const switchPhase = (i: number) => {
+    if (i === phaseIdx) return;
+    if (fadeOutTimer.current) clearTimeout(fadeOutTimer.current);
+    if (fadeInTimer.current) clearTimeout(fadeInTimer.current);
+    setDeckVisible(false);
+    fadeOutTimer.current = setTimeout(() => {
+      setSkipSlide(true);
+      setPhaseIdx(i);
+      setCardIdx(0);
+      setDeckVisible(true);
+      fadeInTimer.current = setTimeout(() => {
+        setSkipSlide(false);
+      }, PHASE_FADE_IN_MS);
+    }, PHASE_FADE_OUT_MS);
+  };
 
   /* Auto-advance: next card in the deck, then roll to the next phase. */
   const advance = () => {
     if (cardIdx < PHASES[phaseIdx].cards.length - 1) {
       setCardIdx(cardIdx + 1);
     } else {
-      setPhaseIdx((phaseIdx + 1) % N);
-      setCardIdx(0);
+      switchPhase((phaseIdx + 1) % N);
     }
   };
   const { sectionRef, takeOver } = useAutoAdvance(advance);
 
   const selectPhase = (i: number) => {
     takeOver();
-    setPhaseIdx(i);
-    setCardIdx(0);
+    switchPhase(i);
   };
   const selectCard = (c: number) => {
     takeOver();
@@ -470,7 +552,53 @@ export default function StadiumWay() {
             className="flex flex-col gap-8 rounded-[1.5rem] bg-[#f2f2f2] p-2.5 lg:flex-row lg:items-stretch lg:gap-[3.75rem]"
           >
             {/* left rail — phase accordion (372px) */}
-            <div className="flex shrink-0 flex-col gap-2.5 lg:w-[23.25rem] lg:self-stretch">
+            <div className="relative flex shrink-0 flex-col gap-2.5 lg:w-[23.25rem] lg:self-stretch">
+              {/* hidden clones — measure each phase's natural open/closed height so the
+                  buttons below can transition `flex-basis` to an explicit number instead
+                  of leaving the browser to discover it live off the desc's own animating
+                  grid-rows (see RAIL_CLOSED_FALLBACK_PX comment above). */}
+              <div
+                ref={closedMeasureRef}
+                aria-hidden
+                className="invisible absolute inset-x-0 top-0 -z-10 px-7 pb-[1.875rem] pt-7"
+              >
+                <span className="flex items-center justify-between gap-3">
+                  <span className="flex items-baseline gap-3">
+                    <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05]">
+                      00
+                    </span>
+                    <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05]">
+                      Title
+                    </span>
+                  </span>
+                  <span className="size-7 shrink-0" />
+                </span>
+              </div>
+              {PHASES.map((p, i) => (
+                <div
+                  key={p.num}
+                  ref={(el) => {
+                    openMeasureRefs.current[i] = el;
+                  }}
+                  aria-hidden
+                  className="invisible absolute inset-x-0 top-0 -z-10 px-7 pb-[1.875rem] pt-7"
+                >
+                  <span className="flex items-center justify-between gap-3">
+                    <span className="flex items-baseline gap-3">
+                      <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05]">
+                        {p.num}
+                      </span>
+                      <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05]">
+                        {p.title}
+                      </span>
+                    </span>
+                    <span className="size-7 shrink-0" />
+                  </span>
+                  <p className="pt-7 font-sans text-[0.875rem] leading-5 tracking-[0.01em]">
+                    {p.desc}
+                  </p>
+                </div>
+              ))}
               {PHASES.map((p, i) => {
                 const on = i === phaseIdx;
                 return (
@@ -479,68 +607,88 @@ export default function StadiumWay() {
                     type="button"
                     onClick={() => selectPhase(i)}
                     aria-expanded={on}
-                    className={`rounded-xl bg-white px-7 pb-[1.875rem] pt-7 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water ${
-                      on
-                        ? "shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
-                        : "lg:flex-1"
+                    style={{ flexBasis: `${on ? railOpenHs[i] : railClosedH}px` }}
+                    className={`flex grow shrink flex-col justify-center rounded-xl bg-white px-7 pb-[1.875rem] pt-7 text-left transition-[flex-basis,box-shadow] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water cursor-pointer ${
+                      on ? "shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]" : ""
                     }`}
                   >
-                    {on ? (
-                      <span className="flex flex-col gap-7">
-                        <span className="flex items-center justify-between gap-3">
-                          <span className="flex items-baseline gap-3">
-                            <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] text-[#8c92a6]">
-                              {p.num}
-                            </span>
-                            <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] text-[#16171b]">
-                              {p.title}
-                            </span>
-                          </span>
-                          <CloseCircle />
+                    <span className="flex items-center justify-between gap-3">
+                      <span className="flex items-baseline gap-3">
+                        <span
+                          className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${
+                            on ? "text-[#8c92a6]" : "text-[#c5c8d3]"
+                          }`}
+                        >
+                          {p.num}
                         </span>
-                        <span className="font-sans text-[0.875rem] leading-5 tracking-[0.01em] text-[#828282]">
+                        <span
+                          className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${
+                            on ? "text-[#16171b]" : "text-[#a9adbc]"
+                          }`}
+                        >
+                          {p.title}
+                        </span>
+                      </span>
+                      <ToggleIcon on={on} />
+                    </span>
+                    <span
+                      className="grid transition-[grid-template-rows] duration-300 ease-out"
+                      style={{ gridTemplateRows: on ? "1fr" : "0fr" }}
+                    >
+                      <span className="overflow-hidden">
+                        <span
+                          className={`block pt-7 font-sans text-[0.875rem] leading-5 tracking-[0.01em] text-[#828282] transition-opacity duration-300 ${
+                            on ? "opacity-100 delay-150" : "opacity-0"
+                          }`}
+                        >
                           {p.desc}
                         </span>
                       </span>
-                    ) : (
-                      <span className="flex h-full items-center justify-between gap-3">
-                        <span className="flex items-baseline gap-3">
-                          <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] text-[#c5c8d3]">
-                            {p.num}
-                          </span>
-                          <span className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] text-[#a9adbc]">
-                            {p.title}
-                          </span>
-                        </span>
-                        <PlusCircle />
-                      </span>
-                    )}
+                    </span>
                   </button>
                 );
               })}
             </div>
 
             {/* coverflow — the ACTIVE phase's deck of cards */}
-            <div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 py-2 lg:py-4">
-              <div className="relative h-[35rem] w-full [clip-path:inset(-200px_0px)] overflow-clip">
+            <div
+              className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-6 py-2 transition-opacity ease-out lg:py-4 ${
+                deckVisible
+                  ? "opacity-100 duration-220"
+                  : "opacity-0 duration-180"
+              }`}
+            >
+              <div className="relative h-[35rem] w-full [clip-path:inset(-200px_0px)] overflow-clips">
+                <div className="fade-left absolute top-0 bottom-0 -left-px w-45 bg-linear-to-r from-[#f2f2f2] z-20" />
+                <div className="fade-right absolute top-0 bottom-0 right-0 w-72 bg-linear-to-l from-[#f2f2f2] z-20" />
                 {deck.map((cardItem, i) => {
                   const len = deck.length;
                   let d = i - cardIdx;
                   if (d > len / 2) d -= len;
                   if (d < -len / 2) d += len;
-                  const cls =
-                    d === 0
-                      ? "left-1/2 z-20 -translate-x-1/2 scale-100 opacity-100"
-                      : d === -1
-                        ? "left-0 z-10 -translate-x-[54%] scale-[0.78] opacity-55 blur-[2px]"
-                        : d === 1
-                          ? "left-full z-10 -translate-x-[46%] scale-[0.78] opacity-55 blur-[2px]"
-                          : "left-1/2 z-0 -translate-x-1/2 scale-75 opacity-0";
+                  const abs = Math.abs(d);
+                  /* Left is a continuous function of d (not just three fixed
+                     Tailwind buckets for -1/0/1) so a jump of more than one
+                     card still slides through every intermediate position —
+                     otherwise every |d|>1 card collapsed to the same "hidden
+                     center" spot and a multi-step jump just faded in place
+                     instead of sliding across. */
+                  const leftPct = 50 + d * 50;
+                  const translateX = d === 0 ? -50 : d === -1 ? -54 : d === 1 ? -46 : -50;
+                  const scale = d === 0 ? 1 : abs === 1 ? 0.78 : 0.75;
+                  const opacity = d === 0 ? 1 : abs === 1 ? 0.55 : 0;
                   return (
                     <div
                       key={i}
                       aria-hidden={d !== 0}
-                      className={`absolute top-1/2 w-[21.5rem] -translate-y-1/2 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${cls} ${Math.abs(d) <= 1 ? "" : "pointer-events-none"}`}
+                      style={{
+                        left: `${leftPct}%`,
+                        transform: `translate(${translateX}%, -50%) scale(${scale})`,
+                        opacity,
+                        filter: abs === 1 ? "blur(2px)" : "none",
+                        zIndex: d === 0 ? 20 : abs === 1 ? 10 : 0,
+                      }}
+                      className={`absolute top-1/2 w-[21.5rem] ${skipSlide ? "transition-none" : "transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"} ${abs <= 1 ? "" : "pointer-events-none"}`}
                     >
                       <DeckCard card={cardItem} />
                     </div>
@@ -552,7 +700,7 @@ export default function StadiumWay() {
                       type="button"
                       aria-label="Previous card"
                       onClick={() => selectCard(cardIdx - 1)}
-                      className="absolute left-1 top-1/2 z-30 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-grey-200 bg-white/85 shadow-[0_4px_12px_rgba(16,24,40,0.12)] backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                      className="absolute left-1 top-1/2 z-30 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-grey-200 bg-white/85 shadow-[0_4px_12px_rgba(16,24,40,0.12)] backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink cursor-pointer hover:scale-105 active:scale-95"
                     >
                       <Chevron dir="left" />
                     </button>
@@ -560,7 +708,7 @@ export default function StadiumWay() {
                       type="button"
                       aria-label="Next card"
                       onClick={() => selectCard(cardIdx + 1)}
-                      className="absolute right-1 top-1/2 z-30 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-grey-200 bg-white/85 shadow-[0_4px_12px_rgba(16,24,40,0.12)] backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                      className="absolute right-1 top-1/2 z-30 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-grey-200 bg-white/85 shadow-[0_4px_12px_rgba(16,24,40,0.12)] backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink cursor-pointer hover:scale-105 active:scale-95"
                     >
                       <Chevron dir="right" />
                     </button>

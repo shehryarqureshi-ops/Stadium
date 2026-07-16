@@ -117,7 +117,7 @@ export default function ScaleMap() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_199_5250)">
+            <g clipPath="url(#clip0_199_5250)">
               <rect width="1200" height="512" fill="#FAFAFB" />
               <g filter="url(#filter0_f_199_5250)">
                 <ellipse cx="600" cy="476" rx="436" ry="223" fill="#B3C2FF" />
@@ -132,9 +132,9 @@ export default function ScaleMap() {
                 width="1774"
                 height="1099"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend
                   mode="normal"
                   in="SourceGraphic"

@@ -112,13 +112,6 @@ export default function Occasions() {
           >
             Book a demo
           </a>
-          <a
-            data-animation="reveal"
-            href="#"
-            className="inline-flex h-button-h items-center justify-center rounded-button border border-ink px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
-          >
-            Talk to sales
-          </a>
         </div>
       </div>
 
