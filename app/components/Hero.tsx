@@ -51,14 +51,25 @@ export default function Hero() {
     };
   }, []);
 
-  /* Advance the shared index; disabled under reduced motion or while paused. */
+  /* `playing` is read through a ref so pausing/resuming (scroll, tab
+     visibility) never tears down and restarts the timer below — that restart
+     was what let the video loop extra times before the word caught up. */
+  const playingRef = useRef(playing);
   useEffect(() => {
-    if (reduce || !playing || HERO_SLIDES.length <= 1) return;
+    playingRef.current = playing;
+  }, [playing]);
+
+  /* One stable ticker owns the shared index, so the word and the video advance
+     together on an exact 5s cadence. Ticks that land while paused (off-screen /
+     tab hidden) are skipped instead of resetting the clock. */
+  useEffect(() => {
+    if (reduce || HERO_SLIDES.length <= 1) return;
     const id = setInterval(() => {
+      if (!playingRef.current) return;
       setIndex((i) => (i + 1) % HERO_SLIDES.length);
     }, HERO_SLIDE_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [reduce, playing]);
+  }, [reduce]);
 
   return (
     /* Fixed-height frame (min-h tokens), content vertically CENTERED
@@ -68,7 +79,7 @@ export default function Hero() {
        positions stay identical to the Figma frame. */
     <section
       ref={sectionRef}
-      className="relative flex min-h-[calc(var(--spacing-hero-sm)+4rem)] flex-col items-start justify-center overflow-hidden px-section-x-sm pb-12 pt-[7rem] md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:min-h-[calc(var(--spacing-hero-lg)+4rem)] lg:px-section-x-lg lg:pb-section-y-lg lg:pt-[10rem] bg-black"
+      className="relative flex min-h-[calc(var(--spacing-hero-sm)+4rem)] flex-col items-start justify-center overflow-hidden px-section-x-sm pb-12 pt-[7rem] md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:min-h-[calc(var(--spacing-hero-lg)+4rem)] lg:px-section-x-lg lg:pb-section-y-lg lg:pt-[10rem] bg-black aspect-video"
     >
       {/* full-bleed rotating video background (poster = the hero photo, so no
           black flash before/without playback), with the same contrast scrims

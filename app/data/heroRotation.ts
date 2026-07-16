@@ -20,7 +20,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   { word: "partners", video: "/videos/hero/Partners.mp4" },
   { word: "customers", video: "/videos/hero/Customers.mp4" },
   { word: "employees", video: "/videos/hero/Employee.mp4" },
-  { word: "community", video: "/videos/hero/People.mp4" },
+  { word: "community", video: "/videos/hero/Community.mp4" },
 ];
 
 /* How long each word/video holds before advancing. */

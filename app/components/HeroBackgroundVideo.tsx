@@ -38,6 +38,15 @@ export default function HeroBackgroundVideo({
       if (!playing || reduce) {
         v.pause();
       } else if (i === index) {
+        // On a real switch, restart the incoming clip from the top so it plays
+        // in lockstep with the new word (and never resumes mid-clip).
+        if (i !== prev) {
+          try {
+            v.currentTime = 0;
+          } catch {
+            /* not seekable yet — it'll still play from wherever it is */
+          }
+        }
         v.play().catch(() => {});
       } else if (i !== prev) {
         v.pause();
@@ -69,7 +78,6 @@ export default function HeroBackgroundVideo({
           src={s.video}
           // poster={heroBg.src}
           muted
-          loop
           playsInline
           preload="auto"
           aria-hidden
