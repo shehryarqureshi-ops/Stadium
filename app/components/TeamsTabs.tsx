@@ -1,6 +1,13 @@
 "use client";
 
-import teamPhoto from "@/public/teams-marketing.png";
+import cxImg from "@/public/impact/cx.jpeg";
+import financeImg from "@/public/impact/finance.jpeg";
+import hrImg from "@/public/impact/hr.jpeg";
+import leadershipImg from "@/public/impact/leads.jpeg";
+import marketingImg from "@/public/impact/marketing.jpeg";
+import adminsImg from "@/public/impact/operations.jpeg";
+import salesImg from "@/public/impact/sales.jpeg";
+
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useState } from "react";
@@ -32,7 +39,7 @@ const teams: Team[] = [
       "Run employer brand moments",
       "Trade show & event merchandise",
     ],
-    photo: teamPhoto,
+    photo: marketingImg,
   },
   {
     name: "HR",
@@ -45,7 +52,7 @@ const teams: Team[] = [
       "Run recognition programs",
       "Prove engagement impact",
     ],
-    photo: null,
+    photo: hrImg,
   },
   {
     name: "Operations",
@@ -58,7 +65,7 @@ const teams: Team[] = [
       "Ship to 170+ countries",
       "Cut fulfillment tickets",
     ],
-    photo: null,
+    photo: adminsImg,
   },
   {
     name: "Team Leaders",
@@ -71,7 +78,7 @@ const teams: Team[] = [
       "Let recipients choose",
       "See what landed",
     ],
-    photo: null,
+    photo: leadershipImg,
   },
   {
     name: "Finance",
@@ -84,7 +91,7 @@ const teams: Team[] = [
       "Clean tax handling",
       "Audit-ready reporting",
     ],
-    photo: null,
+    photo: financeImg,
   },
   {
     name: "Sales",
@@ -97,7 +104,7 @@ const teams: Team[] = [
       "Stand out at events",
       "Tie sends to pipeline",
     ],
-    photo: null,
+    photo: salesImg,
   },
   {
     name: "C-Suite",
@@ -110,7 +117,7 @@ const teams: Team[] = [
       "De-risk compliance",
       "Measure the return",
     ],
-    photo: null,
+    photo: cxImg,
   },
 ];
 

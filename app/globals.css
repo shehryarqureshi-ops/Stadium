@@ -373,6 +373,72 @@ body {
   }
 }
 
+/* Hero rotating word (data-animation="word-shuffle"): the settled word slides
+   up + fades out while the next rises from below + fades in. The container
+   width is driven from JS (measured per word) and transitions, so the trailing
+   "." glides rather than snapping. clip-path masks vertically (top/bottom) but
+   stays open horizontally (-100% insets) so a wider incoming word isn't clipped
+   mid-transition. Driven by WordShuffle.tsx. */
+.word-shuffle {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  /* clip-path: inset(0 -100% 0 -100%); */
+  transition: width 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.word-shuffle__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.word-shuffle__word--in {
+  animation: word-shuffle-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+.word-shuffle__word--out {
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: word-shuffle-out 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+.word-shuffle__sizer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+@keyframes word-shuffle-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes word-shuffle-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .word-shuffle {
+    transition: none;
+  }
+  .word-shuffle__word--in,
+  .word-shuffle__word--out {
+    animation: none;
+  }
+}
+
 /* Full-bleed carousel track (Catalog): the scroll track spans the full
    section width so cards bleed past the centered content cap to the window's
    right edge, while the first card stays aligned to the heading. Left pad =

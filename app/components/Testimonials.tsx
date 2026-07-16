@@ -2,53 +2,68 @@
    55px heading + G2 rating + a large featured quote (Maxime); right = a vertical
    auto-scrolling column of #f2f2f2 testimonial cards (avatar + quote + name). */
 
-type Quote = { quote: string; name: string; role: string; grad: string };
+type Quote = {
+  quote: string;
+  name: string;
+  role: string;
+  image: StaticImageData;
+};
+
+import johnnyImg from "@/public/testimonials/johnny.png";
+import kateImg from "@/public/testimonials/kate.png";
+import meganImg from "@/public/testimonials/megan.png";
+import natalieImg from "@/public/testimonials/natalie.png";
+import shairaImg from "@/public/testimonials/shaira.png";
+import { StaticImageData } from "next/image";
+
+import Image from "next/image";
 
 const TESTIMONIALS: Quote[] = [
   {
+    name: "Shaira Javier",
+    role: "People Experience Manager",
     quote:
-      "The catalog depth is unmatched. Every culture, every preference — they’ve got it covered.",
-    name: "Marcus Chen",
-    role: "Ops Director · Figma",
-    grad: "linear-gradient(135deg,#3b1d5e,#c026d3)",
+      "Stadium’s customer service is really proactive. That level of care is rare.",
+    image: shairaImg,
   },
   {
+    name: "Johnny Sorman",
+    role: "Manager, Customer Support",
     quote:
-      "We shipped to 23 countries in a week. Our team just picked the gifts.",
-    name: "Marie Belingard",
-    role: "Marketing Director · TSE",
-    grad: "linear-gradient(135deg,#ff8fab,#ff5d73)",
+      "I cut my time in half by gifting with Stadium this year. What normally took 2–3 months was condensed into just under four weeks.",
+    image: johnnyImg,
   },
   {
+    name: "Kate Wenzel",
+    role: "Director of Brand and Marketing",
     quote:
-      "Onboarding kits go out automatically the day someone starts. Zero manual work.",
-    name: "Priya Nair",
-    role: "People Ops · ConstructConnect",
-    grad: "linear-gradient(135deg,#0b7afc,#3ecf8e)",
+      "Since moving to Stadium, we’ve been able to expand multiple rewards and recognition programs because the foundation and stores already exist.",
+    image: kateImg,
   },
   {
+    name: "Megan Caldwell",
+    role: "Global People Experience Specialist",
     quote:
-      "Finance finally has one invoice and clean reporting across every team.",
-    name: "Daniel Weiss",
-    role: "Finance Lead · TSE",
-    grad: "linear-gradient(135deg,#f59e0b,#ef4444)",
+      "The onboarding experience for new hires is unmatched. It’s automated, it’s on brand, and we’ve received the most amount of praise we've ever had.",
+    image: meganImg,
   },
   {
+    name: "Natalie Alexander",
+    role: "Senior Enablement & Engagement Specialist",
     quote:
-      "The same recognition moments, delivered in every market we operate in.",
-    name: "Sofia Alvarez",
-    role: "Brand · Figma",
-    grad: "linear-gradient(135deg,#6366f1,#0b7afc)",
+      "Everything we want, eventually, Stadium is like, ‘oh, we’ve got it.’",
+    image: natalieImg,
   },
 ];
 
 function Card({ t }: { t: Quote }) {
   return (
     <figure className="flex items-start gap-4 rounded-3xl bg-[#f2f2f2] p-6">
-      <span
-        aria-hidden
-        className="size-11 shrink-0 rounded-lg"
-        style={{ backgroundImage: t.grad }}
+      <Image
+        src={t.image}
+        alt=""
+        width={72}
+        className="object-cover rounded-2xl"
       />
       <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)]">
         <blockquote className="font-sans text-[1rem] leading-6 text-ink">
@@ -142,7 +157,7 @@ export default function Testimonials() {
               data-animation="reveal"
               className="font-sans text-[0.9375rem] text-[#6b6c71]"
             >
-              Maxime Bascon · Chief of Staff · Elktech
+              Maxime Bascon • Chief of Staff • Elktech
             </p>
           </div>
         </div>

@@ -1,7 +1,5 @@
 "use client";
 
-import doorstepImg from "@/public/infra-doorstep.png";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /* "From the platform to the doorstep" — doorstep beat of the dark block, synced
@@ -42,7 +40,7 @@ const steps: Step[] = [
 ];
 
 export default function Infrastructure() {
-  const [active, setActive] = useState(2); // 03 — Shipping & Delivery
+  const [active, setActive] = useState(0);
   const [inView, setInView] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -132,19 +130,19 @@ export default function Infrastructure() {
                     className={`flex h-[3.75rem] w-full items-center gap-3.5 rounded-lg px-3.5 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer ${
                       on
                         ? "bg-white/20 backdrop-blur-[18px]"
-                        : "bg-[#1a1a1a] hover:bg-white/[0.08]"
+                        : "bg-white/[0.08]"
                     }`}
                   >
                     <span
                       className={`font-sans text-[0.75rem] font-semibold tabular-nums tracking-[0.0725rem] ${
-                        on ? "text-[#a4cefe]" : "text-white/40"
+                        on ? "text-[#a4cefe]" : "text-white/30"
                       }`}
                     >
                       {s.num}
                     </span>
                     <span
                       className={`font-sans text-[1.125rem] font-normal leading-7 tracking-[0.0156rem] ${
-                        on ? "text-white" : "text-white/55"
+                        on ? "text-white" : "text-white/33"
                       }`}
                     >
                       {s.label}
@@ -164,7 +162,6 @@ export default function Infrastructure() {
                   key={activeStep.video}
                   ref={videoRef}
                   src={activeStep.video}
-                  poster={doorstepImg.src}
                   muted
                   loop
                   playsInline
@@ -175,13 +172,7 @@ export default function Infrastructure() {
                   }`}
                 />
               ) : (
-                <Image
-                  src={doorstepImg}
-                  alt="Stadium fulfillment"
-                  fill
-                  sizes="(min-width: 64rem) 47rem, 100vw"
-                  className="object-cover"
-                />
+                <div className="absolute"></div>
               )}
             </div>
           </div>

@@ -1,10 +1,10 @@
 "use client";
 
-import eventsImg from "@/public/ewysu-events.jpg";
-import giftingImg from "@/public/ewysu-gifting.jpg";
-import recognitionImg from "@/public/ewysu-recognition.jpg";
-import snacksImg from "@/public/ewysu-snacks.jpg";
-import swagImg from "@/public/ewysu-swag.jpg";
+import eventsImg from "@/public/oneplatform/events.jpeg";
+import giftingImg from "@/public/oneplatform/gifting.jpeg";
+import recognitionImg from "@/public/oneplatform/recognition.jpeg";
+import snacksImg from "@/public/oneplatform/snacks.jpeg";
+import swagImg from "@/public/oneplatform/swag.jpeg";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useState } from "react";

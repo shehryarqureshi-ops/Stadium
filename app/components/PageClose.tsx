@@ -68,9 +68,9 @@ export default function PageClose() {
             backgroundPosition: "center bottom",
             backgroundRepeat: "no-repeat",
             maskImage:
-              "radial-gradient(55% 78% at 50% 102%, #000 18%, transparent 82%)",
+              "radial-gradient(33% 75% at 50% 100%, #000 18%, transparent 82%)",
             WebkitMaskImage:
-              "radial-gradient(55% 78% at 50% 102%, #000 18%, transparent 82%)",
+              "radial-gradient(33% 75% at 50% 100%, #000 18%, transparent 82%)",
           }}
         />
         <div className="relative mx-auto flex w-full max-w-content flex-col items-center gap-8">

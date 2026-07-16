@@ -654,7 +654,7 @@ export default function StadiumWay() {
 
             {/* coverflow — the ACTIVE phase's deck of cards */}
             <div
-              className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-6 py-2 transition-opacity ease-out lg:py-4 ${
+              className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-3 py-2 transition-opacity ease-out lg:py-4 ${
                 deckVisible
                   ? "opacity-100 duration-220"
                   : "opacity-0 duration-180"
@@ -719,14 +719,14 @@ export default function StadiumWay() {
                 )}
               </div>
               {/* dots = the cards in the active phase (8px · 10px gap · #d9d9d9) */}
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 mb-3">
                 {deck.map((_, i) => (
                   <button
                     key={i}
                     type="button"
                     aria-label={`Card ${i + 1}`}
                     onClick={() => selectCard(i)}
-                    className={`size-2 rounded-full transition-colors ${i === cardIdx ? "bg-ink" : "bg-[#d9d9d9] hover:bg-grey-400"}`}
+                    className={`size-2 rounded-full transition-colors cursor-pointer ${i === cardIdx ? "bg-ink" : "bg-[#d9d9d9] hover:bg-grey-400"}`}
                   />
                 ))}
               </div>
