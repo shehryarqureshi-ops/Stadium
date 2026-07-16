@@ -1039,22 +1039,24 @@ RE-SYNCED 2026-06-12, supersedes the 1:62135 desktop layout.
   - Active row: white bg; sm/md number+label SemiBold ink; desktop
     number `grey-400`, label Medium ink. The 3px `accent-water` left
     marker was REMOVED in this rev; timecodes/`DURATION` dropped too.
-- Video panel: rounded-2xl, 1px `infra-border`, bg gradient to-r
-  `infra-panel-1 #202227 → infra-panel-2 #121316`, heights 200/300/443
-  (was 520 desktop); bottom scrim to black/70 heights 120/165/220; no
-  shadow (the old lg shadow was dropped)
-- Caption (insets 20/24/40): eyebrow "STEP NN · VERB" 12 Bold +0.96
-  white/70 uppercase → desktop 12 SemiBold +1.5 `grey-100`; NEW
-  "Behind this step:" line on sm (12/16) + md (`text-small`) only;
-  title single-line now — 16/24 Overpass SemiBold → 24/30 Overpass
-  SemiBold → desktop Satoshi 26/32 −0.5px. Caption bottoms 37/46/59,
-  bars bottoms 16/30/40. **Only step 03's verb ("SHIP") is from Figma —
-  the other 7 verbs are INVENTED**; captions are the pre-existing
-  invented lines joined to one string.
-- 8 progress bars: 3px, track white/25, fill white; before active 100%,
-  active 52%; gaps 4/6/8
-- Client component: clicking a chapter switches active row/caption/progress
-- Asset: infra-facility.png (unchanged — the frames use the same photo)
+- Video panel: rounded-2xl, `object-cover`, `#0e0f11` fallback bg. The
+  bottom scrim + scrub timeline + center play/fullscreen chrome were
+  REMOVED 2026-07-16 (user request) — the panel is now just the clip.
+- **Video-per-step (2026-07-16):** selecting a step plays that step's clip
+  in the right panel. Clips are data-driven — each `Step` carries an
+  optional `video` path (`public/videos/infrastructure/<name>.mp4`); steps
+  without one fall back to the `infra-doorstep.png` still. Steps 01–03
+  (printing / warehousing / shipping) have clips; 04–08 pending. To add a
+  video: drop the file in that folder and set the path on the step.
+  - Clips are `muted loop playsInline`, poster = doorstep still, keyed by
+    src so each select remounts + restarts with a 0.35s opacity fade
+    (`.infra-video-in`).
+  - Play is gated to on-screen only (IntersectionObserver, threshold 0.25)
+    — the files are 11–23MB, so they don't stream off-screen; pauses when
+    scrolled away, resumes on return.
+  - `prefers-reduced-motion`: no autoplay/fade; the `<video>` shows its
+    poster with native `controls` for user-initiated playback.
+- Client component: clicking a chapter switches active row + video
 
 ## The Stadium Way (`StadiumWay.tsx`)
 

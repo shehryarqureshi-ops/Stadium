@@ -2,20 +2,38 @@
 
 import doorstepImg from "@/public/infra-doorstep.png";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* "From the platform to the doorstep" — doorstep beat of the dark block, synced
    to Figma 2:33443. Centered blue eyebrow + 55px heading, then a frosted
    near-black r24 card (black/90 + #4d4d4d hairline + backdrop-blur) floating over
-   a bright #0b7afc bloom: an 8-step pill list (03 active = frosted glass) beside
-   a video with a bottom scrim + scrub timeline. */
+   a bright #0b7afc bloom: an 8-step pill list beside a video panel.
 
-type Step = { num: string; label: string };
+   Selecting a step plays that step's clip in the right panel. Videos are
+   data-driven — add a file under public/videos/infrastructure/ and set its path
+   on the matching step below; steps without a `video` fall back to the doorstep
+   still. Clips are muted + looping and only play while the section is on-screen
+   (they're large, so we don't stream them off-screen); reduced-motion users get
+   the poster with native controls instead of autoplay. */
+
+type Step = { num: string; label: string; video?: string };
 
 const steps: Step[] = [
-  { num: "01", label: "Printing & Production" },
-  { num: "02", label: "Warehousing & Storage" },
-  { num: "03", label: "Shipping & Delivery" },
+  {
+    num: "01",
+    label: "Printing & Production",
+    video: "/videos/infrastructure/printing.mp4",
+  },
+  {
+    num: "02",
+    label: "Warehousing & Storage",
+    video: "/videos/infrastructure/warehousing.mp4",
+  },
+  {
+    num: "03",
+    label: "Shipping & Delivery",
+    video: "/videos/infrastructure/shipping.mp4",
+  },
   { num: "04", label: "Customs, Tax, & Compliance" },
   { num: "05", label: "Integrations & Automated Gifting" },
   { num: "06", label: "Platform Controls" },
@@ -23,41 +41,55 @@ const steps: Step[] = [
   { num: "08", label: "Security & Reliability" },
 ];
 
-function PlayIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="size-[1.625rem] translate-x-px text-white"
-      fill="currentColor"
-      aria-hidden
-    >
-      <path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.4-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z" />
-    </svg>
-  );
-}
-
-function FullscreenIcon() {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      className="size-3.5 shrink-0 text-white"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M2 6V2.5A.5.5 0 0 1 2.5 2H6M14 6V2.5a.5.5 0 0 0-.5-.5H10M2 10v3.5a.5.5 0 0 0 .5.5H6M14 10v3.5a.5.5 0 0 1-.5.5H10" />
-    </svg>
-  );
-}
-
 export default function Infrastructure() {
   const [active, setActive] = useState(2); // 03 — Shipping & Delivery
+  const [inView, setInView] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const activeStep = steps[active];
+
+  /* Honor the OS reduced-motion setting (and keep it live). */
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  /* Only stream/play the clip while the panel is on-screen — the files are
+     large, and playing off-screen wastes bandwidth (codebase pattern). */
+  useEffect(() => {
+    const el = panelRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  /* Play the active clip when it's on-screen; pause otherwise. Re-runs on tab
+     change because the <video> is keyed by src (fresh element each select). */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    if (inView && !reduceMotion) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, [inView, reduceMotion, active]);
 
   return (
-    <section className="relative overflow-hidden bg-[#000000] px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-section-y-lg">
+    <section className="relative overflow-hidden bg-[#000000] px-section-x-sm py-section-y-sm md:px-section-x-md md:py-section-y-md lg:px-section-x-lg lg:py-section-y-lg lg:pb-60">
       <div className="relative mx-auto flex w-full max-w-content flex-col gap-10 lg:gap-20">
         {/* centered header */}
         <div className="flex flex-col items-center gap-2 text-center">
@@ -122,49 +154,35 @@ export default function Infrastructure() {
               })}
             </div>
 
-            {/* video + scrub timeline */}
-            <div className="group relative min-h-[20rem] overflow-hidden rounded-lg lg:min-h-0">
-              <Image
-                src={doorstepImg}
-                alt="Stadium fulfillment"
-                fill
-                sizes="(min-width: 64rem) 47rem, 100vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <span className="flex size-14 items-center justify-center rounded-full border-[1.5px] border-white/55 bg-white/[0.18] backdrop-blur-[10px] transition duration-200 group-hover:scale-110 group-hover:bg-white/25">
-                  <PlayIcon />
-                </span>
-              </div>
-              {/* bottom scrim — transparent → black (Figma 2:33477) */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-[6.125rem] bg-gradient-to-b from-transparent to-black"
-              />
-              {/* timeline: 1:24 · segmented scrubber · 3:30 · fullscreen */}
-              <div className="absolute inset-x-4 bottom-3.5 flex items-center gap-3 font-sans text-[0.75rem] font-semibold">
-                <span className="shrink-0 text-white">1:24</span>
-                <div className="flex flex-1 items-center gap-1.5">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <span
-                      key={`p${i}`}
-                      className="h-1 flex-1 rounded-full bg-white"
-                    />
-                  ))}
-                  <span className="size-3 shrink-0 rounded-full bg-white shadow-[0_0_0_3px_rgba(0,0,0,0.25)]" />
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <span
-                      key={`u${i}`}
-                      className="h-1 flex-1 rounded-full bg-white/25"
-                    />
-                  ))}
-                </div>
-                <span className="shrink-0 text-white/70">3:30</span>
-                <FullscreenIcon />
-              </div>
+            {/* video panel — plays the active step's clip */}
+            <div
+              ref={panelRef}
+              className="relative min-h-[20rem] overflow-hidden rounded-lg bg-[#0e0f11] lg:min-h-0"
+            >
+              {activeStep.video ? (
+                <video
+                  key={activeStep.video}
+                  ref={videoRef}
+                  src={activeStep.video}
+                  poster={doorstepImg.src}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  controls={reduceMotion}
+                  className={`absolute inset-0 h-full w-full object-cover ${
+                    reduceMotion ? "" : "infra-video-in"
+                  }`}
+                />
+              ) : (
+                <Image
+                  src={doorstepImg}
+                  alt="Stadium fulfillment"
+                  fill
+                  sizes="(min-width: 64rem) 47rem, 100vw"
+                  className="object-cover"
+                />
+              )}
             </div>
           </div>
         </div>

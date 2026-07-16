@@ -470,9 +470,7 @@ export default function StadiumWay() {
       setRailOpenHs(
         PHASES.map((_, i) => {
           const el = openMeasureRefs.current[i];
-          return el
-            ? el.getBoundingClientRect().height
-            : RAIL_OPEN_FALLBACK_PX;
+          return el ? el.getBoundingClientRect().height : RAIL_OPEN_FALLBACK_PX;
         }),
       );
     };
@@ -607,9 +605,13 @@ export default function StadiumWay() {
                     type="button"
                     onClick={() => selectPhase(i)}
                     aria-expanded={on}
-                    style={{ flexBasis: `${on ? railOpenHs[i] : railClosedH}px` }}
-                    className={`flex grow shrink flex-col justify-center rounded-xl bg-white px-7 pb-[1.875rem] pt-7 text-left transition-[flex-basis,box-shadow] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water cursor-pointer ${
-                      on ? "shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]" : ""
+                    style={{
+                      flexBasis: `${on ? railOpenHs[i] : railClosedH}px`,
+                    }}
+                    className={`flex grow shrink flex-col justify-center bg-zinc-50 rounded-xl px-7 pb-[1.875rem] pt-7 text-left transition-[flex-basis,box-shadow] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water cursor-pointer ${
+                      on
+                        ? "bg-white! shadow-[0px_3px_18px_0px_rgba(0,0,0,0.13)]"
+                        : ""
                     }`}
                   >
                     <span className="flex items-center justify-between gap-3">
@@ -674,7 +676,8 @@ export default function StadiumWay() {
                      center" spot and a multi-step jump just faded in place
                      instead of sliding across. */
                   const leftPct = 50 + d * 50;
-                  const translateX = d === 0 ? -50 : d === -1 ? -54 : d === 1 ? -46 : -50;
+                  const translateX =
+                    d === 0 ? -50 : d === -1 ? -54 : d === 1 ? -46 : -50;
                   const scale = d === 0 ? 1 : abs === 1 ? 0.78 : 0.75;
                   const opacity = d === 0 ? 1 : abs === 1 ? 0.55 : 0;
                   return (

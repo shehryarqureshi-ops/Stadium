@@ -152,7 +152,7 @@ export default function TeamsTabs() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-24 lg:px-[6.25rem] lg:pb-[7.5rem] lg:pt-[7.5rem]"
+      className="relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-24 lg:px-[6.25rem] lg:pb-[18rem] lg:pt-[7.5rem]"
     >
       {/* Stadium brand aurora — soft mesh gradient behind the header + card,
           replacing a flat grey gradient (Figma "symbol gradient" 2:37375 @ 33%). */}
@@ -210,7 +210,10 @@ export default function TeamsTabs() {
           className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]"
         >
           {/* photo */}
-          <div className="relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl bg-grey-200 lg:w-[48%]">
+          <div
+            key={`photo-${team.name}`}
+            className="teams-panel-in relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl bg-grey-200 lg:w-[48%]"
+          >
             {team.photo ? (
               <Image
                 src={team.photo}
@@ -229,7 +232,10 @@ export default function TeamsTabs() {
           </div>
 
           {/* content */}
-          <div className="flex flex-col justify-center gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10">
+          <div
+            key={`content-${team.name}`}
+            className="teams-panel-in flex flex-col justify-center gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10"
+          >
             <div className="flex flex-col gap-5">
               <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b]">
                 {team.title}

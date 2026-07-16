@@ -52,38 +52,44 @@ export default function Catalog() {
     trackRef.current?.scrollBy({ left: dir * 372, behavior: "smooth" });
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto flex w-full max-w-section flex-col gap-10 py-16 md:py-24 lg:py-[7.5rem]">
-        {/* header */}
-        <div className="flex max-w-[52.5rem] flex-col gap-6 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
-          <div className="flex flex-col gap-2">
+    <section className="overflow-x-clip bg-white">
+      <div className="flex flex-col gap-10 py-16 md:py-24 lg:py-[7.5rem]">
+        {/* header — capped + centered like the rest of the page */}
+        <div className="mx-auto w-full max-w-section px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+          <div className="flex max-w-[52.5rem] flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <p
+                data-animation="reveal"
+                className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+              >
+                The Stadium Catalog
+              </p>
+              <h2
+                data-animation="reveal"
+                className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+              >
+                Every recipient covered
+              </h2>
+            </div>
             <p
               data-animation="reveal"
-              className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+              className="font-sans text-[1rem] font-semibold leading-6 text-ink"
             >
-              The Stadium Catalog
+              30K+ items from leading brands, with locally relevant options
+              wherever you&rsquo;re sending.
             </p>
-            <h2
-              data-animation="reveal"
-              className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
-            >
-              Every recipient covered
-            </h2>
           </div>
-          <p
-            data-animation="reveal"
-            className="font-sans text-[1rem] font-semibold leading-6 text-ink"
-          >
-            30K+ items from leading brands, with locally relevant options
-            wherever you&rsquo;re sending.
-          </p>
         </div>
 
         {/* cards + nav */}
         <div className="flex flex-col gap-8">
+          {/* Full-bleed track: spans the full section width and bleeds past
+              the centered cap to the window edge; first card stays aligned to
+              the heading via .carousel-bleed's left inset. Its own overflow-x
+              keeps the scroll internal, so the page never gains a scrollbar. */}
           <ul
             ref={trackRef}
-            className="flex gap-6 overflow-x-auto px-section-x-sm pb-1 [scrollbar-width:none] md:px-section-x-md lg:px-section-x-lg [&::-webkit-scrollbar]:hidden"
+            className="carousel-bleed flex gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {categories.map((c) => (
               <li
@@ -112,10 +118,10 @@ export default function Catalog() {
             ))}
           </ul>
 
-          {/* prev / next */}
+          {/* prev / next — capped + centered, aligned to the content column */}
           <div
             data-animation="reveal"
-            className="flex justify-end gap-2.5 px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
+            className="mx-auto flex w-full max-w-section justify-end gap-2.5 px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
           >
             <button
               type="button"

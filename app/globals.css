@@ -330,6 +330,84 @@ body {
   }
 }
 
+/* TeamsTabs panel swap: fade/slide-up 0.4s (documented in design.md, wired
+   here) — plays on mount, so keying the photo/content blocks by team name
+   replays it every tab switch. Same ease-out-expo curve as [data-reveal]. */
+@keyframes teams-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.teams-panel-in {
+  animation: teams-panel-in 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .teams-panel-in {
+    animation: none;
+  }
+}
+
+/* Infrastructure video swap: the right-panel video is keyed by src, so it
+   remounts on every tab select — this quick opacity fade covers the swap so
+   the new clip eases in instead of hard-cutting. Only applied when motion is
+   allowed (the component omits the class under reduced motion). */
+@keyframes infra-video-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.infra-video-in {
+  animation: infra-video-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .infra-video-in {
+    animation: none;
+  }
+}
+
+/* Full-bleed carousel track (Catalog): the scroll track spans the full
+   section width so cards bleed past the centered content cap to the window's
+   right edge, while the first card stays aligned to the heading. Left pad =
+   the centered-container inset (the section gutter, plus — once the viewport
+   passes the content cap — the centering margin), so it tracks the heading at
+   every width; right pad is a small window-edge gutter. The track keeps its
+   own overflow-x (internal scroll), so bleeding cards never widen the page.
+
+   The centering term is `50% - container/2` (algebraically the same as
+   `(100% - container)/2`), gated behind the cap-width media query so no
+   max()-clamp is needed. Written this way on purpose: Tailwind v4's Lightning
+   CSS drops the whole rule if it sees a percentage divided inside max()
+   (same failure mode as the anchor() note on .cobe-marker). */
+.carousel-bleed {
+  padding-left: var(--spacing-section-x-sm);
+  padding-right: 1rem;
+}
+@media (min-width: 48rem) {
+  .carousel-bleed {
+    padding-left: var(--spacing-section-x-md);
+  }
+}
+@media (min-width: 64rem) {
+  .carousel-bleed {
+    padding-left: var(--spacing-section-x-lg);
+  }
+}
+@media (min-width: 86.25rem) {
+  .carousel-bleed {
+    padding-left: calc(
+      50% - var(--container-section) / 2 + var(--spacing-section-x-lg)
+    );
+  }
+}
+
 /* Nav-menu text is cap-height box-trimmed so vertical gaps match the Figma
    design exactly — Figma uses leadingTrim CAP_HEIGHT; the native CSS line-box
    otherwise inflates every gap by its leading. Scoped via .menu-trim on the
