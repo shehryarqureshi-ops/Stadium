@@ -6,6 +6,8 @@ import SwagCommittee from "../components/SwagCommittee";
 import SwagComparison from "../components/SwagComparison";
 import SwagCaseStudies from "../components/SwagCaseStudies";
 import SwagCatalog from "../components/SwagCatalog";
+import SwagClosing from "../components/SwagClosing";
+import SwagImpact from "../components/SwagImpact";
 import SwagPaperchase from "../components/SwagPaperchase";
 import SwagDivider from "../components/SwagDivider";
 import SwagFulfillment from "../components/SwagFulfillment";
@@ -47,6 +49,8 @@ export default function SwagPage() {
         <SwagComparison />
         <SwagCaseStudies />
         <SwagPaperchase />
+        <SwagImpact />
+        <SwagClosing />
       </main>
       <PageClose />
     </>
