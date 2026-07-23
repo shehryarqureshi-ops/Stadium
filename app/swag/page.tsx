@@ -4,8 +4,10 @@ import SiteHeader from "../components/SiteHeader";
 import SwagCatalog from "../components/SwagCatalog";
 import SwagDivider from "../components/SwagDivider";
 import SwagFulfillment from "../components/SwagFulfillment";
+import SwagHowItWorks from "../components/SwagHowItWorks";
 import SwagHero from "../components/SwagHero";
 import SwagOfferings from "../components/SwagOfferings";
+import SwagPlatform from "../components/SwagPlatform";
 import SwagProblem from "../components/SwagProblem";
 import SwagWorkflow from "../components/SwagWorkflow";
 
@@ -31,6 +33,8 @@ export default function SwagPage() {
         <SwagWorkflow />
         <SwagCatalog />
         <SwagFulfillment />
+        <SwagHowItWorks />
+        <SwagPlatform />
       </main>
       <PageClose />
     </>
