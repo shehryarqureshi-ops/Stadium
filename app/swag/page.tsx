@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
+import SwagDivider from "../components/SwagDivider";
 import SwagHero from "../components/SwagHero";
+import SwagOfferings from "../components/SwagOfferings";
 import SwagProblem from "../components/SwagProblem";
+import SwagWorkflow from "../components/SwagWorkflow";
 
 export const metadata: Metadata = {
   title: "Swag — The infrastructure behind every swag program | Stadium",
@@ -21,6 +24,9 @@ export default function SwagPage() {
       >
         <SwagHero />
         <SwagProblem />
+        <SwagDivider />
+        <SwagOfferings />
+        <SwagWorkflow />
       </main>
       <PageClose />
     </>
