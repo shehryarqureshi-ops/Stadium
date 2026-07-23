@@ -10,6 +10,7 @@ import SwagHowItWorks from "../components/SwagHowItWorks";
 import SwagHero from "../components/SwagHero";
 import SwagOfferings from "../components/SwagOfferings";
 import SwagPlatform from "../components/SwagPlatform";
+import SwagPricing from "../components/SwagPricing";
 import SwagProblem from "../components/SwagProblem";
 import SwagWorkflow from "../components/SwagWorkflow";
 
@@ -39,6 +40,7 @@ export default function SwagPage() {
         <SwagPlatform />
         <SwagAdminView />
         <SwagCommittee />
+        <SwagPricing />
       </main>
       <PageClose />
     </>
