@@ -6,8 +6,9 @@
    mobile derived (stack the product cluster under the copy). SiteHeader is
    rendered by the page and auto-themes white over this dark hero. */
 
-/* Design social-proof order (no Spotify), duplicated by the marquee so the loop
-   reads …NETFLIX, Google, amazon, Pinterest, accenture… */
+/* Design social-proof strip (no Spotify): 9 logos evenly distributed across the
+   full content width, exactly as the Figma frame — amazon, Pinterest, accenture,
+   Bloomberg, salesforce, NETFLIX, Google, amazon, Pinterest. */
 const LOGOS = [
   { src: "/trust-amazon.svg", alt: "Amazon", w: 77, h: 20 },
   { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 25 },
@@ -16,6 +17,8 @@ const LOGOS = [
   { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 27 },
   { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 25 },
   { src: "/trust-google.svg", alt: "Google", w: 80, h: 25 },
+  { src: "/trust-amazon.svg", alt: "Amazon", w: 77, h: 20 },
+  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 25 },
 ];
 
 /* Frosted product card + warehouse photo cluster (Figma 344:11932, 558×557).
@@ -145,38 +148,23 @@ export default function SwagHero() {
           </div>
         </div>
 
-        {/* logo marquee — white marks on green */}
+        {/* social-proof strip — 9 white marks evenly spread across the full width */}
         <div
           data-animation="reveal"
-          className="relative w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]"
+          className="flex w-full flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:flex-nowrap lg:justify-between lg:gap-x-6"
         >
-          <style>{`
-            @keyframes swag-logos { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-            .swag-logos-track { animation: swag-logos 40s linear infinite; }
-            @media (prefers-reduced-motion: reduce) { .swag-logos-track { animation: none; } }
-          `}</style>
-          <div className="swag-logos-track flex w-max items-center gap-14">
-            {[0, 1].map((copy) => (
-              <div
-                key={copy}
-                aria-hidden={copy > 0 || undefined}
-                className="flex shrink-0 items-center gap-14 pr-14"
-              >
-                {LOGOS.map((logo) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={logo.alt}
-                    src={logo.src}
-                    alt={copy === 0 ? logo.alt : ""}
-                    width={logo.w}
-                    height={logo.h}
-                    style={{ height: `${logo.h / 16}rem` }}
-                    className="w-auto max-w-none shrink-0 opacity-90 brightness-0 invert"
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+          {LOGOS.map((logo, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={i}
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.w}
+              height={logo.h}
+              style={{ height: `${logo.h / 16}rem` }}
+              className="w-auto max-w-none shrink-0 opacity-90 brightness-0 invert"
+            />
+          ))}
         </div>
       </div>
     </section>
