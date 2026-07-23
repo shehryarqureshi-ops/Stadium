@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
+import SwagCatalog from "../components/SwagCatalog";
 import SwagDivider from "../components/SwagDivider";
+import SwagFulfillment from "../components/SwagFulfillment";
 import SwagHero from "../components/SwagHero";
 import SwagOfferings from "../components/SwagOfferings";
 import SwagProblem from "../components/SwagProblem";
@@ -27,6 +29,8 @@ export default function SwagPage() {
         <SwagDivider />
         <SwagOfferings />
         <SwagWorkflow />
+        <SwagCatalog />
+        <SwagFulfillment />
       </main>
       <PageClose />
     </>
