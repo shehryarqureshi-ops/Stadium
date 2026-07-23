@@ -40,7 +40,7 @@ export default function SwagAdminView() {
           {/* top bar */}
           <div className="mb-4 flex items-center justify-between rounded-xl bg-white p-3">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-12 rounded bg-grey-400" />
+              <span className="h-2 w-12 rounded bg-swag-ink" />
               <span className="h-2 w-8 rounded bg-grey-200" />
               <span className="h-2 w-8 rounded bg-grey-200" />
               <span className="h-2 w-8 rounded bg-grey-200" />
@@ -52,7 +52,7 @@ export default function SwagAdminView() {
             {/* left */}
             <div className="flex flex-col gap-3 rounded-xl bg-white p-4">
               <span className={`h-2 w-16 ${bar}`} />
-              <span className="h-24 rounded-lg bg-grey-100" />
+              <span className="h-24 rounded-lg bg-gradient-to-br from-grey-200 to-grey-100" />
               <div className="grid grid-cols-2 gap-3">
                 <span className="h-20 rounded-lg bg-grey-100" />
                 <span className="h-20 rounded-lg bg-grey-100" />

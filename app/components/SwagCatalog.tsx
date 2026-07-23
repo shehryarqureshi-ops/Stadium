@@ -71,7 +71,7 @@ export default function SwagCatalog() {
           </div>
           <p
             data-animation="reveal"
-            className="font-sans text-body-md text-[#707075] lg:flex-1 lg:pb-1 lg:text-[1.125rem] lg:leading-[1.45]"
+            className="font-sans text-body-md text-[#63676e] lg:flex-1 lg:pb-1 lg:text-[1.125rem] lg:leading-[1.45]"
           >
             Not your generic promo catalog. Browse premium brands across every
             category, all ready to customize with your logo.
@@ -83,14 +83,14 @@ export default function SwagCatalog() {
           <div
             ref={trackRef}
             onScroll={sync}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {CATS.map((c, i) => (
               <article
                 key={i}
                 className="flex h-[29.3rem] w-[16.5rem] shrink-0 snap-start flex-col overflow-hidden rounded-[0.875rem] bg-[#fcfbfc] sm:w-[17.25rem]"
               >
-                <div className="flex flex-col gap-1.5 p-[1.125rem]">
+                <div className="flex flex-col gap-1.5 px-[1.125rem] pb-2.5 pt-[1.125rem]">
                   <p className="font-sans text-[0.875rem] font-semibold text-swag-ink">
                     {c.cat}
                   </p>

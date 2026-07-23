@@ -58,11 +58,11 @@ const ROWS = [
 ];
 
 function corner(r: number, c: number) {
-  if (r === 0 && c === 0) return "rounded-lg rounded-tl-2xl";
-  if (r === 0 && c === 3) return "rounded-lg rounded-tr-2xl";
-  if (r === 3 && c === 0) return "rounded-lg rounded-bl-2xl";
-  if (r === 3 && c === 3) return "rounded-lg rounded-br-2xl";
-  return "rounded-lg";
+  if (r === 0 && c === 0) return "rounded-xl rounded-tl-2xl";
+  if (r === 0 && c === 3) return "rounded-xl rounded-tr-2xl";
+  if (r === 3 && c === 0) return "rounded-xl rounded-bl-2xl";
+  if (r === 3 && c === 3) return "rounded-xl rounded-br-2xl";
+  return "rounded-xl";
 }
 
 export default function SwagFulfillment() {
@@ -74,13 +74,13 @@ export default function SwagFulfillment() {
           <div className="flex flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-mint md:text-eyebrow-md"
+              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#a7b5af] md:text-eyebrow-md"
             >
               FULFILLMENT, YOUR WAY
             </p>
             <h2
               data-animation="reveal"
-              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-white md:text-[2.25rem] lg:text-[2.75rem]"
+              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.01rem] text-white md:text-[2.25rem] lg:text-[2.75rem]"
             >
               Every fulfillment model, one setup
             </h2>
@@ -101,18 +101,18 @@ export default function SwagFulfillment() {
         >
           <div className="min-w-[46rem]">
             {/* column headers */}
-            <div className="mb-1 grid grid-cols-[1.6fr_1fr_1fr_1fr] gap-1">
+            <div className="mb-2 grid grid-cols-[1.6fr_1fr_1fr_1fr] gap-2">
               <div />
               {COLS.map((c) => (
-                <div key={c} className="px-6 py-3 text-center font-sans text-[0.9rem] text-swag-mint">
+                <div key={c} className="px-6 py-3 text-center font-sans text-[0.9rem] text-[#a7b5af]">
                   {c}
                 </div>
               ))}
             </div>
             {/* rows */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               {ROWS.map((row, r) => (
-                <div key={row.label} className="grid grid-cols-[1.6fr_1fr_1fr_1fr] gap-1">
+                <div key={row.label} className="grid grid-cols-[1.6fr_1fr_1fr_1fr] gap-2">
                   <div className={`flex items-center gap-2.5 bg-[#02120b]/50 p-6 ${corner(r, 0)}`}>
                     <Icon name={row.icon} />
                     <span className="font-sans text-[0.9rem] font-semibold text-white">

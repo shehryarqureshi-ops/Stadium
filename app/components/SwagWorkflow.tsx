@@ -177,17 +177,17 @@ export default function SwagWorkflow() {
         <div
           data-animation="reveal"
           className="flex w-full flex-col gap-2.5 rounded-[2rem] border border-[#e0e0e0] bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] backdrop-blur lg:flex-row lg:items-stretch lg:gap-[3.75rem]">
-          <div className="h-56 overflow-hidden rounded-3xl sm:h-72 lg:h-auto lg:w-[36.25rem] lg:shrink-0">
+          <div className="h-56 overflow-hidden rounded-3xl sm:h-72 lg:h-[24.4375rem] lg:w-[36.25rem] lg:shrink-0 lg:self-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/swag/swag-workflow.jpg"
+              src="/swag/swag-ribbon.jpg"
               alt=""
               aria-hidden
               className="size-full object-cover"
             />
           </div>
 
-          <div className="flex flex-1 flex-col gap-8 px-6 pb-8 pt-2 lg:py-[3.75rem] lg:pr-10 lg:pl-0">
+          <div className="flex flex-1 flex-col justify-center gap-8 px-6 pb-8 pt-2 lg:py-[3.75rem] lg:pr-10 lg:pl-0">
             <div className="flex flex-col gap-[1.125rem]">
               <h3 className="font-display text-[1.75rem] leading-10 text-swag-ink lg:text-[2rem]">
                 {tab.heading}

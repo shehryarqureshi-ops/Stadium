@@ -71,7 +71,7 @@ function OfferCard({ variant, title, kicker, desc, features, cta, popular }: Off
     <div
       className={`relative flex flex-1 rounded-3xl ${
         primary
-          ? "border-2 border-[#0a5c36] bg-[linear-gradient(155deg,#0b3826_0%,#0a5834_48%,#6bad8f_100%)] shadow-[1.25rem_1.25rem_2.5rem_-0.5rem_rgba(0,0,0,0.14)]"
+          ? "bg-[linear-gradient(220deg,#0e5e38_0%,#2a9a5d_48%,#83d9a3_100%)] shadow-[1.25rem_1.25rem_2.5rem_-0.5rem_rgba(0,0,0,0.14)]"
           : "bg-[#f2f2f2]"
       }`}
     >

@@ -13,6 +13,20 @@ const FIELD =
   "h-11 w-full rounded-lg border border-grey-200 bg-white px-3 font-sans text-[0.875rem] text-swag-ink placeholder:text-grey-400 focus:border-swag-green-deep focus:outline-none";
 const LABEL = "font-sans text-[0.6875rem] font-bold uppercase tracking-[0.06rem] text-swag-grey";
 
+function Select({ label }: { label: string }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className={LABEL}>{label}</span>
+      <div className="relative">
+        <input className={`${FIELD} appearance-none pr-9`} placeholder="Select" />
+        <svg className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-grey-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </div>
+    </label>
+  );
+}
+
 const LINKS = [
   { tag: "GUIDE", title: "No-Minimums Swag Playbook", desc: "Run a swag program without storing inventory." },
   { tag: "TEMPLATE", title: "Onboarding Kit Checklist", desc: "What goes in a new-hire kit, by role." },
@@ -67,25 +81,16 @@ export default function SwagClosing() {
                 <input className={FIELD} placeholder="john@doe.com" type="email" />
               </label>
             </div>
-            <label className="flex flex-col gap-1.5">
-              <span className={LABEL}>Company</span>
-              <input className={FIELD} placeholder="Select" />
-            </label>
+            <Select label="Company" />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <label className="flex flex-col gap-1.5">
-                <span className={LABEL}>Team</span>
-                <input className={FIELD} placeholder="Select" />
-              </label>
-              <label className="flex flex-col gap-1.5">
-                <span className={LABEL}>Company size</span>
-                <input className={FIELD} placeholder="Select" />
-              </label>
+              <Select label="Team" />
+              <Select label="Company size" />
             </div>
             <label className="flex flex-col gap-1.5">
               <span className={LABEL}>What are you exploring?</span>
               <textarea className="min-h-[4.5rem] w-full rounded-lg border border-grey-200 bg-white p-3 font-sans text-[0.875rem] text-swag-ink placeholder:text-grey-400 focus:border-swag-green-deep focus:outline-none" placeholder="What do you need — stores, kits, bulk, storage…" />
             </label>
-            <button type="button" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-swag-green px-6 font-sans text-[0.875rem] font-semibold text-white transition-all hover:brightness-95 active:scale-[0.99]">
+            <button type="button" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-swag-green-deep px-6 font-sans text-[0.875rem] font-semibold text-white transition-all hover:brightness-95 active:scale-[0.99]">
               Book a demo →
             </button>
             <p className="font-sans text-[0.75rem] text-grey-400">
@@ -124,9 +129,9 @@ export default function SwagClosing() {
               ))}
             </div>
           </div>
-          <div data-animation="reveal" className="overflow-hidden rounded-3xl">
+          <div data-animation="reveal" className="overflow-hidden rounded-2xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/swag/swag-workflow.jpg" alt="" aria-hidden className="aspect-[4/3] w-full object-cover" />
+            <img src="/swag/swag-ribbon.jpg" alt="" aria-hidden className="aspect-[4/3] w-full object-cover" />
           </div>
         </div>
       </section>
@@ -137,15 +142,15 @@ export default function SwagClosing() {
           <h2 data-animation="reveal" className="max-w-[36rem] font-display text-[2rem] leading-[1.06] tracking-[-0.03125rem] text-white md:text-[2.75rem]">
             Make swag run itself
           </h2>
-          <p data-animation="reveal" className="max-w-[34rem] font-sans text-body-md text-[#c9cbcf] lg:text-[1.125rem]">
+          <p data-animation="reveal" className="max-w-[34rem] font-sans text-body-md text-[#c6c6c4] lg:text-[1.125rem]">
             Talk to our team and leave with a plan built around your brand,
             budget, and goals. Mockups included.
           </p>
           <div data-animation="reveal" className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
-            <a href="#" className="inline-flex h-12 items-center justify-center rounded-full bg-swag-green px-7 font-sans text-button-primary uppercase text-white transition-all hover:brightness-95 active:scale-[0.98] focus-visible:outline-white">
+            <a href="#" className="inline-flex h-12 items-center justify-center rounded-full bg-swag-green-deep px-7 font-sans text-button-primary text-white transition-all hover:brightness-95 active:scale-[0.98] focus-visible:outline-white">
               <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Book a demo</span>
             </a>
-            <a href="#" className="inline-flex h-12 items-center justify-center rounded-full border border-white/25 px-7 font-sans text-button-primary uppercase text-white transition-all hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white">
+            <a href="#" className="inline-flex h-12 items-center justify-center rounded-full border border-white/25 px-7 font-sans text-button-primary text-white transition-all hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white">
               <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Browse the catalog</span>
             </a>
           </div>

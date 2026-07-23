@@ -4,22 +4,22 @@
 
 const CARDS = [
   {
-    img: "/swag/swag-committee-1.jpg",
+    img: "/swag/swag-committee-2.jpg",
     title: "Marketing & Brand",
     desc: "Every branded moment — stores, kits, events, hiring — on-brand and at scale.",
   },
   {
-    img: "/swag/swag-committee-2.jpg",
+    img: "/swag/swag-committee-1.jpg",
     title: "HR & People Ops",
     desc: "New-hire kits and milestone swag run themselves. Marketing touches zero orders.",
   },
   {
-    img: "/swag/swag-committee-3.jpg",
+    img: "/swag/swag-committee-4.jpg",
     title: "Procurement & Finance",
     desc: "One vendor. One PO. Budgets and per-team wallets you control.",
   },
   {
-    img: "/swag/swag-committee-4.jpg",
+    img: "/swag/committee-it.jpg",
     title: "IT & Security",
     desc: "SSO, SCIM, and SOC 2 out of the box. Nothing breaks identity or audit.",
   },
@@ -33,7 +33,7 @@ export default function SwagCommittee() {
           <div className="flex flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-mint md:text-eyebrow-md"
+              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-white md:text-eyebrow-md"
             >
               BUILT FOR SIGN-OFF
             </p>

@@ -23,7 +23,7 @@ const ROWS: { label: string; vals: string[] }[] = [
 function Cell({ v }: { v: string }) {
   if (v === "check")
     return (
-      <svg className="size-6 text-swag-green-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg className="size-6 text-swag-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M20 6 9 17l-5-5" />
       </svg>
     );
@@ -126,11 +126,11 @@ export default function SwagComparison() {
               ))}
             </div>
             {/* footer CTA under Stadium */}
-            <div className={`mt-1 ${GRID}`}>
+            <div className={`mt-2 ${GRID}`}>
               <div />
               <a
                 href="#"
-                className="flex items-center justify-center rounded-b-2xl bg-swag-ink px-6 py-4 font-sans text-[0.9rem] font-semibold text-white transition-colors hover:bg-black"
+                className="flex items-center justify-center rounded-2xl bg-swag-ink px-6 py-4 font-sans text-[0.9rem] font-semibold text-white transition-all hover:bg-black active:scale-[0.98]"
               >
                 Book a call
               </a>

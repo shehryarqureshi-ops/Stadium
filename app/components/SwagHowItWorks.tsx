@@ -104,7 +104,7 @@ export default function SwagHowItWorks() {
         >
           {/* step 01 — with visual */}
           <div className="flex flex-col gap-6 rounded-xl bg-white p-7 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] sm:flex-row sm:items-end lg:w-[38.125rem] lg:shrink-0">
-            <div className="flex flex-1 flex-col justify-between gap-8">
+            <div className="flex flex-1 flex-col justify-between gap-8 self-stretch">
               <StepText n="01" title={["Design", "& approve"]} desc="Pick products, drop in your logo, approve a free mockup — within 48 hours." />
             </div>
             {/* design-editor visual */}

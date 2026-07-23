@@ -6,15 +6,16 @@
    mobile derived (stack the product cluster under the copy). SiteHeader is
    rendered by the page and auto-themes white over this dark hero. */
 
+/* Design social-proof order (no Spotify), duplicated by the marquee so the loop
+   reads …NETFLIX, Google, amazon, Pinterest, accenture… */
 const LOGOS = [
-  { src: "/trust-google.svg", alt: "Google", w: 80, h: 25 },
   { src: "/trust-amazon.svg", alt: "Amazon", w: 77, h: 20 },
   { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 25 },
   { src: "/trust-accenture.svg", alt: "Accenture", w: 91, h: 24 },
   { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 19 },
   { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 27 },
   { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 25 },
-  { src: "/trust-spotify.svg", alt: "Spotify", w: 81, h: 24 },
+  { src: "/trust-google.svg", alt: "Google", w: 80, h: 25 },
 ];
 
 /* Frosted product card + warehouse photo cluster (Figma 344:11932, 558×557).
@@ -23,8 +24,8 @@ const LOGOS = [
 function ProductCluster() {
   return (
     <div className="relative h-[34.8125rem] w-[34.875rem] shrink-0">
-      {/* warehouse photo (399:842) */}
-      <div className="absolute left-[14.25rem] top-0 h-[29.375rem] w-[18.4375rem] overflow-hidden rounded-2xl shadow-[0.875rem_1.3125rem_2.8125rem_0_rgba(0,0,0,0.33)]">
+      {/* warehouse photo (399:842) — smaller panel offset behind the card */}
+      <div className="absolute left-[15.5rem] top-0 h-[25.5rem] w-[16rem] overflow-hidden rounded-2xl shadow-[0.875rem_1.3125rem_2.8125rem_0_rgba(0,0,0,0.33)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/swag/swag-warehouse.jpg"
@@ -33,8 +34,8 @@ function ProductCluster() {
         />
       </div>
 
-      {/* frosted hoodie card (344:11935) */}
-      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.1875rem] flex-col justify-end gap-3 rounded-[1.25rem] bg-black/[0.33] px-[1.375rem] pb-8 pt-[17.5rem] backdrop-blur-[2px]">
+      {/* frosted hoodie card (344:11935) — opaque dark foreground */}
+      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.75rem] flex-col justify-end gap-3 rounded-[1.25rem] bg-black/[0.62] px-[1.375rem] pb-8 pt-[17.5rem] backdrop-blur-[7px]">
         {/* hoodie cut-out (344:11938) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

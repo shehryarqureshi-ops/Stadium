@@ -9,9 +9,16 @@ const dot =
 function Panel({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`relative flex h-[13.5rem] items-center justify-center overflow-hidden rounded-xl border border-grey-200 bg-[#fafbfa] ${dot}`}
+      className={`relative flex h-[13.5rem] items-center justify-center overflow-hidden rounded-xl border border-grey-200 bg-[#f6faf7] ${dot}`}
     >
-      {children}
+      {/* soft brand-green ambient wash bleeding across the mockup region */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(115%_95%_at_50%_112%,rgba(16,153,90,0.20),transparent_66%)]"
+      />
+      <span className="relative z-10 flex w-full items-center justify-center">
+        {children}
+      </span>
     </div>
   );
 }
@@ -75,26 +82,47 @@ function FulfillMock() {
 
 function GiftingMock() {
   return (
-    <div className="flex w-[78%] items-center justify-between rounded-lg bg-white px-3 py-4 shadow-[0_0.5rem_1.25rem_rgba(0,0,0,0.1)]">
-      <span className="size-6 rounded-full bg-grey-200" />
-      <span className="mx-1 h-px flex-1 border-t border-dashed border-grey-300" />
-      <span className="flex size-6 items-center justify-center rounded-full bg-swag-green-deep text-[0.625rem] text-white">
-        ✦
-      </span>
-      <span className="mx-1 h-px flex-1 border-t border-dashed border-grey-300" />
-      <span className="flex size-6 items-center justify-center rounded-full bg-swag-green-deep text-[0.625rem] text-white">
-        ✓
-      </span>
+    <div className="flex w-[82%] flex-col gap-3 rounded-lg bg-white px-3 py-3 shadow-[0_0.5rem_1.25rem_rgba(0,0,0,0.1)]">
+      <div className="flex items-center justify-between text-[0.4375rem] font-bold uppercase tracking-[0.03em] text-swag-grey">
+        <span>New hire</span>
+        <span>Gift delivered</span>
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="size-6 rounded-full bg-gradient-to-br from-swag-green to-swag-green-deep" />
+        <span className="mx-1 h-px flex-1 border-t border-dashed border-grey-300" />
+        <span className="flex size-6 items-center justify-center rounded-full bg-swag-green-deep text-white">
+          <svg className="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <rect x="3" y="8" width="18" height="4" rx="1" />
+            <path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M12 8H7.5a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8ZM12 8h4.5a2.5 2.5 0 0 0 0-5C13 3 12 8 12 8Z" />
+          </svg>
+        </span>
+        <span className="mx-1 h-px flex-1 border-t border-dashed border-grey-300" />
+        <span className="flex size-6 items-center justify-center rounded-full bg-swag-green-deep text-white">
+          <svg className="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </span>
+      </div>
     </div>
   );
 }
 
 function IntegrationsMock() {
-  const names = ["Oracle", "factorial", "Sage", "fountain", "Humaans", "HR Cloud", "Ashby", "ADP", "Zelt"];
+  // full-color wordmarks; the wall runs wider than the panel so outer logos
+  // bleed past the (clipped) card edges, matching the design's overflow treatment
+  const logos: [string, string][] = [
+    ["ORACLE", "#C74634"], ["factorial", "#FF365E"], ["Sage", "#00A63E"], ["Justworks", "#1B3B6F"],
+    ["fountain", "#2F6BFF"], ["Humaans", "#111827"], ["UKG", "#005151"], ["Greenhouse", "#1F9E5A"],
+    ["HR Cloud", "#2AA8E0"], ["Ashby", "#6B4CE6"], ["ADP", "#D0271D"], ["zelt", "#111111"],
+  ];
   return (
-    <div className="grid w-[80%] grid-cols-3 gap-1.5">
-      {names.map((n) => (
-        <span key={n} className="truncate rounded-md bg-white px-1.5 py-1.5 text-center text-[0.5rem] font-semibold text-swag-grey shadow-[0_0.125rem_0.375rem_rgba(0,0,0,0.06)]">
+    <div className="grid w-[118%] grid-cols-4 gap-1.5">
+      {logos.map(([n, color]) => (
+        <span
+          key={n}
+          style={{ color }}
+          className="truncate rounded-md bg-white px-2 py-1.5 text-center text-[0.5rem] font-bold shadow-[0_0.125rem_0.375rem_rgba(0,0,0,0.06)]"
+        >
           {n}
         </span>
       ))}
@@ -110,8 +138,14 @@ function ReportingMock() {
       <svg viewBox="0 0 120 40" className="w-full" fill="none" aria-hidden>
         <path d="M2 36 C25 34 40 26 60 22 S100 8 118 4" stroke="#10995a" strokeWidth="2" strokeLinecap="round" />
       </svg>
-      <span className="absolute -bottom-1 right-2 rounded bg-swag-green-deep px-1.5 py-0.5 text-[0.4375rem] font-semibold text-white">
-        On track
+      <span className="absolute -bottom-1 right-2 flex items-center gap-1.5 rounded-lg bg-white px-2 py-1 shadow-[0_0.125rem_0.5rem_rgba(0,0,0,0.12)]">
+        <svg className="size-3 text-swag-green-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="m3 17 6-6 4 4 8-8" />
+        </svg>
+        <span className="flex flex-col leading-tight">
+          <span className="text-[0.4375rem] font-bold text-swag-ink">On track</span>
+          <span className="text-[0.375rem] text-swag-grey">18% under budget</span>
+        </span>
       </span>
     </div>
   );
