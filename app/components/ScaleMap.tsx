@@ -109,11 +109,12 @@ export default function ScaleMap() {
       {/* particle visualization — one arrangement per active stat */}
       <div className="mx-auto w-full max-w-content">
         <div data-animation="reveal" className="w-full max-w-content relative">
+          {/* scales to the container — a hardcoded width="1200" overflowed the
+              page on anything narrower than the content cap (mobile/tablet) */}
           <svg
-            className="absolute inset-0"
-            width="1200"
-            height="512"
+            className="absolute inset-0 h-full w-full"
             viewBox="0 0 1200 512"
+            preserveAspectRatio="none"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

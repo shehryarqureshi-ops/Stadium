@@ -660,7 +660,12 @@ export default function StadiumWay() {
                   : "opacity-0 duration-180"
               }`}
             >
-              <div className="relative h-[35rem] w-full [clip-path:inset(-200px_0px)] overflow-clips">
+              {/* overflow-x-clip (not overflow-hidden) contains the coverflow's
+                  off-screen neighbour cards so they can't extend the page's
+                  scroll width, while leaving vertical overflow visible for the
+                  cards' shadows / scaled neighbours. clip-path only hides them
+                  visually — it does NOT stop them widening the document. */}
+              <div className="relative h-[35rem] w-full overflow-x-clip [clip-path:inset(-200px_0px)]">
                 <div className="fade-left absolute top-0 bottom-0 -left-px w-45 bg-linear-to-r from-[#f2f2f2] z-20" />
                 <div className="fade-right absolute top-0 bottom-0 right-0 w-72 bg-linear-to-l from-[#f2f2f2] z-20" />
                 {deck.map((cardItem, i) => {
