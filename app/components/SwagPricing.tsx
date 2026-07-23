@@ -53,12 +53,12 @@ export default function SwagPricing() {
                 </span>
               </a>
             </div>
-            <div className="flex-1 overflow-hidden rounded-2xl">
+            <div className="flex-1 overflow-hidden rounded-2xl bg-[#050505]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/swag/swag-pricing.jpg"
-                alt="A team unpacking branded swag"
-                className="aspect-[2000/1400] w-full object-cover lg:h-full"
+                src="/swag/pricing-badge.jpg"
+                alt="Stadium Enterprise Pass badge on a lanyard"
+                className="aspect-[610/427] w-full object-cover lg:h-full"
               />
             </div>
           </div>
