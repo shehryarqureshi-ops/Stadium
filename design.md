@@ -1233,3 +1233,40 @@ Dark-green hero on `--gradient-swag-hero`; `SiteHeader` auto-themes white (scrol
 - Logo marquee: `/trust-*.svg` inverted white (brightness-0 invert), opacity 90,
   CSS marquee, edge mask-fade
 - Assets: `public/swag/swag-hoodie.png`, `swag-warehouse.jpg`
+
+## Remaining sections (component · Figma node · notes)
+Section headings share one scale: Satoshi 28/36/44 (`text-[1.75rem] md:text-[2.25rem]
+lg:text-[2.75rem]`, tracking −0.5); eyebrows `text-eyebrow-sm/md` uppercase
+`text-swag-green-deep` (normalized — Figma's per-section eyebrow greens/weights
+unified). Body = `text-swag-grey`. Green tiles/gradients recreated in CSS.
+
+- **SwagProblem** · 344:11965 — peek-behind white card over a green→white gradient;
+  3-card grid on a `#f2f2f2` tray. Assets: swag-problem-1..3.jpg
+- **SwagDivider** · 411:1053 — 5-segment rainbow rule (accent-lilac/water/turmeric/punch/lime)
+- **SwagOfferings** · 399:748 — 2 offer cards (green-gradient "Run a swag program"
+  [Popular] + grey "Ship it yourself"), each with white inner card + checklist + CTA
+- **SwagWorkflow** · 2:25010 — 6-tab client component (Bulk Swag active from Figma;
+  other 5 tabs placeholder copy). Asset: swag-workflow.jpg
+- **SwagCatalog** · 2:25059 — scroll carousel of category cards (count + brands +
+  flat-lay), prev/next arrows. Assets: swag-cat-apparel/drinkware.jpg
+- **SwagFulfillment** · 2:25104 — dark-green gradient card, 4×3 comparison matrix
+  (translucent `#02120b`/50 tiles). Mint eyebrow (`text-swag-mint`)
+- **SwagHowItWorks** · 2:25161 — 3 step cards on a tray; step 01 has a green editor
+  visual (toolbar + shirt + Approved). Asset: swag-shirt.png. Left-aligned header
+- **SwagPlatform** · 2:25186 — 3×2 feature cards with simplified CSS mockups
+  (login/inventory/fulfillment/gifting/integrations/reporting) on a dot-field
+- **SwagAdminView** · 2:25303 — centered header + skeleton dashboard mockup (grey blocks)
+- **SwagCommittee** · 2:25312 — dark-green card, 2×2 stakeholder photo cards.
+  Assets: swag-committee-1..4.jpg
+- **SwagPricing** · 2:25395 — grey container: intro+CTA+image + 4 progressive Pass
+  cards (Engagement = Popular). Asset: swag-pricing.jpg (Figma's watermarked placeholder)
+- **SwagComparison** · 2:25431 — feature table, Stadium col highlighted `#f2fbf5` green;
+  check/minus/text cells; Book-a-call CTA
+- **SwagCaseStudies** · 2:25554 — quote-card carousel (green thumb + `#e8f8ee` stat pill)
+- **SwagPaperchase** · 2:25598 — sticky intro + quote, BEFORE/DURING/AFTER timeline
+- **SwagImpact** · 2:25697 — bento: photo+stat / grey stat+quote / green + dark stat.
+  Asset: swag-impact.jpg
+- **SwagClosing** · 2:25751 — Book-a-demo form + "Keep exploring" links + dark final CTA
+- Footer reuses `PageClose`. Verified: 0 horizontal overflow + 0 console errors at
+  1440/1280/768/375. Placeholder copy (Workflow tabs 5/6, Catalog cats, Case-study
+  quotes) + the Pricing watermark image are the items to swap for real content.
