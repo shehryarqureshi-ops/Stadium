@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 import SwagHero from "../components/SwagHero";
+import SwagProblem from "../components/SwagProblem";
 
 export const metadata: Metadata = {
   title: "Swag — The infrastructure behind every swag program | Stadium",
@@ -19,6 +20,7 @@ export default function SwagPage() {
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
         <SwagHero />
+        <SwagProblem />
       </main>
       <PageClose />
     </>

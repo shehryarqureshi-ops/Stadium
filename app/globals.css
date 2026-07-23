@@ -94,6 +94,9 @@
      the swag vertical's green brand palette, used across the whole page. ===== */
   --color-swag-green: #03ba4f; /* primary CTA + brand green (hero CTA 344:11927) */
   --color-swag-mint: #d7fee7; /* eyebrow / light accent on dark-green hero */
+  --color-swag-green-deep: #10995a; /* eyebrow / accent green on white sections */
+  --color-swag-ink: #16171b; /* swag headings (near-black) */
+  --color-swag-grey: #6b6c71; /* swag body text on white */
   --color-grey-100: #f8f8f8; /* Universal/Greyscale/100-Primary Surface Light */
   --color-grey-200: #eff0f2; /* Universal/Greyscale/200-Selected Surface-Divider Light */
   --color-grey-300: #cdced0; /* Universal/Greyscale/300 — borders/dividers */
