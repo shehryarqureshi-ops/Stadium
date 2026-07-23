@@ -1200,3 +1200,36 @@ Figma: 1:62590 / 1:71024 / 1:66813.
 - OUR BRANDS: `text-label` uppercase grey-400 + hairline #C7BCB3 (lg) + Swagmagic/Snackmagic logotypes
 - Link columns: headings `text-label` uppercase white +1.12px; links `text-body-md grey-400` gap-16; stacked mobile / 4-up tablet+
 - Legal bar: white/10 divider; © line Overpass 12 uppercase grey-400; language pill border white/20 radius 6
+
+---
+
+# /swag — SwagMagic vertical page
+
+Figma: "Stadium-Enterprise" `n9SjmDjzB1PeZAYJ5w43fr`, `/swag` frame `2:24733`
+(1440 desktop-only; tablet/mobile derived, 375=default / 768=`md` / 1440=`lg`).
+Green SwagMagic brand accent throughout; same Satoshi/Overpass type system and
+white rounded content sections as the homepage.
+
+**Tokens (new, globals.css):**
+- `--color-swag-green: #03ba4f` — primary CTA / brand green (hero CTA 344:11927)
+- `--color-swag-mint: #d7fee7` — eyebrow / light accent on the dark-green hero
+- `--gradient-swag-hero` — mesh sampled from the Figma bg image 13674: green
+  glow `#317154` top-left, teal glow `#18585f` mid-right, deep base
+  `#063018`/`#04180f` (recreated in CSS, not shipped as a raster)
+
+## Hero · Swag (`SwagHero.tsx`, Figma 344:11903)
+Dark-green hero on `--gradient-swag-hero`; `SiteHeader` auto-themes white (scroll ≤ 8).
+- Eyebrow "SWAG · SWAGMAGIC": `text-eyebrow-sm`→`md`, tracking 1.6px, `text-swag-mint`
+- Headline "The infrastructure behind every swag program": Satoshi (font-display)
+  32 / 44 / 58px, tracking −1.5px (lg), leading 1.02, white; copy col w 543 (lg)
+- Subhead: Overpass 19px/1.52, near-white #fbfeff
+- CTAs: `h-button-h rounded-full px-button-x text-button-primary` uppercase;
+  primary `bg-swag-green text-white`, secondary `bg-white border-#e2e2de text-ink`
+- Teams line: Overpass SemiBold 13px #fbfeff
+- Product cluster (344:11932, 558×557): warehouse photo 295×470 rounded-16 shadow
+  + frosted hoodie card (bg-black/33, rounded-20, w-259) — hoodie cut-out,
+  "Embroidered hoodie" (Overpass Bold 17.5 #ddd) + desc (12 #ccc) + ADD TO CART
+  (border white/25) + floating vertical size pill (SIZE / S·M·L·XL, L active bg-black/75)
+- Logo marquee: `/trust-*.svg` inverted white (brightness-0 invert), opacity 90,
+  CSS marquee, edge mask-fade
+- Assets: `public/swag/swag-hoodie.png`, `swag-warehouse.jpg`

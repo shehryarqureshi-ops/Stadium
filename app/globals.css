@@ -37,6 +37,15 @@
     rgba(24, 24, 24, 0.2) 60%,
     rgba(24, 24, 24, 0.05) 100%
   );
+
+  /* Swag hero mesh gradient — sampled from the Figma /swag hero background
+     (344:11903 / raw image 13674): deep green base with a green glow top-left
+     (#317154) and a teal glow mid-right (#18585f), darkest center-left. */
+  --gradient-swag-hero:
+    radial-gradient(72% 62% at 3% -8%, #3d8b64 0%, rgba(61, 139, 100, 0) 52%),
+    radial-gradient(68% 78% at 104% 50%, #1c6068 0%, rgba(28, 96, 104, 0) 60%),
+    radial-gradient(130% 95% at 36% 24%, #04190f 0%, rgba(4, 25, 15, 0) 72%),
+    linear-gradient(155deg, #063018 0%, #04180f 52%, #05271e 100%);
 }
 
 /* Site-wide keyboard focus ring (quality bar 2026-06-12: every
@@ -80,6 +89,11 @@
   --color-accent-turmeric: #ffb800; /* Stadium/Accents/Turmeric */
   --color-accent-lime: #00c036; /* Stadium/Accents/Lime */
   --color-accent-punch: #ff5b77; /* Stadium/Accents/Punch */
+
+  /* ===== Swag / SwagMagic accent (Figma Stadium-Enterprise /swag 2:24733) —
+     the swag vertical's green brand palette, used across the whole page. ===== */
+  --color-swag-green: #03ba4f; /* primary CTA + brand green (hero CTA 344:11927) */
+  --color-swag-mint: #d7fee7; /* eyebrow / light accent on dark-green hero */
   --color-grey-100: #f8f8f8; /* Universal/Greyscale/100-Primary Surface Light */
   --color-grey-200: #eff0f2; /* Universal/Greyscale/200-Selected Surface-Divider Light */
   --color-grey-300: #cdced0; /* Universal/Greyscale/300 — borders/dividers */
