@@ -1218,7 +1218,36 @@ white rounded content sections as the homepage.
   `#063018`/`#04180f` (recreated in CSS, not shipped as a raster)
 
 ## Hero · Swag (`SwagHero.tsx`, Figma 344:11903)
-Dark-green hero on `--gradient-swag-hero`; `SiteHeader` auto-themes white (scroll ≤ 8).
+Background is now an animated WebGL shader (`SwagHeroShader.tsx`), not the Figma
+mesh-gradient photo (`swag-hero-bg.jpg`, kept on disk, unused). `SiteHeader`
+auto-themes white (scroll ≤ 8).
+
+### Swag hero shader (`SwagHeroShader.tsx`)
+Recreation of a Figma shader-playground export the user supplied (import from
+`shaders/react`, a composed `<Shader>` wrapper with `Swirl`/`ChromaFlow`/
+`FlutedGlass`/`FilmGrain`). That package + wrapper + the `ChromaFlow`/`FilmGrain`
+shaders are Figma-internal and unpublished — no build of
+`@paper-design/shaders-react` (latest 0.0.77, next, canary, experimental) ships
+them, and prop names differ. So the layered look is rebuilt from the real
+published shaders. Layer → equivalent → params:
+- **Swirl + ChromaFlow → `MeshGradient`** (dark base + electric flow). colors
+  `['#050506','#101018','#18181a','#0033ff','#00e1ff','#5500ff','#0059ff']`
+  (base anchor `#18181a` + the export's up/down/left/right hues, dark-biased),
+  `distortion 1`, `swirl 0.7`, `grainOverlay 0.15` (= the FilmGrain layer),
+  `speed 0.4`.
+- **FlutedGlass → `FlutedGlass`** ribs, transparent `colorBack #00000000`,
+  `shape 'lines'` (published enum has no `'rounded'`), `distortionShape 'prism'`
+  (= the export's chromatic `aberration`), `angle 28`, `size 0.13`,
+  `distortion 0.7`, `shadows 0.35`, `highlights 0.18`, `blur 0.12`,
+  `edges 0.12`, `speed 0.15`; blended `mix-blend-mode: soft-light` over the
+  chroma so the ribs refract it.
+- **Mood scrim**: radial `transparent → black/0.35 → black/0.6` — keeps the
+  field dark/premium and floors white-text contrast.
+- Motion halts under `prefers-reduced-motion` (`speed 0` = static first frame,
+  still renders); Paper's runtime pauses RAF while the tab is hidden.
+  `maxPixelCount 1920×1080` per canvas caps hi-dpi/mobile GPU cost.
+- Shader props are library uniforms, not px/tokens, so they live in the
+  component (exempt from the "tokens only" rule).
 - Eyebrow "SWAG · SWAGMAGIC": `text-eyebrow-sm`→`md`, tracking 1.6px, `text-swag-mint`
 - Headline "The infrastructure behind every swag program": Satoshi (font-display)
   32 / 44 / 58px, tracking −1.5px (lg), leading 1.02, white; copy col w 543 (lg)

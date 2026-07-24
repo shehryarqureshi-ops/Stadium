@@ -30,7 +30,11 @@ function ProblemCard({ img, alt, title, desc }: (typeof CARDS)[number]) {
     <div className="flex flex-1 flex-col rounded-xl border-8 border-white bg-white p-2 shadow-[0_0.1875rem_0.375rem_0_rgba(0,0,0,0.06)]">
       <div className="overflow-hidden rounded-bl-3xl rounded-br-3xl rounded-tl-lg rounded-tr-lg drop-shadow-[0_0.75rem_0.5rem_rgba(0,0,0,0.12)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={img} alt={alt} className="aspect-[333/250] w-full object-cover" />
+        <img
+          src={img}
+          alt={alt}
+          className="aspect-[333/250] w-full object-cover"
+        />
       </div>
       <div className="flex flex-col gap-4 px-6 pb-8 pt-10 lg:px-8">
         <h3 className="font-display text-[1.5rem] leading-[1.1] tracking-[-0.01875rem] text-swag-ink lg:text-[1.6875rem]">
@@ -46,12 +50,12 @@ function ProblemCard({ img, alt, title, desc }: (typeof CARDS)[number]) {
 
 export default function SwagProblem() {
   return (
-    <section className="relative -mt-16 overflow-hidden bg-white px-section-x-sm pb-16 md:-mt-20 md:px-section-x-md md:pb-24 lg:-mt-24 lg:px-section-x-lg lg:pb-28">
+    <section className="relative overflow-hidden bg-white px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
       {/* overlaps the hero and continues its green (no seam), fading to white
           behind the peek bars + card */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[linear-gradient(to_bottom,#05271e_0%,#05271e_14%,#123f2c_30%,#dfe9e4_62%,#ffffff_84%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[linear-gradient(to_bottom,#0a0a0a,#ffffff)]"
       />
 
       <div className="relative mx-auto flex w-full max-w-content flex-col items-center">

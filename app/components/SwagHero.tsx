@@ -1,10 +1,14 @@
+import SwagHeroShader from "./SwagHeroShader";
+
 /* Hero · Swag — Figma "Stadium-Enterprise" /swag (344:11903). Dark-green
    SwagMagic hero: mint eyebrow, Satoshi headline, green/white CTA pair, a
    floating frosted "Embroidered hoodie" product card (size pill S/M/L/XL) over
-   a warehouse photo, and a white logo marquee. Background is the exact Figma
-   mesh-gradient (public/swag/swag-hero-bg.jpg). Desktop frame is 1440; tablet/
-   mobile derived (stack the product cluster under the copy). SiteHeader is
-   rendered by the page and auto-themes white over this dark hero. */
+   a warehouse photo, and a white logo marquee. Background is now an animated
+   WebGL shader (<SwagHeroShader>, dark blue/violet chroma + fluted glass),
+   replacing the original static Figma mesh-gradient photo. Desktop frame is
+   1440; tablet/mobile derived (stack the product cluster under the copy).
+   SiteHeader is rendered by the page and auto-themes white over this dark
+   hero. */
 
 /* Design social-proof strip (no Spotify): 9 logos evenly distributed across the
    full content width, exactly as the Figma frame — amazon, Pinterest, accenture,
@@ -87,8 +91,10 @@ function ProductCluster() {
 
 export default function SwagHero() {
   return (
-    <section className="relative overflow-hidden bg-[#06301d] bg-[image:url('/swag/swag-hero-bg.jpg')] bg-cover bg-top bg-no-repeat px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]">
-      <div className="mx-auto flex w-full max-w-content flex-col gap-16 lg:gap-20">
+    <section className="relative overflow-hidden bg-black px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]">
+      {/* animated shader background (replaces the static mesh-gradient photo) */}
+      <SwagHeroShader />
+      <div className="relative z-10 mx-auto flex w-full max-w-content flex-col gap-16 lg:gap-20">
         {/* copy + product cluster */}
         <div className="flex flex-col items-start gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
           {/* copy column */}
