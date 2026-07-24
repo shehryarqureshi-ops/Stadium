@@ -68,7 +68,7 @@ function corner(r: number, c: number) {
 export default function SwagFulfillment() {
   return (
     <section className="bg-white px-section-x-sm py-3 md:px-section-x-md lg:px-section-x-lg">
-      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[radial-gradient(90%_120%_at_100%_-10%,#0d4531_0%,transparent_55%),radial-gradient(95%_110%_at_-10%_115%,#1d6b5b_0%,transparent_58%),linear-gradient(155deg,#07291d_0%,#03130d_55%,#062b21_100%)] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-24 lg:px-24 lg:py-[8.75rem]">
+      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[radial-gradient(78%_88%_at_-6%_112%,#2f7480_0%,transparent_52%),linear-gradient(155deg,#052419_0%,#03190f_50%,#062015_100%)] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-24 lg:px-24 lg:py-[8.75rem]">
         {/* header */}
         <div className="flex flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">

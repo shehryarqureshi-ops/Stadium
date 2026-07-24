@@ -37,8 +37,8 @@ function ProductCluster() {
         />
       </div>
 
-      {/* frosted hoodie card (344:11935) — opaque dark foreground */}
-      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.75rem] flex-col justify-end gap-3 rounded-[1.25rem] bg-black/[0.62] px-[1.375rem] pb-8 pt-[17.5rem] backdrop-blur-[7px]">
+      {/* frosted hoodie card (344:11935) — black/0.33 + glass blur (Figma glass r39) */}
+      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.75rem] flex-col justify-end gap-3 rounded-[1.25rem] border border-white/[0.08] bg-black/[0.33] px-[1.375rem] pb-8 pt-[17.5rem] backdrop-blur-[16px]">
         {/* hoodie cut-out (344:11938) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -87,7 +87,7 @@ function ProductCluster() {
 
 export default function SwagHero() {
   return (
-    <section className="relative overflow-hidden bg-[image:var(--gradient-swag-hero)] px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]">
+    <section className="relative overflow-hidden bg-[#06301d] bg-[image:url('/swag/swag-hero-bg.jpg')] bg-cover bg-top bg-no-repeat px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]">
       <div className="mx-auto flex w-full max-w-content flex-col gap-16 lg:gap-20">
         {/* copy + product cluster */}
         <div className="flex flex-col items-start gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
@@ -148,23 +148,34 @@ export default function SwagHero() {
           </div>
         </div>
 
-        {/* social-proof strip — 9 white marks evenly spread across the full width */}
+        {/* social-proof marquee — seamless infinite scroll (two identical groups),
+            edges masked to fade in/out */}
         <div
           data-animation="reveal"
-          className="flex w-full flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:flex-nowrap lg:justify-between lg:gap-x-6"
+          className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]"
         >
-          {LOGOS.map((logo, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={i}
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.w}
-              height={logo.h}
-              style={{ height: `${logo.h / 16}rem` }}
-              className="w-auto max-w-none shrink-0 opacity-90 brightness-0 invert"
-            />
-          ))}
+          <div className="flex w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
+            {[0, 1].map((group) => (
+              <div
+                key={group}
+                aria-hidden={group === 1}
+                className="flex shrink-0 items-center gap-x-16 pr-16 lg:gap-x-24 lg:pr-24"
+              >
+                {LOGOS.map((logo, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={i}
+                    src={logo.src}
+                    alt={group === 0 ? logo.alt : ""}
+                    width={logo.w}
+                    height={logo.h}
+                    style={{ height: `${logo.h / 16}rem` }}
+                    className="w-auto max-w-none shrink-0 opacity-90 brightness-0 invert"
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -136,8 +136,8 @@ export default function SwagClosing() {
         </div>
       </section>
 
-      {/* Final dark CTA */}
-      <section className="bg-white px-section-x-sm pb-16 md:px-section-x-md md:pb-20 lg:px-section-x-lg lg:pb-24">
+      {/* Final dark CTA — green glow transitions in from the keep-exploring block */}
+      <section className="bg-[radial-gradient(85%_65%_at_50%_-4%,#4e9377_0%,rgba(78,147,119,0)_60%),#ffffff] px-section-x-sm pb-16 md:px-section-x-md md:pb-20 lg:px-section-x-lg lg:pb-24">
         <div className="mx-auto flex max-w-content flex-col items-center gap-6 rounded-[2.5rem] bg-swag-ink px-6 py-20 text-center md:py-24">
           <h2 data-animation="reveal" className="max-w-[36rem] font-display text-[2rem] leading-[1.06] tracking-[-0.03125rem] text-white md:text-[2.75rem]">
             Make swag run itself

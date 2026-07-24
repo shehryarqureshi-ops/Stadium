@@ -167,8 +167,8 @@ const I = {
   ),
 };
 
-type Item = { label: string; Icon: (p: IconProps) => React.ReactNode };
-type Group = { label: string; accent?: boolean; items: Item[] };
+type Item = { label: string; Icon: (p: IconProps) => React.ReactNode; href?: string };
+type Group = { label: string; accent?: boolean; href?: string; items: Item[] };
 
 /* From the new Figma (5589:23499). Exported for the mobile-nav accordion. */
 export const COLUMNS: Group[][] = [
@@ -184,13 +184,14 @@ export const COLUMNS: Group[][] = [
     },
     {
       label: "Swag",
+      href: "/swag",
       items: [
-        { label: "Swag Kits", Icon: I.package },
-        { label: "Branded Shops", Icon: I.bag },
-        { label: "On-Demand Swag", Icon: I.zap },
-        { label: "Bulk Swag", Icon: I.layers },
-        { label: "Self-Serve Swag", Icon: I.monitor },
-        { label: "Swag Storage", Icon: I.archive },
+        { label: "Swag Kits", Icon: I.package, href: "/swag" },
+        { label: "Branded Shops", Icon: I.bag, href: "/swag" },
+        { label: "On-Demand Swag", Icon: I.zap, href: "/swag" },
+        { label: "Bulk Swag", Icon: I.layers, href: "/swag" },
+        { label: "Self-Serve Swag", Icon: I.monitor, href: "/swag" },
+        { label: "Swag Storage", Icon: I.archive, href: "/swag" },
       ],
     },
   ],
@@ -239,28 +240,33 @@ const ArrowRight = (p: IconProps) => (
 /* Group: 12px-Bold-1px heading (arrow-reveal) · 1px underline (rainbow for the
    accent group, #d9d9d9 otherwise) · 28px icon rows @ 8px. gap 16 throughout. */
 function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean }) {
+  // Swag wipes in the brand green; other verticals use the Stadium spectrum.
+  const wipe =
+    group.label === "Swag"
+      ? "bg-[linear-gradient(270deg,#00c036,#03ba4f,#10995a)]"
+      : "bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)]";
   return (
     /* minRow = first group of a two-group column: fixed 149px tall so the
        second group (Swag / Gifting) top-aligns across columns (Figma 2:75437) */
     <div className={`group/col flex flex-col gap-4 ${minRow ? "min-h-[9.3125rem]" : ""}`}>
       <a
-        href="#"
+        href={group.href ?? "#"}
         aria-label={`View all ${group.label}`}
         className="engage-heading flex items-center gap-1 font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60 transition-colors duration-200 group-hover/col:text-[#181818]"
       >
         {group.label}
         <ArrowRight className="engage-arrow size-3 shrink-0" />
       </a>
-      {/* grey rail at rest; the rainbow gradient wipes in left→right on hover
-          of the column (all columns, Recognition included) */}
+      {/* grey rail at rest; the accent gradient (green for Swag) wipes in
+          left→right on column hover */}
       <span aria-hidden className="relative block h-px w-full bg-[#d9d9d9]">
-        <span className="absolute inset-0 origin-left scale-x-0 bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)] transition-transform duration-500 ease-out group-hover/col:scale-x-100" />
+        <span className={`absolute inset-0 origin-left scale-x-0 ${wipe} transition-transform duration-500 ease-out group-hover/col:scale-x-100`} />
       </span>
       <ul className="engage-group flex flex-col gap-2">
-        {group.items.map(({ label, Icon }) => (
+        {group.items.map(({ label, Icon, href }) => (
           <li key={label}>
             <a
-              href="#"
+              href={href ?? "#"}
               className="engage-row flex h-7 items-center gap-3 font-sans text-[0.875rem] font-normal leading-5 text-grey-600"
             >
               <span className="flex size-5 shrink-0 items-center justify-center">

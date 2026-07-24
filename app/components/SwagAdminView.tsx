@@ -1,8 +1,9 @@
 /* Stores admin — Figma /swag 2:25303 ("One view of every team's store").
-   Centered header + a light skeleton-dashboard mockup (grey placeholder blocks
-   in a browser card) representing the admin view. */
+   Centered header + the real Figma dashboard mockup (public/swag/admin-view.png,
+   1199×767 — the "Stadium Gift Shop" admin view exported from node 426:7188). */
 
-const bar = "rounded bg-grey-200";
+import Image from "next/image";
+import adminView from "@/public/swag/admin-view.png";
 
 export default function SwagAdminView() {
   return (
@@ -32,52 +33,17 @@ export default function SwagAdminView() {
           </p>
         </div>
 
-        {/* skeleton dashboard mockup */}
+        {/* real Figma dashboard mockup */}
         <div
           data-animation="reveal"
-          className="w-full max-w-[54rem] rounded-3xl border border-grey-200 bg-[#fbfbfc] p-5 shadow-[0_1.25rem_2.5rem_-0.75rem_rgba(0,0,0,0.12)] md:p-7"
+          className="w-full max-w-[54rem] overflow-hidden rounded-3xl border border-grey-200 bg-white shadow-[0_1.25rem_2.5rem_-0.75rem_rgba(0,0,0,0.12)]"
         >
-          {/* top bar */}
-          <div className="mb-4 flex items-center justify-between rounded-xl bg-white p-3">
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-12 rounded bg-swag-ink" />
-              <span className="h-2 w-8 rounded bg-grey-200" />
-              <span className="h-2 w-8 rounded bg-grey-200" />
-              <span className="h-2 w-8 rounded bg-grey-200" />
-            </div>
-            <span className="h-6 w-24 rounded-md bg-grey-200" />
-          </div>
-          {/* body */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_1.6fr]">
-            {/* left */}
-            <div className="flex flex-col gap-3 rounded-xl bg-white p-4">
-              <span className={`h-2 w-16 ${bar}`} />
-              <span className="h-24 rounded-lg bg-gradient-to-br from-grey-200 to-grey-100" />
-              <div className="grid grid-cols-2 gap-3">
-                <span className="h-20 rounded-lg bg-grey-100" />
-                <span className="h-20 rounded-lg bg-grey-100" />
-              </div>
-            </div>
-            {/* right */}
-            <div className="flex flex-col gap-4 rounded-xl bg-white p-4">
-              <div className="flex flex-col gap-3">
-                <span className={`h-2 w-14 ${bar}`} />
-                <div className="grid grid-cols-3 gap-3">
-                  <span className="h-9 rounded-lg bg-grey-100" />
-                  <span className="h-9 rounded-lg bg-grey-200" />
-                  <span className="h-9 rounded-lg bg-grey-100" />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3">
-                <span className={`h-2 w-14 ${bar}`} />
-                <div className="grid grid-cols-3 gap-3">
-                  <span className="h-16 rounded-lg bg-grey-200" />
-                  <span className="h-16 rounded-lg bg-grey-100" />
-                  <span className="h-16 rounded-lg bg-grey-100" />
-                </div>
-              </div>
-            </div>
-          </div>
+          <Image
+            src={adminView}
+            alt="Stadium admin dashboard: a branded team store with live status, tabs, and swag designs"
+            sizes="(min-width: 1024px) 54rem, 92vw"
+            className="h-auto w-full"
+          />
         </div>
       </div>
     </section>

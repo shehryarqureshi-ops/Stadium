@@ -108,7 +108,7 @@ export default function SwagHowItWorks() {
               <StepText n="01" title={["Design", "& approve"]} desc="Pick products, drop in your logo, approve a free mockup — within 48 hours." />
             </div>
             {/* design-editor visual */}
-            <div className="relative h-[20.75rem] w-full shrink-0 overflow-hidden rounded-3xl bg-[radial-gradient(120%_100%_at_100%_0%,#0d4531_0%,transparent_55%),linear-gradient(150deg,#0a3d2a_0%,#05231a_45%,#6bad8f_120%)] sm:w-[16.5rem]">
+            <div className="relative h-[20.75rem] w-full shrink-0 overflow-hidden rounded-3xl bg-[radial-gradient(95%_85%_at_8%_112%,#83cbaa_0%,transparent_55%),radial-gradient(110%_90%_at_100%_-5%,#0c4531_0%,transparent_52%),linear-gradient(155deg,#0c4530_0%,#073626_52%,#0a3d2c_100%)] sm:w-[16.5rem]">
               {/* toolbar */}
               <div className="absolute left-1/2 top-4 flex -translate-x-1/2 items-center gap-0.5 rounded-2xl bg-black/50 p-1.5">
                 {["scan", "type", "image"].map((n) => (

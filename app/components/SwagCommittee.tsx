@@ -28,7 +28,7 @@ const CARDS = [
 export default function SwagCommittee() {
   return (
     <section className="bg-white px-section-x-sm py-3 md:px-section-x-md lg:px-section-x-lg">
-      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[radial-gradient(90%_120%_at_100%_-10%,#0d4531_0%,transparent_55%),radial-gradient(95%_110%_at_-10%_115%,#1d6b5b_0%,transparent_58%),linear-gradient(155deg,#07291d_0%,#03130d_55%,#062b21_100%)] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-20 lg:px-24 lg:py-24">
+      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[radial-gradient(80%_85%_at_86%_115%,#74b1a9_0%,transparent_54%),radial-gradient(85%_80%_at_42%_122%,#5fa384_0%,transparent_52%),radial-gradient(90%_110%_at_102%_-8%,#0a4530_0%,transparent_48%),linear-gradient(160deg,#083621_0%,#052318_52%,#0a3628_100%)] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-20 lg:px-24 lg:py-24">
         <div className="flex max-w-[42rem] flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
             <p
