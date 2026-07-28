@@ -47,10 +47,12 @@ const LINK_COLUMNS: { heading: string; links: string[] }[] = [
   },
 ];
 
-export default function PageClose() {
+export default function PageClose({ showCta = true }: { showCta?: boolean }) {
   return (
     <section className="bg-[#181818]">
-      {/* ===== Final CTA — centered on the dark block ===== */}
+      {/* ===== Final CTA — centered on the dark block. Hidden on pages that
+          carry their own closing CTA (e.g. /swag → "Make swag run itself"). ===== */}
+      {showCta && (
       <div className="relative overflow-hidden px-section-x-sm py-20 text-center md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-[7.5rem]">
         {/* deep-blue bloom in the lower center (behind the dot dome) */}
         <div
@@ -104,6 +106,7 @@ export default function PageClose() {
           </div>
         </div>
       </div>
+      )}
 
       {/* ===== Footer ===== */}
       <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pb-36 pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pb-56 lg:pt-20">

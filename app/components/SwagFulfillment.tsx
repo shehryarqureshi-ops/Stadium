@@ -1,11 +1,11 @@
 /* Fulfillment matrix — Figma /swag 2:25104 ("Every fulfillment model, one
-   setup"). A rounded dark-green gradient card holding a 4×3 comparison matrix
-   (rows: Stores / Kits / Send Items / In-Person; columns: On-Demand / Bulk /
-   Stored) of translucent tiles. Table scrolls horizontally on mobile. */
+   setup"). A light #f7f7f7 rounded card holding a 4×3 comparison matrix (rows:
+   Stores / Kits / Send Items / In-Person; columns: On-Demand / Bulk / Stored)
+   of white tiles with green row icons. Table scrolls horizontally on mobile. */
 
 function Icon({ name }: { name: string }) {
   const common = {
-    className: "size-[1.125rem] shrink-0 text-white",
+    className: "size-[1.125rem] shrink-0 text-swag-green-deep",
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
@@ -58,36 +58,36 @@ const ROWS = [
 ];
 
 function corner(r: number, c: number) {
-  if (r === 0 && c === 0) return "rounded-xl rounded-tl-2xl";
-  if (r === 0 && c === 3) return "rounded-xl rounded-tr-2xl";
-  if (r === 3 && c === 0) return "rounded-xl rounded-bl-2xl";
-  if (r === 3 && c === 3) return "rounded-xl rounded-br-2xl";
-  return "rounded-xl";
+  if (r === 0 && c === 0) return "rounded-lg rounded-tl-3xl";
+  if (r === 0 && c === 3) return "rounded-lg rounded-tr-3xl";
+  if (r === 3 && c === 0) return "rounded-lg rounded-bl-3xl";
+  if (r === 3 && c === 3) return "rounded-lg rounded-br-3xl";
+  return "rounded-lg";
 }
 
 export default function SwagFulfillment() {
   return (
     <section className="bg-white px-section-x-sm py-3 md:px-section-x-md lg:px-section-x-lg">
-      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[radial-gradient(78%_88%_at_-6%_112%,#2f7480_0%,transparent_52%),linear-gradient(155deg,#052419_0%,#03190f_50%,#062015_100%)] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-24 lg:px-24 lg:py-[8.75rem]">
+      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[#f7f7f7] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-24 lg:px-24 lg:py-[8.75rem]">
         {/* header */}
         <div className="flex flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#a7b5af] md:text-eyebrow-md"
+              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md"
             >
               FULFILLMENT, YOUR WAY
             </p>
             <h2
               data-animation="reveal"
-              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.01rem] text-white md:text-[2.25rem] lg:text-[2.75rem]"
+              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
             >
               Every fulfillment model, one setup
             </h2>
           </div>
           <p
             data-animation="reveal"
-            className="font-sans text-body-md text-[#e8f0ec] lg:text-[1.125rem] lg:leading-[1.45]"
+            className="font-sans text-body-md leading-[1.48] text-swag-grey lg:text-[1.125rem]"
           >
             Whether you print swag on demand, buy in bulk, or pull from stock,
             Stadium does all three. Most vendors only do one.
@@ -101,28 +101,28 @@ export default function SwagFulfillment() {
         >
           <div className="min-w-[46rem]">
             {/* column headers */}
-            <div className="mb-2 grid grid-cols-[1.6fr_1fr_1fr_1fr] gap-2">
+            <div className="mb-1 grid grid-cols-[20rem_1fr_1fr_1fr] gap-1">
               <div />
               {COLS.map((c) => (
-                <div key={c} className="px-6 py-3 text-center font-sans text-[0.9rem] text-[#a7b5af]">
+                <div key={c} className="px-6 py-4 text-center font-sans text-[0.90625rem] text-swag-ink">
                   {c}
                 </div>
               ))}
             </div>
             {/* rows */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               {ROWS.map((row, r) => (
-                <div key={row.label} className="grid grid-cols-[1.6fr_1fr_1fr_1fr] gap-2">
-                  <div className={`flex items-center gap-2.5 bg-[#02120b]/50 p-6 ${corner(r, 0)}`}>
+                <div key={row.label} className="grid grid-cols-[20rem_1fr_1fr_1fr] gap-1">
+                  <div className={`flex items-center gap-2.5 bg-white p-6 ${corner(r, 0)}`}>
                     <Icon name={row.icon} />
-                    <span className="font-sans text-[0.9rem] font-semibold text-white">
+                    <span className="font-sans text-[0.90625rem] font-semibold text-[#1b1b1b]">
                       {row.label}
                     </span>
                   </div>
                   {row.vals.map((v, c) => (
                     <div
                       key={v}
-                      className={`flex items-center justify-center bg-[#02120b]/50 p-6 text-center font-sans text-[0.9rem] font-semibold text-white ${corner(r, c + 1)}`}
+                      className={`flex items-center justify-center bg-white p-6 text-center font-sans text-[0.90625rem] font-semibold text-[#1b1b1b] ${corner(r, c + 1)}`}
                     >
                       {v}
                     </div>

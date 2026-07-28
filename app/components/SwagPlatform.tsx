@@ -1,7 +1,7 @@
-/* Platform — Figma /swag 2:25186 ("The stack behind every send"). A 3×2 grid
-   of feature cards, each a mini UI mockup + title + description. The mockups are
-   the real Figma exports (public/swag/plat-*.png, 758×520 incl. the dotted
-   green panel background). 3-up desktop → 1-up mobile. */
+/* Platform — Figma /swag 2:25186 ("The stack behind every send"). A grey tray
+   holding a 3×2 grid of white feature cards, each a mini UI mockup + title +
+   description. The mockups are the real Figma exports (public/swag/plat-*.png).
+   3-up desktop → 1-up mobile. */
 
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
@@ -24,7 +24,7 @@ const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
 export default function SwagPlatform() {
   return (
     <section className="bg-white px-section-x-sm py-20 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-28">
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-12">
+      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[40rem] flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
             <p
@@ -42,41 +42,41 @@ export default function SwagPlatform() {
           </div>
           <p
             data-animation="reveal"
-            className="font-sans text-body-md text-swag-grey lg:text-[1.125rem] lg:leading-[1.45]"
+            className="font-sans text-body-md leading-[1.48] text-swag-grey lg:text-[1.125rem]"
           >
             Everything you need to run swag at scale, from storefronts and
             inventory to automation and reporting.
           </p>
         </div>
 
-        <div
-          data-animation="reveal"
-          className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {CARDS.map((c) => (
-            <article
-              key={c.title}
-              className="flex flex-col gap-5 rounded-2xl border border-grey-200 bg-white p-4 lg:p-5"
-            >
-              <div className="relative aspect-[758/520] w-full overflow-hidden rounded-xl border border-grey-200 bg-[#f6faf7]">
-                <Image
-                  src={c.img}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 22rem, (min-width: 640px) 44vw, 90vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex flex-col gap-2 px-1 pb-2">
-                <h3 className="font-display text-[1.375rem] text-swag-ink">
-                  {c.title}
-                </h3>
-                <p className="font-sans text-body-md leading-[1.5] text-swag-grey">
-                  {c.desc}
-                </p>
-              </div>
-            </article>
-          ))}
+        {/* cards tray */}
+        <div data-animation="reveal" className="w-full rounded-[2.5rem] bg-[#f7f7f7] p-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {CARDS.map((c) => (
+              <article
+                key={c.title}
+                className="flex flex-col overflow-hidden rounded-3xl bg-white p-2 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]"
+              >
+                <div className="relative aspect-[376/260] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={c.img}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 20rem, (min-width: 640px) 44vw, 90vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-4 px-8 pb-8 pt-4">
+                  <h3 className="font-display text-[1.5625rem] leading-[1.04] tracking-[-0.01875rem] text-swag-ink">
+                    {c.title}
+                  </h3>
+                  <p className="font-sans text-[0.9375rem] leading-[1.5] text-swag-grey">
+                    {c.desc}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

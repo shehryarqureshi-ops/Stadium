@@ -1,6 +1,6 @@
-/* Committee — Figma /swag 2:25312 ("Get every stakeholder on board"). A rounded
-   dark-green gradient card with a centered header and a 2×2 grid of white
-   stakeholder cards (photo + role + one-line pitch). */
+/* Committee — Figma /swag 2:25312 ("Get every stakeholder on board"). A white
+   section with a centered header and a #f2f2f2 tray holding a 2×2 grid of white
+   stakeholder cards (floating photo + role + one-line pitch). */
 
 const CARDS = [
   {
@@ -27,54 +27,55 @@ const CARDS = [
 
 export default function SwagCommittee() {
   return (
-    <section className="bg-white px-section-x-sm py-3 md:px-section-x-md lg:px-section-x-lg">
-      <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[radial-gradient(80%_85%_at_86%_115%,#74b1a9_0%,transparent_54%),radial-gradient(85%_80%_at_42%_122%,#5fa384_0%,transparent_52%),radial-gradient(90%_110%_at_102%_-8%,#0a4530_0%,transparent_48%),linear-gradient(160deg,#083621_0%,#052318_52%,#0a3628_100%)] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-20 lg:px-24 lg:py-24">
+    <section className="bg-white px-section-x-sm py-20 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-28">
+      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[42rem] flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-white md:text-eyebrow-md"
+              className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-[#218554]"
             >
               BUILT FOR SIGN-OFF
             </p>
             <h2
               data-animation="reveal"
-              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-white md:text-[2.25rem] lg:text-[2.75rem]"
+              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
             >
               Get every stakeholder on board
             </h2>
           </div>
           <p
             data-animation="reveal"
-            className="font-sans text-body-md text-[#e8f0ec] lg:text-[1.125rem] lg:leading-[1.45]"
+            className="font-sans text-body-md leading-[1.45] text-[#707075] lg:text-[1.125rem]"
           >
             Every team has different priorities with swag. Here&rsquo;s what each
             one needs to sign off with confidence.
           </p>
         </div>
 
+        {/* grey tray */}
         <div
           data-animation="reveal"
-          className="grid w-full max-w-[54.5rem] grid-cols-1 gap-4 sm:grid-cols-2"
+          className="grid w-full max-w-[55rem] grid-cols-1 gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 sm:grid-cols-2"
         >
           {CARDS.map((c) => (
             <article
               key={c.title}
-              className="flex flex-col overflow-hidden rounded-2xl bg-white p-2 shadow-[0_1.25rem_2.5rem_-1rem_rgba(0,0,0,0.4)]"
+              className="flex flex-col overflow-hidden rounded-3xl bg-white p-2 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]"
             >
-              <div className="overflow-hidden rounded-xl">
+              <div className="w-full overflow-hidden rounded-b-3xl rounded-t-lg shadow-[0_1.25rem_0.625rem_-0.25rem_rgba(0,0,0,0.15)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={c.img}
                   alt={c.title}
-                  className="aspect-[409/260] w-full object-cover"
+                  className="aspect-[400/260] w-full object-cover"
                 />
               </div>
-              <div className="flex flex-col gap-2 px-5 pb-6 pt-5">
-                <h3 className="font-display text-[1.375rem] text-swag-ink">
+              <div className="flex flex-col gap-4 px-8 pb-8 pt-10">
+                <h3 className="font-display text-[1.5625rem] leading-[1.04] tracking-[-0.01875rem] text-swag-ink">
                   {c.title}
                 </h3>
-                <p className="font-sans text-body-md leading-[1.5] text-swag-grey">
+                <p className="font-sans text-[0.9375rem] leading-[1.5] text-swag-grey">
                   {c.desc}
                 </p>
               </div>

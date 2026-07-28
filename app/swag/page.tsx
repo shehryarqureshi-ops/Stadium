@@ -52,7 +52,7 @@ export default function SwagPage() {
         <SwagImpact />
         <SwagClosing />
       </main>
-      <PageClose />
+      <PageClose showCta={false} />
     </>
   );
 }

@@ -1,7 +1,8 @@
 /* How it works — Figma /swag 2:25161 ("From design to delivery, handled").
-   A #f2f2f2 tray of three white step cards; step 01 is wider and carries a
-   design-editor visual (green frame + toolbar + t-shirt mockup + Approved
-   notification). Left-aligned header. Stacks on mobile. */
+   A #f2f2f2 tray of three white step cards. Each card floats its step number at
+   the top and holds the title (+ desc on step 01) in a nested #f7f7f7 sub-card
+   at the bottom. Step 01 is wider and carries a DARK design-editor visual
+   (black gradient + toolbar + t-shirt mockup + green "Approved!" pill). */
 
 function ToolIcon({ name }: { name: string }) {
   const p = {
@@ -36,23 +37,17 @@ function ToolIcon({ name }: { name: string }) {
 }
 
 const STEPS = [
-  {
-    n: "02",
-    title: ["We warehouse", "& manage"],
-    desc: "Your inventory lives in our warehouse, with live counts. No closets, no spreadsheets.",
-  },
-  {
-    n: "03",
-    title: ["Send", "anywhere"],
-    desc: "Open a store, send a kit, or bulk-ship to 170+ countries. People add their own size and address.",
-  },
+  { n: "02", title: ["We warehouse", "& manage"] },
+  { n: "03", title: ["Send", "anywhere"] },
 ];
 
-function StepText({ n, title, desc }: { n: string; title: string[]; desc: string }) {
+function StepBlock({ n, title, desc }: { n: string; title: string[]; desc?: string }) {
   return (
     <>
-      <p className="font-sans text-[1rem] tracking-[0.025rem] text-[#828282]">{n}</p>
-      <div className="flex flex-col gap-5">
+      <div className="p-4">
+        <p className="font-sans text-[1rem] tracking-[0.025rem] text-[#828282]">{n}</p>
+      </div>
+      <div className="flex w-full flex-col gap-4 rounded-3xl bg-[#f7f7f7] p-6">
         <h3 className="font-display text-[1.5625rem] leading-[1.04] tracking-[-0.01875rem] text-swag-ink">
           {title.map((t, i) => (
             <span key={i} className="block">
@@ -60,9 +55,11 @@ function StepText({ n, title, desc }: { n: string; title: string[]; desc: string
             </span>
           ))}
         </h3>
-        <p className="font-sans text-[0.9375rem] leading-[1.5] text-swag-grey">
-          {desc}
-        </p>
+        {desc && (
+          <p className="font-sans text-[0.9375rem] leading-[1.5] text-swag-grey">
+            {desc}
+          </p>
+        )}
       </div>
     </>
   );
@@ -100,17 +97,21 @@ export default function SwagHowItWorks() {
         {/* steps tray */}
         <div
           data-animation="reveal"
-          className="flex flex-col gap-2.5 rounded-3xl bg-[#f2f2f2] p-2.5 lg:flex-row lg:items-stretch"
+          className="flex flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 lg:flex-row lg:items-stretch"
         >
-          {/* step 01 — with visual */}
-          <div className="flex flex-col gap-6 rounded-xl bg-white p-7 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] sm:flex-row sm:items-end lg:w-[38.125rem] lg:shrink-0">
-            <div className="flex flex-1 flex-col justify-between gap-8 self-stretch">
-              <StepText n="01" title={["Design", "& approve"]} desc="Pick products, drop in your logo, approve a free mockup — within 48 hours." />
+          {/* step 01 — with dark design-editor visual */}
+          <div className="flex flex-col gap-2.5 rounded-3xl bg-white p-2.5 shadow-[0_1.25rem_1.25rem_-0.125rem_rgba(0,0,0,0.15),0_0.375rem_0.375rem_-0.0625rem_rgba(0,0,0,0.11)] sm:flex-row sm:items-end lg:w-[36.75rem] lg:shrink-0">
+            <div className="flex flex-1 flex-col justify-between self-stretch">
+              <StepBlock
+                n="01"
+                title={["Design", "& approve"]}
+                desc="Pick products, drop in your logo, approve a free mockup — within 48 hours."
+              />
             </div>
-            {/* design-editor visual */}
-            <div className="relative h-[20.75rem] w-full shrink-0 overflow-hidden rounded-3xl bg-[radial-gradient(95%_85%_at_8%_112%,#83cbaa_0%,transparent_55%),radial-gradient(110%_90%_at_100%_-5%,#0c4531_0%,transparent_52%),linear-gradient(155deg,#0c4530_0%,#073626_52%,#0a3d2c_100%)] sm:w-[16.5rem]">
+            {/* dark design-editor visual */}
+            <div className="relative h-[20.75rem] w-full shrink-0 overflow-hidden rounded-2xl bg-gradient-to-b from-[#1a1a1a] to-[#333] sm:w-[16.5625rem]">
               {/* toolbar */}
-              <div className="absolute left-1/2 top-4 flex -translate-x-1/2 items-center gap-0.5 rounded-2xl bg-black/50 p-1.5">
+              <div className="absolute left-1/2 top-4 flex -translate-x-1/2 items-center gap-0.5 rounded-2xl bg-white/10 p-1.5">
                 {["scan", "type", "image"].map((n) => (
                   <span key={n} className="flex size-8 items-center justify-center">
                     <ToolIcon name={n} />
@@ -121,7 +122,7 @@ export default function SwagHowItWorks() {
                 </span>
               </div>
               {/* shirt */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[rgba(255,252,240,0.2)] p-4 shadow-[0.1875rem_0.375rem_2rem_rgba(0,0,0,0.33)]">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[rgba(255,255,255,0.2)] p-4 shadow-[0.1875rem_0.375rem_2rem_rgba(0,0,0,0.33)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/swag/swag-shirt.png"
@@ -131,7 +132,7 @@ export default function SwagHowItWorks() {
               </div>
               {/* approved notif */}
               <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-white/80 py-1.5 pl-1.5 pr-4 backdrop-blur">
-                <span className="flex items-center rounded-full bg-black p-1">
+                <span className="flex items-center rounded-full bg-swag-green-deep p-1">
                   <svg className="size-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
@@ -147,9 +148,9 @@ export default function SwagHowItWorks() {
           {STEPS.map((s) => (
             <div
               key={s.n}
-              className="flex flex-1 flex-col justify-between gap-16 rounded-xl bg-white p-7 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]"
+              className="flex flex-1 flex-col justify-between rounded-3xl bg-white p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]"
             >
-              <StepText {...s} />
+              <StepBlock {...s} />
             </div>
           ))}
         </div>

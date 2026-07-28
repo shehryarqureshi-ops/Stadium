@@ -1,7 +1,7 @@
-/* Packages → pricing — Figma /swag 2:25395 ("Start with swag. Grow into the
-   rest."). A grey container: intro + CTA + image on top, then a row of four
-   progressive "Pass" cards (Shops → Swag → Engagement [Popular] → Enterprise).
-   4-up desktop, 2-up tablet, stacked mobile. */
+/* Packages → pricing — Figma /swag 2:25395 ("Start with swag and expand when
+   ready"). A light #f7f7f7 card split left/right: intro + green "Explore
+   pricing" CTA on the left, a #f2f2f2 tray of four progressive "Pass" cards on
+   the right (Shops → Swag → Engagement [Popular, elevated] → Enterprise). */
 
 const PASSES = [
   { n: "01", title: "Shops Pass", desc: "Branded stores, on-demand, and the full catalog." },
@@ -12,66 +12,56 @@ const PASSES = [
 
 export default function SwagPricing() {
   return (
-    <section className="bg-white px-section-x-sm py-20 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-28">
+    <section className="bg-white px-section-x-sm py-12 md:px-section-x-md md:py-16 lg:px-section-x-lg lg:py-20">
       <div className="mx-auto w-full max-w-content">
-        <div className="flex flex-col gap-2.5 rounded-3xl bg-[#f2f2f2] p-2.5">
-          {/* intro + image */}
-          <div className="flex flex-col items-stretch gap-2.5 lg:flex-row">
-            <div className="flex flex-1 flex-col justify-between gap-8 p-8 lg:p-[3.375rem]">
-              <div className="flex flex-col gap-5">
-                <div className="flex flex-col gap-2">
-                  <p
-                    data-animation="reveal"
-                    className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#828282] md:text-eyebrow-md"
-                  >
-                    STADIUM PACKAGES
-                  </p>
-                  <h2
-                    data-animation="reveal"
-                    className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.5rem]"
-                  >
-                    Start with swag.
-                    <br />
-                    Grow into the rest.
-                  </h2>
-                </div>
+        <div className="flex flex-col gap-10 rounded-[3.75rem] bg-[#f7f7f7] px-6 py-12 md:px-12 md:py-16 lg:flex-row lg:items-stretch lg:gap-10 lg:px-24 lg:py-24">
+          {/* left — intro + CTA */}
+          <div className="flex flex-col gap-8 lg:w-[25.3125rem] lg:shrink-0 lg:justify-between">
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
                 <p
                   data-animation="reveal"
-                  className="font-sans text-body-md leading-[1.4] tracking-[0.025rem] text-[#828282] lg:text-[1.125rem]"
+                  className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-[#218554]"
                 >
-                  Not a swag vendor — the platform your team runs all year. Start
-                  with stores. Add automation and recognition when you&rsquo;re
-                  ready.
+                  STADIUM PACKAGES
                 </p>
+                <h2
+                  data-animation="reveal"
+                  className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
+                >
+                  Start with swag and expand when ready
+                </h2>
               </div>
-              <a
-                href="#"
-                className="inline-flex h-12 w-fit items-center justify-center rounded-full bg-black px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-swag-ink active:scale-[0.98] focus-visible:outline-ink"
+              <p
+                data-animation="reveal"
+                className="font-sans text-body-md leading-[1.45] text-[#707075] lg:text-[1.125rem]"
               >
-                <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                  Explore pricing
-                </span>
-              </a>
+                Add new capabilities over time without changing platforms.
+              </p>
             </div>
-            <div className="flex-1 overflow-hidden rounded-2xl bg-[#050505]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/swag/pricing-badge.jpg"
-                alt="Stadium Enterprise Pass badge on a lanyard"
-                className="aspect-[610/427] w-full object-cover lg:h-full"
-              />
-            </div>
+            <a
+              href="#"
+              className="inline-flex h-11 w-fit items-center justify-center rounded-full bg-[#218554] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-95 active:scale-[0.98] focus-visible:outline-ink"
+            >
+              <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
+                Explore pricing
+              </span>
+            </a>
           </div>
 
-          {/* pass cards */}
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* right — pass cards tray */}
+          <div className="grid flex-1 grid-cols-1 gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 sm:grid-cols-2">
             {PASSES.map((p) => (
               <div
                 key={p.title}
-                className="relative flex min-h-[14.625rem] flex-col justify-between gap-12 rounded-xl bg-white px-7 pb-[1.875rem] pt-7 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]"
+                className={`relative flex flex-col gap-10 rounded-3xl bg-white p-6 ${
+                  p.popular
+                    ? "shadow-[0_1.25rem_1.25rem_-0.125rem_rgba(0,0,0,0.15),0_0.375rem_0.375rem_-0.0625rem_rgba(0,0,0,0.11)]"
+                    : "shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]"
+                }`}
               >
                 {p.popular && (
-                  <span className="absolute right-5 top-5 rounded-full bg-swag-ink px-2 py-1 font-sans text-[0.6875rem] font-bold tracking-[0.025rem] text-white">
+                  <span className="absolute right-5 top-5 rounded-full bg-swag-green-deep px-3 pb-[0.1875rem] pt-1 font-sans text-[0.75rem] font-bold tracking-[0.025rem] text-white">
                     Popular
                   </span>
                 )}

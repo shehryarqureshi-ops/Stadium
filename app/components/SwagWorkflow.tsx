@@ -5,8 +5,10 @@ import { useState } from "react";
 /* Six ways — Figma /swag 2:25010 ("Built to run every swag workflow"). A pill
    tab bar over a content band (image + heading/desc/checklist/link). Figma
    ships the active "Bulk Swag" tab in full; the other five tabs carry concise
-   on-brand placeholder copy (swap for real Figma copy when available). One
-   green abstract image is shared across tabs. Default tab = Bulk Swag. */
+   on-brand placeholder copy (swap for real Figma copy when available). A
+   black-and-white fluted abstract (swag-workflow.jpg, node 2:25033, rotated
+   90°) is shared across tabs. Tab bar + band are borderless white/75 pills
+   with a soft shadow (no border, no blur — matching Figma). Default = Bulk. */
 
 type Tab = {
   label: string;
@@ -154,14 +156,14 @@ export default function SwagWorkflow() {
           data-animation="reveal"
           className="flex w-full justify-start overflow-x-auto pb-1 lg:justify-center"
         >
-          <div className="mx-auto flex shrink-0 items-center gap-1.5 rounded-full border border-[#e0e0e0] bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] backdrop-blur md:gap-2.5">
+          <div className="mx-auto flex shrink-0 items-center gap-2.5 rounded-full bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]">
             {TABS.map((t, i) => (
               <button
                 key={t.label}
                 type="button"
                 onClick={() => setActive(i)}
                 aria-pressed={i === active}
-                className={`whitespace-nowrap rounded-full px-4 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 md:px-5 ${
+                className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
                   i === active
                     ? "bg-swag-ink text-white"
                     : "text-swag-ink hover:bg-black/5"
@@ -176,11 +178,11 @@ export default function SwagWorkflow() {
         {/* content band */}
         <div
           data-animation="reveal"
-          className="flex w-full flex-col gap-2.5 rounded-[2rem] border border-[#e0e0e0] bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] backdrop-blur lg:flex-row lg:items-stretch lg:gap-[3.75rem]">
-          <div className="h-56 overflow-hidden rounded-3xl sm:h-72 lg:h-[24.4375rem] lg:w-[36.25rem] lg:shrink-0 lg:self-center">
+          className="flex w-full flex-col gap-2.5 rounded-[2rem] bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] lg:flex-row lg:items-stretch lg:gap-[3.75rem]">
+          <div className="h-56 overflow-hidden rounded-3xl sm:h-72 lg:h-auto lg:w-[36.25rem] lg:shrink-0 lg:self-stretch">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/swag/swag-ribbon.jpg"
+              src="/swag/swag-workflow.jpg"
               alt=""
               aria-hidden
               className="size-full object-cover"
@@ -200,7 +202,7 @@ export default function SwagWorkflow() {
                 ))}
               </p>
             </div>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 pb-2">
               {tab.features.map((f) => (
                 <li key={f} className="flex items-start gap-2.5">
                   <Check />

@@ -7,19 +7,19 @@
 const CARDS = [
   {
     img: "/swag/swag-problem-1.jpg",
-    alt: "Branded store dashboard scattered around a laptop",
+    alt: "A person working at a desktop in a bright office",
     title: "One vendor becomes three",
     desc: "Swag, kits, and fulfillment each come from a different vendor: separate logins, invoices, and coordination.",
   },
   {
     img: "/swag/swag-problem-2.jpg",
-    alt: "An overflowing swag closet full of boxes and apparel",
+    alt: "A warehouse aisle stacked with boxes",
     title: "The swag closet keeps growing",
     desc: "Boxes pile up, inventory goes stale, and no one knows what's left. Reorders are a guess.",
   },
   {
     img: "/swag/swag-problem-3.jpg",
-    alt: "A laptop showing a global shipment tracking map",
+    alt: "Three colleagues reviewing work on a laptop",
     title: "Then come the logistics",
     desc: "You track shipments, organize sizes, and manage customs and duties.",
   },
@@ -27,8 +27,8 @@ const CARDS = [
 
 function ProblemCard({ img, alt, title, desc }: (typeof CARDS)[number]) {
   return (
-    <div className="flex flex-1 flex-col rounded-xl border-8 border-white bg-white p-2 shadow-[0_0.1875rem_0.375rem_0_rgba(0,0,0,0.06)]">
-      <div className="overflow-hidden rounded-bl-3xl rounded-br-3xl rounded-tl-lg rounded-tr-lg drop-shadow-[0_0.75rem_0.5rem_rgba(0,0,0,0.12)]">
+    <div className="flex flex-1 flex-col rounded-3xl bg-white p-2 shadow-[0_0.1875rem_0.1875rem_0_rgba(0,0,0,0.06)]">
+      <div className="w-full overflow-hidden rounded-[1.25rem]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={img}
@@ -36,8 +36,8 @@ function ProblemCard({ img, alt, title, desc }: (typeof CARDS)[number]) {
           className="aspect-[333/250] w-full object-cover"
         />
       </div>
-      <div className="flex flex-col gap-4 px-6 pb-8 pt-10 lg:px-8">
-        <h3 className="font-display text-[1.5rem] leading-[1.1] tracking-[-0.01875rem] text-swag-ink lg:text-[1.6875rem]">
+      <div className="flex flex-col gap-4 px-8 pb-8 pt-[2.625rem]">
+        <h3 className="font-display text-[1.5rem] leading-[1.11] tracking-[-0.01875rem] text-swag-ink lg:text-[1.6875rem]">
           {title}
         </h3>
         <p className="font-sans text-body-md leading-[1.5] text-swag-grey">
@@ -97,7 +97,7 @@ export default function SwagProblem() {
             {/* 3-card grid on a tray */}
             <div
               data-animation="reveal"
-              className="grid w-full grid-cols-1 gap-2.5 rounded-3xl bg-[#f2f2f2] p-2.5 md:grid-cols-3"
+              className="grid w-full grid-cols-1 gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:grid-cols-3"
             >
               {CARDS.map((c) => (
                 <ProblemCard key={c.title} {...c} />

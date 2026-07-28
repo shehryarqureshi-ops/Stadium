@@ -91,8 +91,9 @@ function ProductCluster() {
 
 export default function SwagHero() {
   return (
-    <section className="relative overflow-hidden bg-black px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]">
-      {/* animated shader background (replaces the static mesh-gradient photo) */}
+    <section className="relative overflow-hidden bg-[#06301d] bg-[image:url('/swag/swag-hero-bg.jpg')] bg-cover bg-top bg-no-repeat px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]">
+      {/* animated shader background; overlays the static Figma mesh-gradient,
+          which shows as the fallback when WebGPU/GPU is unavailable */}
       <SwagHeroShader />
       <div className="relative z-10 mx-auto flex w-full max-w-content flex-col gap-16 lg:gap-20">
         {/* copy + product cluster */}

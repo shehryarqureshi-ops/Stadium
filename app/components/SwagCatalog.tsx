@@ -4,21 +4,24 @@ import { useEffect, useRef, useState } from "react";
 
 /* Catalog — Figma /swag 2:25059 ("25,000+ products. Hundreds of brands."). A
    horizontal carousel of category cards (category · count · brands + a product
-   flat-lay), with prev/next arrows. Figma ships Apparel + Drinkware; extended
-   here with more categories (on-brand placeholder counts/brands), alternating
-   the two product images. */
+   flat-lay), with prev/next arrows. Card is #f7f7f7, radius 24, pad 24; big
+   count is Satoshi Bold 24. Five varied product flat-lays exported from Figma
+   (apparel/drinkware/bag/backpacks/headwear); counts/brands are placeholders. */
 
 const APPAREL = "/swag/swag-cat-apparel.jpg";
 const DRINK = "/swag/swag-cat-drinkware.jpg";
+const BAG = "/swag/swag-cat-bag.jpg";
+const BACKPACKS = "/swag/swag-cat-backpacks.jpg";
+const HEADWEAR = "/swag/swag-cat-headwear.jpg";
 
 const CATS = [
   { cat: "Apparel", count: "4,200+", brands: "The North Face · Nike · Carhartt", img: APPAREL },
   { cat: "Drinkware", count: "2,400+", brands: "Stanley · Hydro Flask · YETI", img: DRINK },
-  { cat: "Tech & Audio", count: "1,800+", brands: "JBL · Anker · Belkin", img: APPAREL },
-  { cat: "Bags & Travel", count: "1,500+", brands: "Herschel · Away · Patagonia", img: DRINK },
-  { cat: "Headwear", count: "1,100+", brands: "Richardson · New Era · '47", img: APPAREL },
-  { cat: "Notebooks", count: "900+", brands: "Moleskine · Leuchtturm · Rhodia", img: DRINK },
-  { cat: "Office", count: "1,300+", brands: "Fellowes · Logitech · Moft", img: APPAREL },
+  { cat: "Tech & Audio", count: "1,800+", brands: "JBL · Anker · Belkin", img: BAG },
+  { cat: "Bags & Travel", count: "1,500+", brands: "Herschel · Away · Patagonia", img: BACKPACKS },
+  { cat: "Headwear", count: "1,100+", brands: "Richardson · New Era · '47", img: HEADWEAR },
+  { cat: "Notebooks", count: "900+", brands: "Moleskine · Leuchtturm · Rhodia", img: APPAREL },
+  { cat: "Office", count: "1,300+", brands: "Fellowes · Logitech · Moft", img: DRINK },
 ];
 
 function Arrow({ dir }: { dir: "left" | "right" }) {
@@ -52,11 +55,11 @@ export default function SwagCatalog() {
     <section className="bg-white px-section-x-sm pb-20 pt-4 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
       <div className="mx-auto flex w-full max-w-content flex-col gap-11">
         {/* header */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-10">
-          <div className="flex flex-col gap-2 lg:shrink-0">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md"
+              className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-[#218554]"
             >
               THE CATALOG
             </p>
@@ -71,7 +74,7 @@ export default function SwagCatalog() {
           </div>
           <p
             data-animation="reveal"
-            className="font-sans text-body-md text-[#63676e] lg:flex-1 lg:pb-1 lg:text-[1.125rem] lg:leading-[1.45]"
+            className="font-sans text-body-md leading-[1.48] text-swag-grey lg:text-[1.125rem]"
           >
             Not your generic promo catalog. Browse premium brands across every
             category, all ready to customize with your logo.
@@ -83,14 +86,14 @@ export default function SwagCatalog() {
           <div
             ref={trackRef}
             onScroll={sync}
-            className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {CATS.map((c, i) => (
               <article
                 key={i}
-                className="flex h-[29.3rem] w-[16.5rem] shrink-0 snap-start flex-col overflow-hidden rounded-[0.875rem] bg-[#fcfbfc] sm:w-[17.25rem]"
+                className="flex h-[28.65rem] w-[17.25rem] shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-[#f7f7f7]"
               >
-                <div className="flex flex-col gap-1.5 px-[1.125rem] pb-2.5 pt-[1.125rem]">
+                <div className="flex flex-col gap-1.5 p-6">
                   <p className="font-sans text-[0.875rem] font-semibold text-swag-ink">
                     {c.cat}
                   </p>

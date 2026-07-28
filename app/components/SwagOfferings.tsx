@@ -1,8 +1,9 @@
-/* Offerings — Figma /swag 399:748 ("One catalog. Two ways to order."). Two
-   offer cards: a green-gradient "Run a swag program" (Popular, sales-assisted)
-   and a grey "Ship it yourself today" (SwagMagic self-serve). Each wraps a
-   white inner card with copy, a 3-item checklist, and a CTA. Desktop side-by-
-   side, stacks on mobile. */
+/* Offerings — Figma /swag 490:6165 ("One catalog. Two ways to order."). Two
+   offer cards on a grey #f2f2f2 tray. Each card is white with a nested grey
+   (#f7f7f7) header block (title + kicker) over a white body block (copy,
+   3-item checklist, CTA). The "Run a swag program" card is emphasised: black
+   border, heavy directional shadow, and a black "Popular" pill. Desktop side-
+   by-side, stacks on mobile. */
 
 function Check() {
   return (
@@ -37,8 +38,7 @@ const OFFERS: Offer[] = [
     title: "Run a swag program",
     kicker: "STADIUM PLATFORM · SALES-ASSISTED",
     desc: [
-      "We build your stores, hold your inventory, and ship on autopilot.",
-      "We set it up. Finance keeps spend in control.",
+      "We build your stores, hold your inventory, and ship on autopilot. We set it up. Finance keeps spend in control.",
     ],
     features: [
       "Branded stores & kitting",
@@ -53,7 +53,8 @@ const OFFERS: Offer[] = [
     title: "Ship it yourself today",
     kicker: "SWAGMAGIC · SELF-SERVE",
     desc: [
-      "Design it, order it, send it. No contract, no minimums.",
+      "Design it, order it, send it.",
+      "No contract, no minimums.",
       "Opens in a new tab.",
     ],
     features: [
@@ -69,37 +70,30 @@ function OfferCard({ variant, title, kicker, desc, features, cta, popular }: Off
   const primary = variant === "primary";
   return (
     <div
-      className={`relative flex flex-1 rounded-3xl ${
+      className={`relative flex flex-1 rounded-3xl bg-white p-2.5 ${
         primary
-          ? "bg-[linear-gradient(220deg,#0e5e38_0%,#2a9a5d_48%,#83d9a3_100%)] shadow-[1.25rem_1.25rem_2.5rem_-0.5rem_rgba(0,0,0,0.14)]"
-          : "bg-[#f2f2f2]"
+          ? "border border-[#1b1b1b] shadow-[2.5rem_2.5rem_1.77rem_rgba(0,0,0,0.11),0.8rem_0.8rem_0.56rem_rgba(0,0,0,0.06),0.18rem_0.18rem_0.13rem_rgba(0,0,0,0.05)]"
+          : "shadow-[0_0.1875rem_0.375rem_0_rgba(0,0,0,0.06)]"
       }`}
     >
       {popular && (
-        <span className="absolute -top-3 right-8 z-10 rounded-full bg-swag-green-deep px-2 pb-0.5 pt-1 font-sans text-[0.75rem] font-bold tracking-[0.025rem] text-white">
+        <span className="absolute -top-[0.65rem] right-[2.4375rem] z-10 rounded-full bg-[#1b1b1b] px-3 pb-[0.1875rem] pt-1 font-sans text-[0.6875rem] font-bold tracking-[0.025rem] text-white">
           Popular
         </span>
       )}
-      <div className="flex flex-1 flex-col gap-7 p-7">
-        <div className="flex flex-col gap-4">
-          <h3
-            className={`font-display text-[1.75rem] leading-[1.1] tracking-[-0.01rem] lg:text-[2rem] lg:leading-10 ${
-              primary ? "text-white" : "text-swag-ink"
-            }`}
-          >
+      <div className="flex flex-1 flex-col gap-2.5">
+        {/* grey header block */}
+        <div className="flex flex-col gap-4 rounded-2xl bg-[#f7f7f7] p-6">
+          <h3 className="font-display text-[1.75rem] leading-[1.1] text-swag-ink lg:text-[2rem] lg:leading-10">
             {title}
           </h3>
-          <p
-            className={`font-sans text-[0.6875rem] font-bold uppercase tracking-[0.025rem] ${
-              primary ? "text-[#f7f7f7]" : "text-[#828282]"
-            }`}
-          >
+          <p className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.025rem] text-[#828282]">
             {kicker}
           </p>
         </div>
 
-        {/* white inner card */}
-        <div className="flex flex-col gap-8 rounded-2xl bg-white px-7 pb-[1.875rem] pt-7 shadow-[0_0.1875rem_0.375rem_0_rgba(0,0,0,0.06)]">
+        {/* white body block */}
+        <div className="flex flex-1 flex-col gap-8 rounded-2xl bg-white p-6">
           <p className="font-sans text-body-md leading-[1.5] text-[#828282]">
             {desc.map((line, i) => (
               <span key={i} className="block">
@@ -107,7 +101,7 @@ function OfferCard({ variant, title, kicker, desc, features, cta, popular }: Off
               </span>
             ))}
           </p>
-          <ul className="flex flex-col gap-3">
+          <ul className="flex flex-col gap-3 pb-2">
             {features.map((f) => (
               <li key={f} className="flex items-center gap-2.5">
                 <Check />
@@ -119,7 +113,7 @@ function OfferCard({ variant, title, kicker, desc, features, cta, popular }: Off
           </ul>
           <a
             href="#"
-            className={`inline-flex h-12 items-center justify-center rounded-full px-[1.375rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-ink ${
+            className={`mt-auto inline-flex w-full items-center justify-center rounded-full px-[1.375rem] py-[1.125rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-ink ${
               primary
                 ? "bg-[#111111] text-white hover:bg-black"
                 : "bg-[#f2f2f2] text-ink hover:bg-grey-200"
@@ -165,7 +159,7 @@ export default function SwagOfferings() {
 
         <div
           data-animation="reveal"
-          className="flex w-full max-w-[54.625rem] flex-col gap-4 md:flex-row md:items-stretch"
+          className="flex w-full max-w-[54.625rem] flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:flex-row md:items-stretch"
         >
           {OFFERS.map((o) => (
             <OfferCard key={o.title} {...o} />

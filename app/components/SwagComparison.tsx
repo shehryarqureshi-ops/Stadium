@@ -40,14 +40,14 @@ function Cell({ v }: { v: string }) {
   );
 }
 
-const GRID = "grid grid-cols-[1.7fr_1fr_1fr_1fr_1fr] gap-1";
+const GRID = "grid grid-cols-[22.5rem_1fr_1fr_1fr_1fr] gap-1";
 
 export default function SwagComparison() {
   return (
     <section className="bg-white px-section-x-sm pb-24 pt-4 md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col gap-10">
-        {/* header */}
-        <div className="flex flex-col gap-5">
+        {/* header (centered) */}
+        <div className="flex flex-col gap-5 text-center">
           <div className="flex flex-col gap-2">
             <p
               data-animation="reveal"
@@ -84,8 +84,8 @@ export default function SwagComparison() {
               {COLS.map((c, i) => (
                 <div
                   key={c.name}
-                  className={`flex flex-col items-center justify-center px-4 py-4 text-center ${
-                    i === 0 ? "rounded-t-2xl bg-[#f2fbf5]" : ""
+                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
+                    i === 0 ? "rounded-b-lg rounded-t-[1.5rem] bg-[#f2fbf5]" : ""
                   }`}
                 >
                   <span className="font-sans text-[0.9rem] font-semibold text-swag-ink">
@@ -104,20 +104,20 @@ export default function SwagComparison() {
               {ROWS.map((row, r) => (
                 <div key={row.label} className={GRID}>
                   <div
-                    className={`flex items-center bg-[#f2f2f2] p-6 font-sans text-[0.9rem] font-semibold text-swag-ink ${
-                      r === 0 ? "rounded-tl-2xl" : r === ROWS.length - 1 ? "rounded-bl-2xl" : "rounded-lg"
-                    }`}
+                    className={`flex items-center rounded-lg bg-[#f2f2f2] p-6 font-sans text-[0.90625rem] font-semibold text-swag-ink ${
+                      r === 0 ? "rounded-tl-[1.5rem]" : ""
+                    } ${r === ROWS.length - 1 ? "rounded-bl-[1.5rem]" : ""}`}
                   >
                     {row.label}
                   </div>
                   {row.vals.map((v, c) => (
                     <div
                       key={c}
-                      className={`flex items-center justify-center p-6 ${
+                      className={`flex items-center justify-center rounded-lg p-6 ${
                         c === 0 ? "bg-[#f2fbf5]" : "bg-[#f2f2f2]"
-                      } ${c === 0 && r === 0 ? "" : "rounded-lg"} ${
-                        c === 3 && r === 0 ? "rounded-tr-2xl" : ""
-                      } ${c === 3 && r === ROWS.length - 1 ? "rounded-br-2xl" : ""}`}
+                      } ${c === 3 && r === 0 ? "rounded-tr-[1.5rem]" : ""} ${
+                        c === 3 && r === ROWS.length - 1 ? "rounded-br-[1.5rem]" : ""
+                      }`}
                     >
                       <Cell v={v} />
                     </div>
@@ -126,11 +126,11 @@ export default function SwagComparison() {
               ))}
             </div>
             {/* footer CTA under Stadium */}
-            <div className={`mt-2 ${GRID}`}>
+            <div className={`mt-1 ${GRID}`}>
               <div />
               <a
                 href="#"
-                className="flex items-center justify-center rounded-2xl bg-swag-ink px-6 py-4 font-sans text-[0.9rem] font-semibold text-white transition-all hover:bg-black active:scale-[0.98]"
+                className="flex items-center justify-center rounded-b-[1.5rem] rounded-t-lg bg-swag-ink px-6 py-4 font-sans text-[0.90625rem] font-semibold text-white transition-all hover:bg-black active:scale-[0.98]"
               >
                 Book a call
               </a>
