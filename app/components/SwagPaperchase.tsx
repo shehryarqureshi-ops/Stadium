@@ -3,31 +3,60 @@
    DURING / AFTER timeline on the right (each stage: a grey card with a photo
    and a white detail card of headline + dotted points). Stacks on mobile. */
 
-const STAGES = [
-  {
-    tag: "BEFORE",
-    dark: false,
-    img: "/swag/swag-paperchase-1.jpg",
-    title: "Nine vendors, one exhausted manager",
-    points: ["9 swag vendors", "Inventory aging in a basement", "Marketing doing logistics"],
-  },
-  {
-    tag: "DURING",
-    dark: false,
-    img: "/swag/swag-paperchase-2.jpg",
-    title: "Migrated in 67 days",
-    points: ["6 brand stores live", "0 programs paused", "One brand pack"],
-  },
-  {
-    tag: "AFTER",
-    dark: true,
-    img: "/swag/swag-paperchase-3.jpg",
-    title: "One platform, two admins",
-    points: ["1 vendor, 1 invoice", "14-country program", "Marketing got their job back"],
-  },
-];
+export type SwagPaperchaseContent = {
+  eyebrow: string;
+  headingLine1: string;
+  headingLine2: string;
+  body: string;
+  quote: string;
+  attribution: string;
+  stages: {
+    tag: string;
+    dark: boolean;
+    img: string;
+    title: string;
+    points: string[];
+  }[];
+};
 
-export default function SwagPaperchase() {
+export const SWAG_PAPERCHASE: SwagPaperchaseContent = {
+  eyebrow: "CASE STUDY",
+  headingLine1: "From nine",
+  headingLine2: "swag vendors to one",
+  body: "How Paperchase simplified global swag and gave marketing its time back.",
+  quote:
+    "We were juggling nine swag vendors, and marketing was stuck managing logistics. Now the program runs itself, and our vendor list is just one.",
+  attribution: "Nish Patel · CEO, Paperchase",
+  stages: [
+    {
+      tag: "BEFORE",
+      dark: false,
+      img: "/swag/swag-paperchase-1.jpg",
+      title: "Nine vendors, one exhausted manager",
+      points: ["9 swag vendors", "Inventory aging in a basement", "Marketing doing logistics"],
+    },
+    {
+      tag: "DURING",
+      dark: false,
+      img: "/swag/swag-paperchase-2.jpg",
+      title: "Migrated in 67 days",
+      points: ["6 brand stores live", "0 programs paused", "One brand pack"],
+    },
+    {
+      tag: "AFTER",
+      dark: true,
+      img: "/swag/swag-paperchase-3.jpg",
+      title: "One platform, two admins",
+      points: ["1 vendor, 1 invoice", "14-country program", "Marketing got their job back"],
+    },
+  ],
+};
+
+export default function SwagPaperchase({
+  content = SWAG_PAPERCHASE,
+}: {
+  content?: SwagPaperchaseContent;
+}) {
   return (
     <section className="bg-white px-section-x-sm py-20 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-28">
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-12 lg:grid-cols-[minmax(0,30.75rem)_1fr] lg:gap-20">
@@ -37,25 +66,24 @@ export default function SwagPaperchase() {
             <div className="flex flex-col gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-[#218554]"
+                className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-swag-green-alt"
               >
-                CASE STUDY
+                {content.eyebrow}
               </p>
               <h2
                 data-animation="reveal"
                 className="font-display text-[1.75rem] leading-[1.1] tracking-[-0.01rem] text-swag-ink md:text-[2.25rem]"
               >
-                From nine
+                {content.headingLine1}
                 <br />
-                swag vendors to one
+                {content.headingLine2}
               </h2>
             </div>
             <p
               data-animation="reveal"
               className="font-sans text-[1.125rem] leading-[1.45] text-[#707075]"
             >
-              How Paperchase simplified global swag and gave marketing its time
-              back.
+              {content.body}
             </p>
           </div>
           <div data-animation="reveal" className="flex flex-col gap-[3.75rem]">
@@ -64,12 +92,10 @@ export default function SwagPaperchase() {
             </span>
             <div className="flex flex-col gap-6">
               <p className="font-[family-name:var(--font-satoshi-medium)] text-[1.5625rem] leading-[1.3] tracking-[-0.01875rem] text-swag-ink">
-                We were juggling nine swag vendors, and marketing was stuck
-                managing logistics. Now the program runs itself, and our vendor
-                list is just one.
+                {content.quote}
               </p>
               <p className="font-sans text-[0.9375rem] leading-[1.5] text-swag-grey">
-                Nish Patel · CEO, Paperchase
+                {content.attribution}
               </p>
             </div>
           </div>
@@ -81,7 +107,7 @@ export default function SwagPaperchase() {
             aria-hidden
             className="absolute bottom-10 left-[2.8125rem] top-10 hidden w-px border-l border-dashed border-grey-300 sm:block"
           />
-          {STAGES.map((s) => (
+          {content.stages.map((s) => (
             <div key={s.tag} data-animation="reveal" className="flex flex-col gap-3 sm:flex-row sm:gap-6">
               <div className="relative z-10 sm:w-[5.625rem] sm:shrink-0">
                 <span

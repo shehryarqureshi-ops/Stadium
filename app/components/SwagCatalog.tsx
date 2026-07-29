@@ -14,15 +14,39 @@ const BAG = "/swag/swag-cat-bag.jpg";
 const BACKPACKS = "/swag/swag-cat-backpacks.jpg";
 const HEADWEAR = "/swag/swag-cat-headwear.jpg";
 
-const CATS = [
-  { cat: "Apparel", count: "4,200+", brands: "The North Face · Nike · Carhartt", img: APPAREL },
-  { cat: "Drinkware", count: "2,400+", brands: "Stanley · Hydro Flask · YETI", img: DRINK },
-  { cat: "Tech & Audio", count: "1,800+", brands: "JBL · Anker · Belkin", img: BAG },
-  { cat: "Bags & Travel", count: "1,500+", brands: "Herschel · Away · Patagonia", img: BACKPACKS },
-  { cat: "Headwear", count: "1,100+", brands: "Richardson · New Era · '47", img: HEADWEAR },
-  { cat: "Notebooks", count: "900+", brands: "Moleskine · Leuchtturm · Rhodia", img: APPAREL },
-  { cat: "Office", count: "1,300+", brands: "Fellowes · Logitech · Moft", img: DRINK },
-];
+export type SwagCatalogContent = {
+  eyebrow: string;
+  headingLine1: string;
+  headingLine2: string;
+  body: string;
+  categories: {
+    cat: string;
+    count: string;
+    brands: string;
+    img: string;
+  }[];
+  /** Optional category filter pills (first = active). Snacks uses these. */
+  filters?: string[];
+  /** Optional "browse all" link shown top-right of the header. */
+  browseLabel?: string;
+};
+
+export const SWAG_CATALOG: SwagCatalogContent = {
+  eyebrow: "THE CATALOG",
+  headingLine1: "25,000+ products.",
+  headingLine2: "Hundreds of brands. One catalog.",
+  body:
+    "Not your generic promo catalog. Browse premium brands across every category, all ready to customize with your logo.",
+  categories: [
+    { cat: "Apparel", count: "4,200+", brands: "The North Face · Nike · Carhartt", img: APPAREL },
+    { cat: "Drinkware", count: "2,400+", brands: "Stanley · Hydro Flask · YETI", img: DRINK },
+    { cat: "Tech & Audio", count: "1,800+", brands: "JBL · Anker · Belkin", img: BAG },
+    { cat: "Bags & Travel", count: "1,500+", brands: "Herschel · Away · Patagonia", img: BACKPACKS },
+    { cat: "Headwear", count: "1,100+", brands: "Richardson · New Era · '47", img: HEADWEAR },
+    { cat: "Notebooks", count: "900+", brands: "Moleskine · Leuchtturm · Rhodia", img: APPAREL },
+    { cat: "Office", count: "1,300+", brands: "Fellowes · Logitech · Moft", img: DRINK },
+  ],
+};
 
 function Arrow({ dir }: { dir: "left" | "right" }) {
   return (
@@ -32,7 +56,7 @@ function Arrow({ dir }: { dir: "left" | "right" }) {
   );
 }
 
-export default function SwagCatalog() {
+export default function SwagCatalog({ content = SWAG_CATALOG }: { content?: SwagCatalogContent }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -56,29 +80,52 @@ export default function SwagCatalog() {
       <div className="mx-auto flex w-full max-w-content flex-col gap-11">
         {/* header */}
         <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <p
-              data-animation="reveal"
-              className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-[#218554]"
-            >
-              THE CATALOG
-            </p>
-            <h2
-              data-animation="reveal"
-              className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
-            >
-              25,000+ products.
-              <br />
-              Hundreds of brands. One catalog.
-            </h2>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="flex flex-col gap-2">
+              <p
+                data-animation="reveal"
+                className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-swag-green-alt"
+              >
+                {content.eyebrow}
+              </p>
+              <h2
+                data-animation="reveal"
+                className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
+              >
+                {content.headingLine1}
+                <br />
+                {content.headingLine2}
+              </h2>
+            </div>
+            {content.browseLabel && (
+              <a
+                href="#"
+                className="shrink-0 font-sans text-[0.75rem] font-bold uppercase tracking-[0.06rem] text-swag-ink underline underline-offset-4 transition-opacity hover:opacity-70"
+              >
+                {content.browseLabel}
+              </a>
+            )}
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-body-md leading-[1.48] text-swag-grey lg:text-[1.125rem]"
           >
-            Not your generic promo catalog. Browse premium brands across every
-            category, all ready to customize with your logo.
+            {content.body}
           </p>
+          {content.filters && (
+            <div data-animation="reveal" className="flex flex-wrap gap-2">
+              {content.filters.map((f, i) => (
+                <span
+                  key={f}
+                  className={`rounded-full px-4 py-2 font-sans text-[0.75rem] font-semibold uppercase tracking-[0.03rem] ${
+                    i === 0 ? "bg-swag-ink text-white" : "bg-[#f2f2f2] text-swag-ink"
+                  }`}
+                >
+                  {f}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* carousel */}
@@ -88,7 +135,7 @@ export default function SwagCatalog() {
             onScroll={sync}
             className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {CATS.map((c, i) => (
+            {content.categories.map((c, i) => (
               <article
                 key={i}
                 className="flex h-[28.65rem] w-[17.25rem] shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-[#f7f7f7]"

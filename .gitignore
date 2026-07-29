@@ -45,3 +45,6 @@ next-env.d.ts
 shots/
 *_qa.png
 figma-1to1-process.md
+
+# local dev server log
+.devlog.txt

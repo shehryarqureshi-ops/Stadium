@@ -77,7 +77,7 @@ function Logo({ light }: { light: boolean }) {
   );
 }
 
-export default function SiteHeader() {
+export default function SiteHeader({ banner }: { banner?: string } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   /* which accordion section is expanded in the mobile panel (Shopify
      mobile-nav pattern, 2026-06-12 — the mega-menu content was previously
@@ -219,6 +219,16 @@ export default function SiteHeader() {
             : "bg-transparent"
         }`}
       >
+        {/* Optional announcement strip (e.g. the /recognition, /snacks value
+            bar). Lives inside the fixed header so it can never be overlapped by
+            the nav; desktop-only to avoid wrapping + eating hero clearance. */}
+        {banner && (
+          <div className="hidden bg-swag-ink px-section-x-lg py-2 text-center lg:block">
+            <p className="font-sans text-[0.8125rem] font-semibold leading-[1.4] text-white/80">
+              {banner}
+            </p>
+          </div>
+        )}
         <div className="mx-auto flex w-full max-w-section items-center justify-between px-section-x-sm py-4 md:px-section-x-md lg:h-16 lg:px-section-x-lg lg:py-3">
           <Logo light={!solid} />
 
@@ -453,14 +463,18 @@ export default function SiteHeader() {
                         <div className="flex flex-col gap-4 pb-4 pt-1">
                           {ENGAGE_COLUMNS.flat().map((group) => (
                             <div key={group.label} className="flex flex-col gap-1">
-                              <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water">
+                              <a
+                                href={group.href ?? "#"}
+                                onClick={() => setMenuOpen(false)}
+                                className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water"
+                              >
                                 {group.label}
-                              </p>
+                              </a>
                               <ul className="flex flex-col">
-                                {group.items.map(({ label }) => (
+                                {group.items.map(({ label, href }) => (
                                   <li key={label}>
                                     <a
-                                      href="#"
+                                      href={href ?? "#"}
                                       onClick={() => setMenuOpen(false)}
                                       className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >

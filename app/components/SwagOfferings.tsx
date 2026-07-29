@@ -22,7 +22,7 @@ function Check() {
   );
 }
 
-type Offer = {
+export type Offer = {
   variant: "primary" | "secondary";
   title: string;
   kicker: string;
@@ -32,39 +32,51 @@ type Offer = {
   popular?: boolean;
 };
 
-const OFFERS: Offer[] = [
-  {
-    variant: "primary",
-    title: "Run a swag program",
-    kicker: "STADIUM PLATFORM · SALES-ASSISTED",
-    desc: [
-      "We build your stores, hold your inventory, and ship on autopilot. We set it up. Finance keeps spend in control.",
-    ],
-    features: [
-      "Branded stores & kitting",
-      "Inventory + global fulfillment",
-      "Budgets, approvals & SSO",
-    ],
-    cta: "Book a demo",
-    popular: true,
-  },
-  {
-    variant: "secondary",
-    title: "Ship it yourself today",
-    kicker: "SWAGMAGIC · SELF-SERVE",
-    desc: [
-      "Design it, order it, send it.",
-      "No contract, no minimums.",
-      "Opens in a new tab.",
-    ],
-    features: [
-      "On-demand & bulk ordering",
-      "No minimums, no setup call",
-      "Pay as you go",
-    ],
-    cta: "Shop SwagMagic",
-  },
-];
+export type SwagOfferingsContent = {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  offers: Offer[];
+};
+
+export const SWAG_OFFERINGS: SwagOfferingsContent = {
+  eyebrow: "TWO WAYS IN",
+  heading: "One catalog. Two ways to order.",
+  body: "The same products and quality, whether you work with our team or order on your own.",
+  offers: [
+    {
+      variant: "primary",
+      title: "Run a swag program",
+      kicker: "STADIUM PLATFORM · SALES-ASSISTED",
+      desc: [
+        "We build your stores, hold your inventory, and ship on autopilot. We set it up. Finance keeps spend in control.",
+      ],
+      features: [
+        "Branded stores & kitting",
+        "Inventory + global fulfillment",
+        "Budgets, approvals & SSO",
+      ],
+      cta: "Book a demo",
+      popular: true,
+    },
+    {
+      variant: "secondary",
+      title: "Ship it yourself today",
+      kicker: "SWAGMAGIC · SELF-SERVE",
+      desc: [
+        "Design it, order it, send it.",
+        "No contract, no minimums.",
+        "Opens in a new tab.",
+      ],
+      features: [
+        "On-demand & bulk ordering",
+        "No minimums, no setup call",
+        "Pay as you go",
+      ],
+      cta: "Shop SwagMagic",
+    },
+  ],
+};
 
 function OfferCard({ variant, title, kicker, desc, features, cta, popular }: Offer) {
   const primary = variant === "primary";
@@ -129,7 +141,11 @@ function OfferCard({ variant, title, kicker, desc, features, cta, popular }: Off
   );
 }
 
-export default function SwagOfferings() {
+export default function SwagOfferings({
+  content = SWAG_OFFERINGS,
+}: {
+  content?: SwagOfferingsContent;
+}) {
   return (
     <section className="rounded-b-[3.75rem] bg-white px-section-x-sm pb-20 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
@@ -139,21 +155,20 @@ export default function SwagOfferings() {
               data-animation="reveal"
               className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md"
             >
-              TWO WAYS IN
+              {content.eyebrow}
             </p>
             <h2
               data-animation="reveal"
               className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              One catalog. Two ways to order.
+              {content.heading}
             </h2>
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-body-md text-swag-grey lg:text-[1.125rem] lg:leading-[1.48]"
           >
-            The same products and quality, whether you work with our team or
-            order on your own.
+            {content.body}
           </p>
         </div>
 
@@ -161,7 +176,7 @@ export default function SwagOfferings() {
           data-animation="reveal"
           className="flex w-full max-w-[54.625rem] flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:flex-row md:items-stretch"
         >
-          {OFFERS.map((o) => (
+          {content.offers.map((o) => (
             <OfferCard key={o.title} {...o} />
           ))}
         </div>

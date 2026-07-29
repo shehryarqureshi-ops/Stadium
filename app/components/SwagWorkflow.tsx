@@ -10,15 +10,32 @@ import { useState } from "react";
    90°) is shared across tabs. Tab bar + band are borderless white/75 pills
    with a soft shadow (no border, no blur — matching Figma). Default = Bulk. */
 
-type Tab = {
-  label: string;
+export type SwagWorkflowContent = {
+  eyebrow: string;
   heading: string;
-  desc: string[];
-  features: string[];
-  cta: string;
+  /** Optional subtitle line under the heading (Figma /snacks + /gifting have one). */
+  subtitle?: string;
+  /** Shared background image. Rendered via a raw <img src>, so this must be a
+     public-path string (e.g. "/swag/swag-workflow.jpg"), NOT a next/image
+     StaticImport object. */
+  image: string;
+  tabs: {
+    label: string;
+    heading: string;
+    desc: string[];
+    features: string[];
+    cta: string;
+  }[];
+  /** Index of the tab shown active on load. Defaults to the 4th tab (index 3)
+     to match /swag, clamped to the number of tabs so a shorter list is safe. */
+  initialTab?: number;
 };
 
-const TABS: Tab[] = [
+export const SWAG_WORKFLOW: SwagWorkflowContent = {
+  eyebrow: "EVERYTHING SWAG",
+  heading: "Built to run every swag workflow",
+  image: "/swag/swag-workflow.jpg",
+  tabs: [
   {
     label: "Swag Kits",
     heading: "Swag Kits",
@@ -103,7 +120,8 @@ const TABS: Tab[] = [
     ],
     cta: "See storage",
   },
-];
+  ],
+};
 
 function Check() {
   return (
@@ -122,16 +140,22 @@ function Check() {
   );
 }
 
-export default function SwagWorkflow() {
-  const [active, setActive] = useState(3);
-  const tab = TABS[active];
+export default function SwagWorkflow({
+  content = SWAG_WORKFLOW,
+}: {
+  content?: SwagWorkflowContent;
+}) {
+  const [active, setActive] = useState(
+    Math.min(content.initialTab ?? 3, content.tabs.length - 1),
+  );
+  const tab = content.tabs[active];
 
   return (
     <section className="relative overflow-hidden bg-white px-section-x-sm py-20 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-[8.75rem]">
       {/* subtle symbol glow (Figma symbol-gradient backdrop) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[62rem] max-w-[92%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(16,153,90,0.09),transparent_66%)]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[62rem] max-w-[92%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,var(--color-swag-glow),transparent_66%)]"
       />
 
       <div className="relative mx-auto flex w-full max-w-content flex-col items-center gap-10">
@@ -141,14 +165,22 @@ export default function SwagWorkflow() {
             data-animation="reveal"
             className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md"
           >
-            EVERYTHING SWAG
+            {content.eyebrow}
           </p>
           <h2
             data-animation="reveal"
             className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
           >
-            Built to run every swag workflow
+            {content.heading}
           </h2>
+          {content.subtitle && (
+            <p
+              data-animation="reveal"
+              className="mt-1 max-w-[40rem] font-sans text-body-md leading-[1.48] text-swag-grey lg:text-[1.125rem]"
+            >
+              {content.subtitle}
+            </p>
+          )}
         </div>
 
         {/* tab bar (scrolls horizontally on narrow screens) */}
@@ -157,7 +189,7 @@ export default function SwagWorkflow() {
           className="flex w-full justify-start overflow-x-auto pb-1 lg:justify-center"
         >
           <div className="mx-auto flex shrink-0 items-center gap-2.5 rounded-full bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)]">
-            {TABS.map((t, i) => (
+            {content.tabs.map((t, i) => (
               <button
                 key={t.label}
                 type="button"
@@ -179,13 +211,15 @@ export default function SwagWorkflow() {
         <div
           data-animation="reveal"
           className="flex w-full flex-col gap-2.5 rounded-[2rem] bg-white/75 p-2.5 shadow-[0_0.1875rem_0.375rem_rgba(0,0,0,0.06)] lg:flex-row lg:items-stretch lg:gap-[3.75rem]">
-          <div className="h-56 overflow-hidden rounded-3xl sm:h-72 lg:h-auto lg:w-[36.25rem] lg:shrink-0 lg:self-stretch">
+          <div className="relative h-56 overflow-hidden rounded-3xl sm:h-72 lg:h-auto lg:w-[36.25rem] lg:shrink-0 lg:self-stretch">
+            {/* absolute so a portrait/oversized image can't inflate the band
+               height (which left the copy floating in a big gap). */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/swag/swag-workflow.jpg"
+              src={content.image}
               alt=""
               aria-hidden
-              className="size-full object-cover"
+              className="absolute inset-0 size-full object-cover"
             />
           </div>
 

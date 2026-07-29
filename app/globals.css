@@ -93,6 +93,18 @@
   --color-swag-green: #03ba4f; /* primary CTA + brand green (hero CTA 344:11927) */
   --color-swag-mint: #d7fee7; /* eyebrow / light accent on dark-green hero */
   --color-swag-green-deep: #10995a; /* eyebrow / accent green on white sections */
+  --color-swag-green-alt: #218554; /* secondary eyebrow/CTA green (catalog, pricing, committee, paperchase) */
+  /* Hero background + closing-CTA gradient + workflow glow, all as tokens so a
+     per-page scope (recognition/snacks/gifting) can re-tint the whole vertical
+     by overriding these vars on <main>. Defaults = the swag green palette so
+     /swag renders byte-for-byte identically. */
+  --color-swag-hero-bg: #06301d; /* solid hero backdrop behind the shader */
+  --color-swag-grad-1: #e9f5ef; /* closing gradient top */
+  --color-swag-grad-2: #bfe0cd;
+  --color-swag-grad-3: #63a582;
+  --color-swag-grad-4: #264c39; /* closing gradient before the near-black */
+  --color-swag-glow: rgba(16, 153, 90, 0.09); /* workflow radial backdrop */
+  --color-swag-tint: #f2fbf5; /* highlighted (Stadium) comparison column tint */
   --color-swag-ink: #16171b; /* swag headings (near-black) */
   --color-swag-grey: #6b6c71; /* swag body text on white */
   --color-grey-100: #f8f8f8; /* Universal/Greyscale/100-Primary Surface Light */

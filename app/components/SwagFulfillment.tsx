@@ -49,23 +49,62 @@ function Icon({ name }: { name: string }) {
   );
 }
 
-const COLS = ["On-Demand", "Bulk", "Stored"];
-const ROWS = [
-  { icon: "store", label: "Stores", vals: ["Print per order", "Pre-buy inventory", "Ship from Locker"] },
-  { icon: "box", label: "Kits", vals: ["Assemble on order", "Pre-knitted runs", "Kits in Locker"] },
-  { icon: "send", label: "Send Items", vals: ["One-off sends", "Batch campaigns", "Pull from stock"] },
-  { icon: "users", label: "In-Person", vals: ["Ever print", "Event bulk order", "Staged & shipped"] },
-];
+export type SwagFulfillmentContent = {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  columns: string[];
+  /** Optional header for the row-label column (e.g. "Region"). */
+  rowHeader?: string;
+  /** Width of the row-label column (default "20rem"; e.g. "13rem" for short labels). */
+  labelWidth?: string;
+  /** A cell value of the form "check:Local" renders a green success check + text. */
+  rows: {
+    icon?: string;
+    label: string;
+    vals: string[];
+  }[];
+};
 
-function corner(r: number, c: number) {
+export const SWAG_FULFILLMENT: SwagFulfillmentContent = {
+  eyebrow: "FULFILLMENT, YOUR WAY",
+  heading: "Every fulfillment model, one setup",
+  body: "Whether you print swag on demand, buy in bulk, or pull from stock, Stadium does all three. Most vendors only do one.",
+  columns: ["On-Demand", "Bulk", "Stored"],
+  rows: [
+    { icon: "store", label: "Stores", vals: ["Print per order", "Pre-buy inventory", "Ship from Locker"] },
+    { icon: "box", label: "Kits", vals: ["Assemble on order", "Pre-knitted runs", "Kits in Locker"] },
+    { icon: "send", label: "Send Items", vals: ["One-off sends", "Batch campaigns", "Pull from stock"] },
+    { icon: "users", label: "In-Person", vals: ["Ever print", "Event bulk order", "Staged & shipped"] },
+  ],
+};
+
+function corner(r: number, c: number, lastRow: number) {
   if (r === 0 && c === 0) return "rounded-lg rounded-tl-3xl";
   if (r === 0 && c === 3) return "rounded-lg rounded-tr-3xl";
-  if (r === 3 && c === 0) return "rounded-lg rounded-bl-3xl";
-  if (r === 3 && c === 3) return "rounded-lg rounded-br-3xl";
+  if (r === lastRow && c === 0) return "rounded-lg rounded-bl-3xl";
+  if (r === lastRow && c === 3) return "rounded-lg rounded-br-3xl";
   return "rounded-lg";
 }
 
-export default function SwagFulfillment() {
+function StatusCheck({ text }: { text: string }) {
+  return (
+    <span className="flex items-center gap-1.5">
+      <span className="flex items-center justify-center rounded-full bg-[#10995a] p-0.5">
+        <svg className="size-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </span>
+      {text}
+    </span>
+  );
+}
+
+export default function SwagFulfillment({ content = SWAG_FULFILLMENT }: { content?: SwagFulfillmentContent }) {
+  const lastRow = content.rows.length - 1;
+  const gridStyle = {
+    gridTemplateColumns: `${content.labelWidth ?? "20rem"} repeat(${content.columns.length}, minmax(0, 1fr))`,
+  };
   return (
     <section className="bg-white px-section-x-sm py-3 md:px-section-x-md lg:px-section-x-lg">
       <div className="relative mx-auto flex max-w-content flex-col items-center gap-10 overflow-hidden rounded-[3rem] bg-[#f7f7f7] px-6 py-16 md:rounded-[3.75rem] md:px-16 md:py-24 lg:px-24 lg:py-[8.75rem]">
@@ -76,21 +115,20 @@ export default function SwagFulfillment() {
               data-animation="reveal"
               className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md"
             >
-              FULFILLMENT, YOUR WAY
+              {content.eyebrow}
             </p>
             <h2
               data-animation="reveal"
               className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              Every fulfillment model, one setup
+              {content.heading}
             </h2>
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-body-md leading-[1.48] text-swag-grey lg:text-[1.125rem]"
           >
-            Whether you print swag on demand, buy in bulk, or pull from stock,
-            Stadium does all three. Most vendors only do one.
+            {content.body}
           </p>
         </div>
 
@@ -101,9 +139,11 @@ export default function SwagFulfillment() {
         >
           <div className="min-w-[46rem]">
             {/* column headers */}
-            <div className="mb-1 grid grid-cols-[20rem_1fr_1fr_1fr] gap-1">
-              <div />
-              {COLS.map((c) => (
+            <div className="mb-1 grid gap-1" style={gridStyle}>
+              <div className="px-6 py-4 font-sans text-[0.90625rem] text-swag-grey">
+                {content.rowHeader ?? ""}
+              </div>
+              {content.columns.map((c) => (
                 <div key={c} className="px-6 py-4 text-center font-sans text-[0.90625rem] text-swag-ink">
                   {c}
                 </div>
@@ -111,10 +151,10 @@ export default function SwagFulfillment() {
             </div>
             {/* rows */}
             <div className="flex flex-col gap-1">
-              {ROWS.map((row, r) => (
-                <div key={row.label} className="grid grid-cols-[20rem_1fr_1fr_1fr] gap-1">
-                  <div className={`flex items-center gap-2.5 bg-white p-6 ${corner(r, 0)}`}>
-                    <Icon name={row.icon} />
+              {content.rows.map((row, r) => (
+                <div key={row.label} className="grid gap-1" style={gridStyle}>
+                  <div className={`flex items-center gap-2.5 bg-white p-6 ${corner(r, 0, lastRow)}`}>
+                    {row.icon && <Icon name={row.icon} />}
                     <span className="font-sans text-[0.90625rem] font-semibold text-[#1b1b1b]">
                       {row.label}
                     </span>
@@ -122,9 +162,9 @@ export default function SwagFulfillment() {
                   {row.vals.map((v, c) => (
                     <div
                       key={v}
-                      className={`flex items-center justify-center bg-white p-6 text-center font-sans text-[0.90625rem] font-semibold text-[#1b1b1b] ${corner(r, c + 1)}`}
+                      className={`flex items-center justify-center bg-white p-6 text-center font-sans text-[0.90625rem] font-semibold text-[#1b1b1b] ${corner(r, c + 1, lastRow)}`}
                     >
-                      {v}
+                      {v.startsWith("check:") ? <StatusCheck text={v.slice(6)} /> : v}
                     </div>
                   ))}
                 </div>

@@ -3,14 +3,37 @@
    pricing" CTA on the left, a #f2f2f2 tray of four progressive "Pass" cards on
    the right (Shops → Swag → Engagement [Popular, elevated] → Enterprise). */
 
-const PASSES = [
-  { n: "01", title: "Shops Pass", desc: "Branded stores, on-demand, and the full catalog." },
-  { n: "02", title: "Swag Pass", desc: "+ Warehousing, inventory, and kits." },
-  { n: "03", title: "Engagement Pass", desc: "+ Automation, integrations, and recognition.", popular: true },
-  { n: "04", title: "Enterprise Pass", desc: "+ SSO, API, net terms, and a dedicated CSM." },
-];
+export type SwagPricingContent = {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  ctaLabel: string;
+  ctaHref: string;
+  popularLabel: string;
+  passes: {
+    n: string;
+    title: string;
+    desc: string;
+    popular?: boolean;
+  }[];
+};
 
-export default function SwagPricing() {
+export const SWAG_PRICING: SwagPricingContent = {
+  eyebrow: "STADIUM PACKAGES",
+  heading: "Start with swag and expand when ready",
+  body: "Add new capabilities over time without changing platforms.",
+  ctaLabel: "Explore pricing",
+  ctaHref: "#",
+  popularLabel: "Popular",
+  passes: [
+    { n: "01", title: "Shops Pass", desc: "Branded stores, on-demand, and the full catalog." },
+    { n: "02", title: "Swag Pass", desc: "+ Warehousing, inventory, and kits." },
+    { n: "03", title: "Engagement Pass", desc: "+ Automation, integrations, and recognition.", popular: true },
+    { n: "04", title: "Enterprise Pass", desc: "+ SSO, API, net terms, and a dedicated CSM." },
+  ],
+};
+
+export default function SwagPricing({ content = SWAG_PRICING }: { content?: SwagPricingContent }) {
   return (
     <section className="bg-white px-section-x-sm py-12 md:px-section-x-md md:py-16 lg:px-section-x-lg lg:py-20">
       <div className="mx-auto w-full max-w-content">
@@ -21,37 +44,37 @@ export default function SwagPricing() {
               <div className="flex flex-col gap-2">
                 <p
                   data-animation="reveal"
-                  className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-[#218554]"
+                  className="font-sans text-[0.75rem] font-semibold uppercase tracking-[0.045rem] text-swag-green-alt"
                 >
-                  STADIUM PACKAGES
+                  {content.eyebrow}
                 </p>
                 <h2
                   data-animation="reveal"
                   className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
                 >
-                  Start with swag and expand when ready
+                  {content.heading}
                 </h2>
               </div>
               <p
                 data-animation="reveal"
                 className="font-sans text-body-md leading-[1.45] text-[#707075] lg:text-[1.125rem]"
               >
-                Add new capabilities over time without changing platforms.
+                {content.body}
               </p>
             </div>
             <a
-              href="#"
-              className="inline-flex h-11 w-fit items-center justify-center rounded-full bg-[#218554] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-95 active:scale-[0.98] focus-visible:outline-ink"
+              href={content.ctaHref}
+              className="inline-flex h-11 w-fit items-center justify-center rounded-full bg-swag-ink px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-black active:scale-[0.98] focus-visible:outline-ink"
             >
               <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                Explore pricing
+                {content.ctaLabel}
               </span>
             </a>
           </div>
 
           {/* right — pass cards tray */}
           <div className="grid flex-1 grid-cols-1 gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 sm:grid-cols-2">
-            {PASSES.map((p) => (
+            {content.passes.map((p) => (
               <div
                 key={p.title}
                 className={`relative flex flex-col gap-10 rounded-3xl bg-white p-6 ${
@@ -62,7 +85,7 @@ export default function SwagPricing() {
               >
                 {p.popular && (
                   <span className="absolute right-5 top-5 rounded-full bg-swag-green-deep px-3 pb-[0.1875rem] pt-1 font-sans text-[0.75rem] font-bold tracking-[0.025rem] text-white">
-                    Popular
+                    {content.popularLabel}
                   </span>
                 )}
                 <p className="font-sans text-[1rem] tracking-[0.025rem] text-[#828282]">

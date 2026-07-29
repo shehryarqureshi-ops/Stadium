@@ -176,10 +176,11 @@ export const COLUMNS: Group[][] = [
     {
       label: "Recognition",
       accent: true,
+      href: "/recognition",
       items: [
-        { label: "Kudos Programs", Icon: I.heart },
-        { label: "Milestone Programs", Icon: I.award },
-        { label: "Rewards & Incentives", Icon: I.star },
+        { label: "Kudos Programs", Icon: I.heart, href: "/recognition" },
+        { label: "Milestone Programs", Icon: I.award, href: "/recognition" },
+        { label: "Rewards & Incentives", Icon: I.star, href: "/recognition" },
       ],
     },
     {
@@ -198,33 +199,36 @@ export const COLUMNS: Group[][] = [
   [
     {
       label: "Snacks",
+      href: "/snacks",
       items: [
-        { label: "Build-Your-Own Boxes", Icon: I.coffee },
-        { label: "Curated Boxes", Icon: I.sparkles },
+        { label: "Build-Your-Own Boxes", Icon: I.coffee, href: "/snacks" },
+        { label: "Curated Boxes", Icon: I.sparkles, href: "/snacks" },
       ],
     },
     {
       label: "Gifting",
+      href: "/gifting",
       items: [
-        { label: "Holiday Gifting", Icon: I.gift },
-        { label: "Employee Gifting", Icon: I.users },
-        { label: "Client & Prospect Gifting", Icon: I.send },
-        { label: "Partner Gifting", Icon: I.globe },
-        { label: "Automated Gifting", Icon: I.repeat },
-        { label: "Gift Shops", Icon: I.store },
+        { label: "Holiday Gifting", Icon: I.gift, href: "/gifting" },
+        { label: "Employee Gifting", Icon: I.users, href: "/gifting" },
+        { label: "Client & Prospect Gifting", Icon: I.send, href: "/gifting" },
+        { label: "Partner Gifting", Icon: I.globe, href: "/gifting" },
+        { label: "Automated Gifting", Icon: I.repeat, href: "/gifting" },
+        { label: "Gift Shops", Icon: I.store, href: "/gifting" },
       ],
     },
   ],
   [
     {
       label: "Events",
+      href: "/events",
       items: [
-        { label: "Team Building", Icon: I.users },
-        { label: "Health & Wellness", Icon: I.heart },
-        { label: "Seasonal Moments", Icon: I.sparkles },
-        { label: "Employee Onboarding", Icon: I.globe },
-        { label: "Learning & Development", Icon: I.calendar },
-        { label: "Diversity, Equity, & Inclusion", Icon: I.smile },
+        { label: "Team Building", Icon: I.users, href: "/events" },
+        { label: "Health & Wellness", Icon: I.heart, href: "/events" },
+        { label: "Seasonal Moments", Icon: I.sparkles, href: "/events" },
+        { label: "Employee Onboarding", Icon: I.globe, href: "/events" },
+        { label: "Learning & Development", Icon: I.calendar, href: "/events" },
+        { label: "Diversity, Equity, & Inclusion", Icon: I.smile, href: "/events" },
       ],
     },
   ],
@@ -237,14 +241,23 @@ const ArrowRight = (p: IconProps) => (
   </svg>
 );
 
-/* Group: 12px-Bold-1px heading (arrow-reveal) · 1px underline (rainbow for the
-   accent group, #d9d9d9 otherwise) · 28px icon rows @ 8px. gap 16 throughout. */
+/* Each vertical's underline wipes in ITS OWN accent (three shades of the hue),
+   matching that page's theme rather than a shared rainbow. Unknown groups fall
+   back to the brand spectrum. */
+const GROUP_WIPE: Record<string, string> = {
+  Recognition: "bg-[linear-gradient(270deg,#a855f7,#8d12e7,#6b21a8)]", // lilac
+  Swag: "bg-[linear-gradient(270deg,#00c036,#03ba4f,#10995a)]", // green
+  Snacks: "bg-[linear-gradient(270deg,#5b9bf8,#2178f5,#175fc0)]", // blue
+  Gifting: "bg-[linear-gradient(270deg,#ffcb47,#ffb800,#e08a00)]", // amber
+  Events: "bg-[linear-gradient(270deg,#ff8098,#ff5b77,#e11d48)]", // pink
+};
+const SPECTRUM_WIPE =
+  "bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)]";
+
+/* Group: 12px-Bold-1px heading (arrow-reveal) · 1px underline (per-vertical
+   accent wipe, #d9d9d9 at rest) · 28px icon rows @ 8px. gap 16 throughout. */
 function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean }) {
-  // Swag wipes in the brand green; other verticals use the Stadium spectrum.
-  const wipe =
-    group.label === "Swag"
-      ? "bg-[linear-gradient(270deg,#00c036,#03ba4f,#10995a)]"
-      : "bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)]";
+  const wipe = GROUP_WIPE[group.label] ?? SPECTRUM_WIPE;
   return (
     /* minRow = first group of a two-group column: fixed 149px tall so the
        second group (Swag / Gifting) top-aligns across columns (Figma 2:75437) */
@@ -257,7 +270,7 @@ function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean 
         {group.label}
         <ArrowRight className="engage-arrow size-3 shrink-0" />
       </a>
-      {/* grey rail at rest; the accent gradient (green for Swag) wipes in
+      {/* grey rail at rest; the vertical's own accent gradient wipes in
           left→right on column hover */}
       <span aria-hidden className="relative block h-px w-full bg-[#d9d9d9]">
         <span className={`absolute inset-0 origin-left scale-x-0 ${wipe} transition-transform duration-500 ease-out group-hover/col:scale-x-100`} />
