@@ -33,7 +33,11 @@ export const SWAG_PAPERCHASE: SwagPaperchaseContent = {
       dark: false,
       img: "/swag/swag-paperchase-1.jpg",
       title: "Nine vendors, one exhausted manager",
-      points: ["9 swag vendors", "Inventory aging in a basement", "Marketing doing logistics"],
+      points: [
+        "9 swag vendors",
+        "Inventory aging in a basement",
+        "Marketing doing logistics",
+      ],
     },
     {
       tag: "DURING",
@@ -47,7 +51,11 @@ export const SWAG_PAPERCHASE: SwagPaperchaseContent = {
       dark: true,
       img: "/swag/swag-paperchase-3.jpg",
       title: "One platform, two admins",
-      points: ["1 vendor, 1 invoice", "14-country program", "Marketing got their job back"],
+      points: [
+        "1 vendor, 1 invoice",
+        "14-country program",
+        "Marketing got their job back",
+      ],
     },
   ],
 };
@@ -87,7 +95,10 @@ export default function SwagPaperchase({
             </p>
           </div>
           <div data-animation="reveal" className="flex flex-col gap-[3.75rem]">
-            <span className="font-display text-[4rem] leading-[0.6] text-grey-300" aria-hidden>
+            <span
+              className="font-display text-[4rem] leading-[0.6] text-grey-300"
+              aria-hidden
+            >
               &ldquo;
             </span>
             <div className="flex flex-col gap-6">
@@ -108,11 +119,17 @@ export default function SwagPaperchase({
             className="absolute bottom-10 left-[2.8125rem] top-10 hidden w-px border-l border-dashed border-grey-300 sm:block"
           />
           {content.stages.map((s) => (
-            <div key={s.tag} data-animation="reveal" className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+            <div
+              key={s.tag}
+              data-animation="reveal"
+              className="flex flex-col gap-3 sm:flex-row sm:gap-6 sticky top-28"
+            >
               <div className="relative z-10 sm:w-[5.625rem] sm:shrink-0">
                 <span
                   className={`flex w-fit items-center justify-center rounded-full px-3 py-1.5 font-sans text-[0.875rem] font-semibold sm:w-full ${
-                    s.dark ? "bg-[#212624] text-white" : "bg-[#f2f2f2] text-[#212624]"
+                    s.dark
+                      ? "bg-[#212624] text-white"
+                      : "bg-[#f2f2f2] text-[#212624]"
                   }`}
                 >
                   {s.tag}
@@ -135,7 +152,10 @@ export default function SwagPaperchase({
                   <ul className="flex flex-col gap-3">
                     {s.points.map((p) => (
                       <li key={p} className="flex items-center gap-2.5">
-                        <span className="size-2 shrink-0 rounded-full bg-grey-300" aria-hidden />
+                        <span
+                          className="size-2 shrink-0 rounded-full bg-grey-300"
+                          aria-hidden
+                        />
                         <span className="font-sans text-[0.9375rem] leading-[1.4] text-swag-ink">
                           {p}
                         </span>

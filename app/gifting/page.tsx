@@ -1,18 +1,37 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import MigrationRoadmap, {
+  type MigrationRoadmapContent,
+} from "../components/MigrationRoadmap";
 import PageClose from "../components/PageClose";
+import ProblemBlock, {
+  type ProblemBlockContent,
+} from "../components/ProblemBlock";
 import SiteHeader from "../components/SiteHeader";
-import SwagAdminView, { type SwagAdminViewContent } from "../components/SwagAdminView";
-import SwagClosing, { type SwagClosingContent } from "../components/SwagClosing";
-import SwagCommittee, { type SwagCommitteeContent } from "../components/SwagCommittee";
-import SwagComparison, { type SwagComparisonContent } from "../components/SwagComparison";
-import ProblemBlock, { type ProblemBlockContent } from "../components/ProblemBlock";
-import MigrationRoadmap, { type MigrationRoadmapContent } from "../components/MigrationRoadmap";
+import SwagAdminView, {
+  type SwagAdminViewContent,
+} from "../components/SwagAdminView";
+import SwagClosing, {
+  type SwagClosingContent,
+} from "../components/SwagClosing";
+import SwagCommittee, {
+  type SwagCommitteeContent,
+} from "../components/SwagCommittee";
+import SwagComparison, {
+  type SwagComparisonContent,
+} from "../components/SwagComparison";
 import SwagHero, { type SwagHeroContent } from "../components/SwagHero";
-import SwagHowItWorks, { type SwagHowItWorksContent } from "../components/SwagHowItWorks";
+import SwagHeroShader from "../components/SwagHeroShader";
+import SwagHowItWorks, {
+  type SwagHowItWorksContent,
+} from "../components/SwagHowItWorks";
 import SwagImpact, { type SwagImpactContent } from "../components/SwagImpact";
-import SwagPaperchase, { type SwagPaperchaseContent } from "../components/SwagPaperchase";
-import SwagWorkflow, { type SwagWorkflowContent } from "../components/SwagWorkflow";
+import SwagPaperchase, {
+  type SwagPaperchaseContent,
+} from "../components/SwagPaperchase";
+import SwagWorkflow, {
+  type SwagWorkflowContent,
+} from "../components/SwagWorkflow";
 
 /* /gifting — composed entirely from the shared /swag section components, each
    fed its own typed `content` object extracted from Figma file
@@ -252,13 +271,34 @@ const comparisonContent: SwagComparisonContent = {
     { name: "DIY", sub: "Gift cards" },
   ],
   rows: [
-    { label: "Recipient choice · 25K+ gifts", vals: ["check", "Limited", "check", "minus"] },
-    { label: "Automation & CRM triggers", vals: ["check", "check", "Limited", "minus"] },
-    { label: "Employee · client · partner", vals: ["check", "Some", "Some", "Manual"] },
-    { label: "Global delivery · 170+", vals: ["check", "check", "Limited", "minus"] },
-    { label: "Spend control & budgets", vals: ["check", "Limited", "minus", "minus"] },
-    { label: "Swag · snacks · recognition too", vals: ["check", "Limited", "minus", "minus"] },
-    { label: "One platform, one invoice", vals: ["check", "minus", "minus", "minus"] },
+    {
+      label: "Recipient choice · 25K+ gifts",
+      vals: ["check", "Limited", "check", "minus"],
+    },
+    {
+      label: "Automation & CRM triggers",
+      vals: ["check", "check", "Limited", "minus"],
+    },
+    {
+      label: "Employee · client · partner",
+      vals: ["check", "Some", "Some", "Manual"],
+    },
+    {
+      label: "Global delivery · 170+",
+      vals: ["check", "check", "Limited", "minus"],
+    },
+    {
+      label: "Spend control & budgets",
+      vals: ["check", "Limited", "minus", "minus"],
+    },
+    {
+      label: "Swag · snacks · recognition too",
+      vals: ["check", "Limited", "minus", "minus"],
+    },
+    {
+      label: "One platform, one invoice",
+      vals: ["check", "minus", "minus", "minus"],
+    },
   ],
 };
 
@@ -284,14 +324,22 @@ const paperchaseContent: SwagPaperchaseContent = {
       dark: false,
       img: "/gifting/gifting-case-2.jpg",
       title: "Migrated in 60 days",
-      points: ["0 programs paused", "HRIS + Salesforce wired", "Brand pack consolidated"],
+      points: [
+        "0 programs paused",
+        "HRIS + Salesforce wired",
+        "Brand pack consolidated",
+      ],
     },
     {
       tag: "AFTER",
       dark: true,
       img: "/gifting/gifting-case-3.jpg",
       title: "One platform, all four teams",
-      points: ["1% address bounce", "5 programs · 22 countries", "One invoice for Finance"],
+      points: [
+        "1% address bounce",
+        "5 programs · 22 countries",
+        "One invoice for Finance",
+      ],
     },
   ],
 };
@@ -373,9 +421,18 @@ const problemContent: ProblemBlockContent = {
   body: "Ask three teams how they handle gifting, and you’ll get three different answers: Sales runs its own platform, HR defaults to gift cards, and Marketing uses an agency. Budgets, vendors, and reporting never line up.",
   overlapColor: "#2a1a05",
   cards: [
-    { title: "Vendor & Tool Sprawl", desc: "Each new gifting project adds another vendor, contract, or workflow." },
-    { title: "Choosing for Everyone", desc: "You’re guessing what people like, what they need, and what they’ll use." },
-    { title: "No Measurable Impact", desc: "Budgets, orders, and reporting live in different places, so no one sees spend or results." },
+    {
+      title: "Vendor & Tool Sprawl",
+      desc: "Each new gifting project adds another vendor, contract, or workflow.",
+    },
+    {
+      title: "Choosing for Everyone",
+      desc: "You’re guessing what people like, what they need, and what they’ll use.",
+    },
+    {
+      title: "No Measurable Impact",
+      desc: "Budgets, orders, and reporting live in different places, so no one sees spend or results.",
+    },
   ],
 };
 
@@ -408,16 +465,28 @@ export default function GiftingPage() {
         style={theme}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <SwagHero
-          content={heroContent}
-          showProduct={false}
-          align="left"
-          bgImageSrc="/gifting/hero-bg.jpg"
-          secondaryCtaStyle="outline"
-          shaderChroma={{ base: "#1a1206", down: "#c88a2e", left: "#ffb800", right: "#7a4a00", up: "#ffd57a" }}
-        />
+        <section className="relative">
+          <div className="absolute w-full h-[72%] top-0 left-0 mask-b-from-75%">
+            <SwagHeroShader
+              chroma={{
+                base: "#1a1206",
+                down: "#c88a2e",
+                left: "#ffb800",
+                right: "#7a4a00",
+                up: "#ffd57a",
+              }}
+            />
+          </div>
+          <SwagHero
+            content={heroContent}
+            showProduct={false}
+            align="left"
+            bgImageSrc="/gifting/hero-bg.jpg"
+            secondaryCtaStyle="outline"
+          />
 
-        <ProblemBlock content={problemContent} />
+          <ProblemBlock content={problemContent} />
+        </section>
 
         {/* Divider · 668:5120 — a simple thin grey rule between the hero and the
             workflow band (adjoining sections carry the larger vertical rhythm). */}
@@ -436,15 +505,25 @@ export default function GiftingPage() {
         <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
           <div className="mx-auto flex w-full max-w-content flex-col items-center gap-5 rounded-[2rem] bg-[#f7f7f7] px-6 py-16 text-center md:py-20 lg:py-24">
             <div className="flex flex-col items-center gap-2">
-              <p data-animation="reveal" className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md">
+              <p
+                data-animation="reveal"
+                className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-swag-green-deep md:text-eyebrow-md"
+              >
                 NO ADDRESSES TO CHASE
               </p>
-              <h2 data-animation="reveal" className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]">
+              <h2
+                data-animation="reveal"
+                className="font-display text-[1.75rem] leading-[1.08] tracking-[-0.03125rem] text-swag-ink md:text-[2.25rem] lg:text-[2.75rem]"
+              >
                 The address problem, solved
               </h2>
             </div>
-            <p data-animation="reveal" className="max-w-[42rem] font-sans text-body-md text-swag-grey lg:text-[1.125rem] lg:leading-[1.48]">
-              From your HRIS or the recipient, every gift gets where it needs to go, no back-and-forth.
+            <p
+              data-animation="reveal"
+              className="max-w-[42rem] font-sans text-body-md text-swag-grey lg:text-[1.125rem] lg:leading-[1.48]"
+            >
+              From your HRIS or the recipient, every gift gets where it needs to
+              go, no back-and-forth.
             </p>
           </div>
         </section>

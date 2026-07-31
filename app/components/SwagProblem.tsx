@@ -50,14 +50,7 @@ function ProblemCard({ img, alt, title, desc }: (typeof CARDS)[number]) {
 
 export default function SwagProblem() {
   return (
-    <section className="relative overflow-hidden bg-white px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
-      {/* overlaps the hero and continues its green (no seam), fading to white
-          behind the peek bars + card */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[linear-gradient(to_bottom,#0a0a0a,#ffffff)]"
-      />
-
+    <section className="relative overflow-hidden px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28 z-20">
       <div className="relative mx-auto flex w-full max-w-content flex-col items-center">
         {/* peek-behind bars (344:11966) */}
         <div className="flex w-full flex-col items-center">

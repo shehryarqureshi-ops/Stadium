@@ -34,7 +34,16 @@ const CARDS: Card[] = [
 function Icon({ name }: { name: Card["icon"] }) {
   if (name === "shuffle")
     return (
-      <svg className="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg
+        className="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
         <path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22" />
         <path d="m18 2 4 4-4 4" />
         <path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2" />
@@ -44,7 +53,16 @@ function Icon({ name }: { name: Card["icon"] }) {
     );
   if (name === "package")
     return (
-      <svg className="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg
+        className="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
         <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
         <path d="M12 22V12" />
         <polyline points="3.29 7 12 12 20.71 7" />
@@ -52,7 +70,16 @@ function Icon({ name }: { name: Card["icon"] }) {
       </svg>
     );
   return (
-    <svg className="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <svg
+      className="size-6"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
       <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" />
       <path d="M7 3.34V5a3 3 0 0 0 3 3 2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" />
       <path d="M11 21.95V18a2 2 0 0 0-2-2 2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" />
@@ -63,13 +90,7 @@ function Icon({ name }: { name: Card["icon"] }) {
 
 export default function RecognitionProblem() {
   return (
-    <section className="relative overflow-hidden bg-white px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
-      {/* continue the hero's dark mesh, fading to white behind the peek bars */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[linear-gradient(to_bottom,#160a26,#ffffff)]"
-      />
-
+    <section className="relative overflow-hidden px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
       <div className="relative mx-auto flex w-full max-w-content flex-col items-center">
         {/* peek-behind bars (312:472 / 312:471) */}
         <div className="flex w-full flex-col items-center">

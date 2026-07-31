@@ -1,18 +1,37 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import PageClose from "../components/PageClose";
+import ProblemBlock, {
+  type ProblemBlockContent,
+} from "../components/ProblemBlock";
+import ReviewsBlock, {
+  type ReviewsBlockContent,
+} from "../components/ReviewsBlock";
 import SiteHeader from "../components/SiteHeader";
-import SwagCatalog, { type SwagCatalogContent } from "../components/SwagCatalog";
-import SwagClosing, { type SwagClosingContent } from "../components/SwagClosing";
-import SwagComparison, { type SwagComparisonContent } from "../components/SwagComparison";
-import SwagFulfillment, { type SwagFulfillmentContent } from "../components/SwagFulfillment";
+import SwagCatalog, {
+  type SwagCatalogContent,
+} from "../components/SwagCatalog";
+import SwagClosing, {
+  type SwagClosingContent,
+} from "../components/SwagClosing";
+import SwagComparison, {
+  type SwagComparisonContent,
+} from "../components/SwagComparison";
+import SwagFulfillment, {
+  type SwagFulfillmentContent,
+} from "../components/SwagFulfillment";
 import SwagHero, { type SwagHeroContent } from "../components/SwagHero";
-import SwagHowItWorks, { type SwagHowItWorksContent } from "../components/SwagHowItWorks";
-import SwagPlatform, { type SwagPlatformContent } from "../components/SwagPlatform";
-import SwagWorkflow, { type SwagWorkflowContent } from "../components/SwagWorkflow";
-import ProblemBlock, { type ProblemBlockContent } from "../components/ProblemBlock";
+import SwagHeroShader from "../components/SwagHeroShader";
+import SwagHowItWorks, {
+  type SwagHowItWorksContent,
+} from "../components/SwagHowItWorks";
 import SwagImpact, { type SwagImpactContent } from "../components/SwagImpact";
-import ReviewsBlock, { type ReviewsBlockContent } from "../components/ReviewsBlock";
+import SwagPlatform, {
+  type SwagPlatformContent,
+} from "../components/SwagPlatform";
+import SwagWorkflow, {
+  type SwagWorkflowContent,
+} from "../components/SwagWorkflow";
 
 export const metadata: Metadata = {
   title: "Snacks — Snacks people can’t wait to open | Stadium",
@@ -81,7 +100,9 @@ const workflowContent: SwagWorkflowContent = {
     {
       label: "Build-your-own box",
       heading: "Build-Your-Own Box",
-      desc: ["Set a budget, and everyone builds their own box from 2,000+ snacks."],
+      desc: [
+        "Set a budget, and everyone builds their own box from 2,000+ snacks.",
+      ],
       features: [
         "They choose. You stop guessing.",
         "Filter by dietary preferences.",
@@ -114,7 +135,8 @@ const workflowContent: SwagWorkflowContent = {
 const howItWorksContent: SwagHowItWorksContent = {
   eyebrow: "SEND A TREAT",
   heading: "From order to their door in four steps",
-  intro: "Hit send, and you’re done. No chasing addresses or tracking shipments.",
+  intro:
+    "Hit send, and you’re done. No chasing addresses or tracking shipments.",
   featuredStep: {
     n: "01",
     title: ["Pick a Box"],
@@ -144,13 +166,46 @@ const catalogContent: SwagCatalogContent = {
   headingLine2: "from 2,000+ snacks",
   body: "Every craving and diet is covered here, plus brands they’ve never tried before.",
   browseLabel: "Browse all 2,000+ snacks",
-  filters: ["All", "Sweet", "Salty", "Better-for-you", "Drinks", "Vegan", "Gluten-free"],
+  filters: [
+    "All",
+    "Sweet",
+    "Salty",
+    "Better-for-you",
+    "Drinks",
+    "Vegan",
+    "Gluten-free",
+  ],
   categories: [
-    { cat: "Sweet", count: "520+", brands: "Hu · Tony’s · Sohla", img: "/snacks/snacks-cat-1.jpg" },
-    { cat: "Salty", count: "480+", brands: "Siete · Pipcorn · Hippeas", img: "/snacks/snacks-cat-2.jpg" },
-    { cat: "Better-for-you", count: "430+", brands: "RXBAR · KIND · GoMacro", img: "/snacks/snacks-cat-3.jpg" },
-    { cat: "Drinks", count: "310+", brands: "Olipop · Liquid Death · Waterloo", img: "/snacks/snacks-cat-4.jpg" },
-    { cat: "Vegan", count: "260+", brands: "Partake · LesserEvil · Bobo’s", img: "/snacks/snacks-cat-5.jpg" },
+    {
+      cat: "Sweet",
+      count: "520+",
+      brands: "Hu · Tony’s · Sohla",
+      img: "/snacks/snacks-cat-1.jpg",
+    },
+    {
+      cat: "Salty",
+      count: "480+",
+      brands: "Siete · Pipcorn · Hippeas",
+      img: "/snacks/snacks-cat-2.jpg",
+    },
+    {
+      cat: "Better-for-you",
+      count: "430+",
+      brands: "RXBAR · KIND · GoMacro",
+      img: "/snacks/snacks-cat-3.jpg",
+    },
+    {
+      cat: "Drinks",
+      count: "310+",
+      brands: "Olipop · Liquid Death · Waterloo",
+      img: "/snacks/snacks-cat-4.jpg",
+    },
+    {
+      cat: "Vegan",
+      count: "260+",
+      brands: "Partake · LesserEvil · Bobo’s",
+      img: "/snacks/snacks-cat-5.jpg",
+    },
   ],
 };
 
@@ -162,12 +217,27 @@ const platformContent: SwagPlatformContent = {
   heading: "Snacks for every reason",
   body: "Snacks fit every occasion, whether you’re in the office or remote.",
   cards: [
-    { title: "Onboarding", desc: "Welcome new hires from day one, wherever they are." },
-    { title: "Milestones", desc: "Celebrate birthdays, anniversaries, and achievements." },
-    { title: "All-Hands & Events", desc: "Fuel meetings, offsites, and virtual events." },
+    {
+      title: "Onboarding",
+      desc: "Welcome new hires from day one, wherever they are.",
+    },
+    {
+      title: "Milestones",
+      desc: "Celebrate birthdays, anniversaries, and achievements.",
+    },
+    {
+      title: "All-Hands & Events",
+      desc: "Fuel meetings, offsites, and virtual events.",
+    },
     { title: "Thank-Yous", desc: "Send a treat when someone’s earned it." },
-    { title: "Remote Check-Ins", desc: "Bring the office experience to remote teams." },
-    { title: "Just Because", desc: "Brighten someone’s day with an unexpected snack." },
+    {
+      title: "Remote Check-Ins",
+      desc: "Bring the office experience to remote teams.",
+    },
+    {
+      title: "Just Because",
+      desc: "Brighten someone’s day with an unexpected snack.",
+    },
   ],
 };
 
@@ -184,11 +254,26 @@ const fulfillmentContent: SwagFulfillmentContent = {
   labelWidth: "13rem",
   columns: ["Local Snacks", "Delivery", "Status"],
   rows: [
-    { label: "North America", vals: ["Trail mix · cold brew · jerky", "3–4 days", "check:Local"] },
-    { label: "Europe", vals: ["Stroopwafels · biscuits · crisps", "3–5 days", "check:Local"] },
-    { label: "APAC", vals: ["Mochi · matcha kit · rice crackers", "4–5 days", "check:Local"] },
-    { label: "LATAM", vals: ["Dulce de leche · plantain chips", "4–5 days", "check:Local"] },
-    { label: "Middle East", vals: ["Dates · baklava · mixed nuts", "4–6 days", "check:Local"] },
+    {
+      label: "North America",
+      vals: ["Trail mix · cold brew · jerky", "3–4 days", "check:Local"],
+    },
+    {
+      label: "Europe",
+      vals: ["Stroopwafels · biscuits · crisps", "3–5 days", "check:Local"],
+    },
+    {
+      label: "APAC",
+      vals: ["Mochi · matcha kit · rice crackers", "4–5 days", "check:Local"],
+    },
+    {
+      label: "LATAM",
+      vals: ["Dulce de leche · plantain chips", "4–5 days", "check:Local"],
+    },
+    {
+      label: "Middle East",
+      vals: ["Dates · baklava · mixed nuts", "4–6 days", "check:Local"],
+    },
   ],
 };
 
@@ -209,13 +294,34 @@ const comparisonContent: SwagComparisonContent = {
     { name: "Hoppier", sub: "Visa cards" },
   ],
   rows: [
-    { label: "Recipients pick their own", vals: ["check", "minus", "minus", "check", "Visa"] },
-    { label: "No subscription or minimums", vals: ["check", "minus", "check", "check", "check"] },
-    { label: "Global, local fulfillment", vals: ["170+", "US only", "US only", "550 intl", "cards"] },
-    { label: "2,000+ curated snacks", vals: ["check", "minus", "minus", "Gifts only", "minus"] },
-    { label: "Dietary filters built in", vals: ["check", "minus", "minus", "check", "minus"] },
-    { label: "Recurring office pantry", vals: ["check", "check", "minus", "minus", "minus"] },
-    { label: "Swag · Gifts · Recognition", vals: ["check", "minus", "minus", "minus", "minus"] },
+    {
+      label: "Recipients pick their own",
+      vals: ["check", "minus", "minus", "check", "Visa"],
+    },
+    {
+      label: "No subscription or minimums",
+      vals: ["check", "minus", "check", "check", "check"],
+    },
+    {
+      label: "Global, local fulfillment",
+      vals: ["170+", "US only", "US only", "550 intl", "cards"],
+    },
+    {
+      label: "2,000+ curated snacks",
+      vals: ["check", "minus", "minus", "Gifts only", "minus"],
+    },
+    {
+      label: "Dietary filters built in",
+      vals: ["check", "minus", "minus", "check", "minus"],
+    },
+    {
+      label: "Recurring office pantry",
+      vals: ["check", "check", "minus", "minus", "minus"],
+    },
+    {
+      label: "Swag · Gifts · Recognition",
+      vals: ["check", "minus", "minus", "minus", "minus"],
+    },
   ],
   cta: { label: "Book a demo", href: "#" },
 };
@@ -230,7 +336,11 @@ const comparisonContent: SwagComparisonContent = {
 const impactContent: SwagImpactContent = {
   heading: "The platform behind millions of snack moments",
   body: "Real results from teams that made snacking effortless with SnackMagic.",
-  photoStat: { image: "/swag/swag-impact.jpg", value: "2M+", label: "Snacks delivered" },
+  photoStat: {
+    image: "/swag/swag-impact.jpg",
+    value: "2M+",
+    label: "Snacks delivered",
+  },
   quoteStat: {
     label: "Snacks in the catalog",
     value: "2,000+",
@@ -263,9 +373,18 @@ const problemContent: ProblemBlockContent = {
   body: "Remote employees need separate shipping. Dietary needs keep shifting. And it’s all one more recurring task to manage.",
   overlapColor: "#0a1f3d",
   cards: [
-    { title: "Ordering lands on one person", desc: "Restocking, estimating quantities, and hoping the snacks are a hit." },
-    { title: "Remote folks miss out", desc: "A stocked office kitchen only works for people who show up to the office." },
-    { title: "Dietary needs are a guessing game", desc: "Different tastes and dietary needs mean the same snacks for everyone rarely work." },
+    {
+      title: "Ordering lands on one person",
+      desc: "Restocking, estimating quantities, and hoping the snacks are a hit.",
+    },
+    {
+      title: "Remote folks miss out",
+      desc: "A stocked office kitchen only works for people who show up to the office.",
+    },
+    {
+      title: "Dietary needs are a guessing game",
+      desc: "Different tastes and dietary needs mean the same snacks for everyone rarely work.",
+    },
   ],
 };
 
@@ -278,9 +397,21 @@ const reviewsContent: ReviewsBlockContent = {
     "What sets SnackMagic apart is letting everyone pick what they actually want. Our team looks forward to it every month.",
   pullAttribution: "Marina Garcia · Chief of Staff",
   cards: [
-    { quote: "Our remote team finally feels included — everyone gets snacks they actually love.", who: "People Team" },
-    { quote: "I set it up in five minutes and boxes shipped worldwide. Zero stress.", who: "Operations Lead" },
-    { quote: "Dietary filters mean no one gets left out. It’s a hit every single time.", who: "HR Manager" },
+    {
+      quote:
+        "Our remote team finally feels included — everyone gets snacks they actually love.",
+      who: "People Team",
+    },
+    {
+      quote:
+        "I set it up in five minutes and boxes shipped worldwide. Zero stress.",
+      who: "Operations Lead",
+    },
+    {
+      quote:
+        "Dietary filters mean no one gets left out. It’s a hit every single time.",
+      who: "HR Manager",
+    },
   ],
 };
 
@@ -310,16 +441,28 @@ export default function SnacksPage() {
         style={theme}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <SwagHero
-          content={heroContent}
-          showProduct={false}
-          align="left"
-          bgImageSrc="/snacks/hero-bg.jpg"
-          secondaryCtaStyle="outline"
-          shaderChroma={{ base: "#0e1a2e", down: "#1e5fd0", left: "#2178f5", right: "#173a6b", up: "#7cb0f8" }}
-        />
+        <section className="relative">
+          <div className="absolute w-full h-[72%] top-0 left-0 mask-b-from-75%">
+            <SwagHeroShader
+              chroma={{
+                base: "#0e1a2e",
+                down: "#1e5fd0",
+                left: "#2178f5",
+                right: "#173a6b",
+                up: "#7cb0f8",
+              }}
+            />
+          </div>
+          <SwagHero
+            content={heroContent}
+            showProduct={false}
+            align="left"
+            bgImageSrc="/snacks/hero-bg.jpg"
+            secondaryCtaStyle="outline"
+          />
 
-        <ProblemBlock content={problemContent} />
+          <ProblemBlock content={problemContent} />
+        </section>
 
         {/* Divider — Figma 668:2020. A thin 5-segment #f2f2f2 rule. */}
         <div className="bg-white px-section-x-sm py-10 md:px-section-x-md md:py-14 lg:px-section-x-lg lg:py-[4.5rem]">

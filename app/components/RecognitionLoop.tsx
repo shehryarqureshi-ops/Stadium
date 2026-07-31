@@ -54,7 +54,7 @@ export default function RecognitionLoop() {
     <section className="bg-white px-section-x-sm pb-20 pt-2 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-[10rem]">
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-12 lg:grid-cols-[minmax(0,30.75rem)_1fr] lg:gap-20">
         {/* left intro + pull-quote (sticky on desktop) */}
-        <div className="flex flex-col gap-12 lg:sticky lg:top-28 lg:gap-[7.5rem] lg:self-start">
+        <div className="flex flex-col gap-12 lg:sticky lg:top-36 lg:gap-[7.5rem] lg:self-start">
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
               <p
@@ -77,8 +77,8 @@ export default function RecognitionLoop() {
               className="font-sans text-[1.125rem] leading-[1.45] text-[#707075]"
             >
               A teammate gives kudos in Slack. Kudos become points, which
-              recipients can redeem for rewards. Rewards arrive, and someone else
-              earns the next one.
+              recipients can redeem for rewards. Rewards arrive, and someone
+              else earns the next one.
             </p>
           </div>
           <div data-animation="reveal" className="flex flex-col gap-[3.75rem]">
@@ -111,7 +111,7 @@ export default function RecognitionLoop() {
             <div
               key={s.n}
               data-animation="reveal"
-              className="flex flex-col gap-3 sm:flex-row sm:gap-6"
+              className="flex flex-col gap-3 sm:flex-row sm:gap-6 sticky top-36"
             >
               <div className="relative z-10 sm:w-[5.625rem] sm:shrink-0 sm:pt-5">
                 <span className="flex w-fit items-center justify-center rounded-full bg-[#f2f2f2] px-3.5 py-2 font-sans text-[0.875rem] font-semibold text-[#212624] sm:w-full">

@@ -20,16 +20,7 @@ export default function ProblemBlock({
   content: ProblemBlockContent;
 }) {
   return (
-    <section className="relative overflow-hidden bg-white px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
-      {/* continue the hero's dark mesh, fading to white behind the bars */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[30rem]"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, ${content.overlapColor}, #ffffff)`,
-        }}
-      />
-
+    <section className="relative overflow-hidden px-section-x-sm pb-16 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-28">
       <div className="relative mx-auto flex w-full max-w-content flex-col items-center">
         {/* peek-behind bars */}
         <div className="flex w-full flex-col items-center">

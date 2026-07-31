@@ -101,8 +101,8 @@ export default function RecognitionCaseStudies() {
               data-animation="reveal"
               className="font-sans text-body-md text-swag-grey lg:text-[1.125rem] lg:leading-[1.48]"
             >
-              Global rollouts, adoption lifts, and rewards leadership trusts, set
-              up by the teams who own engagement.
+              Global rollouts, adoption lifts, and rewards leadership trusts,
+              set up by the teams who own engagement.
             </p>
           </div>
           <div
@@ -145,7 +145,7 @@ export default function RecognitionCaseStudies() {
                 key={i}
                 className="flex h-[24rem] w-[min(38rem,88vw)] shrink-0 snap-start gap-6 rounded-3xl bg-[#f2f2f2] p-6"
               >
-                <div className="h-full w-[4.5rem] shrink-0 overflow-hidden rounded-xl">
+                <div className="size-[4.5rem] shrink-0 overflow-hidden rounded-xl">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/swag/swag-workflow.jpg"

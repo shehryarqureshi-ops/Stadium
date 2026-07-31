@@ -32,31 +32,29 @@ export default function ShaderEffect({
   chroma?: ShaderChroma;
 }) {
   return (
-    <div className="absolute inset-0 opacity-30">
-      <Shader className="h-full">
-        <Swirl colorA="#0a0a0a" colorB="#0a0a0a" detail={1.7} />
-        <ChromaFlow
-          baseColor={chroma.base}
-          downColor={chroma.down}
-          leftColor={chroma.left}
-          momentum={13}
-          rightColor={chroma.right}
-          upColor={chroma.up}
-        />
-        <FlutedGlass
-          aberration={0.61}
-          angle={26}
-          frequency={8}
-          highlight={0.12}
-          highlightSoftness={0}
-          lightAngle={-90}
-          refraction={4}
-          shape="rounded"
-          softness={1}
-          speed={0.15}
-        />
-        <FilmGrain strength={0.05} />
-      </Shader>
-    </div>
+    <Shader className="h-full">
+      <Swirl colorA="#0a0a0a" colorB="#0a0a0a" detail={1.7} />
+      <ChromaFlow
+        baseColor={chroma.base}
+        downColor={chroma.down}
+        leftColor={chroma.left}
+        momentum={13}
+        rightColor={chroma.right}
+        upColor={chroma.up}
+      />
+      <FlutedGlass
+        aberration={0.61}
+        angle={26}
+        frequency={18}
+        highlight={0.12}
+        highlightSoftness={0}
+        lightAngle={-90}
+        refraction={4}
+        shape="rounded"
+        softness={1}
+        speed={0.15}
+      />
+      <FilmGrain strength={0.07} />
+    </Shader>
   );
 }

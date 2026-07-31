@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 import SwagAdminView from "../components/SwagAdminView";
-import SwagCommittee from "../components/SwagCommittee";
-import SwagComparison from "../components/SwagComparison";
 import SwagCaseStudies from "../components/SwagCaseStudies";
 import SwagCatalog from "../components/SwagCatalog";
 import SwagClosing from "../components/SwagClosing";
-import SwagImpact from "../components/SwagImpact";
-import SwagPaperchase from "../components/SwagPaperchase";
+import SwagCommittee from "../components/SwagCommittee";
+import SwagComparison from "../components/SwagComparison";
 import SwagDivider from "../components/SwagDivider";
 import SwagFulfillment from "../components/SwagFulfillment";
-import SwagHowItWorks from "../components/SwagHowItWorks";
 import SwagHero from "../components/SwagHero";
+import SwagHeroShader from "../components/SwagHeroShader";
+import SwagHowItWorks from "../components/SwagHowItWorks";
+import SwagImpact from "../components/SwagImpact";
 import SwagOfferings from "../components/SwagOfferings";
+import SwagPaperchase from "../components/SwagPaperchase";
 import SwagPlatform from "../components/SwagPlatform";
 import SwagPricing from "../components/SwagPricing";
 import SwagProblem from "../components/SwagProblem";
@@ -34,8 +35,13 @@ export default function SwagPage() {
         tabIndex={-1}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <SwagHero />
-        <SwagProblem />
+        <section className="relative">
+          <div className="absolute w-full h-[72%] bg-black top-0 left-0 mask-b-from-75%">
+            <SwagHeroShader />
+          </div>
+          <SwagHero />
+          <SwagProblem />
+        </section>
         <SwagDivider />
         <SwagOfferings />
         <SwagWorkflow />

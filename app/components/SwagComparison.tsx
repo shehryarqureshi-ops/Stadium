@@ -21,7 +21,10 @@ export type SwagComparisonContent = {
 
 export const SWAG_COMPARISON: SwagComparisonContent = {
   eyebrow: "HOW WE WIN",
-  headingLines: ["Most platforms do one thing.", "Stadium consolidates the rest."],
+  headingLines: [
+    "Most platforms do one thing.",
+    "Stadium consolidates the rest.",
+  ],
   body: "Stores, kits, storage, and fulfillment, without the handoffs.",
   cols: [
     { name: "Stadium", sub: "" },
@@ -30,13 +33,34 @@ export const SWAG_COMPARISON: SwagComparisonContent = {
     { name: "Gifting tools", sub: "Sendoso · Postal" },
   ],
   rows: [
-    { label: "Branded swag & stores", vals: ["check", "Order only", "check", "Add-on"] },
-    { label: "Warehousing & kitting", vals: ["check", "minus", "check", "Limited"] },
-    { label: "Snacks & food boxes", vals: ["check", "minus", "minus", "Limited"] },
-    { label: "Gifts, cards & recognition", vals: ["check", "minus", "minus", "Gifts only"] },
-    { label: "Recipient choice • 25K catalog", vals: ["check", "minus", "Limited", "check"] },
-    { label: "Global fulfillment • 170+", vals: ["check", "Limited", "Limited", "check"] },
-    { label: "One platform, one invoice", vals: ["check", "minus", "minus", "minus"] },
+    {
+      label: "Branded swag & stores",
+      vals: ["check", "Order only", "check", "Add-on"],
+    },
+    {
+      label: "Warehousing & kitting",
+      vals: ["check", "minus", "check", "Limited"],
+    },
+    {
+      label: "Snacks & food boxes",
+      vals: ["check", "minus", "minus", "Limited"],
+    },
+    {
+      label: "Gifts, cards & recognition",
+      vals: ["check", "minus", "minus", "Gifts only"],
+    },
+    {
+      label: "Recipient choice • 25K catalog",
+      vals: ["check", "minus", "Limited", "check"],
+    },
+    {
+      label: "Global fulfillment • 170+",
+      vals: ["check", "Limited", "Limited", "check"],
+    },
+    {
+      label: "One platform, one invoice",
+      vals: ["check", "minus", "minus", "minus"],
+    },
   ],
   cta: { label: "Book a call", href: "#" },
 };
@@ -44,13 +68,30 @@ export const SWAG_COMPARISON: SwagComparisonContent = {
 function Cell({ v }: { v: string }) {
   if (v === "check")
     return (
-      <svg className="size-6 text-swag-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg
+        className="size-6 text-swag-ink"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
         <path d="M20 6 9 17l-5-5" />
       </svg>
     );
   if (v === "minus")
     return (
-      <svg className="size-6 text-grey-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" aria-hidden>
+      <svg
+        className="size-6 text-grey-400"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2.25}
+        strokeLinecap="round"
+        aria-hidden
+      >
         <path d="M5 12h14" />
       </svg>
     );
@@ -63,13 +104,17 @@ function Cell({ v }: { v: string }) {
 
 const GRID = "grid gap-1";
 
-export default function SwagComparison({ content = SWAG_COMPARISON }: { content?: SwagComparisonContent }) {
+export default function SwagComparison({
+  content = SWAG_COMPARISON,
+}: {
+  content?: SwagComparisonContent;
+}) {
   const lastCol = content.cols.length - 1;
   const gridStyle = {
     gridTemplateColumns: `22.5rem repeat(${content.cols.length}, minmax(0,1fr))`,
   };
   return (
-    <section className="bg-white px-section-x-sm pb-24 pt-4 md:px-section-x-md lg:px-section-x-lg">
+    <section className="bg-white px-section-x-sm pb-24 pt-4 md:px-section-x-md lg:px-section-x-lg mt-32">
       <div className="mx-auto flex w-full max-w-content flex-col gap-10">
         {/* header (centered) */}
         <div className="flex flex-col gap-5 text-center">
@@ -102,7 +147,11 @@ export default function SwagComparison({ content = SWAG_COMPARISON }: { content?
           data-animation="reveal"
           className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <div style={{ minWidth: `calc(22.5rem + ${content.cols.length} * 8.5rem)` }}>
+          <div
+            style={{
+              minWidth: `calc(22.5rem + ${content.cols.length} * 8.5rem)`,
+            }}
+          >
             {/* header */}
             <div className={`mb-1 ${GRID}`} style={gridStyle}>
               <div />
@@ -110,7 +159,9 @@ export default function SwagComparison({ content = SWAG_COMPARISON }: { content?
                 <div
                   key={c.name}
                   className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
-                    i === 0 ? "rounded-b-lg rounded-t-[1.5rem] bg-swag-tint" : ""
+                    i === 0
+                      ? "rounded-b-lg rounded-t-[1.5rem] bg-swag-tint"
+                      : ""
                   }`}
                 >
                   <span className="font-sans text-[0.9rem] font-semibold text-swag-ink">
@@ -141,7 +192,9 @@ export default function SwagComparison({ content = SWAG_COMPARISON }: { content?
                       className={`flex items-center justify-center rounded-lg p-6 ${
                         c === 0 ? "bg-swag-tint" : "bg-[#f2f2f2]"
                       } ${c === lastCol && r === 0 ? "rounded-tr-[1.5rem]" : ""} ${
-                        c === lastCol && r === content.rows.length - 1 ? "rounded-br-[1.5rem]" : ""
+                        c === lastCol && r === content.rows.length - 1
+                          ? "rounded-br-[1.5rem]"
+                          : ""
                       }`}
                     >
                       <Cell v={v} />

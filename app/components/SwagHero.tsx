@@ -1,4 +1,4 @@
-import SwagHeroShader, { type ShaderChroma } from "./SwagHeroShader";
+import { type ShaderChroma } from "./SwagHeroShader";
 
 /* Hero · Swag — Figma "Stadium-Enterprise" /swag (344:11903). Dark-green
    SwagMagic hero: mint eyebrow, Satoshi headline, green/white CTA pair, a
@@ -112,7 +112,7 @@ function ProductCluster({ content }: { content: SwagHeroContent["product"] }) {
       </div>
 
       {/* frosted hoodie card (344:11935) — black/0.33 + glass blur (Figma glass r39) */}
-      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.75rem] flex-col justify-end gap-3 rounded-[1.25rem] border border-white/[0.08] bg-black/[0.33] px-[1.375rem] pb-8 pt-[17.5rem] backdrop-blur-[16px]">
+      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.75rem] flex-col justify-end gap-3 rounded-[1.25rem] border border-white/[0.08] bg-black/50 px-[1.375rem] pb-8 pt-[17.5rem] backdrop-blur-[16px]">
         {/* hoodie cut-out (344:11938) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -122,7 +122,7 @@ function ProductCluster({ content }: { content: SwagHeroContent["product"] }) {
         />
 
         {/* size pill (344:11953) — floating vertical selector */}
-        <div className="absolute left-[-1.6875rem] top-[1.875rem] flex flex-col items-center gap-2 rounded-[0.9375rem] bg-black/10 p-[0.625rem] backdrop-blur-[6px]">
+        <div className="absolute left-[-1.6875rem] top-[1.875rem] flex flex-col items-center gap-2 rounded-[0.9375rem] bg-black/50 p-[0.625rem] backdrop-blur-[12px]">
           <span className="font-sans text-[0.9375rem] tracking-[0.047rem] text-white/60">
             {content.sizeLabel}
           </span>
@@ -131,7 +131,9 @@ function ProductCluster({ content }: { content: SwagHeroContent["product"] }) {
               <span
                 key={s}
                 className={`flex size-8 items-center justify-center rounded-[0.625rem] font-sans text-[0.9375rem] tracking-[0.047rem] ${
-                  s === content.selectedSize ? "bg-black/75 text-white" : "text-white/60"
+                  s === content.selectedSize
+                    ? "bg-black/75 text-white"
+                    : "text-white/60"
                 }`}
               >
                 {s}
@@ -161,7 +163,7 @@ function ProductCluster({ content }: { content: SwagHeroContent["product"] }) {
 export default function SwagHero({
   content = SWAG_HERO,
   showProduct = true,
-  showBgImage = true,
+  showBgImage = false,
   align = "center",
   bgImageSrc = "/swag/swag-hero-bg.jpg",
   secondaryCtaStyle = "solid",
@@ -186,12 +188,14 @@ export default function SwagHero({
 }) {
   return (
     <section
-      style={showBgImage ? { backgroundImage: `url('${bgImageSrc}')` } : undefined}
-      className="relative overflow-hidden bg-swag-hero-bg bg-cover bg-top bg-no-repeat px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]"
+      style={
+        showBgImage ? { backgroundImage: `url('${bgImageSrc}')` } : undefined
+      }
+      className="relative overflow-hidden px-section-x-sm pb-16 pt-[7rem] md:px-section-x-md md:pb-24 md:pt-[8rem] lg:px-section-x-lg lg:pb-28 lg:pt-[10rem]"
     >
       {/* animated shader background; overlays the static Figma mesh-gradient,
           which shows as the fallback when WebGPU/GPU is unavailable */}
-      <SwagHeroShader chroma={shaderChroma} />
+      {/* <SwagHeroShader chroma={shaderChroma} /> */}
       <div className="relative z-10 mx-auto flex w-full max-w-content flex-col gap-16 lg:gap-20">
         {/* copy + product cluster */}
         <div

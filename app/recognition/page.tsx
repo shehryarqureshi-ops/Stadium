@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import PageClose from "../components/PageClose";
-import SiteHeader from "../components/SiteHeader";
-import SwagHero, { type SwagHeroContent } from "../components/SwagHero";
-import RecognitionLoop from "../components/RecognitionLoop";
-import SwagWorkflow, { type SwagWorkflowContent } from "../components/SwagWorkflow";
-import FeatureIconGrid, { type FeatureIconGridContent } from "../components/FeatureIconGrid";
-import SwagComparison, { type SwagComparisonContent } from "../components/SwagComparison";
+import FeatureIconGrid, {
+  type FeatureIconGridContent,
+} from "../components/FeatureIconGrid";
 import MigrationRoadmap from "../components/MigrationRoadmap";
+import PageClose from "../components/PageClose";
 import Recognition from "../components/Recognition";
-import RecognitionProblem from "../components/RecognitionProblem";
 import RecognitionCaseStudies from "../components/RecognitionCaseStudies";
-import SwagPricing, { type SwagPricingContent } from "../components/SwagPricing";
-import SwagClosing, { type SwagClosingContent } from "../components/SwagClosing";
+import RecognitionLoop from "../components/RecognitionLoop";
+import RecognitionProblem from "../components/RecognitionProblem";
+import SiteHeader from "../components/SiteHeader";
+import SwagClosing, {
+  type SwagClosingContent,
+} from "../components/SwagClosing";
+import SwagComparison, {
+  type SwagComparisonContent,
+} from "../components/SwagComparison";
+import SwagHero, { type SwagHeroContent } from "../components/SwagHero";
+import SwagHeroShader from "../components/SwagHeroShader";
+import SwagPricing, {
+  type SwagPricingContent,
+} from "../components/SwagPricing";
+import SwagWorkflow, {
+  type SwagWorkflowContent,
+} from "../components/SwagWorkflow";
 
 export const metadata: Metadata = {
   title: "Recognition — Recognition that shows up at the door | Stadium",
@@ -36,7 +47,10 @@ const heroContent: SwagHeroContent = {
       src: "/swag/swag-warehouse.jpg",
       alt: "Warehouse racking with kitted reward boxes",
     },
-    hoodieImage: { src: "/swag/swag-hoodie.png", alt: "Embroidered green hoodie" },
+    hoodieImage: {
+      src: "/swag/swag-hoodie.png",
+      alt: "Embroidered green hoodie",
+    },
     sizeLabel: "SIZE",
     sizes: ["S", "M", "L", "XL"],
     selectedSize: "L",
@@ -134,12 +148,36 @@ const platformContent: FeatureIconGridContent = {
   heading: "Recognition plugs into the platform you already run",
   body: "The same platform that runs your swag, gifting, and snacks, also runs recognition. With Workspaces, Wallet, HRIS, and SSO, you only have to set up once.",
   cards: [
-    { icon: "/recognition/plat-icon-1.png", title: "Design & approve", desc: "Storefronts with per-team budgets, approvals, and SSO." },
-    { icon: "/recognition/plat-icon-2.png", title: "Inventory & storage", desc: "Live stock counts. We store and kit it for you." },
-    { icon: "/recognition/plat-icon-3.png", title: "Global fulfillment", desc: "Ship to 170+ countries. Customs and duties handled." },
-    { icon: "/recognition/plat-icon-4.png", title: "Automated sends", desc: "Fires on hires, milestones, or via API." },
-    { icon: "/recognition/plat-icon-5.png", title: "Integrations", desc: "Wire your HRIS, Slack, and CRM. Sends on autopilot." },
-    { icon: "/recognition/plat-icon-6.png", title: "Budgets & reporting", desc: "Spend, claim rates, and inventory in one dashboard." },
+    {
+      icon: "/recognition/plat-icon-1.png",
+      title: "Design & approve",
+      desc: "Storefronts with per-team budgets, approvals, and SSO.",
+    },
+    {
+      icon: "/recognition/plat-icon-2.png",
+      title: "Inventory & storage",
+      desc: "Live stock counts. We store and kit it for you.",
+    },
+    {
+      icon: "/recognition/plat-icon-3.png",
+      title: "Global fulfillment",
+      desc: "Ship to 170+ countries. Customs and duties handled.",
+    },
+    {
+      icon: "/recognition/plat-icon-4.png",
+      title: "Automated sends",
+      desc: "Fires on hires, milestones, or via API.",
+    },
+    {
+      icon: "/recognition/plat-icon-5.png",
+      title: "Integrations",
+      desc: "Wire your HRIS, Slack, and CRM. Sends on autopilot.",
+    },
+    {
+      icon: "/recognition/plat-icon-6.png",
+      title: "Budgets & reporting",
+      desc: "Spend, claim rates, and inventory in one dashboard.",
+    },
   ],
 };
 
@@ -151,10 +189,27 @@ const committeeContent: FeatureIconGridContent = {
   heading: "Win over every stakeholder",
   body: "Recognition touches every team. Here's what each stakeholder wants to know.",
   cards: [
-    { icon: "/recognition/plat-icon-1.png", title: "HR & People Ops", desc: "Recognition that runs year-round, with the insights to prove it's working.", badge: "Primary" },
-    { icon: "/recognition/plat-icon-2.png", title: "Leadership", desc: "Recognition that reinforces your values and helps build culture." },
-    { icon: "/recognition/plat-icon-3.png", title: "IT & Security", desc: "Enterprise-ready with SSO, SCIM, SOC 2, and HRIS integrations." },
-    { icon: "/recognition/plat-icon-4.png", title: "Finance", desc: "Predictable budgets, controlled spend, and clear reporting." },
+    {
+      icon: "/recognition/plat-icon-1.png",
+      title: "HR & People Ops",
+      desc: "Recognition that runs year-round, with the insights to prove it's working.",
+      badge: "Primary",
+    },
+    {
+      icon: "/recognition/plat-icon-2.png",
+      title: "Leadership",
+      desc: "Recognition that reinforces your values and helps build culture.",
+    },
+    {
+      icon: "/recognition/plat-icon-3.png",
+      title: "IT & Security",
+      desc: "Enterprise-ready with SSO, SCIM, SOC 2, and HRIS integrations.",
+    },
+    {
+      icon: "/recognition/plat-icon-4.png",
+      title: "Finance",
+      desc: "Predictable budgets, controlled spend, and clear reporting.",
+    },
   ],
 };
 
@@ -170,13 +225,34 @@ const comparisonContent: SwagComparisonContent = {
     { name: "DIY", sub: "Slack + gift cards" },
   ],
   rows: [
-    { label: "Employee-to-employee recognition", vals: ["check", "check", "check", "Add-on"] },
-    { label: "Milestone automations", vals: ["check", "Limited", "check", "Limited"] },
-    { label: "Rewards: swag · gifts · experiences", vals: ["check", "Cards only", "minus", "Limited"] },
-    { label: "Global redemption · Local fulfillment", vals: ["check", "Limited", "minus", "Gifts only"] },
-    { label: "Analytics & insights", vals: ["check", "Basic", "Limited", "check"] },
-    { label: "Fast rollout (days, not quarters)", vals: ["check", "check", "Limited", "check"] },
-    { label: "One platform, one invoice", vals: ["check", "minus", "minus", "minus"] },
+    {
+      label: "Employee-to-employee recognition",
+      vals: ["check", "check", "check", "Add-on"],
+    },
+    {
+      label: "Milestone automations",
+      vals: ["check", "Limited", "check", "Limited"],
+    },
+    {
+      label: "Rewards: swag · gifts · experiences",
+      vals: ["check", "Cards only", "minus", "Limited"],
+    },
+    {
+      label: "Global redemption · Local fulfillment",
+      vals: ["check", "Limited", "minus", "Gifts only"],
+    },
+    {
+      label: "Analytics & insights",
+      vals: ["check", "Basic", "Limited", "check"],
+    },
+    {
+      label: "Fast rollout (days, not quarters)",
+      vals: ["check", "check", "Limited", "check"],
+    },
+    {
+      label: "One platform, one invoice",
+      vals: ["check", "minus", "minus", "minus"],
+    },
   ],
   cta: { label: "Book a call", href: "#" },
 };
@@ -193,10 +269,27 @@ const pricingContent: SwagPricingContent = {
   ctaHref: "#",
   popularLabel: "Popular",
   passes: [
-    { n: "01", title: "Shops Pass", desc: "Branded stores, on-demand, and the full catalog." },
-    { n: "02", title: "Swag Pass", desc: "+ Warehousing, inventory, and kits." },
-    { n: "03", title: "Engagement Pass", desc: "+ Automation, integrations, and recognition.", popular: true },
-    { n: "04", title: "Enterprise Pass", desc: "+ SSO, API, net terms, and a dedicated CSM." },
+    {
+      n: "01",
+      title: "Shops Pass",
+      desc: "Branded stores, on-demand, and the full catalog.",
+    },
+    {
+      n: "02",
+      title: "Swag Pass",
+      desc: "+ Warehousing, inventory, and kits.",
+    },
+    {
+      n: "03",
+      title: "Engagement Pass",
+      desc: "+ Automation, integrations, and recognition.",
+      popular: true,
+    },
+    {
+      n: "04",
+      title: "Enterprise Pass",
+      desc: "+ SSO, API, net terms, and a dedicated CSM.",
+    },
   ],
 };
 
@@ -242,9 +335,21 @@ const closingContent: SwagClosingContent = {
     eyebrow: "KEEP EXPLORING",
     heading: "More on getting recognition right.",
     links: [
-      { tag: "GUIDE", title: "Build your recognition playbook", desc: "A step-by-step guide to launch successfully." },
-      { tag: "REPORT", title: "The business case for recognition", desc: "See why recognized employees are more likely to stay." },
-      { tag: "TEMPLATE", title: "Turn company values into tags", desc: "Make every kudos reflect your company values." },
+      {
+        tag: "GUIDE",
+        title: "Build your recognition playbook",
+        desc: "A step-by-step guide to launch successfully.",
+      },
+      {
+        tag: "REPORT",
+        title: "The business case for recognition",
+        desc: "See why recognized employees are more likely to stay.",
+      },
+      {
+        tag: "TEMPLATE",
+        title: "Turn company values into tags",
+        desc: "Make every kudos reflect your company values.",
+      },
     ],
     imageSrc: "/swag/swag-workflow.jpg",
   },
@@ -284,16 +389,28 @@ export default function RecognitionPage() {
         style={theme}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <SwagHero
-          content={heroContent}
-          showProduct={false}
-          align="left"
-          bgImageSrc="/recognition/hero-bg.jpg"
-          secondaryCtaStyle="outline"
-          shaderChroma={{ base: "#1a1024", down: "#7c2fd6", left: "#8d12e7", right: "#4c1d95", up: "#c084fc" }}
-        />
+        <section className="relative">
+          <div className="absolute w-full h-[72%] top-0 left-0 mask-b-from-75%">
+            <SwagHeroShader
+              chroma={{
+                base: "#1a1024",
+                down: "#7c2fd6",
+                left: "#8d12e7",
+                right: "#4c1d95",
+                up: "#c084fc",
+              }}
+            />
+          </div>
+          <SwagHero
+            content={heroContent}
+            showProduct={false}
+            align="left"
+            bgImageSrc="/recognition/hero-bg.jpg"
+            secondaryCtaStyle="outline"
+          />
 
-        <RecognitionProblem />
+          <RecognitionProblem />
+        </section>
 
         {/* divider (312:5257) — thin rule with generous space below */}
         <div className="bg-white px-section-x-sm pb-16 pt-4 md:px-section-x-md md:pb-24 lg:px-section-x-lg lg:pb-[8.75rem]">
@@ -306,7 +423,11 @@ export default function RecognitionPage() {
         <RecognitionLoop />
         <SwagWorkflow content={workflowContent} />
         <FeatureIconGrid content={platformContent} />
-        <FeatureIconGrid content={committeeContent} columns={2} titleWeight="medium" />
+        <FeatureIconGrid
+          content={committeeContent}
+          columns={2}
+          titleWeight="medium"
+        />
         <SwagComparison content={comparisonContent} />
         <MigrationRoadmap />
         <Recognition />
