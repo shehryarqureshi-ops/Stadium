@@ -17,7 +17,7 @@ const MENU_KEYS: MenuKey[] = ["engage", "impact", "proof", "catalog"];
    actually on a section's page (2026-06-12 audit). Set it from the route
    when real pages exist. */
 const NAV_ITEMS: { label: string; href: string; active?: boolean; menu?: MenuKey }[] = [
-  { label: "Ways to Engage", href: "#", menu: "engage" },
+  { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
   { label: "Impact by Team", href: "#", menu: "impact" },
   { label: "The Proof", href: "#", menu: "proof" },
   { label: "Catalog", href: "#", menu: "catalog" },
@@ -235,8 +235,25 @@ export default function SiteHeader({ banner }: { banner?: string } = {}) {
           {/* Desktop nav links */}
           <nav aria-label="Main" className="hidden items-center gap-10 lg:flex">
             {NAV_ITEMS.map((item) =>
-              item.menu ? (
-                /* Mega-menu trigger — hover opens / swaps; click toggles */
+              item.menu && item.href !== "#" ? (
+                /* Mega-menu trigger WITH a landing page — hover opens / swaps
+                   the dropdown; click navigates to the overview page. */
+                <a
+                  key={item.label}
+                  href={item.href}
+                  aria-haspopup="true"
+                  aria-expanded={activeMenu === item.menu}
+                  aria-controls="engage-menu"
+                  onMouseEnter={() => openMenu(item.menu!)}
+                  className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${
+                    item.active ? "font-bold" : "font-normal"
+                  }`}
+                >
+                  {item.label}
+                  <ChevronDown open={activeMenu === item.menu} />
+                </a>
+              ) : item.menu ? (
+                /* Mega-menu trigger without a landing page — hover opens / swaps; click toggles */
                 <button
                   key={item.label}
                   type="button"

@@ -47,7 +47,29 @@ const LINK_COLUMNS: { heading: string; links: string[] }[] = [
   },
 ];
 
-export default function PageClose({ showCta = true }: { showCta?: boolean }) {
+export default function PageClose({
+  showCta = true,
+  cta,
+}: {
+  showCta?: boolean;
+  /** Optional CTA copy override. Defaults preserve the standard closing. */
+  cta?: {
+    eyebrow?: string;
+    heading?: string;
+    body?: string;
+    primaryCta?: string;
+    secondaryCta?: string;
+  };
+}) {
+  const c = {
+    eyebrow: cta?.eyebrow ?? "Get started",
+    heading: cta?.heading ?? "Ready to build your program?",
+    body:
+      cta?.body ??
+      "Get a 15-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale.",
+    primaryCta: cta?.primaryCta ?? "Book a demo",
+    secondaryCta: cta?.secondaryCta ?? "Talk to sales",
+  };
   return (
     <section className="bg-[#181818]">
       {/* ===== Final CTA — centered on the dark block. Hidden on pages that
@@ -79,15 +101,14 @@ export default function PageClose({ showCta = true }: { showCta?: boolean }) {
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center gap-3">
               <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#9fa0a2]">
-                Get started
+                {c.eyebrow}
               </p>
               <h2 className="font-display text-heading-sm text-white md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
-                Ready to build your program?
+                {c.heading}
               </h2>
             </div>
             <p className="max-w-[38rem] font-sans text-body-md text-[#e6e6e6] lg:text-[1.0625rem] lg:leading-7">
-              Get a 15-minute walkthrough. We&rsquo;ll show you live campaigns,
-              sample boxes, and how teams use Stadium at scale.
+              {c.body}
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3.5">
@@ -95,13 +116,13 @@ export default function PageClose({ showCta = true }: { showCta?: boolean }) {
               href="#"
               className="inline-flex h-button-h items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-200 active:scale-[0.98] focus-visible:outline-white"
             >
-              Book a demo
+              {c.primaryCta}
             </a>
             <a
               href="#"
               className="inline-flex h-button-h items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
             >
-              Talk to sales
+              {c.secondaryCta}
             </a>
           </div>
         </div>
