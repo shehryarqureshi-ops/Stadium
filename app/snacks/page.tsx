@@ -6,45 +6,16 @@ import SnackCatalog from "../components/SnackCatalog";
 import SnackClosing from "../components/SnackClosing";
 import SnackComparison from "../components/SnackComparison";
 import SnackHero from "../components/SnackHero";
+import SnackHowItWorks from "../components/SnackHowItWorks";
 import SnackPlatform from "../components/SnackPlatform";
 import SnackProblem from "../components/SnackProblem";
 import SnackSolution from "../components/SnackSolution";
 import SnackStats from "../components/SnackStats";
-import SwagHowItWorks, {
-  type SwagHowItWorksContent,
-} from "../components/SwagHowItWorks";
 
 export const metadata: Metadata = {
   title: "Snacks — Snacks people can’t wait to open | Stadium",
   description:
     "Choose from curated boxes or let everyone build their own from 2,000+ snacks. Dietary filters built in, global fulfillment to 170+ countries.",
-};
-
-/* ── Send a treat · Figma 668:2246 ───────────────────────────────────────
-   Four steps; step 01 carries the dark design-editor visual. The Figma reuses a
-   swag t-shirt mockup as the editor preview (a placeholder), so imageSrc is
-   omitted → the editor shows a themed snack glyph until a real snack photo
-   exists (avoids the letterboxed apparel shot). */
-const howItWorksContent: SwagHowItWorksContent = {
-  eyebrow: "SEND A TREAT",
-  heading: "From order to their door in four steps",
-  intro:
-    "Hit send, and you’re done. No chasing addresses or tracking shipments.",
-  featuredStep: {
-    n: "01",
-    title: ["Pick a Box"],
-    desc: "Let them build their own box or send a curated one.",
-  },
-  steps: [
-    { n: "02", title: ["Add Recipients"] },
-    { n: "03", title: ["Hit", "Send"] },
-    { n: "04", title: ["Recipients Redeem"] },
-  ],
-  visual: {
-    tools: ["scan", "type", "image"],
-    productGlyph: "snack",
-    badgeLabel: "Approved!",
-  },
 };
 
 /* Blue re-theme (Figma /snacks: CTA #2178f5, light accent #d8e7fd). Overrides
@@ -77,7 +48,7 @@ export default function SnacksPage() {
         <SnackProblem />
 
         <SnackSolution />
-        <SwagHowItWorks content={howItWorksContent} />
+        <SnackHowItWorks />
         <SnackCatalog />
         <SnackPlatform />
         <SnackComparison />
