@@ -76,15 +76,15 @@ export default function SnackCatalog() {
           data-animation="reveal"
           className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <div className="flex w-max items-center gap-1 rounded-full bg-[#f2f2f2] p-1.5">
+          <div className="flex w-max items-center gap-1 rounded-full bg-white p-2 shadow-[0px_16px_36px_-10px_rgba(0,0,0,0.12)]">
             {FILTERS.map((f, i) => (
               <button
                 key={f}
                 type="button"
                 onClick={() => setActive(i)}
                 aria-pressed={i === active}
-                className={`whitespace-nowrap rounded-full px-5 py-2.5 font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
-                  i === active ? "bg-[#16171b] text-white" : "text-[#6b6c71] hover:text-[#16171b]"
+                className={`whitespace-nowrap rounded-full px-7 py-3.5 font-sans text-[0.9375rem] font-bold uppercase tracking-[0.125rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+                  i === active ? "bg-[#16171b] text-white" : "text-[#3a3b40] hover:text-[#16171b]"
                 }`}
               >
                 {f}
