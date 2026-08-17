@@ -9,7 +9,7 @@ export default function SnackClosing() {
       style={{ backgroundImage: "linear-gradient(180deg, #ffffff 0%, #2f66d6 46%, #0a1f3d 100%)" }}
     >
       <div className="mx-auto w-full max-w-content">
-        <div className="flex flex-col items-center gap-6 rounded-[2rem] bg-[#111418] px-6 py-16 text-center md:py-24">
+        <div className="flex flex-col items-center gap-6 rounded-[2rem] px-6 py-16 text-center md:py-24 lg:mb-12" style={{ background: "linear-gradient(90deg, #0d1e32 0%, #1a3f6e 100%)" }}>
           <div className="flex max-w-[46rem] flex-col items-center gap-4">
             <h2
               data-animation="reveal"

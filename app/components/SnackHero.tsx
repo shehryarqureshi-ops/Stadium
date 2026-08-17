@@ -80,7 +80,7 @@ export default function SnackHero() {
         </div>
 
         {/* logo wall */}
-        <div data-animation="reveal" data-reveal-delay="320" className="mt-14 w-full lg:mt-16">
+        <div data-animation="reveal" data-reveal-delay="320" className="mt-14 w-full pb-12 lg:mt-16 lg:pb-16">
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-90 md:gap-x-14">
             {LOGOS.map((l, i) => (
               <img
