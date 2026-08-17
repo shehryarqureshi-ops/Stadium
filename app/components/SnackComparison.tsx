@@ -15,7 +15,7 @@ const COLS = [
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell, Cell] }[] = [
   { label: "Recipient’s Choice · 25K+ Gifts", vals: ["check", "minus", "minus", "check", "Visa"] },
   { label: "No Subscription", vals: ["check", "minus", "check", "check", "check"] },
-  { label: "Global With Local Fulfillment", vals: ["170+", "U.S. only", "U.S. only", "550 intl", "Cards"] },
+  { label: "Global With Local Fulfillment", vals: ["check:170+", "U.S. only", "U.S. only", "550 intl", "Cards"] },
   { label: "2,000+ Snacks", vals: ["check", "minus", "minus", "Only Gifts", "minus"] },
   { label: "Dietary Filters", vals: ["check", "minus", "minus", "check", "minus"] },
   { label: "Swag, Recognition, Snacks, Gifting, & Hosted Experiences", vals: ["check", "minus", "minus", "minus", "minus"] },
@@ -29,6 +29,15 @@ function Value({ v }: { v: Cell }) {
       </svg>
     );
   if (v === "minus") return <span className="text-[1.1rem] text-[#b4b4b8]" aria-label="No">—</span>;
+  if (v.startsWith("check:"))
+    return (
+      <span className="flex items-center gap-1.5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#16171b" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" className="size-[1.05rem]" aria-hidden>
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+        <span className="font-sans text-[0.9375rem] text-[#16171b]">{v.slice(6)}</span>
+      </span>
+    );
   return <span className="font-sans text-[0.9375rem] text-[#6b6c71]">{v}</span>;
 }
 

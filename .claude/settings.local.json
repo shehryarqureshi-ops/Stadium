@@ -17,9 +17,13 @@
       "Bash(npm run *)",
       "Bash(echo \"exit: $?\")",
       "Bash(curl -sf -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000)",
-      "Bash(node /Users/awaiskazmi/Code/Stadium/stadium-website/Stadium/.verify-scalemap.tmp.js)"
+      "Bash(node /Users/awaiskazmi/Code/Stadium/stadium-website/Stadium/.verify-scalemap.tmp.js)",
+      "Bash(NODE_PATH=C:/Users/shehr/Documents/stadium/node_modules node -e ' *)"
     ]
   },
+  "enabledMcpjsonServers": [
+    "shaders"
+  ],
   "hooks": {
     "PostToolUse": [
       {
@@ -35,8 +39,5 @@
       }
     ]
   },
-  "description": "Impeccable design detector: runs after Edit/Write/MultiEdit on UI files and surfaces findings as system reminders.",
-  "enabledMcpjsonServers": [
-    "shaders"
-  ]
+  "description": "Impeccable design detector: runs after Edit/Write/MultiEdit on UI files and surfaces findings as system reminders."
 }
