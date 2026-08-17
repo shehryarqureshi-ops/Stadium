@@ -43,14 +43,15 @@ export default function SnackHowItWorks() {
             data-animation="reveal"
             className="flex min-h-[9rem] flex-col rounded-[1rem] bg-white p-6 lg:min-h-[22rem] lg:flex-[2.1]"
           >
-            <div className="flex h-full flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-4">
+            <div className="flex h-full flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-6">
               <div className="flex flex-1 flex-col justify-between gap-6">
-                <span className="font-sans text-[1rem] text-[#a9a9ad]">01</span>
-                <div className="flex flex-col gap-3">
-                  <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-[#16171b]">
+                <span className="font-sans text-[1.125rem] text-[#a9a9ad]">01</span>
+                {/* contained grey text panel, anchored to the card bottom */}
+                <div className="flex flex-col gap-3 rounded-[1.5rem] bg-[#f4f4f5] p-7 lg:p-8">
+                  <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.1] tracking-[-0.02em] text-[#16171b] lg:text-[2rem]">
                     Pick a Box
                   </h3>
-                  <p className="max-w-[16rem] font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+                  <p className="max-w-[26rem] font-sans text-[1.0625rem] leading-[1.5] text-[#6b6c71] lg:text-[1.125rem]">
                     Let them build their own box or send a curated one.
                   </p>
                 </div>
@@ -60,7 +61,7 @@ export default function SnackHowItWorks() {
                   src={pickBox}
                   alt="Pick a Box preview — Crowd Pleasers snack boxes"
                   className="h-full w-auto object-contain"
-                  sizes="280px"
+                  sizes="480px"
                 />
               </div>
             </div>
@@ -73,8 +74,8 @@ export default function SnackHowItWorks() {
               data-animation="reveal"
               className="flex min-h-[9rem] flex-col justify-between gap-8 rounded-[1rem] bg-white p-6 lg:min-h-[22rem] lg:flex-1"
             >
-              <span className="font-sans text-[1rem] text-[#a9a9ad]">{s.n}</span>
-              <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-[#16171b]">
+              <span className="font-sans text-[1.125rem] text-[#a9a9ad]">{s.n}</span>
+              <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-[#16171b] lg:text-[1.75rem]">
                 {s.title}
               </h3>
             </div>
