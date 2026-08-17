@@ -6,18 +6,6 @@
 import Image from "next/image";
 import heroProduct from "@/public/snacks/sn2-hero-product.png";
 
-const LOGOS = [
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-  { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 16 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 26 },
-  { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 20 },
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-];
-
 export default function SnackHero() {
   return (
     <section className="relative overflow-hidden bg-[#0034ae] px-section-x-sm pb-14 pt-[7rem] md:px-section-x-md md:pt-[8rem] lg:px-section-x-lg lg:pt-[7.5rem]">
@@ -78,26 +66,7 @@ export default function SnackHero() {
             4.9 on Capterra · 19.7M+ snacks delivered · 170+ countries
           </p>
         </div>
-
-        {/* logo wall */}
-        <div data-animation="reveal" data-reveal-delay="320" className="mt-14 w-full pb-12 lg:mt-16 lg:pb-16">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-90 md:gap-x-14">
-            {LOGOS.map((l, i) => (
-              <img
-                key={`${l.alt}-${i}`}
-                src={l.src}
-                alt={l.alt}
-                width={l.w}
-                height={l.h}
-                className="h-[1.4rem] w-auto brightness-0 invert"
-              />
-            ))}
-          </div>
-        </div>
       </div>
-
-      {/* bottom fade so the white problem card reads as peeking over the blue */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,rgba(0,52,174,0)_0%,rgba(0,45,150,0.5)_100%)]" />
     </section>
   );
 }

@@ -7,6 +7,18 @@ import prob1 from "@/public/snacks/sn2-problem-1.jpg";
 import prob2 from "@/public/snacks/sn2-problem-2.jpg";
 import prob3 from "@/public/snacks/sn2-problem-3.jpg";
 
+const LOGOS = [
+  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
+  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
+  { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
+  { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 16 },
+  { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 26 },
+  { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 20 },
+  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
+  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
+  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
+];
+
 const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
   {
     img: prob1,
@@ -27,8 +39,33 @@ const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
 
 export default function SnackProblem() {
   return (
-    <section className="relative z-10 -mt-10 px-section-x-sm md:px-section-x-md lg:-mt-16 lg:px-section-x-lg" style={{ backgroundImage: "linear-gradient(180deg, rgba(155, 195, 245, 1) 0%, rgba(255,255,255,1) 100%)" }}>
-      <div className="mx-auto flex w-full max-w-content flex-col items-center">
+    <section className="relative z-10 bg-[#0034ae]">
+      {/* rounded "sleeve" panel: medium blue at the logos fading to white */}
+      <div
+        className="rounded-t-[1.5rem] md:rounded-t-[2rem] lg:rounded-t-[2.5rem]"
+        style={{ backgroundImage: "linear-gradient(180deg, #2f63d0 0%, #9bc3f5 42%, #ffffff 82%)" }}
+      >
+        {/* logo wall */}
+        <div
+          data-animation="reveal"
+          className="px-section-x-sm pb-14 pt-10 md:px-section-x-md lg:pb-20 lg:pt-12"
+        >
+          <div className="mx-auto flex w-full max-w-content flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-90 md:gap-x-14">
+            {LOGOS.map((l, i) => (
+              <img
+                key={`${l.alt}-${i}`}
+                src={l.src}
+                alt={l.alt}
+                width={l.w}
+                height={l.h}
+                className="h-[1.4rem] w-auto brightness-0 invert"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+          <div className="mx-auto flex w-full max-w-content flex-col items-center">
         {/* stacked "page" peek bars */}
         <div aria-hidden className="h-3.5 w-[91.9%] rounded-t-[7px] bg-white/40" />
         <div aria-hidden className="h-[1.125rem] w-[96.1%] rounded-t-[10px] bg-white/70" />
@@ -88,6 +125,8 @@ export default function SnackProblem() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
           </div>
         </div>
       </div>
