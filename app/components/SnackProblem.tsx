@@ -27,14 +27,14 @@ const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
 
 export default function SnackProblem() {
   return (
-    <section className="relative z-10 -mt-10 px-section-x-sm md:px-section-x-md lg:-mt-16 lg:px-section-x-lg">
+    <section className="relative z-10 -mt-10 px-section-x-sm md:px-section-x-md lg:-mt-16 lg:px-section-x-lg" style={{ backgroundImage: "linear-gradient(180deg, rgba(155, 195, 245, 1) 0%, rgba(255,255,255,1) 100%)" }}>
       <div className="mx-auto flex w-full max-w-content flex-col items-center">
         {/* stacked "page" peek bars */}
         <div aria-hidden className="h-3.5 w-[91.9%] rounded-t-[7px] bg-white/40" />
         <div aria-hidden className="h-[1.125rem] w-[96.1%] rounded-t-[10px] bg-white/70" />
 
         {/* white card */}
-        <div className="flex w-full flex-col items-center rounded-t-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:pt-24">
+        <div className="flex w-full flex-col items-center rounded-t-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:px-section-x-lg lg:pt-24">
           <div className="flex max-w-[53.75rem] flex-col items-center gap-5 text-center">
             <div className="flex flex-col items-center gap-2">
               <p
