@@ -89,7 +89,7 @@ export default function SnackSolution() {
         {/* active panel */}
         <div
           data-animation="reveal"
-          className="flex w-full flex-col gap-8 rounded-[1.5rem] bg-[#fafbfd] p-4 lg:flex-row lg:items-center lg:gap-12"
+          className="flex w-full flex-col gap-8 rounded-[1.5rem] bg-[#eef1f6] p-4 lg:flex-row lg:items-center lg:gap-12"
         >
           <div className="relative aspect-[580/421] w-full shrink-0 overflow-hidden rounded-[1rem] lg:w-[48%]">
             <Image key={t.img.src} src={t.img} alt={t.title} fill className="object-cover" sizes="(min-width:1024px) 32rem, 92vw" />
