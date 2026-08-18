@@ -8,10 +8,10 @@
 
 import { useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import chips from "@/public/snacks/sn3-cat-chips.png";
-import coldbrew from "@/public/snacks/sn3-cat-coldbrew.png";
-import coffee from "@/public/snacks/sn3-cat-coffee.png";
-import selfcare from "@/public/snacks/sn3-cat-selfcare.png";
+import chips from "@/public/snacks/sn3-cat-chips.jpg";
+import coldbrew from "@/public/snacks/sn3-cat-coldbrew.jpg";
+import coffee from "@/public/snacks/sn3-cat-coffee.jpg";
+import selfcare from "@/public/snacks/sn3-cat-selfcare.jpg";
 
 const FILTERS = ["All", "Snacks", "Beverages", "Pantry", "Work & Play"];
 const CARDS: { img: StaticImageData; category: string; label: string }[] = [

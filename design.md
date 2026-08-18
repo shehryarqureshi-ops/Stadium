@@ -216,11 +216,23 @@ letter-spacing in rem like everything else.
 Crispness is decided by two things — NOT the on-disk format (next/image
 re-encodes everything to WebP anyway):
 
-1. **Source resolution ≥ 2× the rendered CSS size.** Export raster assets from
-   Figma at `scale 2` (a 302×414 slot → 604×828 file). A 1× export upscales on
-   any HiDPI screen (Windows 125% = 1.25×, Mac = 2×) and reads blurry no matter
-   the quality setting. Audit with the served-width script (Playwright at DPR
-   1 / 1.25 / 2: served `w` ÷ needed device px must be ≥ 1).
+1. **Source resolution — ship the MOST pixels Figma actually has, not a node-
+   sized export.** Two routes (revised 2026-08-18 after the user zoomed 400% and
+   a 660px problem photo fell apart):
+   - **Photos:** use the ORIGINAL upload behind the frame — `download_assets`
+     → `rawImages` (the /snacks stock photos are 1400–1800px natively) — and
+     commit it at native size as JPEG q90 mozjpeg 4:4:4 (~300–450 KB). Only
+     when Figma applies its own crop (catalog cards) export the *image node* at
+     `defaultScale: 4` (Figma's max) so the crop is exact.
+   - **UI mockups** (vector in Figma): export at `defaultScale: 4` → PNG
+     lossless (step cards 1060×1328, byo 2320×1684). Razor-sharp at any zoom.
+   - Minimum bar remains 2× the rendered CSS size; a 1× export upscales on any
+     HiDPI screen (Windows 125% = 1.25×, Mac = 2×). next/image never upscales,
+     so what's on disk is the ceiling — the on-disk format is irrelevant.
+   - Audit with the served-width script (Playwright at DPR 2, and 480css@DPR4
+     to emulate 400% zoom): min(candidate w, source w) ÷ needed device px ≥ 1.
+     Ceilings that remain are the originals themselves (hero box photo 1439px,
+     occasion photos ~1450px) — nothing bigger exists in Figma.
 2. **WebP quality per image role** — Next 16 allow-lists qualities in
    `next.config.ts` (`images.qualities: [75, 90, 100]`; default is [75] only):
    - **Photos** (product/lifestyle) → `quality={90}`. Measured on a catalog

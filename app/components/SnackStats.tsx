@@ -3,7 +3,7 @@
    a light-blue card (1.7M+ + quote), a grey card (1,700+), and a dark card (170+). */
 
 import Image from "next/image";
-import statsPhoto from "@/public/snacks/sn2-stats-photo.png";
+import statsPhoto from "@/public/snacks/sn2-stats-photo.jpg";
 import avatar from "@/public/snacks/sn2-avatar.jpg";
 
 const NUM = "font-[family-name:var(--font-satoshi-medium)] leading-[1.04] tracking-[-0.0625rem]";
