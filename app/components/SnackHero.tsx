@@ -15,7 +15,7 @@ export default function SnackHero() {
     <section className="relative overflow-hidden bg-[#0034ae] pb-10 pt-[6rem] md:pt-[7rem] lg:pb-[3.75rem] lg:pt-[5.25rem]">
       {/* split row: text (left) + photo (right, bleeds off-edge) */}
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-0">
-        <div className="carousel-bleed flex w-full flex-col md:pr-section-x-md lg:w-[44.2%] lg:shrink-0 lg:pr-0">
+        <div className="carousel-bleed flex w-full flex-col md:pr-section-x-md lg:w-[44.2%] lg:shrink-0 lg:pr-0!">
           <div data-animation="reveal" className="flex flex-col gap-2">
             <p className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#d8e7fd]">
               Snacks • SnackMagic

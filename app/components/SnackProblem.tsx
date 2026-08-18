@@ -67,15 +67,15 @@ export default function SnackProblem() {
           </div>
         </div>
 
-        <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+        <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg lg:pb-20">
           <div className="mx-auto flex w-full max-w-content flex-col items-center">
         {/* white card */}
-        <div className="flex w-full flex-col items-center rounded-t-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:px-20 lg:pt-[10rem]">
+        <div className="flex w-full flex-col items-center rounded-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:px-20 lg:pt-[10rem]">
           <div className="flex max-w-[53.75rem] flex-col items-center gap-5 text-center">
             <div className="flex flex-col items-center gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#2178f5] md:text-eyebrow-md"
+                className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
               >
                 The problem
               </p>
@@ -111,11 +111,11 @@ export default function SnackProblem() {
                     src={c.img}
                     alt={c.title}
                     quality={90}
-                    className="aspect-[376/250] w-full object-cover"
+                    className="aspect-[376/250] w-full object-cover lg:aspect-auto lg:h-[15.625rem]"
                     sizes="(min-width:1024px) 24rem, (min-width:768px) 31vw, 92vw"
                   />
                 </div>
-                <div className="flex flex-col gap-4 px-8 pb-8 pt-[2.625rem]">
+                <div className="flex flex-col gap-4 px-8 pb-8 pt-[2.625rem] lg:px-6">
                   <h3 className="font-[family-name:var(--font-satoshi)] text-[1.6875rem] font-bold leading-[1.875rem] tracking-[-0.01875rem] text-[#16171b]">
                     {c.title}
                   </h3>

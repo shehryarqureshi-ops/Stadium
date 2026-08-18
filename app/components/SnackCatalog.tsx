@@ -27,7 +27,7 @@ function Arrow({ dir, onClick }: { dir: "l" | "r"; onClick: () => void }) {
       type="button"
       onClick={onClick}
       aria-label={dir === "l" ? "Previous" : "Next"}
-      className="flex size-11 items-center justify-center rounded-full border border-[#e4e4e7] bg-white text-[#16171b] transition-all duration-200 hover:border-[#16171b] active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+      className="flex size-10 items-center justify-center rounded-full border border-[#e4e4e7] bg-white text-[#16171b] transition-all duration-200 hover:border-[#16171b] active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="size-5" aria-hidden>
         {dir === "l" ? <path d="M19 12H5M12 19l-7-7 7-7" /> : <path d="M5 12h14M12 5l7 7-7 7" />}
@@ -42,15 +42,15 @@ export default function SnackCatalog() {
   const scroll = (d: number) => track.current?.scrollBy({ left: d * 342, behavior: "smooth" });
 
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
-      <div className="mx-auto flex w-full max-w-content flex-col gap-8">
+    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+      <div className="mx-auto flex w-full max-w-content flex-col gap-8 lg:gap-[2.8125rem]">
         {/* header */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="flex max-w-[34rem] flex-col gap-4">
+          <div className="flex max-w-[34rem] flex-col gap-4 lg:gap-6">
             <div className="flex flex-col gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.0625rem] text-[#2178f5]"
+                className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
               >
                 The catalog
               </p>
@@ -61,7 +61,7 @@ export default function SnackCatalog() {
                 Find everyone’s favorite, from 2,000+ snacks
               </h2>
             </div>
-            <p data-animation="reveal" className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71]">
+            <p data-animation="reveal" className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]">
               Snacks for any craving or diet, plus new brands to discover.
             </p>
           </div>
@@ -79,15 +79,15 @@ export default function SnackCatalog() {
           data-animation="reveal"
           className="-mx-4 -mb-12 w-[calc(100%+2rem)] overflow-x-auto px-4 pb-12 [scrollbar-width:none] lg:mx-0 lg:mb-0 lg:w-full lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
         >
-          <div className="flex w-max items-center gap-1 rounded-full bg-white p-2 shadow-[0px_16px_36px_-10px_rgba(0,0,0,0.12)]">
+          <div className="flex w-max items-center gap-2.5 rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]">
             {FILTERS.map((f, i) => (
               <button
                 key={f}
                 type="button"
                 onClick={() => setActive(i)}
                 aria-pressed={i === active}
-                className={`whitespace-nowrap rounded-full px-7 py-3.5 font-sans text-[0.9375rem] font-bold uppercase tracking-[0.125rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
-                  i === active ? "bg-[#16171b] text-white" : "text-[#3a3b40] hover:text-[#16171b]"
+                className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+                  i === active ? "bg-[#16171b] text-white" : "text-[#16171b] hover:bg-black/5"
                 }`}
               >
                 {f}
@@ -100,7 +100,7 @@ export default function SnackCatalog() {
         <div
           ref={track}
           data-animation="reveal"
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {CARDS.map((c) => (
             <article
@@ -111,7 +111,7 @@ export default function SnackCatalog() {
                 <p className="font-sans text-[0.875rem] uppercase leading-[1rem] tracking-[0.01rem] text-[#6b6c71]">
                   {c.category}
                 </p>
-                <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.2] text-[#16171b]">
+                <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.35] text-[#16171b]">
                   {c.label}
                 </h3>
               </div>
@@ -123,7 +123,7 @@ export default function SnackCatalog() {
         </div>
 
         {/* nav arrows */}
-        <div className="flex items-center justify-end gap-3">
+        <div className="flex items-center justify-end gap-2.5 lg:-mt-[0.8125rem]">
           <Arrow dir="l" onClick={() => scroll(-1)} />
           <Arrow dir="r" onClick={() => scroll(1)} />
         </div>

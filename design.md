@@ -246,6 +246,18 @@ re-encodes everything to WebP anyway):
 Also keep `sizes` honest (≈ the real rendered width) so the srcset candidate
 the browser picks actually carries the device pixels needed.
 
+## /snacks bespoke page — vertical rhythm (audited 2026-08-18)
+
+Figma `n9SjmDjzB1PeZAYJ5w43fr` frame 2208:2740. Its section frames are
+content-tight and sit **160px apart**, so every white section is `lg:py-20`
+(80 + 80) and the problem card's sleeve carries `lg:pb-20`. Inside sections:
+eyebrow 12px / lh 1.4 → 8 → title → 20 → subhead → 40 → content (Catalog:
+24 / 45 / 45 / 32; Comparison: 60 to the table). Stats → 180 white incl. the
+curve → 120 blue → closing card (py-140, flush on the footer + 2px divider).
+Container stays the site's 1200/120 (Figma draws 1240/100) — all inner
+proportions were matched at that width; the audit script is
+`measure-live.js` + `parse-figma.js` (Playwright + metadata XML → absolute y).
+
 ## Breakpoints
 
 Figma designs three frame sizes; they map to Tailwind breakpoints as follows:

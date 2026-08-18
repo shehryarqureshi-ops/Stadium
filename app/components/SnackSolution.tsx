@@ -49,12 +49,12 @@ export default function SnackSolution() {
   const [active, setActive] = useState(0);
   const t = TABS[active];
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 lg:gap-12">
+    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[42rem] flex-col items-center gap-2 text-center">
           <p
             data-animation="reveal"
-            className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#2178f5] md:text-eyebrow-md"
+            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
           >
             The solution
           </p>
@@ -64,20 +64,20 @@ export default function SnackSolution() {
           >
             Your choice, or theirs
           </h2>
-          <p data-animation="reveal" className="mt-2 font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]">
+          <p data-animation="reveal" className="mt-3 font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]">
             Send a snack box you choose, or let recipients build their own from the catalog.
           </p>
         </div>
 
         {/* tab bar */}
-        <div data-animation="reveal" className="flex items-center gap-1 rounded-full bg-[#f2f2f2] p-1.5">
+        <div data-animation="reveal" className="flex items-center gap-2.5 rounded-full bg-[#f2f2f2] p-2.5">
           {TABS.map((tab, i) => (
             <button
               key={tab.label}
               type="button"
               onClick={() => setActive(i)}
               aria-pressed={i === active}
-              className={`whitespace-nowrap rounded-full px-5 py-2.5 font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+              className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
                 i === active ? "bg-[#16171b] text-white" : "text-[#6b6c71] hover:text-[#16171b]"
               }`}
             >
@@ -89,12 +89,12 @@ export default function SnackSolution() {
         {/* active panel */}
         <div
           data-animation="reveal"
-          className="flex w-full flex-col gap-8 rounded-[1.5rem] bg-[#eef1f6] p-4 lg:flex-row lg:items-center lg:gap-12"
+          className="flex w-full flex-col gap-8 rounded-[1.5rem] bg-[#eef1f6] p-2.5 lg:mt-[0.3125rem] lg:flex-row lg:items-center lg:gap-[3.75rem]"
         >
-          <div className="relative aspect-[580/421] w-full shrink-0 overflow-hidden rounded-[1rem] lg:w-[48%]">
+          <div className="relative aspect-[580/421] w-full shrink-0 overflow-hidden rounded-[1rem] lg:w-[47.5%]">
             <Image key={t.img.src} src={t.img} alt={t.title} fill quality={100} className="object-cover" sizes="(min-width:1024px) 36rem, 92vw" />
           </div>
-          <div className="flex flex-1 flex-col justify-center gap-5 px-2 pb-6 lg:px-6">
+          <div className="flex flex-1 flex-col justify-center gap-8 px-2 pb-6 lg:px-0 lg:pr-6">
             <div className="flex flex-col gap-3">
               <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.1] tracking-[-0.03125rem] text-[#16171b] lg:text-[2.25rem]">
                 {t.title}
@@ -111,7 +111,7 @@ export default function SnackSolution() {
             </ul>
             <a
               href="#"
-              className="mt-1 w-fit font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#16171b]"
+              className="w-fit font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#16171b]"
             >
               <span className="border-b border-black pb-[2px]">{t.cta}</span>
             </a>

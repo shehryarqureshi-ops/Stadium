@@ -20,13 +20,13 @@ const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
 
 export default function SnackPlatform() {
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
+    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
-        <div className="flex max-w-[55rem] flex-col items-center gap-4 text-center">
+        <div className="flex max-w-[55rem] flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.0625rem] text-[#2178f5]"
+              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
             >
               Any moment
             </p>
@@ -55,7 +55,7 @@ export default function SnackPlatform() {
               <article
                 key={c.title}
                 data-animation="reveal"
-                className="flex flex-col overflow-hidden rounded-[1.5rem] border-8 border-white bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
+                className="flex flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
               >
                 <div className="overflow-hidden rounded-[1.25rem]">
                   <Image

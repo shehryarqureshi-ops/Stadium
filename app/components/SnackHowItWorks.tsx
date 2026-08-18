@@ -49,12 +49,12 @@ export default function SnackHowItWorks() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
+    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
       <div className="mx-auto flex w-full max-w-content flex-col gap-10">
         <div className="flex flex-col gap-2">
           <p
             data-animation="reveal"
-            className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#2178f5] md:text-eyebrow-md"
+            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
           >
             How it works
           </p>
@@ -64,7 +64,7 @@ export default function SnackHowItWorks() {
           >
             From order to their door in four steps
           </h2>
-          <p data-animation="reveal" className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]">
+          <p data-animation="reveal" className="mt-3 font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]">
             Send globally with local fulfillment, so every snack box arrives with flavors that feel closer to home.
           </p>
         </div>
@@ -93,20 +93,20 @@ export default function SnackHowItWorks() {
                     setActive(i);
                   }
                 }}
-                className={`group flex min-h-[9rem] cursor-pointer flex-col overflow-hidden rounded-[1rem] bg-white p-4 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[21.5rem] ${
-                  isActive ? "lg:flex-[3]" : "lg:flex-1 lg:hover:bg-[#fafafa]"
+                className={`group flex min-h-[9rem] cursor-pointer flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 ${
+                  isActive ? "lg:grow-[3.08]" : "lg:grow lg:hover:bg-[#fafafa]"
                 }`}
               >
-                <div className="flex h-full flex-col gap-6 lg:flex-row lg:items-stretch lg:justify-between lg:gap-6">
+                <div className="flex h-full flex-col gap-6 lg:flex-row lg:items-stretch lg:justify-between lg:gap-2.5">
                   {/* left column: number + bottom-anchored grey title panel */}
-                  <div className={`flex flex-col justify-between gap-6 ${isActive ? "lg:w-[48%]" : "lg:w-full"}`}>
-                    <span className="pl-2 pt-2 font-sans text-[1rem] text-[#a9a9ad]">{s.n}</span>
-                    <div className="flex flex-col gap-2 rounded-[1rem] bg-[#f4f4f5] p-6">
-                      <h3 className="font-[family-name:var(--font-satoshi)] text-[1.25rem] font-bold leading-[1.15] tracking-[-0.01em] text-[#16171b]">
+                  <div className={`flex flex-col justify-between gap-6 ${isActive ? "lg:w-[51.6%]" : "lg:w-full"}`}>
+                    <span className="p-4 font-sans text-[1rem] leading-5 text-[#a9a9ad]">{s.n}</span>
+                    <div className="flex flex-col gap-4 rounded-[1rem] bg-[#f4f4f5] p-6">
+                      <h3 className="font-[family-name:var(--font-satoshi)] text-[1.25rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#16171b]">
                         {s.title}
                       </h3>
                       {isActive && s.desc && (
-                        <p className="font-sans text-[0.875rem] leading-[1.5] text-[#6b6c71]">{s.desc}</p>
+                        <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">{s.desc}</p>
                       )}
                     </div>
                   </div>
@@ -116,7 +116,7 @@ export default function SnackHowItWorks() {
                     <div
                       id={`snack-step-panel-${s.n}`}
                       role="tabpanel"
-                      className="snack-step-in relative mx-auto h-[16rem] w-full max-w-[20rem] lg:mx-0 lg:h-auto lg:w-[46%] lg:max-w-none lg:self-stretch"
+                      className="snack-step-in relative mx-auto h-[16rem] w-full max-w-[20rem] lg:mx-0 lg:h-auto lg:w-[46.7%] lg:max-w-none lg:self-stretch"
                     >
                       <Image
                         key={s.img.src}

@@ -10,12 +10,12 @@ const NUM = "font-[family-name:var(--font-satoshi-medium)] leading-[1.04] tracki
 
 export default function SnackStats() {
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
+    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
-        <div className="flex max-w-[53.75rem] flex-col items-center gap-3 text-center">
+        <div className="flex max-w-[53.75rem] flex-col items-center gap-2 text-center">
           <p
             data-animation="reveal"
-            className="font-sans text-eyebrow-sm font-bold uppercase tracking-[0.1rem] text-[#2178f5] md:text-eyebrow-md"
+            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
           >
             The proof
           </p>
@@ -30,7 +30,7 @@ export default function SnackStats() {
           </p>
         </div>
 
-        <div data-animation="reveal" className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div data-animation="reveal" className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[407fr_407fr_395fr]">
           {/* photo · 19.7M+ (overlay baked in) */}
           <div className="relative min-h-[22.25rem] overflow-hidden rounded-[1.5rem] border border-[#f5f5f5]">
             <Image src={statsPhoto} alt="A SnackMagic box delivered to a doorstep — 19.7M+ snacks delivered" fill quality={100} className="object-cover" sizes="(min-width:1024px) 25rem, (min-width:768px) 45vw, 92vw" />
