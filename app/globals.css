@@ -400,6 +400,28 @@ body {
   }
 }
 
+/* /snacks How-it-works stepper: the newly-active step's mockup fades + rises
+   in (0.4s, matches the site's reveal ease) instead of popping. Reduced motion
+   disables it. */
+@keyframes snack-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.snack-step-in {
+  animation: snack-step-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .snack-step-in {
+    animation: none;
+  }
+}
+
 /* Hero rotating word (data-animation="word-shuffle"): the settled word slides
    up + fades out while the next rises from below + fades in. The container
    width is driven from JS (measured per word) and transitions, so the trailing
