@@ -1,21 +1,24 @@
 "use client";
 
-/* /snacks · THE CATALOG (Figma 2208:2997). "Find everyone's favorite, from 2,000+
-   snacks" — filter pills + a horizontal card carousel with prev/next arrows. */
+/* /snacks · THE CATALOG (Figma 2208:2997, cards revised 2026-08-18 → 2389:4738).
+   "Find everyone's favorite, from 2,000+ snacks" — filter pills + a horizontal
+   card carousel with prev/next arrows. Each card is a grey #f7f7f7 rounded tile:
+   eyebrow + Satoshi title as REAL TEXT on top, then a rounded product photo
+   (302×414 at 1440) below — text is no longer baked into the image. */
 
 import { useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import chips from "@/public/snacks/sn2-cat-chips.png";
-import coldbrew from "@/public/snacks/sn2-cat-coldbrew.png";
-import coffee from "@/public/snacks/sn2-cat-coffee.png";
-import selfcare from "@/public/snacks/sn2-cat-selfcare.png";
+import chips from "@/public/snacks/sn3-cat-chips.png";
+import coldbrew from "@/public/snacks/sn3-cat-coldbrew.png";
+import coffee from "@/public/snacks/sn3-cat-coffee.png";
+import selfcare from "@/public/snacks/sn3-cat-selfcare.png";
 
 const FILTERS = ["All", "Snacks", "Beverages", "Pantry", "Work & Play"];
-const CARDS: { img: StaticImageData; label: string }[] = [
-  { img: chips, label: "Potato Chips" },
-  { img: coldbrew, label: "Cold Brew" },
-  { img: coffee, label: "Coffee, Tea, & Cocoa" },
-  { img: selfcare, label: "Self Care" },
+const CARDS: { img: StaticImageData; category: string; label: string }[] = [
+  { img: chips, category: "Snacks", label: "Potato Chips" },
+  { img: coldbrew, category: "Beverages", label: "Cold Brew" },
+  { img: coffee, category: "Pantry", label: "Coffee, Tea, & Cocoa" },
+  { img: selfcare, category: "Work & Play", label: "Self Care" },
 ];
 
 function Arrow({ dir, onClick }: { dir: "l" | "r"; onClick: () => void }) {
@@ -36,7 +39,7 @@ function Arrow({ dir, onClick }: { dir: "l" | "r"; onClick: () => void }) {
 export default function SnackCatalog() {
   const [active, setActive] = useState(0);
   const track = useRef<HTMLDivElement>(null);
-  const scroll = (d: number) => track.current?.scrollBy({ left: d * 320, behavior: "smooth" });
+  const scroll = (d: number) => track.current?.scrollBy({ left: d * 342, behavior: "smooth" });
 
   return (
     <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-24">
@@ -74,7 +77,7 @@ export default function SnackCatalog() {
         {/* filter pills */}
         <div
           data-animation="reveal"
-          className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="-mx-4 -mb-12 w-[calc(100%+2rem)] overflow-x-auto px-4 pb-12 [scrollbar-width:none] lg:mx-0 lg:mb-0 lg:w-full lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
         >
           <div className="flex w-max items-center gap-1 rounded-full bg-white p-2 shadow-[0px_16px_36px_-10px_rgba(0,0,0,0.12)]">
             {FILTERS.map((f, i) => (
@@ -97,15 +100,25 @@ export default function SnackCatalog() {
         <div
           ref={track}
           data-animation="reveal"
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {CARDS.map((c) => (
-            <div
+            <article
               key={c.label}
-              className="relative aspect-[276/422] w-[17.5rem] shrink-0 snap-start overflow-hidden rounded-[1.25rem]"
+              className="flex w-[19.875rem] shrink-0 snap-start flex-col gap-6 overflow-hidden rounded-[1.5rem] bg-[#f7f7f7] p-2"
             >
-              <Image src={c.img} alt={c.label} fill className="object-cover" sizes="280px" />
-            </div>
+              <div className="flex flex-col gap-1 px-6 pt-6">
+                <p className="font-sans text-[0.875rem] uppercase leading-[1rem] tracking-[0.01rem] text-[#6b6c71]">
+                  {c.category}
+                </p>
+                <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.2] text-[#16171b]">
+                  {c.label}
+                </h3>
+              </div>
+              <div className="relative aspect-[302/414] w-full overflow-hidden rounded-[1.25rem]">
+                <Image src={c.img} alt={`${c.category} — ${c.label}`} fill className="object-cover" sizes="302px" />
+              </div>
+            </article>
           ))}
         </div>
 

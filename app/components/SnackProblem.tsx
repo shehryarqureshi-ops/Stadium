@@ -1,6 +1,9 @@
-/* /snacks · THE PROBLEM (Figma 2208:2876). A white card peeking over the blue
-   hero (two translucent "page" bars for depth) with the "Office snacks become one
-   person's job" header and a grey tray of three photo cards. */
+/* /snacks · THE PROBLEM (Figma 2208:2876, revised 2026-08-18). A rounded
+   "sleeve" panel (Figma "glass": medium blue at the logo wall fading to white)
+   sits on the hero blue and holds the trust logos (60px above/below), then a
+   plain white rounded card with the "Office snacks become one person's job"
+   header and a grey tray of three photo cards. The old stacked "page" peek bars
+   behind the card were REMOVED in this revision. */
 
 import Image, { type StaticImageData } from "next/image";
 import prob1 from "@/public/snacks/sn2-problem-1.jpg";
@@ -48,9 +51,9 @@ export default function SnackProblem() {
         {/* logo wall */}
         <div
           data-animation="reveal"
-          className="px-section-x-sm pb-14 pt-10 md:px-section-x-md lg:pb-20 lg:pt-12"
+          className="px-section-x-sm py-10 md:px-section-x-md lg:py-[3.75rem]"
         >
-          <div className="mx-auto flex w-full max-w-content flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-90 md:gap-x-14">
+          <div className="mx-auto flex min-h-[2.5rem] w-full max-w-content flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-90 md:gap-x-14">
             {LOGOS.map((l, i) => (
               <img
                 key={`${l.alt}-${i}`}
@@ -66,12 +69,8 @@ export default function SnackProblem() {
 
         <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
           <div className="mx-auto flex w-full max-w-content flex-col items-center">
-        {/* stacked "page" peek bars */}
-        <div aria-hidden className="h-3.5 w-[91.9%] rounded-t-[7px] bg-white/40" />
-        <div aria-hidden className="h-[1.125rem] w-[96.1%] rounded-t-[10px] bg-white/70" />
-
         {/* white card */}
-        <div className="flex w-full flex-col items-center rounded-t-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:px-section-x-lg lg:pt-24">
+        <div className="flex w-full flex-col items-center rounded-t-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:px-20 lg:pt-[10rem]">
           <div className="flex max-w-[53.75rem] flex-col items-center gap-5 text-center">
             <div className="flex flex-col items-center gap-2">
               <p
@@ -99,7 +98,7 @@ export default function SnackProblem() {
           <div
             data-animation="reveal"
             data-reveal-stagger="90"
-            className="mt-10 grid w-full grid-cols-1 gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:grid-cols-3"
+            className="mt-8 grid w-full grid-cols-1 gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:grid-cols-3 lg:mt-10"
           >
             {CARDS.map((c) => (
               <article
