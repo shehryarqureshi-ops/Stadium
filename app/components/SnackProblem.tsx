@@ -110,6 +110,7 @@ export default function SnackProblem() {
                   <Image
                     src={c.img}
                     alt={c.title}
+                    quality={90}
                     className="aspect-[376/250] w-full object-cover"
                     sizes="(min-width:1024px) 24rem, (min-width:768px) 31vw, 92vw"
                   />

@@ -116,7 +116,7 @@ export default function SnackCatalog() {
                 </h3>
               </div>
               <div className="relative aspect-[302/414] w-full overflow-hidden rounded-[1.25rem]">
-                <Image src={c.img} alt={`${c.category} — ${c.label}`} fill className="object-cover" sizes="302px" />
+                <Image src={c.img} alt={`${c.category} — ${c.label}`} fill quality={90} className="object-cover" sizes="302px" />
               </div>
             </article>
           ))}

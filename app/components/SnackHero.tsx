@@ -68,6 +68,7 @@ export default function SnackHero() {
             alt="A hand dropping premium snacks into a Snackmagic box"
             priority
             fill
+            quality={90}
             className="select-none object-cover object-left"
             sizes="(min-width:1024px) 56vw, 100vw"
           />

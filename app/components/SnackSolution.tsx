@@ -92,7 +92,7 @@ export default function SnackSolution() {
           className="flex w-full flex-col gap-8 rounded-[1.5rem] bg-[#eef1f6] p-4 lg:flex-row lg:items-center lg:gap-12"
         >
           <div className="relative aspect-[580/421] w-full shrink-0 overflow-hidden rounded-[1rem] lg:w-[48%]">
-            <Image key={t.img.src} src={t.img} alt={t.title} fill className="object-cover" sizes="(min-width:1024px) 32rem, 92vw" />
+            <Image key={t.img.src} src={t.img} alt={t.title} fill quality={100} className="object-cover" sizes="(min-width:1024px) 36rem, 92vw" />
           </div>
           <div className="flex flex-1 flex-col justify-center gap-5 px-2 pb-6 lg:px-6">
             <div className="flex flex-col gap-3">

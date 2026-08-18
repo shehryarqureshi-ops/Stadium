@@ -61,6 +61,7 @@ export default function SnackPlatform() {
                   <Image
                     src={c.img}
                     alt={c.title}
+                    quality={90}
                     className="aspect-[376/250] w-full object-cover"
                     sizes="(min-width:1024px) 24rem, (min-width:640px) 45vw, 92vw"
                   />

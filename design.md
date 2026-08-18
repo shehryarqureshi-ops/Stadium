@@ -211,6 +211,29 @@ Rules: never hardcode px in components (except the hairline exceptions);
 size images with rem classes/styles, never bare width/height attributes;
 letter-spacing in rem like everything else.
 
+## Image quality (2026-08-18)
+
+Crispness is decided by two things — NOT the on-disk format (next/image
+re-encodes everything to WebP anyway):
+
+1. **Source resolution ≥ 2× the rendered CSS size.** Export raster assets from
+   Figma at `scale 2` (a 302×414 slot → 604×828 file). A 1× export upscales on
+   any HiDPI screen (Windows 125% = 1.25×, Mac = 2×) and reads blurry no matter
+   the quality setting. Audit with the served-width script (Playwright at DPR
+   1 / 1.25 / 2: served `w` ÷ needed device px must be ≥ 1).
+2. **WebP quality per image role** — Next 16 allow-lists qualities in
+   `next.config.ts` (`images.qualities: [75, 90, 100]`; default is [75] only):
+   - **Photos** (product/lifestyle) → `quality={90}`. Measured on a catalog
+     photo: q75→q90 cuts encode error ~30% for ~1.8× bytes (34→61 KB); q100
+     doubles bytes again for a marginal gain.
+   - **UI mockups / anything with baked text or hairlines** (step cards, Emily's
+     Snackbox, the 19.7M+ stats photo) → `quality={100}` — near-lossless at
+     ~⅕ the bytes of the raw PNG (49 vs 231 KB), text edges stay clean.
+   - Logos/icons stay SVG.
+
+Also keep `sizes` honest (≈ the real rendered width) so the srcset candidate
+the browser picks actually carries the device pixels needed.
+
 ## Breakpoints
 
 Figma designs three frame sizes; they map to Tailwind breakpoints as follows:

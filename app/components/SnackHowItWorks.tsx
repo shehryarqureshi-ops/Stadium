@@ -123,8 +123,9 @@ export default function SnackHowItWorks() {
                         src={s.img}
                         alt={s.alt}
                         fill
+                        quality={100}
                         className="object-contain"
-                        sizes="(min-width:1024px) 20rem, 20rem"
+                        sizes="(min-width:1024px) 15rem, 20rem"
                       />
                     </div>
                   )}
