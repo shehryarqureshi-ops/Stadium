@@ -1,6 +1,7 @@
 /* /snacks · hero (Figma 2208:2768, revised 2026-08-18). A royal-blue hero SPLIT
    left/right: text column (eyebrow, Satoshi Black headline, subhead, two CTAs,
-   trust line) on the left in the page gutter; a big hand-and-Snackmagic-box photo
+   trust line) on the left, its left edge on the 1200 content edge (x=120 at
+   1440, via .carousel-bleed); a big hand-and-Snackmagic-box photo
    (804×713 at 1440) on the right, flush to the viewport edge. The photo has the
    #0034ae blue baked in, so the section bg must stay #0034ae to blend. The logo
    wall lives in the rounded "sleeve" at the top of SnackProblem (Figma "glass"),
@@ -14,7 +15,7 @@ export default function SnackHero() {
     <section className="relative overflow-hidden bg-[#0034ae] pb-10 pt-[6rem] md:pt-[7rem] lg:pb-[3.75rem] lg:pt-[5.25rem]">
       {/* split row: text (left) + photo (right, bleeds off-edge) */}
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-0">
-        <div className="flex w-full flex-col px-section-x-sm md:px-section-x-md lg:w-[44.2%] lg:shrink-0 lg:pl-section-x-lg lg:pr-0">
+        <div className="carousel-bleed flex w-full flex-col md:pr-section-x-md lg:w-[44.2%] lg:shrink-0 lg:pr-0">
           <div data-animation="reveal" className="flex flex-col gap-2">
             <p className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#d8e7fd]">
               Snacks • SnackMagic
