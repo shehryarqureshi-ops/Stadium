@@ -1,0 +1,254 @@
+/* /swag · Hero (Figma n9SjmDjzB1PeZAYJ5w43fr → 2500:4709 "Hero · Swag": hero
+   row 2500:4732, content 2500:6629, trust band 2500:4768). A dark-green
+   shader hero (SwagHeroShader — the live equivalent of Figma's raster
+   "image 13674" mesh gradient, kept on disk as sw2-hero-bg.jpg and layered
+   UNDER the shader as the reduced-motion / no-WebGL fallback) with the text
+   column on the 1200 content edge (x=120 at 1440; Figma draws it at 140) and
+   the 558×557 product cluster right-aligned to the content edge: warehouse
+   photo (295×470, rounded-16, big soft shadow) + translucent "Hoodie" card
+   (black/33, rounded-20, ADD TO BAG outline button) + floating SIZE S/M/L/XL
+   pill + transparent hoodie cut-out on top. Below the row: the trust-logo
+   marquee (56 above / 40 track / 56 below).
+
+   The shader/bg extends 806px PAST this section's bottom (Figma's bg image is
+   1440×1719; the hero row ends at 913) so SwagmagicProblem's white card
+   scrolls over it — render <SwagmagicHero/> then <SwagmagicProblem/> directly
+   (Problem is `relative z-10` on a transparent bg); do NOT wrap them in the
+   old page-level shader section or the shader doubles.
+
+   Figma stack (absolute y at 1440):
+     0..84    nav (fixed SiteHeader overlays; section pt = 204 = 84 + 120)
+     204      eyebrow (17)            → 8
+     229      h1 58/1.02 ×3 (177)     → 32
+     438      subhead 19/1.52 (58)    → 32
+     528      CTA row (38 Figma / 40 site h-button-h) → 32
+     598      trust line 13/1.4 (18)  → text col ends 616
+     204..761 graphics 558×557 (row height = 557)
+     761      trust band: pt 56 → marquee 40 (817..857) → pb 56 → 913
+     913      section ends; shader bg continues to 1719 (mask fade 75→100%). */
+
+import Image from "next/image";
+import SwagHeroShader from "./SwagHeroShader";
+import heroBg from "@/public/swag2/sw2-hero-bg.jpg";
+import hoodie from "@/public/swag2/sw2-hero-hoodie.png";
+import warehouse from "@/public/swag2/sw2-hero-warehouse.jpg";
+
+/* Figma "Logos track" (2500:4770): google, amazon, pinterest, accenture,
+   bloomberg, salesforce, netflix, google, amazon, pinterest — each at its own
+   Figma box size, bottom-aligned, gap 56. */
+const LOGOS = [
+  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
+  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
+  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
+  { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
+  { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 16 },
+  { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 26 },
+  { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 20 },
+  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
+  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
+  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
+];
+
+const SIZES = ["S", "M", "L", "XL"];
+const ACTIVE_SIZE = "L";
+
+/* Product cluster (2500:4746, 558×557) authored at the Figma pixel positions
+   (÷16 = rem) inside a fixed box; below `sm` it scales down as one unit and
+   the wrapper's box shrinks with it so layout stays honest. */
+function ProductCluster() {
+  return (
+    <div className="relative h-[34.8125rem] w-[34.875rem]">
+      {/* warehouse photo (2500:4747) 295×470 @ (228,0) */}
+      <div className="absolute left-[14.25rem] top-0 h-[29.375rem] w-[18.4375rem] overflow-hidden rounded-2xl shadow-[0.875rem_1.3125rem_2.8125rem_0_rgba(0,0,0,0.33)]">
+        <Image
+          src={warehouse}
+          alt="Warehouse racking stacked with kitted swag boxes"
+          priority
+          fill
+          quality={90}
+          sizes="18.4375rem"
+          className="select-none object-cover"
+        />
+      </div>
+
+      {/* hoodie card (2500:4748) 259×435 @ (27,122) — black/33, rounded-20 */}
+      <div className="absolute left-[1.6875rem] top-[7.625rem] flex w-[16.1875rem] flex-col justify-end gap-3 rounded-[1.25rem] bg-black/33 px-[1.375rem] pb-8 pt-[17.5rem]">
+        <div className="flex w-[10.674rem] flex-col gap-1">
+          <p className="font-sans text-[1.0973rem] font-bold leading-[1.38] tracking-[0.02rem] text-[#dddddd]">
+            Hoodie
+          </p>
+          <p className="font-sans text-[0.75rem] leading-4 tracking-[0.0156rem] text-[#cccccc]">
+            Ultra-soft 400gms cotton fleece with a modern relaxed drop-shoulder
+            fit.
+          </p>
+        </div>
+        <span className="flex w-full items-center justify-center rounded-lg border border-white/25 py-[0.625rem] font-sans text-[0.75rem] leading-[0.9375rem] tracking-[0.0474rem] text-[#cccccc]">
+          ADD TO BAG
+        </span>
+      </div>
+
+      {/* floating size pill (2500:4755) 55×175 @ (0,170) — black/10, radius 15 */}
+      <div
+        aria-hidden="true"
+        className="absolute left-0 top-[10.6056rem] flex flex-col items-center gap-2 overflow-hidden rounded-[0.9475rem] bg-black/10 p-[0.6317rem]"
+      >
+        <span className="font-sans text-[0.9475rem] leading-[1.25] tracking-[0.0474rem] text-[#aaaaaa]">
+          SIZE
+        </span>
+        <div className="flex flex-col">
+          {SIZES.map((s) => (
+            <span
+              key={s}
+              className={`flex size-8 items-center justify-center rounded-[0.6317rem] font-sans text-[0.9475rem] leading-[1.25] tracking-[0.0474rem] text-[#aaaaaa] ${
+                s === ACTIVE_SIZE ? "bg-black/75" : ""
+              }`}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* hoodie cut-out (2500:4767) 332×318 @ (28,76) — topmost layer */}
+      <div className="pointer-events-none absolute left-[1.75rem] top-[4.75rem] h-[19.875rem] w-[20.75rem]">
+        <Image
+          src={hoodie}
+          alt="Green embroidered hoodie"
+          priority
+          fill
+          quality={90}
+          sizes="20.75rem"
+          className="select-none object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default function SwagmagicHero() {
+  return (
+    <section className="relative">
+      {/* background: black ground → Figma mesh raster (fallback) → live shader
+          (hidden under prefers-reduced-motion so the raster shows). Extends
+          806px (50.375rem) below the section so the Problem card overlaps it,
+          fading out over the last 25% (Figma bg ends at y=1719). */}
+      <div
+        aria-hidden="true"
+        className="absolute left-0 top-0 h-[calc(100%_+_50.375rem)] w-full overflow-hidden bg-black mask-b-from-75%"
+      >
+        <Image
+          src={heroBg}
+          alt=""
+          fill
+          quality={90}
+          sizes="100vw"
+          className="select-none object-cover object-top"
+        />
+        <div className="absolute inset-0 motion-reduce:hidden">
+          <SwagHeroShader />
+        </div>
+      </div>
+
+      <div className="relative z-10 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[12.75rem]">
+        <div className="mx-auto flex w-full max-w-content flex-col">
+          {/* content row: text (543) + graphics (558), top-aligned */}
+          <div className="flex flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-8">
+            <div className="flex w-full flex-col gap-8 lg:w-[33.9375rem] lg:shrink-0">
+              <div className="flex flex-col gap-8">
+                <div data-animation="reveal" className="flex flex-col gap-2">
+                  <p className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#d7fee7]">
+                    SWAG · SWAGMAGIC
+                  </p>
+                  <h1 className="font-[family-name:var(--font-satoshi)] text-[2.5rem] font-black leading-[1.02] tracking-[-0.0625rem] text-white md:text-[3rem] lg:text-[3.625rem] lg:tracking-[-0.09375rem]">
+                    The infrastructure behind every swag program
+                  </h1>
+                </div>
+                <p
+                  data-animation="reveal"
+                  data-reveal-delay="120"
+                  className="max-w-[33.9375rem] font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
+                >
+                  Stop coordinating vendors separately. Run your entire swag
+                  program, one platform, one PO.
+                </p>
+              </div>
+
+              <div
+                data-animation="reveal"
+                data-reveal-delay="200"
+                className="flex flex-col gap-8"
+              >
+                <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center">
+                  <a
+                    href="#"
+                    className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#03ba4f] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-white"
+                  >
+                    <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
+                      Browse the catalog
+                    </span>
+                  </a>
+                  <a
+                    href="#"
+                    className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
+                  >
+                    <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
+                      Talk to sales
+                    </span>
+                  </a>
+                </div>
+                <p className="font-sans text-[0.8125rem] font-semibold leading-[1.4] text-[#cccccc]">
+                  5,000+ teams ship swag this way, to 170+ countries.
+                </p>
+              </div>
+            </div>
+
+            {/* product cluster — fixed 558×557 box; scaled as one unit below sm */}
+            <div
+              data-animation="reveal"
+              data-reveal-delay="240"
+              className="relative h-[17.40625rem] w-[17.4375rem] self-center min-[24rem]:h-[20.8875rem] min-[24rem]:w-[20.925rem] sm:h-[34.8125rem] sm:w-[34.875rem] lg:shrink-0 lg:self-start"
+            >
+              <div className="absolute left-0 top-0 origin-top-left scale-50 min-[24rem]:scale-[0.6] sm:scale-100">
+                <ProductCluster />
+              </div>
+            </div>
+          </div>
+
+          {/* trust band (2500:4768): 56 / 40 marquee / 56 — seamless CSS marquee,
+              logos inverted white, edges soft-masked */}
+          <div
+            data-animation="reveal"
+            data-reveal-delay="300"
+            className="py-10 lg:py-14"
+          >
+            <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
+              <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
+                {[0, 1].map((group) => (
+                  <ul
+                    key={group}
+                    aria-hidden={group === 1}
+                    className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
+                  >
+                    {LOGOS.map((l, i) => (
+                      <li key={`${l.alt}-${i}`} className="flex shrink-0 items-center">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={l.src}
+                          alt={group === 0 ? l.alt : ""}
+                          width={l.w}
+                          height={l.h}
+                          style={{ height: `${l.h / 16}rem` }}
+                          className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

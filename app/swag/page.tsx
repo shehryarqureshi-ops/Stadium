@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
-import SwagAdminView from "../components/SwagAdminView";
-import SwagCaseStudies from "../components/SwagCaseStudies";
-import SwagCatalog from "../components/SwagCatalog";
-import SwagClosing from "../components/SwagClosing";
-import SwagCommittee from "../components/SwagCommittee";
-import SwagComparison from "../components/SwagComparison";
-import SwagDivider from "../components/SwagDivider";
-import SwagFulfillment from "../components/SwagFulfillment";
-import SwagHero from "../components/SwagHero";
-import SwagHeroShader from "../components/SwagHeroShader";
-import SwagHowItWorks from "../components/SwagHowItWorks";
-import SwagImpact from "../components/SwagImpact";
-import SwagOfferings from "../components/SwagOfferings";
-import SwagPaperchase from "../components/SwagPaperchase";
-import SwagPlatform from "../components/SwagPlatform";
-import SwagPricing from "../components/SwagPricing";
-import SwagProblem from "../components/SwagProblem";
-import SwagWorkflow from "../components/SwagWorkflow";
+import SwagmagicCaseStudy from "../components/SwagmagicCaseStudy";
+import SwagmagicCatalog from "../components/SwagmagicCatalog";
+import SwagmagicClosing from "../components/SwagmagicClosing";
+import SwagmagicCommittee from "../components/SwagmagicCommittee";
+import SwagmagicComparison from "../components/SwagmagicComparison";
+import SwagmagicExplore from "../components/SwagmagicExplore";
+import SwagmagicHero from "../components/SwagmagicHero";
+import SwagmagicHowItWorks from "../components/SwagmagicHowItWorks";
+import SwagmagicImpact from "../components/SwagmagicImpact";
+import SwagmagicOfferings from "../components/SwagmagicOfferings";
+import SwagmagicPackages from "../components/SwagmagicPackages";
+import SwagmagicPlatform from "../components/SwagmagicPlatform";
+import SwagmagicProblem from "../components/SwagmagicProblem";
+import SwagmagicSolution from "../components/SwagmagicSolution";
+
+/* /swag — bespoke page rebuilt 2026-08-19 from Figma n9SjmDjzB1PeZAYJ5w43fr
+   frame 2500:4706 ("Swag" page). Sections are the Swagmagic* components; the
+   older Swag* components stay in the tree because /events and /recognition
+   still compose them. */
 
 export const metadata: Metadata = {
   title: "Swag — The infrastructure behind every swag program | Stadium",
@@ -35,28 +36,21 @@ export default function SwagPage() {
         tabIndex={-1}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <section className="relative">
-          <div className="absolute w-full h-[72%] bg-black top-0 left-0 mask-b-from-75%">
-            <SwagHeroShader />
-          </div>
-          <SwagHero />
-          <SwagProblem />
-        </section>
-        <SwagDivider />
-        <SwagOfferings />
-        <SwagWorkflow />
-        <SwagCatalog />
-        <SwagFulfillment />
-        <SwagHowItWorks />
-        <SwagPlatform />
-        <SwagAdminView />
-        <SwagCommittee />
-        <SwagPricing />
-        <SwagComparison />
-        <SwagCaseStudies />
-        <SwagPaperchase />
-        <SwagImpact />
-        <SwagClosing />
+        {/* Hero renders its own shader/bg which extends under Problem */}
+        <SwagmagicHero />
+        <SwagmagicProblem />
+        <SwagmagicSolution />
+        <SwagmagicOfferings />
+        <SwagmagicCatalog />
+        <SwagmagicHowItWorks />
+        <SwagmagicPlatform />
+        <SwagmagicComparison />
+        <SwagmagicCommittee />
+        <SwagmagicCaseStudy />
+        <SwagmagicImpact />
+        <SwagmagicPackages />
+        <SwagmagicExplore />
+        <SwagmagicClosing />
       </main>
       <PageClose showCta={false} />
     </>
