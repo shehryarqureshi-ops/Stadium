@@ -33,7 +33,7 @@ const CARDS: {
 }[] = [
   {
     img: photoVendors,
-    alt: "A person leaning wearily on a half-packed swag box in a busy office",
+    alt: "A stockroom manager checking paperwork over a packed swag box, apparel rail behind",
     title: ["One vendor", "becomes four"],
     desc: "Swag, kits, and fulfillment each need their own vendor, login, and invoice.",
   },
