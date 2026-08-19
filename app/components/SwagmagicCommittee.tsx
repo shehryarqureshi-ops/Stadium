@@ -3,8 +3,8 @@
    centered header (880 wide) over an 880-wide #f2f2f2 tray holding a 2×2 grid
    of white stakeholder cards: floating photo (400×260, radius 8 top / 24
    bottom, layered drop shadow) + role + one-line pitch. Photos are Figma's
-   ORIGINAL uploads (rawImages, 1160–1856px) cropped with object-cover +
-   object-position calibrated against Figma's export (scale 1.0, best-fit y%).
+   Figma node exports at 4x (2026-08-19 refresh, image nodes 2528:4732/4738/
+   4740/4742) — the 400x260 crop is already baked in, so object-center is exact.
 
    Figma stack (1440, absolute y from 7742; frame is 1264 tall = 1104 content
    + 160 internal bottom space → section = lg:py-20 like every white section):
@@ -31,25 +31,25 @@ const CARDS: {
 }[] = [
   {
     img: marketing,
-    pos: "object-[50%_15%]",
+    pos: "object-center",
     title: "Marketing & Brand",
     desc: "Every branded moment—stores, kits, events, hiring—on-brand and at scale.",
   },
   {
     img: hr,
-    pos: "object-[50%_67%]",
+    pos: "object-center",
     title: "HR & People Ops",
     desc: "New-hire kits and milestone swag run themselves. Marketing touches zero orders.",
   },
   {
     img: procurement,
-    pos: "object-[50%_30%]",
+    pos: "object-center",
     title: "Procurement & Finance",
     desc: "One vendor. One PO. Budgets and per-team wallets you control.",
   },
   {
     img: it,
-    pos: "object-[50%_37%]",
+    pos: "object-center",
     title: "IT & Security",
     desc: "SSO, SCIM, and SOC 2 out of the box. Nothing breaks identity or audit.",
   },
