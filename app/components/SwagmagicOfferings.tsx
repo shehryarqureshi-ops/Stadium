@@ -6,9 +6,10 @@
    ON-DEMAND SWAG / BULK SWAG (default) / SELF-SERVE SWAG / SWAG STORAGE) and a
    white/75 band: photo left (580×400 r24), copy + checklist + underlined CTA
    right. Behind it sits Figma's blurred green "symbol gradient" (opacity .11).
-   Figma only draws the Bulk Swag state — the other five tabs' copy comes from
-   the OLD SwagWorkflow.tsx (approved placeholder copy) and, lacking their own
-   photos in Figma, share the Bulk photo (as the old component shared one image).
+   Figma only draws the Bulk Swag state in THIS frame — the other five tabs'
+   copy comes from the OLD SwagWorkflow.tsx (approved placeholder copy). Each
+   tab now has its OWN photo, taken from the Figma "Cards Container" reference
+   2528:3014 (2026-08-19).
 
    Figma stack (absolute y at 1440, frame origin 2783; frame carries 160 top /
    160 bottom internal space, so with the neighbours' 80 this section is py-20):
@@ -26,6 +27,11 @@
 import { useRef, useState, type KeyboardEvent } from "react";
 import Image, { type StaticImageData } from "next/image";
 import bulk from "@/public/swag2/sw2-offerings-bulk.jpg";
+import kits from "@/public/swag2/sw2-offerings-kits.jpg";
+import ondemand from "@/public/swag2/sw2-offerings-ondemand.jpg";
+import selfserve from "@/public/swag2/sw2-offerings-selfserve.jpg";
+import storage from "@/public/swag2/sw2-offerings-storage.jpg";
+import stores from "@/public/swag2/sw2-offerings-stores.jpg";
 
 type Tab = {
   label: string;
@@ -37,11 +43,11 @@ type Tab = {
   alt: string;
 };
 
-const BULK_ALT =
-  "A smiling woman opening a bulk swag box — green tee, water bottle, cap, notebook and stickers";
-
 /* Bulk Swag = exact Figma copy (2500:5007–5024). The other five tabs = approved
-   copy from the old SwagWorkflow.tsx (placeholder until Figma provides them). */
+   copy from the old SwagWorkflow.tsx (placeholder until Figma provides them).
+   Artwork: one photo per tab, from the Figma "Cards Container" reference
+   2528:3014 (Plate nodes 3017/3023/3071/3077/3082/3087), exported at 4x and
+   shipped at 1740px (~3.1x the 560 CSS render). */
 const TABS: Tab[] = [
   {
     label: "swag kits",
@@ -56,8 +62,9 @@ const TABS: Tab[] = [
       "Track every kit from warehouse to doorstep.",
     ],
     cta: "Build a kit",
-    img: bulk,
-    alt: BULK_ALT,
+    img: kits,
+    alt:
+      "A team member packing a curated swag kit into a black gift box at a desk",
   },
   {
     label: "Branded Stores",
@@ -72,8 +79,9 @@ const TABS: Tab[] = [
       "Orders ship from inventory automatically.",
     ],
     cta: "See stores",
-    img: bulk,
-    alt: BULK_ALT,
+    img: stores,
+    alt:
+      "A laptop on a workbench showing a branded swag storefront, folded green apparel beside it",
   },
   {
     label: "On-Demand Swag",
@@ -88,8 +96,9 @@ const TABS: Tab[] = [
       "Reorder favorites in a click.",
     ],
     cta: "Order on demand",
-    img: bulk,
-    alt: BULK_ALT,
+    img: ondemand,
+    alt:
+      "Someone at a doorway holding up a freshly delivered green hoodie",
   },
   {
     label: "bulk swag",
@@ -105,7 +114,8 @@ const TABS: Tab[] = [
     ],
     cta: "GET BULK PRICING",
     img: bulk,
-    alt: BULK_ALT,
+    alt:
+      "Two colleagues in a warehouse aisle stacked with folded green apparel",
   },
   {
     label: "Self-serve Swag",
@@ -120,8 +130,9 @@ const TABS: Tab[] = [
       "Pay as you go, no contract.",
     ],
     cta: "Start designing",
-    img: bulk,
-    alt: BULK_ALT,
+    img: selfserve,
+    alt:
+      "A team member opening a sticker-covered Stadium swag box at a desk",
   },
   {
     label: "Swag storage",
@@ -136,8 +147,9 @@ const TABS: Tab[] = [
       "Ship from storage on demand.",
     ],
     cta: "See storage",
-    img: bulk,
-    alt: BULK_ALT,
+    img: storage,
+    alt:
+      "A fulfilment-centre worker beside shelves of neatly folded green apparel",
   },
 ];
 
