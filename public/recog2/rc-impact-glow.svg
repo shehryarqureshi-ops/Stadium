@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="935" height="1350" viewBox="0 0 935 1350" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="symbol gradient" opacity="0.07" filter="url(#filter0_f_0_4)">
+<path d="M734.983 200V499.37L663.885 572.168L592.92 499.37V200H734.983Z" fill="#8D12E7"/>
+<path d="M663.906 572.161L563.479 674.989L285.77 390.501L386.196 287.673L663.906 572.161Z" fill="#8D12E7"/>
+<path d="M735 499.366V705.026L386.196 1062.18L285.77 959.349L735 499.366Z" fill="#8D12E7"/>
+<path d="M563.47 674.998L492.505 747.662H200V602.202H492.505L563.47 674.998Z" fill="#8D12E7"/>
+<path d="M734.983 705.038V1150H592.92V850.497L734.983 705.038Z" fill="#8D12E7"/>
+</g>
+<defs>
+<filter id="filter0_f_0_4" x="0" y="0" width="935" height="1350" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_0_4"/>
+</filter>
+</defs>
+</svg>

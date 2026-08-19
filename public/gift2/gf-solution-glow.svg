@@ -1,0 +1,18 @@
+<svg width="1783" height="1354" viewBox="0 0 1783 1354" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(1612 0) scale(-1 1)">
+<g id="symbol gradient" opacity="0.11" filter="url(#filter0_f_gf_solution)">
+<path d="M1212 953.983L902.231 953.983L826.904 880.36L902.231 806.874L1212 806.874L1212 953.983Z" fill="#C08A00"/>
+<path d="M826.912 880.381L720.511 776.388L1014.88 488.816L1121.28 592.808L826.912 880.381Z" fill="#C08A00"/>
+<path d="M902.234 954L689.431 954L319.875 592.808L426.274 488.816L902.234 954Z" fill="#C08A00"/>
+<path d="M720.502 776.379L645.314 702.893L645.314 400L795.827 400L795.827 702.893L720.502 776.379Z" fill="#C08A00"/>
+<path d="M689.418 953.983L229 953.983L229 806.874L538.906 806.874L689.418 953.983Z" fill="#C08A00"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_gf_solution" x="-171" y="0" width="1783" height="1354" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="200" result="effect1_foregroundBlur_gf_solution"/>
+</filter>
+</defs>
+</svg>
