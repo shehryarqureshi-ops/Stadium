@@ -1,7 +1,7 @@
 /* /snacks · THE PROBLEM (Figma 2208:2876, revised 2026-08-18). A rounded
    "sleeve" panel (Figma "glass": medium blue at the logo wall fading to white)
    sits on the hero blue and holds the trust logos (60px above/below), then a
-   plain white rounded card with the "Office snacks become one person's job"
+   plain white rounded card with the "Nice gestures don't scale"
    header and a grey tray of three photo cards. The old stacked "page" peek bars
    behind the card were REMOVED in this revision. */
 
@@ -25,18 +25,21 @@ const LOGOS = [
 const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
   {
     img: prob1,
-    title: "Ordering lands on one person",
-    desc: "Restocking, estimating quantities, and hoping the snacks are a hit.",
+    title: "Asking ruins the surprise",
+    desc:
+      "You can’t send something unexpected to someone you just emailed for their address. The moment you start collecting details, the gift announces itself.",
   },
   {
     img: prob2,
-    title: "Remote folks get overlooked",
-    desc: "A stocked office kitchen only works for people who are in the office.",
+    title: "One person ends up running it",
+    desc:
+      "Someone chases every address, every diet and every “mine never arrived”—then hopes the picks landed.",
   },
   {
     img: prob3,
-    title: "Dietary needs are a guessing game",
-    desc: "One snack box rarely works for everyone.",
+    title: "Nothing happens unless someone remembers",
+    desc:
+      "There’s no trigger, no schedule, nothing running in the background. Every anniversary and every new hire gets marked only if a human catches it in time.",
   },
 ];
 
@@ -83,15 +86,16 @@ export default function SnackProblem() {
                 data-animation="reveal"
                 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
               >
-                Office snacks become one person’s job
+                Nice gestures don’t scale
               </h2>
             </div>
             <p
               data-animation="reveal"
               className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
             >
-              Remote employees need separate shipping. Dietary needs keep shifting.
-              And it’s all one more recurring task to manage.
+              The best sends feel personal—something they’d never have picked up
+              for themselves and show up out of nowhere. But then you realize you
+              need forty addresses, and you’re emailing people to ask.
             </p>
           </div>
 
