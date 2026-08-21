@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import TeamPermissionsLoop from "./TeamPermissions";
-import { useAutoAdvance } from "./useAutoAdvance";
+import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 /* "We build your program in four phases" — synced to Figma 2:33499
    ("The Stadium Way — Double Tab"). A phase accordion on the LEFT (active card =

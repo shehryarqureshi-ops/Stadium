@@ -8,7 +8,7 @@ import swagImg from "@/public/oneplatform/swag.jpg";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useState } from "react";
-import { useAutoAdvance } from "./useAutoAdvance";
+import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 /* "One platform." — synced to the behavior spec (Figma 50:725). The headline is
    FOUR clickable lines that highlight one at a time (active = ink, rest = grey),
@@ -115,56 +115,58 @@ export default function EveryWay() {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="mx-auto flex w-full max-w-section flex-col gap-10 bg-surface-base px-section-x-sm pt-16 pb-20 md:px-section-x-md md:pt-20 md:pb-28 lg:gap-14 lg:px-section-x-lg lg:pt-[7.5rem] lg:pb-[11.25rem]"
-    >
-      {/* Four cycling lines — every line is clickable and owns its own deck */}
-      <h2
-        data-animation="reveal"
-        className="font-display text-heading-sm md:text-heading-md lg:text-heading-lg lg:tracking-[-0.075rem] text-balance"
+    <section className="bg-surface-base">
+      <div
+        ref={sectionRef}
+        className="mx-auto flex w-full max-w-section flex-col gap-10 bg-surface-base px-section-x-sm pt-16 pb-20 md:px-section-x-md md:pt-20 md:pb-28 lg:gap-14 lg:px-section-x-lg lg:pt-[7.5rem] lg:pb-[11.25rem]"
       >
-        {SEGMENTS.map((seg, i) => (
-          <span key={seg.label}>
-            <button
-              type="button"
-              onClick={() => select(i)}
-              aria-pressed={i === active}
-              className={`cursor-pointer rounded-sm outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#0b7afc]/40 ${
-                i === active
-                  ? "text-[#1b1b1b]"
-                  : "text-[#c9c9c9] hover:text-[#9a9a9a]"
-              }`}
-            >
-              {seg.label}
-            </button>{" "}
-          </span>
-        ))}
-      </h2>
-
-      {/* Card row — slides to the active line's deck */}
-      <div className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-1000 ease"
-          style={{ transform: `translateX(-${active * 100}%)` }}
+        {/* Four cycling lines — every line is clickable and owns its own deck */}
+        <h2
+          data-animation="reveal"
+          className="font-display text-heading-sm md:text-heading-md lg:text-heading-lg lg:tracking-[-0.075rem] text-balance"
         >
-          {SEGMENTS.map((seg) => (
-            <ul
-              key={seg.label}
-              aria-hidden={SEGMENTS[active] !== seg}
-              className="grid w-full shrink-0 grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6"
-            >
-              {seg.cards.map((card) => (
-                <li data-animation="reveal" key={card.label}>
-                  {card.image ? (
-                    <PhotoCard card={card} />
-                  ) : (
-                    <PendingCard card={card} />
-                  )}
-                </li>
-              ))}
-            </ul>
+          {SEGMENTS.map((seg, i) => (
+            <span key={seg.label}>
+              <button
+                type="button"
+                onClick={() => select(i)}
+                aria-pressed={i === active}
+                className={`cursor-pointer rounded-sm outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#0b7afc]/40 ${
+                  i === active
+                    ? "text-[#1b1b1b]"
+                    : "text-[#c9c9c9] hover:text-[#9a9a9a]"
+                }`}
+              >
+                {seg.label}
+              </button>{" "}
+            </span>
           ))}
+        </h2>
+
+        {/* Card row — slides to the active line's deck */}
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-1000 ease"
+            style={{ transform: `translateX(-${active * 100}%)` }}
+          >
+            {SEGMENTS.map((seg) => (
+              <ul
+                key={seg.label}
+                aria-hidden={SEGMENTS[active] !== seg}
+                className="grid w-full shrink-0 grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6"
+              >
+                {seg.cards.map((card) => (
+                  <li data-animation="reveal" key={card.label}>
+                    {card.image ? (
+                      <PhotoCard card={card} />
+                    ) : (
+                      <PendingCard card={card} />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
         </div>
       </div>
     </section>

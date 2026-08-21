@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import CatalogMenu, { CATALOG_TABS } from "./CatalogMenu";
 import EngageMenu, { COLUMNS as ENGAGE_COLUMNS } from "./EngageMenu";
 import ImpactMenu, { TEAMS as IMPACT_TEAMS } from "./ImpactMenu";
 import ProofMenu, { PROOF_COLUMNS } from "./ProofMenu";
-import CatalogMenu, { CATALOG_TABS } from "./CatalogMenu";
 
 type MenuKey = "engage" | "impact" | "proof" | "catalog";
 
@@ -16,7 +16,12 @@ const MENU_KEYS: MenuKey[] = ["engage", "impact", "proof", "catalog"];
    none of these pages, and Shopify keeps nav weight uniform until you're
    actually on a section's page (2026-06-12 audit). Set it from the route
    when real pages exist. */
-const NAV_ITEMS: { label: string; href: string; active?: boolean; menu?: MenuKey }[] = [
+const NAV_ITEMS: {
+  label: string;
+  href: string;
+  active?: boolean;
+  menu?: MenuKey;
+}[] = [
   { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
   { label: "Impact by Team", href: "#", menu: "impact" },
   { label: "The Proof", href: "#", menu: "proof" },
@@ -53,7 +58,7 @@ function Logo({ light }: { light: boolean }) {
   const filter = light ? "brightness-0 invert" : "";
   return (
     <a
-      href="#"
+      href="/"
       aria-label="Stadium home"
       className={`flex h-8 w-[8.25rem] items-center gap-2 transition-opacity hover:opacity-80 ${
         light ? "focus-visible:outline-white" : ""
@@ -262,7 +267,9 @@ export default function SiteHeader({ banner }: { banner?: string } = {}) {
                   aria-controls="engage-menu"
                   onMouseEnter={() => openMenu(item.menu!)}
                   onClick={() =>
-                    activeMenu === item.menu ? closeMenu() : openMenu(item.menu!)
+                    activeMenu === item.menu
+                      ? closeMenu()
+                      : openMenu(item.menu!)
                   }
                   className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${
                     item.active ? "font-bold" : "font-normal"
@@ -479,7 +486,10 @@ export default function SiteHeader({ banner }: { banner?: string } = {}) {
                       {item.menu === "engage" ? (
                         <div className="flex flex-col gap-4 pb-4 pt-1">
                           {ENGAGE_COLUMNS.flat().map((group) => (
-                            <div key={group.label} className="flex flex-col gap-1">
+                            <div
+                              key={group.label}
+                              className="flex flex-col gap-1"
+                            >
                               <a
                                 href={group.href ?? "#"}
                                 onClick={() => setMenuOpen(false)}
@@ -520,7 +530,10 @@ export default function SiteHeader({ banner }: { banner?: string } = {}) {
                       ) : item.menu === "proof" ? (
                         <div className="flex flex-col gap-4 pb-4 pt-1">
                           {PROOF_COLUMNS.map((col) => (
-                            <div key={col.label} className="flex flex-col gap-1">
+                            <div
+                              key={col.label}
+                              className="flex flex-col gap-1"
+                            >
                               <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water">
                                 {col.label}
                               </p>

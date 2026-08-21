@@ -1,4 +1,4 @@
-import Catalog from "./components/Catalog";
+import HorizontalCarousel from "./components/common/HorizontalCarousel";
 import EveryWay from "./components/EveryWay";
 import Hero from "./components/Hero";
 import Infrastructure from "./components/Infrastructure";
@@ -12,6 +12,7 @@ import StickyVideo from "./components/StickyVideo";
 import TeamsTabs from "./components/TeamsTabs";
 import Testimonials from "./components/Testimonials";
 import TrustBand from "./components/TrustBand";
+import Catalog from "./components/Catalog";
 
 export default function Home() {
   return (

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
 import RevealOnScroll from "./components/RevealOnScroll";
-import SmoothScroll from "./components/SmoothScroll";
 import "./globals.css";
 
 const overpass = Overpass({
@@ -116,7 +115,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
         <RevealOnScroll />
       </body>
     </html>
