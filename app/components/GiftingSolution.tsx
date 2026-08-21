@@ -21,9 +21,13 @@
    vs "Explore gift stores") and the "gift storeS" tab label — both are
    rendered uppercase by CSS, so the casing never reaches the screen.
 
-   Artwork: four photos + two UI mockups, each a 4× node export of the panel's
-   visual frame (see public/gift2/gf-solution-*). The two mockups were re-cropped
-   to the band's 580:370 so `object-cover` never slices their chrome — gift
+   Artwork: four photos + two UI mockups (see public/gift2/gf-solution-*).
+   The AUTOMATED mockup is pure vector + text, so it ships as an SVG (text
+   converted to paths) at its own Figma aspect 602:332 — it is a gradient card
+   that deliberately clips the 542×378 browser window at its bottom edge, and
+   forcing it into the band's 580:370 previously stretched it. The stores
+   mockup is a 4× raster re-cropped to 580:370 so `object-cover` never
+   slices its chrome — gift
    stores lost 104px off the bottom (its card already bleeds off that edge in
    Figma), automated lost 88px of gradient each side + 48px at the bottom and
    gained a copied top row of gradient.
@@ -54,7 +58,7 @@ import holiday from "@/public/gift2/gf-solution-holiday.jpg";
 import employee from "@/public/gift2/gf-solution-employee.jpg";
 import client from "@/public/gift2/gf-solution-client.jpg";
 import partner from "@/public/gift2/gf-solution-partner.jpg";
-import automated from "@/public/gift2/gf-solution-automated.png";
+const automated = "/gift2/gf-solution-automated.svg";
 import stores from "@/public/gift2/gf-solution-stores.png";
 
 type Tab = {
@@ -63,11 +67,18 @@ type Tab = {
   desc: string;
   points: string[];
   cta: string;
-  img: StaticImageData;
+  img: StaticImageData | string;
   alt: string;
   /* UI mockups carry baked text + hairlines → quality 100 (design.md, "Image
      quality"); photos → 90. */
   mockup?: true;
+  /* Most tabs fill the band's 580×370 slot. The Automated panel is drawn
+     602×332 in Figma (a gradient card that deliberately clips the browser
+     window at its bottom edge), so it keeps its own aspect and sits
+     top-aligned rather than being stretched to fit. */
+  aspect?: string;
+  /* vector artwork → plain <img>, so it stays crisp and is never re-encoded */
+  vector?: true;
 };
 
 const TABS: Tab[] = [
@@ -132,6 +143,8 @@ const TABS: Tab[] = [
     img: automated,
     alt: "The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations",
     mockup: true,
+    aspect: "602/332",
+    vector: true,
   },
   {
     label: "gift storeS",
@@ -284,16 +297,33 @@ export default function GiftingSolution() {
           aria-labelledby={`gifting-solution-tab-${active}`}
           className="flex w-full flex-col gap-6 rounded-[2rem] bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:mt-[0.3125rem] lg:flex-row lg:items-start lg:gap-[3.75rem]"
         >
-          <div className="relative aspect-[580/370] w-full shrink-0 overflow-hidden rounded-[1.5rem] lg:aspect-auto lg:h-[23.125rem] lg:min-w-0 lg:flex-1 lg:basis-0">
-            <Image
-              key={t.img.src}
-              src={t.img}
-              alt={t.alt}
-              fill
-              quality={t.mockup ? 100 : 90}
-              className="object-cover"
-              sizes="(min-width:1024px) 35rem, 92vw"
-            />
+          <div
+            className={`relative w-full shrink-0 overflow-hidden rounded-[1.5rem] lg:min-w-0 lg:flex-1 lg:basis-0 ${
+              t.aspect ? "" : "aspect-[580/370] lg:aspect-auto lg:h-[23.125rem]"
+            }`}
+            style={t.aspect ? { aspectRatio: t.aspect.replace("/", " / ") } : undefined}
+          >
+            {t.vector ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                key={t.img as string}
+                src={t.img as string}
+                alt={t.alt}
+                width={602}
+                height={332}
+                className="h-full w-full select-none object-contain"
+              />
+            ) : (
+              <Image
+                key={(t.img as StaticImageData).src}
+                src={t.img as StaticImageData}
+                alt={t.alt}
+                fill
+                quality={t.mockup ? 100 : 90}
+                className="object-cover"
+                sizes="(min-width:1024px) 35rem, 92vw"
+              />
+            )}
           </div>
 
           <div
