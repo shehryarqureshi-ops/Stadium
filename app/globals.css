@@ -46,6 +46,38 @@
   }
 }
 
+/* /gifting hero photo grid (Figma F7rDHYd3n5nwRtrlv1F6dO 1261:5189 "photo grid
+   · two tracks, opposite directions · translateY loop"). Same duplicate-and-
+   translate idiom as swag-marquee, on the Y axis: each track renders its 8
+   photos twice, every photo carries a trailing margin equal to the Figma gap
+   (15/211 of the track width), so one group is exactly one loop pitch
+   (8 × 167 = 1336) tall and -50% lands the copy precisely on the original.
+   The two tracks run opposite ways — the left drifts up, the right drifts
+   down (it simply plays the same travel in reverse). 72s is the full 1336-unit
+   cycle: ~19 units/s, a slow ambient drift rather than a marquee.
+   Under reduced motion both tracks park at translateY(0), which is exactly the
+   Figma layout (left track from y=4, right track from y=57). */
+@keyframes gift-photo-track {
+  to {
+    transform: translateY(-50%);
+  }
+}
+.gift-photo-track-up,
+.gift-photo-track-down {
+  animation: gift-photo-track 72s linear infinite;
+  will-change: transform;
+}
+.gift-photo-track-down {
+  animation-direction: reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gift-photo-track-up,
+  .gift-photo-track-down {
+    animation: none;
+    will-change: auto;
+  }
+}
+
 /* Site-wide keyboard focus ring (quality bar 2026-06-12: every
    interactive element gets a visible :focus-visible ring, ≥2px, ≥3:1).
    Ink works on light surfaces; dark/photo-context elements override
