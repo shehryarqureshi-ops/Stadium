@@ -1,68 +1,70 @@
 "use client";
 
-/* /gifting · THE CATALOG (Figma n9SjmDjzB1PeZAYJ5w43fr → 2504:15249 "Catalog",
-   page frame 2504:12118, 1440 wide, abs y 3631..4380). "25,000+ products.
-   Hundreds of brands. One catalog." — left-aligned header, then a horizontal
-   carousel of 10 category cards (348×460, r24) with prev/next arrow buttons
-   bottom-right. Each card is a product flat-lay photo (the light grey studio
-   ground is part of the photo) with REAL TEXT overlaid top-left: "7,000 ITEMS"
-   eyebrow + Satoshi title in #181818. Photos are Figma's ORIGINAL uploads
-   (1792–2098 px wide, ≈ 5× the 348 css width) saved as JPEG q90 mozjpeg 4:4:4;
-   Figma's fill mode is cover anchored top-left (verified against every card's
-   fill percentages), reproduced with object-cover + object-left-top.
+/* /gifting · THE CATALOG (Figma F7rDHYd3n5nwRtrlv1F6dO — the Imagery System
+   file → 1065:14089 "Catalog", 1440 wide). "3,714 gifts. 845 brands. One
+   catalog." — left-aligned header, then a horizontal carousel of 8 gifting
+   category cards (348×460, r24) with prev/next arrow buttons bottom-right.
+   Each card is a light/cream product still-life on an off-white ground (the
+   ground is part of the photo) with REAL TEXT overlaid top-left: "99 PRODUCTS"
+   eyebrow + Satoshi title in #181818.
+
+   Photos are Figma's ORIGINAL uploads (896–1183 px wide — that is the source
+   ceiling, ≈ 2.6–3.4× the 348 css width) with each card's own crop baked in:
+   the card fill's imageTransform (scaleMode CROP) / centre-cover (scaleMode
+   FILL) was applied with sharp so every file is exactly 348:460, then saved as
+   JPEG q90 mozjpeg 4:4:4. Card-node exports come back 1×1 in this file (the
+   3624-wide items row is clipped by its 1240 parent), so the raw fills are the
+   only route — verified by sha1 against each fill's imageHash and by
+   screenshot-diffing all 8 crops against the Figma renders.
 
    Same section as /swag's SwagmagicCatalog — mechanics mirrored 1:1; the only
    differences are the amber eyebrow (#996b00, Overpass Bold, lh 1.4,
    tracking 1.6px) instead of swag's green, and the header gap ladder below.
 
-   Figma stack (section frame is content-tight; y = offset inside 2504:15249,
+   Figma stack (section frame is content-tight; y = offset inside 1065:14089,
    x = 100 → site content edge 120, inner proportions matched at 1200):
-     header frame  2504:15250      y=0    h=172 (gap 24 inside)
+     header frame  1065:14090      y=0    h=199 (gap 24 inside)
        eyebrow "THE CATALOG"       y=0    h=17  (12 Overpass Bold, lh 1.4 → 16.8,
                                                  tracking 1.6 → 0.1rem, #996b00)
        gap 8
        title 44/1.08 Satoshi Bold  y=25   h=96  (2 lines, tracking -0.5, #16171b)
        gap 24
-       subhead 18/1.48 #6b6c71     y=145  h=27  (full 1240 width)
+       subhead 18/1.48 #6b6c71     y=145  h=54  (2 lines at the full 1240 width)
      gap 45
-     carousel 2504:15255           y=217  h=532 (gap 32 inside)
-       items row (gap 16, clipped) y=0    h=460 → 10 cards 348×460 r24
-         card text at 24/24, gap 4: 12/16 Overpass Bold tracking 1 · 24/28 Satoshi
+     carousel 1065:14095           y=244  h=532 (gap 32 inside)
+       items row (gap 16, clipped) y=0    h=460 → 8 cards 348×460 r24
+         card text at 24/24, gap 4: 12/16 Overpass Bold · 24/28 Satoshi, #181818
        gap 32
        nav (gap 10, right-aligned) y=492  h=40  → 2× 40 circle #f2f5f5, 24 lucide arrow
                                                  (prev at 25% opacity = disabled at start)
-     end                           y=749
+     end                           y=776
    Neighbouring frames sit 160 apart with content-tight edges → white section
    py 80/80 (lg:py-20) so the visible gap to neighbours is 160. */
 
 import { useEffect, useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import apparel from "@/public/gift2/gf-catalog-apparel.jpg";
-import drinkware from "@/public/gift2/gf-catalog-drinkware.jpg";
-import bags from "@/public/gift2/gf-catalog-bags.jpg";
-import office from "@/public/gift2/gf-catalog-office.jpg";
-import technology from "@/public/gift2/gf-catalog-technology.jpg";
-import events from "@/public/gift2/gf-catalog-events.jpg";
-import health from "@/public/gift2/gf-catalog-health.jpg";
-import outdoor from "@/public/gift2/gf-catalog-outdoor.jpg";
-import auto from "@/public/gift2/gf-catalog-auto.jpg";
-import baby from "@/public/gift2/gf-catalog-baby.jpg";
+import experiences from "@/public/gift2/gf-catalog-experiences.jpg";
+import luxury from "@/public/gift2/gf-catalog-luxury.jpg";
+import foodBeverages from "@/public/gift2/gf-catalog-food-beverages.jpg";
+import lifeHobbies from "@/public/gift2/gf-catalog-life-hobbies.jpg";
+import wellness from "@/public/gift2/gf-catalog-wellness.jpg";
+import merch from "@/public/gift2/gf-catalog-merch.jpg";
+import workEssentials from "@/public/gift2/gf-catalog-work-essentials.jpg";
+import giftCards from "@/public/gift2/gf-catalog-gift-cards.jpg";
 
 type Card = { img: StaticImageData; count: string; label: string };
 
-/* Copy exactly as in Figma 2504:15256 — cards 4–10 carry the "0,000 ITEMS"
-   placeholder count in the design (flagged as a content gap). */
+/* Copy exactly as in Figma 1073:1256…1073:1291 — every count is real (no
+   "0,000" placeholders), and the unit word is PRODUCTS, not swag's ITEMS. */
 const CARDS: Card[] = [
-  { img: apparel, count: "7,000 ITEMS", label: "Apparel" },
-  { img: drinkware, count: "2,522 ITEMS", label: "Drinkware" },
-  { img: bags, count: "2,405 ITEMS", label: "Bags" },
-  { img: office, count: "0,000 ITEMS", label: "Office Supplies" },
-  { img: technology, count: "0,000 ITEMS", label: "Technology" },
-  { img: events, count: "0,000 ITEMS", label: "Events & Tradeshows" },
-  { img: health, count: "0,000 ITEMS", label: "Health & Wellness" },
-  { img: outdoor, count: "0,000 ITEMS", label: "Outdoor & Leisure" },
-  { img: auto, count: "0,000 ITEMS", label: "Auto, Home & Tools" },
-  { img: baby, count: "0,000 ITEMS", label: "Baby" },
+  { img: experiences, count: "99 PRODUCTS", label: "Experiences" },
+  { img: luxury, count: "428 PRODUCTS", label: "Luxury" },
+  { img: foodBeverages, count: "1,485 PRODUCTS", label: "Food & Beverages" },
+  { img: lifeHobbies, count: "822 PRODUCTS", label: "Life & Hobbies" },
+  { img: wellness, count: "442 PRODUCTS", label: "Wellness" },
+  { img: merch, count: "298 PRODUCTS", label: "Merch" },
+  { img: workEssentials, count: "252 PRODUCTS", label: "Work Essentials" },
+  { img: giftCards, count: "311 PRODUCTS", label: "Gift Cards" },
 ];
 
 /* card 348 + gap 16 */
@@ -120,13 +122,13 @@ export default function GiftingCatalog() {
               data-animation="reveal"
               className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              25,000+ products.
+              3,714 gifts.
               <br />
-              Hundreds of brands. One catalog.
+              845 brands. One catalog.
             </h2>
           </div>
           <p data-animation="reveal" className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]">
-            Not your generic promo catalog. Browse premium brands across every category, all ready to customize with your logo.
+            Not your generic promo catalog. Real brands people already recognise, across eight categories from everyday food to luxury, with experiences and gift cards included.
           </p>
         </div>
 
@@ -149,7 +151,7 @@ export default function GiftingCatalog() {
                   fill
                   quality={90}
                   sizes="348px"
-                  className="object-cover object-left-top"
+                  className="object-cover"
                 />
                 <div className="absolute left-6 top-6 flex flex-col gap-1 text-[#181818]">
                   <p className="font-sans text-[0.75rem] font-bold uppercase leading-[1rem] tracking-[0.0625rem]">
