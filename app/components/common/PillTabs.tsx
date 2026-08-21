@@ -11,7 +11,13 @@ export type TabsShowcaseItem = {
   title: string;
   description: string;
   bullets?: string[];
-  image: StaticImageData | null;
+  /** a string src is used for vector artwork (rendered as a plain <img>) */
+  image: StaticImageData | string | null;
+  /** overrides `image` for alt text; falls back to `name` */
+  imageAlt?: string;
+  /** this panel's own Figma aspect, e.g. "602/332". Falls back to the
+   *  variant default. Panels in one set may legitimately differ. */
+  aspect?: string;
   href?: string;
   cta?: string;
 };
@@ -22,6 +28,14 @@ type TabsShowcaseProps = {
   description?: string;
   items: TabsShowcaseItem[];
   autoAdvance?: boolean;
+  /** "teams" = the original recognition/teams look (default, unchanged).
+   *  "band"  = the vertical-page band: amber-ish caption, 44px heading,
+   *  borderless white/75 card, no aurora. */
+  variant?: "teams" | "band";
+  /** caption colour for the "band" variant (each vertical has its own accent) */
+  accent?: string;
+  /** optional decorative glow behind the band, e.g. the gifting symbol gradient */
+  glow?: { src: string; className: string };
 };
 
 function CheckIcon() {
@@ -52,7 +66,11 @@ export default function TabsShowcase({
   description,
   items,
   autoAdvance = true,
+  variant = "teams",
+  accent,
+  glow,
 }: TabsShowcaseProps) {
+  const band = variant === "band";
   const [active, setActive] = useState(0);
 
   const item = items[active];
@@ -73,32 +91,56 @@ export default function TabsShowcase({
   return (
     <section
       ref={sectionRef}
-      className="relative bg-white px-section-x-sm md:px-section-x-md lg:px-[6.25rem]"
+      className={
+        band
+          ? "relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20"
+          : "relative bg-white px-section-x-sm md:px-section-x-md lg:px-[6.25rem]"
+      }
     >
       {/* Background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[46%] z-0 aspect-[2880/2708] w-[95rem] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-75"
-        style={{
-          backgroundImage: "url(/teams-aurora.png)",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+      {band ? (
+        glow && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img src={glow.src} alt="" aria-hidden className={glow.className} />
+        )
+      ) : (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-[46%] z-0 aspect-[2880/2708] w-[95rem] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-75"
+          style={{
+            backgroundImage: "url(/teams-aurora.png)",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      )}
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[77.5rem] flex-col gap-10">
+      <div
+        className={`relative z-10 mx-auto flex w-full flex-col gap-10 ${
+          band ? "max-w-content" : "max-w-[77.5rem]"
+        }`}
+      >
         {/* Header */}
         <div className="flex flex-col items-center gap-2 text-center">
           <p
             data-animation="reveal"
-            className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+            className={
+              band
+                ? "font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem]"
+                : "font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+            }
+            style={band && accent ? { color: accent } : undefined}
           >
             {caption}
           </p>
 
           <h2
             data-animation="reveal"
-            className="font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+            className={
+              band
+                ? "font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
+                : "font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+            }
           >
             {title}
           </h2>
@@ -106,7 +148,11 @@ export default function TabsShowcase({
           {description && (
             <p
               data-animation="reveal"
-              className="mt-3 max-w-[42rem] font-sans text-lg leading-6 text-[#6e7380]"
+              className={
+                band
+                  ? "mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+                  : "mt-3 max-w-[42rem] font-sans text-lg leading-6 text-[#6e7380]"
+              }
             >
               {description}
             </p>
@@ -115,7 +161,11 @@ export default function TabsShowcase({
 
         {/* Tabs */}
         <div data-animation="reveal" className="flex justify-center">
-          <ul className="flex max-w-full gap-2.5 overflow-x-auto rounded-full border border-[#e0e0e0] bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <ul
+            className={`flex max-w-full gap-2.5 overflow-x-auto rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+              band ? "" : "border border-[#e0e0e0]"
+            }`}
+          >
             {items.map((item, index) => (
               <li key={item.name} className="shrink-0">
                 <button
@@ -138,21 +188,44 @@ export default function TabsShowcase({
         {/* Content card */}
         <div
           data-animation="reveal"
-          className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]"
+          className={`flex flex-col gap-6 overflow-hidden rounded-[2rem] p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem] ${
+            band ? "bg-white/75 lg:items-start" : "border border-[#e0e0e0] bg-white"
+          }`}
         >
-          {/* Images */}
-          <div className="relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl lg:w-[48%]">
+          {/* Images — the slot is a fixed share of the card with a CONSTANT
+              aspect, so the visible proportion never drifts with the viewport
+              (pinning height and flexing width made it swing 1.03→1.51). */}
+          <div
+            className={`relative w-full shrink-0 overflow-hidden ${
+              band ? "rounded-[1.5rem] lg:w-[47.54%]" : "rounded-xl lg:w-[48%]"
+            }`}
+            style={{
+              aspectRatio: (item.aspect ?? (band ? "580/370" : "580/481")).replace("/", " / "),
+            }}
+          >
             {items.map((tabItem, index) =>
-              tabItem.image ? (
+              typeof tabItem.image === "string" ? (
+                /* vector artwork — keep it crisp, never re-encoded */
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={tabItem.name}
+                  src={tabItem.image}
+                  alt={tabItem.imageAlt ?? tabItem.name}
+                  className={`absolute inset-0 h-full w-full select-none object-contain transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                    index === active ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ) : tabItem.image ? (
                 <Image
                   key={tabItem.name}
                   src={tabItem.image}
-                  alt={tabItem.name}
+                  alt={tabItem.imageAlt ?? tabItem.name}
                   fill
+                  quality={band ? 100 : undefined}
                   sizes="(min-width: 64rem) 36rem, 100vw"
-                  className={`object-cover rounded-3xl overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none ${
-                    index === active ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`object-cover overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                    band ? "" : "rounded-3xl"
+                  } ${index === active ? "opacity-100" : "opacity-0"}`}
                 />
               ) : (
                 <div
@@ -172,7 +245,9 @@ export default function TabsShowcase({
           {/* Active content */}
           <div
             key={`content-${item.name}`}
-            className="teams-panel-in flex flex-col justify-center gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10"
+            className={`teams-panel-in flex flex-col gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10 ${
+              band ? "" : "justify-center"
+            }`}
           >
             <div className="flex flex-col gap-5">
               <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b]">
@@ -190,7 +265,13 @@ export default function TabsShowcase({
                   <li key={bullet} className="flex items-center gap-3">
                     <CheckIcon />
 
-                    <span className="font-sans text-[1rem] font-semibold text-ink">
+                    <span
+                      className={
+                        band
+                          ? "font-sans text-[0.9375rem] leading-[1.2] text-[#16171b]"
+                          : "font-sans text-[1rem] font-semibold text-ink"
+                      }
+                    >
                       {bullet}
                     </span>
                   </li>
