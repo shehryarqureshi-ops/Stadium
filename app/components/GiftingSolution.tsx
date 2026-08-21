@@ -1,31 +1,45 @@
 "use client";
 
-/* /gifting · THE SOLUTION (Figma n9SjmDjzB1PeZAYJ5w43fr → 2504:12466 "six ways",
-   inside the /gifting page frame 2504:12118). "One platform for all your
-   gifting" — a centred header, a 6-tab pill switcher (HOLIDAY / EMPLOYEE /
-   CLIENT & PROSPECT / PARTNER (default) / AUTOMATED GIFTING / GIFT STORES) and
-   a white/75 band: photo left (580×370 r24), copy + checklist + underlined CTA
-   right. Behind it sits Figma's blurred amber "symbol gradient" (2504:12467,
-   #C08A00 at 11%, blur 200) which bleeds off the right edge — the section
-   clips it.
+/* /gifting · THE SOLUTION. "One platform for all your gifting" — a centred
+   header, a 6-tab pill switcher (HOLIDAY / EMPLOYEE / CLIENT & PROSPECT /
+   PARTNER (default) / AUTOMATED GIFTING / GIFT STORES) and a white/75 band:
+   visual left (580×370 r24), copy + checklist + underlined CTA right. Behind it
+   sits Figma's blurred amber "symbol gradient" (#C08A00 at 11%, blur 200) which
+   bleeds off the right edge — the section clips it.
 
-   Figma only draws the Partner Gifting state; the other five tabs' copy is the
-   APPROVED copy already shipped in the old GiftSolution.tsx, and — lacking
-   their own photo in the new Figma — they share the Partner photo (same
-   compromise SwagmagicOfferings.tsx makes).
+   Content source (2026-08-21): the Imagery System file F7rDHYd3n5nwRtrlv1F6dO.
+     · section shell     1065:13949 "six ways" (1440×1003) — header 1065:13951,
+       tab bar 1065:13957, band 1065:13971 drawn in the PARTNER state, whose
+       visual 1065:13973 stacks two fills; the top one (1277:8414 "image 13586")
+       is the live partner photo and replaces the older "image 13585".
+     · the other five panels 1091:3748 → 1091:3749 (holiday), 1091:3774
+       (employee), 1091:3799 (client & prospect), 1091:3825 (automated),
+       1091:4107 (gift stores). 1220:3928 is a superseded copy of the partner
+       band (old photo) — ignored.
+   Every title / description / checklist / CTA below is that file's text,
+   verbatim, including the inconsistent CTA casing ("Explore HOLIDAY gifting"
+   vs "Explore gift stores") and the "gift storeS" tab label — both are
+   rendered uppercase by CSS, so the casing never reaches the screen.
+
+   Artwork: four photos + two UI mockups, each a 4× node export of the panel's
+   visual frame (see public/gift2/gf-solution-*). The two mockups were re-cropped
+   to the band's 580:370 so `object-cover` never slices their chrome — gift
+   stores lost 104px off the bottom (its card already bleeds off that edge in
+   Figma), automated lost 88px of gradient each side + 48px at the bottom and
+   gained a copied top row of gradient.
 
    Figma stack (y relative to the section frame, which is content-tight:
    0 internal top/bottom padding → rendered as lg:py-20 so the visible gap to
    the neighbours stays 160):
-     intro frame 2504:12468  y=0    h=248
+     intro frame 1065:13951  y=0    h=248
        eyebrow   y=0    h=17
        title     y=25   h=48   gap 8
        subhead   y=93   h=53   gap 20   (Figma reserves a 2-line 53px box for
                                          a 1-line string → lg:h-[3.3125rem],
                                          so the visible gap to the tabs is 66)
        tab bar   y=186  h=62   gap 40   (pill p-10, gap 10, tabs px-20 py-13 lh16)
-     band frame  2504:12488  y=248  h=435
-       card      y=293  h=390  gap 45   (p-10, gap 60, photo 580×370 r24,
+     band frame  1065:13971  y=248  h=435
+       card      y=293  h=390  gap 45   (p-10, gap 60, visual 580×370 r24,
                                          text col py-60: 32/40 → 18 → 16/1.5
                                          → 32 → list(gap 12, pb 8) → 32 → CTA)
      section end y=683 · next section (How it works) starts 160 later.
@@ -35,8 +49,13 @@
    (+383.5px) so it tracks the content above 1440. */
 
 import { useRef, useState, type KeyboardEvent } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import holiday from "@/public/gift2/gf-solution-holiday.jpg";
+import employee from "@/public/gift2/gf-solution-employee.jpg";
+import client from "@/public/gift2/gf-solution-client.jpg";
 import partner from "@/public/gift2/gf-solution-partner.jpg";
+import automated from "@/public/gift2/gf-solution-automated.png";
+import stores from "@/public/gift2/gf-solution-stores.png";
 
 type Tab = {
   label: string;
@@ -44,20 +63,22 @@ type Tab = {
   desc: string;
   points: string[];
   cta: string;
+  img: StaticImageData;
+  alt: string;
+  /* UI mockups carry baked text + hairlines → quality 100 (design.md, "Image
+     quality"); photos → 90. */
+  mockup?: true;
 };
 
-const PARTNER_ALT =
-  "An abstract black-and-white render of soft sculptural ribbons folding into one another";
-
-/* Partner Gifting = exact Figma copy (2504:12494–12511). The other five tabs
-   reuse the approved copy from the old GiftSolution.tsx. */
 const TABS: Tab[] = [
   {
     label: "holiday gifting",
     title: "Holiday Gifting",
     desc: "Send thoughtful holiday gifts to recipients without spreadsheets, address collection, or shipping headaches.",
     points: ["On-brand from day one", "Gifts they choose themselves", "Reusable every year"],
-    cta: "Explore holiday gifting",
+    cta: "Explore HOLIDAY gifting",
+    img: holiday,
+    alt: "A kraft-paper gift box tied with a red ribbon and a sprig of pine, left on a sunlit stone doorstep",
   },
   {
     label: "employee gifting",
@@ -68,7 +89,9 @@ const TABS: Tab[] = [
       "Project wrap-ups, team wins, or just because",
       "25K+ gifts",
     ],
-    cta: "Explore employee gifting",
+    cta: "Explore EMPLOYEE gifting",
+    img: employee,
+    alt: "An employee at a sunlit desk lifting the lid off a cream gift box holding a folded knit sweater",
   },
   {
     label: "client & prospect gifting",
@@ -79,7 +102,9 @@ const TABS: Tab[] = [
       "Prospecting, deals won, or renewals",
       "Budgets and tracking, per team",
     ],
-    cta: "Explore client gifting",
+    cta: "Explore CLIENT gifting",
+    img: client,
+    alt: "A handwritten note being signed beside an open gift box and a bottle of red wine on a wooden desk",
   },
   {
     label: "partner gifting",
@@ -91,6 +116,8 @@ const TABS: Tab[] = [
       "Spend and approvals stay in line",
     ],
     cta: "Explore partner gifting",
+    img: partner,
+    alt: "A black partner gift box holding a tumbler, a notebook and a folded scarf, with a thank-you card and a vase of olive leaves",
   },
   {
     label: "automated gifting",
@@ -101,20 +128,26 @@ const TABS: Tab[] = [
       "Onboarding, anniversaries, and birthdays",
       "Set once, runs all year",
     ],
-    cta: "Explore automated gifting",
+    cta: "Explore AUTOMATED gifting",
+    img: automated,
+    alt: "The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations",
+    mockup: true,
   },
   {
     label: "gift storeS",
     title: "Gift Stores",
-    desc: "Bring all your gifting into one branded store. They see it, gift it, and love it.",
+    desc: "Bring all your gifting into one branded store. You set the budget and branding; they pick a gift they’ll love.",
     points: ["25K+ gifts", "No address chasing", "Unredeemed points refunded"],
     cta: "Explore gift stores",
+    img: stores,
+    alt: "A branded Halden gift shop page with a Featured Picks grid of wine glasses, a leather backpack, a brass tumbler and a steel tumbler, each priced in points",
+    mockup: true,
   },
 ];
 
-const DEFAULT_TAB = 3; // Partner Gifting — the state Figma draws
+const DEFAULT_TAB = 3; // Partner Gifting — the state Figma draws in the section
 
-/* lucide/check exactly as exported from Figma (2504:12499, 14×14, 1.16667). */
+/* lucide/check exactly as exported from Figma (1065:13982, 14×14, 1.16667). */
 function Check() {
   return (
     <svg
@@ -161,7 +194,7 @@ export default function GiftingSolution() {
 
   return (
     <section className="relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
-      {/* Figma "symbol gradient" (2504:12467) — the S-symbol blurred 200 at 11%
+      {/* Figma "symbol gradient" (1065:13950) — the S-symbol blurred 200 at 11%
          amber, anchored to the right edge of the 1200 content rail. */}
       <div
         aria-hidden
@@ -253,10 +286,11 @@ export default function GiftingSolution() {
         >
           <div className="relative aspect-[580/370] w-full shrink-0 overflow-hidden rounded-[1.5rem] lg:aspect-auto lg:h-[23.125rem] lg:min-w-0 lg:flex-1 lg:basis-0">
             <Image
-              src={partner}
-              alt={PARTNER_ALT}
+              key={t.img.src}
+              src={t.img}
+              alt={t.alt}
               fill
-              quality={90}
+              quality={t.mockup ? 100 : 90}
               className="object-cover"
               sizes="(min-width:1024px) 35rem, 92vw"
             />
