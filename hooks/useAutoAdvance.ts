@@ -16,8 +16,11 @@ import { useEffect, useRef, useState } from "react";
  * Returns a section ref to attach, and `takeOver` to call from click
  * handlers.
  */
-export function useAutoAdvance(advance: () => void, intervalMs = 5000) {
-  const sectionRef = useRef<HTMLElement>(null);
+export function useAutoAdvance<T extends HTMLElement = HTMLElement>(
+  advance: () => void,
+  intervalMs = 5000,
+) {
+  const sectionRef = useRef<T>(null);
   const [userTookOver, setUserTookOver] = useState(false);
   // keep the latest advance() without re-arming the timer every render
   const advanceRef = useRef(advance);

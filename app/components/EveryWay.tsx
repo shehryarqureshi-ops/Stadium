@@ -104,7 +104,7 @@ function PendingCard({ card }: { card: Card }) {
 
 export default function EveryWay() {
   const [active, setActive] = useState(0);
-  const { sectionRef, takeOver } = useAutoAdvance(
+  const { sectionRef, takeOver } = useAutoAdvance<HTMLDivElement>(
     () => setActive((i) => (i + 1) % SEGMENTS.length),
     4000,
   );
