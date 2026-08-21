@@ -69,28 +69,28 @@ export default function Starfield({ className = "" }: { className?: string }) {
 
     let raf = 0;
     const animate = () => {
-      if (visible && !scrolling) {
-        ctx.clearRect(0, 0, w, h);
-        for (const s of stars) {
-          s.y += s.speed;
-          if (s.y > h) {
-            s.y = 0;
-            s.x = Math.random() * w;
-          }
-          s.a += s.tw * s.dir;
-          if (s.a > 1) {
-            s.a = 1;
-            s.dir = -1;
-          } else if (s.a < 0.2) {
-            s.a = 0.2;
-            s.dir = 1;
-          }
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${s.a})`;
-          ctx.fill();
+      // if (visible && !scrolling) {
+      ctx.clearRect(0, 0, w, h);
+      for (const s of stars) {
+        s.y += s.speed;
+        if (s.y > h) {
+          s.y = 0;
+          s.x = Math.random() * w;
         }
+        s.a += s.tw * s.dir;
+        if (s.a > 1) {
+          s.a = 1;
+          s.dir = -1;
+        } else if (s.a < 0.2) {
+          s.a = 0.2;
+          s.dir = 1;
+        }
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.a})`;
+        ctx.fill();
       }
+      // }
       raf = requestAnimationFrame(animate);
     };
     animate();

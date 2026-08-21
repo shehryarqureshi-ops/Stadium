@@ -95,7 +95,7 @@ export default function Testimonials({
 
       <div className="mx-auto flex w-full max-w-[77.5rem] flex-col gap-12 lg:flex-row lg:gap-20">
         {/* Left */}
-        <div className="flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem] lg:pt-10">
+        <div className="flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem]">
           <div className="flex flex-col gap-8">
             <h2
               data-animation="reveal"
@@ -174,7 +174,7 @@ export default function Testimonials({
         {/* Right */}
         <div
           data-animation="reveal"
-          className="testimonial-viewport relative flex-1 overflow-hidden lg:h-[41rem]"
+          className="testimonial-viewport relative flex-1 overflow-hidden lg:h-166"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",

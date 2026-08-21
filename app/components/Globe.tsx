@@ -281,11 +281,11 @@ export default function Globe({ className = "" }: { className?: string }) {
 
     let raf = 0;
     const render = () => {
-      if (visible && !scrolling) {
-        phi += 0.001;
-        spring += (pointerMovement.current - spring) * 0.1;
-        globe.update({ phi: phi + spring * 0.01, width: size, height: size });
-      }
+      // if (visible && !scrolling) {
+      phi += 0.001;
+      spring += (pointerMovement.current - spring) * 0.1;
+      globe.update({ phi: phi + spring * 0.01, width: size, height: size });
+      // }
       raf = requestAnimationFrame(render);
     };
     render();
