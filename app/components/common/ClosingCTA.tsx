@@ -1,0 +1,164 @@
+import Image, { type StaticImageData } from "next/image";
+import { ReactNode } from "react";
+
+type CTAButtonVariant = "primary" | "secondary";
+
+type ClosingCTAProps = {
+  caption?: string;
+  title: string;
+  description: string | ReactNode;
+
+  ctaOneLabel?: string;
+  ctaOneLink?: string;
+  ctaOneVariant?: CTAButtonVariant;
+  ctaOneColor?: string;
+
+  ctaTwoLabel?: string;
+  ctaTwoLink?: string;
+  ctaTwoVariant?: CTAButtonVariant;
+
+  backgroundColor?: string;
+  backgroundImage?: StaticImageData;
+  backgroundImageHeight?: string;
+
+  desktopTopSpacing?: string;
+
+  cardRounded?: boolean;
+  cardBorder?: boolean;
+  overflowHidden?: boolean;
+};
+
+const CTA_VARIANTS: Record<CTAButtonVariant, string> = {
+  primary:
+    "bg-[#2178f5] text-white hover:brightness-110 focus-visible:outline-white",
+  secondary:
+    "border border-[#4d4d5c] bg-[#292933] text-white hover:bg-[#33333f] focus-visible:outline-white",
+};
+
+export default function ClosingCTA({
+  caption,
+  title,
+  description,
+
+  ctaOneLabel,
+  ctaOneLink = "#",
+  ctaOneVariant = "primary",
+  ctaOneColor,
+
+  ctaTwoLabel,
+  ctaTwoLink = "#",
+  ctaTwoVariant = "secondary",
+
+  backgroundColor = "#2e6ae8",
+  backgroundImage,
+}: ClosingCTAProps) {
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background: backgroundColor,
+      }}
+    >
+      {backgroundImage && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-full lg:h-[75.5625rem]"
+        >
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+      )}
+
+      <div className="relative">
+        {/* White sleeve from section above */}
+        <div
+          aria-hidden
+          className="mx-auto h-16 w-[calc(100%-1.25rem)] rounded-b-4xl bg-white md:h-24 md:rounded-b-[3rem] lg:h-40 lg:w-[calc(100%-2.5rem)] lg:rounded-b-[3.75rem]"
+        />
+
+        <div className="px-section-x-sm pt-14 md:px-section-x-md md:pt-24 lg:px-section-x-lg lg:pt-40">
+          <div className="mx-auto w-full max-w-content">
+            <div
+              className="flex flex-col items-center gap-5 rounded-t-4xl px-6 py-16 text-center md:py-24 lg:px-[3.75rem] lg:py-[8.75rem]"
+              style={{
+                background: "linear-gradient(0deg, #16171b 0%, #000000 100%)",
+              }}
+            >
+              {caption && (
+                <p
+                  data-animation="reveal"
+                  className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-white/60"
+                >
+                  {caption}
+                </p>
+              )}
+
+              <h2
+                data-animation="reveal"
+                className="font-[family-name:var(--font-satoshi)] text-[1.875rem] font-black leading-[1.04] tracking-[-0.09375rem] text-white md:text-[2.5rem] lg:text-[3.125rem]"
+              >
+                {title}
+              </h2>
+
+              <p
+                data-animation="reveal"
+                data-reveal-delay="80"
+                className="max-w-[70rem] font-sans text-[1.0625rem] leading-[1.5] text-[#a8a8b8] lg:text-[1.125rem]"
+              >
+                {description}
+              </p>
+
+              {(ctaOneLabel || ctaTwoLabel) && (
+                <div
+                  data-animation="reveal"
+                  data-reveal-delay="160"
+                  className="flex flex-col gap-3.5 pt-3 sm:flex-row sm:items-center"
+                >
+                  {ctaOneLabel && (
+                    <a
+                      href={ctaOneLink}
+                      style={
+                        ctaOneColor
+                          ? { backgroundColor: ctaOneColor }
+                          : undefined
+                      }
+                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                        ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
+                      }`}
+                    >
+                      {ctaOneLabel}
+                    </a>
+                  )}
+
+                  {ctaTwoLabel && (
+                    <a
+                      href={ctaTwoLink}
+                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 ${CTA_VARIANTS[ctaTwoVariant]}`}
+                    >
+                      {ctaTwoLabel}
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div
+          aria-hidden
+          className="mx-auto h-[2px] w-[80.5%] max-w-[72.5rem]"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, #171717 0%, #959595 50%, #171717 100%)",
+          }}
+        />
+      </div>
+    </section>
+  );
+}

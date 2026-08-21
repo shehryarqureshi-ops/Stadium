@@ -45,13 +45,15 @@ export default function SnacksPage() {
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
         <SnackHero />
-        <SnackProblem />
-        <SnackSolution />
-        <SnackHowItWorks />
-        <SnackCatalog />
-        <SnackPlatform />
-        <SnackComparison />
-        <SnackStats />
+        <div className="grid gap-16 md:gap-24 lg:gap-40 pb-16 md:pb-24 lg:pb-40">
+          <SnackProblem />
+          <SnackSolution />
+          <SnackHowItWorks />
+          <SnackCatalog />
+          <SnackPlatform />
+          <SnackComparison />
+          <SnackStats />
+        </div>
         <SnackClosing />
       </main>
       <PageClose showCta={false} />

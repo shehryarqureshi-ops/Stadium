@@ -32,7 +32,7 @@ export default function StepCards({
   if (!items.length) return null;
 
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col gap-10">
         {/* Header */}
         <div className="flex flex-col gap-2">

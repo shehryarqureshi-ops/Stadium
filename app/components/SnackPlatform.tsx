@@ -10,17 +10,41 @@ import occ5 from "@/public/snacks/sn2-occ-5.jpg";
 import occ6 from "@/public/snacks/sn2-occ-6.jpg";
 
 const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
-  { img: occ1, title: "Onboarding", desc: "Give new hires a stocked snack drawer before their first day starts." },
-  { img: occ2, title: "Milestones", desc: "Mark birthdays and anniversaries with snacks picked from 2,000+ options." },
-  { img: occ3, title: "All-Hands & Events", desc: "A well-timed snack break can save a three hour all-hands." },
-  { img: occ4, title: "Thank-Yous", desc: "Send a treat to say thanks, big or small, no card required." },
-  { img: occ5, title: "Remote Check-Ins", desc: "Ship snacks to remote desks before their next call." },
-  { img: occ6, title: "Just Because", desc: "Brighten someone’s day with a surprise snack, delivered right to their desk." },
+  {
+    img: occ1,
+    title: "Onboarding",
+    desc: "Give new hires a stocked snack drawer before their first day starts.",
+  },
+  {
+    img: occ2,
+    title: "Milestones",
+    desc: "Mark birthdays and anniversaries with snacks picked from 2,000+ options.",
+  },
+  {
+    img: occ3,
+    title: "All-Hands & Events",
+    desc: "A well-timed snack break can save a three hour all-hands.",
+  },
+  {
+    img: occ4,
+    title: "Thank-Yous",
+    desc: "Send a treat to say thanks, big or small, no card required.",
+  },
+  {
+    img: occ5,
+    title: "Remote Check-Ins",
+    desc: "Ship snacks to remote desks before their next call.",
+  },
+  {
+    img: occ6,
+    title: "Just Because",
+    desc: "Brighten someone’s day with a surprise snack, delivered right to their desk.",
+  },
 ];
 
 export default function SnackPlatform() {
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[55rem] flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
@@ -41,7 +65,8 @@ export default function SnackPlatform() {
             data-animation="reveal"
             className="font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
           >
-            Hire dates, anniversaries, and the occasional random Tuesday all call for snacks.
+            Hire dates, anniversaries, and the occasional random Tuesday all
+            call for snacks.
           </p>
         </div>
 
