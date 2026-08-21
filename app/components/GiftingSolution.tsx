@@ -59,7 +59,7 @@ import employee from "@/public/gift2/gf-solution-employee.jpg";
 import client from "@/public/gift2/gf-solution-client.jpg";
 import partner from "@/public/gift2/gf-solution-partner.jpg";
 const automated = "/gift2/gf-solution-automated.svg";
-import stores from "@/public/gift2/gf-solution-stores.png";
+import stores from "@/public/gift2/gf-solution-stores.jpg";
 
 type Tab = {
   label: string;
@@ -155,6 +155,7 @@ const TABS: Tab[] = [
     img: stores,
     alt: "A branded Halden gift shop page with a Featured Picks grid of wine glasses, a leather backpack, a brass tumbler and a steel tumbler, each priced in points",
     mockup: true,
+    aspect: "580/396",
   },
 ];
 
