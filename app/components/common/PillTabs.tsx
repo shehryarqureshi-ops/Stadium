@@ -13,6 +13,7 @@ export type TabsShowcaseItem = {
   bullets?: string[];
   image: StaticImageData | null;
   href?: string;
+  cta?: string;
 };
 
 type TabsShowcaseProps = {
@@ -140,7 +141,7 @@ export default function TabsShowcase({
           className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]"
         >
           {/* Images */}
-          <div className="relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl bg-grey-200 lg:w-[48%]">
+          <div className="relative aspect-[580/481] w-full shrink-0 overflow-hidden rounded-xl lg:w-[48%]">
             {items.map((tabItem, index) =>
               tabItem.image ? (
                 <Image
@@ -149,7 +150,7 @@ export default function TabsShowcase({
                   alt={tabItem.name}
                   fill
                   sizes="(min-width: 64rem) 36rem, 100vw"
-                  className={`object-cover transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                  className={`object-cover rounded-3xl overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none ${
                     index === active ? "opacity-100" : "opacity-0"
                   }`}
                 />
@@ -202,7 +203,7 @@ export default function TabsShowcase({
                 href={item.href}
                 className="font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#16171b] underline underline-offset-4 transition-opacity hover:opacity-70"
               >
-                Explore {item.name}
+                {item.cta ?? `Explore ${item.name}`}
               </a>
             )}
           </div>

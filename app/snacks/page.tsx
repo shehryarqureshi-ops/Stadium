@@ -46,7 +46,6 @@ export default function SnacksPage() {
       >
         <SnackHero />
         <SnackProblem />
-
         <SnackSolution />
         <SnackHowItWorks />
         <SnackCatalog />
