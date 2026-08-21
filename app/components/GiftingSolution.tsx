@@ -72,10 +72,10 @@ type Tab = {
   /* UI mockups carry baked text + hairlines → quality 100 (design.md, "Image
      quality"); photos → 90. */
   mockup?: true;
-  /* Most tabs fill the band's 580×370 slot. The Automated panel is drawn
-     602×332 in Figma (a gradient card that deliberately clips the browser
-     window at its bottom edge), so it keeps its own aspect and sits
-     top-aligned rather than being stretched to fit. */
+  /* The band's slot is a constant share of the card width (47.54% = Figma's
+     580 of 1220) and each tab keeps its OWN Figma aspect, so nothing is ever
+     stretched or cropped to fit. Default 580/370; the Automated panel is drawn
+     602/332 and Gift Stores 580/396. */
   aspect?: string;
   /* vector artwork → plain <img>, so it stays crisp and is never re-encoded */
   vector?: true;
@@ -299,10 +299,8 @@ export default function GiftingSolution() {
           className="flex w-full flex-col gap-6 rounded-[2rem] bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:mt-[0.3125rem] lg:flex-row lg:items-start lg:gap-[3.75rem]"
         >
           <div
-            className={`relative w-full shrink-0 overflow-hidden rounded-[1.5rem] lg:min-w-0 lg:flex-1 lg:basis-0 ${
-              t.aspect ? "" : "aspect-[580/370] lg:aspect-auto lg:h-[23.125rem]"
-            }`}
-            style={t.aspect ? { aspectRatio: t.aspect.replace("/", " / ") } : undefined}
+            className="relative w-full shrink-0 overflow-hidden rounded-[1.5rem] lg:w-[47.54%]"
+            style={{ aspectRatio: (t.aspect ?? "580/370").replace("/", " / ") }}
           >
             {t.vector ? (
               /* eslint-disable-next-line @next/next/no-img-element */
