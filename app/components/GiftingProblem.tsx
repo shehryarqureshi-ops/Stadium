@@ -60,10 +60,13 @@ const CARDS: {
 
 export default function GiftingProblem() {
   return (
-    <section className="relative z-10 px-section-x-sm pb-16 md:px-section-x-md md:pb-20 lg:px-section-x-lg">
-      <div className="mx-auto flex w-full max-w-content flex-col">
+    <section className="relative z-10 pb-16 md:pb-20">
+      <div className="flex w-full flex-col">
         {/* white card (2504:14292): rounded 16, pt 160, px 80, flush bottom */}
-        <div className="flex w-full flex-col items-center rounded-[1rem] bg-white px-6 pt-16 md:px-12 md:pt-20 lg:px-20 lg:pt-40">
+        {/* full-bleed white card (Figma 2673:3669: 1440 wide, rounded top only),
+            with its contents still on the 1200 content box */}
+        <div className="flex w-full flex-col items-center rounded-t-[1rem] bg-white px-section-x-sm pt-16 md:px-section-x-md md:pt-20 lg:px-section-x-lg lg:pt-40">
+          <div className="mx-auto flex w-full max-w-content flex-col items-center">
           {/* header (2504:14294): 860 wide, centred, gap 20 / inner gap 8 */}
           <div className="flex w-full max-w-[53.75rem] flex-col items-center gap-5 text-center">
             <div className="flex flex-col items-center gap-2">
@@ -125,6 +128,7 @@ export default function GiftingProblem() {
                 </div>
               </article>
             ))}
+          </div>
           </div>
         </div>
       </div>

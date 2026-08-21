@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function WaysToEngagePage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader lightHero />
 
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none overflow-x-clip">
         <WteHero />

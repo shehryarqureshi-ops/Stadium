@@ -10,7 +10,11 @@ import prob1 from "@/public/snacks/sn2-problem-1.jpg";
 import prob2 from "@/public/snacks/sn2-problem-2.jpg";
 import prob3 from "@/public/snacks/sn2-problem-3.jpg";
 
+/* Figma "Logos track" 2673:2997 — 10 marks in this order, each kept at its own
+   box size (the old wall forced every logo to 1.4rem, which squashed Bloomberg
+   and stretched Salesforce). */
 const LOGOS = [
+  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
   { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
   { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
   { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
@@ -45,7 +49,7 @@ const CARDS: { img: StaticImageData; title: string; desc: string }[] = [
 
 export default function SnackProblem() {
   return (
-    <section className="relative z-10 bg-[#0034ae]">
+    <section className="relative z-10 bg-[#0437a5]">
       {/* rounded "sleeve" panel: medium blue at the logos fading to white */}
       <div
         className="rounded-t-[1.5rem] md:rounded-t-[2rem] lg:rounded-t-[2.5rem]"
@@ -56,17 +60,35 @@ export default function SnackProblem() {
           data-animation="reveal"
           className="px-section-x-sm py-10 md:px-section-x-md lg:py-[3.75rem]"
         >
-          <div className="mx-auto flex min-h-[2.5rem] w-full max-w-content flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-90 md:gap-x-14">
-            {LOGOS.map((l, i) => (
-              <img
-                key={`${l.alt}-${i}`}
-                src={l.src}
-                alt={l.alt}
-                width={l.w}
-                height={l.h}
-                className="h-[1.4rem] w-auto brightness-0 invert"
-              />
-            ))}
+          <div className="mx-auto w-full max-w-content">
+            {/* Figma 2673:2996 "Marquee — slow horizontal scroll": a clipped
+                1200x40 viewport over a wider track, same idiom as the sibling
+                heroes (global swag-marquee keyframe). */}
+            <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
+              <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
+                {[0, 1].map((group) => (
+                  <ul
+                    key={group}
+                    aria-hidden={group === 1}
+                    className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
+                  >
+                    {LOGOS.map((l, i) => (
+                      <li key={`${l.alt}-${i}`} className="flex shrink-0 items-center">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={l.src}
+                          alt={group === 0 ? l.alt : ""}
+                          width={l.w}
+                          height={l.h}
+                          style={{ height: `${l.h / 16}rem` }}
+                          className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

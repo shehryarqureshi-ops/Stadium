@@ -1,7 +1,7 @@
 /* /events · Experiences (Confetti) — THE PROBLEM (Figma
    n9SjmDjzB1PeZAYJ5w43fr → 2504:9198 "Frame 2087330220", card 2504:9199).
    A white rounded-16 card (1240 in Figma → the site's 1200 content width)
-   that scrolls OVER the hero raster — ExpHero paints its background 693px
+   that scrolls OVER the hero raster — ExpHero paints its background 499px
    past its own bottom, so this section is transparent + `relative z-10`.
    Header (eyebrow #ff5b77 → 44px Satoshi title → 18px subhead, 860 max) → 40
    → a #f2f2f2 rounded-32 tray with three white photo cards. Unlike

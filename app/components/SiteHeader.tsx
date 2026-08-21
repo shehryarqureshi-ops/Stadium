@@ -82,7 +82,14 @@ function Logo({ light }: { light: boolean }) {
   );
 }
 
-export default function SiteHeader({ banner }: { banner?: string } = {}) {
+/* `lightHero`: pages whose hero is LIGHT (e.g. /ways-to-engage, whose hero was
+   rebuilt white in the 2026-08-19 Figma pass) must not get the over-hero
+   treatment — white nav text on a white hero is invisible. Forcing the solid
+   state gives the dark links + white bar Figma draws there. */
+export default function SiteHeader({
+  banner,
+  lightHero = false,
+}: { banner?: string; lightHero?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   /* which accordion section is expanded in the mobile panel (Shopify
      mobile-nav pattern, 2026-06-12 — the mega-menu content was previously
@@ -190,7 +197,8 @@ export default function SiteHeader({ banner }: { banner?: string } = {}) {
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  const solid = scrolled || menuOpen || engageOpen || drawerSettling;
+  const solid =
+    scrolled || menuOpen || engageOpen || drawerSettling || lightHero;
   /* hover dims in both states (Shopify: every nav item responds); the
      transparent state swaps the global ink focus ring for white */
   const baseLink = solid

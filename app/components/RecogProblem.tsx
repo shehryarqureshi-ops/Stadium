@@ -74,10 +74,13 @@ const CARDS: { icon: ReactNode; title: string; desc: string }[] = [
 
 export default function RecogProblem() {
   return (
-    <section className="relative z-10 px-section-x-sm pb-16 pt-10 md:px-section-x-md md:pb-20 lg:px-section-x-lg lg:pb-40 lg:pt-[3.75rem]">
-      <div className="mx-auto flex w-full max-w-content flex-col">
+    <section className="relative z-10 pb-16 pt-10 md:pb-20 lg:pb-40 lg:pt-0">
+      <div className="flex w-full flex-col">
         {/* white card (2504:6883): rounded 16, px 80, pt 160, pb 160 */}
-        <div className="flex w-full flex-col items-center rounded-[1rem] bg-white px-6 py-16 md:px-12 md:py-20 lg:px-20 lg:py-40">
+        {/* full-bleed white card (Figma 2673:3994: 1440 wide, rounded top,
+            flush on the hero) with its contents still on the 1200 box */}
+        <div className="flex w-full flex-col items-center rounded-t-[2rem] bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-40">
+          <div className="mx-auto flex w-full max-w-content flex-col items-center">
           <div className="flex w-full max-w-[53.75rem] flex-col items-center gap-5 text-center">
             <div className="flex flex-col items-center gap-2">
               <p
@@ -130,6 +133,7 @@ export default function RecogProblem() {
                 </div>
               </article>
             ))}
+          </div>
           </div>
         </div>
 

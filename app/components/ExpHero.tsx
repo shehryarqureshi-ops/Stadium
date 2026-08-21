@@ -1,83 +1,60 @@
 /* /events · Experiences (Confetti) — Hero (Figma n9SjmDjzB1PeZAYJ5w43fr →
-   hero 2504:9061; copy row 2504:9085, device cluster 2504:9098, trust band
-   2504:9180). A CENTRED hero (unlike the left-split swag/recognition heroes)
+   hero 2673:3312; copy row 2673:3336, graphic 2673:3349, trust band
+   2673:3446). A CENTRED hero (unlike the left-split swag/recognition heroes)
    on the pink/red Confetti mesh raster ("image 13752", 1440×1958, shipped at
-   2× as xp-hero-bg.jpg). Under the copy sits a tablet mockup whose screen
-   carries two rebuilt-in-HTML app cards — the LIVE "Escape Quest" card and
-   the "UPCOMING EVENTS" list — so every glyph stays crisp; only the device
-   shell, its base strip, the banner photo, the 3 event thumbs and the 6
-   attendee avatars are rasters. Trust band = a headline + 4 stats (NOT the
-   logo marquee the other pages use).
+   2× as xp-hero-bg.jpg). Under the copy sits a video-call mockup: a translucent
+   black 1160×799 panel holding four participant tiles, an "Event Agenda"
+   checklist, the host's stage tile with its call-control bar and a live
+   transcript card. The panel is CLIPPED to 601 and faded out by an alpha
+   gradient (Figma masks it with a rounded rect whose gradient fill runs
+   white → 85% → 0), so the agenda card is cut mid-list and the transcript card
+   sits entirely under the fade — that is the design, not an accident. Only the
+   four photos are rasters; every glyph, icon and control is HTML/SVG.
+   Trust band = a headline + 4 stats (NOT the logo marquee the other pages use).
 
-   The raster is 1958 tall while this section ends at 1265, so the bg box runs
-   693px (43.3125rem) PAST the section bottom and ExpProblem's white card
+   The raster is 1958 tall while this section ends at 1459, so the bg box runs
+   499px (31.1875rem) PAST the section bottom and ExpProblem's white card
    scrolls over it — render <ExpHero/> then <ExpProblem/> directly (Problem is
    `relative z-10` on a transparent bg). No SwagHeroShader here.
 
    Figma stack (absolute y at 1440):
-     0..84     nav (fixed SiteHeader overlays; section pt = 156 = 84 + 72)
-     156       eyebrow 12/1.4 (17)          → 8
-     181       h1 58/1.02 ×2 (118)          → 20
-     319       subhead 19/1.52 (29)         → 32
-     380       CTA row (40)                 → copy ends 420, pb 60
-     480..956  device cluster 1295×476 (x 72.5 → centred, escapes the 90 pad)
-     956       trust band: pt 60 → heading 32/1.02 (33) → 40 → stats 76 → pb 100
-     1265      section ends; bg raster continues to 1958 (fades to white). */
+     0..84      nav (fixed SiteHeader overlays; section pt = 156 = 84 + 72)
+     156        eyebrow 12/1.4 (17)          → 8
+     181        h1 58/1.02 ×2 (118)          → 20
+     319        subhead 19/1.52 ×2 (58)      → 32
+     409        CTA row (40)                 → copy ends 449, pb 60
+     509..1110  graphic 1160×601 (x 140 — centred inside the 1200 content box,
+                which is exactly where Figma puts it; authored 1160×799 and
+                clipped/faded at 601, scaled as one unit below 1360)
+     1110       trust band: pt 100 → heading 32/1.02 (33) → 40 → stats 76 → pb 100
+     1459       section ends; bg raster continues to 1958 (fades to white). */
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import heroBg from "@/public/exp2/xp-hero-bg.jpg";
-import device from "@/public/exp2/xp-hero-device.png";
-import deviceBase from "@/public/exp2/xp-hero-device-base.png";
-import liveBanner from "@/public/exp2/xp-hero-live-banner.jpg";
-import event1 from "@/public/exp2/xp-hero-event-1.jpg";
-import event2 from "@/public/exp2/xp-hero-event-2.jpg";
-import event3 from "@/public/exp2/xp-hero-event-3.jpg";
-import avatar1 from "@/public/exp2/xp-hero-avatar-1.png";
-import avatar2 from "@/public/exp2/xp-hero-avatar-2.png";
-import avatar3 from "@/public/exp2/xp-hero-avatar-3.png";
-import avatar4 from "@/public/exp2/xp-hero-avatar-4.png";
-import avatar5 from "@/public/exp2/xp-hero-avatar-5.png";
-import avatar6 from "@/public/exp2/xp-hero-avatar-6.png";
+import tile1 from "@/public/exp2/xp-hero-tile-1.jpg";
+import tile2 from "@/public/exp2/xp-hero-tile-2.jpg";
+import tile3 from "@/public/exp2/xp-hero-tile-3.jpg";
+import host from "@/public/exp2/xp-hero-host.jpg";
 
-/* trust band stats (2504:9182) */
+/* trust band stats (2673:3448) */
 const STATS = [
   { value: "25,000+", label: "Teams" },
   { value: "52,000+", label: "Experiences Hosted" },
   { value: "500+", label: "Experience Formats" },
 ] as const;
 
-/* upcoming-events rows (2504:9110) */
-const EVENTS = [
-  {
-    img: event1,
-    alt: "Four colleagues celebrating on a video call",
-    title: "Coworker Clash",
-    when: "May 7 - 12:00 PM EST",
-  },
-  {
-    img: event2,
-    alt: "A host presenting a trivia round to a virtual audience",
-    title: "Traitorous Trivia",
-    when: "May 9 · 6:00 PM EST",
-  },
-  {
-    img: event3,
-    alt: "A finished glass terrarium planted with moss and succulents",
-    title: "Terrarium Workshop",
-    when: "May 14 · 10:00 AM EST",
-  },
+/* agenda checklist (2673:3398) — only the first row is ticked in Figma */
+const AGENDA = [
+  { label: "Welcome & introductions", done: true },
+  { label: "Team challenge", done: false },
+  { label: "Breakout activity", done: false },
+  { label: "Group share", done: false },
+  { label: "Wrap-up", done: false },
 ] as const;
 
-const ATTENDEES = [
-  { img: avatar1, left: "1.3627rem" },
-  { img: avatar2, left: "2.4661rem" },
-  { img: avatar3, left: "3.5695rem" },
-  { img: avatar4, left: "4.6729rem" },
-  { img: avatar5, left: "5.7763rem" },
-  { img: avatar6, left: "6.8796rem" },
-] as const;
+/* ── icons — exact paths from the Figma svgAssets ───────────────────── */
 
-/* lucide/star (2504:9195), 32px, stroke white — exact path from svgAssets */
+/* lucide/star (2673:3461), 32px, stroke white */
 function StarIcon() {
   return (
     <svg
@@ -97,20 +74,16 @@ function StarIcon() {
   );
 }
 
-/* 20px round chevron button, top-right of the events card (2504:9107) */
-function RowChevronButton() {
+/* the 18px tile badges (2673:3362 / 3370 / 3379 / 3389 / 3391) */
+const TILE_ICON = "size-[1.125rem] shrink-0";
+
+function IconMic18() {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 20 20"
-      fill="none"
-      className="size-[1.25rem] shrink-0"
-    >
-      <rect width="20" height="20" rx="9.99941" fill="white" fillOpacity="0.06" />
+    <svg aria-hidden="true" viewBox="0 0 18 18" fill="none" className={TILE_ICON}>
       <path
-        d="M8.21411 6.42822L11.7855 9.99965L8.21411 13.5711"
-        stroke="#B8BABF"
-        strokeWidth="1.14279"
+        d="M9 14.25V16.5M9 14.25C10.3924 14.25 11.7277 13.6969 12.7123 12.7123C13.6969 11.7277 14.25 10.3924 14.25 9V7.5M9 14.25C7.60761 14.25 6.27226 13.6969 5.28769 12.7123C4.30312 11.7277 3.75 10.3924 3.75 9V7.5M9 1.5C10.2426 1.5 11.25 2.50736 11.25 3.75V9C11.25 10.2426 10.2426 11.25 9 11.25C7.75736 11.25 6.75 10.2426 6.75 9V3.75C6.75 2.50736 7.75736 1.5 9 1.5Z"
+        stroke="white"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -118,18 +91,13 @@ function RowChevronButton() {
   );
 }
 
-/* the row chevron (2504:9119) — the exported chevron-down turned -90° */
-function RowChevron() {
+function IconMicOff18() {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 9 6"
-      fill="none"
-      className="h-[0.3125rem] w-[0.5rem] shrink-0 -rotate-90"
-    >
+    <svg aria-hidden="true" viewBox="0 0 18 18" fill="none" className={TILE_ICON}>
       <path
-        d="M0.500018 0.500018L4.50002 5.50002L8.50002 0.500018"
-        stroke="#9FA0A2"
+        d="M9 14.25V16.5M11.25 7.005V3.75C11.247 3.24478 11.074 2.75528 10.7589 2.36034C10.4438 1.9654 10.0049 1.688 9.51301 1.57281C9.02109 1.45763 8.50471 1.51136 8.04704 1.72535C7.58936 1.93935 7.21703 2.30115 6.99 2.7525M12.7125 12.7125C11.9783 13.4468 11.0428 13.9469 10.0243 14.1495C9.00588 14.3521 7.95022 14.2481 6.99086 13.8507C6.0315 13.4533 5.21154 12.7804 4.63466 11.9169C4.05779 11.0535 3.74993 10.0384 3.75 9V7.5M14.1675 9.9225C14.2221 9.61803 14.2497 9.30933 14.25 9V7.5M1.5 1.5L16.5 16.5M6.75 6.75V9C6.75039 9.44472 6.88256 9.87935 7.12982 10.249C7.37708 10.6186 7.72834 10.9067 8.13923 11.0769C8.55012 11.247 9.00221 11.2915 9.43841 11.2049C9.87461 11.1182 10.2753 10.9043 10.59 10.59"
+        stroke="white"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -137,260 +105,387 @@ function RowChevron() {
   );
 }
 
-/* 12px calendar glyph beside VIEW CALENDAR (2504:9139–9143) */
-function CalendarIcon() {
+function IconVolumeOff18() {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 12 12"
-      fill="none"
-      className="size-[0.75rem] shrink-0"
-    >
-      <rect
-        x="0.75"
-        y="2.25"
-        width="10.5"
-        height="9"
-        rx="1.875"
-        stroke="#9EA1A6"
-        strokeWidth="1.05"
+    <svg aria-hidden="true" viewBox="0 0 18 18" fill="none" className={TILE_ICON}>
+      <path
+        d="M12 6.75C12.3783 7.25425 12.6233 7.84573 12.7125 8.46975M14.523 4.227C15.4822 5.1857 16.1305 6.41112 16.3832 7.74355C16.6359 9.07599 16.4814 10.4537 15.9398 11.697M1.5 1.5L16.5 16.5M5.25 5.25L4.80975 5.69025C4.7118 5.78878 4.59528 5.8669 4.46692 5.92007C4.33856 5.97324 4.20093 6.00041 4.062 6H2.25C2.05109 6 1.86032 6.07902 1.71967 6.21967C1.57902 6.36032 1.5 6.55109 1.5 6.75V11.25C1.5 11.4489 1.57902 11.6397 1.71967 11.7803C1.86032 11.921 2.05109 12 2.25 12H4.062C4.20093 11.9996 4.33856 12.0268 4.46692 12.0799C4.59528 12.1331 4.7118 12.2112 4.80975 12.3098L7.347 14.8478C7.42095 14.9218 7.51523 14.9723 7.61789 14.9928C7.72056 15.0132 7.82699 15.0028 7.92369 14.9627C8.0204 14.9226 8.10303 14.8547 8.16112 14.7676C8.21921 14.6806 8.25015 14.5782 8.25 14.4735V8.25M7.371 3.129C7.44291 3.05681 7.53464 3.0076 7.63456 2.98761C7.73448 2.96762 7.83808 2.97775 7.93223 3.01671C8.02639 3.05567 8.10685 3.12172 8.16342 3.20646C8.21999 3.29121 8.25013 3.39085 8.25 3.49275V4.00725"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <rect x="0.75" y="2.25" width="10.5" height="2.625" rx="1.05" fill="#9EA1A6" />
-      <rect x="3" y="0.75" width="1.125" height="2.25" rx="0.525" fill="#9EA1A6" />
-      <rect x="7.88" y="0.75" width="1.125" height="2.25" rx="0.525" fill="#9EA1A6" />
     </svg>
   );
 }
 
-/* LIVE card (2504:9145) — 357×322, white, rounded 18, authored at the Figma
-   pixel positions ÷ 16 */
-function LiveCard() {
+function IconVideoOff18() {
   return (
-    <div className="absolute left-[34.96875rem] top-[11.375rem] h-[20.125rem] w-[22.3125rem] overflow-hidden rounded-[1.125rem] bg-white shadow-[0_0.25rem_1rem_0_rgba(15,15,26,0.12)]">
-      {/* banner (2504:9146): radial-gradient plate + the photo inset 9.69% and
-          overhanging 29.93% above, exactly as Figma crops it */}
-      <div className="absolute left-2 top-2 h-[7.625rem] w-[21.3125rem] overflow-hidden rounded-[0.625rem] bg-[radial-gradient(ellipse_20.75rem_58rem_at_1.84375rem_4.75rem,#171836_0%,#171836_85.7%,#190f31_100%)]">
-        <Image
-          src={liveBanner}
-          alt="Escape-room host lit in neon, mid-puzzle"
-          quality={90}
-          sizes="17.1712rem"
-          className="absolute left-[9.69%] top-[-29.93%] h-[140.59%] w-[80.55%] select-none object-cover"
-        />
-      </div>
+    <svg aria-hidden="true" viewBox="0 0 18 18" fill="none" className={TILE_ICON}>
+      <path
+        d="M7.995 4.5H10.5C10.8978 4.5 11.2794 4.65804 11.5607 4.93934C11.842 5.22064 12 5.60218 12 6V7.875L15.936 5.5785C15.993 5.54524 16.0577 5.52762 16.1237 5.52739C16.1897 5.52717 16.2546 5.54436 16.3118 5.57722C16.369 5.61009 16.4165 5.65747 16.4496 5.71459C16.4826 5.7717 16.5 5.83652 16.5 5.9025V12.0495M12 12C12 12.3978 11.842 12.7794 11.5607 13.0607C11.2794 13.342 10.8978 13.5 10.5 13.5H3C2.60218 13.5 2.22064 13.342 1.93934 13.0607C1.65804 12.7794 1.5 12.3978 1.5 12V6C1.5 5.60218 1.65804 5.22064 1.93934 4.93934C2.22064 4.65804 2.60218 4.5 3 4.5H4.5M1.5 1.5L16.5 16.5"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
-      {/* LIVE pill (2504:9147) */}
-      <span className="absolute left-[1.375rem] top-[1.375rem] flex h-[1.5rem] w-[3.5rem] items-center justify-center rounded-[0.75rem] bg-[#7d102e] font-[family-name:var(--font-satoshi)] text-[0.59375rem] font-bold leading-[normal] text-white">
-        LIVE
-      </span>
-      <span className="absolute left-[17.3125rem] top-[1.6875rem] whitespace-nowrap font-[family-name:var(--font-satoshi)] text-[0.625rem] font-bold leading-[normal] text-white">
-        Starts in 15m
-      </span>
+/* the 24px call controls + agenda ticks */
+const CTRL_ICON = "size-6 shrink-0";
 
-      {/* escape badge (2504:9150/9151/9177) */}
-      <span
-        aria-hidden="true"
-        className="absolute left-[1.3627rem] top-[9.125rem] size-[2.5077rem] rounded-full bg-[#7d102e]"
+function IconMic24() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={CTRL_ICON}>
+      <path
+        d="M12 19V22M12 19C13.8565 19 15.637 18.2625 16.9497 16.9497C18.2625 15.637 19 13.8565 19 12V10M12 19C10.1435 19 8.36301 18.2625 7.05025 16.9497C5.7375 15.637 5 13.8565 5 12V10M12 2C13.6569 2 15 3.34315 15 5V12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12V5C9 3.34315 10.3431 2 12 2Z"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <span
-        aria-hidden="true"
-        className="absolute left-[2.3156rem] top-[9.8271rem] size-[0.6019rem] rounded-full bg-white"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute left-[2.5037rem] top-[10.2786rem] h-[0.5015rem] w-[0.2257rem] rounded-[0.0753rem] bg-white"
-      />
+    </svg>
+  );
+}
 
-      <p className="absolute left-[4.5725rem] top-[9.3256rem] whitespace-nowrap font-[family-name:var(--font-satoshi)] text-[1.0533rem] font-bold leading-[normal] text-[#1a1a1d]">
-        Escape Quest
-      </p>
-      <p className="absolute left-[4.5725rem] top-[10.73rem] whitespace-nowrap font-sans text-[0.5768rem] leading-[normal] text-[#6b7280]">
-        Hosted by Maya Patel
-      </p>
+function IconHeadset24() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={CTRL_ICON}>
+      <path
+        d="M3 11H6C6.53043 11 7.03914 11.2107 7.41421 11.5858C7.78929 11.9609 8 12.4696 8 13V16C8 16.5304 7.78929 17.0391 7.41421 17.4142C7.03914 17.7893 6.53043 18 6 18H5C4.46957 18 3.96086 17.7893 3.58579 17.4142C3.21071 17.0391 3 16.5304 3 16V11ZM3 11C3 9.8181 3.23279 8.64778 3.68508 7.55585C4.13738 6.46392 4.80031 5.47177 5.63604 4.63604C6.47177 3.80031 7.46392 3.13738 8.55585 2.68508C9.64778 2.23279 10.8181 2 12 2C13.1819 2 14.3522 2.23279 15.4442 2.68508C16.5361 3.13738 17.5282 3.80031 18.364 4.63604C19.1997 5.47177 19.8626 6.46392 20.3149 7.55585C20.7672 8.64778 21 9.8181 21 11M21 11V16M21 11H18C17.4696 11 16.9609 11.2107 16.5858 11.5858C16.2107 11.9609 16 12.4696 16 13V16C16 16.5304 16.2107 17.0391 16.5858 17.4142C16.9609 17.7893 17.4696 18 18 18H19C19.5304 18 20.0391 17.7893 20.4142 17.4142C20.7893 17.0391 21 16.5304 21 16M21 16V18C21 19.0609 20.5786 20.0783 19.8284 20.8284C19.0783 21.5786 18.0609 22 17 22H12"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
-      {/* meta row: people / clock / camera (2504:9154–9165) */}
-      <span
-        aria-hidden="true"
-        className="absolute left-[1.3627rem] top-[13.037rem] size-[0.3009rem] rounded-full bg-[#1a1a1d]"
+function IconHand24() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={CTRL_ICON}>
+      <path
+        d="M18 11V6C18 5.46957 17.7893 4.96086 17.4142 4.58579C17.0391 4.21071 16.5304 4 16 4C15.4696 4 14.9609 4.21071 14.5858 4.58579C14.2107 4.96086 14 5.46957 14 6M14 10V4C14 3.46957 13.7893 2.96086 13.4142 2.58579C13.0391 2.21071 12.5304 2 12 2C11.4696 2 10.9609 2.21071 10.5858 2.58579C10.2107 2.96086 10 3.46957 10 4V6M10 6V10.5M10 6C10 5.46957 9.78929 4.96086 9.41421 4.58579C9.03914 4.21071 8.53043 4 8 4C7.46957 4 6.96086 4.21071 6.58579 4.58579C6.21071 4.96086 6 5.46957 6 6V14M18 8C18 7.46957 18.2107 6.96086 18.5858 6.58579C18.9609 6.21071 19.4696 6 20 6C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V14C22 16.1217 21.1571 18.1566 19.6569 19.6569C18.1566 21.1571 16.1217 22 14 22H12C9.2 22 7.5 21.14 6.01 19.66L2.41 16.06C2.06594 15.6789 1.88159 15.1802 1.89512 14.6669C1.90866 14.1537 2.11905 13.6653 2.48272 13.303C2.84639 12.9406 3.3355 12.7319 3.84877 12.7202C4.36204 12.7085 4.86016 12.8946 5.24 13.24L7 15"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <span
-        aria-hidden="true"
-        className="absolute left-[1.3125rem] top-[13.3881rem] h-[0.2508rem] w-[0.4012rem] rounded-[0.1505rem] bg-[#1a1a1d]"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute left-[1.7639rem] top-[12.8866rem] size-[0.3511rem] rounded-full bg-[#1a1a1d]"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute left-[1.7137rem] top-[13.2377rem] h-[0.3009rem] w-[0.4514rem] rounded-[0.1505rem] bg-[#1a1a1d]"
-      />
-      <p className="absolute left-[2.5162rem] top-[12.8866rem] whitespace-nowrap font-sans text-[0.5768rem] leading-[normal] text-[#1a1a1d]">
-        42 Attending
-      </p>
+    </svg>
+  );
+}
 
-      <span
-        aria-hidden="true"
-        className="absolute left-[7.2809rem] top-[12.9368rem] size-[0.652rem] rounded-full border-[0.0803rem] border-[#1a1a1d]"
+function IconFaceGrinning24() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={CTRL_ICON}>
+      <path
+        d="M15 10V9M9 10V9M7.084 14.302C7.39344 15.3665 8.04005 16.3019 8.92664 16.9675C9.81323 17.633 10.8919 17.9929 12.0005 17.9929C13.1091 17.9929 14.1878 17.633 15.0744 16.9675C15.9609 16.3019 16.6076 15.3665 16.917 14.302C16.9266 14.2662 16.9277 14.2286 16.9204 14.1923C16.913 14.156 16.8973 14.1218 16.8746 14.0926C16.8518 14.0633 16.8226 14.0397 16.7892 14.0237C16.7557 14.0076 16.7191 13.9995 16.682 14H7.32C7.28293 13.9995 7.24626 14.0076 7.21285 14.0237C7.17944 14.0397 7.1502 14.0633 7.12744 14.0926C7.10467 14.1218 7.08899 14.156 7.08163 14.1923C7.07427 14.2286 7.07442 14.2662 7.084 14.302ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <span
-        aria-hidden="true"
-        className="absolute left-[7.5818rem] top-[13.0872rem] h-[0.2006rem] w-[0.0803rem] bg-[#1a1a1d]"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute left-[7.5818rem] top-[13.2627rem] h-[0.0803rem] w-[0.2006rem] bg-[#1a1a1d]"
-      />
-      <p className="absolute left-[8.2338rem] top-[12.8866rem] whitespace-nowrap font-sans text-[0.5768rem] leading-[normal] text-[#1a1a1d]">
-        60 min
-      </p>
+    </svg>
+  );
+}
 
-      <span
-        aria-hidden="true"
-        className="absolute left-[11.6945rem] top-[13.012rem] h-[0.5015rem] w-[0.7022rem] rounded-[0.1505rem] border-[0.0803rem] border-[#1a1a1d]"
+function IconPhoneOff24() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={CTRL_ICON}>
+      <path
+        d="M10.1 13.9C11.1888 14.9885 12.4498 15.8899 13.832 16.568C14.0385 16.6628 14.2712 16.6845 14.4917 16.6294C14.7122 16.5744 14.9073 16.4458 15.045 16.265L15.4 15.8C15.5863 15.5516 15.8279 15.35 16.1056 15.2111C16.3833 15.0723 16.6895 15 17 15H20C20.5304 15 21.0391 15.2107 21.4142 15.5858C21.7893 15.9609 22 16.4696 22 17V20C22 20.5304 21.7893 21.0391 21.4142 21.4142C21.0391 21.7893 20.5304 22 20 22C17.6362 22 15.2955 21.5345 13.1117 20.6299C10.9278 19.7253 8.94347 18.3995 7.272 16.728M22 2L2 22M4.76 13.582C2.956 10.7116 1.99929 7.39018 2 4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H7C7.53043 2 8.03914 2.21071 8.41421 2.58579C8.78929 2.96086 9 3.46957 9 4V7C9 7.31049 8.92771 7.61672 8.78885 7.89443C8.65 8.17214 8.44839 8.41371 8.2 8.6L7.732 8.951C7.54842 9.09118 7.41902 9.29059 7.36579 9.51535C7.31256 9.74012 7.33878 9.97638 7.44 10.184C7.51833 10.3432 7.59968 10.5009 7.684 10.657"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
+    </svg>
+  );
+}
+
+/* lucide/square-check (2673:3402) vs the plain square Figma uses for the
+   un-ticked rows (2673:3406) */
+function IconSquareCheck24({ done }: { done: boolean }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={CTRL_ICON}>
+      <path
+        d={
+          done
+            ? "M9 12L11 14L15 10M5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3Z"
+            : "M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+        }
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* lucide/users (2673:3394) and lucide/audio-lines (2673:3443), both 54px */
+const BIG_ICON = "size-[3.375rem] shrink-0";
+
+function IconUsers54() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 54 54" fill="none" className={BIG_ICON}>
+      <path
+        d="M36 47.25V42.75C36 40.3631 35.0518 38.0739 33.364 36.386C31.6761 34.6982 29.3869 33.75 27 33.75H13.5C11.1131 33.75 8.82387 34.6982 7.13604 36.386C5.44821 38.0739 4.5 40.3631 4.5 42.75V47.25M36 7.038C37.9299 7.53833 39.6391 8.66534 40.8593 10.2421C42.0794 11.8189 42.7414 13.7563 42.7414 15.75C42.7414 17.7437 42.0794 19.6811 40.8593 21.2579C39.6391 22.8347 37.9299 23.9617 36 24.462M49.5 47.25V42.75C49.4985 40.7559 48.8348 38.8187 47.6131 37.2427C46.3913 35.6667 44.6808 34.541 42.75 34.0425M29.25 15.75C29.25 20.7206 25.2206 24.75 20.25 24.75C15.2794 24.75 11.25 20.7206 11.25 15.75C11.25 10.7794 15.2794 6.75 20.25 6.75C25.2206 6.75 29.25 10.7794 29.25 15.75Z"
+        stroke="white"
+        strokeWidth="4.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconAudioLines54() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 54 54" fill="none" className={BIG_ICON}>
+      <path
+        d="M4.5 22.5V29.25M13.5 13.5V38.25M22.5 6.75V47.25M31.5 18V33.75M40.5 11.25V40.5M49.5 22.5V29.25"
+        stroke="white"
+        strokeWidth="4.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* the initial avatar for the camera-off participant (2673:3382) — a 54px white
+   disc inside a 16px white/10% ring, so the artwork is 86px overall */
+function ChatBubbleAvatar() {
+  return (
+    <span aria-hidden="true" className="relative size-[3.375rem] shrink-0">
       <svg
-        aria-hidden="true"
-        viewBox="0 0 4.16975 4.21296"
-        className="absolute left-[12.375rem] top-[13.0872rem] h-[0.3009rem] w-[0.3511rem] rotate-90 -scale-y-100"
+        viewBox="0 0 86 86"
+        fill="none"
+        className="absolute -inset-4"
       >
-        <path d="M2.08488 0L4.16975 4.21296H0L2.08488 0Z" fill="#1A1A1D" />
+        <rect x="16" y="16" width="54" height="54" rx="27" fill="white" />
+        <rect
+          x="8"
+          y="8"
+          width="70"
+          height="70"
+          rx="35"
+          stroke="white"
+          strokeOpacity="0.1"
+          strokeWidth="16"
+        />
+        <path
+          d="M36.884 51.4V34.6H39.992V42.64L46.376 34.6H50.048L45.176 40.6L51.116 51.4H47.48L43.064 43.216L39.992 47.032V51.4H36.884Z"
+          fill="black"
+        />
       </svg>
-      <p className="absolute left-[12.9483rem] top-[12.8866rem] whitespace-nowrap font-sans text-[0.5768rem] leading-[normal] text-[#1a1a1d]">
-        Virtual
+    </span>
+  );
+}
+
+/* ── the video-call mockup (2673:3352) ──────────────────────────────── */
+
+/* the name/subtitle pair every participant tile carries (2673:3359 / 3376 /
+   3385) — Figma centres both lines on the camera-off tile, only the subtitle
+   on the narrow tile, and neither on the two wide tiles */
+function TileName({ variant }: { variant: "wide" | "narrow" | "center" }) {
+  return (
+    <div
+      className={
+        variant === "wide"
+          ? "flex min-w-px flex-1 flex-col items-start font-sans leading-[1.48]"
+          : `flex w-full shrink-0 flex-col items-start font-sans leading-[1.48] ${
+              variant === "center" ? "text-center" : ""
+            }`
+      }
+    >
+      <p className="w-full text-[1.125rem] text-white">Kim Berkeley</p>
+      <p
+        className={`w-full text-[0.875rem] text-[#ddd] ${
+          variant === "narrow" ? "text-center" : ""
+        }`}
+      >
+        Kim Berkeley
       </p>
-
-      <p className="absolute left-[1.375rem] top-[14.625rem] w-[15.125rem] font-sans text-[0.5768rem] leading-[0.9529rem] text-[#6b7280]">
-        Team up to crack the clues, solve the puzzles and escape before the
-        timer runs out. Perfect for all skill levels.
-      </p>
-
-      {/* attendee stack (2504:9167–9174) */}
-      {ATTENDEES.map((a) => (
-        <span
-          key={a.left}
-          aria-hidden="true"
-          className="absolute top-[17.8564rem] size-[1.6049rem] overflow-hidden rounded-full ring-[0.0803rem] ring-white"
-          style={{ left: a.left }}
-        >
-          <Image
-            src={a.img}
-            alt=""
-            quality={90}
-            sizes="1.6049rem"
-            className="size-full select-none object-cover"
-          />
-        </span>
-      ))}
-      <span className="absolute left-[7.8827rem] top-[17.8564rem] flex h-[1.6049rem] w-[2.2068rem] items-center justify-center rounded-[0.8025rem] border-[0.1003rem] border-white bg-[#ededf0] font-[family-name:var(--font-satoshi)] text-[0.5517rem] font-bold leading-[normal] text-[#6b7280]">
-        +37
-      </span>
-
-      <span className="absolute left-[15.1875rem] top-[17.6875rem] flex h-[1.9375rem] w-[6.625rem] items-center justify-center rounded-[1.1536rem] bg-[rgba(34,97,4,0.515)] font-[family-name:var(--font-satoshi)] text-[0.5768rem] font-bold uppercase leading-[normal] tracking-[0.0301rem] text-white">
-        JOIN EVENT
-      </span>
     </div>
   );
 }
 
-/* UPCOMING EVENTS card (2504:9103) — 357×293, #161513, rounded 18 */
-function UpcomingCard() {
-  return (
-    <div className="absolute left-[58.71875rem] top-[13.1875rem] h-[18.3125rem] w-[22.3125rem] overflow-hidden rounded-[1.125rem] bg-[#161513] shadow-[0_0.25rem_1rem_0_rgba(15,15,26,0.12)]">
-      <div className="absolute left-[1.125rem] top-[1.125rem] flex w-[20rem] flex-col gap-[0.8125rem]">
-        <div className="flex items-center justify-between">
-          <span className="font-[family-name:var(--font-satoshi)] text-[0.5625rem] font-bold leading-[normal] tracking-[0.0281rem] text-[#9fa0a2]">
-            UPCOMING EVENTS
-          </span>
-          <RowChevronButton />
-        </div>
+/* the black scrim under a tile's caption (2673:3358 / 3366 / 3375) */
+const TILE_SCRIM =
+  "bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.65)_50%,#000_100%)]";
 
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-col">
-            {EVENTS.map((e) => (
-              <div
-                key={e.title}
-                className="flex h-[3.828125rem] items-center justify-between border-b-[0.25px] border-[#919295]"
-              >
-                <div className="flex items-center gap-[0.8125rem]">
-                  <Image
-                    src={e.img}
-                    alt={e.alt}
-                    quality={90}
-                    sizes="2.625rem"
-                    className="size-[2.625rem] shrink-0 select-none rounded-[0.5rem] object-cover"
-                  />
-                  <div className="flex w-[5.5rem] flex-col gap-[0.3125rem]">
-                    <div className="flex flex-col gap-[0.125rem] whitespace-nowrap">
-                      <span className="font-[family-name:var(--font-satoshi)] text-[0.75rem] font-bold leading-[normal] text-white">
-                        {e.title}
-                      </span>
-                      <span className="font-sans text-[0.5625rem] font-medium leading-[normal] text-[#9fa0a2]">
-                        {e.when}
-                      </span>
-                    </div>
-                    <span className="font-sans text-[0.5625rem] font-medium leading-[normal] text-[#9fa0a2]">
-                      Virtual
-                    </span>
+/* a 270-wide participant tile (2673:3356 / 2673:3364) */
+function WideTile({
+  img,
+  alt,
+  imgClassName,
+  muted,
+}: {
+  img: StaticImageData;
+  alt: string;
+  imgClassName: string;
+  muted: boolean;
+}) {
+  return (
+    <div className="relative h-[13.84375rem] w-[16.875rem] shrink-0 overflow-hidden rounded-[1.25rem] bg-white/[0.07]">
+      <Image
+        src={img}
+        alt={alt}
+        quality={90}
+        sizes="16.875rem"
+        className={`absolute left-0 w-full max-w-none select-none ${imgClassName}`}
+      />
+      <div
+        className={`absolute bottom-[-0.03125rem] left-0 flex h-[4.25rem] w-[16.875rem] items-start justify-center gap-8 px-6 ${TILE_SCRIM}`}
+      >
+        <TileName variant="wide" />
+        {muted ? <IconMicOff18 /> : <IconMic18 />}
+      </div>
+    </div>
+  );
+}
+
+/* Figma masks the 1160×799 panel with a rounded rect whose gradient fill runs
+   white → 85% (at 86.06% of its 799) → 0, offset -198px, so over the panel the
+   alpha goes 0.9568 → 0.85 (61.25%) → 0 (75.22% = the 601 clip line). */
+const PANEL_FADE =
+  "linear-gradient(to bottom, rgba(0,0,0,0.9568) 0%, rgba(0,0,0,0.85) 61.25%, rgba(0,0,0,0) 75.22%)";
+
+function DeviceGraphic() {
+  return (
+    <div
+      className="relative h-[49.9375rem] w-[72.5rem] rounded-[2rem] bg-[rgba(0,0,0,0.33)] p-4"
+      style={{ maskImage: PANEL_FADE, WebkitMaskImage: PANEL_FADE }}
+    >
+      <div className="flex h-[47.9375rem] w-[70.5rem] items-end gap-4">
+        {/* left column (2673:3353) */}
+        <div className="flex h-full w-[34.75rem] shrink-0 flex-col gap-4">
+          <div className="flex h-[28.6875rem] w-full flex-col gap-4">
+            {/* row 1 (2673:3355) */}
+            <div className="flex h-[13.84375rem] w-full items-center gap-4">
+              <WideTile
+                img={tile1}
+                alt="A teammate listening from a home office on the call"
+                imgClassName="h-[152.37%] top-[-8.6146%]"
+                muted
+              />
+              <WideTile
+                img={tile2}
+                alt="A teammate in a headset talking to the group"
+                imgClassName="h-[167.05%] top-[-16.46%]"
+                muted={false}
+              />
+            </div>
+
+            {/* row 2 (2673:3372) */}
+            <div className="flex h-[13.84375rem] w-full items-center gap-4">
+              {/* narrow photo tile (2673:3373) */}
+              <div className="relative h-full w-[9.08333rem] shrink-0 overflow-hidden rounded-[1.25rem] bg-white/[0.07]">
+                <Image
+                  src={tile3}
+                  alt="A teammate smiling at the camera from a bright kitchen"
+                  quality={90}
+                  sizes="9.08333rem"
+                  className="absolute inset-0 size-full max-w-none select-none object-cover"
+                />
+                <div
+                  className={`absolute bottom-[-0.0625rem] left-0 flex h-[6.25rem] w-[9.0625rem] flex-col items-center gap-4 px-4 ${TILE_SCRIM}`}
+                >
+                  <TileName variant="narrow" />
+                  <IconMicOff18 />
+                </div>
+              </div>
+
+              {/* camera-off participant (2673:3381) */}
+              <div className="flex h-full w-[11.83333rem] shrink-0 flex-col items-center justify-end gap-8 rounded-[1.25rem] bg-white/[0.14] px-[1.375rem] pb-[1.125rem]">
+                <ChatBubbleAvatar />
+                <div className="flex w-full flex-col gap-4">
+                  <TileName variant="center" />
+                  <div className="flex w-full items-center justify-center gap-4">
+                    <IconVolumeOff18 />
+                    <IconVideoOff18 />
                   </div>
                 </div>
-                <RowChevron />
+              </div>
+
+              {/* headcount tile (2673:3393) */}
+              <div className="flex h-full w-[11.83333rem] shrink-0 flex-col items-center justify-center gap-3 rounded-[1.25rem] bg-white/[0.14] px-[1.375rem]">
+                <IconUsers54 />
+                <p className="w-full text-center font-sans text-[2rem] leading-[1.48] text-white">
+                  50+
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* agenda card (2673:3398) */}
+          <div className="flex h-[18.25rem] w-full flex-col gap-3 rounded-[1.25rem] bg-white/[0.07] p-8">
+            <p className="w-full font-sans text-[1.125rem] font-bold leading-[1.48] text-white">
+              Event Agenda
+            </p>
+            {AGENDA.map((row) => (
+              <div key={row.label} className="flex w-full items-start gap-2">
+                <IconSquareCheck24 done={row.done} />
+                <p className="min-w-px flex-1 font-sans text-[1.125rem] leading-[1.48] text-white">
+                  {row.label}
+                </p>
               </div>
             ))}
           </div>
+        </div>
 
-          <div className="flex items-center justify-center gap-2">
-            <CalendarIcon />
-            <span className="font-[family-name:var(--font-satoshi)] text-[0.5625rem] font-bold leading-[normal] tracking-[0.0281rem] text-[#9fa0a2]">
-              VIEW CALENDAR
-            </span>
+        {/* right column (2673:3421) */}
+        <div className="flex h-full w-[34.75rem] shrink-0 flex-col gap-4">
+          {/* host stage (2673:3422) */}
+          <div className="relative h-[37.875rem] w-full overflow-hidden rounded-[1.25rem] bg-white/[0.07]">
+            <Image
+              src={host}
+              alt="The event host waving to the camera as the session opens"
+              priority
+              quality={90}
+              sizes="34.75rem"
+              className="absolute inset-0 size-full max-w-none select-none object-cover"
+            />
+            {/* call controls (2673:3424) */}
+            <div className="absolute left-0 top-[31.625rem] flex h-[6.25rem] w-[34.75rem] items-start justify-center gap-8 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.9)_100%)]">
+              <div className="flex items-center gap-1">
+                <span className="flex size-[3.5rem] items-center justify-center rounded-lg bg-[rgba(0,0,0,0.75)]">
+                  <IconMic24 />
+                </span>
+                <span className="flex size-[3.5rem] items-center justify-center rounded-lg bg-[rgba(0,0,0,0.75)]">
+                  <IconHeadset24 />
+                </span>
+                <span className="flex size-[3.5rem] items-center justify-center rounded-lg bg-[rgba(0,0,0,0.75)]">
+                  <IconHand24 />
+                </span>
+                <span className="flex size-[3.5rem] items-center justify-center rounded-lg bg-[rgba(0,0,0,0.75)]">
+                  <IconFaceGrinning24 />
+                </span>
+              </div>
+              <span className="flex size-[3.5rem] items-center justify-center rounded-lg bg-[rgba(215,0,0,0.75)]">
+                <IconPhoneOff24 />
+              </span>
+            </div>
+          </div>
+
+          {/* live transcript (2673:3441) — sits under the fade at 1440 */}
+          <div className="flex h-[9.0625rem] w-full flex-col items-start justify-center rounded-[1.25rem] bg-white/[0.07] p-8">
+            <div className="flex w-full items-center gap-4">
+              <IconAudioLines54 />
+              <p className="min-w-px flex-1 font-sans text-[1.125rem] leading-[1.48] text-white">
+                Welcome, everyone. We&apos;ll start with a quick warm-up, then
+                split into teams for the challenge before coming back together
+                to share.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-/* The whole device cluster (2504:9098) authored in a fixed 1295×476 box and
-   scaled as one unit below 1360 so it never overflows. Stack, bottom → top:
-   scrim gradient → black screen → cards → base strip → device shell (its
-   screen area is transparent, so the bezel frames the cards). */
-function DeviceCluster() {
-  return (
-    <div className="relative h-[29.75rem] w-[80.9375rem] overflow-hidden">
-      {/* 2504:9100 — black scrim, fades out over the bottom 30% */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(180deg,#000_0%,rgba(0,0,0,0.85)_70%,rgba(0,0,0,0)_100%)]"
-      />
-      {/* 2504:9101 — the screen */}
-      <div
-        aria-hidden="true"
-        className="absolute left-[12.21875rem] top-[2.1875rem] h-[27.5625rem] w-[56.375rem] bg-black"
-      />
-
-      <LiveCard />
-      <UpcomingCard />
-
-      {/* 2504:9178 — the lit strip below the screen */}
-      <Image
-        src={deviceBase}
-        alt=""
-        aria-hidden="true"
-        quality={100}
-        sizes="51.4375rem"
-        className="absolute left-[14.71875rem] top-[27rem] h-[7rem] w-[51.4375rem] select-none"
-      />
-      {/* 2504:9179 — the device shell (transparent screen cut-out) */}
-      <Image
-        src={device}
-        alt=""
-        aria-hidden="true"
-        priority
-        quality={100}
-        sizes="60.875rem"
-        className="absolute left-[10rem] top-0 h-[78.6875rem] w-[60.875rem] max-w-none select-none"
-      />
     </div>
   );
 }
@@ -398,12 +493,12 @@ function DeviceCluster() {
 export default function ExpHero() {
   return (
     <section className="relative">
-      {/* background: the Confetti mesh raster (1440×1958). It runs 693px
-          (43.3125rem) past this section so ExpProblem's card overlaps it; the
+      {/* background: the Confetti mesh raster (1440×1958). It runs 499px
+          (31.1875rem) past this section so ExpProblem's card overlaps it; the
           raster itself fades to white at the bottom, so no mask is needed. */}
       <div
         aria-hidden="true"
-        className="absolute left-0 top-0 h-[calc(100%_+_43.3125rem)] w-full overflow-hidden bg-[#1a0510]"
+        className="absolute left-0 top-0 h-[calc(100%_+_31.1875rem)] w-full overflow-hidden bg-[#1a0510]"
       >
         <Image
           src={heroBg}
@@ -417,7 +512,7 @@ export default function ExpHero() {
       </div>
 
       <div className="relative z-10 pt-24 md:pt-28 lg:pt-[9.75rem]">
-        {/* copy column (2504:9086) — centred, on the 1200 content width */}
+        {/* copy column (2673:3337) — centred, on the 1200 content width */}
         <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
           <div className="mx-auto flex w-full max-w-content flex-col items-center gap-8 text-center">
             <div className="flex w-full flex-col gap-5">
@@ -441,8 +536,13 @@ export default function ExpHero() {
                 data-reveal-delay="120"
                 className="font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
               >
-                Book real hosts for virtual, in-person, or hybrid events in
-                minutes, right alongside your recognition and gifting programs.
+                <span className="lg:block">
+                  Book real hosts for virtual, in-person, or hybrid events in
+                  minutes,
+                </span>{" "}
+                <span className="lg:block">
+                  right alongside your recognition and gifting programs.
+                </span>
               </p>
             </div>
 
@@ -471,22 +571,24 @@ export default function ExpHero() {
           </div>
         </div>
 
-        {/* device cluster (2504:9098): 60 below the copy, 1295 wide and centred
-            — wider than the 1200 content box, so it sits outside the padding
-            and scales down as one unit below 1360 */}
-        <div
-          data-animation="reveal"
-          data-reveal-delay="240"
-          className="mx-auto mt-[3.75rem] h-[7.735rem] w-[21.04375rem] min-[30rem]:h-[10.115rem] min-[30rem]:w-[27.51875rem] md:h-[16.66rem] md:w-[45.325rem] lg:h-[22.61rem] lg:w-[61.5125rem] min-[80rem]:h-[28.56rem] min-[80rem]:w-[77.7rem] min-[85rem]:h-[29.75rem] min-[85rem]:w-[80.9375rem]"
-        >
-          <div className="origin-top-left scale-[0.26] min-[30rem]:scale-[0.34] md:scale-[0.56] lg:scale-[0.76] min-[80rem]:scale-[0.96] min-[85rem]:scale-100">
-            <DeviceCluster />
+        {/* video-call mockup (2673:3349): 60 below the copy, authored at
+            1160×601 and scaled as one unit so it never overflows. At ≥1360 it
+            renders 1:1 and lands at x=140 — its exact Figma position. */}
+        <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+          <div
+            data-animation="reveal"
+            data-reveal-delay="240"
+            className="mx-auto mt-[3.75rem] h-[10.5175rem] w-[20.3rem] min-[30rem]:h-[14.27375rem] min-[30rem]:w-[27.55rem] md:h-[22.5375rem] md:w-[43.5rem] lg:h-[27.045rem] lg:w-[52.2rem] min-[80rem]:h-[35.30875rem] min-[80rem]:w-[68.15rem] min-[85rem]:h-[37.5625rem] min-[85rem]:w-[72.5rem]"
+          >
+            <div className="h-[37.5625rem] w-[72.5rem] origin-top-left scale-[0.28] overflow-hidden min-[30rem]:scale-[0.38] md:scale-[0.6] lg:scale-[0.72] min-[80rem]:scale-[0.94] min-[85rem]:scale-100">
+              <DeviceGraphic />
+            </div>
           </div>
         </div>
 
-        {/* trust band (2504:9180): pt 60 → heading → 40 → stats → pb 100 */}
+        {/* trust band (2673:3446): pt 100 → heading → 40 → stats → pb 100 */}
         <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
-          <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 pb-16 pt-10 md:pb-20 md:pt-14 lg:pb-[6.25rem] lg:pt-[3.75rem]">
+          <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 pb-16 pt-16 md:pb-20 md:pt-20 lg:pb-[6.25rem] lg:pt-[6.25rem]">
             <h2
               data-animation="reveal"
               className="text-center font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.02] tracking-[-0.03125rem] text-white md:text-[2rem]"
