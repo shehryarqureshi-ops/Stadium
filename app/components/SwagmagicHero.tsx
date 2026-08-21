@@ -1,9 +1,10 @@
 /* /swag · Hero (Figma n9SjmDjzB1PeZAYJ5w43fr → 2500:4709 "Hero · Swag": hero
    row 2673:2782, content 2673:2783, text col 2673:2784, graphics 2673:2797,
-   trust band 2673:2819 — re-laid-out 2026-08-21). A dark-green
-   shader hero (SwagHeroShader — the live equivalent of Figma's raster
-   "image 13674" mesh gradient, kept on disk as sw2-hero-bg.jpg and layered
-   UNDER the shader as the reduced-motion / no-WebGL fallback) with the text
+   trust band 2673:2819 — re-laid-out 2026-08-21). A dark-green hero whose
+   background is Figma's own raster "image 13674" (sw2-hero-bg.jpg). It used
+   to be a live WebGL shader (SwagHeroShader) with the raster underneath as a
+   reduced-motion / no-WebGL fallback; the shader was removed 2026-08-21, so
+   the raster now paints the hero outright and matches Figma exactly. Text
    column on the 1200 content edge (x=120 at 1440; Figma draws it at 140) and
    the 558×557 product cluster right-aligned to the content edge: warehouse
    photo (295×470, rounded-16, big soft shadow) + translucent "Hoodie" card
@@ -11,11 +12,11 @@
    pill + transparent hoodie cut-out on top. Below the row: the trust-logo
    marquee (56 above / 40 track / 56 below).
 
-   The shader/bg extends 746px PAST this section's bottom (Figma's bg image is
+   The bg extends 746px PAST this section's bottom (Figma's bg image is
    1440×1719; the hero row ends at 973) so SwagmagicProblem's white card
    scrolls over it — render <SwagmagicHero/> then <SwagmagicProblem/> directly
-   (Problem is `relative z-10` on a transparent bg); do NOT wrap them in the
-   old page-level shader section or the shader doubles.
+   (Problem is `relative z-10` on a transparent bg); do NOT wrap them in a
+   page-level background section or the raster doubles.
 
    Figma stack (absolute y at 1440):
      0..84    nav (fixed SiteHeader overlays; section pt = 204 = 84 + 120)
@@ -27,11 +28,10 @@
      204..761 graphics 558×557 (row height = 557)
      761      → 60 gap (new 2026-08-21; the row used to butt the band)
      821      trust band: pt 56 → marquee 40 (877..917) → pb 56 → 973
-     973      section ends; shader bg continues to 1719 (mask fade 75→100%),
+     973      section ends; bg raster continues to 1719 (mask fade 75→100%),
               i.e. 1719 − 973 = 746px = 46.625rem of overhang. */
 
 import Image from "next/image";
-import SwagHeroShader from "./SwagHeroShader";
 import heroBg from "@/public/swag2/sw2-hero-bg.jpg";
 import hoodie from "@/public/swag2/sw2-hero-hoodie.png";
 import warehouse from "@/public/swag2/sw2-hero-warehouse.jpg";
@@ -131,11 +131,11 @@ function ProductCluster() {
 export default function SwagmagicHero() {
   return (
     <section className="relative">
-      {/* background: black ground → Figma mesh raster (fallback) → live shader
-          (hidden under prefers-reduced-motion so the raster shows). Extends
-          746px (46.625rem) below the section so the Problem card overlaps it,
-          fading out over the last 25% (Figma bg ends at y=1719, section at
-          973). */}
+      {/* background: black ground → Figma's mesh raster ("image 13674"). The
+          live WebGL shader that used to paint over this was removed
+          2026-08-21; the raster is now the background outright. Extends 746px
+          (46.625rem) below the section so the Problem card overlaps it, fading
+          out over the last 25% (Figma bg ends at y=1719, section at 973). */}
       <div
         aria-hidden="true"
         className="absolute left-0 top-0 h-[calc(100%_+_46.625rem)] w-full overflow-hidden bg-black mask-b-from-75%"
@@ -148,9 +148,6 @@ export default function SwagmagicHero() {
           sizes="100vw"
           className="select-none object-cover object-top"
         />
-        <div className="absolute inset-0 motion-reduce:hidden">
-          <SwagHeroShader />
-        </div>
       </div>
 
       <div className="relative z-10 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[12.75rem]">
