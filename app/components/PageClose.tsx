@@ -216,8 +216,7 @@ export default function PageClose({
                     <img
                       src="/footer-brand-swagmagic.svg"
                       alt="Swagmagic"
-                      width={134.931}
-                      height={20.935}
+                      height={24}
                       className="h-[1rem] w-auto md:h-[1.125rem] lg:h-[1.3125rem]"
                     />
                   </a>
@@ -227,18 +226,10 @@ export default function PageClose({
                     className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                   >
                     <img
-                      src="/footer-brand-snackmagic-mark.svg"
-                      alt=""
-                      width={18.324}
-                      height={15.707}
-                      className="h-[0.75rem] w-auto md:h-[0.8125rem] lg:h-[1rem]"
-                    />
-                    <img
-                      src="/footer-brand-snackmagic-word.svg"
+                      src="/footer-brand-snackmagic.svg"
                       alt="Snackmagic"
-                      width={112.692}
-                      height={20.614}
-                      className="h-[1rem] w-auto md:h-[1.09375rem] lg:h-[1.28125rem]"
+                      height={24}
+                      className="h-[1rem] w-auto md:h-[1.125rem] lg:h-[1.3125rem]"
                     />
                   </a>
                   <a

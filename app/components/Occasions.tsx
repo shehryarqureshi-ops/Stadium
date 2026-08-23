@@ -76,7 +76,7 @@ export default function Occasions() {
   ];
 
   return (
-    <section className="flex w-full flex-col items-center gap-8 overflow-hidden bg-surface-base py-section-y-sm md:gap-10 md:py-section-y-md lg:gap-12 lg:py-section-y-lg">
+    <section className="flex w-full flex-col items-center gap-8 overflow-hidden bg-surface-base md:gap-10 lg:gap-12">
       <style>{`
         @keyframes occ-ltr { from { transform: translateX(0); } to { transform: translateX(-25%); } }
         @keyframes occ-rtl { from { transform: translateX(-25%); } to { transform: translateX(0); } }

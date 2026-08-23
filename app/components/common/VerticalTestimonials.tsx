@@ -66,7 +66,7 @@ export default function Testimonials({
   if (!items.length) return null;
 
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-24 lg:px-[6.25rem] lg:py-[7.5rem]">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-[6.25rem]">
       <style>{`
         @keyframes testimonial-scroll {
           from {

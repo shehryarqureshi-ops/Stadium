@@ -74,6 +74,7 @@ export default function RecogOfferings() {
       description=""
       items={items}
       autoAdvance={false}
+      glowColor="#8d12e7"
     />
   );
 }

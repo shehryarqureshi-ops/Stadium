@@ -337,6 +337,9 @@ export default function Globe({ className = "" }: { className?: string }) {
       />
       {MARKERS.map((m) => {
         const markerId = `${instanceId}-${m.id}`;
+
+        // return null;
+
         return (
           <div
             key={m.id}

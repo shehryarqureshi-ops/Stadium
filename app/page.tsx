@@ -1,4 +1,3 @@
-import HorizontalCarousel from "./components/common/HorizontalCarousel";
 import EveryWay from "./components/EveryWay";
 import Hero from "./components/Hero";
 import Infrastructure from "./components/Infrastructure";
@@ -21,7 +20,7 @@ export default function Home() {
       <main
         id="main"
         tabIndex={-1}
-        className="flex flex-1 flex-col outline-none overflow-x-clip"
+        className="overflow-x-clip"
       >
         {/* Each section's key elements reveal individually as they enter the
             viewport via data-animation="reveal" (driven by RevealOnScroll +
@@ -32,12 +31,14 @@ export default function Home() {
         <EveryWay />
         <RedactedPoster />
         <Infrastructure />
-        <StadiumWay />
-        <Catalog />
-        <ScaleMap />
-        <TeamsTabs />
-        <Occasions />
-        <Testimonials />
+        <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
+          <StadiumWay />
+          <Catalog />
+          <ScaleMap />
+          <TeamsTabs />
+          <Occasions />
+          <Testimonials />
+        </div>
       </main>
       <StickyVideo />
       <PageClose />

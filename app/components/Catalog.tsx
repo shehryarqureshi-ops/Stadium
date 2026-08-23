@@ -6,11 +6,9 @@ import luxuryGoodsImg from "@/public/catalog/luxurygoods.png";
 import snackBoxesImg from "@/public/catalog/snackboxes.png";
 import workImg from "@/public/catalog/workessentials.png";
 
-import CatalogCarousel, {
-  type CarouselItem,
-} from "@/app/components/common/HorizontalCarousel";
+import HorizontalCarousel, { CatalogCarouselItem } from "@/app/components/common/HorizontalCarousel";
 
-const items: CarouselItem[] = [
+const items: CatalogCarouselItem[] = [
   {
     title: "Snack Boxes",
     caption: "10K+ Top Brands",
@@ -50,10 +48,11 @@ const items: CarouselItem[] = [
 
 export default function Catalog() {
   return (
-    <CatalogCarousel
+    <HorizontalCarousel
       caption="The Stadium Catalog"
       title="Every recipient covered"
       description="30K+ items from leading brands, with locally relevant options wherever you’re sending."
+      variant="catalog"
       items={items}
     />
   );
