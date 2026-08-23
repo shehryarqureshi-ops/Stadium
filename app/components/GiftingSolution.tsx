@@ -154,11 +154,6 @@ export default function GiftingSolution() {
       items={items}
       /* Figma's "symbol gradient" 1065:13950 — bleeds off the right edge and
          is clipped by the section. */
-      glow={{
-        src: "/gift2/gf-solution-glow.svg",
-        className:
-          "pointer-events-none absolute -right-[26rem] top-1/2 z-0 w-[61.4375rem] max-w-none -translate-y-1/2 select-none opacity-100",
-      }}
       /* Figma draws the Partner state, and the band has no rotation spec. */
       autoAdvance={false}
     />
