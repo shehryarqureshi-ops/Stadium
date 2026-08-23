@@ -87,11 +87,11 @@ export default function RecogSolution() {
   return (
     <section
       aria-labelledby="recog-solution-title"
-      className="bg-white px-section-x-sm pb-20 pt-10 md:px-section-x-md md:pb-28 lg:px-section-x-lg lg:pb-40"
+      className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
     >
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-10 lg:grid-cols-[492fr_80fr_668fr] lg:gap-0">
         {/* left column — eyebrow → 8 → title → 20 → subhead */}
-        <div className="flex min-w-0 flex-col gap-5 self-start lg:col-start-1">
+        <div className="flex min-w-0 flex-col gap-5 self-start lg:col-start-1 sticky top-24">
           <div className="flex flex-col gap-2">
             <p
               data-animation="reveal"
@@ -118,23 +118,20 @@ export default function RecogSolution() {
 
         {/* right column — dashed rail + the four rows */}
         <div
-          data-animation="reveal"
-          data-reveal-stagger="90"
           className="relative flex min-w-0 flex-col gap-10 lg:col-start-3"
         >
           {/* rail line: Figma runs it from the section top (y=0) to y=2272,
               i.e. 40 above this stack and 126.5 below it. */}
           <span
             aria-hidden="true"
-            className="absolute -bottom-[7.90625rem] -top-10 hidden w-px -translate-x-1/2 lg:block"
+            className="absolute top-0 bottom-0 hidden w-px -translate-x-1/2 lg:block"
             style={{ left: "6.7365%", backgroundImage: DASHED_RAIL }}
           />
 
           {ROWS.map((row) => (
             <div
               key={row.id}
-              data-animation="reveal"
-              className="grid grid-cols-1 gap-3 lg:grid-cols-[90fr_24fr_554fr] lg:gap-0"
+              className="grid grid-cols-1 gap-3 lg:grid-cols-[90fr_24fr_554fr] lg:gap-0 sticky top-24"
             >
               {/* numbered pill (90×34 in Figma; full width of the rail column) */}
               <div className="relative lg:col-start-1">

@@ -91,14 +91,14 @@ function Value({ v }: { v: Cell }) {
 
 export default function RecogComparison() {
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         {/* header — eyebrow → 8 → title → 20 → subhead, centred, 880 wide */}
         <div className="flex w-full max-w-[55rem] flex-col items-center gap-5 text-center">
           <div className="flex w-full flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#f8f1fe]"
+              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#6b33db]"
             >
               WHY STADIUM
             </p>
@@ -135,16 +135,14 @@ export default function RecogComparison() {
                 <div
                   key={c.name}
                   role="columnheader"
-                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
-                    c.hi
-                      ? "rounded-b-[0.5rem] rounded-t-[1rem] bg-[#f8f1fe]"
-                      : "rounded-[1.5rem] bg-white"
-                  }`}
+                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${c.hi
+                    ? "rounded-b-[0.5rem] rounded-t-[1rem] bg-[#f8f1fe]"
+                    : "rounded-[1.5rem] bg-white"
+                    }`}
                 >
                   <span
-                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${
-                      c.hi ? "font-semibold" : "font-normal"
-                    }`}
+                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${c.hi ? "font-semibold" : "font-normal"
+                      }`}
                   >
                     {c.name}
                   </span>
@@ -162,9 +160,8 @@ export default function RecogComparison() {
               <div key={r.label} role="row" className="contents">
                 <div
                   role="rowheader"
-                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${
-                    ri === 0 ? "rounded-tl-[1rem]" : ""
-                  } ${ri === LAST_ROW ? "rounded-bl-[1rem]" : ""}`}
+                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${ri === 0 ? "rounded-tl-[1rem]" : ""
+                    } ${ri === LAST_ROW ? "rounded-bl-[1rem]" : ""}`}
                 >
                   <span className="whitespace-nowrap font-sans text-[0.90625rem] font-semibold leading-[1.4] text-[#16171b]">
                     {r.label}
@@ -174,11 +171,9 @@ export default function RecogComparison() {
                   <div
                     key={ci}
                     role="cell"
-                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${
-                      COLS[ci].hi ? "bg-[#f8f1fe]" : "bg-[#f2f2f2]"
-                    } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1rem]" : ""} ${
-                      ri === LAST_ROW && ci === LAST_COL ? "rounded-br-[1rem]" : ""
-                    }`}
+                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${COLS[ci].hi ? "bg-[#f8f1fe]" : "bg-[#f2f2f2]"
+                      } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1rem]" : ""} ${ri === LAST_ROW && ci === LAST_COL ? "rounded-br-[1rem]" : ""
+                      }`}
                   >
                     <Value v={v} />
                   </div>

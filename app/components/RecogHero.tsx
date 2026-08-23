@@ -70,7 +70,7 @@ export default function RecogHero() {
           60% (just below the section's own bottom edge). */}
       <div
         aria-hidden="true"
-        className="absolute left-0 top-0 h-[calc(100%_+_45.3125rem)] w-full overflow-hidden bg-[#5a3172] mask-b-from-60%"
+        className="absolute left-0 top-0 h-[calc(100%)] w-full overflow-hidden bg-[#5a3172]"
       >
         <Image
           src={heroBg}
@@ -206,8 +206,6 @@ export default function RecogHero() {
       <div className="relative z-10 rounded-t-[2rem] bg-white/20">
         <div className="px-section-x-sm py-10 md:px-section-x-md lg:px-section-x-lg lg:py-14">
           <div
-            data-animation="reveal"
-            data-reveal-delay="300"
             className="mx-auto w-full max-w-content"
           >
             <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">

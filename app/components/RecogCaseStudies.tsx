@@ -114,7 +114,7 @@ export default function RecogCaseStudies() {
   return (
     <section
       aria-labelledby="recog-case-studies-title"
-      className="rounded-t-[5rem] bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20"
+      className="rounded-t-[5rem] bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
     >
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 md:gap-16 lg:gap-20">
         {/* header — 860 wide, centered */}

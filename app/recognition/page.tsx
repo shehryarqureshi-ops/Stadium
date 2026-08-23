@@ -52,16 +52,18 @@ export default function RecognitionPage() {
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
         <RecogHero />
-        <RecogProblem />
-        <RecogSolution />
-        <RecogOfferings />
-        <RecogPlatform />
-        <RecogImpact />
-        <RecogComparison />
-        <RecogCommittee />
-        <RecogCaseStudies />
-        <RecogPackages />
-        <RecogContact />
+        <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
+          <RecogProblem />
+          <RecogSolution />
+          <RecogOfferings />
+          <RecogPlatform />
+          <RecogImpact />
+          <RecogComparison />
+          <RecogCommittee />
+          <RecogCaseStudies />
+          <RecogPackages />
+          <RecogContact />
+        </div>
         <RecogExplore />
         <RecogClosing />
       </main>

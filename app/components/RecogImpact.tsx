@@ -225,7 +225,7 @@ function FloatingPill({
 
 export default function RecogImpact() {
   return (
-    <section className="relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="relative bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       {/* Figma "symbol gradient" blooms — 2504:8299 (x 1470, off the right edge)
          and 2504:8300 (x −19, below the bottom edge); the S-symbol blurred at
          7% opacity, 950×535 node + 37.38%/21.05% blur bleed = 1660×760 on
