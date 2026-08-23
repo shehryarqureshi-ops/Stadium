@@ -54,7 +54,7 @@ export default function SnackHero() {
               </p>
               <h1 className="font-[family-name:var(--font-satoshi)] text-[2.75rem] font-black leading-[1.02] tracking-[-0.09375rem] text-white md:text-[3.25rem] lg:text-[3.375rem]">
                 Snacks people
-                <br className="hidden lg:block" /> can’t wait to open
+                <br className="hidden lg:block" /> can’t wait to open!
               </h1>
             </div>
 
