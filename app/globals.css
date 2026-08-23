@@ -200,7 +200,7 @@
      Full-bleed backgrounds stay on the section; content caps and centers.
      max-w-section = capped section that carries its own side padding;
      max-w-content = inner content row inside a full-bleed section. */
-  --container-content: 75rem; /* 1200px — content container cap → 120px margins at 1440 (user 2026-06-17) */
+  --container-content: 78.75rem; /* 1260px — content container cap → 120px margins at 1440 (user 2026-06-17) */
   --container-section: 86.25rem; /* 1380px — section cap → 1200 content + 2×90px padding */
   --container-band: 60rem; /* 960px — narrow-desktop (1024–1300) single-column
                               cap: keeps the stacked ScaleMap treatment from

@@ -130,12 +130,12 @@ export default function PageClose({
       )}
 
       {/* ===== Footer ===== */}
-      <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pb-36 pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pb-56 lg:pt-20">
+      <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pt-20">
         {/* content caps + centers above 1440; bg stays full-bleed */}
         <div className="mx-auto flex w-full max-w-content flex-col gap-8 lg:gap-12">
           {/* lg:flex-wrap lets the link columns drop below the brand column on
             narrow desktop widths (1024–1300) instead of overflowing */}
-          <div className="flex w-full flex-col gap-8 lg:flex-row lg:flex-wrap lg:items-stretch lg:gap-6">
+          <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-24 justify-between">
             {/* Brand column: logo lockup + tagline + social, OUR BRANDS pinned to bottom on desktop */}
             <div className="flex flex-col gap-6 lg:w-[24rem] lg:shrink-0 lg:justify-between">
               <div className="flex flex-col gap-4">
@@ -241,6 +241,19 @@ export default function PageClose({
                       className="h-[1rem] w-auto md:h-[1.09375rem] lg:h-[1.28125rem]"
                     />
                   </a>
+                  <a
+                    href="#"
+                    aria-label="Snackmagic"
+                    className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
+                  >
+                    <img
+                      src="/footer-brand-confetti-mark.svg"
+                      alt="Snackmagic"
+                      width={112.692}
+                      height={20.614}
+                      className="h-[1rem] w-auto md:h-[1.09375rem] lg:h-[1.28125rem]"
+                    />
+                  </a>
                 </div>
               </div>
             </div>
@@ -248,12 +261,12 @@ export default function PageClose({
             {/* Link columns: stacked on mobile, 4-up from tablet */}
             <nav
               aria-label="Footer"
-              className="flex flex-col gap-12 md:flex-row md:gap-6 lg:gap-6"
+              className="flex flex-col gap-12 md:flex-row md:gap-6 lg:gap-10"
             >
               {LINK_COLUMNS.map((column) => (
                 <div
                   key={column.heading}
-                  className="flex flex-col gap-5 md:min-w-0 md:flex-1 md:gap-10 lg:w-[11.25rem] lg:flex-none"
+                  className="flex flex-col gap-5 md:min-w-0 md:gap-10"
                 >
                   <p className="font-sans text-[1rem] font-semibold text-white">
                     {column.heading}
@@ -263,7 +276,7 @@ export default function PageClose({
                       <li key={link}>
                         <a
                           href="#"
-                          className="font-sans text-body-md text-grey-400 transition-colors hover:text-white"
+                          className="font-sans text-body-md text-grey-400 transition-colors hover:text-white whitespace-nowrap"
                         >
                           {link}
                         </a>
@@ -300,9 +313,11 @@ export default function PageClose({
             </div>
           </div>
         </div>
+
+        {/* Stadium logo */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-[-3vh] lg:bottom-[-8vh] block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04]"
+          className="pointer-events-none block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04] -mb-6 lg:-mb-30 mt-8 lg:mt-4"
         >
           Stadium
         </span>
