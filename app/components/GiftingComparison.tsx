@@ -38,12 +38,30 @@ const COLS: { name: string; sub: string; hi?: boolean }[] = [
 ];
 
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
-  { label: "Recipient’s Choice · 25K+ Gifts", vals: ["check", "Limited", "check", "minus"] },
-  { label: "Automation & CRM Triggers", vals: ["check", "check", "Limited", "minus"] },
-  { label: "Employee, Client, & Partner Gifting", vals: ["check", "Some", "Some", "Manual"] },
-  { label: "Global With Local Fulfillment", vals: ["check", "check", "Limited", "minus"] },
-  { label: "Spend Control & Budgets", vals: ["check", "Limited", "minus", "minus"] },
-  { label: "Swag, Snacks, & Recognition", vals: ["check", "Limited", "minus", "minus"] },
+  {
+    label: "Recipient’s Choice · 25K+ Gifts",
+    vals: ["check", "Limited", "check", "minus"],
+  },
+  {
+    label: "Automation & CRM Triggers",
+    vals: ["check", "check", "Limited", "minus"],
+  },
+  {
+    label: "Employee, Client, & Partner Gifting",
+    vals: ["check", "Some", "Some", "Manual"],
+  },
+  {
+    label: "Global With Local Fulfillment",
+    vals: ["check", "check", "Limited", "minus"],
+  },
+  {
+    label: "Spend Control & Budgets",
+    vals: ["check", "Limited", "minus", "minus"],
+  },
+  {
+    label: "Swag, Snacks, & Recognition",
+    vals: ["check", "Limited", "minus", "minus"],
+  },
   { label: "One Platform", vals: ["check", "minus", "minus", "minus"] },
 ];
 
@@ -96,7 +114,7 @@ export default function GiftingComparison() {
   return (
     <section
       aria-labelledby="gifting-comparison-title"
-      className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20"
+      className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg overflow-auto lg:overflow-visible"
     >
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 lg:gap-[3.75rem]">
         {/* header — eyebrow → 8 → title → 20 → subhead, centred */}
@@ -120,7 +138,8 @@ export default function GiftingComparison() {
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
-            Premium gifts, backed by the infrastructure to send them across 170+ countries.
+            Premium gifts, backed by the infrastructure to send them across 170+
+            countries.
           </p>
         </div>
 
@@ -136,13 +155,19 @@ export default function GiftingComparison() {
           >
             {/* header row */}
             <div role="row" className="contents">
-              <div role="columnheader" aria-hidden className="rounded-[1.5rem] bg-white" />
+              <div
+                role="columnheader"
+                aria-hidden
+                className="rounded-[1.5rem] bg-white"
+              />
               {COLS.map((c) => (
                 <div
                   key={c.name}
                   role="columnheader"
                   className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
-                    c.hi ? "rounded-b-[0.5rem] rounded-t-[1.5rem] bg-[#fbf8f2]" : "rounded-[1.5rem] bg-white"
+                    c.hi
+                      ? "rounded-b-[0.5rem] rounded-t-[1.5rem] bg-[#fbf8f2]"
+                      : "rounded-[1.5rem] bg-white"
                   }`}
                 >
                   <span
@@ -179,7 +204,9 @@ export default function GiftingComparison() {
                     className={`flex items-center justify-center rounded-[0.5rem] p-6 ${
                       COLS[ci].hi ? "bg-[#fbf8f2]" : "bg-[#f2f2f2]"
                     } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1.5rem]" : ""} ${
-                      ri === LAST_ROW && ci === LAST_COL ? "rounded-br-[1.5rem]" : ""
+                      ri === LAST_ROW && ci === LAST_COL
+                        ? "rounded-br-[1.5rem]"
+                        : ""
                     }`}
                   >
                     <Value v={v} />

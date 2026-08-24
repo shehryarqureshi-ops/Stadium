@@ -87,22 +87,20 @@ export default function StepCards({
                   }
                 }}
                 className={`group flex flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 lg:cursor-pointer ${
-                  isActive ? "lg:grow-[3.08]" : "lg:grow lg:hover:bg-[#fafafa]"
+                  isActive
+                    ? "lg:grow-[3.08] shadow-lg"
+                    : "lg:grow lg:hover:bg-[#fafafa]"
                 }`}
               >
                 <div className="flex h-full flex-col gap-2.5 lg:flex-row lg:items-stretch lg:justify-between">
                   {/* Number + content */}
-                  <div
-                    className={`flex flex-col justify-between gap-6 ${
-                      isActive ? "lg:w-[51.6%]" : "lg:w-full"
-                    }`}
-                  >
+                  <div className={`flex flex-col justify-between w-full gap-6`}>
                     <span className="p-4 font-sans text-[1rem] leading-5 text-[#a9a9ad]">
                       {number}
                     </span>
 
                     <div className="flex flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6">
-                      <h3 className="font-[family-name:var(--font-satoshi)] text-[1.25rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#16171b]">
+                      <h3 className="font-[family-name:var(--font-satoshi)] text-2xl font-bold leading-[1.3] tracking-[-0.01em] text-[#16171b]">
                         {item.title}
                       </h3>
 
@@ -124,7 +122,7 @@ export default function StepCards({
                     <div
                       id={panelId}
                       role="tabpanel"
-                      className={`relative mx-auto h-[16rem] w-full overflow-hidden rounded-2xl lg:mx-0 lg:h-auto lg:w-[46.7%] lg:max-w-none lg:self-stretch ${
+                      className={`relative mx-auto h-[16rem] w-full overflow-hidden rounded-2xl lg:mx-0 lg:h-auto lg:max-w-none lg:self-stretch ${
                         isActive ? "lg:block lg:snack-step-in" : "lg:hidden"
                       }`}
                     >
@@ -134,10 +132,8 @@ export default function StepCards({
                         <Image
                           src={item.image}
                           alt={item.imageAlt ?? item.title}
-                          fill
                           quality={100}
-                          className="rounded-2xl object-cover"
-                          sizes="(min-width:1024px) 15rem, 100vw"
+                          className="rounded-2xl w-full"
                         />
                       ) : null}
                     </div>

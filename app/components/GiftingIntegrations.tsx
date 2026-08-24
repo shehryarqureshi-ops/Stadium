@@ -32,56 +32,63 @@
    starts 4540; this ends 5511, Comparison starts 5671) → white section
    py 80/80 (lg:py-20) so the visible gap to both neighbours is 160. */
 
-import Image from "next/image";
-import adminIntegrations from "@/public/gift2/gf-integrations-admin.png";
+import SixCards from "./common/SixCards";
+import VariableCardGrid, {
+  VariableCardGridItem,
+} from "./common/VariableCardGrid";
+
+import mockStores from "@/public/gifting/control/approvals.png";
+import mockInventory from "@/public/gifting/control/budgets.png";
+import mockFulfillment from "@/public/gifting/control/reporting.png";
+import mockGifting from "@/public/gifting/control/stack.png";
+
+const ITEMS: VariableCardGridItem[] = [
+  {
+    image: mockStores,
+    title: "Approvals & Permissions",
+    description:
+      "Route what needs signing off, cap who can send, and keep a clean record of every decision.",
+  },
+  {
+    image: mockInventory,
+    title: "Budgets by Team",
+    description:
+      "Allocate a budget per team, cap it, and watch it draw down in real time.",
+  },
+  {
+    image: mockFulfillment,
+    title: "Reporting",
+    description:
+      "See what shipped, what it cost, and which programs people actually engaged with.",
+  },
+  {
+    image: mockGifting,
+    title: "Connected to Your Stack",
+    description:
+      "Connect to 100+ tools, including HRIS, CRM and Slack, so gifts trigger from systems you already run.",
+  },
+];
 
 export default function GiftingIntegrations() {
   return (
     <section
       aria-labelledby="gifting-integrations-heading"
-      className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20"
+      className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
     >
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-8 lg:gap-9">
-        {/* header — Figma 760 of 1240 → 735px at the site's 1200 container */}
-        <div className="flex w-full max-w-[45.9375rem] flex-col items-center gap-4 text-center lg:gap-5">
-          <div className="flex flex-col items-center gap-2">
-            <p
-              data-animation="reveal"
-              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#996b00]"
-            >
-              Works with your stack
-            </p>
-            <h2
-              id="gifting-integrations-heading"
-              data-animation="reveal"
-              className="max-w-[36.9375rem] font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
-            >
-              Send gifts from the tools you already use
-            </h2>
-          </div>
-          <p
-            data-animation="reveal"
-            className="font-sans text-[1.0625rem] leading-[1.45] text-[#707075] lg:text-[1.125rem]"
-          >
-            Trigger gifts from your HRIS, CRM, or workflows without changing how your team works.
-          </p>
-        </div>
-
-        {/* admin window mockup — 1240×767 in Figma, full content width here */}
-        <div
-          data-animation="reveal"
-          data-reveal-delay="120"
-          className="w-full overflow-hidden rounded-[0.5rem] shadow-[0_1.25rem_1.125rem_rgba(0,0,0,0.28)]"
-        >
-          <Image
-            src={adminIntegrations}
-            alt="Stadium admin, Integrations screen: BambooHR live under Your Connections, and available HRIS, ATS and CRM connections including ADP Workforce Now, AlexisHR, Altera Payroll, BambooHR, Breathe and Charlie"
-            quality={100}
-            sizes="(min-width: 1024px) 75rem, 100vw"
-            className="h-auto w-full"
-          />
-        </div>
-      </div>
+      <VariableCardGrid
+        caption="Control"
+        captionColor="#996b00"
+        title={
+          <>
+            Gifting your finance team will
+            <br />
+            actually sign off on
+          </>
+        }
+        description="Budgets set per team, approvals routed before anything ships, and a record of what every program returned."
+        gridColumns={2}
+        items={ITEMS}
+      />
     </section>
   );
 }

@@ -1,33 +1,3 @@
-/* /gifting · THE SOLUTION — "One platform for all your gifting".
-
-   Section shell + per-tab content: Imagery System file F7rDHYd3n5nwRtrlv1F6dO,
-   section 1065:13949, panel content 1091:3748.
-
-   This used to be ~360 lines of bespoke markup. It now renders through the
-   shared tab band, app/components/common/PillTabs.tsx (`TabsShowcase`), the
-   same component /recognition, /snacks and the homepage teams section use —
-   passed `variant="band"` so it keeps this page's Figma look (amber caption,
-   44px heading, borderless white/75 card, the amber symbol glow) rather than
-   the recognition/teams look the component defaults to.
-
-   Why it matters that the slot is shared: the bespoke version pinned the
-   image height and let its width flex, so the visible aspect drifted from
-   1.03 at 1024px to 1.51 at 1440 and object-cover cropped hard at narrow
-   widths. The shared slot is a fixed share of the card with a constant
-   aspect, so the proportion holds at every width.
-
-   Three of the six panels are drawn at DIFFERENT aspects in Figma, which is
-   why items carry their own `aspect`:
-     · photos          580×370
-     · automated       602×332  (a gradient card that deliberately clips the
-                                 542×378 browser window at its bottom edge;
-                                 pure vector + text, so it ships as an SVG)
-     · gift stores     580×396  (a 580×396 clip of a 592×473 artwork — the
-                                 clip is what creates the second row's peek)
-
-   Figma stack (1440): eyebrow 17 → 8 → title 48 → 20 → subhead 53 → 40 →
-   pill bar 62 → 45 → band card (p10, gap 60). */
-
 import TabsShowcase, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
@@ -113,8 +83,7 @@ const items: TabsShowcaseItem[] = [
     name: "Automated Gifting",
     tab: "automated gifting",
     title: "Automated Gifting",
-    description:
-      "Automate sends for any milestone, so you never miss a gift.",
+    description: "Automate sends for any milestone, so you never miss a gift.",
     bullets: [
       "Fires from HRIS/ATS or CRM",
       "Onboarding, anniversaries, and birthdays",
@@ -123,7 +92,6 @@ const items: TabsShowcaseItem[] = [
     image: automated,
     imageAlt:
       "The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations",
-    aspect: "602/332",
     cta: "Explore AUTOMATED gifting",
     href: "#",
   },
@@ -137,7 +105,6 @@ const items: TabsShowcaseItem[] = [
     image: stores,
     imageAlt:
       "A branded Halden gift shop page with a Featured Picks grid of wine glasses, a leather backpack, a brass tumbler and a steel tumbler, each priced in points",
-    aspect: "580/396",
     cta: "Explore gift stores",
     href: "#",
   },
@@ -146,15 +113,11 @@ const items: TabsShowcaseItem[] = [
 export default function GiftingSolution() {
   return (
     <TabsShowcase
-      variant="band"
       accent="#996b00"
       caption="The solution"
       title="One platform for all your gifting"
       description="Gifting for different recipients, occasions, and workflows."
       items={items}
-      /* Figma's "symbol gradient" 1065:13950 — bleeds off the right edge and
-         is clipped by the section. */
-      /* Figma draws the Partner state, and the band has no rotation spec. */
       autoAdvance={false}
     />
   );

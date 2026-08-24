@@ -1,6 +1,4 @@
-import SixCards, {
-  type SixCardsItem,
-} from "@/app/components/common/SixCards";
+import SixCards, { type SixCardsItem } from "@/app/components/common/SixCards";
 
 const ITEMS: SixCardsItem[] = [
   {

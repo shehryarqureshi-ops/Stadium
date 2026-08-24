@@ -41,10 +41,11 @@
    centred; the toast keeps its natural 328 width at every breakpoint. */
 
 import Image from "next/image";
-import heroBg from "@/public/recog2/rc-hero-bg.jpg";
+import heroBg from "@/public/rec-hero-bg.png";
 import heroPhoto from "@/public/recog2/rc-hero-photo.png";
 import toastAvatar from "@/public/recog2/rc-hero-avatar.png";
 import { HeroLogoWall } from "./common/HeroLogoWall";
+import RecognitionTween from "./special/RecognitionTween";
 
 export default function RecogHero() {
   return (
@@ -72,7 +73,7 @@ export default function RecogHero() {
           row's top — the 796 row height is the graphic's own height */}
       <div className="relative z-10 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem]">
         <div className="mx-auto flex w-full max-w-content flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-0">
-          <div className="flex w-full flex-col gap-8 lg:w-[47.0833%] lg:pt-[7.5rem]">
+          <div className="flex w-full flex-col gap-8 lg:w-full lg:pt-[7.5rem]">
             <div className="flex flex-col gap-5">
               <div data-animation="reveal" className="flex flex-col gap-2">
                 {/* Figma 2673:3878 sets a DOUBLE space after the middot
@@ -129,6 +130,8 @@ export default function RecogHero() {
             </div>
           </div>
 
+          <RecognitionTween />
+
           {/* graphic (2673:3888) — rc-hero-photo.png IS the 595×796 window
               Figma clips out of the 1280×1908 cut-out, so it needs no crop
               box here; the toast hangs 20px past its right edge (2673:3891,
@@ -136,7 +139,7 @@ export default function RecogHero() {
           <div
             data-animation="reveal"
             data-reveal-delay="240"
-            className="relative w-full max-w-[21.5rem] self-center sm:max-w-[24rem] md:max-w-[26rem] lg:w-[49.5833%] lg:max-w-none lg:self-start"
+            className="hidden relative w-full max-w-[21.5rem] self-center sm:max-w-[24rem] md:max-w-[26rem] lg:w-[49.5833%] lg:max-w-none lg:self-start"
           >
             <Image
               src={heroPhoto}

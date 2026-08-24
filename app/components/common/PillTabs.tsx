@@ -12,12 +12,11 @@ export type TabsShowcaseItem = {
   description: string;
   bullets?: string[];
   /** a string src is used for vector artwork (rendered as a plain <img>) */
-  image: StaticImageData | string | null;
+  image: StaticImageData | string;
   /** overrides `image` for alt text; falls back to `name` */
   imageAlt?: string;
   /** this panel's own Figma aspect, e.g. "602/332". Falls back to the
    *  variant default. Panels in one set may legitimately differ. */
-  aspect?: string;
   href?: string;
   cta?: string;
 };
@@ -89,7 +88,7 @@ export default function TabsShowcase({
     <section
       ref={sectionRef}
       className={
-        "relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20"
+        "relative bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
       }
     >
       {/* Background */}
@@ -190,9 +189,9 @@ export default function TabsShowcase({
         </div>
 
         {/* Tabs */}
-        <div data-animation="reveal" className="flex justify-center">
+        <div data-animation="reveal" className="text-center">
           <ul
-            className={`flex max-w-full gap-2.5 overflow-x-auto rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-[#e0e0e0]`}
+            className={`inline-flex justify-center max-w-full gap-2.5 overflow-x-auto rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-[#e0e0e0]`}
           >
             {items.map((item, index) => (
               <li key={item.name} className="shrink-0">
@@ -222,53 +221,26 @@ export default function TabsShowcase({
               aspect, so the visible proportion never drifts with the viewport
               (pinning height and flexing width made it swing 1.03→1.51). */}
           <div
-            className={`relative w-full shrink-0 overflow-hidden rounded-xl lg:w-[48%]`}
-            style={{
-              aspectRatio: (item.aspect ?? "4/3").replace("/", " / "),
-            }}
+            className={`relative w-full overflow-hidden rounded-xl aspect-[4/3]`}
           >
-            {items.map((tabItem, index) =>
-              typeof tabItem.image === "string" ? (
-                /* vector artwork — keep it crisp, never re-encoded */
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  key={tabItem.name}
-                  src={tabItem.image}
-                  alt={tabItem.imageAlt ?? tabItem.name}
-                  className={`absolute inset-0 h-full w-full select-none object-contain transition-opacity duration-500 ease-out motion-reduce:transition-none ${
-                    index === active ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ) : tabItem.image ? (
-                <Image
-                  key={tabItem.name}
-                  src={tabItem.image}
-                  alt={tabItem.imageAlt ?? tabItem.name}
-                  fill
-                  quality={100}
-                  sizes="(min-width: 64rem) 36rem, 100vw"
-                  className={`object-cover overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none
+            {items.map((tabItem, index) => (
+              <Image
+                key={tabItem.name}
+                src={tabItem.image}
+                height={0}
+                width={0}
+                alt={tabItem.imageAlt ?? tabItem.name}
+                quality={100}
+                className={`absolute inset-0 h-full w-full object-cover overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none
                     "rounded-3xl" ${index === active ? "opacity-100" : "opacity-0"}`}
-                />
-              ) : (
-                <div
-                  key={tabItem.name}
-                  className={`absolute inset-0 flex items-center justify-center bg-grey-100 transition-opacity duration-500 ease-out ${
-                    index === active ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  <span className="font-display text-[1.25rem] font-bold text-grey-400">
-                    {tabItem.name}
-                  </span>
-                </div>
-              ),
-            )}
+              />
+            ))}
           </div>
 
           {/* Active content */}
           <div
             key={`content-${item.name}`}
-            className={`teams-panel-in flex flex-col gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10 justify-center`}
+            className={`teams-panel-in w-full flex flex-col gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10 justify-center`}
           >
             <div className="flex flex-col gap-5">
               <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b]">

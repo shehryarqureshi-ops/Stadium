@@ -87,6 +87,7 @@ import gridSunglasses from "@/public/gift2/gf-hero-grid-sunglasses.jpg";
 import gridJewelryBox from "@/public/gift2/gf-hero-grid-jewelry-box.jpg";
 import gridFlowers from "@/public/gift2/gf-hero-grid-flowers.jpg";
 import gridLeatherWallet from "@/public/gift2/gf-hero-grid-leather-wallet.jpg";
+import { HeroLogoWall } from "./common/HeroLogoWall";
 
 /* Hero photo grid (1261:5189). Slot order = Figma top-to-bottom; the layer
    names are the designer's, kept verbatim as the keys. */
@@ -152,7 +153,7 @@ function PhotoTrack({
               className="select-none object-cover"
             />
           </div>
-        ))
+        )),
       )}
     </div>
   );
@@ -176,7 +177,7 @@ const LOGOS = [
 
 export default function GiftingHero() {
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden">
       {/* bg (2673:3538 "image 13782", 1440×1719): black ground under the amber
           mesh raster, 795px (49.6875rem) taller than the section so the Problem
           card overlaps it; the bottom 25% is masked for viewports > 1440 where
@@ -269,7 +270,11 @@ export default function GiftingHero() {
               aria-hidden="true"
               className="relative aspect-[444/688] w-full max-w-[27.75rem] shrink-0 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,#000_14%,#000_86%,transparent_100%)] lg:w-[27.75rem] lg:max-w-none"
             >
-              <PhotoTrack photos={GRID_LEFT} direction="up" className="left-0 top-[0.5814%]" />
+              <PhotoTrack
+                photos={GRID_LEFT}
+                direction="up"
+                className="left-0 top-[0.5814%]"
+              />
               <PhotoTrack
                 photos={GRID_RIGHT}
                 direction="down"
@@ -279,51 +284,8 @@ export default function GiftingHero() {
           </div>
         </div>
 
-        {/* glass + trust band (2673:3539 + 2673:3575) */}
-        <div className="relative">
-          {/* glass: full-bleed white/20, rounded-t-32, 838 tall — it runs past
-              this section so the Problem card scrolls over it, exactly like
-              the raster above */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 h-[52.375rem] rounded-t-[2rem] bg-white/20"
-          />
-
-          {/* trust band (2673:3575): 56 / 40 marquee / 56 — seamless CSS
-              marquee, logos inverted white, edges soft-masked */}
-          <div
-            data-animation="reveal"
-            data-reveal-delay="200"
-            className="relative px-section-x-sm py-14 md:px-section-x-md lg:px-section-x-lg"
-          >
-            <div className="mx-auto w-full max-w-content">
-              <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
-                <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
-                  {[0, 1].map((group) => (
-                    <ul
-                      key={group}
-                      aria-hidden={group === 1}
-                      className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
-                    >
-                      {LOGOS.map((l, i) => (
-                        <li key={`${l.alt}-${i}`} className="flex shrink-0 items-center">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={l.src}
-                            alt={group === 0 ? l.alt : ""}
-                            width={l.w}
-                            height={l.h}
-                            style={{ height: `${l.h / 16}rem` }}
-                            className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="mt-12 lg:mt-24">
+          <HeroLogoWall />
         </div>
       </div>
     </section>

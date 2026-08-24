@@ -10,25 +10,6 @@ import GiftingSolution from "../components/GiftingSolution";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 
-/* /gifting — bespoke page rebuilt 2026-08-19 from Figma
-   n9SjmDjzB1PeZAYJ5w43fr frame 2504:12118 (supersedes the 1113:2116 build
-   that the older Gift* components implement; those files stay in the tree
-   but are no longer used by this route).
-
-   Section order = the Figma frame order:
-     hero idea 25 2504:14132 (GiftingHero + GiftingProblem)
-     → six ways 2504:12466 (GiftingSolution) → How it works 2504:12514
-     → Catalog 2504:15249 → Stores admin 2504:12606 (GiftingIntegrations)
-     → Comparison 2504:12781 → closing 2504:12929.
-
-   GiftingHero owns the amber raster and sizes its bg box 710px taller than
-   itself so GiftingProblem (transparent, relative z-10) scrolls over it —
-   no shared wrapper <section>, no SwagHeroShader.
-
-   GiftingClosing renders the impact stats, the pricing banner AND the dark
-   CTA card as three nested sections over one shared raster, so it must stay
-   last before PageClose. */
-
 export const metadata: Metadata = {
   title: "Gifting — Corporate gifting without the busywork | Stadium",
   description:
@@ -45,12 +26,14 @@ export default function GiftingPage() {
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
         <GiftingHero />
-        <GiftingProblem />
-        <GiftingSolution />
-        <GiftingHowItWorks />
-        <GiftingCatalog />
-        <GiftingIntegrations />
-        <GiftingComparison />
+        <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
+          <GiftingProblem />
+          <GiftingSolution />
+          <GiftingHowItWorks />
+          <GiftingCatalog />
+          <GiftingIntegrations />
+          <GiftingComparison />
+        </div>
         <GiftingClosing />
       </main>
       <PageClose showCta={false} />
