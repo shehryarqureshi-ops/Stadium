@@ -36,10 +36,11 @@
 
 import Image from "next/image";
 import heroProduct from "@/public/snacks/sn3-hero.png";
+import { HeroLogoWall } from "./common/HeroLogoWall";
 
 export default function SnackHero() {
   return (
-    <section className="relative overflow-hidden bg-[#0437a5] pb-10 pt-[6rem] md:pt-[7rem] lg:pb-[3.75rem] lg:pt-[5.25rem]">
+    <section className="relative overflow-hidden bg-[#0437a5] pt-[6rem] md:pt-[7rem]">
       {/* split row: text (left, top-aligned + 120 inset) + photo (right, bleeds off-edge) */}
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
         {/* ≤1440 the split is proportional; above it the column locks to
@@ -116,6 +117,11 @@ export default function SnackHero() {
             sizes="(min-width:1024px) 56vw, 100vw"
           />
         </div>
+      </div>
+
+      {/* logo wall */}
+      <div className="mt-12 lg:mt-24">
+        <HeroLogoWall />
       </div>
     </section>
   );

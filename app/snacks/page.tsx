@@ -45,11 +45,11 @@ export default function SnacksPage() {
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
         <SnackHero />
-        <div className="grid gap-16 md:gap-24 lg:gap-40 pb-16 md:pb-24 lg:pb-40">
+        <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <SnackProblem />
           <SnackSolution />
           <SnackHowItWorks />
-          <SnackCatalog />
+          {/* <SnackCatalog /> */}
           <SnackPlatform />
           <SnackComparison />
           <SnackStats />

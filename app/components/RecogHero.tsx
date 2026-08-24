@@ -44,22 +44,7 @@ import Image from "next/image";
 import heroBg from "@/public/recog2/rc-hero-bg.jpg";
 import heroPhoto from "@/public/recog2/rc-hero-photo.png";
 import toastAvatar from "@/public/recog2/rc-hero-avatar.png";
-
-/* Figma "Logos track" (2673:3902): google, amazon, pinterest, accenture,
-   bloomberg, salesforce, netflix, google, amazon, pinterest — each at its own
-   Figma box size, bottom-aligned, gap 56. */
-const LOGOS = [
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-  { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 16 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 26 },
-  { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 20 },
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-];
+import { HeroLogoWall } from "./common/HeroLogoWall";
 
 export default function RecogHero() {
   return (
@@ -109,9 +94,9 @@ export default function RecogHero() {
                 data-reveal-delay="120"
                 className="w-full font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
               >
-                Recognition stalls in a Slack channel. Stadium turns a
-                thank-you into a real reward at someone&#8217;s door, anywhere.
-                You set the rules. We ship the rest.
+                Recognition stalls in a Slack channel. Stadium turns a thank-you
+                into a real reward at someone&#8217;s door, anywhere. You set
+                the rules. We ship the rest.
               </p>
             </div>
 
@@ -203,42 +188,7 @@ export default function RecogHero() {
       {/* glass panel (2673:3852) — full-bleed white/20, rounded-t-32 — carrying
           the trust band (2673:3900): 56 / 40 marquee / 56. Seamless CSS
           marquee, logos inverted white, edges soft-masked. */}
-      <div className="relative z-10 rounded-t-[2rem] bg-white/20">
-        <div className="px-section-x-sm py-10 md:px-section-x-md lg:px-section-x-lg lg:py-14">
-          <div
-            className="mx-auto w-full max-w-content"
-          >
-            <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
-              <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
-                {[0, 1].map((group) => (
-                  <ul
-                    key={group}
-                    aria-hidden={group === 1}
-                    className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
-                  >
-                    {LOGOS.map((l, i) => (
-                      <li
-                        key={`${l.alt}-${i}`}
-                        className="flex shrink-0 items-center"
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={l.src}
-                          alt={group === 0 ? l.alt : ""}
-                          width={l.w}
-                          height={l.h}
-                          style={{ height: `${l.h / 16}rem` }}
-                          className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeroLogoWall />
     </section>
   );
 }

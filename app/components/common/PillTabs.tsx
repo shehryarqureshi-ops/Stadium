@@ -90,7 +90,6 @@ export default function TabsShowcase({
       ref={sectionRef}
       className={
         "relative overflow-hidden bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20"
-        // "relative bg-white px-section-x-sm md:px-section-x-md lg:px-[6.25rem]"
       }
     >
       {/* Background */}

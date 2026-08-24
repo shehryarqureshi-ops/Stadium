@@ -86,11 +86,11 @@ export default function StepCards({
                     setActive(index);
                   }
                 }}
-                className={`group flex min-h-[9rem] cursor-pointer flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 ${
+                className={`group flex flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 lg:cursor-pointer ${
                   isActive ? "lg:grow-[3.08]" : "lg:grow lg:hover:bg-[#fafafa]"
                 }`}
               >
-                <div className="flex h-full flex-col gap-6 lg:flex-row lg:items-stretch lg:justify-between lg:gap-2.5">
+                <div className="flex h-full flex-col gap-2.5 lg:flex-row lg:items-stretch lg:justify-between">
                   {/* Number + content */}
                   <div
                     className={`flex flex-col justify-between gap-6 ${
@@ -106,20 +106,27 @@ export default function StepCards({
                         {item.title}
                       </h3>
 
-                      {isActive && item.description && (
-                        <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+                      {/* Always visible on mobile */}
+                      {item.description && (
+                        <p
+                          className={`font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71] ${
+                            isActive ? "lg:block" : "lg:hidden"
+                          }`}
+                        >
                           {item.description}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  {/* Active visual */}
-                  {isActive && (
+                  {/* Visual — always visible on mobile, active only on desktop */}
+                  {(item.content || item.image) && (
                     <div
                       id={panelId}
                       role="tabpanel"
-                      className="snack-step-in relative mx-auto h-[16rem] w-full max-w-[20rem] lg:mx-0 lg:h-auto lg:w-[46.7%] lg:max-w-none lg:self-stretch"
+                      className={`relative mx-auto h-[16rem] w-full overflow-hidden rounded-2xl lg:mx-0 lg:h-auto lg:w-[46.7%] lg:max-w-none lg:self-stretch ${
+                        isActive ? "lg:block lg:snack-step-in" : "lg:hidden"
+                      }`}
                     >
                       {item.content ? (
                         item.content
@@ -129,8 +136,8 @@ export default function StepCards({
                           alt={item.imageAlt ?? item.title}
                           fill
                           quality={100}
-                          className="object-cover rounded-2xl"
-                          sizes="(min-width:1024px) 15rem, 20rem"
+                          className="rounded-2xl object-cover"
+                          sizes="(min-width:1024px) 15rem, 100vw"
                         />
                       ) : null}
                     </div>

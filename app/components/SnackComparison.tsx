@@ -99,7 +99,7 @@ function Value({ v }: { v: Cell }) {
 
 export default function SnackComparison() {
   return (
-    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg overflow-auto lg:overflow-visible">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 lg:gap-[3.75rem]">
         <div className="flex max-w-[46rem] flex-col items-center gap-5 text-center">
           <p

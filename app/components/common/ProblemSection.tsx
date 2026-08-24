@@ -1,7 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
 
-import LogoWall from "@/app/components/common/LogoWall";
-
 export type ProblemSectionItem = {
   image: StaticImageData;
   imageAlt?: string;
@@ -15,7 +13,6 @@ type ProblemSectionProps = {
   title: string;
   description: string;
   items: ProblemSectionItem[];
-  showLogoWall?: boolean;
   showDivider?: boolean;
 };
 
@@ -25,22 +22,13 @@ export default function ProblemSection({
   title,
   description,
   items,
-  showLogoWall = true,
   showDivider = false,
 }: ProblemSectionProps) {
   return (
     <section className="relative z-10">
-      <div
-        className="rounded-t-[1.5rem] md:rounded-t-[2rem] lg:rounded-t-[2.5rem] overflow-hidden"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, #2f63d0 0%, #9bc3f5 42%, #ffffff 82%)",
-        }}
-      >
-        {showLogoWall && <LogoWall />}
-
+      <div className="overflow-hidden max-w-content mx-auto">
         <div className="flex w-full flex-col items-center">
-          <div className="flex w-full flex-col items-center rounded-[1rem] bg-white px-6 md:px-12 lg:px-20">
+          <div className="flex w-full flex-col items-center rounded-[1rem] bg-white">
             {/* Header */}
             <div className="flex w-full max-w-[53.75rem] flex-col items-center gap-5 text-center">
               <div className="flex flex-col items-center gap-2">
