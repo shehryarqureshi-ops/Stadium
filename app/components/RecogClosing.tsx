@@ -25,7 +25,6 @@ export default function RecogClosing() {
       backgroundColor="#181818"
       backgroundImage={gradient}
       ctaOneColor="#8d12e7"
-      backgroundImageHeight="90.3125rem"
       desktopTopSpacing="8.75rem"
       cardRounded
       cardBorder

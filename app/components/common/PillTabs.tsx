@@ -58,7 +58,7 @@ function CheckIcon() {
   );
 }
 
-export default function TabsShowcase({
+export default function PillTabs({
   caption,
   title,
   description,
@@ -88,10 +88,10 @@ export default function TabsShowcase({
     <section
       ref={sectionRef}
       className={
-        "relative bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
+        "relative min-w-0 bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
       }
     >
-      {/* Background */}
+      {/* Background blurred symbol */}
       <div className="absolute inset-0 flex justify-center-safe blur-[400px]">
         <svg
           width="983"
@@ -189,9 +189,9 @@ export default function TabsShowcase({
         </div>
 
         {/* Tabs */}
-        <div data-animation="reveal" className="text-center">
+        <div data-id="tabs" className="text-center">
           <ul
-            className={`inline-flex justify-center max-w-full gap-2.5 overflow-x-auto rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-[#e0e0e0]`}
+            className={`inline-flex justify-between max-w-full gap-2.5 overflow-x-auto rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-[#e0e0e0]`}
           >
             {items.map((item, index) => (
               <li key={item.name} className="shrink-0">
@@ -199,11 +199,10 @@ export default function TabsShowcase({
                   type="button"
                   onClick={() => select(index)}
                   aria-pressed={index === active}
-                  className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
-                    index === active
-                      ? "bg-[#16171b] text-white"
-                      : "text-[#16171b] hover:bg-grey-100"
-                  }`}
+                  className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${index === active
+                    ? "bg-[#16171b] text-white"
+                    : "text-[#16171b] hover:bg-grey-100"
+                    }`}
                 >
                   {item.tab}
                 </button>
@@ -213,34 +212,24 @@ export default function TabsShowcase({
         </div>
 
         {/* Content card */}
-        <div
-          data-animation="reveal"
-          className={`flex flex-col gap-6 overflow-hidden rounded-[2rem] p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem] border border-[#e0e0e0] bg-white`}
-        >
-          {/* Images — the slot is a fixed share of the card with a CONSTANT
-              aspect, so the visible proportion never drifts with the viewport
-              (pinning height and flexing width made it swing 1.03→1.51). */}
-          <div
-            className={`relative w-full overflow-hidden rounded-xl aspect-[4/3]`}
-          >
-            {items.map((tabItem, index) => (
-              <Image
-                key={tabItem.name}
-                src={tabItem.image}
-                height={0}
-                width={0}
-                alt={tabItem.imageAlt ?? tabItem.name}
-                quality={100}
-                className={`absolute inset-0 h-full w-full object-cover overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none
-                    "rounded-3xl" ${index === active ? "opacity-100" : "opacity-0"}`}
-              />
-            ))}
+        <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
+          {/* Active image */}
+          <div className="w-full lg:w-1/2 shrink-0">
+            <Image
+              key={item.name}
+              src={item.image}
+              alt={item.imageAlt ?? item.name}
+              quality={100}
+              width={0}
+              height={0}
+              className="h-full w-full object-top-left rounded-3xl"
+            />
           </div>
 
           {/* Active content */}
           <div
             key={`content-${item.name}`}
-            className={`teams-panel-in w-full flex flex-col gap-8 pb-6 pr-2 lg:py-[3.75rem] lg:pr-10 justify-center`}
+            className="teams-panel-in flex flex-1 flex-col justify-center gap-8 px-6 pb-6 lg:pr-10"
           >
             <div className="flex flex-col gap-5">
               <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b]">
@@ -257,12 +246,7 @@ export default function TabsShowcase({
                 {item.bullets.map((bullet) => (
                   <li key={bullet} className="flex items-center gap-3">
                     <CheckIcon />
-
-                    <span
-                      className={
-                        "font-sans text-[0.9375rem] leading-[1.2] text-[#16171b]"
-                      }
-                    >
+                    <span className="font-sans text-[0.9375rem] leading-[1.2] text-[#16171b]">
                       {bullet}
                     </span>
                   </li>

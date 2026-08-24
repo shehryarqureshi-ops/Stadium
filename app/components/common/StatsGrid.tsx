@@ -22,7 +22,7 @@ type RightStat = {
 };
 
 type StatsGridProps = {
-  caption: string;
+  caption?: string;
   captionColor?: string;
   title: string;
   description: string;
@@ -36,7 +36,7 @@ const NUM =
   "font-[family-name:var(--font-satoshi-medium)] leading-[1.04] tracking-[-0.0625rem]";
 
 export default function StatsGrid({
-  caption,
+  caption = '',
   captionColor = "#2178f5",
   title,
   description,
@@ -46,16 +46,18 @@ export default function StatsGrid({
   rightBottomStat,
 }: StatsGridProps) {
   return (
-    <section className="overflow-hidden rounded-b-4xl bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className="overflow-hidden rounded-b-4xl px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[53.75rem] flex-col items-center gap-2 text-center">
-          <p
-            data-animation="reveal"
-            style={{ color: captionColor }}
-            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem]"
-          >
-            {caption}
-          </p>
+          {caption &&
+            <p
+              data-animation="reveal"
+              style={{ color: captionColor }}
+              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem]"
+            >
+              {caption}
+            </p>
+          }
 
           <h2
             data-animation="reveal"
@@ -74,10 +76,10 @@ export default function StatsGrid({
 
         <div
           data-animation="reveal"
-          className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[407fr_407fr_395fr]"
+          className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
           {/* Left image stat */}
-          <div className="relative min-h-[22.25rem] overflow-hidden rounded-[1.5rem] border border-[#f5f5f5]">
+          <div className="relative min-h-[22.25rem] overflow-hidden rounded-[1.5rem]">
             <Image
               src={statLeft.image}
               alt={statLeft.text}
@@ -87,7 +89,7 @@ export default function StatsGrid({
               sizes="(min-width:1024px) 25rem, (min-width:768px) 45vw, 92vw"
             />
 
-            <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 p-6 text-white">
+            <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1.5 p-6 text-black bg-white rounded-2xl shadow-lg">
               <p className="font-sans text-[1rem] leading-[1.4]">
                 {statLeft.text}
               </p>
@@ -126,11 +128,10 @@ export default function StatsGrid({
                   className="size-[2.7rem] rounded-full object-cover"
                 />
 
-                <div className="leading-tight">
+                <div className="leading-normal">
                   <p className="font-sans text-[0.9375rem] font-semibold text-[#16171b]">
                     {statCenter.authorName}
                   </p>
-
                   <p className="font-sans text-[0.9375rem] text-[#5b6470]">
                     {statCenter.authorTitle}
                   </p>

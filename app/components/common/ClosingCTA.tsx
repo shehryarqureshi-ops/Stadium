@@ -1,4 +1,3 @@
-import Image, { type StaticImageData } from "next/image";
 import { ReactNode } from "react";
 
 type CTAButtonVariant = "primary" | "secondary";
@@ -18,8 +17,6 @@ type ClosingCTAProps = {
   ctaTwoVariant?: CTAButtonVariant;
 
   backgroundColor?: string;
-  backgroundImage?: StaticImageData;
-  backgroundImageHeight?: string;
 
   desktopTopSpacing?: string;
 
@@ -50,7 +47,6 @@ export default function ClosingCTA({
   ctaTwoVariant = "secondary",
 
   backgroundColor = "#2e6ae8",
-  backgroundImage,
 }: ClosingCTAProps) {
   return (
     <section
@@ -59,29 +55,7 @@ export default function ClosingCTA({
         background: backgroundColor,
       }}
     >
-      {backgroundImage && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-full lg:h-[75.5625rem]"
-        >
-          <Image
-            src={backgroundImage}
-            alt=""
-            fill
-            quality={90}
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        </div>
-      )}
-
       <div className="relative">
-        {/* White sleeve from section above */}
-        <div
-          aria-hidden
-          className="mx-auto h-16 w-[calc(100%-1.25rem)] rounded-b-4xl bg-white md:h-24 md:rounded-b-[3rem] lg:h-40 lg:w-[calc(100%-2.5rem)] lg:rounded-b-[3.75rem]"
-        />
-
         <div className="px-section-x-sm pt-14 md:px-section-x-md md:pt-24 lg:px-section-x-lg lg:pt-40">
           <div className="mx-auto w-full max-w-content">
             <div
@@ -128,9 +102,8 @@ export default function ClosingCTA({
                           ? { backgroundColor: ctaOneColor }
                           : undefined
                       }
-                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-                        ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
-                      }`}
+                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
+                        }`}
                     >
                       {ctaOneLabel}
                     </a>

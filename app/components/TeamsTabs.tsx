@@ -6,7 +6,7 @@ import marketingImg from "@/public/impact/marketing.jpeg";
 import adminsImg from "@/public/impact/operations.jpeg";
 import salesImg from "@/public/impact/sales.jpeg";
 
-import TabsShowcase, {
+import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
 
@@ -120,7 +120,7 @@ const items: TabsShowcaseItem[] = [
 
 export default function TeamsTabs() {
   return (
-    <TabsShowcase
+    <PillTabs
       caption="Impact by Team"
       title="Built for every role"
       description="Everything your teams need to create meaningful engagement at scale."

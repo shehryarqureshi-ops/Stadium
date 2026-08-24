@@ -1,7 +1,7 @@
 import byo from "@/public/snacks/sn2-byo.png";
 import curated from "@/public/snacks/sn2-occ-2.jpg";
 
-import TabsShowcase, {
+import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
 
@@ -36,7 +36,7 @@ const items: TabsShowcaseItem[] = [
 
 export default function SnackSolution() {
   return (
-    <TabsShowcase
+    <PillTabs
       caption="The solution"
       title="Your choice, or theirs"
       description="Send a snack box you choose, or let recipients build their own from the catalog."

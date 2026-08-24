@@ -71,24 +71,19 @@ const ITEMS: VariableCardGridItem[] = [
 
 export default function GiftingIntegrations() {
   return (
-    <section
-      aria-labelledby="gifting-integrations-heading"
-      className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
-    >
-      <VariableCardGrid
-        caption="Control"
-        captionColor="#996b00"
-        title={
-          <>
-            Gifting your finance team will
-            <br />
-            actually sign off on
-          </>
-        }
-        description="Budgets set per team, approvals routed before anything ships, and a record of what every program returned."
-        gridColumns={2}
-        items={ITEMS}
-      />
-    </section>
+    <VariableCardGrid
+      caption="Control"
+      captionColor="#996b00"
+      title={
+        <>
+          Gifting your finance team will
+          <br />
+          actually sign off on
+        </>
+      }
+      description="Budgets set per team, approvals routed before anything ships, and a record of what every program returned."
+      gridColumns={2}
+      items={ITEMS}
+    />
   );
 }

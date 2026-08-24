@@ -1,5 +1,4 @@
 import StatsGrid from "@/app/components/common/StatsGrid";
-
 import statsPhoto from "@/public/snacks/sn2-stats-photo.jpg";
 import avatar from "@/public/snacks/sn2-avatar.jpg";
 

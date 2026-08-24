@@ -53,14 +53,17 @@ import send from "@/public/gifting/how-it-works/gift.png";
 
 const items: StepCardItem[] = [
   {
-    title: "Send or Automate",
+    title:
+      <>
+        Send or Automate
+      </>,
     description:
       "Send a one-off in a click, or connect your HR system once and let milestones trigger the gift.",
     image: pickBox,
     imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
   },
   {
-    title: "They Pick",
+    title: <>They Pick</>,
     description:
       "They open your branded store, choose what they actually want, and add their own size and address.",
     image: recipients,
@@ -68,7 +71,7 @@ const items: StepCardItem[] = [
       "They open your branded store, choose what they actually want, and add their own size and address.",
   },
   {
-    title: "Gift Arrives",
+    title: <>Gift Arrives</>,
     description:
       "Tracked from order to doorstep in 170+ countries. Customs, duties and returns are handled by us.",
     image: send,

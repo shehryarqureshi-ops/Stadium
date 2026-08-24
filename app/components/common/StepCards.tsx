@@ -2,10 +2,10 @@
 
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type StepCardItem = {
-  title: string;
+  title: ReactNode;
   description?: string;
   image?: StaticImageData;
   imageAlt?: string;
@@ -86,11 +86,10 @@ export default function StepCards({
                     setActive(index);
                   }
                 }}
-                className={`group flex flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 lg:cursor-pointer ${
-                  isActive
-                    ? "lg:grow-[3.08] shadow-lg"
-                    : "lg:grow lg:hover:bg-[#fafafa]"
-                }`}
+                className={`group flex flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 lg:cursor-pointer ${isActive
+                  ? "lg:grow-[3.125] shadow-lg"
+                  : "lg:grow lg:hover:bg-[#fafafa]"
+                  }`}
               >
                 <div className="flex h-full flex-col gap-2.5 lg:flex-row lg:items-stretch lg:justify-between">
                   {/* Number + content */}
@@ -107,9 +106,8 @@ export default function StepCards({
                       {/* Always visible on mobile */}
                       {item.description && (
                         <p
-                          className={`font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71] ${
-                            isActive ? "lg:block" : "lg:hidden"
-                          }`}
+                          className={`font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71] ${isActive ? "lg:block" : "lg:hidden"
+                            }`}
                         >
                           {item.description}
                         </p>
@@ -122,18 +120,17 @@ export default function StepCards({
                     <div
                       id={panelId}
                       role="tabpanel"
-                      className={`relative mx-auto h-[16rem] w-full overflow-hidden rounded-2xl lg:mx-0 lg:h-auto lg:max-w-none lg:self-stretch ${
-                        isActive ? "lg:block lg:snack-step-in" : "lg:hidden"
-                      }`}
+                      className={`relative mx-auto h-auto w-full overflow-hidden rounded-2xl lg:mx-0 lg:h-100 lg:max-w-none lg:self-stretch ${isActive ? "lg:block lg:snack-step-in" : "lg:hidden"
+                        }`}
                     >
                       {item.content ? (
                         item.content
                       ) : item.image ? (
                         <Image
                           src={item.image}
-                          alt={item.imageAlt ?? item.title}
+                          alt={item.imageAlt || ''}
                           quality={100}
-                          className="rounded-2xl w-full"
+                          className="rounded-2xl h-full object-cover"
                         />
                       ) : null}
                     </div>

@@ -30,7 +30,7 @@ export default function ProblemSection({
         <div className="flex w-full flex-col items-center">
           <div className="flex w-full flex-col items-center rounded-[1rem] bg-white">
             {/* Header */}
-            <div className="flex w-full max-w-[53.75rem] flex-col items-center gap-5 text-center">
+            <div className="flex w-full max-w-[53.75rem] px-4 flex-col items-center gap-5 text-center">
               <div className="flex flex-col items-center gap-2">
                 <p
                   data-animation="reveal"

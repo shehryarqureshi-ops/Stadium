@@ -1,6 +1,6 @@
 import kudos from "@/public/recog2/rc-offerings-kudos.jpg";
 
-import TabsShowcase, {
+import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
 
@@ -68,7 +68,7 @@ const items: TabsShowcaseItem[] = [
 
 export default function RecogOfferings() {
   return (
-    <TabsShowcase
+    <PillTabs
       caption=""
       title="Ways to recognize great work"
       description=""

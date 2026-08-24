@@ -131,9 +131,8 @@ function PhotoTrack({
 }) {
   return (
     <div
-      className={`absolute flex w-[47.5225%] flex-col ${
-        direction === "up" ? "gift-photo-track-up" : "gift-photo-track-down"
-      } ${className}`}
+      className={`absolute flex w-[47.5225%] flex-col ${direction === "up" ? "gift-photo-track-up" : "gift-photo-track-down"
+        } ${className}`}
     >
       {[0, 1].map((group) =>
         photos.map((photo, i) => (

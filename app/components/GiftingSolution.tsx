@@ -1,4 +1,4 @@
-import TabsShowcase, {
+import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
 
@@ -7,9 +7,9 @@ import employee from "@/public/gift2/gf-solution-employee.jpg";
 import client from "@/public/gift2/gf-solution-client.jpg";
 import partner from "@/public/gift2/gf-solution-partner.jpg";
 import stores from "@/public/gift2/gf-solution-stores.jpg";
+import automated from "@/public/gift2/gf-solution-automated.png";
 
 /* vector artwork — a string src renders as a plain <img> and stays crisp */
-const automated = "/gift2/gf-solution-automated.svg";
 
 const items: TabsShowcaseItem[] = [
   {
@@ -112,7 +112,7 @@ const items: TabsShowcaseItem[] = [
 
 export default function GiftingSolution() {
   return (
-    <TabsShowcase
+    <PillTabs
       accent="#996b00"
       caption="The solution"
       title="One platform for all your gifting"
