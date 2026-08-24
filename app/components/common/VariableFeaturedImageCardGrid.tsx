@@ -35,7 +35,7 @@ export default function VariableFeaturedImageCardGrid({
   items,
 }: VariableFeaturedImageCardGridProps) {
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-8 lg:gap-10">
         {/* Header */}
         <div className="flex w-full max-w-[55rem] flex-col items-center gap-5 text-center">
@@ -68,9 +68,8 @@ export default function VariableFeaturedImageCardGrid({
         <div
           data-animation="reveal"
           data-reveal-stagger="90"
-          className={`grid w-full max-w-[55rem] gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 ${
-            GRID_COLUMNS[gridColumnCount]
-          }`}
+          className={`grid w-full max-w-[55rem] gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 ${GRID_COLUMNS[gridColumnCount]
+            }`}
         >
           {items.map((item) => (
             <article

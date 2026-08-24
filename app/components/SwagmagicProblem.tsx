@@ -36,13 +36,11 @@ const items: ProblemSectionItem[] = [
 export default function SwagmagicProblem() {
   return (
     <ProblemSection
-      variant="plain"
       caption="The problem"
       captionColor="#10995a"
       title="Swag becomes your second job"
       description="Swag starts as one task: choosing what to send. Before long, you're managing vendors, boxes, and spreadsheets full of addresses."
       items={items}
-      showDivider
     />
   );
 }

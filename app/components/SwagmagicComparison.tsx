@@ -86,7 +86,7 @@ function Value({ v }: { v: Cell }) {
 
 export default function SwagmagicComparison() {
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg overflow-auto lg:overflow-visible">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 lg:gap-[3.75rem]">
         {/* header — eyebrow → 8 → title → 20 → subhead, centred */}
         <div className="flex w-full flex-col items-center gap-5 text-center">
@@ -131,14 +131,12 @@ export default function SwagmagicComparison() {
                 <div
                   key={c.name}
                   role="columnheader"
-                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
-                    c.hi ? "rounded-b-[0.5rem] rounded-t-[1.5rem] bg-[#f2fbf5]" : "rounded-[1.5rem] bg-white"
-                  }`}
+                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${c.hi ? "rounded-b-[0.5rem] rounded-t-[1.5rem] bg-[#f2fbf5]" : "rounded-[1.5rem] bg-white"
+                    }`}
                 >
                   <span
-                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${
-                      c.hi ? "font-semibold" : "font-normal"
-                    }`}
+                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${c.hi ? "font-semibold" : "font-normal"
+                      }`}
                   >
                     {c.name}
                   </span>
@@ -156,9 +154,8 @@ export default function SwagmagicComparison() {
               <div key={r.label} role="row" className="contents">
                 <div
                   role="rowheader"
-                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${
-                    ri === 0 ? "rounded-tl-[1.5rem]" : ""
-                  } ${ri === LAST_ROW ? "rounded-bl-[1.5rem]" : ""}`}
+                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${ri === 0 ? "rounded-tl-[1.5rem]" : ""
+                    } ${ri === LAST_ROW ? "rounded-bl-[1.5rem]" : ""}`}
                 >
                   <span className="whitespace-nowrap font-sans text-[0.90625rem] font-semibold leading-[1.4] text-[#16171b]">
                     {r.label}
@@ -168,11 +165,9 @@ export default function SwagmagicComparison() {
                   <div
                     key={ci}
                     role="cell"
-                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${
-                      COLS[ci].hi ? "bg-[#f2fbf5]" : "bg-[#f2f2f2]"
-                    } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1.5rem]" : ""} ${
-                      ri === LAST_ROW && ci === LAST_COL ? "rounded-br-[1.5rem]" : ""
-                    }`}
+                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${COLS[ci].hi ? "bg-[#f2fbf5]" : "bg-[#f2f2f2]"
+                      } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1.5rem]" : ""} ${ri === LAST_ROW && ci === LAST_COL ? "rounded-br-[1.5rem]" : ""
+                      }`}
                   >
                     <Value v={v} />
                   </div>

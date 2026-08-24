@@ -35,6 +35,7 @@ import Image from "next/image";
 import heroBg from "@/public/swag2/sw2-hero-bg.jpg";
 import hoodie from "@/public/swag2/sw2-hero-hoodie.png";
 import warehouse from "@/public/swag2/sw2-hero-warehouse.jpg";
+import { HeroLogoWall } from "./common/HeroLogoWall";
 
 /* Figma "Logos track" (2673:2821): google, amazon, pinterest, accenture,
    bloomberg, salesforce, netflix, google, amazon, pinterest — each at its own
@@ -102,9 +103,8 @@ function ProductCluster() {
           {SIZES.map((s) => (
             <span
               key={s}
-              className={`flex size-8 items-center justify-center rounded-[0.6317rem] font-sans text-[0.9475rem] leading-[1.25] tracking-[0.0474rem] text-[#aaaaaa] ${
-                s === ACTIVE_SIZE ? "bg-black/75" : ""
-              }`}
+              className={`flex size-8 items-center justify-center rounded-[0.6317rem] font-sans text-[0.9475rem] leading-[1.25] tracking-[0.0474rem] text-[#aaaaaa] ${s === ACTIVE_SIZE ? "bg-black/75" : ""
+                }`}
             >
               {s}
             </span>
@@ -130,7 +130,7 @@ function ProductCluster() {
 
 export default function SwagmagicHero() {
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden">
       {/* background: black ground → Figma's mesh raster ("image 13674"). The
           live WebGL shader that used to paint over this was removed
           2026-08-21; the raster is now the background outright. Extends 746px
@@ -221,38 +221,10 @@ export default function SwagmagicHero() {
 
           {/* trust band (2673:2819): 56 / 40 marquee / 56 — seamless CSS marquee,
               logos inverted white, edges soft-masked */}
-          <div
-            data-animation="reveal"
-            data-reveal-delay="300"
-            className="py-10 lg:py-14"
-          >
-            <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
-              <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
-                {[0, 1].map((group) => (
-                  <ul
-                    key={group}
-                    aria-hidden={group === 1}
-                    className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
-                  >
-                    {LOGOS.map((l, i) => (
-                      <li key={`${l.alt}-${i}`} className="flex shrink-0 items-center">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={l.src}
-                          alt={group === 0 ? l.alt : ""}
-                          width={l.w}
-                          height={l.h}
-                          style={{ height: `${l.h / 16}rem` }}
-                          className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+      <div className="mt-12 lg:mt-24">
+        <HeroLogoWall />
       </div>
     </section>
   );

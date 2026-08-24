@@ -31,7 +31,7 @@ type TabsShowcaseProps = {
    *  "band"  = the vertical-page band: amber-ish caption, 44px heading,
    *  borderless white/75 card, no aurora. */
   /** caption colour for the "band" variant (each vertical has its own accent) */
-  accent?: string;
+  captionColor?: string;
   /** optional decorative glow behind the band, e.g. the gifting symbol gradient */
   glowColor?: string;
 };
@@ -64,7 +64,7 @@ export default function PillTabs({
   description,
   items,
   autoAdvance = true,
-  accent,
+  captionColor: accent,
   glowColor,
 }: TabsShowcaseProps) {
   const [active, setActive] = useState(0);

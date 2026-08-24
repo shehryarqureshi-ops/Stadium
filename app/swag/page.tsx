@@ -38,18 +38,20 @@ export default function SwagPage() {
       >
         {/* Hero renders its own shader/bg which extends under Problem */}
         <SwagmagicHero />
-        <SwagmagicProblem />
-        <SwagmagicSolution />
-        <SwagmagicOfferings />
-        <SwagmagicCatalog />
-        <SwagmagicHowItWorks />
-        <SwagmagicPlatform />
-        <SwagmagicComparison />
-        <SwagmagicCommittee />
-        <SwagmagicCaseStudy />
-        <SwagmagicImpact />
-        <SwagmagicPackages />
-        <SwagmagicExplore />
+        <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
+          <SwagmagicProblem />
+          <SwagmagicSolution />
+          <SwagmagicOfferings />
+          <SwagmagicCatalog />
+          <SwagmagicHowItWorks />
+          <SwagmagicPlatform />
+          <SwagmagicComparison />
+          <SwagmagicCommittee />
+          <SwagmagicCaseStudy />
+          <SwagmagicImpact />
+          <SwagmagicPackages />
+          <SwagmagicExplore />
+        </div>
         <SwagmagicClosing />
       </main>
       <PageClose showCta={false} />

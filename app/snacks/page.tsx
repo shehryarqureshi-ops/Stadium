@@ -47,9 +47,9 @@ export default function SnacksPage() {
         <SnackHero />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <SnackProblem />
-          <SnackSolution />
+          <SnackSolution /> {/* two cards in parallel from swag, no toggle */}
           <SnackHowItWorks />
-          {/* <SnackCatalog /> */}
+          <SnackCatalog /> {/* use reusable */}
           <SnackPlatform />
           <SnackComparison />
           <SnackStats />

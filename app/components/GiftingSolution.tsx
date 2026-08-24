@@ -113,7 +113,7 @@ const items: TabsShowcaseItem[] = [
 export default function GiftingSolution() {
   return (
     <PillTabs
-      accent="#996b00"
+      captionColor="#996b00"
       caption="The solution"
       title="One platform for all your gifting"
       description="Gifting for different recipients, occasions, and workflows."

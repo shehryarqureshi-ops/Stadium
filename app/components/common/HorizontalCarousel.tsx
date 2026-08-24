@@ -21,6 +21,7 @@ type HorizontalCarouselProps =
   | {
     variant: "catalog";
     caption: string;
+    captionColor?: string;
     title: string;
     description: string;
     items: CatalogCarouselItem[];
@@ -28,6 +29,7 @@ type HorizontalCarouselProps =
   | {
     variant: "content";
     caption: string;
+    captionColor?: string;
     title: string;
     description: string;
     items: ContentCarouselItem[];
@@ -47,7 +49,8 @@ export default function HorizontalCarousel(
             <div className="flex flex-col gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+                className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem]"
+                style={{ color: props.captionColor }}
               >
                 {props.caption}
               </p>

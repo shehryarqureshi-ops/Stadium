@@ -1,39 +1,3 @@
-/* /snacks · hero (Figma n9SjmDjzB1PeZAYJ5w43fr → page frame 2500:5942
-   "hero - snacks"; hero row 2673:2978, split row 2673:2979, text col
-   2673:2980, photo 2673:2994). Re-laid-out 2026-08-21: the hero blue moved
-   #0034ae → #0437a5 and the text column is now TOP-aligned with a 120px
-   inset (it used to be vertically centred).
-
-   A royal-blue hero SPLIT left/right: text column (eyebrow, Satoshi Black
-   headline, subhead, two CTAs, trust line) on the left, its left edge on the
-   1200 content edge (x=120 at 1440, via .carousel-bleed); the hand-and-
-   Snackmagic-box photo (804×713.28 at 1440) on the right, flush to the
-   viewport edge (636 + 804 = 1440). The photo is a transparent cut-out
-   composited over the hero blue in Figma, so sn3-hero.png has #0437a5 baked
-   in — the section bg MUST stay #0437a5 or a seam appears.
-
-   No background raster here (flat colour), so there is no
-   `h-[calc(100%_+_XXrem)]` overhang contract to keep in sync.
-
-   The Figma hero frame also contains the trust-logo marquee (2673:2995,
-   1200 wide at page y=857..1017.28). On the live page that band is rendered
-   as the first block inside SnackProblem's rounded "glass" sleeve, whose top
-   edge lands at exactly the same y=857 — the Figma "glass" rect (2500:5945)
-   starts at 857 too, so the logos sit on the gradient, not on flat blue.
-   Do NOT duplicate the marquee here.
-
-   Figma stack (absolute y at 1440):
-     0..84      navbar (fixed SiteHeader overlays; section pt = 84)
-     84..797.28 split row — photo 804×713.28, x=636, flush right
-     204        eyebrow 12/1.4 (17)              → 8
-     229        h1 54/1.02 ×2 (110)              → 24
-     363        subhead 19/1.52 ×3, w=516 (87)   → 32
-     482        CTA row (38 Figma / 40 site h-button-h) → 32
-     552        trust line 13/1.4 (18) — text col ends 570
-     797.28     row ends                          → 60
-     857        SnackProblem's glass sleeve + trust band begin
-                (section = 84 + 713.28 + 60 = 857.28) */
-
 import Image from "next/image";
 import heroProduct from "@/public/snacks/sn3-hero.png";
 import { HeroLogoWall } from "./common/HeroLogoWall";

@@ -56,7 +56,7 @@ export default function SnackCatalog() {
     track.current?.scrollBy({ left: d * 342, behavior: "smooth" });
 
   return (
-    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className="bg-white min-w-0 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col gap-8 lg:gap-[2.8125rem]">
         {/* header */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -105,11 +105,10 @@ export default function SnackCatalog() {
                 type="button"
                 onClick={() => setActive(i)}
                 aria-pressed={i === active}
-                className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
-                  i === active
-                    ? "bg-[#16171b] text-white"
-                    : "text-[#16171b] hover:bg-black/5"
-                }`}
+                className={`whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${i === active
+                  ? "bg-[#16171b] text-white"
+                  : "text-[#16171b] hover:bg-black/5"
+                  }`}
               >
                 {f}
               </button>

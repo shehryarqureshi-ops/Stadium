@@ -4,9 +4,6 @@ import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
 
-const KUDOS_ALT =
-  "A woman working at a sunlit desk, with two Stadium kudos cards floating over the photo — Maya thanking @Daniel for shipping a launch early, and Marcus giving @Vonn G +100 points for the team dashboard";
-
 const items: TabsShowcaseItem[] = [
   {
     name: "Kudos Programs",
