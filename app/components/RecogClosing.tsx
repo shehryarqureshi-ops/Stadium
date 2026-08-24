@@ -23,7 +23,6 @@ export default function RecogClosing() {
       ctaTwoLink="#"
       ctaTwoVariant="secondary"
       backgroundColor="#181818"
-      backgroundImage={gradient}
       ctaOneColor="#8d12e7"
       desktopTopSpacing="8.75rem"
       cardRounded

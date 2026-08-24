@@ -38,7 +38,6 @@ export default function RecogProblem() {
       title="Employee recognition fades faster than it should"
       description="You send recognition in seconds. People read it, react, and move on. Without a tangible follow-up, the moment rarely lasts."
       items={ITEMS}
-      showLogoWall={false}
     />
   );
 }

@@ -14,7 +14,6 @@ export default function SwagmagicClosing() {
       ctaTwoLink="#"
       ctaTwoVariant="secondary"
       backgroundColor="#181818"
-      backgroundImage={gradient}
       ctaOneColor="#10995a"
     />
   );
