@@ -43,7 +43,14 @@ import catalog from "@/public/recog2/rc-solution-catalog.png";
 import logistics from "@/public/recog2/rc-solution-logistics.png";
 import insights from "@/public/recog2/rc-solution-insights.png";
 
-type Row = { n: string; id: string; title: string; desc: string; img: StaticImageData; alt: string };
+type Row = {
+  n: string;
+  id: string;
+  title: string;
+  desc: string;
+  img: StaticImageData;
+  alt: string;
+};
 
 const ROWS: Row[] = [
   {
@@ -81,7 +88,8 @@ const ROWS: Row[] = [
 ];
 
 /* Figma "Line 65": 1px #cccccc, stroke-dasharray 3 5 → 3px dash / 5px gap. */
-const DASHED_RAIL = "repeating-linear-gradient(to bottom, #cccccc 0 3px, transparent 3px 8px)";
+const DASHED_RAIL =
+  "repeating-linear-gradient(to bottom, #cccccc 0 3px, transparent 3px 8px)";
 
 export default function RecogSolution() {
   return (
@@ -91,7 +99,7 @@ export default function RecogSolution() {
     >
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-10 lg:grid-cols-[492fr_80fr_668fr] lg:gap-0">
         {/* left column — eyebrow → 8 → title → 20 → subhead */}
-        <div className="flex min-w-0 flex-col gap-5 self-start lg:col-start-1 sticky top-24">
+        <div className="flex min-w-0 flex-col gap-5 self-start lg:col-start-1 lg:sticky top-24">
           <div className="flex flex-col gap-2">
             <p
               data-animation="reveal"
@@ -117,9 +125,7 @@ export default function RecogSolution() {
         </div>
 
         {/* right column — dashed rail + the four rows */}
-        <div
-          className="relative flex min-w-0 flex-col gap-10 lg:col-start-3"
-        >
+        <div className="relative flex min-w-0 flex-col gap-10 lg:col-start-3">
           {/* rail line: Figma runs it from the section top (y=0) to y=2272,
               i.e. 40 above this stack and 126.5 below it. */}
           <span
@@ -131,7 +137,7 @@ export default function RecogSolution() {
           {ROWS.map((row) => (
             <div
               key={row.id}
-              className="grid grid-cols-1 gap-3 lg:grid-cols-[90fr_24fr_554fr] lg:gap-0 sticky top-24"
+              className="grid grid-cols-1 gap-3 lg:grid-cols-[90fr_24fr_554fr] lg:gap-0 lg:sticky top-24"
             >
               {/* numbered pill (90×34 in Figma; full width of the rail column) */}
               <div className="relative lg:col-start-1">
