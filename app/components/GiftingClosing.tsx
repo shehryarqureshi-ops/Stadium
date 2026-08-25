@@ -49,30 +49,8 @@ export default function GiftingClosing() {
         }}
       />
 
-      <section
-        aria-labelledby="gifting-closing-banner-title"
-        className="hidden relative mt-16 px-section-x-sm md:mt-24 md:px-section-x-md lg:mt-40 lg:px-section-x-lg"
-      >
-        <div
-          data-animation="reveal"
-          className="mx-auto flex w-full max-w-content flex-col items-start justify-between gap-6 rounded-[1.5rem] bg-white p-8 md:flex-row md:items-start md:gap-10 md:p-10 lg:p-[3.75rem]"
-        >
-          <h2
-            id="gifting-closing-banner-title"
-            className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:whitespace-nowrap lg:text-[2.75rem]"
-          >
-            Start with swag and expand when ready
-          </h2>
-          <a
-            href="#"
-            className="inline-flex h-[2.75rem] shrink-0 items-center justify-center rounded-[100px] bg-[#218554] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-[#1c7047] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#218554] active:scale-[0.98]"
-          >
-            <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-              Explore pricing
-            </span>
-          </a>
-        </div>
-      </section>
+      {/* todo */}
+      {/* add cta section which redirects to book a call page */}
 
       <ClosingCTA
         title="Bring your corporate gifting programs together"
