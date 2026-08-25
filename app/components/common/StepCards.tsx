@@ -10,6 +10,16 @@ export type StepCardItem = {
   image?: StaticImageData;
   imageAlt?: string;
   content?: ReactNode;
+
+  /**
+   * Optional desktop-only visual width in pixels.
+   *
+   * Example:
+   * desktopVisualWidth: 420
+   *
+   * If omitted, the visual uses the default width.
+   */
+  desktopVisualWidth?: number;
 };
 
 type StepCardsProps = {
@@ -18,30 +28,20 @@ type StepCardsProps = {
   title: string;
   description: string;
   items: StepCardItem[];
+
+  /**
+   * Default desktop visual width used when an individual
+   * item does not specify desktopVisualWidth.
+   */
+  defaultDesktopVisualWidth?: number;
 };
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
-
 const ACTIVE_RATIO = 3.125;
 
-const TEXT_WIDTH = 280;
-
-/**
- * Desktop spacing:
- *
- * Card padding:
- * 10px left
- * 10px right
- *
- * Gap between text + image:
- * 10px
- *
- * Total space outside visual:
- * 280 + 10 + 10 + 10 = 310px
- */
-const CARD_HORIZONTAL_SPACE = TEXT_WIDTH + 30;
-
 const GRID_GAP = 16;
+const CARD_PADDING = 10;
+const CONTENT_GAP = 10;
 
 export default function StepCards({
   caption,
@@ -49,6 +49,7 @@ export default function StepCards({
   title,
   description,
   items,
+  defaultDesktopVisualWidth = 320,
 }: StepCardsProps) {
   const [active, setActive] = useState(0);
 
@@ -65,38 +66,17 @@ export default function StepCards({
     ...items.slice(1).map(() => "1fr"),
   ].join(" ");
 
-  /**
-   * Fraction of the available grid width occupied
-   * by the expanded card.
-   *
-   * Example with 3 cards:
-   *
-   * 3.125 / (3.125 + 1 + 1)
-   */
   const expandedFraction =
     ACTIVE_RATIO / (ACTIVE_RATIO + items.length - 1);
 
-  /**
-   * Total grid gaps between cards.
-   */
   const totalGridGap = (items.length - 1) * GRID_GAP;
 
   /**
-   * The accordion itself is a CSS query container.
+   * Width of one fully expanded card.
    *
-   * 100cqw = its full inner width.
-   *
-   * This expression gives us the exact width of a card
-   * once fully expanded.
+   * 100cqw refers to the full animated accordion width.
    */
   const expandedCardWidth = `calc((100cqw - ${totalGridGap}px) * ${expandedFraction})`;
-
-  /**
-   * The image area inside an expanded card.
-   *
-   * This value NEVER changes during the animation.
-   */
-  const expandedVisualWidth = `calc(${expandedCardWidth} - ${CARD_HORIZONTAL_SPACE}px)`;
 
   return (
     <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -136,6 +116,9 @@ export default function StepCards({
         <div
           data-animation="reveal"
           className="relative hidden rounded-[1.5rem] bg-[#f2f2f2] p-4 lg:block"
+          style={{
+            containerType: "inline-size",
+          }}
         >
           {/* ======================================= */}
           {/* INVISIBLE HEIGHT SIZER */}
@@ -148,22 +131,24 @@ export default function StepCards({
               gridTemplateColumns: sizingGridTemplateColumns,
             }}
           >
-            {/*
-             * All sizing cards occupy the expanded column
-             * and are stacked on top of one another.
-             *
-             * The tallest one determines the natural
-             * accordion height.
-             */}
             <div className="col-start-1 grid">
-              {items.map((item, index) => (
-                <div
-                  key={`sizer-${index}`}
-                  className="col-start-1 row-start-1 min-w-0"
-                >
-                  <SizerCard item={item} />
-                </div>
-              ))}
+              {items.map((item, index) => {
+                const visualWidth =
+                  item.desktopVisualWidth ??
+                  defaultDesktopVisualWidth;
+
+                return (
+                  <div
+                    key={`sizer-${index}`}
+                    className="col-start-1 row-start-1 min-w-0"
+                  >
+                    <SizerCard
+                      item={item}
+                      visualWidth={visualWidth}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
             {items.slice(1).map((_, index) => (
@@ -182,12 +167,7 @@ export default function StepCards({
             style={
               {
                 gridTemplateColumns,
-
                 transition: `grid-template-columns 750ms ${EASE}`,
-
-                /**
-                 * Enables 100cqw inside this container.
-                 */
                 containerType: "inline-size",
               } as CSSProperties
             }
@@ -202,6 +182,25 @@ export default function StepCards({
 
               const panelId = `step-card-panel-${index}`;
 
+              const visualWidth =
+                item.desktopVisualWidth ??
+                defaultDesktopVisualWidth;
+
+              /**
+               * Width of the grey/text area when fully expanded.
+               *
+               * Expanded card width
+               * - left/right card padding
+               * - gap between text and visual
+               * - chosen visual width
+               */
+              const expandedTextWidth = `calc(
+                ${expandedCardWidth}
+                - ${CARD_PADDING * 2}px
+                - ${CONTENT_GAP}px
+                - ${visualWidth}px
+              )`;
+
               return (
                 <button
                   key={index}
@@ -215,6 +214,7 @@ export default function StepCards({
                     h-full
                     min-w-0
                     overflow-hidden
+                    cursor-pointer
                     rounded-[1rem]
                     bg-white
                     p-2.5
@@ -225,9 +225,8 @@ export default function StepCards({
                     focus-visible:ring-2
                     focus-visible:ring-[#16171b]
                     focus-visible:ring-offset-2
-
                     ${isActive
-                      ? "shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+                      ? "shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
                       : "shadow-[0_1px_2px_rgba(0,0,0,0.025)]"
                     }
                   `}
@@ -237,7 +236,7 @@ export default function StepCards({
                 >
                   <div className="relative flex h-full min-w-0">
                     {/* ================================= */}
-                    {/* TEXT */}
+                    {/* TEXT / GREY AREA */}
                     {/* ================================= */}
 
                     <div
@@ -252,13 +251,11 @@ export default function StepCards({
                         justify-between
                         transition-[width]
                         duration-[750ms]
-
-                        ${isActive
-                          ? "w-[17.5rem]"
-                          : "w-full"
-                        }
                       `}
                       style={{
+                        width: isActive
+                          ? expandedTextWidth
+                          : "100%",
                         transitionTimingFunction: EASE,
                       }}
                     >
@@ -266,20 +263,21 @@ export default function StepCards({
                         {number}
                       </span>
 
-                      {/* Bottom information card */}
                       <div className="relative overflow-hidden rounded-2xl bg-[#f4f4f5]">
                         {/*
-                         * Fixed inner width means the text does
-                         * not continuously re-wrap as the card
-                         * changes width.
+                         * The inner content is permanently sized
+                         * to its FINAL expanded width.
+                         *
+                         * This prevents text reflow during the
+                         * accordion animation.
                          */}
                         <div
                           className="p-6"
                           style={{
-                            width: TEXT_WIDTH,
+                            width: expandedTextWidth,
                           }}
                         >
-                          <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.25] tracking-[-0.02em] text-[#16171b]">
+                          <h3 className="font-[family-name:var(--font-satoshi)] text-[1.25rem] font-bold leading-[1.25] tracking-[-0.02em] text-[#16171b]">
                             {item.title}
                           </h3>
 
@@ -289,7 +287,6 @@ export default function StepCards({
                                 overflow-hidden
                                 transition-[max-height,opacity,transform,margin]
                                 duration-500
-
                                 ${isActive
                                   ? "mt-4 max-h-40 translate-y-0 opacity-100"
                                   : "mt-0 max-h-0 translate-y-2 opacity-0"
@@ -297,7 +294,6 @@ export default function StepCards({
                               `}
                               style={{
                                 transitionTimingFunction: EASE,
-
                                 transitionDelay: isActive
                                   ? "220ms"
                                   : "0ms",
@@ -329,39 +325,30 @@ export default function StepCards({
                           rounded-2xl
                           transition-[margin]
                           duration-[750ms]
-
-                          ${isActive
-                            ? "ml-2.5"
-                            : "ml-0"
-                          }
+                          ${isActive ? "ml-2.5" : "ml-0"}
                         `}
                         style={{
                           transitionTimingFunction: EASE,
                         }}
                       >
                         {/*
-                         * This is the important part.
+                         * The visual ALWAYS has its final chosen
+                         * width.
                          *
-                         * The visual is ALWAYS rendered at the
-                         * exact width it will have when this
-                         * card is fully expanded.
+                         * It never scales during animation.
                          *
-                         * Its width never animates.
-                         *
-                         * As the card expands, this outer
-                         * overflow-hidden viewport simply
-                         * reveals more of it.
+                         * The outer viewport simply reveals it.
                          */}
                         <div
                           className="absolute left-0 top-0 max-w-none"
                           style={{
-                            width: expandedVisualWidth,
+                            width: visualWidth,
                           }}
                         >
                           {item.content ? (
                             <div
                               style={{
-                                width: expandedVisualWidth,
+                                width: visualWidth,
                               }}
                             >
                               {item.content}
@@ -449,19 +436,16 @@ export default function StepCards({
 
 function SizerCard({
   item,
+  visualWidth,
 }: {
   item: StepCardItem;
+  visualWidth: number;
 }) {
   return (
     <div className="min-w-0 rounded-[1rem] bg-white p-2.5">
       <div className="flex min-w-0">
-        {/* Text */}
-        <div
-          className="flex shrink-0 flex-col justify-between"
-          style={{
-            width: TEXT_WIDTH,
-          }}
-        >
+        {/* Grey/text area takes ALL remaining space */}
+        <div className="flex min-w-0 flex-1 flex-col justify-between">
           <span className="p-4 font-sans text-[1rem] leading-5">
             00
           </span>
@@ -479,11 +463,22 @@ function SizerCard({
           </div>
         </div>
 
-        {/* Natural expanded visual */}
+        {/* Fixed desktop visual width */}
         {(item.content || item.image) && (
-          <div className="ml-2.5 min-w-0 flex-1 overflow-hidden rounded-2xl">
+          <div
+            className="ml-2.5 shrink-0 overflow-hidden rounded-2xl"
+            style={{
+              width: visualWidth,
+            }}
+          >
             {item.content ? (
-              item.content
+              <div
+                style={{
+                  width: visualWidth,
+                }}
+              >
+                {item.content}
+              </div>
             ) : item.image ? (
               <Image
                 src={item.image}

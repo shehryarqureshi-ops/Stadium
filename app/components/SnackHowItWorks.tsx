@@ -7,29 +7,35 @@ import StepCards, {
   type StepCardItem,
 } from "@/app/components/common/StepCards";
 
+const desktopVisualWidth = 265;
+
 const items: StepCardItem[] = [
   {
     title: <>Pick a<br />Box</>,
     description: "Let them build their own box or send a curated one.",
     image: pickBox,
     imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
+    desktopVisualWidth,
   },
   {
     title: <>Add<br />Recipients</>,
     image: recipients,
     imageAlt:
       "Add Recipients — a list of teammates with checkboxes and a Confirm Order button",
+    desktopVisualWidth,
   },
   {
     title: <>Hit<br />Send</>,
     image: send,
     imageAlt: "Hit Send — order details for Crowd Pleasers going to 15 people",
+    desktopVisualWidth,
   },
   {
     title: <>Recipients<br />Redeem</>,
     image: redeem,
     imageAlt:
       "Recipients Redeem — a phone showing a snack box redemption screen",
+    desktopVisualWidth,
   },
 ];
 

@@ -15,18 +15,21 @@ const items = [
     description:
       "Choose products, add your artwork or logo, and approve a free mockup within 48 hours.",
     image: one,
+    desktopVisualWidth: 320,
   },
   {
     title: <>Store & Track</>,
     description:
       "They open your branded store, choose what they actually want, and add their own size and address.",
     image: two,
+    desktopVisualWidth: 320,
   },
   {
     title: <>Send Anywhere</>,
     description:
       "Tracked from order to doorstep in 170+ countries. Customs, duties and returns are handled by us.",
     image: three,
+    desktopVisualWidth: 320,
   },
 ];
 
