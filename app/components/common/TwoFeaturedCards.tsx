@@ -1,13 +1,27 @@
+import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
 export type TwoFeaturedCardsItem = {
   title: string;
   subtitle?: string;
-  logo?: ReactNode;
+
+  /**
+   * Main visual displayed at the top of the card.
+   * Supports both imported Next.js images and regular image URLs.
+   */
+  image: StaticImageData | string;
+  imageAlt?: string;
+
   isFeatured?: boolean;
   isFeaturedLabel?: string;
   isFeaturedPillColor?: string;
+
+  /**
+   * Flexible card body.
+   * Use this for description, bullets, etc.
+   */
   content: ReactNode;
+
   ctaLabel: string;
   ctaVariant?: "dark" | "light";
   ctaLink: string;
@@ -34,6 +48,7 @@ export default function TwoFeaturedCards({
   return (
     <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
+        {/* Section header */}
         <div className="flex w-full flex-col items-center gap-5 text-center">
           <div className="flex flex-col items-center gap-2">
             <p
@@ -55,58 +70,78 @@ export default function TwoFeaturedCards({
           <p
             data-animation="reveal"
             data-reveal-delay="120"
-            className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
+            className="max-w-[50rem] font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
             {description}
           </p>
         </div>
 
+        {/* Cards tray */}
         <div
           data-animation="reveal"
           data-reveal-stagger="90"
-          className="flex w-full max-w-[54.625rem] flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:flex-row md:items-center"
+          className="flex w-full max-w-5xl flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:flex-row md:items-stretch"
         >
           {cards.map((card) => (
             <article
               key={card.title}
               data-animation="reveal"
-              className={`relative flex min-w-0 flex-1 flex-col gap-2.5 rounded-[1.5rem] bg-white p-2.5 ${card.isFeatured
+              className={`relative flex min-w-0 flex-1 flex-col rounded-[1.5rem] bg-white p-2.5 ${card.isFeatured
                 ? HEAVY_SHADOW
                 : "shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
                 }`}
             >
+              {/* Featured pill */}
               {card.isFeatured && card.isFeaturedLabel && (
                 <span
                   style={{
                     backgroundColor:
                       card.isFeaturedPillColor ?? "#1b1b1b",
                   }}
-                  className="absolute right-[2.4375rem] -top-[0.65rem] z-10 inline-flex items-center justify-center rounded-full px-3 pb-[0.1875rem] pt-1 font-sans text-[0.6875rem] font-bold leading-[1.4] tracking-[0.025rem] text-white"
+                  className="absolute right-4 top-0 z-20 inline-flex -translate-x-1/2 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-full px-3 pb-[0.1875rem] pt-1 font-sans text-[0.6875rem] font-bold leading-[1.4] tracking-[0.025rem] text-white uppercase tracking-widest"
                 >
                   {card.isFeaturedLabel}
                 </span>
               )}
 
-              <div className="flex flex-col gap-4 rounded-[1rem] bg-[#f7f7f7] p-6">
-                {card.logo && <div>{card.logo}</div>}
-
-                <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.25] text-[#16171b] lg:text-[2rem]">
-                  {card.title}
-                </h3>
-
-                {card.subtitle && (
-                  <p className="font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#828282]">
-                    {card.subtitle}
-                  </p>
-                )}
+              {/* Image */}
+              <div className={`overflow-hidden rounded-2xl ${card.isFeatured
+                ? HEAVY_SHADOW
+                : ""
+                }`}>
+                <Image
+                  src={card.image}
+                  alt={card.imageAlt ?? card.title}
+                  width={0}
+                  height={0}
+                  quality={100}
+                  sizes="(min-width: 768px) 50vw, 92vw"
+                  className={`h-auto w-full object-cover`}
+                />
               </div>
 
-              <div className="flex flex-1 flex-col gap-8 rounded-[1rem] bg-white p-6">
-                <div className="flex-1">{card.content}</div>
+              {/* Card content */}
+              <div className="flex flex-1 flex-col px-6 pb-6 pt-8 md:px-7 md:pb-7">
+                <div className="flex flex-1 flex-col">
+                  <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.15] tracking-[-0.025rem] text-[#16171b] lg:text-[2rem]">
+                    {card.title}
+                  </h3>
 
+                  {card.subtitle && (
+                    <p className="my-3 font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#828282]">
+                      {card.subtitle}
+                    </p>
+                  )}
+
+                  <div className="mt-4 flex flex-1 flex-col">
+                    {card.content}
+                  </div>
+                </div>
+
+                {/* CTA */}
                 <a
                   href={card.ctaLink}
-                  className={`inline-flex h-[2.75rem] w-full items-center justify-center rounded-full px-[1.375rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${card.ctaVariant === "dark"
+                  className={`mt-8 inline-flex h-[2.75rem] w-full items-center justify-center rounded-full px-[1.375rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${card.ctaVariant === "dark"
                     ? "bg-[#111111] text-white hover:bg-[#2b2b2b]"
                     : "bg-[#f2f2f2] text-ink hover:bg-[#e6e6e6]"
                     }`}

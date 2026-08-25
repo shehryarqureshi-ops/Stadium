@@ -1,5 +1,8 @@
 import TwoFeaturedCards from "@/app/components/common/TwoFeaturedCards";
 
+import solutionOne from '@/public/snacks/solution-one.png'
+import solutionTwo from '@/public/snacks/solution-two.png'
+
 function Check() {
   return (
     <svg
@@ -49,52 +52,52 @@ function CardContent({
 }
 
 export default function SwagmagicSolution() {
-  return (
-    <TwoFeaturedCards
-      caption="The solution"
-      captionColor="#2178f5"
-      title="Your choice, or theirs"
-      description="Send a snack box you choose, or let recipients build their own from the catalog."
-      cards={[
-        {
-          title: "Build your own boxes",
-          subtitle: "Stadium Platform · Sales-Assisted",
-          isFeatured: true,
-          isFeaturedLabel: "Popular",
-          isFeaturedPillColor: "#1b1b1b",
-          content: (
-            <CardContent
-              description="Set a budget, and let everyone build their own box from 2,000+ snacks–chips, candy, coffee, and healthy picks included."
-              points={[
-                "Zero guesswork",
-                "Dietary filters built in",
-                "Ships worldwide",
-              ]}
-            />
-          ),
-          ctaLabel: "Start a box",
-          ctaVariant: "dark",
-          ctaLink: "#",
-        },
-        {
-          title: "Curated boxes",
-          subtitle: "SwagMagic · Self-Serve",
-          isFeatured: false,
-          content: (
-            <CardContent
-              description="Hand-picked snack boxes, ready to send in minutes. Pick a theme and we handle the rest."
-              points={[
-                "Curated by our snack experts",
-                "Themed boxes for every occasion",
-                "Add your branding to the box",
-              ]}
-            />
-          ),
-          ctaLabel: "Browse boxes",
-          ctaVariant: "light",
-          ctaLink: "#",
-        },
-      ]}
-    />
-  );
+  return <TwoFeaturedCards
+    caption="The solution"
+    captionColor="#2178f5"
+    title="Your choice, or theirs"
+    description="Send a snack box you choose, or let recipients build their own from the catalog."
+    cards={[
+      {
+        title: "Build your own boxes",
+        image: solutionOne,
+        imageAlt: "Build-your-own Snackmagic box with a selection of snacks.",
+        isFeatured: true,
+        isFeaturedLabel: "Popular",
+        isFeaturedPillColor: "#1b1b1b",
+        content: (
+          <CardContent
+            description="Set a budget, and let everyone build their own box from 2,000+ snacks–chips, candy, coffee, and healthy picks included."
+            points={[
+              "Zero guesswork",
+              "Dietary filters built in",
+              "Ships worldwide",
+            ]}
+          />
+        ),
+        ctaLabel: "Start a box",
+        ctaVariant: "dark",
+        ctaLink: "#",
+      },
+      {
+        title: "Curated boxes",
+        image: solutionTwo,
+        imageAlt: "Curated Snackmagic boxes ready to send.",
+        isFeatured: false,
+        content: (
+          <CardContent
+            description="Hand-picked snack boxes, ready to send in minutes. Pick a theme and we handle the rest."
+            points={[
+              "Curated by our snack experts",
+              "Themed boxes for every occasion",
+              "Add your branding to the box",
+            ]}
+          />
+        ),
+        ctaLabel: "Browse boxes",
+        ctaVariant: "light",
+        ctaLink: "#",
+      },
+    ]}
+  />
 }

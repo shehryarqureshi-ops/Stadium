@@ -1,5 +1,7 @@
 import TwoFeaturedCards from "@/app/components/common/TwoFeaturedCards";
 
+import offerOne from '@/public/swag/admin-view.png';
+
 function Check() {
   return (
     <svg
@@ -58,7 +60,10 @@ export default function SwagmagicSolution() {
       cards={[
         {
           title: "Run a swag program",
-          subtitle: "Stadium Platform · Sales-Assisted",
+          subtitle: "Stadium Platform • Sales-Assisted",
+          image: offerOne,
+          imageAlt:
+            "Stadium swag program showing branded stores, inventory, and fulfillment.",
           isFeatured: true,
           isFeaturedLabel: "Popular",
           isFeaturedPillColor: "#1b1b1b",
@@ -76,9 +81,13 @@ export default function SwagmagicSolution() {
           ctaVariant: "dark",
           ctaLink: "#",
         },
+
         {
           title: "Order Swag Yourself",
-          subtitle: "SwagMagic · Self-Serve",
+          subtitle: "SwagMagic • Self-Serve",
+          image: offerOne,
+          imageAlt:
+            "SwagMagic self-serve ordering experience for browsing and ordering swag.",
           isFeatured: false,
           content: (
             <CardContent

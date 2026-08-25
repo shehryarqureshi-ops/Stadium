@@ -11,12 +11,10 @@ export type TabsShowcaseItem = {
   title: string;
   description: string;
   bullets?: string[];
-  /** a string src is used for vector artwork (rendered as a plain <img>) */
+  /** a string src is used for vector artwork */
   image: StaticImageData | string;
   /** overrides `image` for alt text; falls back to `name` */
   imageAlt?: string;
-  /** this panel's own Figma aspect, e.g. "602/332". Falls back to the
-   *  variant default. Panels in one set may legitimately differ. */
   href?: string;
   cta?: string;
 };
@@ -27,12 +25,7 @@ type TabsShowcaseProps = {
   description?: string;
   items: TabsShowcaseItem[];
   autoAdvance?: boolean;
-  /** "teams" = the original recognition/teams look (default, unchanged).
-   *  "band"  = the vertical-page band: amber-ish caption, 44px heading,
-   *  borderless white/75 card, no aurora. */
-  /** caption colour for the "band" variant (each vertical has its own accent) */
   captionColor?: string;
-  /** optional decorative glow behind the band, e.g. the gifting symbol gradient */
   glowColor?: string;
 };
 
@@ -78,6 +71,8 @@ export default function PillTabs({
   });
 
   const select = (index: number) => {
+    if (index === active) return;
+
     takeOver();
     setActive(index);
   };
@@ -87,9 +82,7 @@ export default function PillTabs({
   return (
     <section
       ref={sectionRef}
-      className={
-        "relative min-w-0 bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
-      }
+      className="relative min-w-0 bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
     >
       {/* Background blurred symbol */}
       <div className="absolute inset-0 flex justify-center-safe blur-[400px]">
@@ -152,16 +145,12 @@ export default function PillTabs({
         </svg>
       </div>
 
-      <div
-        className={`relative z-10 mx-auto flex w-full flex-col gap-10 max-w-content`}
-      >
+      <div className="relative z-10 mx-auto flex w-full max-w-content flex-col gap-10">
         {/* Header */}
         <div className="flex flex-col items-center gap-2 text-center">
           <p
             data-animation="reveal"
-            className={
-              "font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
-            }
+            className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
             style={accent ? { color: accent } : undefined}
           >
             {caption}
@@ -169,9 +158,7 @@ export default function PillTabs({
 
           <h2
             data-animation="reveal"
-            className={
-              "font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
-            }
+            className="font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
           >
             {title}
           </h2>
@@ -179,9 +166,7 @@ export default function PillTabs({
           {description && (
             <p
               data-animation="reveal"
-              className={
-                "mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
-              }
+              className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
             >
               {description}
             </p>
@@ -190,9 +175,7 @@ export default function PillTabs({
 
         {/* Tabs */}
         <div data-id="tabs" className="text-center">
-          <ul
-            className={`inline-flex justify-between max-w-full gap-2.5 overflow-x-auto rounded-full bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-[#e0e0e0]`}
-          >
+          <ul className="inline-flex max-w-full justify-between gap-2.5 overflow-x-auto rounded-full border border-[#e0e0e0] bg-white/75 p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {items.map((item, index) => (
               <li key={item.name} className="shrink-0">
                 <button
@@ -211,19 +194,41 @@ export default function PillTabs({
           </ul>
         </div>
 
+        {/* Preload all images */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
+        >
+          {items.map((preloadItem) => (
+            <Image
+              key={`preload-${preloadItem.name}`}
+              src={preloadItem.image}
+              alt=""
+              width={1}
+              height={1}
+              priority
+            />
+          ))}
+        </div>
+
         {/* Content card */}
         <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
           {/* Active image */}
-          <div className="w-full lg:w-1/2 shrink-0">
-            <Image
-              key={item.name}
-              src={item.image}
-              alt={item.imageAlt ?? item.name}
-              quality={100}
-              width={0}
-              height={0}
-              className="h-full w-full object-top-left rounded-3xl"
-            />
+          <div className="w-full shrink-0 lg:w-1/2">
+            <div
+              key={`image-${item.name}`}
+              className="teams-panel-in w-full"
+            >
+              <Image
+                src={item.image}
+                alt={item.imageAlt ?? item.name}
+                quality={100}
+                width={0}
+                height={0}
+                className="h-auto w-full rounded-3xl object-top-left"
+                sizes="(min-width: 1024px) 50vw, 92vw"
+              />
+            </div>
           </div>
 
           {/* Active content */}
@@ -246,6 +251,7 @@ export default function PillTabs({
                 {item.bullets.map((bullet) => (
                   <li key={bullet} className="flex items-center gap-3">
                     <CheckIcon />
+
                     <span className="font-sans text-[0.9375rem] leading-[1.2] text-[#16171b]">
                       {bullet}
                     </span>
