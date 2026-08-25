@@ -265,10 +265,10 @@ function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean 
       <a
         href={group.href ?? "#"}
         aria-label={`View all ${group.label}`}
-        className="engage-heading flex items-center gap-1 font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60 transition-colors duration-200 group-hover/col:text-[#181818]"
+        className="engage-heading flex items-start gap-1 font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#1b1b1b]/60 transition-colors duration-200 group-hover/col:text-[#181818]"
       >
         {group.label}
-        <ArrowRight className="engage-arrow size-3 shrink-0" />
+        <ArrowRight className="engage-arrow size-3 shrink-0 mt-0.5" />
       </a>
       {/* grey rail at rest; the vertical's own accent gradient wipes in
           left→right on column hover */}
@@ -280,14 +280,14 @@ function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean 
           <li key={label}>
             <a
               href={href ?? "#"}
-              className="engage-row flex h-7 items-center gap-3 font-sans text-[0.875rem] font-normal leading-5 text-grey-600"
+              className="engage-row flex h-7 items-start gap-3 font-sans text-[0.875rem] font-normal leading-5 text-grey-600"
             >
               <span className="flex size-5 shrink-0 items-center justify-center">
                 <Icon className="size-4 text-grey-600" />
               </span>
               <span>{label}</span>
               {/* arrow reveals on hover only — never a constant */}
-              <ArrowRight className="engage-arrow size-3.5 shrink-0 text-grey-600" />
+              <ArrowRight className="engage-arrow size-3.5 shrink-0 text-grey-600 mt-0.5" />
             </a>
           </li>
         ))}

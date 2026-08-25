@@ -82,9 +82,9 @@ export default function ProofMenu() {
                   {col.items.map(({ title, desc }) => (
                     <li key={title}>
                       <a href="#" className="engage-row flex flex-col gap-2">
-                        <span className="flex items-center gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
+                        <span className="flex items-start gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                           {title}
-                          <ArrowRight className="engage-arrow size-3 shrink-0 text-black" />
+                          <ArrowRight className="engage-arrow size-3 shrink-0 text-black mt-0.75" />
                         </span>
                         <span className="font-sans text-[0.75rem] leading-[1.125rem] text-grey-500">
                           {desc}

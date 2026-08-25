@@ -156,7 +156,7 @@ export const TEAMS: Team[] = [
 function ArrowRight() {
   return (
     <svg
-      className="engage-arrow size-3 shrink-0 text-ink"
+      className="engage-arrow size-3 shrink-0 text-ink mt-0.75"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -191,9 +191,8 @@ export default function ImpactMenu() {
           {TEAMS.map((t, i) => (
             <div
               key={t.name}
-              className={`col-start-1 row-start-1 flex min-w-0 items-stretch gap-6 ${
-                i === active ? "impact-swap" : "invisible"
-              }`}
+              className={`col-start-1 row-start-1 flex min-w-0 items-stretch gap-6 ${i === active ? "impact-swap" : "invisible"
+                }`}
             >
               {/* Content zone — two use-case columns; no headline / no "Use
                   cases" eyebrow (Figma 2:75741). Columns 255px @ 45px gap. */}
@@ -203,7 +202,7 @@ export default function ImpactMenu() {
                     {col.map(({ title, desc }) => (
                       <li key={title}>
                         <a href="#" className="engage-row flex flex-col gap-2">
-                          <span className="flex items-center gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
+                          <span className="flex items-start gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                             {title}
                             <ArrowRight />
                           </span>

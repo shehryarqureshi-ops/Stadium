@@ -197,11 +197,10 @@ export function MenuSwitcher({
           aria-pressed={i === active}
           onMouseEnter={() => onSelect(i)}
           onClick={() => onSelect(i)}
-          className={`flex h-10 w-full cursor-pointer items-center justify-between rounded-xl border px-3.5 text-left font-sans text-[0.875rem] leading-5 transition-all duration-150 ${
-            i === active
-              ? "border-grey-200 bg-white font-semibold text-ink shadow-card-soft"
-              : "border-transparent font-normal text-grey-500 hover:bg-grey-100 hover:text-ink"
-          }`}
+          className={`flex h-10 w-full cursor-pointer items-center justify-between rounded-xl border px-3.5 text-left font-sans text-[0.875rem] leading-5 transition-all duration-150 ${i === active
+            ? "border-grey-200 bg-white font-semibold text-ink shadow-card-soft"
+            : "border-transparent font-normal text-grey-500 hover:bg-grey-100 hover:text-ink"
+            }`}
         >
           <span className="-translate-y-px">{name}</span>
           {i === active && <ChevronRight />}

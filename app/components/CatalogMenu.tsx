@@ -112,12 +112,11 @@ function LinkRow({ label, active = false }: { label: string; active?: boolean })
     <li>
       <a
         href="#"
-        className={`engage-row flex h-7 items-center gap-2 font-sans text-[0.875rem] font-normal leading-5 ${
-          active ? "text-black" : "text-[#4f5052]"
-        }`}
+        className={`engage-row flex h-7 items-start gap-2 font-sans text-[0.875rem] font-normal leading-5 ${active ? "text-black" : "text-[#4f5052]"
+          }`}
       >
         <span>{label}</span>
-        <ArrowRight className={`size-3 shrink-0 ${active ? "text-black" : "engage-arrow text-[#4f5052]"}`} />
+        <ArrowRight className={`size-3 shrink-0 mt-0.75 ${active ? "text-black" : "engage-arrow text-[#4f5052]"}`} />
       </a>
     </li>
   );
@@ -186,7 +185,7 @@ export default function CatalogMenu() {
             <GroupHeading label="Explore the Catalog" />
             <ul className="engage-group flex flex-col gap-2">
               {tab.explore.map((c, idx) => (
-                <LinkRow key={c} label={c} active={idx === 0} />
+                <LinkRow key={c} label={c} />
               ))}
             </ul>
           </div>
