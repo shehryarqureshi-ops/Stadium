@@ -42,8 +42,8 @@ export default function RecognitionPage() {
           <RecogCommittee />
           <RecogCaseStudies />
           <RecogPackages />
-          <RecogExplore />
         </div>
+        <RecogExplore />
         <RecogClosing />
       </main>
       <PageClose showCta={false} />

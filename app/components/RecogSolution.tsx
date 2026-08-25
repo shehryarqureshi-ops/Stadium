@@ -1,9 +1,9 @@
 import type { StaticImageData } from "next/image";
 
-import recognize from "@/public/recog2/rc-solution-recognize.png";
-import catalog from "@/public/recog2/rc-solution-catalog.png";
-import logistics from "@/public/recog2/rc-solution-logistics.png";
-import insights from "@/public/recog2/rc-solution-insights.png";
+import solutionOne from '@/public/recognition/solutionOne.png'
+import solutionTwo from '@/public/recognition/solutionTwo.png'
+import solutionThree from '@/public/recognition/solutionThree.png'
+import solutionFour from '@/public/recognition/solutionFour.png'
 
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 
@@ -22,7 +22,7 @@ const ROWS: Row[] = [
     id: "recognize",
     title: "Recognize, where work happens",
     desc: "A teammate gives kudos in Slack or the Stadium app, without breaking their workflow.",
-    img: recognize,
+    img: solutionOne,
     alt: "A Slack-style workspace with a Dash Kudos Program channel: Maya posts “Huge kudos to Daniel for shipping the client launch two days early.” with +150 points, #teamwork and #ownership tags and emoji reactions.",
   },
   {
@@ -30,7 +30,7 @@ const ROWS: Row[] = [
     id: "catalog",
     title: "Recipients choose what they love",
     desc: "Recipients redeem points from a catalog of 25,000+ items, from branded swag to premium gifts.",
-    img: catalog,
+    img: solutionTwo,
     alt: "A rewards catalog with a 1,250 points balance: a branded hoodie at 450 points, selected headphones at 1,100 points and a Snackmagic box at 700 points, above a REDEEM POINTS button.",
   },
   {
@@ -38,7 +38,7 @@ const ROWS: Row[] = [
     id: "logistics",
     title: "We handle the logistics",
     desc: "Rewards ship to 170+ countries, with tracking included.",
-    img: logistics,
+    img: solutionThree,
     alt: "A world map with delivery routes to flagged destinations and a 170+ countries badge, beside a tracking timeline reading Ordered, Packed, Shipped, Delivered.",
   },
   {
@@ -46,7 +46,7 @@ const ROWS: Row[] = [
     id: "insights",
     title: "Every moment becomes insight",
     desc: "Track participation and redemption. HR sees what people value, while Finance sees where budgets deliver impact.",
-    img: insights,
+    img: solutionFour,
     alt: "A Recognition insights dashboard: 87% participation up 12% versus Q1, $42.6k budget delivered across 1,240 rewards, a recognitions-per-month bar chart peaking at 640, plus most-redeemed items and a most-recognized leaderboard.",
   },
 ];

@@ -36,12 +36,15 @@ const ITEMS: ResourcesItem[] = [
 
 export default function RecogExplore() {
   return (
-    <Resources
-      caption="Resources"
-      captionColor="#6b33db"
-      title="More on getting employee recognition right"
-      description=""
-      items={ITEMS}
-    />
+    <div className="bg-linear-to-b from-white via-[#6b33db] to-[#181818]">
+      <Resources
+        caption="Resources"
+        captionColor="#6b33db"
+        title="More on getting employee recognition right"
+        description=""
+        items={ITEMS}
+      />
+      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
+    </div>
   );
 }

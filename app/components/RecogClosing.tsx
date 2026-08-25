@@ -1,5 +1,3 @@
-import gradient from "@/public/recog2/rc-closing-gradient.jpg";
-
 import ClosingCTA from "@/app/components/common/ClosingCTA";
 
 export default function RecogClosing() {

@@ -30,12 +30,10 @@ export default function Resources({
 }: ResourcesProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const activeItem = items[activeIndex];
-
   return (
     <section className="relative z-10 bg-white lg:bg-transparent">
-      <div className="mx-auto w-[calc(100%-1.25rem)] rounded-t-[2rem] bg-white px-section-x-sm md:px-section-x-md lg:w-[calc(100%-2.5rem)] lg:rounded-t-[3.75rem] lg:px-section-x-lg">
-        <div className="mx-auto flex w-full max-w-content flex-col gap-10">
+      <div className="mx-auto bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg w-full max-w-content">
+        <div className="flex flex-col gap-10">
           <div className="flex max-w-[55rem] flex-col gap-5">
             <div className="flex flex-col gap-2">
               <p

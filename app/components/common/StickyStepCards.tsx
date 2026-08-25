@@ -151,11 +151,11 @@ export default function StickyStepCards({
           </div>
 
           {/* Cards column */}
-          <div className="flex min-w-0 flex-1 flex-col">
+          <div className="flex min-w-0 flex-1 flex-col gap-8">
             {steps.map((step) => (
               <div
                 key={step.stepLabel}
-                className="flex flex-col gap-3 md:sticky pt-8 lg:pt-0 md:top-26"
+                className="flex flex-col gap-3 md:sticky md:top-26"
               >
                 {/* Mobile-only pill */}
                 <StepPill
@@ -174,7 +174,7 @@ export default function StickyStepCards({
                       src={step.image}
                       alt={step.imageAlt ?? ""}
                       quality={90}
-                      className="aspect-[534/300.375] w-full object-cover lg:aspect-auto lg:h-[18.7734rem]"
+                      className="w-full"
                       sizes="(min-width:1024px) 33rem, (min-width:768px) 78vw, 92vw"
                     />
                   </div>
