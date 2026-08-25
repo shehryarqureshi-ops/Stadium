@@ -1,8 +1,8 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import type { ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { useState } from "react";
 
 export type StepCardItem = {
   title: ReactNode;
@@ -20,6 +20,29 @@ type StepCardsProps = {
   items: StepCardItem[];
 };
 
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+const ACTIVE_RATIO = 3.125;
+
+const TEXT_WIDTH = 280;
+
+/**
+ * Desktop spacing:
+ *
+ * Card padding:
+ * 10px left
+ * 10px right
+ *
+ * Gap between text + image:
+ * 10px
+ *
+ * Total space outside visual:
+ * 280 + 10 + 10 + 10 = 310px
+ */
+const CARD_HORIZONTAL_SPACE = TEXT_WIDTH + 30;
+
+const GRID_GAP = 16;
+
 export default function StepCards({
   caption,
   captionColor = "#2178f5",
@@ -31,10 +54,57 @@ export default function StepCards({
 
   if (!items.length) return null;
 
+  const gridTemplateColumns = items
+    .map((_, index) =>
+      index === active ? `${ACTIVE_RATIO}fr` : "1fr",
+    )
+    .join(" ");
+
+  const sizingGridTemplateColumns = [
+    `${ACTIVE_RATIO}fr`,
+    ...items.slice(1).map(() => "1fr"),
+  ].join(" ");
+
+  /**
+   * Fraction of the available grid width occupied
+   * by the expanded card.
+   *
+   * Example with 3 cards:
+   *
+   * 3.125 / (3.125 + 1 + 1)
+   */
+  const expandedFraction =
+    ACTIVE_RATIO / (ACTIVE_RATIO + items.length - 1);
+
+  /**
+   * Total grid gaps between cards.
+   */
+  const totalGridGap = (items.length - 1) * GRID_GAP;
+
+  /**
+   * The accordion itself is a CSS query container.
+   *
+   * 100cqw = its full inner width.
+   *
+   * This expression gives us the exact width of a card
+   * once fully expanded.
+   */
+  const expandedCardWidth = `calc((100cqw - ${totalGridGap}px) * ${expandedFraction})`;
+
+  /**
+   * The image area inside an expanded card.
+   *
+   * This value NEVER changes during the animation.
+   */
+  const expandedVisualWidth = `calc(${expandedCardWidth} - ${CARD_HORIZONTAL_SPACE}px)`;
+
   return (
     <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col gap-10">
-        {/* Header */}
+        {/* ========================================= */}
+        {/* HEADER */}
+        {/* ========================================= */}
+
         <div className="flex flex-col gap-2">
           <p
             data-animation="reveal"
@@ -59,88 +129,372 @@ export default function StepCards({
           </p>
         </div>
 
-        {/* Steps */}
+        {/* ========================================= */}
+        {/* DESKTOP */}
+        {/* ========================================= */}
+
         <div
           data-animation="reveal"
-          data-reveal-stagger="90"
-          role="tablist"
-          aria-label={title}
-          className="flex flex-col gap-4 rounded-[1.5rem] bg-[#f2f2f2] p-4 lg:flex-row lg:items-stretch"
+          className="relative hidden rounded-[1.5rem] bg-[#f2f2f2] p-4 lg:block"
         >
+          {/* ======================================= */}
+          {/* INVISIBLE HEIGHT SIZER */}
+          {/* ======================================= */}
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none invisible grid gap-4"
+            style={{
+              gridTemplateColumns: sizingGridTemplateColumns,
+            }}
+          >
+            {/*
+             * All sizing cards occupy the expanded column
+             * and are stacked on top of one another.
+             *
+             * The tallest one determines the natural
+             * accordion height.
+             */}
+            <div className="col-start-1 grid">
+              {items.map((item, index) => (
+                <div
+                  key={`sizer-${index}`}
+                  className="col-start-1 row-start-1 min-w-0"
+                >
+                  <SizerCard item={item} />
+                </div>
+              ))}
+            </div>
+
+            {items.slice(1).map((_, index) => (
+              <div key={`sizer-spacer-${index}`} />
+            ))}
+          </div>
+
+          {/* ======================================= */}
+          {/* ANIMATED ACCORDION */}
+          {/* ======================================= */}
+
+          <div
+            role="tablist"
+            aria-label={title}
+            className="absolute inset-4 grid gap-4"
+            style={
+              {
+                gridTemplateColumns,
+
+                transition: `grid-template-columns 750ms ${EASE}`,
+
+                /**
+                 * Enables 100cqw inside this container.
+                 */
+                containerType: "inline-size",
+              } as CSSProperties
+            }
+          >
+            {items.map((item, index) => {
+              const isActive = index === active;
+
+              const number = String(index + 1).padStart(
+                2,
+                "0",
+              );
+
+              const panelId = `step-card-panel-${index}`;
+
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={panelId}
+                  onClick={() => setActive(index)}
+                  className={`
+                    relative
+                    h-full
+                    min-w-0
+                    overflow-hidden
+                    rounded-[1rem]
+                    bg-white
+                    p-2.5
+                    text-left
+                    outline-none
+                    transition-[box-shadow]
+                    duration-500
+                    focus-visible:ring-2
+                    focus-visible:ring-[#16171b]
+                    focus-visible:ring-offset-2
+
+                    ${isActive
+                      ? "shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+                      : "shadow-[0_1px_2px_rgba(0,0,0,0.025)]"
+                    }
+                  `}
+                  style={{
+                    transitionTimingFunction: EASE,
+                  }}
+                >
+                  <div className="relative flex h-full min-w-0">
+                    {/* ================================= */}
+                    {/* TEXT */}
+                    {/* ================================= */}
+
+                    <div
+                      className={`
+                        relative
+                        z-10
+                        flex
+                        h-full
+                        min-w-0
+                        shrink-0
+                        flex-col
+                        justify-between
+                        transition-[width]
+                        duration-[750ms]
+
+                        ${isActive
+                          ? "w-[17.5rem]"
+                          : "w-full"
+                        }
+                      `}
+                      style={{
+                        transitionTimingFunction: EASE,
+                      }}
+                    >
+                      <span className="shrink-0 p-4 font-sans text-[1rem] leading-5 text-[#a9a9ad]">
+                        {number}
+                      </span>
+
+                      {/* Bottom information card */}
+                      <div className="relative overflow-hidden rounded-2xl bg-[#f4f4f5]">
+                        {/*
+                         * Fixed inner width means the text does
+                         * not continuously re-wrap as the card
+                         * changes width.
+                         */}
+                        <div
+                          className="p-6"
+                          style={{
+                            width: TEXT_WIDTH,
+                          }}
+                        >
+                          <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.25] tracking-[-0.02em] text-[#16171b]">
+                            {item.title}
+                          </h3>
+
+                          {item.description && (
+                            <div
+                              className={`
+                                overflow-hidden
+                                transition-[max-height,opacity,transform,margin]
+                                duration-500
+
+                                ${isActive
+                                  ? "mt-4 max-h-40 translate-y-0 opacity-100"
+                                  : "mt-0 max-h-0 translate-y-2 opacity-0"
+                                }
+                              `}
+                              style={{
+                                transitionTimingFunction: EASE,
+
+                                transitionDelay: isActive
+                                  ? "220ms"
+                                  : "0ms",
+                              }}
+                            >
+                              <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+                                {item.description}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ================================= */}
+                    {/* VISUAL VIEWPORT */}
+                    {/* ================================= */}
+
+                    {(item.content || item.image) && (
+                      <div
+                        id={panelId}
+                        role="tabpanel"
+                        aria-hidden={!isActive}
+                        className={`
+                          relative
+                          min-w-0
+                          flex-1
+                          overflow-hidden
+                          rounded-2xl
+                          transition-[margin]
+                          duration-[750ms]
+
+                          ${isActive
+                            ? "ml-2.5"
+                            : "ml-0"
+                          }
+                        `}
+                        style={{
+                          transitionTimingFunction: EASE,
+                        }}
+                      >
+                        {/*
+                         * This is the important part.
+                         *
+                         * The visual is ALWAYS rendered at the
+                         * exact width it will have when this
+                         * card is fully expanded.
+                         *
+                         * Its width never animates.
+                         *
+                         * As the card expands, this outer
+                         * overflow-hidden viewport simply
+                         * reveals more of it.
+                         */}
+                        <div
+                          className="absolute left-0 top-0 max-w-none"
+                          style={{
+                            width: expandedVisualWidth,
+                          }}
+                        >
+                          {item.content ? (
+                            <div
+                              style={{
+                                width: expandedVisualWidth,
+                              }}
+                            >
+                              {item.content}
+                            </div>
+                          ) : item.image ? (
+                            <Image
+                              src={item.image}
+                              alt={item.imageAlt ?? ""}
+                              quality={100}
+                              className="block h-auto w-full max-w-none"
+                            />
+                          ) : null}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ========================================= */}
+        {/* MOBILE */}
+        {/* ========================================= */}
+
+        <div className="flex flex-col gap-4 rounded-[1.5rem] bg-[#f2f2f2] p-4 lg:hidden">
           {items.map((item, index) => {
-            const isActive = index === active;
-            const number = String(index + 1).padStart(2, "0");
-            const panelId = `step-card-panel-${index}`;
+            const number = String(index + 1).padStart(
+              2,
+              "0",
+            );
 
             return (
-              <div
-                key={`${item.title}-${index}`}
-                role="tab"
-                tabIndex={0}
-                aria-selected={isActive}
-                aria-controls={panelId}
-                onClick={() => setActive(index)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setActive(index);
-                  }
-                }}
-                className={`group flex flex-col overflow-hidden rounded-[1rem] bg-white p-2.5 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:min-h-[22rem] lg:basis-0 lg:cursor-pointer ${isActive
-                  ? "lg:grow-[3.125] shadow-lg"
-                  : "lg:grow lg:hover:bg-[#fafafa]"
-                  }`}
+              <article
+                key={index}
+                className="overflow-hidden rounded-[1rem] bg-white p-2.5"
               >
-                <div className="flex h-full flex-col gap-2.5 lg:flex-row lg:items-stretch lg:justify-between">
-                  {/* Number + content */}
-                  <div className={`flex flex-col justify-between w-full gap-6`}>
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex flex-col gap-6">
                     <span className="p-4 font-sans text-[1rem] leading-5 text-[#a9a9ad]">
                       {number}
                     </span>
 
-                    <div className="flex flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6">
+                    <div className="rounded-2xl bg-[#f4f4f5] p-6">
                       <h3 className="font-[family-name:var(--font-satoshi)] text-2xl font-bold leading-[1.3] tracking-[-0.01em] text-[#16171b]">
                         {item.title}
                       </h3>
 
-                      {/* Always visible on mobile */}
                       {item.description && (
-                        <p
-                          className={`font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71] ${isActive ? "lg:block" : "lg:hidden"
-                            }`}
-                        >
+                        <p className="mt-4 font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
                           {item.description}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  {/* Visual — always visible on mobile, active only on desktop */}
                   {(item.content || item.image) && (
-                    <div
-                      id={panelId}
-                      role="tabpanel"
-                      className={`relative mx-auto h-auto w-full overflow-hidden rounded-2xl lg:mx-0 lg:h-100 lg:max-w-none lg:self-stretch ${isActive ? "lg:block lg:snack-step-in" : "lg:hidden"
-                        }`}
-                    >
+                    <div className="overflow-hidden rounded-2xl">
                       {item.content ? (
                         item.content
                       ) : item.image ? (
                         <Image
                           src={item.image}
-                          alt={item.imageAlt || ''}
+                          alt={item.imageAlt ?? ""}
                           quality={100}
-                          className="rounded-2xl h-full object-cover"
+                          className="block h-auto w-full"
                         />
                       ) : null}
                     </div>
                   )}
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
       </div>
     </section>
+  );
+}
+
+/* =============================================== */
+/* INVISIBLE SIZING CARD */
+/* =============================================== */
+
+function SizerCard({
+  item,
+}: {
+  item: StepCardItem;
+}) {
+  return (
+    <div className="min-w-0 rounded-[1rem] bg-white p-2.5">
+      <div className="flex min-w-0">
+        {/* Text */}
+        <div
+          className="flex shrink-0 flex-col justify-between"
+          style={{
+            width: TEXT_WIDTH,
+          }}
+        >
+          <span className="p-4 font-sans text-[1rem] leading-5">
+            00
+          </span>
+
+          <div className="rounded-2xl p-6">
+            <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.25] tracking-[-0.02em]">
+              {item.title}
+            </h3>
+
+            {item.description && (
+              <p className="mt-4 font-sans text-[0.9375rem] leading-[1.5]">
+                {item.description}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Natural expanded visual */}
+        {(item.content || item.image) && (
+          <div className="ml-2.5 min-w-0 flex-1 overflow-hidden rounded-2xl">
+            {item.content ? (
+              item.content
+            ) : item.image ? (
+              <Image
+                src={item.image}
+                alt=""
+                quality={100}
+                className="block h-auto w-full"
+              />
+            ) : null}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

@@ -9,24 +9,24 @@ import StepCards, {
 
 const items: StepCardItem[] = [
   {
-    title: "Pick a Box",
+    title: <>Pick a<br />Box</>,
     description: "Let them build their own box or send a curated one.",
     image: pickBox,
     imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
   },
   {
-    title: "Add Recipients",
+    title: <>Add<br />Recipients</>,
     image: recipients,
     imageAlt:
       "Add Recipients — a list of teammates with checkboxes and a Confirm Order button",
   },
   {
-    title: "Hit Send",
+    title: <>Hit<br />Send</>,
     image: send,
     imageAlt: "Hit Send — order details for Crowd Pleasers going to 15 people",
   },
   {
-    title: "Recipients Redeem",
+    title: <>Recipients<br />Redeem</>,
     image: redeem,
     imageAlt:
       "Recipients Redeem — a phone showing a snack box redemption screen",

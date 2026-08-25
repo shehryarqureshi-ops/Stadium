@@ -5,6 +5,8 @@ import CatalogMenu, { CATALOG_TABS } from "./CatalogMenu";
 import EngageMenu, { COLUMNS as ENGAGE_COLUMNS } from "./EngageMenu";
 import ImpactMenu, { TEAMS as IMPACT_TEAMS } from "./ImpactMenu";
 import ProofMenu, { PROOF_COLUMNS } from "./ProofMenu";
+import Image from "next/image";
+import Link from 'next/link';
 
 type MenuKey = "engage" | "impact" | "proof" | "catalog";
 
@@ -56,27 +58,27 @@ function ChevronDown({ open }: { open: boolean }) {
 function Logo({ light }: { light: boolean }) {
   const filter = light ? "brightness-0 invert" : "";
   return (
-    <a
+    <Link
       href="/"
       aria-label="Stadium home"
       className={`flex h-8 w-[8.25rem] items-center gap-2 transition-opacity hover:opacity-80 ${light ? "focus-visible:outline-white" : ""
         }`}
     >
-      <img
+      <Image
         src="/header-logo-mark.svg"
         alt=""
         className={`h-[1.375rem] w-[0.8125rem] transition-[filter] duration-300 ${filter}`}
         width={13}
         height={22}
       />
-      <img
+      <Image
         src="/header-logo-wordmark.svg"
         alt="Stadium"
         className={`h-[1.375rem] w-[6.3125rem] transition-[filter] duration-300 ${filter}`}
         width={101}
         height={22}
       />
-    </a>
+    </Link>
   );
 }
 
