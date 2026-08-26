@@ -43,7 +43,13 @@ import tacoThrowdown from "@/public/exp2/xp-solution-taco-throwdown.jpg";
 import candleMaking from "@/public/exp2/xp-solution-candle-making.jpg";
 import triviaRoyale from "@/public/exp2/xp-solution-trivia-royale.jpg";
 
-type FilterKey = "all" | "in-person" | "hybrid" | "under-60" | "big-groups";
+type FilterKey =
+  | "all"
+  | "in-person"
+  | "hybrid"
+  | "under-60"
+  | "small-groups"
+  | "big-groups";
 
 /* Labels exactly as Figma types them (2504:9232–9240). "hybird" is Figma's
    spelling — shipped verbatim per the copy rule. */
