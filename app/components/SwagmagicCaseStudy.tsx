@@ -18,7 +18,8 @@ export default function SwagmagicCaseStudy() {
       }
       description="How Paperchase simplified global swag and gave marketing its time back."
       blockquote="We were juggling nine swag vendors, and marketing was stuck managing logistics. Now the program runs itself, and our vendor list is just one."
-      quoteAuthor="Nish Patel · CEO, Paperchase"
+      quoteAuthor="Nish Patel • CEO, Paperchase"
+      link="https://www.bystadium.com/case-study/financial-services-company"
       steps={[
         {
           stepLabel: "BEFORE",

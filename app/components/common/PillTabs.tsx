@@ -182,10 +182,11 @@ export default function PillTabs({
                   type="button"
                   onClick={() => select(index)}
                   aria-pressed={index === active}
-                  className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${index === active
-                    ? "bg-[#16171b] text-white"
-                    : "text-[#16171b] hover:bg-grey-100"
-                    }`}
+                  className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
+                    index === active
+                      ? "bg-[#16171b] text-white"
+                      : "text-[#16171b] hover:bg-grey-100"
+                  }`}
                 >
                   {item.tab}
                 </button>
@@ -215,10 +216,7 @@ export default function PillTabs({
         <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
           {/* Active image */}
           <div className="w-full shrink-0 lg:w-1/2">
-            <div
-              key={`image-${item.name}`}
-              className="teams-panel-in w-full"
-            >
+            <div key={`image-${item.name}`} className="teams-panel-in w-full">
               <Image
                 src={item.image}
                 alt={item.imageAlt ?? item.name}

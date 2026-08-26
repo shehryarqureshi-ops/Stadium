@@ -9,6 +9,8 @@ export default function SwagmagicImpact() {
       description="What teams see when they run swag through Stadium."
       statLeft={{
         image: statsPhoto,
+        title: "120K+",
+        text: "Kits Shipped Globally",
       }}
       statCenter={{
         caption: "Avg Reorder Rate",

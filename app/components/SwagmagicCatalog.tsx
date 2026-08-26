@@ -16,52 +16,42 @@ import HorizontalCarousel from "./common/HorizontalCarousel";
 const items = [
   {
     title: "Apparel",
-    caption: "7,000 ITEMS",
     image: apparel,
   },
   {
     title: "Drinkware",
-    caption: "2,522 ITEMS",
     image: drinkware,
   },
   {
     title: "Bags",
-    caption: "2,405 ITEMS",
     image: bags,
   },
   {
     title: "Office Supplies",
-    caption: "0,000 ITEMS",
     image: officeSupplies,
   },
   {
     title: "Technology",
-    caption: "0,000 ITEMS",
     image: technology,
   },
   {
     title: "Events & Tradeshows",
-    caption: "0,000 ITEMS",
     image: events,
   },
   {
     title: "Health & Wellness",
-    caption: "0,000 ITEMS",
     image: health,
   },
   {
     title: "Outdoor & Leisure",
-    caption: "0,000 ITEMS",
     image: outdoor,
   },
   {
     title: "Auto, Home & Tools",
-    caption: "0,000 ITEMS",
     image: auto,
   },
   {
     title: "Baby",
-    caption: "0,000 ITEMS",
     image: baby,
   },
 ];

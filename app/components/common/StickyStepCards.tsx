@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
@@ -18,6 +19,7 @@ export type StickyStepCardsProps = {
   blockquote: string;
   quoteAuthor: string;
   steps: StickyStep[];
+  link?: string;
 };
 
 function StepPill({
@@ -31,10 +33,9 @@ function StepPill({
 }) {
   return (
     <span
-      className={`relative inline-flex items-center justify-center rounded-[100px] px-6 py-2 font-sans text-[0.875rem] font-semibold leading-[1.125rem] whitespace-nowrap ${dark
-        ? "bg-[#212624] text-white"
-        : "bg-[#f2f2f2] text-[#212624]"
-        } ${className}`}
+      className={`relative inline-flex items-center justify-center rounded-[100px] px-6 py-2 font-sans text-[0.875rem] font-semibold leading-[1.125rem] whitespace-nowrap ${
+        dark ? "bg-[#212624] text-white" : "bg-[#f2f2f2] text-[#212624]"
+      } ${className}`}
     >
       {label}
     </span>
@@ -49,12 +50,13 @@ export default function StickyStepCards({
   blockquote,
   quoteAuthor,
   steps,
+  link = "",
 }: StickyStepCardsProps) {
   return (
-    <section className="bg-white px-section-x-sm pb-16 md:px-section-x-md md:pb-20 lg:px-section-x-lg lg:pb-20">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-10 lg:grid-cols-[minmax(0,30.75rem)_1fr] lg:gap-20">
         {/* Left: intro + pull quote */}
-        <div className="flex flex-col gap-16 lg:sticky lg:top-26 lg:gap-[7.5rem] lg:self-start">
+        <div className="flex flex-col gap-16 lg:sticky lg:top-26 lg:gap-[6rem] lg:self-start">
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
               <p
@@ -81,10 +83,7 @@ export default function StickyStepCards({
             </p>
           </div>
 
-          <figure
-            data-animation="reveal"
-            className="flex flex-col gap-10 lg:gap-[3.75rem]"
-          >
+          <figure data-animation="reveal" className="flex flex-col gap-10">
             {/* Quote mark */}
             <svg
               aria-hidden="true"
@@ -104,9 +103,17 @@ export default function StickyStepCards({
                 {blockquote}
               </blockquote>
 
-              <figcaption className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+              <figcaption className="font-sans flex items-center gap-4 text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
                 {quoteAuthor}
               </figcaption>
+
+              {link && (
+                <p className="uppercase text-sm font-medium tracking-wider underline underline-offset-4">
+                  <a target="_blank" href={link}>
+                    Read Case Study
+                  </a>
+                </p>
+              )}
             </div>
           </figure>
         </div>

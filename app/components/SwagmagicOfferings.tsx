@@ -1,11 +1,11 @@
 "use client";
 
-import swagKits from '@/public/swag/everything/swag-kits.png'
-import brandedStores from '@/public/swag/everything/branded-stores.png'
-import onDemand from '@/public/swag/everything/on-demand.png'
-import bulkSwag from '@/public/swag/everything/bulk-swag.png'
-import selfServe from '@/public/swag/everything/self-serve.png'
-import swagStorage from '@/public/swag/everything/swag-storage.png'
+import swagKits from "@/public/swag/everything/swag-kits.png";
+import brandedStores from "@/public/swag/everything/branded-stores.png";
+import onDemand from "@/public/swag/everything/on-demand.png";
+import bulkSwag from "@/public/swag/everything/bulk-swag.png";
+import selfServe from "@/public/swag/everything/self-serve.png";
+import swagStorage from "@/public/swag/everything/swag-storage.png";
 
 import PillTabs from "./common/PillTabs";
 
@@ -21,7 +21,7 @@ const items = [
       "We assemble, pack, and ship to every recipient.",
       "Track every kit from warehouse to doorstep.",
     ],
-    cta: 'Build a kit',
+    cta: "Build a kit",
     image: swagKits,
     href: "#",
   },
@@ -36,7 +36,7 @@ const items = [
       "Per-team budgets, approvals, and SSO.",
       "Orders ship from inventory automatically.",
     ],
-    cta: 'See stores',
+    cta: "See stores",
     image: brandedStores,
     href: "#",
   },
@@ -51,7 +51,7 @@ const items = [
       "Ship a single item or a thousand.",
       "Reorder favorites in a click.",
     ],
-    cta: 'Order on demand',
+    cta: "Order on demand",
     image: onDemand,
     href: "#",
   },
@@ -66,7 +66,7 @@ const items = [
       "Storage for events, gifting, and more",
       "Ship to one or multiple locations",
     ],
-    cta: 'Get bulk pricing',
+    cta: "Get bulk pricing",
     image: bulkSwag,
     href: "#",
   },
@@ -81,7 +81,7 @@ const items = [
       "Send to addresses you already have.",
       "Pay as you go, no contract.",
     ],
-    cta: 'Start designing',
+    cta: "Start designing",
     image: selfServe,
     href: "#",
   },
@@ -96,7 +96,7 @@ const items = [
       "Real-time inventory across every SKU.",
       "Ship from storage on demand.",
     ],
-    cta: 'See storage',
+    cta: "See storage",
     image: swagStorage,
     href: "#",
   },
@@ -105,10 +105,10 @@ const items = [
 export default function SwagmagicOfferings() {
   return (
     <PillTabs
-      caption="Everything swag"
+      caption="Swag Options"
       captionColor="#10995a"
       title="Every fulfillment model, one setup"
-      description="Whether you print swag on demand, buy in bulk, or pull from stock, Stadium's does all three. Most vendors only do one."
+      description="Whether you print swag on demand, buy in bulk, or pull from stock, Stadium does all three. Most vendors only do one."
       autoAdvance={false}
       glowColor="#00C036"
       items={items}

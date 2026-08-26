@@ -1,6 +1,6 @@
 import TwoFeaturedCards from "@/app/components/common/TwoFeaturedCards";
 
-import offerOne from '@/public/swag/admin-view.png';
+import offerOne from "@/public/swag/admin-view.png";
 
 function Check() {
   return (
@@ -55,15 +55,12 @@ export default function SwagmagicSolution() {
     <TwoFeaturedCards
       caption="The solution"
       captionColor="#10995a"
-      title="Guided ordering or self-serve"
-      description="Both options pull from the same catalog."
+      title="One platform handles your vendors,inventory, and shipping"
+      description="Choose guided ordering with our team or self-serve through Swagmagic. Either way, you get the same catalog and fulfillment infrastructure."
       cards={[
         {
           title: "Run a swag program",
           subtitle: "Stadium Platform • Sales-Assisted",
-          image: offerOne,
-          imageAlt:
-            "Stadium swag program showing branded stores, inventory, and fulfillment.",
           isFeatured: true,
           isFeaturedLabel: "Popular",
           isFeaturedPillColor: "#1b1b1b",
@@ -85,9 +82,6 @@ export default function SwagmagicSolution() {
         {
           title: "Order Swag Yourself",
           subtitle: "SwagMagic • Self-Serve",
-          image: offerOne,
-          imageAlt:
-            "SwagMagic self-serve ordering experience for browsing and ordering swag.",
           isFeatured: false,
           content: (
             <CardContent

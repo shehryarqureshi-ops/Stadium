@@ -24,18 +24,33 @@ type Cell = "check" | "minus" | string;
 
 const COLS: { name: string; sub?: string; hi?: boolean }[] = [
   { name: "Stadium", hi: true },
-  { name: "Order Forms", sub: "Sticker Mule ·  4imprint" },
+  { name: "Traditional Swag Vendors", sub: "Sticker Mule ·  4imprint" },
   { name: "Swag Platforms", sub: "SwagUp ·  Printfection" },
-  { name: "Gifting Tools", sub: "Sendoso ·  Postal" },
+  { name: "Gifting Platforms", sub: "Sendoso ·  Postal" },
 ];
 
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
-  { label: "Branded Swag & Stores", vals: ["check", "Order Only", "check", "Add-On"] },
-  { label: "Warehousing & Kitting", vals: ["check", "minus", "check", "Limited"] },
-  { label: "Snacks & Food", vals: ["check", "minus", "minus", "Limited"] },
-  { label: "Gift Cards & Recognition", vals: ["check", "minus", "minus", "Gifts Only"] },
-  { label: "Recipient’s Choice • 25K Catalog", vals: ["check", "minus", "Limited", "check"] },
-  { label: "Global With Local Fulfillment", vals: ["check", "Limited", "Limited", "check"] },
+  {
+    label: "Branded Swag & Stores",
+    vals: ["check", "Order Only", "check", "Add-On"],
+  },
+  {
+    label: "Warehousing & Kitting",
+    vals: ["check", "minus", "check", "Limited"],
+  },
+  // { label: "Snacks & Food", vals: ["check", "minus", "minus", "Limited"] },
+  {
+    label: "Gift Cards & Recognition",
+    vals: ["check", "minus", "minus", "Gifts Only"],
+  },
+  {
+    label: "Recipient’s Choice • 25K Catalog",
+    vals: ["check", "minus", "Limited", "check"],
+  },
+  {
+    label: "Global With Local Fulfillment",
+    vals: ["check", "Limited", "Limited", "check"],
+  },
   { label: "One Platform", vals: ["check", "minus", "minus", "minus"] },
 ];
 
@@ -101,16 +116,16 @@ export default function SwagmagicComparison() {
               data-animation="reveal"
               className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              Most platforms do one thing.
+              Most solutions handle one piece.
               <br />
-              Stadium does it all.
+              Stadium brings it all together.
             </h2>
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
-            Stores, kits, storage, and fulfillment, without the handoffs.
+            Swag, stores, storage, fulfillment, and more, without the handoffs.
           </p>
         </div>
 
@@ -126,22 +141,30 @@ export default function SwagmagicComparison() {
           >
             {/* header row */}
             <div role="row" className="contents">
-              <div role="columnheader" aria-hidden className="rounded-[1.5rem] bg-white" />
+              <div
+                role="columnheader"
+                aria-hidden
+                className="rounded-[1.5rem] bg-white"
+              />
               {COLS.map((c) => (
                 <div
                   key={c.name}
                   role="columnheader"
-                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${c.hi ? "rounded-b-[0.5rem] rounded-t-[1.5rem] bg-[#f2fbf5]" : "rounded-[1.5rem] bg-white"
-                    }`}
+                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
+                    c.hi
+                      ? "rounded-b-[0.5rem] rounded-t-[1.5rem] bg-[#f2fbf5]"
+                      : "rounded-[1.5rem] bg-white"
+                  }`}
                 >
                   <span
-                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${c.hi ? "font-semibold" : "font-normal"
-                      }`}
+                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${
+                      c.hi ? "font-semibold" : "font-normal"
+                    }`}
                   >
                     {c.name}
                   </span>
                   {c.sub && (
-                    <span className="whitespace-pre font-sans text-[0.6875rem] font-normal leading-[1.4] text-[#6b6c71]">
+                    <span className="hidden whitespace-pre font-sans text-[0.6875rem] font-normal leading-[1.4] text-[#6b6c71]">
                       {c.sub}
                     </span>
                   )}
@@ -154,8 +177,9 @@ export default function SwagmagicComparison() {
               <div key={r.label} role="row" className="contents">
                 <div
                   role="rowheader"
-                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${ri === 0 ? "rounded-tl-[1.5rem]" : ""
-                    } ${ri === LAST_ROW ? "rounded-bl-[1.5rem]" : ""}`}
+                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${
+                    ri === 0 ? "rounded-tl-[1.5rem]" : ""
+                  } ${ri === LAST_ROW ? "rounded-bl-[1.5rem]" : ""}`}
                 >
                   <span className="whitespace-nowrap font-sans text-[0.90625rem] font-semibold leading-[1.4] text-[#16171b]">
                     {r.label}
@@ -165,9 +189,13 @@ export default function SwagmagicComparison() {
                   <div
                     key={ci}
                     role="cell"
-                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${COLS[ci].hi ? "bg-[#f2fbf5]" : "bg-[#f2f2f2]"
-                      } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1.5rem]" : ""} ${ri === LAST_ROW && ci === LAST_COL ? "rounded-br-[1.5rem]" : ""
-                      }`}
+                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${
+                      COLS[ci].hi ? "bg-[#f2fbf5]" : "bg-[#f2f2f2]"
+                    } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1.5rem]" : ""} ${
+                      ri === LAST_ROW && ci === LAST_COL
+                        ? "rounded-br-[1.5rem]"
+                        : ""
+                    }`}
                   >
                     <Value v={v} />
                   </div>
@@ -187,7 +215,11 @@ export default function SwagmagicComparison() {
                 </a>
               </div>
               {COLS.slice(1).map((c) => (
-                <div key={c.name} role="cell" className="rounded-[1.5rem] bg-white" />
+                <div
+                  key={c.name}
+                  role="cell"
+                  className="rounded-[1.5rem] bg-white"
+                />
               ))}
             </div>
           </div>

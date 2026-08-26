@@ -84,7 +84,7 @@ export default function ProblemSection({
                       {item.title}
                     </h3>
 
-                    <p className="font-sans text-[1rem] leading-[1.5] text-[#6b6c71]">
+                    <p className="font-sans text-[1rem] leading-[1.5] text-[#6b6c71] text-pretty">
                       {item.description}
                     </p>
                   </div>
