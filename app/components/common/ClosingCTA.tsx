@@ -104,9 +104,8 @@ export default function ClosingCTA({
                           ? { backgroundColor: ctaOneColor }
                           : undefined
                       }
-                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] pt-0.75 font-semibold uppercase leading-[1.4] transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-                        ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
-                      }`}
+                      className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-white ${ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
+                        }`}
                     >
                       {ctaOneLabel}
                     </a>
@@ -115,7 +114,7 @@ export default function ClosingCTA({
                   {ctaTwoLabel && (
                     <a
                       href={ctaTwoLink}
-                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] pt-0.75 font-semibold uppercase leading-[1.4] transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 ${CTA_VARIANTS[ctaTwoVariant]}`}
+                      className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-white ${CTA_VARIANTS[ctaTwoVariant]}`}
                     >
                       {ctaTwoLabel}
                     </a>

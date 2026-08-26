@@ -1,3 +1,5 @@
+import ClosingCTA from "./common/ClosingCTA";
+
 const LINK_COLUMNS: { heading: string; links: string[] }[] = [
   {
     heading: "Platform Features",
@@ -72,62 +74,18 @@ export default function PageClose({
   };
   return (
     <section className="bg-[#181818]">
-      {/* ===== Final CTA — centered on the dark block. Hidden on pages that
-          carry their own closing CTA (e.g. /swag → "Make swag run itself"). ===== */}
-      {showCta && (
-        <div className="relative overflow-hidden px-section-x-sm py-20 text-center md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-[7.5rem]">
-          {/* deep-blue bloom in the lower center (behind the dot dome) */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-24 left-1/2 h-96 w-[85%] -translate-x-1/2 rounded-[50%] bg-[#0b52c0]/40 blur-[120px]"
-          />
-          {/* dot-field texture masked into a dome in the lower center
-            (Figma "image 13611" — /pageclose-dots.png) */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-70 [mix-blend-mode:screen]"
-            style={{
-              backgroundImage: "url(/pageclose-dots.png)",
-              backgroundSize: "60rem auto",
-              backgroundPosition: "center bottom",
-              backgroundRepeat: "no-repeat",
-              maskImage:
-                "radial-gradient(33% 75% at 50% 100%, #000 18%, transparent 82%)",
-              WebkitMaskImage:
-                "radial-gradient(33% 75% at 50% 100%, #000 18%, transparent 82%)",
-            }}
-          />
-          <div className="relative mx-auto flex w-full max-w-content flex-col items-center gap-8">
-            <div className="flex flex-col items-center gap-6">
-              <div className="flex flex-col items-center gap-3">
-                <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#9fa0a2]">
-                  {c.eyebrow}
-                </p>
-                <h2 className="font-display text-heading-sm text-white md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]">
-                  {c.heading}
-                </h2>
-              </div>
-              <p className="max-w-[38rem] font-sans text-body-md text-[#e6e6e6] lg:text-[1.0625rem] lg:leading-7">
-                {c.body}
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-3.5">
-              <a
-                href="#"
-                className="inline-flex h-button-h items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-200 active:scale-[0.98] focus-visible:outline-white"
-              >
-                {c.primaryCta}
-              </a>
-              <a
-                href="#"
-                className="inline-flex h-button-h items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
-              >
-                {c.secondaryCta}
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+      <ClosingCTA
+        caption="Get started"
+        title="Ready to build your program?"
+        description="Get a 15-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale."
+        ctaOneLabel="Book a demo"
+        ctaOneLink="#"
+        ctaOneVariant="primary"
+        ctaTwoLabel="Talk to sales"
+        ctaTwoLink="#"
+        ctaTwoVariant="secondary"
+        backgroundColor="#181818"
+      />
 
       {/* ===== Footer ===== */}
       <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pt-20">

@@ -25,16 +25,8 @@ type TestimonialsProps = {
 
 function TestimonialCard({ item }: { item: TestimonialItem }) {
   return (
-    <figure className="flex items-start gap-4 rounded-3xl bg-[#f2f2f2] p-6">
-      <Image
-        src={item.image}
-        alt={item.title}
-        width={72}
-        height={72}
-        className="size-[72px] rounded-2xl object-cover"
-      />
-
-      <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)]">
+    <figure className="flex flex-col lg:flex-row items-start gap-4 rounded-3xl bg-[#f2f2f2] p-6">
+      <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] lg:order-1">
         <blockquote className="font-sans text-[1rem] leading-6 text-ink">
           &ldquo;{item.text}&rdquo;
         </blockquote>
@@ -49,6 +41,14 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
           </span>
         </figcaption>
       </div>
+
+      <Image
+        src={item.image}
+        alt={item.title}
+        width={72}
+        height={72}
+        className="size-[72px] rounded-2xl object-cover lg:order-0"
+      />
     </figure>
   );
 }
@@ -173,7 +173,6 @@ export default function Testimonials({
 
         {/* Right */}
         <div
-          data-animation="reveal"
           className="testimonial-viewport relative flex-1 overflow-hidden lg:h-166"
           style={{
             maskImage:

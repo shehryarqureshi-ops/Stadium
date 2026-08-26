@@ -37,8 +37,8 @@ export default function Home() {
           <ScaleMap />
           <TeamsTabs />
           <Occasions />
-          <Testimonials />
         </div>
+        <Testimonials />
       </main>
       <StickyVideo />
       <PageClose />

@@ -43,19 +43,24 @@ const items: TestimonialItem[] = [
 
 export default function TestimonialsSection() {
   return (
-    <Testimonials
-      title={
-        <>
-          The proof is
-          <br className="hidden md:block" /> in the people
-        </>
-      }
-      showRating
-      rating={4.8}
-      ratingLabel="on G2 from 1,515 reviews"
-      blockquote="What sets Stadium apart is their ability to deliver a complete solution and empower our team — no matter the challenge."
-      citation="Maxime Bascon • Chief of Staff • Elktech"
-      items={items}
-    />
+    <div className="bg-linear-to-b from-white via-[#2178F5] to-[#181818]">
+      <div className="max-w-content mx-auto bg-white">
+        <Testimonials
+          title={
+            <>
+              The proof is
+              <br className="hidden md:block" /> in the people
+            </>
+          }
+          showRating
+          rating={4.8}
+          ratingLabel="on G2 from 1,515 reviews"
+          blockquote="What sets Stadium apart is their ability to deliver a complete solution and empower our team — no matter the challenge."
+          citation="Maxime Bascon • Chief of Staff • Elktech"
+          items={items}
+        />
+      </div>
+      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl hidden lg:block" />
+    </div>
   );
 }
