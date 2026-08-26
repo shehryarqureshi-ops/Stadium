@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 export type StepCardsCarouselCard = {
-  caption: string;
+  /** optional: the Confetti cards on /events have no caption line in Figma */
+  caption?: string;
   title: string;
   description: string;
   image?: StaticImageData | string;
@@ -125,9 +126,11 @@ function CarouselCard({ card }: { card: StepCardsCarouselCard }) {
       )}
 
       <div className="flex flex-col gap-2 px-1">
-        <p className="font-sans text-[0.625rem] font-bold uppercase leading-3 tracking-[0.0625rem] text-[#1b1b1b]/60">
-          {card.caption}
-        </p>
+        {card.caption ? (
+          <p className="font-sans text-[0.625rem] font-bold uppercase leading-3 tracking-[0.0625rem] text-[#1b1b1b]/60">
+            {card.caption}
+          </p>
+        ) : null}
 
         <h3 className="font-display text-2xl leading-7 text-[#1b1b1b]">
           {card.title}

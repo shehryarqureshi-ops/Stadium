@@ -1,310 +1,32 @@
 "use client";
 
+/* /events · BROWSE BY CATEGORY — "Find your team's kind of fun". Card content
+   from the Imagery System board F7rDHYd3n5nwRtrlv1F6dO → 2241:12574
+   "CONFETTI — cards per accordion state".
+
+   This file was a copy of StadiumWay.tsx: the accordion titles were right for
+   /events, but the CARDS were still the Stadium Way onboarding set, so opening
+   "Team Building" showed Invite your team / Fund your wallet / Connect your
+   stack. That shipped to production. Each state now holds the eight real
+   Confetti experiences the board assigns to it, with their live duration and
+   capacity, and the ~300 lines of Stadium Way mock panels that fed the old
+   cards are gone.
+
+   Six experiences appear in two states (Escape Quest, Coworker Clash and
+   Classic Trivia in Team Building + Employee Onboarding; Bucket List Workshop
+   and Vision Board Workshop in L&D + Health & Wellness; Disability Allyship in
+   L&D + DEI), so 48 placements resolve to 42 image files.
+
+   Cards carry no caption: the board's card is image → title → a single meta
+   line, so `caption` was made optional on the shared carousel rather than
+   inventing a label. Sources are 900×562 against a 314×250 slot — a centred
+   cover crop, shipped at 628×500 = 2× the CSS slot. Each photo was matched to
+   its slot in the row's own render and proofed side by side, since every
+   source in a row is the same size and size alone cannot disambiguate them. */
+
 import StepCardsCarousel, {
   type StepCardsCarouselStep,
 } from "@/app/components/common/StepCardsCarousel";
-import TeamPermissionsLoop from "./TeamPermissions";
-
-type MockItem = {
-  icon?: string;
-  label: string;
-  sub?: string;
-  badge?: string;
-  active?: boolean;
-};
-
-type Mock = {
-  header: string;
-  meta: string;
-  accent: string;
-  items: MockItem[];
-};
-
-function MockPanel({ mock }: { mock: Mock }) {
-  return (
-    <div className="flex h-full flex-col gap-2 bg-gradient-to-b from-[#eef2f8] to-white p-4">
-      <div className="flex items-center justify-between px-1">
-        <span className="font-sans text-[0.9375rem] font-bold text-ink">
-          {mock.header}
-        </span>
-
-        <span className="font-sans text-[0.75rem] text-grey-400">
-          {mock.meta}
-        </span>
-      </div>
-
-      {mock.items.map((item, index) => (
-        <div
-          key={index}
-          className="flex items-center gap-2.5 rounded-lg px-2 py-2"
-          style={
-            item.active
-              ? {
-                  background: `${mock.accent}1a`,
-                }
-              : undefined
-          }
-        >
-          <span
-            className="flex size-8 shrink-0 items-center justify-center rounded-full font-sans text-[0.9375rem] font-bold"
-            style={
-              item.active
-                ? {
-                    background: mock.accent,
-                    color: "#fff",
-                  }
-                : {
-                    background: "#f1f2f4",
-                    color: "#9aa0ac",
-                  }
-            }
-          >
-            {item.icon ?? ""}
-          </span>
-
-          <span className="flex min-w-0 flex-1 flex-col">
-            <span
-              className={`font-sans text-[0.875rem] ${
-                item.active ? "font-semibold text-ink" : "text-grey-400"
-              }`}
-            >
-              {item.label}
-            </span>
-
-            {item.sub && (
-              <span className="font-sans text-[0.75rem] text-grey-400">
-                {item.sub}
-              </span>
-            )}
-          </span>
-
-          {item.badge && (
-            <span
-              className="flex size-5 shrink-0 items-center justify-center rounded-full font-sans text-[0.625rem] font-bold text-white"
-              style={{
-                background: mock.accent,
-              }}
-            >
-              {item.badge}
-            </span>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const assemblyGlobalFulfillment: Mock = {
-  header: "Shipments",
-  meta: "12 in transit",
-  accent: "#3ecf8e",
-  items: [
-    {
-      label: "Welcome kits · US",
-      sub: "Out for delivery",
-      badge: "✓",
-      active: true,
-    },
-    {
-      label: "Branded swag · EU",
-    },
-    {
-      label: "Snack boxes · APAC",
-    },
-    {
-      label: "Gift cards · LATAM",
-    },
-  ],
-};
-
-const assemblyCarrierRouting: Mock = {
-  header: "Carriers",
-  meta: "Auto-routed",
-  accent: "#14b8a6",
-  items: [
-    {
-      label: "DHL Express",
-      sub: "2–4 days",
-      active: true,
-    },
-    {
-      label: "FedEx",
-    },
-    {
-      label: "UPS",
-    },
-    {
-      label: "Local last-mile",
-    },
-  ],
-};
-
-const assemblyCompliance: Mock = {
-  header: "Compliance",
-  meta: "170+ countries",
-  accent: "#0ea5e9",
-  items: [
-    {
-      label: "HS codes",
-      sub: "Auto-classified",
-      active: true,
-    },
-    {
-      label: "VAT & GST",
-    },
-    {
-      label: "Import duties",
-    },
-    {
-      label: "Restricted items",
-    },
-  ],
-};
-
-const engageAutomations: Mock = {
-  header: "Automations",
-  meta: "6 active",
-  accent: "#8b5cff",
-  items: [
-    {
-      label: "New hire → Welcome kit",
-      sub: "Runs on hire date",
-      active: true,
-    },
-    {
-      label: "Anniversary → Gift",
-    },
-    {
-      label: "Milestone → Reward",
-    },
-    {
-      label: "Event → Swag drop",
-    },
-  ],
-};
-
-const engageRecognition: Mock = {
-  header: "Recognition",
-  meta: "This week",
-  accent: "#a855f7",
-  items: [
-    {
-      label: "Kudos sent",
-      sub: "1,204",
-      active: true,
-    },
-    {
-      label: "Points redeemed",
-      sub: "8,900",
-    },
-    {
-      label: "Top value",
-      sub: "Ownership",
-    },
-    {
-      label: "Participation",
-      sub: "82%",
-    },
-  ],
-};
-
-const engageMoments: Mock = {
-  header: "Upcoming",
-  meta: "Next 30 days",
-  accent: "#d946ef",
-  items: [
-    {
-      label: "Birthdays",
-      sub: "18",
-      active: true,
-    },
-    {
-      label: "Work anniversaries",
-      sub: "7",
-    },
-    {
-      label: "New hires",
-      sub: "12",
-    },
-    {
-      label: "Holidays",
-      sub: "2",
-    },
-  ],
-};
-
-const reporting: Mock = {
-  header: "Reporting",
-  meta: "Last 90 days",
-  accent: "#f59e0b",
-  items: [
-    {
-      label: "Spend",
-      sub: "$142K this quarter",
-      active: true,
-    },
-    {
-      label: "Engagement",
-      sub: "87% claim rate",
-    },
-    {
-      label: "Reach",
-      sub: "18 markets",
-    },
-    {
-      label: "Redemptions",
-      sub: "9,240 sent",
-    },
-  ],
-};
-
-const reorder: Mock = {
-  header: "Programs",
-  meta: "Saved",
-  accent: "#f97316",
-  items: [
-    {
-      label: "Q4 Holiday drop",
-      sub: "Ready to rerun",
-      badge: "↻",
-      active: true,
-    },
-    {
-      label: "New hire kits",
-    },
-    {
-      label: "Anniversary gifts",
-    },
-    {
-      label: "Event swag",
-    },
-  ],
-};
-
-const optimize: Mock = {
-  header: "Insights",
-  meta: "AI suggestions",
-  accent: "#eab308",
-  items: [
-    {
-      label: "Top gift",
-      sub: "Premium snacks",
-      active: true,
-    },
-    {
-      label: "Best send window",
-      sub: "Tue 10am",
-    },
-    {
-      label: "Top region",
-      sub: "US-West",
-    },
-    {
-      label: "Suggested budget",
-      sub: "+12%",
-    },
-  ],
-};
 
 const steps: StepCardsCarouselStep[] = [
   {
@@ -313,40 +35,52 @@ const steps: StepCardsCarouselStep[] = [
       "Build stronger teams with games, mysteries, and challenges that pull people into the conversation.",
     cards: [
       {
-        caption: "Setup · Team",
-        title: "Invite your team",
-        description: "Add members and assign who does what.",
-        content: <TeamPermissionsLoop />,
+        title: "Classic Trivia",
+        description: "60 min · 2 to 500",
+        image: "/exp2/cat/xp-cat-classic-trivia.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Setup · Permissions",
-        title: "Roles & permissions",
-        description: "Scope send, approve, and spend per person.",
-        image: "/sw-card-2-permissions.svg",
+        title: "Escape Quest",
+        description: "75 to 90 min · max 500",
+        image: "/exp2/cat/xp-cat-escape-quest.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Setup · Wallet",
-        title: "Fund your wallet",
-        description: "One balance for every send, topped up your way.",
-        image: "/sw-card-3-wallet.svg",
+        title: "Coworker Clash",
+        description: "60 min · 4 to 200",
+        image: "/exp2/cat/xp-cat-coworker-clash.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Setup · Integrations",
-        title: "Connect your stack",
-        description: "Sync your HRIS, CRM, and the tools you run.",
-        image: "/sw-card-4-integrations.svg",
+        title: "Codeword",
+        description: "60 min · 4 to 40",
+        image: "/exp2/cat/xp-cat-codeword.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Setup · Slack",
-        title: "Install in Slack",
-        description: "Bring Stadium into the tools your team lives in.",
-        image: "/sw-card-5-slack.svg",
+        title: "Culture Club: Self-Doubt",
+        description: "60 min · 4 to 20",
+        image: "/exp2/cat/xp-cat-culture-club-self-doubt.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Setup · SSO",
-        title: "Single sign-on",
-        description: "Secure access through your identity provider.",
-        image: "/sw-card-6-sso.svg",
+        title: "Culture Club: Work Community",
+        description: "60 min · 4 to 20",
+        image: "/exp2/cat/xp-cat-culture-club-work-community.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Charades",
+        description: "60 min · 4 to 995",
+        image: "/exp2/cat/xp-cat-charades.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Live World Tour",
+        description: "60 min · max 995",
+        image: "/exp2/cat/xp-cat-live-world-tour.jpg",
+        imageAlt: "",
       },
     ],
   },
@@ -356,25 +90,52 @@ const steps: StepCardsCarouselStep[] = [
       "Learn new skills with mixology classes, public speaking workshops, and hands-on making.",
     cards: [
       {
-        caption: "Assembly · Week 1",
-        title: "Global fulfillment",
-        description:
-          "Warehousing and kitting configured across every market you ship to.",
-        content: <MockPanel mock={assemblyGlobalFulfillment} />,
+        title: "Bucket List Workshop",
+        description: "60 min · 5 to 500",
+        image: "/exp2/cat/xp-cat-bucket-list-workshop.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Assembly · Week 2",
-        title: "Carrier routing",
-        description:
-          "Least-cost carrier selection and live tracking on every parcel.",
-        content: <MockPanel mock={assemblyCarrierRouting} />,
+        title: "Employee Listening for Leaders",
+        description: "30 min · 2 to 500",
+        image: "/exp2/cat/xp-cat-employee-listening-for-leaders.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Assembly · Week 3",
-        title: "Customs & duties",
-        description:
-          "HS codes, VAT, and duties calculated so nothing gets stuck at the border.",
-        content: <MockPanel mock={assemblyCompliance} />,
+        title: "Disability Allyship at Work",
+        description: "60 min · max 150",
+        image: "/exp2/cat/xp-cat-disability-allyship-at-work.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Vision Board Workshop",
+        description: "90 min · max 495",
+        image: "/exp2/cat/xp-cat-vision-board-workshop.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Totem: Strength Recognition",
+        description: "60 min · 4 to 95",
+        image: "/exp2/cat/xp-cat-totem-strength-recognition.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Empathy Water Cooler",
+        description: "45 to 60 min · 4 to 75",
+        image: "/exp2/cat/xp-cat-empathy-water-cooler.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Stress Management Workshop",
+        description: "60 to 75 min · max 495",
+        image: "/exp2/cat/xp-cat-stress-management-workshop.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Workplace Mental Health",
+        description: "60 min · max 100",
+        image: "/exp2/cat/xp-cat-workplace-mental-health.jpg",
+        imageAlt: "",
       },
     ],
   },
@@ -384,25 +145,52 @@ const steps: StepCardsCarouselStep[] = [
       "Recharge with yoga, meditation, and breathwork, led by certified pros.",
     cards: [
       {
-        caption: "Engage · Month 2",
-        title: "Automations",
-        description:
-          "Trigger sends on hires, milestones, and moments — the busywork runs itself.",
-        content: <MockPanel mock={engageAutomations} />,
+        title: "Self-Defense Workshop",
+        description: "60 min · max 100",
+        image: "/exp2/cat/xp-cat-self-defense-workshop.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Engage · Month 2",
-        title: "Recognition",
-        description:
-          "Kudos, points, and rewards tied to the values your company already runs.",
-        content: <MockPanel mock={engageRecognition} />,
+        title: "Bucket List Workshop",
+        description: "60 min · 5 to 500",
+        image: "/exp2/cat/xp-cat-bucket-list-workshop.jpg",
+        imageAlt: "",
       },
       {
-        caption: "Engage · Month 3",
-        title: "Moments",
-        description:
-          "Birthdays, anniversaries, and life events celebrated — never missed.",
-        content: <MockPanel mock={engageMoments} />,
+        title: "Candle Making Class",
+        description: "30 to 45 min · max 300",
+        image: "/exp2/cat/xp-cat-candle-making-class.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Deskercise Class",
+        description: "30 to 60 min · max 495",
+        image: "/exp2/cat/xp-cat-deskercise-class.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Meditation Class",
+        description: "30 to 60 min · max 495",
+        image: "/exp2/cat/xp-cat-meditation-class.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Terrarium Workshop",
+        description: "60 min · max 300",
+        image: "/exp2/cat/xp-cat-terrarium-workshop.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Laughter Yoga",
+        description: "30 to 60 min · max 495",
+        image: "/exp2/cat/xp-cat-laughter-yoga.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Vision Board Workshop",
+        description: "90 min · max 495",
+        image: "/exp2/cat/xp-cat-vision-board-workshop.jpg",
+        imageAlt: "",
       },
     ],
   },
@@ -412,36 +200,164 @@ const steps: StepCardsCarouselStep[] = [
       "Celebrate all year with experiences for holidays, heritage months, and milestones.",
     cards: [
       {
-        caption: "90 Day World · Day 90",
-        title: "Reporting",
-        description:
-          "See spend, engagement, and reach across every program in one view.",
-        content: <MockPanel mock={reporting} />,
+        title: "Mixology Class",
+        description: "30 to 60 min · max 495",
+        image: "/exp2/cat/xp-cat-mixology-class.jpg",
+        imageAlt: "",
       },
       {
-        caption: "90 Day World · Ongoing",
-        title: "Reorder",
-        description: "Restock and rerun any saved program in a single click.",
-        content: <MockPanel mock={reorder} />,
+        title: "Murder Mystery Party",
+        description: "90 min · max 300",
+        image: "/exp2/cat/xp-cat-murder-mystery-party.jpg",
+        imageAlt: "",
       },
       {
-        caption: "90 Day World · Ongoing",
-        title: "Optimize",
-        description: "Refine with the data and do more of what actually lands.",
-        content: <MockPanel mock={optimize} />,
+        title: "Wine Tasting",
+        description: "30 to 60 min · max 495",
+        image: "/exp2/cat/xp-cat-wine-tasting.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Whiskey & Bourbon Tasting",
+        description: "30 to 60 min · max 495",
+        image: "/exp2/cat/xp-cat-whiskey-and-bourbon-tasting.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Custom Cookie Decorating",
+        description: "75 min · max 495",
+        image: "/exp2/cat/xp-cat-custom-cookie-decorating.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Lunch Party",
+        description: "all group sizes",
+        image: "/exp2/cat/xp-cat-lunch-party.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Confetti Pub",
+        description: "60 to 120 min · max 975",
+        image: "/exp2/cat/xp-cat-confetti-pub.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Office Olympics",
+        description: "90 to 120 min · 4 to 488",
+        image: "/exp2/cat/xp-cat-office-olympics.jpg",
+        imageAlt: "",
       },
     ],
   },
   {
     title: "Employee Onboarding",
-    description: "Help new hires feel like part of the team from day one.",
-    cards: [],
+    description:
+      "Help new hires feel like part of the team from day one.",
+    cards: [
+      {
+        title: "Escape Quest",
+        description: "75 to 90 min · max 500",
+        image: "/exp2/cat/xp-cat-escape-quest.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Coworker Clash",
+        description: "60 min · 4 to 200",
+        image: "/exp2/cat/xp-cat-coworker-clash.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Taboo",
+        description: "60 min · 4 to 995",
+        image: "/exp2/cat/xp-cat-taboo.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Classic Trivia",
+        description: "60 min · 2 to 500",
+        image: "/exp2/cat/xp-cat-classic-trivia.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Show n Share Water Cooler",
+        description: "30 to 45 min · 4 to 200",
+        image: "/exp2/cat/xp-cat-show-n-share-water-cooler.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Jeoparty",
+        description: "45 to 60 min · 2 to 180",
+        image: "/exp2/cat/xp-cat-jeoparty.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Guess Who",
+        description: "60 min · 6 to 15",
+        image: "/exp2/cat/xp-cat-guess-who.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Mash-Up",
+        description: "60 to 90 min · 4 to 200",
+        image: "/exp2/cat/xp-cat-mash-up.jpg",
+        imageAlt: "",
+      },
+    ],
   },
   {
     title: "Diversity, Equity, & Inclusion",
     description:
       "Honor every culture through meaningful, thoughtfully hosted experiences.",
-    cards: [],
+    cards: [
+      {
+        title: "Neurodiversity 101",
+        description: "60 min · 2 to 500",
+        image: "/exp2/cat/xp-cat-neurodiversity-101.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Disability Allyship at Work",
+        description: "60 min · max 150",
+        image: "/exp2/cat/xp-cat-disability-allyship-at-work.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Black Cultural Impact",
+        description: "60 min · max 495",
+        image: "/exp2/cat/xp-cat-black-cultural-impact.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Black History & Culture Trivia",
+        description: "60 min · 2 to 500",
+        image: "/exp2/cat/xp-cat-black-history-and-culture-trivia.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Women's History Trivia",
+        description: "60 min · 2 to 500",
+        image: "/exp2/cat/xp-cat-womens-history-trivia.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Exploring Black Art",
+        description: "60 min · max 495",
+        image: "/exp2/cat/xp-cat-exploring-black-art.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Understanding Juneteenth",
+        description: "60 min · max 495",
+        image: "/exp2/cat/xp-cat-understanding-juneteenth.jpg",
+        imageAlt: "",
+      },
+      {
+        title: "Exploring Hispanic Art",
+        description: "60 min · max 495",
+        image: "/exp2/cat/xp-cat-exploring-hispanic-art.jpg",
+        imageAlt: "",
+      },
+    ],
   },
 ];
 
