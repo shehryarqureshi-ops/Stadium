@@ -15,6 +15,7 @@ import SwagmagicPackages from "../components/SwagmagicPackages";
 import SwagmagicPlatform from "../components/SwagmagicPlatform";
 import SwagmagicProblem from "../components/SwagmagicProblem";
 import SwagmagicSolution from "../components/SwagmagicSolution";
+import StadiumWay from "../components/StadiumWay";
 
 /* /swag — bespoke page rebuilt 2026-08-19 from Figma n9SjmDjzB1PeZAYJ5w43fr
    frame 2500:4706 ("Swag" page). Sections are the Swagmagic* components; the
@@ -43,6 +44,7 @@ export default function SwagPage() {
           <SwagmagicSolution />
           <SwagmagicOfferings />
           <SwagmagicCatalog />
+          <StadiumWay />
           <SwagmagicHowItWorks />
           <SwagmagicPlatform />
           <SwagmagicComparison />
