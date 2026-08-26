@@ -75,6 +75,28 @@ const CARDS: { tab: Tab; label: string; slug: string }[] = [
   { tab: "Work & Play", label: "Electronics", slug: "electronics" },
 ];
 
+/* "All" interleaves the four tabs round-robin instead of running them in
+   blocks. The carousel only shows ~3.2 cards at 1440 (348 + 24 gap in a 1200
+   content box), so grouped order opened on three coral Snacks cards and read
+   as the Snacks tab until you scrolled past eight of them; round-robin puts
+   every colour field on the first screen. Figma has no "All" tab — its board
+   groups by category because it is a spec sheet — so this is a layout choice,
+   not a deviation from the design.
+
+   Deterministic on purpose, NOT shuffled: this renders on the server, so a
+   random order would differ between server and client and trip a hydration
+   mismatch. Each category keeps its own Figma order within the rotation. */
+const ALL_MIXED = (() => {
+  const byTab = FILTERS.filter((f) => f !== "All").map((t) =>
+    CARDS.filter((c) => c.tab === t),
+  );
+  const out: typeof CARDS = [];
+  for (let i = 0; i < Math.max(...byTab.map((g) => g.length)); i++) {
+    for (const g of byTab) if (g[i]) out.push(g[i]);
+  }
+  return out;
+})();
+
 function Arrow({ dir, onClick }: { dir: "l" | "r"; onClick: () => void }) {
   return (
     <button
@@ -111,8 +133,7 @@ export default function SnackCatalog() {
     track.current?.scrollBy({ left: d * 372, behavior: "smooth" });
 
   const filter = FILTERS[active];
-  const visible =
-    filter === "All" ? CARDS : CARDS.filter((c) => c.tab === filter);
+  const visible = filter === "All" ? ALL_MIXED : CARDS.filter((c) => c.tab === filter);
 
   return (
     <section className="bg-white min-w-0 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
