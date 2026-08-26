@@ -5,12 +5,7 @@ import { HeroLogoWall } from "./common/HeroLogoWall";
 export default function SnackHero() {
   return (
     <section className="relative overflow-hidden bg-[#0437a5] pt-[6rem] md:pt-[7rem]">
-      {/* split row: text (left, top-aligned + 120 inset) + photo (right, bleeds off-edge) */}
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
-        {/* ≤1440 the split is proportional; above it the column locks to
-            padLeft + 516 = calc(50% - 84px) so the text keeps its Figma 516
-            width while the photo keeps bleeding to the viewport edge. Both
-            formulas give 636 at exactly 1440, so the crossover is seamless. */}
         <div className="carousel-bleed flex w-full flex-col gap-8 md:pr-section-x-md lg:w-[44.2%] lg:shrink-0 lg:pr-0! lg:pt-[7.5rem] min-[90rem]:w-[calc(50%_-_5.25rem)]">
           <div className="flex flex-col gap-6">
             <div data-animation="reveal" className="flex flex-col gap-2">

@@ -52,6 +52,7 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: "in-person", label: "in-person" },
   { key: "hybrid", label: "hybird" },
   { key: "under-60", label: "under 60 min" },
+  { key: "small-groups", label: "small groups" },
   { key: "big-groups", label: "big groups" },
 ];
 
