@@ -1,45 +1,9 @@
-/* /swag · Hero (Figma n9SjmDjzB1PeZAYJ5w43fr → 2500:4709 "Hero · Swag": hero
-   row 2673:2782, content 2673:2783, text col 2673:2784, graphics 2673:2797,
-   trust band 2673:2819 — re-laid-out 2026-08-21). A dark-green hero whose
-   background is Figma's own raster "image 13674" (sw2-hero-bg.jpg). It used
-   to be a live WebGL shader (SwagHeroShader) with the raster underneath as a
-   reduced-motion / no-WebGL fallback; the shader was removed 2026-08-21, so
-   the raster now paints the hero outright and matches Figma exactly. Text
-   column on the 1200 content edge (x=120 at 1440; Figma draws it at 140) and
-   the 558×557 product cluster right-aligned to the content edge: warehouse
-   photo (295×470, rounded-16, big soft shadow) + translucent "Hoodie" card
-   (black/33, rounded-20, ADD TO BAG outline button) + floating SIZE S/M/L/XL
-   pill + transparent hoodie cut-out on top. Below the row: the trust-logo
-   marquee (56 above / 40 track / 56 below).
-
-   The bg extends 746px PAST this section's bottom (Figma's bg image is
-   1440×1719; the hero row ends at 973) so SwagmagicProblem's white card
-   scrolls over it — render <SwagmagicHero/> then <SwagmagicProblem/> directly
-   (Problem is `relative z-10` on a transparent bg); do NOT wrap them in a
-   page-level background section or the raster doubles.
-
-   Figma stack (absolute y at 1440):
-     0..84    nav (fixed SiteHeader overlays; section pt = 204 = 84 + 120)
-     204      eyebrow (17)            → 8
-     229      h1 58/1.02 ×3 (177)     → 32
-     438      subhead 19/1.52 (58)    → 32
-     528      CTA row (38 Figma / 40 site h-button-h) → 32
-     598      trust line 13/1.4 (18)  → text col ends 616
-     204..761 graphics 558×557 (row height = 557)
-     761      → 60 gap (new 2026-08-21; the row used to butt the band)
-     821      trust band: pt 56 → marquee 40 (877..917) → pb 56 → 973
-     973      section ends; bg raster continues to 1719 (mask fade 75→100%),
-              i.e. 1719 − 973 = 746px = 46.625rem of overhang. */
-
 import Image from "next/image";
 import heroBg from "@/public/swag2/sw2-hero-bg.jpg";
 import hoodie from "@/public/swag2/sw2-hero-hoodie.png";
 import warehouse from "@/public/swag2/sw2-hero-warehouse.jpg";
 import { HeroLogoWall } from "./common/HeroLogoWall";
 
-/* Figma "Logos track" (2673:2821): google, amazon, pinterest, accenture,
-   bloomberg, salesforce, netflix, google, amazon, pinterest — each at its own
-   Figma box size, bottom-aligned, gap 56. */
 const LOGOS = [
   { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
   { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
@@ -103,8 +67,9 @@ function ProductCluster() {
           {SIZES.map((s) => (
             <span
               key={s}
-              className={`flex size-8 items-center justify-center rounded-[0.6317rem] font-sans text-[0.9475rem] leading-[1.25] tracking-[0.0474rem] text-[#aaaaaa] ${s === ACTIVE_SIZE ? "bg-black/75" : ""
-                }`}
+              className={`flex size-8 items-center justify-center rounded-[0.6317rem] font-sans text-[0.9475rem] leading-[1.25] tracking-[0.0474rem] text-[#aaaaaa] ${
+                s === ACTIVE_SIZE ? "bg-black/75" : ""
+              }`}
             >
               {s}
             </span>
@@ -213,8 +178,17 @@ export default function SwagmagicHero() {
               data-reveal-delay="240"
               className="relative h-[17.40625rem] w-[17.4375rem] self-center min-[24rem]:h-[20.8875rem] min-[24rem]:w-[20.925rem] sm:h-[34.8125rem] sm:w-[34.875rem] lg:shrink-0 lg:self-start"
             >
-              <div className="absolute left-0 top-0 origin-top-left scale-50 min-[24rem]:scale-[0.6] sm:scale-100">
-                <ProductCluster />
+              <div>
+                {/* <ProductCluster /> */}
+                <Image
+                  alt="Product + Catalog + Infrastructure"
+                  src={"/swag/heroGraphic.png"}
+                  width={600}
+                  height={0}
+                  quality={100}
+                  priority
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>

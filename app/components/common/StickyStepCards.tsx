@@ -103,17 +103,17 @@ export default function StickyStepCards({
                 {blockquote}
               </blockquote>
 
-              <figcaption className="font-sans flex items-center gap-4 text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+              <figcaption className="font-sans flex items-center justify-between gap-4 text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
                 {quoteAuthor}
-              </figcaption>
 
-              {link && (
-                <p className="uppercase text-sm font-medium tracking-wider underline underline-offset-4">
-                  <a target="_blank" href={link}>
-                    Read Case Study
-                  </a>
-                </p>
-              )}
+                {link && (
+                  <p className="uppercase text-sm font-medium tracking-wider underline underline-offset-4">
+                    <a target="_blank" href={link}>
+                      Read Case Study
+                    </a>
+                  </p>
+                )}
+              </figcaption>
             </div>
           </figure>
         </div>
