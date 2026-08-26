@@ -40,8 +40,8 @@ function MockPanel({ mock }: { mock: Mock }) {
           style={
             item.active
               ? {
-                background: `${mock.accent}1a`,
-              }
+                  background: `${mock.accent}1a`,
+                }
               : undefined
           }
         >
@@ -50,13 +50,13 @@ function MockPanel({ mock }: { mock: Mock }) {
             style={
               item.active
                 ? {
-                  background: mock.accent,
-                  color: "#fff",
-                }
+                    background: mock.accent,
+                    color: "#fff",
+                  }
                 : {
-                  background: "#f1f2f4",
-                  color: "#9aa0ac",
-                }
+                    background: "#f1f2f4",
+                    color: "#9aa0ac",
+                  }
             }
           >
             {item.icon ?? ""}
@@ -64,10 +64,9 @@ function MockPanel({ mock }: { mock: Mock }) {
 
           <span className="flex min-w-0 flex-1 flex-col">
             <span
-              className={`font-sans text-[0.875rem] ${item.active
-                ? "font-semibold text-ink"
-                : "text-grey-400"
-                }`}
+              className={`font-sans text-[0.875rem] ${
+                item.active ? "font-semibold text-ink" : "text-grey-400"
+              }`}
             >
               {item.label}
             </span>
@@ -328,29 +327,25 @@ const steps: StepCardsCarouselStep[] = [
       {
         caption: "Setup · Wallet",
         title: "Fund your wallet",
-        description:
-          "One balance for every send, topped up your way.",
+        description: "One balance for every send, topped up your way.",
         image: "/sw-card-3-wallet.svg",
       },
       {
         caption: "Setup · Integrations",
         title: "Connect your stack",
-        description:
-          "Sync your HRIS, CRM, and the tools you run.",
+        description: "Sync your HRIS, CRM, and the tools you run.",
         image: "/sw-card-4-integrations.svg",
       },
       {
         caption: "Setup · Slack",
         title: "Install in Slack",
-        description:
-          "Bring Stadium into the tools your team lives in.",
+        description: "Bring Stadium into the tools your team lives in.",
         image: "/sw-card-5-slack.svg",
       },
       {
         caption: "Setup · SSO",
         title: "Single sign-on",
-        description:
-          "Secure access through your identity provider.",
+        description: "Secure access through your identity provider.",
         image: "/sw-card-6-sso.svg",
       },
     ],
@@ -385,8 +380,7 @@ const steps: StepCardsCarouselStep[] = [
   },
   {
     title: "Engage",
-    description:
-      "Automate recognition, rewards, and every milestone moment.",
+    description: "Automate recognition, rewards, and every milestone moment.",
     cards: [
       {
         caption: "Engage · Month 2",
@@ -413,8 +407,7 @@ const steps: StepCardsCarouselStep[] = [
   },
   {
     title: "90 Day World",
-    description:
-      "Report, reorder, and refine — continuously.",
+    description: "Report, reorder, and refine — continuously.",
     cards: [
       {
         caption: "90 Day World · Day 90",
@@ -426,15 +419,13 @@ const steps: StepCardsCarouselStep[] = [
       {
         caption: "90 Day World · Ongoing",
         title: "Reorder",
-        description:
-          "Restock and rerun any saved program in a single click.",
+        description: "Restock and rerun any saved program in a single click.",
         content: <MockPanel mock={reorder} />,
       },
       {
         caption: "90 Day World · Ongoing",
         title: "Optimize",
-        description:
-          "Refine with the data and do more of what actually lands.",
+        description: "Refine with the data and do more of what actually lands.",
         content: <MockPanel mock={optimize} />,
       },
     ],

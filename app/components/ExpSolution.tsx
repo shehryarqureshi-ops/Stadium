@@ -29,7 +29,14 @@
    the tray's inner proportions (p-16 / gap-16 / 4 columns) are matched at 1200
    → 280-wide cards (17.5rem) instead of 290. */
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import Image, { type StaticImageData } from "next/image";
 import murderMystery from "@/public/exp2/xp-solution-murder-mystery.png";
 import tacoThrowdown from "@/public/exp2/xp-solution-taco-throwdown.jpg";
@@ -148,29 +155,68 @@ const SHADOW_CARD = "shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]";
    9258 / 9265, 24×24 nav arrows 2504:9353 / 9356). */
 function StarIcon() {
   return (
-    <svg viewBox="0 0 12 12" fill="none" stroke="#6B6C71" strokeLinecap="round" strokeLinejoin="round" className="size-3 shrink-0" aria-hidden>
+    <svg
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="#6B6C71"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-3 shrink-0"
+      aria-hidden
+    >
       <path d="M5.76242 1.1472C5.78433 1.10293 5.81818 1.06567 5.86015 1.03962C5.90212 1.01356 5.95053 0.999756 5.99992 0.999756C6.04932 0.999756 6.09773 1.01356 6.1397 1.03962C6.18166 1.06567 6.21551 1.10293 6.23742 1.1472L7.39242 3.4867C7.46851 3.64069 7.58083 3.77391 7.71974 3.87493C7.85864 3.97595 8.01999 4.04176 8.18992 4.0667L10.7729 4.4447C10.8219 4.45179 10.8678 4.47244 10.9057 4.5043C10.9435 4.53617 10.9716 4.57798 10.9869 4.62501C11.0022 4.67204 11.0041 4.72241 10.9922 4.77042C10.9804 4.81844 10.9553 4.86218 10.9199 4.8967L9.05192 6.7157C8.92873 6.83575 8.83656 6.98394 8.78334 7.14752C8.73012 7.31109 8.71745 7.48515 8.74642 7.6547L9.18742 10.2247C9.19606 10.2736 9.19078 10.324 9.17217 10.37C9.15357 10.4161 9.12239 10.456 9.0822 10.4852C9.042 10.5144 8.99441 10.5317 8.94486 10.5352C8.8953 10.5386 8.84577 10.528 8.80192 10.5047L6.49292 9.2907C6.34078 9.21082 6.17151 9.16908 5.99967 9.16908C5.82783 9.16908 5.65856 9.21082 5.50642 9.2907L3.19792 10.5047C3.15409 10.5279 3.10462 10.5383 3.05515 10.5348C3.00568 10.5313 2.95818 10.514 2.91807 10.4848C2.87796 10.4556 2.84684 10.4158 2.82825 10.3698C2.80966 10.3238 2.80435 10.2736 2.81292 10.2247L3.25342 7.6552C3.28252 7.48557 3.26992 7.3114 3.21669 7.14773C3.16347 6.98405 3.07123 6.83578 2.94792 6.7157L1.07992 4.8972C1.04422 4.86272 1.01892 4.8189 1.0069 4.77074C0.994889 4.72258 0.996642 4.67201 1.01196 4.6248C1.02728 4.57758 1.05556 4.53562 1.09356 4.50369C1.13157 4.47177 1.17778 4.45115 1.22692 4.4442L3.80942 4.0667C3.97955 4.04195 4.14112 3.97623 4.28022 3.8752C4.41931 3.77416 4.53178 3.64084 4.60792 3.4867L5.76242 1.1472Z" />
     </svg>
   );
 }
 function ClockIcon() {
   return (
-    <svg viewBox="0 0 12 12" fill="none" stroke="#6B6C71" strokeLinecap="round" strokeLinejoin="round" className="size-3 shrink-0" aria-hidden>
+    <svg
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="#6B6C71"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-3 shrink-0"
+      aria-hidden
+    >
       <path d="M6 3V6L8 7M11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6Z" />
     </svg>
   );
 }
 function UsersIcon() {
   return (
-    <svg viewBox="0 0 12 12" fill="none" stroke="#6B6C71" strokeLinecap="round" strokeLinejoin="round" className="size-3 shrink-0" aria-hidden>
+    <svg
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="#6B6C71"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-3 shrink-0"
+      aria-hidden
+    >
       <path d="M8 10.5V9.5C8 8.96957 7.78929 8.46086 7.41421 8.08579C7.03914 7.71071 6.53043 7.5 6 7.5H3C2.46957 7.5 1.96086 7.71071 1.58579 8.08579C1.21071 8.46086 1 8.96957 1 9.5V10.5M8 1.564C8.42888 1.67518 8.8087 1.92563 9.07984 2.27603C9.35098 2.62643 9.4981 3.05694 9.4981 3.5C9.4981 3.94306 9.35098 4.37357 9.07984 4.72397C8.8087 5.07437 8.42888 5.32482 8 5.436M11 10.5V9.5C10.9997 9.05686 10.8522 8.62639 10.5807 8.27616C10.3092 7.92593 9.92906 7.67578 9.5 7.565M6.5 3.5C6.5 4.60457 5.60457 5.5 4.5 5.5C3.39543 5.5 2.5 4.60457 2.5 3.5C2.5 2.39543 3.39543 1.5 4.5 1.5C5.60457 1.5 6.5 2.39543 6.5 3.5Z" />
     </svg>
   );
 }
 function ArrowIcon({ dir }: { dir: "left" | "right" }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="size-6" aria-hidden>
-      <path d={dir === "left" ? "M12 5L5 12L12 19M5 12H19" : "M5 12H19M12 19L19 12L12 5"} />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="black"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-6"
+      aria-hidden
+    >
+      <path
+        d={
+          dir === "left"
+            ? "M12 5L5 12L12 19M5 12H19"
+            : "M5 12H19M12 19L19 12L12 5"
+        }
+      />
     </svg>
   );
 }
@@ -187,11 +233,17 @@ function Stat({
   grow?: boolean;
 }) {
   return (
-    <div className={`flex items-start gap-1.5 ${grow ? "min-w-0 flex-1" : "shrink-0"}`}>
+    <div
+      className={`flex items-start gap-1.5 ${grow ? "min-w-0 flex-1" : "shrink-0"}`}
+    >
       <span className="flex items-center pt-[2px]">{icon}</span>
       <span className="flex flex-col gap-0.5">
-        <span className="font-sans text-[0.875rem] font-bold leading-[0.9375rem] text-[#1b1b1b]">{value}</span>
-        <span className="whitespace-nowrap font-sans text-[0.75rem] leading-[1.5] text-[#6b6c71]">{label}</span>
+        <span className="font-sans text-[0.875rem] font-bold leading-[0.9375rem] text-[#1b1b1b]">
+          {value}
+        </span>
+        <span className="whitespace-nowrap font-sans text-[0.75rem] leading-[1.5] text-[#6b6c71]">
+          {label}
+        </span>
       </span>
     </div>
   );
@@ -205,7 +257,9 @@ export default function ExpSolution() {
   const railRef = useRef<HTMLDivElement>(null);
 
   const shown =
-    filter === "all" ? EXPERIENCES : EXPERIENCES.filter((e) => e.cats.includes(filter));
+    filter === "all"
+      ? EXPERIENCES
+      : EXPERIENCES.filter((e) => e.cats.includes(filter));
 
   const syncArrows = useCallback(() => {
     const rail = railRef.current;
@@ -254,7 +308,7 @@ export default function ExpSolution() {
   };
 
   return (
-    <section className="bg-white px-section-x-sm py-16 md:px-section-x-md md:py-20 lg:px-section-x-lg lg:py-20">
+    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center">
         {/* header — eyebrow → 8 → title → 20 → subhead */}
         <div className="flex flex-col items-center gap-2 text-center">
@@ -275,7 +329,8 @@ export default function ExpSolution() {
           data-animation="reveal"
           className="mt-5 text-center font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
         >
-          Events led by a real host, with activities that work whether teams are remote or in-person.
+          Events led by a real host, with activities that work whether teams are
+          remote or in-person.
         </p>
 
         {/* filter pill bar — 40 below the header; scrolls horizontally below lg */}
@@ -305,7 +360,9 @@ export default function ExpSolution() {
                   onClick={() => setFilter(f.key)}
                   onKeyDown={(e) => onTabKey(e, i)}
                   className={`whitespace-nowrap rounded-[100px] px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink active:scale-[0.98] ${
-                    isActive ? "bg-[#16171b] text-white" : "text-[#16171b] hover:bg-black/5"
+                    isActive
+                      ? "bg-[#16171b] text-white"
+                      : "text-[#16171b] hover:bg-black/5"
                   }`}
                 >
                   {f.label}
@@ -336,7 +393,9 @@ export default function ExpSolution() {
                 data-card
                 className={`flex w-[16.5rem] shrink-0 flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 md:w-[17.5rem] ${SHADOW_CARD}`}
               >
-                <div className={`w-full overflow-hidden rounded-b-[1.5rem] rounded-t-[0.5rem] ${SHADOW_IMAGE}`}>
+                <div
+                  className={`w-full overflow-hidden rounded-b-[1.5rem] rounded-t-[0.5rem] ${SHADOW_IMAGE}`}
+                >
                   {x.img ? (
                     <Image
                       src={x.img}
@@ -346,7 +405,10 @@ export default function ExpSolution() {
                       sizes="(min-width:1024px) 17rem, 16.5rem"
                     />
                   ) : (
-                    <div className="h-[15.625rem] w-full rounded-[1.25rem] bg-[#e0e0e0]" aria-hidden />
+                    <div
+                      className="h-[15.625rem] w-full rounded-[1.25rem] bg-[#e0e0e0]"
+                      aria-hidden
+                    />
                   )}
                 </div>
 
@@ -358,8 +420,17 @@ export default function ExpSolution() {
 
                 <div className="flex items-start gap-2 rounded-[1rem] bg-[#f7f7f7] p-4">
                   <Stat icon={<StarIcon />} value={x.rating} label="Rating" />
-                  <Stat icon={<ClockIcon />} value={x.minutes} label="Minutes" />
-                  <Stat icon={<UsersIcon />} value={x.third} label={x.thirdLabel} grow />
+                  <Stat
+                    icon={<ClockIcon />}
+                    value={x.minutes}
+                    label="Minutes"
+                  />
+                  <Stat
+                    icon={<UsersIcon />}
+                    value={x.third}
+                    label={x.thirdLabel}
+                    grow
+                  />
                 </div>
               </li>
             ))}
@@ -367,7 +438,10 @@ export default function ExpSolution() {
         </div>
 
         {/* rail nav — 40 below the tray */}
-        <div data-animation="reveal" className="mt-10 flex items-center justify-center gap-2.5">
+        <div
+          data-animation="reveal"
+          className="mt-10 flex items-center justify-center gap-2.5"
+        >
           {(["left", "right"] as const).map((dir) => {
             const enabled = dir === "left" ? canLeft : canRight;
             return (
@@ -376,7 +450,9 @@ export default function ExpSolution() {
                 type="button"
                 onClick={() => scroll(dir)}
                 disabled={!enabled}
-                aria-label={dir === "left" ? "Previous experiences" : "Next experiences"}
+                aria-label={
+                  dir === "left" ? "Previous experiences" : "Next experiences"
+                }
                 className={`flex size-10 items-center justify-center rounded-[100px] bg-[#f2f5f5] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
                   enabled
                     ? "hover:bg-[#e4e9e9] active:scale-[0.98]"

@@ -22,23 +22,25 @@ export type StepCardsCarouselStep = {
 
 type StepCardsCarouselProps = {
   caption: string;
+  captionColor?: string;
   title: string;
   description: string;
   steps: StepCardsCarouselStep[];
+  showNumberInHeading?: boolean;
 };
 
 const PHASE_FADE_OUT_MS = 180;
 const PHASE_FADE_IN_MS = 220;
 
 function ToggleIcon({ active }: { active: boolean }) {
-
   return active ? null : (
     <span className="relative flex size-7 shrink-0 items-center justify-center">
       <span
-        className={`absolute inset-0 flex items-center justify-center rounded-full bg-black text-white transition-all duration-300 ease-out ${active
-          ? "rotate-0 scale-100 opacity-100"
-          : "-rotate-45 scale-75 opacity-0"
-          }`}
+        className={`absolute inset-0 flex items-center justify-center rounded-full bg-black text-white transition-all duration-300 ease-out ${
+          active
+            ? "rotate-0 scale-100 opacity-100"
+            : "-rotate-45 scale-75 opacity-0"
+        }`}
       >
         <svg
           viewBox="0 0 16 16"
@@ -54,10 +56,11 @@ function ToggleIcon({ active }: { active: boolean }) {
       </span>
 
       <span
-        className={`absolute inset-0 flex items-center justify-center rounded-full bg-[#e8e9ed] text-[#9aa0ac] transition-all duration-300 ease-out ${active
-          ? "rotate-45 scale-75 opacity-0"
-          : "rotate-0 scale-100 opacity-100"
-          }`}
+        className={`absolute inset-0 flex items-center justify-center rounded-full bg-[#e8e9ed] text-[#9aa0ac] transition-all duration-300 ease-out ${
+          active
+            ? "rotate-45 scale-75 opacity-0"
+            : "rotate-0 scale-100 opacity-100"
+        }`}
       >
         <svg
           viewBox="0 0 16 16"
@@ -140,9 +143,11 @@ function CarouselCard({ card }: { card: StepCardsCarouselCard }) {
 
 export default function StepCardsCarousel({
   caption,
+  captionColor = "#1b1b1b",
   title,
   description,
   steps,
+  showNumberInHeading = true,
 }: StepCardsCarouselProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
@@ -216,9 +221,7 @@ export default function StepCardsCarousel({
 
     takeOver();
 
-    setCardIndex(
-      ((index % deck.length) + deck.length) % deck.length,
-    );
+    setCardIndex(((index % deck.length) + deck.length) % deck.length);
   };
 
   if (!steps.length) return null;
@@ -232,7 +235,8 @@ export default function StepCardsCarousel({
             <div className="flex flex-col items-center gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#1b1b1b]/60"
+                className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem]"
+                style={{ color: captionColor }}
               >
                 {caption}
               </p>
@@ -247,7 +251,7 @@ export default function StepCardsCarousel({
 
             <p
               data-animation="reveal"
-              className="max-w-[32rem] font-sans text-body-md leading-7 tracking-[0.015em] text-[#1b1b1b]/60 lg:text-[1.125rem]"
+              className="max-w-[44rem] font-sans text-body-md leading-7 tracking-[0.015em] text-[#1b1b1b]/60 lg:text-[1.125rem]"
             >
               {description}
             </p>
@@ -270,23 +274,28 @@ export default function StepCardsCarousel({
                     type="button"
                     onClick={() => selectStep(index)}
                     aria-expanded={active}
-                    className={`flex cursor-pointer flex-col rounded-xl bg-zinc-50 px-7 pb-[1.875rem] pt-7 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water flex-1 justify-center ${active
-                      ? "bg-white! shadow-[0px_3px_18px_0px_rgba(0,0,0,0.13)]"
-                      : ""
-                      }`}
+                    className={`flex cursor-pointer flex-col rounded-xl bg-zinc-50 px-7 pb-[1.875rem] pt-7 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water flex-1 justify-center ${
+                      active
+                        ? "bg-white! shadow-[0px_3px_18px_0px_rgba(0,0,0,0.13)]"
+                        : ""
+                    }`}
                   >
                     <span className="flex items-center justify-between gap-3">
                       <span className="flex items-baseline gap-3">
-                        <span
-                          className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${active ? "text-[#8c92a6]" : "text-[#c5c8d3]"
+                        {showNumberInHeading && (
+                          <span
+                            className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${
+                              active ? "text-[#8c92a6]" : "text-[#c5c8d3]"
                             }`}
-                        >
-                          {number}
-                        </span>
+                          >
+                            {number}
+                          </span>
+                        )}
 
                         <span
-                          className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${active ? "text-[#16171b]" : "text-[#a9adbc]"
-                            }`}
+                          className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${
+                            active ? "text-[#16171b]" : "text-[#a9adbc]"
+                          }`}
                         >
                           {step.title}
                         </span>
@@ -303,8 +312,9 @@ export default function StepCardsCarousel({
                     >
                       <span className="overflow-hidden">
                         <span
-                          className={`block pt-7 font-sans text-[0.875rem] leading-5 tracking-[0.01em] text-[#828282] transition-opacity duration-300 ${active ? "opacity-100 delay-150" : "opacity-0"
-                            }`}
+                          className={`block pt-7 font-sans text-[0.875rem] leading-5 tracking-[0.01em] text-[#828282] transition-opacity duration-300 ${
+                            active ? "opacity-100 delay-150" : "opacity-0"
+                          }`}
                         >
                           {step.description}
                         </span>
@@ -317,10 +327,11 @@ export default function StepCardsCarousel({
 
             {/* Carousel */}
             <div
-              className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-3 py-2 transition-opacity ease-out lg:py-4 ${deckVisible
-                ? "opacity-100 duration-220"
-                : "opacity-0 duration-180"
-                }`}
+              className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-3 py-2 transition-opacity ease-out lg:py-4 ${
+                deckVisible
+                  ? "opacity-100 duration-220"
+                  : "opacity-0 duration-180"
+              }`}
             >
               <div className="relative h-[35rem] w-full overflow-x-clip [clip-path:inset(-200px_0px)]">
                 {/* Edge fades */}
@@ -355,18 +366,10 @@ export default function StepCardsCarousel({
                           : -50;
 
                   const scale =
-                    distance === 0
-                      ? 1
-                      : absoluteDistance === 1
-                        ? 0.78
-                        : 0.75;
+                    distance === 0 ? 1 : absoluteDistance === 1 ? 0.78 : 0.75;
 
                   const opacity =
-                    distance === 0
-                      ? 1
-                      : absoluteDistance === 1
-                        ? 0.55
-                        : 0;
+                    distance === 0 ? 1 : absoluteDistance === 1 ? 0.55 : 0;
 
                   return (
                     <div
@@ -376,22 +379,15 @@ export default function StepCardsCarousel({
                         left: `${left}%`,
                         transform: `translate(${translateX}%, -50%) scale(${scale})`,
                         opacity,
-                        filter:
-                          absoluteDistance === 1 ? "blur(2px)" : "none",
+                        filter: absoluteDistance === 1 ? "blur(2px)" : "none",
                         zIndex:
-                          distance === 0
-                            ? 20
-                            : absoluteDistance === 1
-                              ? 10
-                              : 0,
+                          distance === 0 ? 20 : absoluteDistance === 1 ? 10 : 0,
                       }}
-                      className={`absolute top-1/2 w-[21.5rem] ${skipSlide
-                        ? "transition-none"
-                        : "transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                        } ${absoluteDistance <= 1
-                          ? ""
-                          : "pointer-events-none"
-                        }`}
+                      className={`absolute top-1/2 w-[21.5rem] ${
+                        skipSlide
+                          ? "transition-none"
+                          : "transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                      } ${absoluteDistance <= 1 ? "" : "pointer-events-none"}`}
                     >
                       <CarouselCard card={card} />
                     </div>
@@ -430,10 +426,11 @@ export default function StepCardsCarousel({
                       type="button"
                       aria-label={`Card ${index + 1}`}
                       onClick={() => selectCard(index)}
-                      className={`size-2 cursor-pointer rounded-full transition-colors ${index === cardIndex
-                        ? "bg-ink"
-                        : "bg-[#d9d9d9] hover:bg-grey-400"
-                        }`}
+                      className={`size-2 cursor-pointer rounded-full transition-colors ${
+                        index === cardIndex
+                          ? "bg-ink"
+                          : "bg-[#d9d9d9] hover:bg-grey-400"
+                      }`}
                     />
                   ))}
                 </div>
