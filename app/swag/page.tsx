@@ -50,8 +50,8 @@ export default function SwagPage() {
           <SwagmagicCaseStudy />
           <SwagmagicImpact />
           <SwagmagicPackages />
-          <SwagmagicExplore />
         </div>
+        <SwagmagicExplore />
         <SwagmagicClosing />
       </main>
       <PageClose showCta={false} />

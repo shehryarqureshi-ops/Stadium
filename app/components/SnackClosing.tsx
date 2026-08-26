@@ -11,7 +11,7 @@ export default function SnackClosing() {
       ctaTwoLabel="Browse the catalog"
       ctaTwoLink="#"
       ctaTwoVariant="secondary"
-      backgroundColor="linear-gradient(180deg, #2e6ae8 0%, #2154c8 30%, #142c66 62%, #101625 82%, #181818 100%)"
+      backgroundColor="#181818"
     />
   );
 }

@@ -11,27 +11,56 @@ const desktopVisualWidth = 265;
 
 const items: StepCardItem[] = [
   {
-    title: <>Pick a<br />Box</>,
+    title: (
+      <>
+        Pick a<br />
+        Box
+      </>
+    ),
     description: "Let them build their own box or send a curated one.",
     image: pickBox,
     imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
     desktopVisualWidth,
   },
   {
-    title: <>Add<br />Recipients</>,
+    title: (
+      <>
+        Add
+        <br />
+        Recipients
+      </>
+    ),
+    description:
+      "Paste a list or sync your HR tool. We collect the addresses for you.",
     image: recipients,
     imageAlt:
       "Add Recipients — a list of teammates with checkboxes and a Confirm Order button",
     desktopVisualWidth,
   },
   {
-    title: <>Hit<br />Send</>,
+    title: (
+      <>
+        Hit
+        <br />
+        Send
+      </>
+    ),
+    description:
+      "Send in one click. We ship from the warehouse closest to each person.",
     image: send,
     imageAlt: "Hit Send — order details for Crowd Pleasers going to 15 people",
     desktopVisualWidth,
   },
   {
-    title: <>Recipients<br />Redeem</>,
+    title: (
+      <>
+        Recipients
+        <br />
+        Redeem
+      </>
+    ),
+    description:
+      "They open the link, pick their snacks, and add their own address.",
     image: redeem,
     imageAlt:
       "Recipients Redeem — a phone showing a snack box redemption screen",

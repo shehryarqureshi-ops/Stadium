@@ -52,8 +52,8 @@ export default function SnacksPage() {
           <SnackCatalog /> {/* use reusable */}
           <SnackPlatform />
           <SnackComparison />
-          <SnackStats />
         </div>
+        <SnackStats />
         <SnackClosing />
       </main>
       <PageClose showCta={false} />

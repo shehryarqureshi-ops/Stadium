@@ -22,20 +22,17 @@ const ITEMS = [
   {
     image: occ3,
     title: "All-Hands & Events",
-    description:
-      "A well-timed snack break can save a three hour all-hands.",
+    description: "A well-timed snack break can save a three hour all-hands.",
   },
   {
     image: occ4,
     title: "Thank-Yous",
-    description:
-      "Send a treat to say thanks, big or small, no card required.",
+    description: "Send a treat to say thanks, big or small, no card required.",
   },
   {
     image: occ5,
     title: "Remote Check-Ins",
-    description:
-      "Ship snacks to remote desks before their next call.",
+    description: "Ship snacks to remote desks before their next call.",
   },
   {
     image: occ6,
@@ -48,16 +45,10 @@ const ITEMS = [
 export default function SnackPlatform() {
   return (
     <VariableCardGrid
-      caption="Control"
-      captionColor="#996b00"
-      title={
-        <>
-          Gifting your finance team will
-          <br />
-          actually sign off on
-        </>
-      }
-      description="Budgets set per team, approvals routed before anything ships, and a record of what every program returned."
+      caption="ANY MOMENT"
+      captionColor="#2178F5"
+      title="The calendar fills up fast"
+      description="Hire dates, anniversaries, and the occasional random Tuesday all call for snacks."
       gridColumns={3}
       items={ITEMS}
     />

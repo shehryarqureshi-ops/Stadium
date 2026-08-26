@@ -4,33 +4,43 @@ import avatar from "@/public/snacks/sn2-avatar.jpg";
 
 export default function SnackStats() {
   return (
-    <StatsGrid
-      caption="The proof"
-      captionColor="#2178f5"
-      title="The infrastructure behind 2M+ snack sends"
-      description="Real numbers from teams sending snacks on Snackmagic."
-      statLeft={{
-        image: statsPhoto,
-        title: "19.7M+",
-        text: "Snacks Delivered",
-      }}
-      statCenter={{
-        caption: "Snacks Sent",
-        title: "1.7M+",
-        backgroundColor: "#eaf1fd",
-        text: "“The team loved it! Thought it was really cool to choose different items that they normally wouldn’t try or buy in a grocery store.”",
-        authorImage: avatar,
-        authorName: "Lauren Berry",
-        authorTitle: "Trane Technologies",
-      }}
-      rightTopStat={{
-        title: "1,700+",
-        text: "Brands",
-      }}
-      rightBottomStat={{
-        title: "170+",
-        text: "Countries",
-      }}
-    />
+    <div className="bg-linear-to-b from-white via-[#2178F5] to-[#181818]">
+      <div className="max-w-content mx-auto bg-white">
+        <StatsGrid
+          caption="The proof"
+          captionColor="#2178f5"
+          title={
+            <>
+              The infrastructure behind
+              <br className="hidden md:block" /> 2M+ snack sends
+            </>
+          }
+          description="Real numbers from teams sending snacks on Snackmagic."
+          statLeft={{
+            image: statsPhoto,
+            title: "19.7M+",
+            text: "Snacks Delivered",
+          }}
+          statCenter={{
+            caption: "Snacks Sent",
+            title: "1.7M+",
+            backgroundColor: "#eaf1fd",
+            text: "“The team loved it! Thought it was really cool to choose different items that they normally wouldn’t try or buy in a grocery store.”",
+            authorImage: avatar,
+            authorName: "Lauren Berry",
+            authorTitle: "Trane Technologies",
+          }}
+          rightTopStat={{
+            title: "1,700+",
+            text: "Brands",
+          }}
+          rightBottomStat={{
+            title: "170+",
+            text: "Countries",
+          }}
+        />
+      </div>
+      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
+    </div>
   );
 }

@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-type CTAButtonVariant = "primary" | "secondary";
+type CTAButtonVariant = "primary" | "secondary" | "yellow" | "green";
 
 type ClosingCTAProps = {
   caption?: string;
-  title: string;
+  title: ReactNode;
   description: string | ReactNode;
 
   ctaOneLabel?: string;
@@ -30,6 +30,8 @@ const CTA_VARIANTS: Record<CTAButtonVariant, string> = {
     "bg-[#2178f5] text-white hover:brightness-110 focus-visible:outline-white",
   secondary:
     "border border-[#4d4d5c] bg-[#292933] text-white hover:bg-[#33333f] focus-visible:outline-white",
+  yellow: "bg-[#FFB800] text-black focus-visible:outline-white",
+  green: "bg-[#10995A] text-white focus-visible:outline-white",
 };
 
 export default function ClosingCTA({
@@ -102,8 +104,9 @@ export default function ClosingCTA({
                           ? { backgroundColor: ctaOneColor }
                           : undefined
                       }
-                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
-                        }`}
+                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] pt-0.75 font-semibold uppercase leading-[1.4] transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                        ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
+                      }`}
                     >
                       {ctaOneLabel}
                     </a>
@@ -112,7 +115,7 @@ export default function ClosingCTA({
                   {ctaTwoLabel && (
                     <a
                       href={ctaTwoLink}
-                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 ${CTA_VARIANTS[ctaTwoVariant]}`}
+                      className={`inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] pt-0.75 font-semibold uppercase leading-[1.4] transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 ${CTA_VARIANTS[ctaTwoVariant]}`}
                     >
                       {ctaTwoLabel}
                     </a>

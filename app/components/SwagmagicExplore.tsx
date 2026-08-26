@@ -32,12 +32,15 @@ const ITEMS = [
 
 export default function SwagmagicExplore() {
   return (
-    <Resources
-      caption="Keep Exploring"
-      captionColor="#10995a"
-      title="More on getting swag right"
-      description=""
-      items={ITEMS}
-    />
+    <div className="bg-linear-to-b from-white via-[#10995a] to-[#181818]">
+      <Resources
+        caption="Keep Exploring"
+        captionColor="#10995a"
+        title="More on getting swag right"
+        description=""
+        items={ITEMS}
+      />
+      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
+    </div>
   );
 }

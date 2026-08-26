@@ -6,7 +6,7 @@ import EngageMenu, { COLUMNS as ENGAGE_COLUMNS } from "./EngageMenu";
 import ImpactMenu, { TEAMS as IMPACT_TEAMS } from "./ImpactMenu";
 import ProofMenu, { PROOF_COLUMNS } from "./ProofMenu";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 
 type MenuKey = "engage" | "impact" | "proof" | "catalog";
 
@@ -24,12 +24,12 @@ const NAV_ITEMS: {
   active?: boolean;
   menu?: MenuKey;
 }[] = [
-    { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
-    { label: "Impact by Team", href: "#", menu: "impact" },
-    { label: "The Proof", href: "#", menu: "proof" },
-    { label: "Catalog", href: "#", menu: "catalog" },
-    { label: "Pricing", href: "#" },
-  ];
+  { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
+  { label: "Impact by Team", href: "#", menu: "impact" },
+  { label: "The Proof", href: "#", menu: "proof" },
+  { label: "Catalog", href: "#", menu: "catalog" },
+  { label: "Pricing", href: "#" },
+];
 
 /* Menu triggers carry a chevron that flips while their drawer is open
    (Shopify affordance, adopted 2026-06-12 — triggers were previously
@@ -37,8 +37,9 @@ const NAV_ITEMS: {
 function ChevronDown({ open }: { open: boolean }) {
   return (
     <svg
-      className={`size-3 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""
-        }`}
+      className={`size-3 shrink-0 transition-transform duration-200 ${
+        open ? "rotate-180" : ""
+      }`}
       viewBox="0 0 12 12"
       fill="none"
       stroke="currentColor"
@@ -61,8 +62,9 @@ function Logo({ light }: { light: boolean }) {
     <Link
       href="/"
       aria-label="Stadium home"
-      className={`flex h-8 w-[8.25rem] items-center gap-2 transition-opacity hover:opacity-80 ${light ? "focus-visible:outline-white" : ""
-        }`}
+      className={`flex h-8 w-[8.25rem] items-center gap-2 transition-opacity hover:opacity-80 ${
+        light ? "focus-visible:outline-white" : ""
+      }`}
     >
       <Image
         src="/header-logo-mark.svg"
@@ -214,8 +216,9 @@ export default function SiteHeader({
       <div
         aria-hidden
         onClick={closeMenu}
-        className={`fixed inset-0 z-40 hidden bg-ink/30 transition-opacity duration-300 motion-reduce:transition-none lg:block ${engageOpen ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
+        className={`fixed inset-0 z-40 hidden bg-ink/30 transition-opacity duration-300 motion-reduce:transition-none lg:block ${
+          engageOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
       />
 
       <header
@@ -223,11 +226,13 @@ export default function SiteHeader({
         /* the bg transition is suppressed while the mega-menu is open: the
            panel appears instantly, so a lagging 300ms bg fade reads as a
            white flash under a still-transparent nav */
-        className={`fixed top-0 z-50 w-full ${engageOpen ? "" : "transition-colors duration-300"
-          } ${solid
+        className={`fixed top-0 z-50 w-full ${
+          engageOpen ? "" : "transition-colors duration-300"
+        } ${
+          solid
             ? "bg-surface-base shadow-[0px_0.25rem_0.75rem_0px_rgba(0,0,0,0.08)]"
             : "bg-transparent"
-          }`}
+        }`}
       >
         {/* Optional announcement strip (e.g. the /recognition, /snacks value
             bar). Lives inside the fixed header so it can never be overlapped by
@@ -239,7 +244,7 @@ export default function SiteHeader({
             </p>
           </div>
         )}
-        <div className="mx-auto flex w-full max-w-section items-center justify-between px-section-x-sm py-4 md:px-section-x-md lg:h-16 lg:px-section-x-lg lg:py-3">
+        <div className="mx-auto flex w-full max-w-content items-center justify-between px-4 md:px-0 py-4 lg:h-16 lg:py-3">
           <Logo light={!solid} />
 
           {/* Desktop nav links */}
@@ -255,8 +260,9 @@ export default function SiteHeader({
                   aria-expanded={activeMenu === item.menu}
                   aria-controls="engage-menu"
                   onMouseEnter={() => openMenu(item.menu!)}
-                  className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${item.active ? "font-bold" : "font-normal"
-                    }`}
+                  className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${
+                    item.active ? "font-bold" : "font-normal"
+                  }`}
                 >
                   {item.label}
                   <ChevronDown open={activeMenu === item.menu} />
@@ -275,8 +281,9 @@ export default function SiteHeader({
                       ? closeMenu()
                       : openMenu(item.menu!)
                   }
-                  className={`flex h-6 pt-0.5 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${item.active ? "font-bold" : "font-normal"
-                    }`}
+                  className={`flex h-6 pt-0.5 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${
+                    item.active ? "font-bold" : "font-normal"
+                  }`}
                 >
                   {item.label}
                   <ChevronDown open={activeMenu === item.menu} />
@@ -286,8 +293,9 @@ export default function SiteHeader({
                   key={item.label}
                   href={item.href}
                   onMouseEnter={closeMenu}
-                  className={`flex h-6 pt-0.5 items-center font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${item.active ? "font-bold" : "font-normal"
-                    }`}
+                  className={`flex h-6 pt-0.5 items-center font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${
+                    item.active ? "font-bold" : "font-normal"
+                  }`}
                 >
                   {item.label}
                 </a>
@@ -305,10 +313,11 @@ export default function SiteHeader({
             </a>
             <a
               href="#"
-              className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase shadow-button transition-colors duration-300 pt-0.5 ${solid
-                ? "bg-cta-fill text-cta-on inset-shadow-[0_1px_0_0_rgba(255,255,255,0.08)] hover:bg-grey-700"
-                : "bg-white text-brand-hero inset-shadow-button hover:bg-grey-100 focus-visible:outline-white"
-                }`}
+              className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase shadow-button transition-colors duration-300 pt-0.5 ${
+                solid
+                  ? "bg-cta-fill text-cta-on inset-shadow-[0_1px_0_0_rgba(255,255,255,0.08)] hover:bg-grey-700"
+                  : "bg-white text-brand-hero inset-shadow-button hover:bg-grey-100 focus-visible:outline-white"
+              }`}
             >
               Talk to sales
             </a>
@@ -324,8 +333,9 @@ export default function SiteHeader({
               setMenuOpen((open) => !open);
               setOpenSection(null); // fresh panel each open (Shopify resets too)
             }}
-            className={`relative flex h-4 w-6 flex-col items-end justify-between lg:hidden ${solid ? "" : "focus-visible:outline-white"
-              }`}
+            className={`relative flex h-4 w-6 flex-col items-end justify-between lg:hidden ${
+              solid ? "" : "focus-visible:outline-white"
+            }`}
           >
             {[
               menuOpen ? "translate-y-[0.4375rem] rotate-45" : "",
@@ -334,8 +344,9 @@ export default function SiteHeader({
             ].map((cls, i) => (
               <span
                 key={i}
-                className={`h-0.5 w-full rounded-[1px] transition-[transform,opacity,background-color] duration-300 ${solid ? "bg-ink" : "bg-white"
-                  } ${cls}`}
+                className={`h-0.5 w-full rounded-[1px] transition-[transform,opacity,background-color] duration-300 ${
+                  solid ? "bg-ink" : "bg-white"
+                } ${cls}`}
               />
             ))}
           </button>
@@ -350,8 +361,9 @@ export default function SiteHeader({
         <div
           id="engage-menu"
           aria-hidden={!engageOpen}
-          className={`absolute inset-x-0 top-full hidden overflow-hidden lg:block ${engageOpen ? "" : "pointer-events-none"
-            }`}
+          className={`absolute inset-x-0 top-full hidden overflow-hidden lg:block ${
+            engageOpen ? "" : "pointer-events-none"
+          }`}
         >
           <style>{`
             .engage-body {
@@ -446,8 +458,9 @@ export default function SiteHeader({
             Panel scrolls when an open section exceeds the viewport. */}
         <div
           id="site-menu"
-          className={`${menuOpen ? "block" : "hidden"
-            } absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-grey-200 bg-surface-base shadow-[0px_0.25rem_0.75rem_0px_rgba(0,0,0,0.08)] lg:hidden`}
+          className={`${
+            menuOpen ? "block" : "hidden"
+          } absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-grey-200 bg-surface-base shadow-[0px_0.25rem_0.75rem_0px_rgba(0,0,0,0.08)] lg:hidden`}
         >
           <nav
             aria-label="Main mobile"
@@ -473,10 +486,11 @@ export default function SiteHeader({
                   {/* grid-rows height animation; motion-reduce snaps */}
                   <div
                     id={`site-menu-${item.menu}`}
-                    className={`grid transition-[grid-template-rows] duration-300 motion-reduce:transition-none ${openSection === item.menu
-                      ? "grid-rows-[1fr]"
-                      : "grid-rows-[0fr]"
-                      }`}
+                    className={`grid transition-[grid-template-rows] duration-300 motion-reduce:transition-none ${
+                      openSection === item.menu
+                        ? "grid-rows-[1fr]"
+                        : "grid-rows-[0fr]"
+                    }`}
                   >
                     <div className="overflow-hidden">
                       {item.menu === "engage" ? (
@@ -581,8 +595,9 @@ export default function SiteHeader({
                   key={item.label}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`flex h-12 items-center font-sans text-body-md tracking-[0.01563rem] text-ink ${item.active ? "font-bold" : "font-normal"
-                    }`}
+                  className={`flex h-12 items-center font-sans text-body-md tracking-[0.01563rem] text-ink ${
+                    item.active ? "font-bold" : "font-normal"
+                  }`}
                 >
                   {item.label}
                 </a>

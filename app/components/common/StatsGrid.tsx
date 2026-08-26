@@ -1,4 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
+import { ReactNode } from "react";
 
 type StatLeft = {
   image: StaticImageData;
@@ -24,7 +25,7 @@ type RightStat = {
 type StatsGridProps = {
   caption?: string;
   captionColor?: string;
-  title: string;
+  title: ReactNode;
   description: string;
   statLeft: StatLeft;
   statCenter: StatCenter;
@@ -36,7 +37,7 @@ const NUM =
   "font-[family-name:var(--font-satoshi-medium)] leading-[1.04] tracking-[-0.0625rem]";
 
 export default function StatsGrid({
-  caption = '',
+  caption = "",
   captionColor = "#2178f5",
   title,
   description,
@@ -49,7 +50,7 @@ export default function StatsGrid({
     <section className="overflow-hidden rounded-b-4xl px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[53.75rem] flex-col items-center gap-2 text-center">
-          {caption &&
+          {caption && (
             <p
               data-animation="reveal"
               style={{ color: captionColor }}
@@ -57,7 +58,7 @@ export default function StatsGrid({
             >
               {caption}
             </p>
-          }
+          )}
 
           <h2
             data-animation="reveal"
@@ -82,21 +83,22 @@ export default function StatsGrid({
           <div className="relative min-h-[22.25rem] overflow-hidden rounded-[1.5rem]">
             <Image
               src={statLeft.image}
-              alt={statLeft.text || ''}
+              alt={statLeft.text || ""}
               fill
               quality={100}
               className="object-cover"
               sizes="(min-width:1024px) 25rem, (min-width:768px) 45vw, 92vw"
             />
 
-            {statLeft.title &&
+            {statLeft.title && (
               <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1.5 p-6 text-black bg-white rounded-2xl shadow-lg">
                 <p className="font-sans text-[1rem] leading-[1.4]">
                   {statLeft.text}
                 </p>
 
                 <p className={`${NUM} text-[3rem]`}>{statLeft.title}</p>
-              </div>}
+              </div>
+            )}
           </div>
 
           {/* Center stat + testimonial */}

@@ -53,11 +53,16 @@ export default function GiftingClosing() {
       {/* add cta section which redirects to book a call page */}
 
       <ClosingCTA
-        title="Bring your corporate gifting programs together"
+        title={
+          <>
+            Bring your corporate gifting
+            <br className="hidden md:block" /> programs together
+          </>
+        }
         description="Book a call to explore pricing, catalog options, and the right setup for your team."
         ctaOneLabel="Talk to sales"
         ctaOneLink="#"
-        ctaOneVariant="primary"
+        ctaOneVariant="yellow"
         ctaTwoLabel="Browse the catalog"
         ctaTwoLink="#"
         ctaTwoVariant="secondary"

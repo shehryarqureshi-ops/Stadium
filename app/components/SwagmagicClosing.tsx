@@ -9,12 +9,11 @@ export default function SwagmagicClosing() {
       description="Talk to our team and leave with a plan built around your brand, budget, and goals. Mockups included."
       ctaOneLabel="Talk to sales"
       ctaOneLink="#"
-      ctaOneVariant="primary"
+      ctaOneVariant="green"
       ctaTwoLabel="Shop swag"
       ctaTwoLink="#"
       ctaTwoVariant="secondary"
       backgroundColor="#181818"
-      ctaOneColor="#10995a"
     />
   );
 }
