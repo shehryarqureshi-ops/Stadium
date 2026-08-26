@@ -116,7 +116,7 @@ export default function GiftingSolution() {
       captionColor="#996b00"
       caption="The solution"
       title="One platform for all your gifting"
-      description="Gifting for different recipients, occasions, and workflows."
+      description="One place to run gifts for every recipient, occasion, and team."
       items={items}
       autoAdvance={false}
     />

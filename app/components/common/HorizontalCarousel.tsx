@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import CarouselControls from "./CarouselControls";
+import { ReactNode } from "react";
 
 export type CatalogCarouselItem = {
   title: string;
@@ -22,7 +23,7 @@ type HorizontalCarouselProps =
       variant: "catalog";
       caption?: string;
       captionColor?: string;
-      title: string;
+      title: ReactNode;
       description: string;
       items: CatalogCarouselItem[];
     }
@@ -30,7 +31,7 @@ type HorizontalCarouselProps =
       variant: "content";
       caption: string;
       captionColor?: string;
-      title: string;
+      title: ReactNode;
       description: string;
       items: ContentCarouselItem[];
     };

@@ -6,21 +6,21 @@ import ProblemSection from "./common/ProblemSection";
 const items = [
   {
     image: prob1,
-    title: "Asking ruins the surprise",
+    title: "Vendor & Tool Sprawl",
     description:
-      "You can’t send something unexpected to someone you just emailed for their address. The moment you start collecting details, the gift announces itself.",
+      "Every new gifting program adds another vendor, contract, or workflow.",
   },
   {
     image: prob2,
-    title: "One person ends up running it",
+    title: "Gifting Becomes Someone’s Job",
     description:
-      "Someone chases every address, every diet and every “mine never arrived”—then hopes the picks landed.",
+      "Addresses, preferences, orders, and follow-ups become someone’s manual workload.",
   },
   {
     image: prob3,
-    title: "Nothing happens unless someone remembers",
+    title: "No Measurable Impact",
     description:
-      "There’s no trigger, no schedule, nothing running in the background. Every anniversary and every new hire gets marked only if a human catches it in time.",
+      "Budgets, orders, and reporting live in different tools, making spend hard to track.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function GiftingProblem() {
       caption="The problem"
       captionColor="#996b00"
       title="Every team gifts differently, and the gaps are obvious"
-      description=" Sales runs its own platform, HR defaults to gift cards, and Marketing uses an agency. Budgets, vendors, and reporting never line up."
+      description="Sales runs its own platform, HR defaults to gift cards, and Marketing uses an agency. Budgets, vendors, and reporting never line up."
       items={items}
     />
   );

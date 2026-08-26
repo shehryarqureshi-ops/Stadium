@@ -131,14 +131,14 @@ export default function GiftingComparison() {
               data-animation="reveal"
               className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              The catalog you want. The logistics you need.
+              The choice people want. The control companies need.
             </h2>
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
-            Premium gifts, backed by the infrastructure to send them across 170+
+            Premium gifts backed by the infrastructure to send them across 170+
             countries.
           </p>
         </div>
@@ -177,7 +177,7 @@ export default function GiftingComparison() {
                   >
                     {c.name}
                   </span>
-                  <span className="whitespace-nowrap font-sans text-[0.6875rem] font-normal leading-[1.4] text-[#6b6c71]">
+                  <span className="hidden whitespace-nowrap font-sans text-[0.6875rem] font-normal leading-[1.4] text-[#6b6c71]">
                     {c.sub}
                   </span>
                 </div>

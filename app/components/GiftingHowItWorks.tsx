@@ -6,32 +6,52 @@ import pickBox from "@/public/gifting/how-it-works/send.png";
 import recipients from "@/public/gifting/how-it-works/pick.png";
 import send from "@/public/gifting/how-it-works/gift.png";
 
+const desktopVisualWidth = 360;
+
 const items: StepCardItem[] = [
   {
-    title:
+    title: (
       <>
-        Send or Automate
-      </>,
+        Send or
+        <br />
+        Automate
+      </>
+    ),
     description:
-      "Send a one-off in a click, or connect your HR system once and let milestones trigger the gift.",
+      "Send once, upload a list, or connect your systems to trigger gifts automatically.",
     image: pickBox,
     imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
+    desktopVisualWidth,
   },
   {
-    title: <>They Pick</>,
+    title: (
+      <>
+        They
+        <br />
+        Choose
+      </>
+    ),
     description:
-      "They open your branded store, choose what they actually want, and add their own size and address.",
+      "Recipients choose what they want and provide their own shipping details.",
     image: recipients,
     imageAlt:
       "They open your branded store, choose what they actually want, and add their own size and address.",
+    desktopVisualWidth,
   },
   {
-    title: <>Gift Arrives</>,
+    title: (
+      <>
+        We Handle
+        <br />
+        Logistics
+      </>
+    ),
     description:
-      "Tracked from order to doorstep in 170+ countries. Customs, duties and returns are handled by us.",
+      "Stadium manages fulfillment, tracking, customs, duties, and delivery.",
     image: send,
     imageAlt:
       "Tracked from order to doorstep in 170+ countries. Customs, duties and returns are handled by us.",
+    desktopVisualWidth,
   },
 ];
 
@@ -40,8 +60,8 @@ export default function GiftingHowItWorks() {
     <StepCards
       caption="How it works"
       captionColor="#996b00"
-      title="From order to their door in four steps"
-      description="Send globally with local fulfillment, so every snack box arrives with flavors that feel closer to home."
+      title="Simple from send to delivery"
+      description="Whether you’re sending one gift or one thousand, the process doesn’t change."
       items={items}
     />
   );

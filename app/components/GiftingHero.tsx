@@ -131,8 +131,9 @@ function PhotoTrack({
 }) {
   return (
     <div
-      className={`absolute flex w-[47.5225%] flex-col ${direction === "up" ? "gift-photo-track-up" : "gift-photo-track-down"
-        } ${className}`}
+      className={`absolute flex w-[47.5225%] flex-col ${
+        direction === "up" ? "gift-photo-track-up" : "gift-photo-track-down"
+      } ${className}`}
     >
       {[0, 1].map((group) =>
         photos.map((photo, i) => (
@@ -157,22 +158,6 @@ function PhotoTrack({
     </div>
   );
 }
-
-/* Trust band "Logos track" (2673:3577): google, amazon, pinterest, accenture,
-   bloomberg, salesforce, netflix, google, amazon, pinterest — each at its own
-   Figma box size, gap 56. */
-const LOGOS = [
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-  { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 16 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 26 },
-  { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 20 },
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-];
 
 export default function GiftingHero() {
   return (
@@ -256,6 +241,10 @@ export default function GiftingHero() {
                   </span>
                 </a>
               </div>
+
+              <p className="font-sans text-[0.8125rem] font-semibold leading-[1.4] text-[#cccccc]">
+                Trusted by teams sending gifts across 170+ countries.
+              </p>
             </div>
 
             {/* photo grid (1220:3626 → 1261:5189): a 444×688 window on two

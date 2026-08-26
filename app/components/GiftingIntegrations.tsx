@@ -12,25 +12,25 @@ const ITEMS: VariableCardGridItem[] = [
     image: mockStores,
     title: "Approvals & Permissions",
     description:
-      "Route what needs signing off, cap who can send, and keep a clean record of every decision.",
+      "Route what needs sign-off, control who can send, and keep a record of every decision.",
   },
   {
     image: mockInventory,
     title: "Budgets by Team",
     description:
-      "Allocate a budget per team, cap it, and watch it draw down in real time.",
+      "Allocate budgets by team, set limits, and track spend in real time.",
   },
   {
     image: mockFulfillment,
     title: "Reporting",
     description:
-      "See what shipped, what it cost, and which programs people actually engaged with.",
+      "See what shipped, what it cost, and which programs people engaged with.",
   },
   {
     image: mockGifting,
     title: "Connected to Your Stack",
     description:
-      "Connect to 100+ tools, including HRIS, CRM and Slack, so gifts trigger from systems you already run.",
+      "Connect with your HRIS, CRM, Slack, and other tools so gifts can trigger from systems you already use.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function GiftingIntegrations() {
           actually sign off on
         </>
       }
-      description="Budgets set per team, approvals routed before anything ships, and a record of what every program returned."
+      description="Set budgets by team, route approvals before anything ships, and see what every program spent and delivered."
       gridColumns={2}
       items={ITEMS}
     />

@@ -27,20 +27,20 @@ export default function GiftingClosing() {
         description="Capacity, reach, and coverage at a glance."
         statLeft={{
           image: statsPhoto,
-          title: "19.7M+",
-          text: "Snacks Delivered",
+          title: "13.6K",
+          text: "Recipient company domains",
         }}
         statCenter={{
-          caption: "Snacks Sent",
-          title: "1.7M+",
+          caption: "Gifts delivered",
+          title: "550K+",
           backgroundColor: "#FEFAF0",
-          text: "“The team loved it! Thought it was really cool to choose different items that they normally wouldn’t try or buy in a grocery store.”",
+          text: "“People loved being able to choose their own gift. It eliminated the guesswork for me!”",
           authorImage: avatar,
           authorName: "Charlene S.",
           authorTitle: "The Standard",
         }}
         rightTopStat={{
-          title: "1,700+",
+          title: "450+",
           text: "Brands",
         }}
         rightBottomStat={{
@@ -49,9 +49,6 @@ export default function GiftingClosing() {
         }}
       />
 
-      {/* todo */}
-      {/* add cta section which redirects to book a call page */}
-
       <ClosingCTA
         title={
           <>
@@ -59,7 +56,7 @@ export default function GiftingClosing() {
             <br className="hidden md:block" /> programs together
           </>
         }
-        description="Book a call to explore pricing, catalog options, and the right setup for your team."
+        description="See how Stadium can bring your gifting programs, budgets, and workflows into one place."
         ctaOneLabel="Talk to sales"
         ctaOneLink="#"
         ctaOneVariant="yellow"

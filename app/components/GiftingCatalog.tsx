@@ -16,42 +16,34 @@ import HorizontalCarousel, {
 const items: CatalogCarouselItem[] = [
   {
     title: "Experiences",
-    caption: "99 Products",
     image: merch,
   },
   {
     title: "428 Products",
-    caption: "Luxury",
     image: experiences,
   },
   {
-    title: "1485 Products",
-    caption: "Food & Beverages",
+    title: "Food & Beverages",
     image: food,
   },
   {
-    title: "822",
-    caption: "Life & Hobbies",
+    title: "Life & Hobbies",
     image: wellness,
   },
   {
-    title: "442 Products",
-    caption: "Wellness",
+    title: "Wellness",
     image: luxury,
   },
   {
-    title: "298 Products",
-    caption: "Merch",
+    title: "Merch",
     image: work,
   },
   {
-    title: "252 Products",
-    caption: "Work Essentials",
+    title: "Work Essentials",
     image: life,
   },
   {
-    title: "311 Products",
-    caption: "Gift Cards",
+    title: "Gift Cards",
     image: giftCards,
   },
 ];
@@ -59,9 +51,15 @@ const items: CatalogCarouselItem[] = [
 export default function GiftingCatalog() {
   return (
     <HorizontalCarousel
-      caption="The Stadium Catalog"
-      title="Every recipient covered"
-      description="30K+ items from leading brands, with locally relevant options wherever you’re sending."
+      caption="The Catalog"
+      captionColor="#996B00"
+      title={
+        <>
+          3,714 gifts. 845 brands.
+          <br className="hidden md:block" /> One catalog
+        </>
+      }
+      description="Recognizable brands across every price point, plus experiences and gift cards."
       variant="catalog"
       items={items}
     />
