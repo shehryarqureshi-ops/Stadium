@@ -16,7 +16,7 @@ const STATS = [
   {
     value: "100+",
     label: "Integrations",
-    sub: "with the tools you already use",
+    sub: "with your tools",
   },
   { value: "1M+", label: "Recipients", sub: "across the globe" },
 ];
@@ -39,19 +39,18 @@ export default function ScaleMap() {
 
   return (
     <section className="bg-[#fafafb] px-section-x-sm pt-16 md:px-section-x-md md:pt-24 lg:px-section-x-lg lg:pt-[7.5rem] rounded-tr-4xl rounded-tl-4xl">
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-16 lg:gap-20">
+      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-16 lg:gap-12">
         {/* header */}
         <div className="flex flex-col items-center gap-6 text-center">
           <h2
             data-animation="reveal"
-            className="font-display text-heading-sm text-[#181818] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+            className="font-display text-heading-md text-[#181818] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
           >
-            Scale to wherever
-            <br className="hidden md:block" /> your people are
+            Scale to wherever your people are
           </h2>
           <p
             data-animation="reveal"
-            className="font-sans text-body-md text-[#4f5052] lg:text-[1.125rem] lg:leading-7"
+            className="font-sans text-body-md text-[#4f5052] lg:text-[1.125rem] lg:leading-7 hidden"
           >
             Recognition, swag, and gifting.
             <br className="hidden md:block" /> Delivered to teams around the
@@ -60,7 +59,7 @@ export default function ScaleMap() {
         </div>
 
         {/* stats row — selectable; active stat is dark with a blue line above + below */}
-        <div className="w-full">
+        <div className="w-full relative z-10">
           <StatRule active={active} />
           <div
             data-animation="reveal"
@@ -78,26 +77,23 @@ export default function ScaleMap() {
               >
                 <div className="flex flex-col items-center gap-1">
                   <p
-                    className={`font-display text-[2.75rem] font-bold leading-none tracking-[-0.03em] transition-colors duration-200 lg:text-[3.4375rem] ${
-                      i === active ? "text-[#181818]" : "text-[#9499ad]"
-                    }`}
+                    className={`font-display text-[1.75rem] font-bold leading-none tracking-[-0.03em] transition-colors duration-200 lg:text-[2.5rem] ${i === active ? "text-[#181818]" : "text-[#9499ad]"
+                      }`}
                   >
                     {s.value}
                   </p>
                   <p
-                    className={`font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
-                      i === active ? "text-[#181818]" : "text-[#9499ad]"
-                    }`}
+                    className={`font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 hidden ${i === active ? "text-[#181818]" : "text-[#9499ad]"
+                      }`}
                   >
                     {s.label}
                   </p>
                 </div>
                 <p
-                  className={`font-sans text-[1rem] leading-5 transition-colors duration-200 ${
-                    i === active ? "text-[#4f5052]" : "text-[#9da2b4]"
-                  }`}
+                  className={`font-sans text-[1rem] leading-5 transition-colors duration-200 ${i === active ? "text-[#4f5052]" : "text-[#9da2b4]"
+                    }`}
                 >
-                  {s.sub}
+                  {s.label} {s.sub}
                 </p>
               </button>
             ))}
@@ -106,11 +102,8 @@ export default function ScaleMap() {
         </div>
       </div>
 
-      {/* particle visualization — one arrangement per active stat */}
       <div className="mx-auto w-full max-w-content">
-        <div data-animation="reveal" className="w-full max-w-content relative">
-          {/* scales to the container — a hardcoded width="1200" overflowed the
-              page on anything narrower than the content cap (mobile/tablet) */}
+        <div data-animation="reveal" className="w-full max-w-content relative -mt-8 lg:-mt-12 z-0">
           <svg
             className="absolute inset-0 h-full w-full"
             viewBox="0 0 1200 512"

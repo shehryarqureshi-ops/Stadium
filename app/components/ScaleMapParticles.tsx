@@ -262,11 +262,11 @@ function setArrangement(particles: Particle[], tab: number) {
       p.colorName = isFaint
         ? "faint"
         : pickWeighted(Math.random(), [
-            ["water", 0.5],
-            ["lilac", 0.7],
-            ["punch", 0.85],
-            ["lime", 1],
-          ]);
+          ["water", 0.5],
+          ["lilac", 0.7],
+          ["punch", 0.85],
+          ["lime", 1],
+        ]);
       p.glow = !isFaint && Math.random() > 0.7;
       p.baseSize = p.glow ? 2 : 1;
     }
@@ -381,7 +381,7 @@ function updateDynamicTargets(
 const FOV = 600;
 const CAM_Z = 700;
 const PITCH = 0.8;
-const VERTICAL_OFFSETS = [-15, 30, -10, 15];
+const VERTICAL_OFFSETS = [25, -15, -20, -10];
 
 function project3D(
   x: number,
