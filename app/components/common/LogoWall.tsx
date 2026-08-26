@@ -5,17 +5,16 @@ export type LogoWallItem = {
   height: number;
 };
 
-const LOGOS: LogoWallItem[] = [
-  { src: "/trust-google.svg", alt: "Google", width: 74, height: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", width: 80, height: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
-  { src: "/trust-accenture.svg", alt: "Accenture", width: 84, height: 24 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
-  { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 20 },
-  { src: "/trust-google.svg", alt: "Google", width: 74, height: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", width: 80, height: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
+const LOGOS = [
+  { src: "/logos/fidelity.svg", alt: "Spotify", width: 81, height: 24 },
+  { src: "/logos/solved.svg", alt: "Amazon", width: 77, height: 20 },
+  { src: "/logos/western-union.svg", alt: "Pinterest", width: 87, height: 25 },
+  { src: "/logos/figma.svg", alt: "Accenture", width: 91, height: 24 },
+  { src: "/logos/microsoft.svg", alt: "Bloomberg", width: 90, height: 24 },
+  { src: "/logos/united-healthcare.svg", alt: "Salesforce", width: 37, height: 27 },
+  { src: "/logos/amazon.svg", alt: "Netflix", width: 75, height: 30 },
+  { src: "/logos/premier.svg", alt: "Google", width: 80, height: 25 },
+  { src: "/logos/imagine.svg", alt: "Imagine", width: 80, height: 30 },
 ];
 
 export default function LogoWall() {

@@ -1,14 +1,15 @@
+import Image from "next/image";
+
 const LOGOS = [
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
-  { src: "/trust-accenture.svg", alt: "Accenture", w: 84, h: 24 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", w: 90, h: 16 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", w: 37, h: 26 },
-  { src: "/trust-netflix.svg", alt: "Netflix", w: 75, h: 20 },
-  { src: "/trust-google.svg", alt: "Google", w: 74, h: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", w: 80, h: 24 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", w: 87, h: 22 },
+  { src: "/logos/fidelity.svg", alt: "Spotify", width: 81, height: 24 },
+  { src: "/logos/solved.svg", alt: "Amazon", width: 77, height: 20 },
+  { src: "/logos/western-union.svg", alt: "Pinterest", width: 87, height: 25 },
+  { src: "/logos/figma.svg", alt: "Accenture", width: 91, height: 24 },
+  { src: "/logos/microsoft.svg", alt: "Bloomberg", width: 90, height: 24 },
+  { src: "/logos/united-healthcare.svg", alt: "Salesforce", width: 37, height: 27 },
+  { src: "/logos/amazon.svg", alt: "Netflix", width: 75, height: 30 },
+  { src: "/logos/premier.svg", alt: "Google", width: 80, height: 25 },
+  { src: "/logos/imagine.svg", alt: "Imagine", width: 80, height: 30 },
 ];
 
 export const HeroLogoWall = () => {
@@ -29,13 +30,13 @@ export const HeroLogoWall = () => {
                       key={`${l.alt}-${i}`}
                       className="flex shrink-0 items-center"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      { }
+                      <Image
                         src={l.src}
                         alt={group === 0 ? l.alt : ""}
-                        width={l.w}
-                        height={l.h}
-                        style={{ height: `${l.h / 16}rem` }}
+                        width={l.width}
+                        height={l.height}
+                        style={{ height: `${l.height / 16}rem` }}
                         className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
                       />
                     </li>

@@ -1,3 +1,4 @@
+import { HeroLogoWall } from "./common/HeroLogoWall";
 import { type ShaderChroma } from "./SwagHeroShader";
 
 /* Hero · Swag — Figma "Stadium-Enterprise" /swag (344:11903). Dark-green
@@ -130,11 +131,10 @@ function ProductCluster({ content }: { content: SwagHeroContent["product"] }) {
             {content.sizes.map((s) => (
               <span
                 key={s}
-                className={`flex size-8 items-center justify-center rounded-[0.625rem] font-sans text-[0.9375rem] tracking-[0.047rem] ${
-                  s === content.selectedSize
-                    ? "bg-black/75 text-white"
-                    : "text-white/60"
-                }`}
+                className={`flex size-8 items-center justify-center rounded-[0.625rem] font-sans text-[0.9375rem] tracking-[0.047rem] ${s === content.selectedSize
+                  ? "bg-black/75 text-white"
+                  : "text-white/60"
+                  }`}
               >
                 {s}
               </span>
@@ -199,23 +199,21 @@ export default function SwagHero({
       <div className="relative z-10 mx-auto flex w-full max-w-content flex-col gap-16 lg:gap-20">
         {/* copy + product cluster */}
         <div
-          className={`flex flex-col items-start gap-12 ${
-            showProduct
-              ? "lg:flex-row lg:items-start lg:justify-between lg:gap-8"
-              : align === "center"
-                ? "lg:items-center"
-                : ""
-          }`}
+          className={`flex flex-col items-start gap-12 ${showProduct
+            ? "lg:flex-row lg:items-start lg:justify-between lg:gap-8"
+            : align === "center"
+              ? "lg:items-center"
+              : ""
+            }`}
         >
           {/* copy column */}
           <div
-            className={`flex w-full flex-col gap-8 ${
-              showProduct
-                ? "lg:w-[33.9375rem] lg:shrink-0"
-                : align === "center"
-                  ? "mx-auto max-w-[47rem] items-center text-center"
-                  : "lg:w-[33.9375rem]"
-            }`}
+            className={`flex w-full flex-col gap-8 ${showProduct
+              ? "lg:w-[33.9375rem] lg:shrink-0"
+              : align === "center"
+                ? "mx-auto max-w-[47rem] items-center text-center"
+                : "lg:w-[33.9375rem]"
+              }`}
           >
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -252,11 +250,10 @@ export default function SwagHero({
                 </a>
                 <a
                   href={content.secondaryCta.href}
-                  className={`inline-flex h-button-h items-center justify-center rounded-full border px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-white ${
-                    secondaryCtaStyle === "outline"
-                      ? "border-white bg-transparent text-white hover:bg-white/10"
-                      : "border-[#e2e2de] bg-white text-ink hover:bg-grey-100"
-                  }`}
+                  className={`inline-flex h-button-h items-center justify-center rounded-full border px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-white ${secondaryCtaStyle === "outline"
+                    ? "border-white bg-transparent text-white hover:bg-white/10"
+                    : "border-[#e2e2de] bg-white text-ink hover:bg-grey-100"
+                    }`}
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
                     {content.secondaryCta.label}
@@ -277,34 +274,8 @@ export default function SwagHero({
           )}
         </div>
 
-        {/* social-proof marquee — seamless infinite scroll (two identical groups),
-            edges masked to fade in/out */}
-        <div
-          data-animation="reveal"
-          className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]"
-        >
-          <div className="flex w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
-            {[0, 1].map((group) => (
-              <div
-                key={group}
-                aria-hidden={group === 1}
-                className="flex shrink-0 items-center gap-x-16 pr-16 lg:gap-x-24 lg:pr-24"
-              >
-                {content.logos.map((logo, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={i}
-                    src={logo.src}
-                    alt={group === 0 ? logo.alt : ""}
-                    width={logo.w}
-                    height={logo.h}
-                    style={{ height: `${logo.h / 16}rem` }}
-                    className="w-auto max-w-none shrink-0 opacity-90 brightness-0 invert"
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+        <div className="mt-12 lg:mt-24">
+          <HeroLogoWall />
         </div>
       </div>
     </section>

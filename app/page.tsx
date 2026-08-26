@@ -22,10 +22,6 @@ export default function Home() {
         tabIndex={-1}
         className="overflow-x-clip"
       >
-        {/* Each section's key elements reveal individually as they enter the
-            viewport via data-animation="reveal" (driven by RevealOnScroll +
-            globals.css) — this per-element entrance replaces the old
-            section-level <Reveal> wrappers. */}
         <Hero />
         <TrustBand />
         <EveryWay />

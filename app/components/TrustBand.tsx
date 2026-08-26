@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 /* Logo heights OPTICALLY NORMALIZED 2026-06-12 (canvas ink-area audit,
@@ -8,36 +9,27 @@ import { useState } from "react";
    Bloomberg was 1.78× the median (21→16); Google/Accenture were ~0.8×
    (24→26); Amazon ~1.16× (24→23). Widths follow each SVG's aspect. */
 const LOGOS = [
-  { src: "/trust-spotify.svg", alt: "Spotify", width: 81, height: 24 },
-  { src: "/trust-amazon.svg", alt: "Amazon", width: 77, height: 20 },
-  { src: "/trust-pinterest.svg", alt: "Pinterest", width: 87, height: 25 },
-  { src: "/trust-accenture.svg", alt: "Accenture", width: 91, height: 24 },
-  { src: "/trust-bloomberg.svg", alt: "Bloomberg", width: 90, height: 19 },
-  { src: "/trust-salesforce.svg", alt: "Salesforce", width: 37, height: 27 },
-  { src: "/trust-netflix.svg", alt: "Netflix", width: 75, height: 25 },
-  { src: "/trust-google.svg", alt: "Google", width: 80, height: 25 },
+  { src: "/logos/fidelity.svg", alt: "Spotify", width: 81, height: 24 },
+  { src: "/logos/solved.svg", alt: "Amazon", width: 77, height: 20 },
+  { src: "/logos/western-union.svg", alt: "Pinterest", width: 87, height: 25 },
+  { src: "/logos/figma.svg", alt: "Accenture", width: 91, height: 24 },
+  { src: "/logos/microsoft.svg", alt: "Bloomberg", width: 90, height: 24 },
+  { src: "/logos/united-healthcare.svg", alt: "Salesforce", width: 37, height: 27 },
+  { src: "/logos/amazon.svg", alt: "Netflix", width: 75, height: 30 },
+  { src: "/logos/premier.svg", alt: "Google", width: 80, height: 25 },
+  { src: "/logos/imagine.svg", alt: "Imagine", width: 80, height: 30 },
 ];
 
-/* One copy is ~56–68rem wide (gap-dependent). A seamless loop needs the
-   track to stay wider than the viewport for the whole cycle, i.e.
-   (COPIES - 1) × copyWidth ≥ viewport. 4 copies covers viewports up to
-   ~2600px; the keyframes shift by exactly one copy (-25%). */
-const COPIES = 4;
+const COPIES = 3;
 
 export default function TrustBand() {
-  /* WCAG 2.2.2 mechanism, restyled per user 2026-06-12 ("no visible
-     button — hover-pause is smoother"): pointer users pause by hovering
-     the strip (pure CSS, resumes on leave); keyboard users get a
-     focus-revealed control (skip-link pattern); touch users (coarse
-     pointer, no hover) tap the strip to toggle. All modalities covered,
-     zero visible chrome by default. */
   const [paused, setPaused] = useState(false);
   const tapToggle = () => {
     if (window.matchMedia("(pointer: coarse)").matches) setPaused((p) => !p);
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 bg-surface-base py-6 md:gap-6 md:py-10 lg:gap-8 lg:py-14">
+    <section className="flex flex-col items-center justify-center gap-4 bg-surface-base py-6 md:gap-6 md:py-10 lg:gap-8 lg:py-14 max-w-content mx-auto">
       <style>{`
         @keyframes trust-marquee {
           from { transform: translateX(0); }
@@ -95,21 +87,15 @@ export default function TrustBand() {
               className="flex items-end gap-[2rem] pr-[2rem] md:gap-[2.5rem] md:pr-[2.5rem] lg:gap-[3.5rem] lg:pr-[3.5rem]"
             >
               {LOGOS.map((logo) => (
-                <img
+                <Image
                   key={logo.alt}
                   src={logo.src}
                   alt={copy === 0 ? logo.alt : ""}
                   width={logo.width}
                   height={logo.height}
                   loading="lazy"
-                  /* rem height (not attribute px) so logos scale with the
-                     fluid root font-size above 1440 */
                   style={{ height: `${logo.height / 16}rem` }}
-                  /* Universal 600 (#4f5052) feel — softened further from the
-                     full-black marks to a refined grey so they read "visible
-                     but less dominant" (Stripe/Linear restraint). Logos are
-                     brand marks, WCAG-exempt. */
-                  className="w-auto max-w-none shrink-0 opacity-60"
+                  className="w-auto max-w-none shrink-0 opacity-60 grayscale-100"
                 />
               ))}
             </div>
