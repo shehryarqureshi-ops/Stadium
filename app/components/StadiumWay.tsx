@@ -3,7 +3,13 @@
 import StepCardsCarousel, {
   type StepCardsCarouselStep,
 } from "@/app/components/common/StepCardsCarousel";
-import TeamPermissionsLoop from "./TeamPermissions";
+import InviteTeamLoop from "./InviteTeamLoop";
+import RolesPermissionsLoop from "./RolesPermissionsLoop";
+import WalletSetupLoop from "./WalletSetupLoop";
+import IntegrationsLoop from "./IntegrationsLoop";
+import SlackTeamsLoop from "./SlackTeamsLoop";
+import SsoDomainLoop from "./SsoDomainLoop";
+import ShopsLoop from "./ShopsLoop";
 
 type MockItem = {
   icon?: string;
@@ -316,37 +322,37 @@ const steps: StepCardsCarouselStep[] = [
         caption: "Setup · Team",
         title: "Invite your team",
         description: "Add members and assign who does what.",
-        content: <TeamPermissionsLoop />,
+        content: <InviteTeamLoop />,
       },
       {
         caption: "Setup · Permissions",
         title: "Roles & permissions",
         description: "Scope send, approve, and spend per person.",
-        image: "/sw-card-2-permissions.svg",
+        content: <RolesPermissionsLoop />,
       },
       {
         caption: "Setup · Wallet",
         title: "Fund your wallet",
         description: "One balance for every send, topped up your way.",
-        image: "/sw-card-3-wallet.svg",
+        content: <WalletSetupLoop />,
       },
       {
         caption: "Setup · Integrations",
         title: "Connect your stack",
         description: "Sync your HRIS, CRM, and the tools you run.",
-        image: "/sw-card-4-integrations.svg",
+        content: <IntegrationsLoop />,
       },
       {
         caption: "Setup · Slack",
         title: "Install in Slack",
         description: "Bring Stadium into the tools your team lives in.",
-        image: "/sw-card-5-slack.svg",
+        content: <SlackTeamsLoop />,
       },
       {
         caption: "Setup · SSO",
         title: "Single sign-on",
         description: "Secure access through your identity provider.",
-        image: "/sw-card-6-sso.svg",
+        content: <SsoDomainLoop />,
       },
     ],
   },
@@ -355,6 +361,13 @@ const steps: StepCardsCarouselStep[] = [
     description:
       "Kitting, warehousing, and carrier routing configured across every market you ship to.",
     cards: [
+      {
+        caption: "Assembly · Week 1",
+        title: "Shops",
+        description:
+          "Start from a template or a blank shop, curate it, and publish - then watch people shop it.",
+        content: <ShopsLoop />,
+      },
       {
         caption: "Assembly · Week 1",
         title: "Global fulfillment",
