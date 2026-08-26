@@ -44,7 +44,7 @@ export default function SwagPage() {
           <SwagmagicSolution />
           <SwagmagicOfferings />
           <SwagmagicCatalog />
-          <StadiumWay />
+          <StadiumWay variant="decoration" />
           <SwagmagicHowItWorks />
           <SwagmagicPlatform />
           <SwagmagicComparison />
