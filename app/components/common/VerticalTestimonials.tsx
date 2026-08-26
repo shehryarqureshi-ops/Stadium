@@ -157,7 +157,7 @@ export default function Testimonials({
 
             <blockquote
               data-animation="reveal"
-              className="font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] tracking-[-0.02em] text-[#16171b] lg:text-[2rem] lg:leading-[2.5rem]"
+              className="font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] text-[#16171b] lg:text-[2rem] lg:leading-[2.5rem] font-bold"
             >
               {blockquote}
             </blockquote>

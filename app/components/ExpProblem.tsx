@@ -1,27 +1,27 @@
-import prob1 from "@/public/snacks/sn2-problem-1.jpg";
-import prob2 from "@/public/snacks/sn2-problem-2.jpg";
-import prob3 from "@/public/snacks/sn2-problem-3.jpg";
+import prob1 from "@/public/exp2/problem/one-person.png";
+import prob2 from "@/public/exp2/problem/generic.png";
+import prob3 from "@/public/exp2/problem/remote.png";
 
 import ProblemSection from "./common/ProblemSection";
 
 const items = [
   {
     image: prob1,
-    title: "Asking ruins the surprise",
+    title: "One person does all the work",
     description:
-      "You can’t send something unexpected to someone you just emailed for their address. The moment you start collecting details, the gift announces itself.",
+      "Managers and EAs become accidental event planners, on top of their packed schedules.",
   },
   {
     image: prob2,
-    title: "One person ends up running it",
+    title: "Generic events fade fast",
     description:
-      "Someone chases every address, every diet and every “mine never arrived”—then hopes the picks landed.",
+      "Icebreakers are forgotten fast, but a well-planned event still comes up weeks later.",
   },
   {
     image: prob3,
-    title: "Nothing happens unless someone remembers",
+    title: "Remote teams drift apart",
     description:
-      "There’s no trigger, no schedule, nothing running in the background. Every anniversary and every new hire gets marked only if a human catches it in time.",
+      "Status calls squeezed between agenda items don't leave room for real conversation.",
   },
 ];
 
