@@ -13,6 +13,7 @@ import ShopsLoop from "./ShopsLoop";
 import KitsLoop from "./KitsLoop";
 import KudosLoop from "./KudosLoop";
 import AutomationsLoop from "./AutomationsLoop";
+import BulkSwagLoop from "./BulkSwagLoop";
 
 const STILL = "/motion/still";
 
@@ -110,9 +111,7 @@ const steps: StepCardsCarouselStep[] = [
         title: "Bulk swag",
         description:
           "Order in volume and the unit price falls as the quantity rises. What arrives goes into your locker.",
-        image: `${STILL}/still-bulk-swag.jpg`,
-        imageAlt:
-          "A pricing screen showing volume savings of $7,936 against a total of $32,432",
+        content: <BulkSwagLoop />,
       },
       {
         caption: "Engage · Spend it",
