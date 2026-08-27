@@ -1,45 +1,40 @@
-/* /snacks · WHY TEAMS CHOOSE US (Figma 2208:3087). A 5-column comparison table
-   with the Snackmagic column highlighted in light blue. Scrolls horizontally on
-   small screens. */
-
 type Cell = "check" | "minus" | string;
 
 const COLS = [
   { name: "Snackmagic", sub: "by Stadium", hi: true },
   { name: "Snack Subscriptions", sub: "ex-SnackNation" },
   { name: "Curated Gift Boxes", sub: "Baskets" },
-  { name: "Curated Gift Boxes", sub: "Gifting" },
-  { name: "Hoppier", sub: "Visa Cards" },
+  { name: "Gift Cards", sub: "Gifting" },
 ];
 
-const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell, Cell] }[] = [
+const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
   {
     label: "Recipient Choice",
-    vals: ["check", "minus", "minus", "check", "Visa"],
+    vals: ["check", "minus", "minus", "minus"],
   },
   {
     label: "Dietary Preferences",
-    vals: ["check", "minus", "minus", "check", "minus"],
+    vals: ["check", "Limited", "Limited", "minus"],
   },
   {
     label: "No Subscription Required",
-    vals: ["check", "minus", "check", "check", "check"],
+    vals: ["check", "minus", "check", "check"],
   },
   {
     label: "Global + Local Fulfillment",
-    vals: ["check:170+", "U.S. only", "U.S. only", "550 intl", "Cards"],
+    vals: ["check:170+", "U.S. only", "Limited", "Digital only"],
   },
   {
     label: "2,000+ Snacks",
-    vals: ["check", "minus", "minus", "Only Gifts", "minus"],
-  },
-  {
-    label: "Sender Budget Protection",
-    vals: ["check", "minus", "minus", "minus", "minus"],
+    vals: ["check", "Limited", "Limited", "minus"],
   },
   {
     label: "Customization & Branding",
-    vals: ["check", "minus", "minus", "minus", "minus"],
+    vals: ["check", "Very Limited", "check", "minus"],
+  },
+  {
+    label: "Snack Giver Guarantee",
+    vals: ["check", "minus", "minus", "minus"],
   },
 ];
 
@@ -130,7 +125,7 @@ export default function SnackComparison() {
           data-animation="reveal"
           className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <div className="grid min-w-[52rem] grid-cols-[2.09fr_1fr_1fr_1fr_1fr_1fr] gap-1">
+          <div className="grid min-w-[52rem] grid-cols-[2.09fr_1fr_1fr_1fr_1fr] gap-1">
             <div />
             {COLS.map((c) => (
               <div
