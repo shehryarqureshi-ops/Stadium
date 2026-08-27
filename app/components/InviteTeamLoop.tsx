@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef } from "react";
+import { useCardActive } from "@/app/components/common/cardActive";
 
 // ─────────────────────────────────────────────────────────────
 // Stadium — "Invite your team" auto-looping animation
@@ -45,8 +46,13 @@ export default function InviteTeamLoop() {
   const scope = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  // The loader spins on its own tween, outside tlRef — it needs the same gate.
+  const spinRef = useRef<gsap.core.Tween | null>(null);
   const reducedRef = useRef(false);
   const visibleRef = useRef(true);
+  const cardActive = useCardActive();
+  const activeRef = useRef(cardActive);
+  const restartRef = useRef(cardActive);
 
   // SVG ids must be unique per instance or a second copy steals the clip path.
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
@@ -55,8 +61,19 @@ export default function InviteTeamLoop() {
   const applyPlayState = useCallback(() => {
     const tl = tlRef.current;
     if (!tl) return;
-    if (visibleRef.current && !reducedRef.current) tl.play();
-    else tl.pause();
+    const run =
+      visibleRef.current && activeRef.current && !reducedRef.current;
+    if (run) {
+      // Becoming the active card restarts the story, but the card is still
+      // sliding in at that point and the observer only reports it on screen
+      // a beat later — so arm the restart there and spend it here.
+      if (restartRef.current) {
+        restartRef.current = false;
+        tl.restart();
+      } else tl.play();
+    } else tl.pause();
+    if (run) spinRef.current?.play();
+    else spinRef.current?.pause();
   }, []);
 
   // Fit the fixed 312×340 tile to whatever container this is embedded in.
@@ -123,7 +140,7 @@ export default function InviteTeamLoop() {
       // Rotate the wrapping span, never the <svg>: GSAP measures an SVG node's
       // bbox by reparenting it, and inside a visibility:hidden label that
       // silently moves the spinner to the end of the flex row.
-      gsap.to(q(".iyt-spinner"), { rotation: 360, duration: 0.85, repeat: -1, ease: "none" });
+      spinRef.current = gsap.to(q(".iyt-spinner"), { rotation: 360, duration: 0.85, repeat: -1, ease: "none" });
 
       const moveTo = (tl: gsap.core.Timeline, at: number, pos: readonly number[], dur: number) => {
         tl.to(cursor, { x: pos[0], y: pos[1], duration: dur, ease: "power2.inOut" }, at);
@@ -290,6 +307,13 @@ export default function InviteTeamLoop() {
     io.observe(el);
     return () => io.disconnect();
   }, [applyPlayState]);
+
+  // Only the active card animates, and it starts from the top each time.
+  useEffect(() => {
+    activeRef.current = cardActive;
+    if (cardActive) restartRef.current = true;
+    applyPlayState();
+  }, [cardActive, applyPlayState]);
 
   return (
     <div ref={scope} className="relative h-full w-full overflow-hidden">

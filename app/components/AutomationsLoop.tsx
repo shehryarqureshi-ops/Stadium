@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef } from "react";
+import { useCardActive } from "@/app/components/common/cardActive";
 
 // ─────────────────────────────────────────────────────────────
 // Stadium — "Automations" auto-looping animation
@@ -76,6 +77,9 @@ export default function AutomationsLoop() {
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const reducedRef = useRef(false);
   const visibleRef = useRef(true);
+  const cardActive = useCardActive();
+  const activeRef = useRef(cardActive);
+  const restartRef = useRef(cardActive);
 
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const clipId = `au-cur-${uid}`;
@@ -83,8 +87,17 @@ export default function AutomationsLoop() {
   const applyPlayState = useCallback(() => {
     const tl = tlRef.current;
     if (!tl) return;
-    if (visibleRef.current && !reducedRef.current) tl.play();
-    else tl.pause();
+    const run =
+      visibleRef.current && activeRef.current && !reducedRef.current;
+    if (run) {
+      // Becoming the active card restarts the story, but the card is still
+      // sliding in at that point and the observer only reports it on screen
+      // a beat later — so arm the restart there and spend it here.
+      if (restartRef.current) {
+        restartRef.current = false;
+        tl.restart();
+      } else tl.play();
+    } else tl.pause();
   }, []);
 
   // Fit the fixed 312×340 tile to whatever container this is embedded in.
@@ -235,6 +248,13 @@ export default function AutomationsLoop() {
     io.observe(el);
     return () => io.disconnect();
   }, [applyPlayState]);
+
+  // Only the active card animates, and it starts from the top each time.
+  useEffect(() => {
+    activeRef.current = cardActive;
+    if (cardActive) restartRef.current = true;
+    applyPlayState();
+  }, [cardActive, applyPlayState]);
 
   return (
     <div ref={scope} className="relative h-full w-full overflow-hidden">

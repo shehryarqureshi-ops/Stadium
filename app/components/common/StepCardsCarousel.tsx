@@ -4,6 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
+import { CardActiveContext } from "@/app/components/common/cardActive";
 
 export type StepCardsCarouselCard = {
   /** optional: the Confetti cards on /events have no caption line in Figma */
@@ -96,14 +97,24 @@ function Chevron({ dir }: { dir: "left" | "right" }) {
   );
 }
 
-function CarouselCard({ card }: { card: StepCardsCarouselCard }) {
+function CarouselCard({
+  card,
+  active,
+}: {
+  card: StepCardsCarouselCard;
+  /** Every card stays mounted so the neighbours can peek, so animated content
+      needs telling which one is actually on screen — see cardActive.tsx. */
+  active: boolean;
+}) {
   return (
     <div className="flex flex-col gap-8 overflow-hidden rounded-2xl border border-[#ededed] bg-white p-4 pb-8 shadow-[0_12px_32px_-10px_rgba(16,24,40,0.18)]">
       {(card.content || card.image) && (
         <div className="overflow-hidden rounded-xl">
           <div className="relative aspect-[313/340] w-full overflow-hidden">
             {card.content ? (
-              card.content
+              <CardActiveContext.Provider value={active}>
+                {card.content}
+              </CardActiveContext.Provider>
             ) : typeof card.image === "string" ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -392,7 +403,7 @@ export default function StepCardsCarousel({
                           : "transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
                       } ${absoluteDistance <= 1 ? "" : "pointer-events-none"}`}
                     >
-                      <CarouselCard card={card} />
+                      <CarouselCard card={card} active={distance === 0} />
                     </div>
                   );
                 })}
