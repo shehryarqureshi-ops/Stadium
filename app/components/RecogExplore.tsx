@@ -12,16 +12,15 @@ const ITEMS: ResourcesItem[] = [
     captionColor: "#6b33db",
     title: "Build your recognition playbook",
     description: "A step-by-step guide to launch successfully.",
-    url: "#",
+    url: "https://www.bystadium.com/case-overview/everflow",
     image: guideImage,
   },
   {
     caption: "REPORT",
     captionColor: "#6b33db",
     title: "The business case for recognition",
-    description:
-      "See why recognized employees are more likely to stay.",
-    url: "#",
+    description: "See why recognized employees are more likely to stay.",
+    url: "https://www.bystadium.com/blog/employee-recognition",
     image: reportImage,
   },
   {
@@ -29,7 +28,7 @@ const ITEMS: ResourcesItem[] = [
     captionColor: "#6b33db",
     title: "Turn company values into tags",
     description: "Make every kudos reflect your company values.",
-    url: "#",
+    url: "https://www.bystadium.com/blog/rewards-and-recognition",
     image: templateImage,
   },
 ];

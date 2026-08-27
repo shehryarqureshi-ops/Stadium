@@ -124,14 +124,14 @@ export default function RecogCaseStudies() {
             data-animation="reveal"
             className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
           >
-            How recognition became more widespread and rewarding at Everflow
+            How Keyfactor scaled rewards and recognition
           </h2>
           <p
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
-            Kudos went from occasional to everyday, with real rewards and
-            recognition shared across teams.
+            See how Keyfactor made recognition more meaningful while simplifying
+            the work behind a global employee program.
           </p>
         </div>
 

@@ -50,10 +50,6 @@ import RecognitionTween from "./special/RecognitionTween";
 export default function RecogHero() {
   return (
     <section className="relative">
-      {/* background: Figma's "shapes" raster (2673:3851), 725px (45.3125rem)
-          taller than this section so the Problem card overlaps it. Unlike the
-          old mesh it stays dark at the bottom, so the tail is faded out from
-          60% (just below the section's own bottom edge). */}
       <div
         aria-hidden="true"
         className="absolute left-0 top-0 h-[calc(100%)] w-full overflow-hidden bg-[#5a3172]"
@@ -69,21 +65,15 @@ export default function RecogHero() {
         />
       </div>
 
-      {/* hero row (2673:3874): text column top-padded 120, graphic flush to the
-          row's top — the 796 row height is the graphic's own height */}
       <div className="relative z-10 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem]">
-        <div className="mx-auto flex w-full max-w-content flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-0">
-          <div className="flex w-full flex-col gap-8 lg:w-full lg:pt-[7.5rem]">
+        <div className="mx-auto flex w-full max-w-content flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-24">
+          {/* left */}
+          <div className="flex w-full flex-col gap-8 lg:w-full lg:pt-[7.5rem] flex-[1]">
             <div className="flex flex-col gap-5">
               <div data-animation="reveal" className="flex flex-col gap-2">
-                {/* Figma 2673:3878 sets a DOUBLE space after the middot
-                    (whitespace-pre there); reproduced verbatim. */}
                 <p className="whitespace-pre font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#edd9fc]">
-                  {"RECOGNITION ·  STADIUM PLATFORM"}
+                  {"EMPLOYEE RECOGNITION"}
                 </p>
-                {/* Figma breaks after "that" in its 565 column at Satoshi
-                    Black; the site only has Bold, so the break is forced from
-                    1344 up (the width at which the full 1160 row fits). */}
                 <h1 className="font-[family-name:var(--font-satoshi)] text-[2.5rem] font-black leading-[1.02] tracking-[-0.0625rem] text-white md:text-[3rem] lg:text-[3.625rem] lg:tracking-[-0.09375rem]">
                   Recognition that
                   <br className="hidden min-[84rem]:inline" />
@@ -95,9 +85,9 @@ export default function RecogHero() {
                 data-reveal-delay="120"
                 className="w-full font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
               >
-                Recognition stalls in a Slack channel. Stadium turns a thank-you
-                into a real reward at someone&#8217;s door, anywhere. You set
-                the rules. We ship the rest.
+                Run employee recognition, rewards, milestones, and incentives in
+                one platform. Your team recognizes great work. Employees choose
+                their reward. Stadium delivers it worldwide.
               </p>
             </div>
 
@@ -112,7 +102,7 @@ export default function RecogHero() {
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#8d12e7] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                    Browse the catalog
+                    Talk to sales
                   </span>
                 </a>
                 <a
@@ -120,7 +110,7 @@ export default function RecogHero() {
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                    Talk to sales
+                    Explore rewards
                   </span>
                 </a>
               </div>
@@ -130,12 +120,20 @@ export default function RecogHero() {
             </div>
           </div>
 
-          <RecognitionTween />
+          {/* right */}
+          {/* <RecognitionTween /> */}
+          <div className="w-full flex-1">
+            <Image
+              src={"/recognition/recogHero.png"}
+              width={0}
+              height={0}
+              quality={100}
+              className="w-full h-auto"
+              sizes="630px"
+              alt="yeah"
+            />
+          </div>
 
-          {/* graphic (2673:3888) — rc-hero-photo.png IS the 595×796 window
-              Figma clips out of the 1280×1908 cut-out, so it needs no crop
-              box here; the toast hangs 20px past its right edge (2673:3891,
-              positioned in % of the window so it tracks the photo). */}
           <div
             data-animation="reveal"
             data-reveal-delay="240"
@@ -188,9 +186,6 @@ export default function RecogHero() {
         </div>
       </div>
 
-      {/* glass panel (2673:3852) — full-bleed white/20, rounded-t-32 — carrying
-          the trust band (2673:3900): 56 / 40 marquee / 56. Seamless CSS
-          marquee, logos inverted white, edges soft-masked. */}
       <HeroLogoWall />
     </section>
   );

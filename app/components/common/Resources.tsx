@@ -71,6 +71,7 @@ export default function Resources({
           >
             {items.map((item) => (
               <a
+                target="_blank"
                 key={item.title}
                 href={item.url}
                 data-animation="reveal"
@@ -134,6 +135,7 @@ export default function Resources({
                     className="border-b border-[#eeeeee] py-[1.375rem] first:pt-0 last:border-b-0 last:pb-0"
                   >
                     <a
+                      target="_blank"
                       href={item.url}
                       className="group flex items-end gap-2.5 rounded-[0.5rem] outline-none transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4"
                       style={

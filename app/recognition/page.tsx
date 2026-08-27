@@ -41,7 +41,7 @@ export default function RecognitionPage() {
           <RecogComparison />
           <RecogCommittee />
           <RecogCaseStudies />
-          <RecogPackages />
+          {/* <RecogPackages /> */}
         </div>
         <RecogExplore />
         <RecogClosing />

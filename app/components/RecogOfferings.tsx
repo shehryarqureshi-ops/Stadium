@@ -8,16 +8,17 @@ const items: TabsShowcaseItem[] = [
   {
     name: "Kudos Programs",
     tab: "Kudos Programs",
-    title: "Recognition beyond the top-down",
+    title: "Recognition that doesn’t have to come from the top",
     description:
-      "Teammates give real-time kudos that turn into points and rewards, building a culture of appreciation across the team.",
+      "Let employees recognize great work in real time, with kudos tied to your company values and rewards people choose.",
     bullets: [
-      "Integrate with Slack or Teams",
-      "Tied to company values",
-      "Recognition in real time",
+      "Employee-to-employee recognition",
+      "Slack and Teams integrations",
+      "Recognition tied to company values",
     ],
     image: kudos,
     href: "#",
+    cta: "Explore Kudos",
   },
   {
     name: "Milestone Programs",
@@ -66,9 +67,10 @@ const items: TabsShowcaseItem[] = [
 export default function RecogOfferings() {
   return (
     <PillTabs
-      caption=""
-      title="Ways to recognize great work"
-      description=""
+      caption="RECOGNITION PROGRAMS"
+      captionColor="#8d12e7"
+      title="One platform for every way you recognize"
+      description="Run everyday recognition, milestones, incentives, and service awards from the same program."
       items={items}
       autoAdvance={false}
       glowColor="#8d12e7"

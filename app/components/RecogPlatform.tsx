@@ -1,63 +1,59 @@
 import VariableCardGrid from "./common/VariableCardGrid";
 
-import one from '@/public/recognition/platformOne.png'
-import two from '@/public/recognition/platformTwo.png'
-import three from '@/public/recognition/platformThree.png'
-import four from '@/public/recognition/platformFour.png'
-import five from '@/public/recognition/platformFive.png'
-import six from '@/public/recognition/platformSix.png'
+import one from "@/public/recognition/platformOne.png";
+import two from "@/public/recognition/platformTwo.png";
+import three from "@/public/recognition/platformThree.png";
+import four from "@/public/recognition/platformFour.png";
+import five from "@/public/recognition/platformFive.png";
+import six from "@/public/recognition/platformSix.png";
 
 const ITEMS = [
   {
     image: one,
     title: "Integrations",
     description:
-      "Connect to 100+ tools, including HRIS, Slack, and Teams, so recognition happens where work does.",
+      "Connect your HRIS, Slack, Teams, CRM, and the tools your organization already uses.",
   },
   {
     image: two,
     title: "SSO & SCIM",
     description:
-      "Enterprise authentication with automatic user provisioning from day one.",
+      "Enterprise authentication and automated user provisioning from day one.",
   },
   {
     image: three,
     title: "Analytics & Insights",
     description:
-      "See who's recognized, who's participating, and what's working.",
+      "See who’s recognizing, who’s participating, what’s being redeemed, and how people are engaging.",
   },
   {
     image: four,
     title: "Admin & Governance",
     description:
-      "Manage permissions, approvals, and budgets across every program.",
+      "Manage permissions, approvals, program rules, and budgets from one place.",
   },
   {
     image: five,
     title: "Global Rewards",
     description:
-      "Recipients redeem worldwide. We handle fulfillment, customs, duties, and tax.",
+      "Give employees worldwide access to locally relevant rewards while Stadium handles fulfillment, customs, duties, and tax.",
   },
   {
     image: six,
     title: "Points & Budgets",
-    description: "Allocate, cap, and track point budgets by team.",
+    description:
+      "Set point values and budgets by team, program, or occasion–and track spend as you go.",
   },
 ];
 
 export default function RecogPlatform() {
   return (
     <VariableCardGrid
-      caption="Control"
-      captionColor="#996b00"
-      title={
-        <>
-          Gifting your finance team will
-          <br />
-          actually sign off on
-        </>
-      }
-      description="Budgets set per team, approvals routed before anything ships, and a record of what every program returned."
+      caption="Built for enterprise"
+      captionColor="#8d12e7"
+      title={<>Recognition that works with the systems you already use</>}
+      description="Connect Stadium to your HRIS, communication tools, and identity systems while keeping programs, budgets, and reporting under control.
+"
       gridColumns={3}
       items={ITEMS}
     />

@@ -132,7 +132,12 @@ function ArrowUpRightIcon() {
    0 3 6 rgba(0,0,0,.06) — it reads as a white chevron on the page ground) */
 function BigArrowRight() {
   return (
-    <svg viewBox="0 0 72 72" fill="none" className="size-[4.5rem] shrink-0" aria-hidden>
+    <svg
+      viewBox="0 0 72 72"
+      fill="none"
+      className="size-[4.5rem] shrink-0"
+      aria-hidden
+    >
       <g filter="url(#recog-impact-arrow-shadow)">
         <path
           d="M15 36H57M36 57L57 36L36 15"
@@ -162,9 +167,21 @@ function BigArrowRight() {
           <feOffset dy="3" />
           <feGaussianBlur stdDeviation="3" />
           <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow"
+            result="shape"
+          />
         </filter>
       </defs>
     </svg>
@@ -198,7 +215,9 @@ function FloatingPill({
   return (
     <>
       <div className="absolute left-0 top-[0.875rem] flex items-center gap-2 overflow-hidden rounded-[0.75rem] bg-[rgba(0,0,0,0.1)] p-2">
-        <span className="flex items-center rounded-[0.5rem] bg-white p-3">{icon}</span>
+        <span className="flex items-center rounded-[0.5rem] bg-white p-3">
+          {icon}
+        </span>
         <span className="flex flex-col gap-1">
           <span className="whitespace-nowrap font-sans text-[0.75rem] font-normal leading-normal tracking-[0.0375rem] text-white">
             {label}
@@ -226,11 +245,6 @@ function FloatingPill({
 export default function RecogImpact() {
   return (
     <section className="relative bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
-      {/* Figma "symbol gradient" blooms — 2504:8299 (x 1470, off the right edge)
-         and 2504:8300 (x −19, below the bottom edge); the S-symbol blurred at
-         7% opacity, 950×535 node + 37.38%/21.05% blur bleed = 1660×760 on
-         screen. Only the bleed reaches the canvas; the section clips them. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/recog2/rc-impact-glow.svg"
         alt=""
@@ -250,19 +264,20 @@ export default function RecogImpact() {
       />
 
       <div className="relative mx-auto flex w-full max-w-content flex-col gap-10">
-        {/* title — 44 Satoshi → 20 → 18 Overpass, centred */}
         <div className="flex flex-col gap-5 text-center">
           <h2
             data-animation="reveal"
             className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
           >
-            Recognition that pays for itself
+            See the impact of recognition
           </h2>
           <p
             data-animation="reveal"
-            className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
+            className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem] max-w-[44rem] mx-auto"
           >
-            What teams using Stadium see.
+            Track participation, redemption, budgets, and engagement so you can
+            see what employees value–and show leadership where the program is
+            working.
           </p>
         </div>
 
@@ -299,7 +314,9 @@ export default function RecogImpact() {
           </article>
 
           {/* +18 — wide eNPS spline card, spans both value columns at lg */}
-          <article className={`${CARD} flex min-h-[17.5rem] lg:min-h-0 flex-col gap-2 p-8 lg:col-span-2`}>
+          <article
+            className={`${CARD} flex min-h-[17.5rem] lg:min-h-0 flex-col gap-2 p-8 lg:col-span-2`}
+          >
             <span
               aria-hidden
               className="pointer-events-none absolute left-8 right-8 top-[11.607%] z-0 h-[88.571%]"
@@ -314,7 +331,9 @@ export default function RecogImpact() {
               />
             </span>
             <p className={`${STAT} relative z-10`}>+18</p>
-            <p className={`${STAT_LABEL} relative z-10`}>eNPS lift, first 12 months</p>
+            <p className={`${STAT_LABEL} relative z-10`}>
+              eNPS lift, first 12 months
+            </p>
             <span
               aria-hidden
               className="pointer-events-none absolute left-8 right-8 top-[11.607%] z-20 h-[71.071%]"
@@ -333,7 +352,9 @@ export default function RecogImpact() {
           </article>
 
           {/* 31% — turnover spline card */}
-          <article className={`${CARD} flex min-h-[17.5rem] lg:min-h-0 flex-col gap-2 p-8`}>
+          <article
+            className={`${CARD} flex min-h-[17.5rem] lg:min-h-0 flex-col gap-2 p-8`}
+          >
             <p className={`${STAT} relative z-10`}>31%</p>
             <p className={`${STAT_LABEL} relative z-10`}>
               Lower turnover,
@@ -371,7 +392,9 @@ export default function RecogImpact() {
           </article>
 
           {/* 96% — dot-field card */}
-          <article className={`${CARD} flex min-h-[17.5rem] lg:min-h-0 flex-col gap-2 p-8 md:col-span-2 lg:col-span-1`}>
+          <article
+            className={`${CARD} flex min-h-[17.5rem] lg:min-h-0 flex-col gap-2 p-8 md:col-span-2 lg:col-span-1`}
+          >
             <p className={`${STAT} relative z-10`}>96%</p>
             <p className={`${STAT_LABEL} relative z-10`}>
               Reward redemption
@@ -415,11 +438,11 @@ export default function RecogImpact() {
             <div className="relative flex flex-col gap-5">
               <ChartSpline />
               <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.04] tracking-[-0.0375rem] text-[#2a0845]">
-                See your potential ROI
+                Build the business case
               </h3>
               <p className="max-w-[30.875rem] font-sans text-[0.875rem] leading-[1.48] text-[#6b6c71]">
-                Global rollouts, adoption lifts, and rewards leadership trusts, set up by the teams
-                who own engagement.
+                See how your team size, current reward spend, and admin time
+                could translate into program savings.
               </p>
             </div>
             <dl className="relative grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -442,14 +465,15 @@ export default function RecogImpact() {
           </article>
 
           {/* the 72px arrow between the two panels */}
-          <div aria-hidden className="hidden items-center justify-center lg:flex">
+          <div
+            aria-hidden
+            className="hidden items-center justify-center lg:flex"
+          >
             <BigArrowRight />
           </div>
 
           {/* roi after — gradient panel, two floating pills, savings card */}
-          <div
-            className={`${CARD} min-h-[26.625rem]`}
-          >
+          <div className={`${CARD} min-h-[26.625rem]`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/recog2/rc-impact-gradient.svg"

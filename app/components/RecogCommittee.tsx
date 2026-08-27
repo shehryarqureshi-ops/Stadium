@@ -1,43 +1,49 @@
-import FourCards, {
-  type FourCardsItem,
-} from "@/app/components/common/FourCards";
+import VariableCardGrid, {
+  VariableCardGridItem,
+} from "./common/VariableCardGrid";
 
-const ITEMS: FourCardsItem[] = [
+import milestones from "@/public/exp2/xp-platform-milestones.jpg";
+import teamWins from "@/public/exp2/xp-platform-team-wins.jpg";
+import allHands from "@/public/exp2/xp-platform-all-hands.jpg";
+import offsites from "@/public/exp2/xp-platform-offsites.jpg";
+import socials from "@/public/exp2/xp-platform-socials.jpg";
+import justBecause from "@/public/exp2/xp-platform-just-because.jpg";
+
+const ITEMS: VariableCardGridItem[] = [
   {
-    image: "/recog2/rc-committee-hr.svg",
-    isFeatured: true,
-    featuredLabel: "Primary",
+    image: milestones,
     title: "HR & People Ops",
     description:
-      "Kudos tied to company values, with visibility into who’s recognized.",
+      "Build recognition around your values and see who’s participating, recognized, and engaged.",
   },
   {
-    image: "/recog2/rc-committee-leadership.svg",
+    image: milestones,
     title: "Leadership",
     description:
-      "Recognition that reinforces your values and helps build culture.",
+      "Reinforce company values and make great work visible across the organization.",
   },
   {
-    image: "/recog2/rc-committee-it.svg",
+    image: milestones,
     title: "IT & Security",
     description:
-      "Enterprise-ready with SSO, SCIM, SOC 2, and HRIS integrations.",
+      "Deploy securely with SSO, SCIM, HRIS integrations, and enterprise controls.",
   },
   {
-    image: "/recog2/rc-committee-finance.svg",
+    image: milestones,
     title: "Finance",
     description:
-      "Predictable budgets, controlled spend, and clear reporting.",
+      "Set budgets, control spend, and see where recognition dollars go.",
   },
 ];
 
 export default function RecogCommittee() {
   return (
-    <FourCards
+    <VariableCardGrid
       caption="Built for sign-off"
       captionColor="#8d12e7"
-      title="Win over every stakeholder"
-      description="Recognition touches every team. Here’s what each stakeholder wants to know."
+      title="A recognition program every stakeholder can get behind"
+      description="Give HR the program they want, IT the infrastructure they require, Finance the control they need, and leadership the visibility they expect."
+      gridColumns={2}
       items={ITEMS}
     />
   );

@@ -1,66 +1,40 @@
-/* /recognition · WHY STADIUM — "Why teams choose Stadium" (Figma
-   n9SjmDjzB1PeZAYJ5w43fr → 2504:8409 "Comparison · 3 wedges", inside page frame
-   2504:6746). A 5-column comparison table (Stadium column tinted #f8f1fe) vs
-   Point Tools / Enterprise / DIY, 7 rows, then a dark TALK TO SALES cell that
-   sits under the Stadium column (rounded-t 8 / rounded-b 16). Same table system
-   as SwagmagicComparison.tsx / SnackComparison.tsx: gap 4, cells p-24, header
-   px-24 py-16, 24px lucide check/minus (stroke #000 2px, from Figma svgAssets),
-   inner corners 8 — but this node's OUTER corners are 16 (not 24) and its label
-   column is 540 of 1240 (not 360), so the grid keeps that ratio at 1200.
-   Scrolls horizontally on small screens.
-
-   Figma stack (frame y=7362.5 h=815, no internal top/bottom pad; x=100/1240 in
-   Figma → the site's 120/1200 content box, label col = 540fr of 540+4×171):
-     eyebrow  y=0    h=17    (12px / lh 1.4, #f8f1fe, tracking 1.6px)
-     gap 8
-     title    y=25   h=48    (Satoshi Bold 44 / lh 1.08 / -0.5px, 1 line, w 880)
-     gap 20
-     subhead  y=93   h=27    (Overpass 18 / lh 1.48, #6b6c71, w 880)
-     gap 40
-     table    y=160  h=655   header 67 · 7 rows × 72 (gap 4) · footer 52
-     frame end 815           → next section at y=8177.5
-   → section = py-16 md:py-20 lg:py-20 (80 + neighbour's 80 = the 160 gap the
-     page frames are spaced by), inner header→table gap 40. */
-
 type Cell = "check" | "minus" | string;
 
 const COLS: { name: string; sub?: string; hi?: boolean }[] = [
   { name: "Stadium", hi: true },
-  { name: "Point Tools", sub: "Bonusly · Nectar" },
-  { name: "Enterprise", sub: "Workhuman · Achievers" },
-  { name: "DIY", sub: "Slack + Gift Cards" },
+  { name: "Recognition Platforms", sub: "Bonusly · Nectar" },
+  { name: "Points & Rewards Tools", sub: "Workhuman · Achievers" },
+  { name: "DIY Programs", sub: "Slack + Gift Cards" },
 ];
 
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
   {
-    label: "Employee-to-Employee Recognition",
+    label: "Peer-to-peer recognition",
     vals: ["check", "check", "check", "Add-On"],
   },
   {
-    label: "Milestone Gifting",
+    label: "Milestones & automated programs",
     vals: ["check", "Limited", "check", "Limited"],
   },
   {
-    label: "Rewards: Swag, Snacks, Gifts, & Hosted Experiences",
+    label: "Swag, snacks, gifts & experiences",
     vals: ["check", "Cards Only", "minus", "Limited"],
   },
   {
-    label: "Global With Local Fulfillment",
+    label: "Global + Local Fulfillment",
     vals: ["check", "Limited", "minus", "Gifts Only"],
   },
   {
-    label: "Analytics & Insights",
+    label: "Analytics & budget controls",
     vals: ["check", "Basic", "Limited", "check"],
   },
-  { label: "Thoughtful Rollout", vals: ["check", "check", "Limited", "check"] },
+  // { label: "Thoughtful Rollout", vals: ["check", "check", "Limited", "check"] },
   { label: "One Platform", vals: ["check", "minus", "minus", "minus"] },
 ];
 
 const LAST_COL = COLS.length - 1;
 const LAST_ROW = ROWS.length - 1;
 
-/* lucide/check + lucide/minus exactly as exported from the Figma node
-   (24×24, stroke #000, 2px, round caps/joins). */
 function Value({ v }: { v: Cell }) {
   if (v === "check")
     return (
@@ -105,7 +79,6 @@ export default function RecogComparison() {
   return (
     <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg overflow-auto lg:overflow-visible">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
-        {/* header — eyebrow → 8 → title → 20 → subhead, centred, 880 wide */}
         <div className="flex w-full max-w-[55rem] flex-col items-center gap-5 text-center">
           <div className="flex w-full flex-col items-center gap-2">
             <p
@@ -118,15 +91,15 @@ export default function RecogComparison() {
               data-animation="reveal"
               className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              Why teams choose Stadium
+              Recognition software is only part of the program
             </h2>
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
-            Stadium delivers a physical reward, tracked from send to delivery,
-            in every market you operate.
+            Stadium combines recognition, rewards, global fulfillment, and
+            program infrastructure in one platform.
           </p>
         </div>
 
@@ -151,19 +124,21 @@ export default function RecogComparison() {
                 <div
                   key={c.name}
                   role="columnheader"
-                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${c.hi
-                    ? "rounded-b-[0.5rem] rounded-t-[1rem] bg-[#f8f1fe]"
-                    : "rounded-[1.5rem]"
-                    }`}
+                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
+                    c.hi
+                      ? "rounded-b-[0.5rem] rounded-t-[1rem] bg-[#f8f1fe]"
+                      : "rounded-[1.5rem]"
+                  }`}
                 >
                   <span
-                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${c.hi ? "font-semibold" : "font-normal"
-                      }`}
+                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${
+                      c.hi ? "font-semibold" : "font-normal"
+                    }`}
                   >
                     {c.name}
                   </span>
                   {c.sub && (
-                    <span className="whitespace-nowrap font-sans text-[0.6875rem] font-normal leading-[1.4] text-[#6b6c71]">
+                    <span className="hidden whitespace-nowrap font-sans text-[0.6875rem] font-normal leading-[1.4] text-[#6b6c71]">
                       {c.sub}
                     </span>
                   )}
@@ -176,8 +151,9 @@ export default function RecogComparison() {
               <div key={r.label} role="row" className="contents">
                 <div
                   role="rowheader"
-                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${ri === 0 ? "rounded-tl-[1rem]" : ""
-                    } ${ri === LAST_ROW ? "rounded-bl-[1rem]" : ""}`}
+                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${
+                    ri === 0 ? "rounded-tl-[1rem]" : ""
+                  } ${ri === LAST_ROW ? "rounded-bl-[1rem]" : ""}`}
                 >
                   <span className="whitespace-nowrap font-sans text-[0.90625rem] font-semibold leading-[1.4] text-[#16171b]">
                     {r.label}
@@ -187,11 +163,13 @@ export default function RecogComparison() {
                   <div
                     key={ci}
                     role="cell"
-                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${COLS[ci].hi ? "bg-[#f8f1fe]" : "bg-[#f2f2f2]"
-                      } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1rem]" : ""} ${ri === LAST_ROW && ci === LAST_COL
+                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${
+                      COLS[ci].hi ? "bg-[#f8f1fe]" : "bg-[#f2f2f2]"
+                    } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1rem]" : ""} ${
+                      ri === LAST_ROW && ci === LAST_COL
                         ? "rounded-br-[1rem]"
                         : ""
-                      }`}
+                    }`}
                   >
                     <Value v={v} />
                   </div>
