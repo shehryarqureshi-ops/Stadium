@@ -581,24 +581,18 @@ export default function ExpHero() {
                   data-animation="reveal"
                   className="font-[family-name:var(--font-satoshi)] text-[2.25rem] font-black leading-[1.02] tracking-[-0.0625rem] text-white md:text-[3rem] lg:text-[3.625rem] lg:tracking-[-0.09375rem]"
                 >
-                  <span className="lg:block">
-                    Bring your team together with
-                  </span>{" "}
-                  <span className="lg:block">hosted experiences</span>
+                  Bring your team together with
+                  <br className="hidden lg:block" /> hosted experiences
                 </h1>
               </div>
               <p
                 data-animation="reveal"
                 data-reveal-delay="120"
-                className="font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
+                className="font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem] max-w-176 mx-auto"
               >
-                <span className="lg:block">
-                  Book real hosts for virtual, in-person, or hybrid events in
-                  minutes,
-                </span>{" "}
-                <span className="lg:block">
-                  right alongside your recognition and gifting programs.
-                </span>
+                Discover and book hundreds of virtual, live-hosted activities
+                for teams anywhere, right alongside everything else you run on
+                Stadium.
               </p>
             </div>
 
@@ -609,18 +603,18 @@ export default function ExpHero() {
             >
               <a
                 href="#"
-                className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#ff5b77] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#ff5b77] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white pb-0.75"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                  Browse experiences
+                  Talk to sales
                 </span>
               </a>
               <a
                 href="#"
-                className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white pb-0.75"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                  Talk to sales
+                  Browse gifts
                 </span>
               </a>
             </div>

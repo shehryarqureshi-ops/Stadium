@@ -1,6 +1,12 @@
 import { ReactNode } from "react";
 
-type CTAButtonVariant = "primary" | "secondary" | "yellow" | "green" | "purple";
+type CTAButtonVariant =
+  | "primary"
+  | "secondary"
+  | "yellow"
+  | "green"
+  | "purple"
+  | "pink";
 
 type ClosingCTAProps = {
   caption?: string;
@@ -33,6 +39,7 @@ const CTA_VARIANTS: Record<CTAButtonVariant, string> = {
   yellow: "bg-[#FFB800] text-black focus-visible:outline-white",
   green: "bg-[#10995A] text-white focus-visible:outline-white",
   purple: "bg-[#8d12e7] text-white focus-visible:outline-white",
+  pink: "bg-[#FF5B77] text-white focus-visible:outline-white",
 };
 
 export default function ClosingCTA({

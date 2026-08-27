@@ -41,8 +41,8 @@ export default function ExpHowItWorks() {
     <StepCards
       caption="How it works"
       captionColor="#FF5B77"
-      title="From order to their door in four steps"
-      description="Send globally with local fulfillment, so every snack box arrives with flavors that feel closer to home."
+      title="Booking takes minutes, not meetings"
+      description="Faster than the back-and-forth of planning one yourself."
       items={items}
     />
   );

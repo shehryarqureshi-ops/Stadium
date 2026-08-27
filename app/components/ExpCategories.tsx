@@ -1,29 +1,5 @@
 "use client";
 
-/* /events · BROWSE BY CATEGORY — "Find your team's kind of fun". Card content
-   from the Imagery System board F7rDHYd3n5nwRtrlv1F6dO → 2241:12574
-   "CONFETTI — cards per accordion state".
-
-   This file was a copy of StadiumWay.tsx: the accordion titles were right for
-   /events, but the CARDS were still the Stadium Way onboarding set, so opening
-   "Team Building" showed Invite your team / Fund your wallet / Connect your
-   stack. That shipped to production. Each state now holds the eight real
-   Confetti experiences the board assigns to it, with their live duration and
-   capacity, and the ~300 lines of Stadium Way mock panels that fed the old
-   cards are gone.
-
-   Six experiences appear in two states (Escape Quest, Coworker Clash and
-   Classic Trivia in Team Building + Employee Onboarding; Bucket List Workshop
-   and Vision Board Workshop in L&D + Health & Wellness; Disability Allyship in
-   L&D + DEI), so 48 placements resolve to 42 image files.
-
-   Cards carry no caption: the board's card is image → title → a single meta
-   line, so `caption` was made optional on the shared carousel rather than
-   inventing a label. Sources are 900×562 against a 314×250 slot — a centred
-   cover crop, shipped at 628×500 = 2× the CSS slot. Each photo was matched to
-   its slot in the row's own render and proofed side by side, since every
-   source in a row is the same size and size alone cannot disambiguate them. */
-
 import StepCardsCarousel, {
   type StepCardsCarouselStep,
 } from "@/app/components/common/StepCardsCarousel";
@@ -32,7 +8,7 @@ const steps: StepCardsCarouselStep[] = [
   {
     title: "Team Building",
     description:
-      "Build stronger teams with games, mysteries, and challenges that pull people into the conversation.",
+      "Strengthen team connections by laughing and collaborating together.",
     cards: [
       {
         title: "Classic Trivia",
@@ -87,7 +63,7 @@ const steps: StepCardsCarouselStep[] = [
   {
     title: "Learning & Development",
     description:
-      "Learn new skills with mixology classes, public speaking workshops, and hands-on making.",
+      "Identify goals and learn soft skills that will empower your team to grow.",
     cards: [
       {
         title: "Bucket List Workshop",
@@ -141,8 +117,7 @@ const steps: StepCardsCarouselStep[] = [
   },
   {
     title: "Health & Wellness",
-    description:
-      "Recharge with yoga, meditation, and breathwork, led by certified pros.",
+    description: "Encourage physical and mental wellness in the workplace.",
     cards: [
       {
         title: "Self-Defense Workshop",
@@ -197,7 +172,7 @@ const steps: StepCardsCarouselStep[] = [
   {
     title: "Seasonal Celebrations",
     description:
-      "Celebrate all year with experiences for holidays, heritage months, and milestones.",
+      "Find memorable moments to celebrate your employees throughout the year.",
     cards: [
       {
         title: "Mixology Class",
@@ -251,8 +226,7 @@ const steps: StepCardsCarouselStep[] = [
   },
   {
     title: "Employee Onboarding",
-    description:
-      "Help new hires feel like part of the team from day one.",
+    description: "Introduce new hires to your amazing culture from the get-go.",
     cards: [
       {
         title: "Escape Quest",
@@ -307,7 +281,7 @@ const steps: StepCardsCarouselStep[] = [
   {
     title: "Diversity, Equity, & Inclusion",
     description:
-      "Honor every culture through meaningful, thoughtfully hosted experiences.",
+      "Promote DEI and create a better sense of belonging within teams.",
     cards: [
       {
         title: "Neurodiversity 101",
@@ -366,7 +340,7 @@ export default function ExpCategories() {
     <StepCardsCarousel
       caption="Browse by category"
       captionColor="#FF5B77"
-      title="Find your team’s kind of fun"
+      title="Pick what fits your team, not a generic list"
       description="Some teams want to compete. Others want to create, learn, or unwind."
       steps={steps}
       showNumberInHeading={false}

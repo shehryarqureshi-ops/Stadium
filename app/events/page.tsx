@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import ExpCaseStudy from "../components/ExpCaseStudy";
 import ExpCategories from "../components/ExpCategories";
 import ExpClosing from "../components/ExpClosing";

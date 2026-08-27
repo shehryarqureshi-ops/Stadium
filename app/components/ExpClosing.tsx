@@ -12,7 +12,7 @@ const ITEMS = [
     title: "Self-Guided Toolkits",
     description:
       "Access practical resources and insights to help you build a stronger workplace culture.",
-    url: "#",
+    url: "https://toolkits.withconfetti.com/",
     image: guideImage,
   },
   {
@@ -21,7 +21,7 @@ const ITEMS = [
     title: "Employee Engagement Calendars",
     description:
       "Plan ahead with key dates and ideas to engage employees throughout the year.",
-    url: "#",
+    url: "https://www.withconfetti.com/employee-engagement-calendar",
     image: reportImage,
   },
   {
@@ -30,7 +30,7 @@ const ITEMS = [
     title: "Culture Knowledge Hub",
     description:
       "Get step-by-step guidance to plan and run employee programs on your own.",
-    url: "#",
+    url: "https://www.withconfetti.com/resources/knowledge-hub",
     image: templateImage,
   },
 ];
@@ -50,12 +50,11 @@ export default function ExpClosing() {
       </div>
 
       <ClosingCTA
-        title="The easiest team experience you’ll ever book"
-        description="Browse 500+ hosted experiences, or tell us what you're planning, and we'll handle the rest."
+        title="Bring your team together, in minutes"
+        description="Browse 350+ hosted experiences, or tell us what you're planning, and we'll handle the rest."
         ctaOneLabel="Browse experiences"
         ctaOneLink="#"
-        ctaOneVariant="primary"
-        ctaOneColor="#FF5B77"
+        ctaOneVariant="pink"
         ctaTwoLabel="Talk to sales"
         ctaTwoLink="#"
         ctaTwoVariant="secondary"
