@@ -33,7 +33,13 @@ import Image from "next/image";
 
 type Tab = "Snacks" | "Beverages" | "Pantry" | "Work & Play";
 
-const FILTERS = ["All", "Snacks", "Beverages", "Pantry", "Work & Play"] as const;
+const FILTERS = [
+  "All",
+  "Snacks",
+  "Beverages",
+  "Pantry",
+  "Work & Play",
+] as const;
 
 /* Figma card order, tab by tab. `slug` is the encoded asset in
    /public/snacks/cat/sn-cat-<slug>.jpg (696×920 = 2× the 348 CSS card). */
@@ -43,22 +49,38 @@ const CARDS: { tab: Tab; label: string; slug: string }[] = [
   { tab: "Snacks", label: "Potato Chips", slug: "potato-chips" },
   { tab: "Snacks", label: "Popcorn & Pretzels", slug: "popcorn-and-pretzels" },
   { tab: "Snacks", label: "Snack Bars", slug: "snack-bars" },
-  { tab: "Snacks", label: "Nuts, Seeds & Legumes", slug: "nuts-seeds-and-legumes" },
+  {
+    tab: "Snacks",
+    label: "Nuts, Seeds & Legumes",
+    slug: "nuts-seeds-and-legumes",
+  },
   { tab: "Snacks", label: "Candies", slug: "candies" },
   { tab: "Snacks", label: "Jerky", slug: "jerky" },
 
   { tab: "Beverages", label: "Cold Brew", slug: "cold-brew" },
   { tab: "Beverages", label: "Tea", slug: "tea" },
-  { tab: "Beverages", label: "Seltzer & Sparkling", slug: "seltzer-and-sparkling" },
+  {
+    tab: "Beverages",
+    label: "Seltzer & Sparkling",
+    slug: "seltzer-and-sparkling",
+  },
   { tab: "Beverages", label: "Energy", slug: "energy" },
   { tab: "Beverages", label: "Soda", slug: "soda" },
-  { tab: "Beverages", label: "Wellness & Functional", slug: "wellness-and-functional" },
+  {
+    tab: "Beverages",
+    label: "Wellness & Functional",
+    slug: "wellness-and-functional",
+  },
   { tab: "Beverages", label: "Shots & Smoothies", slug: "shots-and-smoothies" },
   { tab: "Beverages", label: "Electrolytes", slug: "electrolytes" },
 
   { tab: "Pantry", label: "Coffee, Tea & Cocoa", slug: "coffee-tea-and-cocoa" },
   { tab: "Pantry", label: "Dips & Salsas", slug: "dips-and-salsas" },
-  { tab: "Pantry", label: "Sauces & Seasonings", slug: "sauces-and-seasonings" },
+  {
+    tab: "Pantry",
+    label: "Sauces & Seasonings",
+    slug: "sauces-and-seasonings",
+  },
   { tab: "Pantry", label: "Spreads", slug: "spreads" },
   { tab: "Pantry", label: "Condiments", slug: "condiments" },
   { tab: "Pantry", label: "Broths & Soups", slug: "broths-and-soups" },
@@ -70,7 +92,11 @@ const CARDS: { tab: Tab; label: string; slug: string }[] = [
   { tab: "Work & Play", label: "Plants", slug: "plants" },
   { tab: "Work & Play", label: "Fitness", slug: "fitness" },
   { tab: "Work & Play", label: "Everyday Carry", slug: "everyday-carry" },
-  { tab: "Work & Play", label: "Entertainment & Games", slug: "entertainment-and-games" },
+  {
+    tab: "Work & Play",
+    label: "Entertainment & Games",
+    slug: "entertainment-and-games",
+  },
   { tab: "Work & Play", label: "Bath & Body", slug: "bath-and-body" },
   { tab: "Work & Play", label: "Electronics", slug: "electronics" },
 ];
@@ -133,7 +159,8 @@ export default function SnackCatalog() {
     track.current?.scrollBy({ left: d * 372, behavior: "smooth" });
 
   const filter = FILTERS[active];
-  const visible = filter === "All" ? ALL_MIXED : CARDS.filter((c) => c.tab === filter);
+  const visible =
+    filter === "All" ? ALL_MIXED : CARDS.filter((c) => c.tab === filter);
 
   return (
     <section className="bg-white min-w-0 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -159,7 +186,8 @@ export default function SnackCatalog() {
               data-animation="reveal"
               className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
             >
-              Snacks for any craving or diet, plus new brands to discover.
+              Options for every taste, dietary preference, and recipient–from
+              familiar favorites to new discoveries.
             </p>
           </div>
           <a

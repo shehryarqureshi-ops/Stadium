@@ -77,7 +77,7 @@ export default function ClosingCTA({
 
               <h2
                 data-animation="reveal"
-                className="font-[family-name:var(--font-satoshi)] text-[1.875rem] font-black leading-[1.04] tracking-[-0.09375rem] text-white md:text-[2.5rem] lg:text-[3.125rem]"
+                className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-white md:text-[2.25rem] lg:text-[2.75rem]"
               >
                 {title}
               </h2>
@@ -85,7 +85,7 @@ export default function ClosingCTA({
               <p
                 data-animation="reveal"
                 data-reveal-delay="80"
-                className="max-w-[70rem] font-sans text-[1.0625rem] leading-[1.5] text-[#a8a8b8] lg:text-[1.125rem]"
+                className="mt-3 max-w-[44rem] font-sans text-[1.125rem] leading-[1.48] text-[#a8a8b8]"
               >
                 {description}
               </p>
@@ -104,8 +104,9 @@ export default function ClosingCTA({
                           ? { backgroundColor: ctaOneColor }
                           : undefined
                       }
-                      className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-white ${ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
-                        }`}
+                      className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-white ${
+                        ctaOneColor ? "" : CTA_VARIANTS[ctaOneVariant]
+                      }`}
                     >
                       {ctaOneLabel}
                     </a>

@@ -13,57 +13,53 @@ const items: StepCardItem[] = [
   {
     title: (
       <>
-        Pick a<br />
-        Box
+        Choose a<br />
+        Budget
       </>
     ),
-    description: "Let them build their own box or send a curated one.",
+    description:
+      "Set the amount, add your recipients, and send the invitation.",
     image: pickBox,
-    imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
+    imageAlt: "Set the amount, add your recipients, and send the invitation.",
     desktopVisualWidth,
   },
   {
     title: (
       <>
-        Add
+        They Build
         <br />
-        Recipients
+        Their Box
       </>
     ),
-    description:
-      "Paste a list or sync your HR tool. We collect the addresses for you.",
+    description: "Recipients choose the snacks and treats they actually want.",
     image: recipients,
-    imageAlt:
-      "Add Recipients — a list of teammates with checkboxes and a Confirm Order button",
+    imageAlt: "Recipients choose the snacks and treats they actually want.",
     desktopVisualWidth,
   },
   {
     title: (
       <>
-        Hit
+        We
         <br />
-        Send
+        Pack It
       </>
     ),
-    description:
-      "Send in one click. We ship from the warehouse closest to each person.",
+    description: "Their picks are packed into a box made just for them.",
     image: send,
-    imageAlt: "Hit Send — order details for Crowd Pleasers going to 15 people",
+    imageAlt: "Their picks are packed into a box made just for them.",
     desktopVisualWidth,
   },
   {
     title: (
       <>
-        Recipients
+        We
         <br />
-        Redeem
+        Deliver
       </>
     ),
-    description:
-      "They open the link, pick their snacks, and add their own address.",
+    description: "Stadium handles fulfillment and delivery to their door.",
     image: redeem,
-    imageAlt:
-      "Recipients Redeem — a phone showing a snack box redemption screen",
+    imageAlt: "Stadium handles fulfillment and delivery to their door.",
     desktopVisualWidth,
   },
 ];
@@ -73,8 +69,8 @@ export default function SnackHowItWorks() {
     <StepCards
       caption="How it works"
       captionColor="#2178f5"
-      title="From order to their door in four steps"
-      description="Send globally with local fulfillment, so every snack box arrives with flavors that feel closer to home."
+      title="They pick the snacks. We handle the rest."
+      description="Send globally with local fulfillment, giving every recipient the freedom to choose snacks that fit their tastes and dietary needs."
       items={items}
     />
   );

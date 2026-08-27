@@ -9,21 +9,21 @@ import ProblemSection, {
 const items: ProblemSectionItem[] = [
   {
     image: prob1,
-    title: "Asking ruins the surprise",
+    title: "Collecting details ruins the surprise",
     description:
-      "You can’t send something unexpected to someone you just emailed for their address. The moment you start collecting details, the gift announces itself.",
+      "You shouldn't have to chase addresses, preferences, and dietary needs before sending a gift.",
   },
   {
     image: prob2,
     title: "One person ends up running it",
     description:
-      "Someone chases every address, every diet and every “mine never arrived”—then hopes the picks landed.",
+      "One person manages recipient lists, follow-ups, orders, and delivery.",
   },
   {
     image: prob3,
-    title: "Nothing happens unless someone remembers",
+    title: "Gift cards are easy–but forgettable",
     description:
-      "There’s no trigger, no schedule, nothing running in the background. Every anniversary and every new hire gets marked only if a human catches it in time.",
+      "They're easy to send, but lack the personal touch and impact of a physical gift.",
   },
 ];
 
@@ -31,8 +31,8 @@ export default function SnackProblem() {
   return (
     <ProblemSection
       caption="The problem"
-      title="Nice gestures don’t scale"
-      description="The best sends feel personal—something they’d never have picked up for themselves and show up out of nowhere. But then you realize you need forty addresses, and you’re emailing people to ask."
+      title="Corporate gifting gets complicated fast"
+      description="Sending to a large or global group means addresses, preferences, dietary needs, and fulfillment — before you’ve even picked the gift."
       items={items}
     />
   );

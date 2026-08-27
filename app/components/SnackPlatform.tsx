@@ -9,45 +9,44 @@ import VariableCardGrid from "./common/VariableCardGrid";
 const ITEMS = [
   {
     image: occ1,
-    title: "Onboarding",
-    description:
-      "Give new hires a stocked snack drawer before their first day starts.",
+    title: "New Hires",
+    description: "Welcome employees with a box they build themselves.",
   },
   {
     image: occ2,
     title: "Milestones",
-    description:
-      "Mark birthdays and anniversaries with snacks picked from 2,000+ options.",
+    description: "Celebrate birthdays, anniversaries, and achievements.",
   },
   {
     image: occ3,
-    title: "All-Hands & Events",
-    description: "A well-timed snack break can save a three hour all-hands.",
+    title: "Client & Prospect Gifts",
+    description:
+      "Send something thoughtful without guessing what they’ll like.",
   },
   {
     image: occ4,
-    title: "Thank-Yous",
-    description: "Send a treat to say thanks, big or small, no card required.",
+    title: "Events",
+    description:
+      "Treat attendees before, during, or after virtual and in-person events.",
   },
   {
     image: occ5,
-    title: "Remote Check-Ins",
-    description: "Ship snacks to remote desks before their next call.",
+    title: "Team Appreciation",
+    description: "Send something personal to distributed teams.",
   },
   {
     image: occ6,
     title: "Just Because",
-    description:
-      "Brighten someone's day with a surprise snack, delivered right to their desk.",
+    description: "Make an unexpected moment feel thoughtful.",
   },
 ];
 
 export default function SnackPlatform() {
   return (
     <VariableCardGrid
-      caption="ANY MOMENT"
+      caption="Use cases"
       captionColor="#2178F5"
-      title="The calendar fills up fast"
+      title="Snacks for every kind of send"
       description="Hire dates, anniversaries, and the occasional random Tuesday all call for snacks."
       gridColumns={3}
       items={ITEMS}

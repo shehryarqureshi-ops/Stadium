@@ -9,12 +9,7 @@ export default function SnackStats() {
         <StatsGrid
           caption="The proof"
           captionColor="#2178f5"
-          title={
-            <>
-              The infrastructure behind
-              <br className="hidden md:block" /> 2M+ snack sends
-            </>
-          }
+          title={<>Built to send snacks at scale</>}
           description="Real numbers from teams sending snacks on Snackmagic."
           statLeft={{
             image: statsPhoto,
@@ -29,6 +24,7 @@ export default function SnackStats() {
             authorImage: avatar,
             authorName: "Lauren Berry",
             authorTitle: "Trane Technologies",
+            link: "https://www.snackmagic.com/",
           }}
           rightTopStat={{
             title: "1,700+",

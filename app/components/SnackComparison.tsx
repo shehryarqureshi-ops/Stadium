@@ -6,23 +6,27 @@ type Cell = "check" | "minus" | string;
 
 const COLS = [
   { name: "Snackmagic", sub: "by Stadium", hi: true },
-  { name: "Caroo", sub: "ex-SnackNation" },
-  { name: "Goldbelly", sub: "Baskets" },
-  { name: "Goody", sub: "Gifting" },
+  { name: "Snack Subscriptions", sub: "ex-SnackNation" },
+  { name: "Curated Gift Boxes", sub: "Baskets" },
+  { name: "Curated Gift Boxes", sub: "Gifting" },
   { name: "Hoppier", sub: "Visa Cards" },
 ];
 
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell, Cell] }[] = [
   {
-    label: "Recipient’s Choice · 25K+ Gifts",
+    label: "Recipient Choice",
     vals: ["check", "minus", "minus", "check", "Visa"],
   },
   {
-    label: "No Subscription",
+    label: "Dietary Preferences",
+    vals: ["check", "minus", "minus", "check", "minus"],
+  },
+  {
+    label: "No Subscription Required",
     vals: ["check", "minus", "check", "check", "check"],
   },
   {
-    label: "Global With Local Fulfillment",
+    label: "Global + Local Fulfillment",
     vals: ["check:170+", "U.S. only", "U.S. only", "550 intl", "Cards"],
   },
   {
@@ -30,11 +34,11 @@ const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell, Cell] }[] = [
     vals: ["check", "minus", "minus", "Only Gifts", "minus"],
   },
   {
-    label: "Dietary Filters",
-    vals: ["check", "minus", "minus", "check", "minus"],
+    label: "Sender Budget Protection",
+    vals: ["check", "minus", "minus", "minus", "minus"],
   },
   {
-    label: "Swag, Recognition, Snacks, Gifting, & Hosted Experiences",
+    label: "Customization & Branding",
     vals: ["check", "minus", "minus", "minus", "minus"],
   },
 ];
@@ -138,7 +142,7 @@ export default function SnackComparison() {
                 >
                   {c.name}
                 </span>
-                <span className="font-sans text-[0.6875rem] leading-[1.4] text-[#6b6c71]">
+                <span className="hidden font-sans text-[0.6875rem] leading-[1.4] text-[#6b6c71]">
                   {c.sub}
                 </span>
               </div>

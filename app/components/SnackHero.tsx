@@ -6,15 +6,16 @@ export default function SnackHero() {
   return (
     <section className="relative overflow-hidden bg-[#0437a5] pt-[6rem] md:pt-[7rem]">
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
-        <div className="carousel-bleed flex w-full flex-col gap-8 md:pr-section-x-md lg:w-[44.2%] lg:shrink-0 lg:pr-0! lg:pt-[7.5rem] min-[90rem]:w-[calc(50%_-_5.25rem)]">
+        {/* left */}
+        <div className="carousel-bleed flex w-full flex-col gap-8 md:pr-section-x-md lg:w-full lg:shrink-0 lg:pr-0! lg:pt-[7.5rem] flex-1">
           <div className="flex flex-col gap-6">
             <div data-animation="reveal" className="flex flex-col gap-2">
               <p className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#d8e7fd]">
                 SNACKS • SNACKMAGIC
               </p>
               <h1 className="font-[family-name:var(--font-satoshi)] text-[2.75rem] font-black leading-[1.02] tracking-[-0.09375rem] text-white md:text-[3.25rem] lg:text-[3.375rem]">
-                Snacks people
-                <br className="hidden lg:block" /> can’t wait to open
+                Treat 1 people or 1,000+,
+                <br className="hidden lg:block" /> anywhere in the world
               </h1>
             </div>
 
@@ -23,9 +24,8 @@ export default function SnackHero() {
               data-reveal-delay="120"
               className="max-w-[32.25rem] font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
             >
-              Choose from curated snack boxes or let recipients build their own
-              from 2,000+ snacks, with dietary filters and delivery to 170+
-              countries.
+              Set the budget. Let recipients choose what they want. Snackmagic
+              handles fulfillment worldwide.
             </p>
           </div>
 
@@ -60,11 +60,11 @@ export default function SnackHero() {
           </div>
         </div>
 
-        {/* photo (2673:2994) — 804×713.28, flush right; blue baked in */}
+        {/* right */}
         <div
           data-animation="reveal"
           data-reveal-delay="240"
-          className="relative aspect-[804/713.28] w-full lg:ml-auto lg:w-[55.8%] min-[90rem]:w-[calc(50%_+_5.25rem)]"
+          className="relative aspect-[804/713.28] w-full lg:ml-auto lg:w-full flex-1 lg:flex-[1.5]"
         >
           <Image
             src={heroProduct}
