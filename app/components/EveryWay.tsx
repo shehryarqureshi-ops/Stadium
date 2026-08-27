@@ -1,7 +1,7 @@
 "use client";
 
-import eventsImg from "@/public/oneplatform/events.jpg";
 import giftingImg from "@/public/oneplatform/gifting.jpg";
+import hostedImg from "@/public/oneplatform/hosted.jpg";
 import danielImg from "@/public/oneplatform/kudos-daniel.jpg";
 import mayaImg from "@/public/oneplatform/kudos-maya.jpg";
 import recognitionImg from "@/public/oneplatform/recognition.jpg";
@@ -45,7 +45,7 @@ const SEGMENTS: Segment[] = [
       { label: "Swag", image: swagImg },
       { label: "Gifting", image: giftingImg },
       { label: "Snack Boxes", image: snacksImg },
-      { label: "Hosted Experience", image: eventsImg },
+      { label: "Hosted Experience", image: hostedImg },
     ],
   },
   {
