@@ -21,31 +21,31 @@ const STILL = "/motion/still";
 
 const steps: StepCardsCarouselStep[] = [
   {
-    title: "Setup your workspace",
+    title: "Set up your workspace",
     description:
       "Connect Slack and Teams so recognition and rewards reach people in the tools they already use and celebrate each win.",
     cards: [
       {
         caption: "Setup · Team",
-        title: "Invite your team",
+        title: "Invite Your Team",
         description: "Add members and assign who does what.",
         content: <InviteTeamLoop />,
       },
       {
         caption: "Setup · Permissions",
-        title: "Roles & permissions",
+        title: "Roles & Permissions",
         description: "Scope send, approve, and spend per person.",
         content: <RolesPermissionsLoop />,
       },
       {
         caption: "Setup · Wallet",
-        title: "Fund your wallet",
+        title: "Fund Your Wallet",
         description: "One balance for every send, topped up your way.",
         content: <WalletSetupLoop />,
       },
       {
         caption: "Setup · Integrations",
-        title: "Connect your stack",
+        title: "Connect Your Stack",
         description: "Sync your HRIS, CRM, and the tools you run.",
         content: <IntegrationsLoop />,
       },
@@ -57,7 +57,7 @@ const steps: StepCardsCarouselStep[] = [
       },
       {
         caption: "Setup · SSO",
-        title: "Single sign-on",
+        title: "Single Sign-On",
         description: "Secure access through your identity provider.",
         content: <SsoDomainLoop />,
       },

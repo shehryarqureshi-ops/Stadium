@@ -68,7 +68,7 @@ export default function PageClose({
     heading: cta?.heading ?? "Ready to build your program?",
     body:
       cta?.body ??
-      "Get a 15-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale.",
+      "Get a 30-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale.",
     primaryCta: cta?.primaryCta ?? "Book a demo",
     secondaryCta: cta?.secondaryCta ?? "Talk to sales",
   };

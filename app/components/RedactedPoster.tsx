@@ -1,13 +1,6 @@
 import Globe from "./Globe";
 import Starfield from "./Starfield";
 
-/* "We simplify global shipping" — dark globe beat, top of the dark block, synced
-   to Figma 2:33247. Navy→black section: left text (blue eyebrow + 55px heading +
-   body + white TALK TO SALES), right an interactive cobe globe with rotation-
-   tracked city markers (San Francisco / New York / Dubai) over a twinkling
-   starfield. Desktop uses a 1440×1000 proportional canvas so the globe stays
-   pinned; below lg it stacks. Rounded-top = top of the dark block. */
-
 function Copy() {
   return (
     <>
@@ -24,7 +17,7 @@ function Copy() {
         >
           We simplify
           <br />
-          global shipping.
+          global shipping
         </h2>
       </div>
       <p

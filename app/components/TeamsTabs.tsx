@@ -42,6 +42,21 @@ const items: TabsShowcaseItem[] = [
     href: "/hr",
   },
   {
+    name: "Sales",
+    tab: "Sales",
+    title: "Open doors with\nmemorable sends",
+    description:
+      "Gifts and experiences that get prospects to reply — triggered straight from your CRM.",
+    bullets: [
+      "Break into target accounts",
+      "Trigger sends from your CRM",
+      "Stand out at events",
+      "Tie sends to pipeline",
+    ],
+    image: salesImg,
+    href: "/sales",
+  },
+  {
     name: "Operations",
     tab: "Operations",
     title: "Keep the machine\nrunning",
@@ -85,21 +100,6 @@ const items: TabsShowcaseItem[] = [
     ],
     image: financeImg,
     href: "/finance",
-  },
-  {
-    name: "Sales",
-    tab: "Sales",
-    title: "Open doors with\nmemorable sends",
-    description:
-      "Gifts and experiences that get prospects to reply — triggered straight from your CRM.",
-    bullets: [
-      "Break into target accounts",
-      "Trigger sends from your CRM",
-      "Stand out at events",
-      "Tie sends to pipeline",
-    ],
-    image: salesImg,
-    href: "/sales",
   },
   {
     name: "C-Suite",

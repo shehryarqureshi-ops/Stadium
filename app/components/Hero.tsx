@@ -125,9 +125,10 @@ export default function Hero() {
         </h1>
         <p
           data-animation="reveal"
-          className="font-sans text-body-sm text-hero-body md:max-w-[30rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
+          className="font-sans text-body-sm text-hero-body md:max-w-[24rem] md:text-body-md lg:max-w-[32rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
         >
-          The platform behind recognition, swag, and gifting worldwide.
+          Recognition, swag, gifting, snacks, and hosted experiences—all from
+          one global platform.
         </p>
 
         {/* CTAs — system pills (h-button-h = 40px since the 2026-06-12
@@ -142,7 +143,7 @@ export default function Hero() {
             className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
-              Get started
+              Talk to sales
             </span>
           </a>
           <a
@@ -150,7 +151,7 @@ export default function Hero() {
             className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
-              Talk to sales
+              Browse the catalog
             </span>
           </a>
         </div>
