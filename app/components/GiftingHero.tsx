@@ -213,8 +213,9 @@ export default function GiftingHero() {
                   data-reveal-delay="160"
                   className="font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
                 >
-                  Client, employee, partner, and holiday gifts,
-                  <br className="hidden lg:inline" /> all from one platform.
+                  Run employee, client, prospect, partner, and
+                  <br className="hidden lg:inline" /> holiday gifting from one
+                  platform.
                 </p>
               </div>
 
@@ -229,7 +230,7 @@ export default function GiftingHero() {
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-accent-turmeric px-[1.375rem] font-sans text-button-primary uppercase text-black transition-all duration-200 hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                    Browse the catalog
+                    Talk to sales
                   </span>
                 </a>
                 <a
@@ -237,12 +238,15 @@ export default function GiftingHero() {
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                    talk to sales
+                    Browse gifts
                   </span>
                 </a>
               </div>
 
-              <p className="font-sans text-[0.8125rem] font-semibold leading-[1.4] text-[#cccccc]">
+              <p
+                data-animation="reveal"
+                className="font-sans text-[0.8125rem] font-semibold leading-[1.4] text-[#cccccc]"
+              >
                 Trusted by teams sending gifts across 170+ countries.
               </p>
             </div>

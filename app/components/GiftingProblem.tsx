@@ -18,9 +18,9 @@ const items = [
   },
   {
     image: prob3,
-    title: "No Measurable Impact",
+    title: "Choosing for everyone",
     description:
-      "Budgets, orders, and reporting live in different tools, making spend hard to track.",
+      "One person guessing what employees, clients, and partners actually want.",
   },
 ];
 

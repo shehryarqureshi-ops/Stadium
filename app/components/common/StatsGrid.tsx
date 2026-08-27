@@ -15,6 +15,7 @@ type StatCenter = {
   authorImage: StaticImageData;
   authorName: string;
   authorTitle: string;
+  link?: string;
 };
 
 type RightStat = {
@@ -47,7 +48,7 @@ export default function StatsGrid({
   rightBottomStat,
 }: StatsGridProps) {
   return (
-    <section className="overflow-hidden rounded-b-4xl px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className="rounded-b-4xl px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[53.75rem] flex-col items-center gap-2 text-center">
           {caption && (
@@ -106,7 +107,9 @@ export default function StatsGrid({
             style={{
               backgroundColor: statCenter.backgroundColor ?? "#eaf1fd",
             }}
-            className="flex min-h-[22.25rem] flex-col justify-between gap-6 rounded-[1.5rem] p-6 text-[#16171b]"
+            className={`flex min-h-[22.25rem] flex-col justify-between gap-6 rounded-[1.5rem] p-6 text-[#16171b] relative ${
+              statCenter.link ? "transition-shadow hover:shadow-2xl" : ""
+            }`}
           >
             <div className="flex flex-col gap-1.5">
               <p className="font-sans text-[1rem] leading-[1.4] text-[#5b6470]">
@@ -141,6 +144,14 @@ export default function StatsGrid({
                 </div>
               </div>
             </div>
+
+            {statCenter.link && (
+              <a
+                target="_blank"
+                href={statCenter.link}
+                className="absolute inset-0"
+              />
+            )}
           </div>
 
           {/* Right stacked stats */}

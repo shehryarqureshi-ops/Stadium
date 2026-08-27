@@ -115,8 +115,8 @@ export default function GiftingSolution() {
     <PillTabs
       captionColor="#996b00"
       caption="The solution"
-      title="One platform for all your gifting"
-      description="One place to run gifts for every recipient, occasion, and team."
+      title="One platform for every gifting program"
+      description="Run gifting across teams, recipients, and occasions without adding another workflow."
       items={items}
       autoAdvance={false}
     />

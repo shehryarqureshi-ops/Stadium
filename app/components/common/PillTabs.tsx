@@ -166,7 +166,7 @@ export default function PillTabs({
           {description && (
             <p
               data-animation="reveal"
-              className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+              className="mt-3 max-w-[44rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
             >
               {description}
             </p>

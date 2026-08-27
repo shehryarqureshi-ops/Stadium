@@ -12,15 +12,16 @@ const items: StepCardItem[] = [
   {
     title: (
       <>
-        Send or
+        Set Up
         <br />
-        Automate
+        the Send
       </>
     ),
     description:
-      "Send once, upload a list, or connect your systems to trigger gifts automatically.",
+      "Choose your audience, budget, gift options, and timing—or automate it.",
     image: pickBox,
-    imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
+    imageAlt:
+      "Choose your audience, budget, gift options, and timing—or automate it.",
     desktopVisualWidth,
   },
   {
@@ -32,10 +33,10 @@ const items: StepCardItem[] = [
       </>
     ),
     description:
-      "Recipients choose what they want and provide their own shipping details.",
+      "Recipients select what they want and provide their own shipping details.",
     image: recipients,
     imageAlt:
-      "They open your branded store, choose what they actually want, and add their own size and address.",
+      "Recipients select what they want and provide their own shipping details.",
     desktopVisualWidth,
   },
   {
@@ -50,7 +51,7 @@ const items: StepCardItem[] = [
       "Stadium manages fulfillment, tracking, customs, duties, and delivery.",
     image: send,
     imageAlt:
-      "Tracked from order to doorstep in 170+ countries. Customs, duties and returns are handled by us.",
+      "Stadium manages fulfillment, tracking, customs, duties, and delivery.",
     desktopVisualWidth,
   },
 ];
@@ -60,8 +61,8 @@ export default function GiftingHowItWorks() {
     <StepCards
       caption="How it works"
       captionColor="#996b00"
-      title="Simple from send to delivery"
-      description="Whether you’re sending one gift or one thousand, the process doesn’t change."
+      title="From program setup to their doorstep"
+      description="Set the rules once. Stadium handles recipient choice, fulfillment, and delivery."
       items={items}
     />
   );

@@ -27,17 +27,18 @@ export default function GiftingClosing() {
         description="Capacity, reach, and coverage at a glance."
         statLeft={{
           image: statsPhoto,
-          title: "13.6K",
-          text: "Recipient company domains",
+          title: "1.5M",
+          text: "Recipients gifted",
         }}
         statCenter={{
-          caption: "Gifts delivered",
-          title: "550K+",
+          caption: "Companies sent gifts",
+          title: "20K+",
           backgroundColor: "#FEFAF0",
-          text: "“People loved being able to choose their own gift. It eliminated the guesswork for me!”",
+          text: "“Stadium stood out to me because it made global gifting simple, inclusive, scalable, and cost-effective.”",
           authorImage: avatar,
-          authorName: "Charlene S.",
-          authorTitle: "The Standard",
+          authorName: "Michelle Diefenderfer.",
+          authorTitle: "Workato",
+          link: "https://www.bystadium.com/case-overview/workato",
         }}
         rightTopStat={{
           title: "450+",
@@ -56,7 +57,7 @@ export default function GiftingClosing() {
             <br className="hidden md:block" /> programs together
           </>
         }
-        description="See how Stadium can bring your gifting programs, budgets, and workflows into one place."
+        description="See how Stadium can bring your gifting programs, budgets, fulfillment, and reporting into one place."
         ctaOneLabel="Talk to sales"
         ctaOneLink="#"
         ctaOneVariant="yellow"

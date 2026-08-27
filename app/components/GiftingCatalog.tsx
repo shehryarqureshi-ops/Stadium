@@ -57,13 +57,8 @@ export default function GiftingCatalog() {
     <HorizontalCarousel
       caption="The Catalog"
       captionColor="#996B00"
-      title={
-        <>
-          3,714 gifts. 845 brands.
-          <br className="hidden md:block" /> One catalog
-        </>
-      }
-      description="Recognizable brands across every price point, plus experiences and gift cards."
+      title={<>Something for every recipient</>}
+      description="Thousands of gifts across brands, categories, and price points—with branded options, local choices, experiences, gift cards, and snacks."
       variant="catalog"
       items={items}
     />

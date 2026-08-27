@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import GiftingCatalog from "../components/GiftingCatalog";
 import GiftingClosing from "../components/GiftingClosing";
 import GiftingComparison from "../components/GiftingComparison";

@@ -39,11 +39,11 @@ const COLS: { name: string; sub: string; hi?: boolean }[] = [
 
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
   {
-    label: "Recipient’s Choice · 25K+ Gifts",
+    label: "Recipient's Choice + Premium Catalog",
     vals: ["check", "Limited", "check", "minus"],
   },
   {
-    label: "Automation & CRM Triggers",
+    label: "Automation + CRM Triggers",
     vals: ["check", "check", "Limited", "minus"],
   },
   {
@@ -51,7 +51,7 @@ const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
     vals: ["check", "Some", "Some", "Manual"],
   },
   {
-    label: "Global With Local Fulfillment",
+    label: "Global + Local Fulfillment",
     vals: ["check", "check", "Limited", "minus"],
   },
   {
@@ -124,22 +124,22 @@ export default function GiftingComparison() {
               data-animation="reveal"
               className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#996b00]"
             >
-              WHY TEAMS SWITCH
+              WHY TEAMS CHOOSE STADIUM
             </p>
             <h2
               id="gifting-comparison-title"
               data-animation="reveal"
               className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              The choice people want. The control companies need.
+              Everything you need to run gifting at scale
             </h2>
           </div>
           <p
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
           >
-            Premium gifts backed by the infrastructure to send them across 170+
-            countries.
+            One platform for recipient choice, automation, global fulfillment,
+            budgets, reporting, and more.
           </p>
         </div>
 

@@ -37,7 +37,7 @@ const ITEMS: VariableCardGridItem[] = [
 export default function GiftingIntegrations() {
   return (
     <VariableCardGrid
-      caption="Control"
+      caption="Program Control"
       captionColor="#996b00"
       title={
         <>
