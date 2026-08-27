@@ -112,7 +112,6 @@ export default function ShopsLoop() {
       gsap.set([PANE.gallery, PANE.shop], { autoAlpha: 0 });
       gsap.set(PANE.build, { autoAlpha: 1 });
       // the shop is not live and nobody is in it yet
-      gsap.set(q(".sh-pill-live"), { autoAlpha: 0 });
       gsap.set(q(".sh-presence"), { autoAlpha: 0 });
       gsap.set([q(".sh-vis-sarah"), q(".sh-vis-daniel")], { autoAlpha: 0 });
       gsap.set(q(".sh-vis-sarah"), { x: VIS.sarah[0], y: VIS.sarah[1] });
@@ -138,10 +137,9 @@ export default function ShopsLoop() {
       tlRef.current = tl;
       gsap.defaults({ ease: "power2.out", duration: 0.5 });
 
-      // 1.06 on a 340 square leaves 24px of slack sideways and 10 vertically:
-      // the drift stays inside it, so no edge of the plate is ever exposed.
+      // the gradient drifts out and back inside one pass, so t=0 is the board's framing
       tl.to(q(".sh-plate"),
-        { x: -16, y: 6, scale: 1.06, duration: SEQ / 2, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+        { x: -10, y: 8, scale: 1.08, duration: SEQ / 2, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
 
       // 1 template or your own
       tl.addLabel("1 template or your own", 0);
@@ -170,9 +168,25 @@ export default function ShopsLoop() {
       // 4 live, and shopping. Nothing is redrawn: the pill turns over and the
       // button leaves. The card holds its place, because publishing is not a move.
       tl.addLabel("4 live, and shopping", 5.55);
-      tl.to(q(".sh-pill-draft"), { autoAlpha: 0, duration: 0.22 }, 5.55);
-      tl.fromTo(q(".sh-pill-live"), { autoAlpha: 0, scale: 0.8 },
-        { autoAlpha: 1, scale: 1, duration: 0.42, ease: "back.out(2)" }, 5.62);
+      // One pill that turns over, not two stacked. Two right-aligned pills of
+      // different widths show the wider one's edge whenever both have opacity,
+      // and a timeline paused mid-fade (the tile scrolling out of view) does
+      // exactly that. A single element cannot overlap itself.
+      // The label is derived from a tweened value rather than written by a set:
+      // gsap reverts a colour on rewind but not innerText, so a set would leave
+      // the pill reading LIVE on every later loop.
+      const pill = q(".sh-pill-state");
+      tl.to(q(".sh-pill-state"), { autoAlpha: 0, duration: 0.18 }, 5.55);
+      tl.to({ on: 0 }, {
+        on: 1, duration: 0.2, ease: "none",
+        onUpdate() {
+          const live = (this.targets()[0] as { on: number }).on > 0.5;
+          pill.textContent = live ? "LIVE" : "DRAFT";
+          pill.style.backgroundColor = live ? "#D8F1CC" : "#F2F2F2";
+        },
+      }, 5.64);
+      tl.fromTo(q(".sh-pill-state"), { autoAlpha: 0, scale: 0.8 },
+        { autoAlpha: 1, scale: 1, duration: 0.42, ease: "back.out(2)" }, 5.75);
       tl.to(q(".sh-btn-publish"),
         { height: 0, marginTop: -16, autoAlpha: 0, duration: 0.45, ease: "power2.inOut" }, 5.7);
       tl.to(card, { height: H.live, y: midY(H.live), duration: 0.55, ease: "power3.inOut" }, 5.7);
@@ -286,8 +300,7 @@ export default function ShopsLoop() {
             <div className="sh-hd">
               <h3 className="sh-title">Branded Shop</h3>
               <span className="sh-pillwrap">
-                <span className="sh-pill sh-pill-draft">DRAFT</span>
-                <span className="sh-pill sh-live sh-pill-live">LIVE</span>
+                <span className="sh-pill sh-pill-state">DRAFT</span>
               </span>
             </div>
             <div className="sh-banner">
@@ -355,9 +368,8 @@ const CSS = `
   transform-origin:50% 50%;width:312px;height:340px;border-radius:9px;overflow:hidden;
   background:#F2F2F2;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .sh-stage *,.sh-stage *::before,.sh-stage *::after{box-sizing:border-box}
-/* the board's bg rect: 340x340 at x=-14, y=0 */
-.sh-plate{position:absolute;left:-14px;top:0;width:340px;height:340px;
-  background:url(/motion/loop-shop-plate.jpg) center/cover no-repeat;transform-origin:50% 50%}
+.sh-plate{position:absolute;left:0;top:0;width:312px;height:340px;
+  background:linear-gradient(124.96deg,#0B2952 0%,#5D8FDC 55%,#AFCCF6 100%);transform-origin:50% 50%}
 .sh-card{position:absolute;left:42px;top:170px;width:229px;height:250px;background:#fff;
   border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
 .sh-pane{position:absolute;top:0;left:0;width:229px;padding:16px;display:flex;
@@ -413,7 +425,7 @@ const CSS = `
 .sh-banner{height:72px;flex:none;border-radius:8px;position:relative;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .sh-banner::before{content:"";position:absolute;inset:0;
-  background:url(/motion/loop-shop-plate.jpg) center/cover no-repeat}
+  background:url(/motion/loop-shop-banner.jpg) center/cover no-repeat}
 .sh-banner::after{content:"";position:absolute;inset:0;background:#0D0F12;opacity:.45}
 .sh-bn,.sh-bs{position:relative;z-index:1;color:#fff;text-align:center;width:197px}
 .sh-bn{font-family:var(--font-display),'Satoshi',sans-serif;font-weight:700;font-size:18px;line-height:24px}

@@ -130,7 +130,7 @@ export default function SlackTeamsLoop() {
       gsap.defaults({ ease: "power2.out", duration: 0.5 });
 
       tl.to(q(".sl-plate"),
-        { x: -22, y: 12, scale: 1.05, duration: SEQ / 2, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+        { x: -10, y: 8, scale: 1.08, duration: SEQ / 2, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
 
       // 1 where it posts, nothing chosen
       tl.addLabel("1 where it posts", 0);
@@ -305,8 +305,8 @@ const CSS = `
   transform-origin:50% 50%;width:312px;height:340px;border-radius:9px;overflow:hidden;
   background:#F2F2F2;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .sl-stage *,.sl-stage *::before,.sl-stage *::after{box-sizing:border-box}
-.sl-plate{position:absolute;left:-31px;top:-120px;width:778px;height:475px;
-  background:url(/motion/loop-plate.jpg) center/cover no-repeat;transform-origin:50% 50%}
+.sl-plate{position:absolute;left:0;top:0;width:312px;height:340px;
+  background:linear-gradient(124.96deg,#0B2952 0%,#5D8FDC 55%,#AFCCF6 100%);transform-origin:50% 50%}
 .sl-card{position:absolute;left:42px;top:50%;width:229px;height:212px;background:#fff;
   border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
 .sl-pane{position:absolute;top:0;left:0;width:229px;padding:16px;display:flex;flex-direction:column;margin:0}

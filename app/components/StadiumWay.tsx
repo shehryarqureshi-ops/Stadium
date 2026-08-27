@@ -10,6 +10,9 @@ import IntegrationsLoop from "./IntegrationsLoop";
 import SlackTeamsLoop from "./SlackTeamsLoop";
 import SsoDomainLoop from "./SsoDomainLoop";
 import ShopsLoop from "./ShopsLoop";
+import KitsLoop from "./KitsLoop";
+import KudosLoop from "./KudosLoop";
+import AutomationsLoop from "./AutomationsLoop";
 
 type MockItem = {
   icon?: string;
@@ -99,73 +102,6 @@ function MockPanel({ mock }: { mock: Mock }) {
     </div>
   );
 }
-
-const assemblyGlobalFulfillment: Mock = {
-  header: "Shipments",
-  meta: "12 in transit",
-  accent: "#3ecf8e",
-  items: [
-    {
-      label: "Welcome kits · US",
-      sub: "Out for delivery",
-      badge: "✓",
-      active: true,
-    },
-    {
-      label: "Branded swag · EU",
-    },
-    {
-      label: "Snack boxes · APAC",
-    },
-    {
-      label: "Gift cards · LATAM",
-    },
-  ],
-};
-
-const assemblyCarrierRouting: Mock = {
-  header: "Carriers",
-  meta: "Auto-routed",
-  accent: "#14b8a6",
-  items: [
-    {
-      label: "DHL Express",
-      sub: "2–4 days",
-      active: true,
-    },
-    {
-      label: "FedEx",
-    },
-    {
-      label: "UPS",
-    },
-    {
-      label: "Local last-mile",
-    },
-  ],
-};
-
-const assemblyCompliance: Mock = {
-  header: "Compliance",
-  meta: "170+ countries",
-  accent: "#0ea5e9",
-  items: [
-    {
-      label: "HS codes",
-      sub: "Auto-classified",
-      active: true,
-    },
-    {
-      label: "VAT & GST",
-    },
-    {
-      label: "Import duties",
-    },
-    {
-      label: "Restricted items",
-    },
-  ],
-};
 
 const engageAutomations: Mock = {
   header: "Automations",
@@ -359,35 +295,35 @@ const steps: StepCardsCarouselStep[] = [
   {
     title: "Assembly",
     description:
-      "Kitting, warehousing, and carrier routing configured across every market you ship to.",
+      "What can be given, how it is bundled, who gives it, and when it fires.",
     cards: [
       {
         caption: "Assembly · Week 1",
         title: "Shops",
         description:
-          "Start from a template or a blank shop, curate it, and publish - then watch people shop it.",
+          "Start from a template or a blank shop, curate it, and publish. Then watch people shop it.",
         content: <ShopsLoop />,
       },
       {
-        caption: "Assembly · Week 1",
-        title: "Global fulfillment",
-        description:
-          "Warehousing and kitting configured across every market you ship to.",
-        content: <MockPanel mock={assemblyGlobalFulfillment} />,
-      },
-      {
         caption: "Assembly · Week 2",
-        title: "Carrier routing",
+        title: "Kits",
         description:
-          "Least-cost carrier selection and live tracking on every parcel.",
-        content: <MockPanel mock={assemblyCarrierRouting} />,
+          "Pick the kind, choose what goes in, and the kit is made and held ready to send.",
+        content: <KitsLoop />,
       },
       {
         caption: "Assembly · Week 3",
-        title: "Customs & duties",
+        title: "Kudos programs",
         description:
-          "HS codes, VAT, and duties calculated so nothing gets stuck at the border.",
-        content: <MockPanel mock={assemblyCompliance} />,
+          "Name it, pick who is in, set the monthly allowance, and watch the first kudo land.",
+        content: <KudosLoop />,
+      },
+      {
+        caption: "Assembly · Week 4",
+        title: "Automations",
+        description:
+          "Set the trigger, the gift and the message, and it sends itself. Nothing to pay today.",
+        content: <AutomationsLoop />,
       },
     ],
   },
