@@ -15,6 +15,7 @@ import KudosLoop from "./KudosLoop";
 import AutomationsLoop from "./AutomationsLoop";
 import BulkSwagLoop from "./BulkSwagLoop";
 import SendPointsLoop from "./SendPointsLoop";
+import RedemptionLoop from "./RedemptionLoop";
 
 const STILL = "/motion/still";
 
@@ -126,9 +127,7 @@ const steps: StepCardsCarouselStep[] = [
         title: "Redemption",
         description:
           "They open the shop you curated, pick the thing they actually want, and it ships to them.",
-        image: `${STILL}/still-redemption.jpg`,
-        imageAlt:
-          "A shop offering a hoodie, a bottle and a cap, priced in points",
+        content: <RedemptionLoop />,
       },
       {
         caption: "Engage · They recognise",
