@@ -2,6 +2,8 @@
 
 import eventsImg from "@/public/oneplatform/events.jpg";
 import giftingImg from "@/public/oneplatform/gifting.jpg";
+import danielImg from "@/public/oneplatform/kudos-daniel.jpg";
+import mayaImg from "@/public/oneplatform/kudos-maya.jpg";
 import recognitionImg from "@/public/oneplatform/recognition.jpg";
 import snacksImg from "@/public/oneplatform/snacks.jpg";
 import swagImg from "@/public/oneplatform/swag.jpg";
@@ -17,18 +19,33 @@ import { useAutoAdvance } from "@/hooks/useAutoAdvance";
    public/ewysu-*.jpg); lines 2–4 are empty "PENDING ASSET" placeholders until
    their assets land. Every card = photo/box then label BELOW (uniform set). */
 
-type Card = { label: string; image?: StaticImageData };
+/** A kudos note overlaid on the photo — Recognition only, per the board. */
+type Quote = {
+  text: string;
+  from: string;
+  avatars: [StaticImageData, StaticImageData];
+};
+
+type Card = { label: string; image?: StaticImageData; quote?: Quote };
 type Segment = { label: string; cards: Card[] };
 
 const SEGMENTS: Segment[] = [
   {
     label: "One platform.",
     cards: [
-      { label: "Recognition", image: recognitionImg },
+      {
+        label: "Recognition",
+        image: recognitionImg,
+        quote: {
+          text: "“You stepped in and saved the launch.”",
+          from: "Daniel to Maya",
+          avatars: [danielImg, mayaImg],
+        },
+      },
       { label: "Swag", image: swagImg },
       { label: "Gifting", image: giftingImg },
       { label: "Snack Boxes", image: snacksImg },
-      { label: "Events", image: eventsImg },
+      { label: "Hosted Experience", image: eventsImg },
     ],
   },
   {
@@ -63,17 +80,97 @@ const SEGMENTS: Segment[] = [
   },
 ];
 
+/* The quote note is drawn to the board's own numbers, which are set against a
+   221x320 photo. The card is fluid, so `u()` turns one of those design pixels
+   into a share of the card's width and every value below stays the number the
+   board actually specifies. The note is 100 tall at y=231, so its last 11px
+   fall past the photo — Figma clips it there and so does overflow-hidden,
+   which is why the bottom corners read square. */
+const u = (n: number) => `calc(${n} * (100cqw / 221))`;
+
+function QuoteNote({ quote }: { quote: Quote }) {
+  return (
+    <div
+      className="absolute bg-white"
+      style={{
+        left: u(13),
+        top: u(231),
+        width: u(197),
+        height: u(100),
+        borderRadius: u(12),
+        boxShadow: `0 ${u(2)} ${u(6)} rgba(0,0,0,0.10), 0 ${u(12)} ${u(32)} rgba(0,0,0,0.16)`,
+      }}
+    >
+      <p
+        className="absolute font-display text-[#0f0821]"
+        style={{
+          left: u(14),
+          top: u(14),
+          width: u(169),
+          fontSize: u(14),
+          lineHeight: u(19),
+        }}
+      >
+        {quote.text}
+      </p>
+
+      <div
+        className="absolute flex items-center"
+        style={{ left: u(14), top: u(62), width: u(169), height: u(24) }}
+      >
+        {quote.avatars.map((avatar, i) => (
+          <span
+            key={i}
+            className="absolute overflow-hidden rounded-full bg-white ring-white"
+            style={{
+              left: u(i * 21),
+              width: u(24),
+              height: u(24),
+              boxShadow: `0 0 0 ${u(2)} #fff`,
+            }}
+          >
+            <Image src={avatar} alt="" width={48} height={48} quality={90} />
+          </span>
+        ))}
+
+        <span
+          className="absolute font-sans text-[#6b7280]"
+          style={{ left: u(49), fontSize: u(10), lineHeight: u(13) }}
+        >
+          {quote.from}
+        </span>
+
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/oneplatform/slack.svg"
+          alt=""
+          width={18}
+          height={18}
+          className="absolute"
+          style={{ left: u(151), top: u(3), width: u(18), height: u(18) }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function PhotoCard({ card }: { card: Card }) {
   /* real product card — label BELOW the photo */
   return (
     <div className="group flex flex-col gap-4">
-      <div className="relative aspect-[221/320] w-full overflow-hidden rounded-card bg-grey-200">
+      <div
+        className="relative aspect-[221/320] w-full overflow-hidden rounded-card bg-grey-200"
+        style={{ containerType: "inline-size" }}
+      >
         <Image
           src={card.image!}
           alt=""
           width={440}
+          quality={90}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
+
+        {card.quote && <QuoteNote quote={card.quote} />}
       </div>
       <h3 className="font-display text-heading-sm text-ink">{card.label}</h3>
     </div>
