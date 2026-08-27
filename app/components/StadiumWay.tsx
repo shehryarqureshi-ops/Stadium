@@ -14,239 +14,7 @@ import KitsLoop from "./KitsLoop";
 import KudosLoop from "./KudosLoop";
 import AutomationsLoop from "./AutomationsLoop";
 
-type MockItem = {
-  icon?: string;
-  label: string;
-  sub?: string;
-  badge?: string;
-  active?: boolean;
-};
-
-type Mock = {
-  header: string;
-  meta: string;
-  accent: string;
-  items: MockItem[];
-};
-
-function MockPanel({ mock }: { mock: Mock }) {
-  return (
-    <div className="flex h-full flex-col gap-2 bg-gradient-to-b from-[#eef2f8] to-white p-4">
-      <div className="flex items-center justify-between px-1">
-        <span className="font-sans text-[0.9375rem] font-bold text-ink">
-          {mock.header}
-        </span>
-
-        <span className="font-sans text-[0.75rem] text-grey-400">
-          {mock.meta}
-        </span>
-      </div>
-
-      {mock.items.map((item, index) => (
-        <div
-          key={index}
-          className="flex items-center gap-2.5 rounded-lg px-2 py-2"
-          style={
-            item.active
-              ? {
-                  background: `${mock.accent}1a`,
-                }
-              : undefined
-          }
-        >
-          <span
-            className="flex size-8 shrink-0 items-center justify-center rounded-full font-sans text-[0.9375rem] font-bold"
-            style={
-              item.active
-                ? {
-                    background: mock.accent,
-                    color: "#fff",
-                  }
-                : {
-                    background: "#f1f2f4",
-                    color: "#9aa0ac",
-                  }
-            }
-          >
-            {item.icon ?? ""}
-          </span>
-
-          <span className="flex min-w-0 flex-1 flex-col">
-            <span
-              className={`font-sans text-[0.875rem] ${
-                item.active ? "font-semibold text-ink" : "text-grey-400"
-              }`}
-            >
-              {item.label}
-            </span>
-
-            {item.sub && (
-              <span className="font-sans text-[0.75rem] text-grey-400">
-                {item.sub}
-              </span>
-            )}
-          </span>
-
-          {item.badge && (
-            <span
-              className="flex size-5 shrink-0 items-center justify-center rounded-full font-sans text-[0.625rem] font-bold text-white"
-              style={{
-                background: mock.accent,
-              }}
-            >
-              {item.badge}
-            </span>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const engageAutomations: Mock = {
-  header: "Automations",
-  meta: "6 active",
-  accent: "#8b5cff",
-  items: [
-    {
-      label: "New hire → Welcome kit",
-      sub: "Runs on hire date",
-      active: true,
-    },
-    {
-      label: "Anniversary → Gift",
-    },
-    {
-      label: "Milestone → Reward",
-    },
-    {
-      label: "Event → Swag drop",
-    },
-  ],
-};
-
-const engageRecognition: Mock = {
-  header: "Recognition",
-  meta: "This week",
-  accent: "#a855f7",
-  items: [
-    {
-      label: "Kudos sent",
-      sub: "1,204",
-      active: true,
-    },
-    {
-      label: "Points redeemed",
-      sub: "8,900",
-    },
-    {
-      label: "Top value",
-      sub: "Ownership",
-    },
-    {
-      label: "Participation",
-      sub: "82%",
-    },
-  ],
-};
-
-const engageMoments: Mock = {
-  header: "Upcoming",
-  meta: "Next 30 days",
-  accent: "#d946ef",
-  items: [
-    {
-      label: "Birthdays",
-      sub: "18",
-      active: true,
-    },
-    {
-      label: "Work anniversaries",
-      sub: "7",
-    },
-    {
-      label: "New hires",
-      sub: "12",
-    },
-    {
-      label: "Holidays",
-      sub: "2",
-    },
-  ],
-};
-
-const reporting: Mock = {
-  header: "Reporting",
-  meta: "Last 90 days",
-  accent: "#f59e0b",
-  items: [
-    {
-      label: "Spend",
-      sub: "$142K this quarter",
-      active: true,
-    },
-    {
-      label: "Engagement",
-      sub: "87% claim rate",
-    },
-    {
-      label: "Reach",
-      sub: "18 markets",
-    },
-    {
-      label: "Redemptions",
-      sub: "9,240 sent",
-    },
-  ],
-};
-
-const reorder: Mock = {
-  header: "Programs",
-  meta: "Saved",
-  accent: "#f97316",
-  items: [
-    {
-      label: "Q4 Holiday drop",
-      sub: "Ready to rerun",
-      badge: "↻",
-      active: true,
-    },
-    {
-      label: "New hire kits",
-    },
-    {
-      label: "Anniversary gifts",
-    },
-    {
-      label: "Event swag",
-    },
-  ],
-};
-
-const optimize: Mock = {
-  header: "Insights",
-  meta: "AI suggestions",
-  accent: "#eab308",
-  items: [
-    {
-      label: "Top gift",
-      sub: "Premium snacks",
-      active: true,
-    },
-    {
-      label: "Best send window",
-      sub: "Tue 10am",
-    },
-    {
-      label: "Top region",
-      sub: "US-West",
-    },
-    {
-      label: "Suggested budget",
-      sub: "+12%",
-    },
-  ],
-};
+const STILL = "/motion/still";
 
 const steps: StepCardsCarouselStep[] = [
   {
@@ -327,55 +95,99 @@ const steps: StepCardsCarouselStep[] = [
       },
     ],
   },
+  /* Tabs 3 and 4 of the board are not animated yet, so each card shows the one
+     board frame that carries its argument on its own. The captions are the tab
+     heading's own clauses: ENGAGE reads STOCK IT, SPEND IT, THEY CHOOSE, THEY
+     RECOGNISE, IT RUNS ITSELF, which is one clause per bundle. Exported at 2x
+     from Figma 1911:19134, then JPEG at 4:4:4 so the small type stays sharp. */
   {
     title: "Engage",
-    description: "Automate recognition, rewards, and every milestone moment.",
+    description:
+      "Stock it, spend it, and then let the people it is for do the choosing.",
     cards: [
       {
-        caption: "Engage · Month 2",
-        title: "Automations",
+        caption: "Engage · Stock it",
+        title: "Bulk swag",
         description:
-          "Trigger sends on hires, milestones, and moments — the busywork runs itself.",
-        content: <MockPanel mock={engageAutomations} />,
+          "Order in volume and the unit price falls as the quantity rises. What arrives goes into your locker.",
+        image: `${STILL}/still-bulk-swag.jpg`,
+        imageAlt:
+          "A pricing screen showing volume savings of $7,936 against a total of $32,432",
       },
       {
-        caption: "Engage · Month 2",
-        title: "Recognition",
+        caption: "Engage · Spend it",
+        title: "Send points",
         description:
-          "Kudos, points, and rewards tied to the values your company already runs.",
-        content: <MockPanel mock={engageRecognition} />,
+          "Pick an amount and an audience, and the points are theirs to spend the moment they land.",
+        image: `${STILL}/still-send-points.jpg`,
+        imageAlt: "6,000 points sent to 12 people in Engineering",
       },
       {
-        caption: "Engage · Month 3",
-        title: "Moments",
+        caption: "Engage · They choose",
+        title: "Redemption",
         description:
-          "Birthdays, anniversaries, and life events celebrated — never missed.",
-        content: <MockPanel mock={engageMoments} />,
+          "They open the shop you curated, pick the thing they actually want, and it ships to them.",
+        image: `${STILL}/still-redemption.jpg`,
+        imageAlt: "A shop offering a hoodie, a bottle and a cap, priced in points",
+      },
+      {
+        caption: "Engage · They recognise",
+        title: "Kudos in use",
+        description:
+          "One person thanks another in front of everybody, and the feed fills up with the reasons.",
+        image: `${STILL}/still-kudos-in-use.jpg`,
+        imageAlt: "A recognition feed showing a thank you worth 50 kudos",
+      },
+      {
+        caption: "Engage · It runs itself",
+        title: "New hire kits",
+        description:
+          "The rule fires on the start date, they pick their own size, and the kit lands on day one.",
+        image: `${STILL}/still-new-hire-kits.jpg`,
+        imageAlt: "A kit landed on day one for Alex, size M, in Berlin",
       },
     ],
   },
   {
     title: "90 Day World",
-    description: "Report, reorder, and refine — continuously.",
+    description:
+      "Evidence, then judgement, then the change that follows from it.",
     cards: [
       {
-        caption: "90 Day World · Day 90",
-        title: "Reporting",
+        caption: "90 Day World · Evidence",
+        title: "Quarterly reporting",
         description:
-          "See spend, engagement, and reach across every program in one view.",
-        content: <MockPanel mock={reporting} />,
+          "What was delivered, what was never redeemed, and what people said once it landed.",
+        image: `${STILL}/still-reporting.jpg`,
+        imageAlt:
+          "A quarterly report showing 1,204 gifts delivered and 94% redeemed in 30 days",
       },
       {
-        caption: "90 Day World · Ongoing",
-        title: "Reorder",
-        description: "Restock and rerun any saved program in a single click.",
-        content: <MockPanel mock={reorder} />,
+        caption: "90 Day World · Judgement",
+        title: "Best practices",
+        description:
+          "It reads your own quarter and names the one change worth making, with the reason.",
+        image: `${STILL}/still-best-practices.jpg`,
+        imageAlt:
+          "A card advising a reminder at day 7 rather than day 14, because unredeemed gifts went quiet in week one",
       },
       {
-        caption: "90 Day World · Ongoing",
-        title: "Optimize",
-        description: "Refine with the data and do more of what actually lands.",
-        content: <MockPanel mock={optimize} />,
+        caption: "90 Day World · Refresh",
+        title: "Catalog refreshes",
+        description:
+          "New drops go into the shop you chose, and never into a catalog everybody shares.",
+        image: `${STILL}/still-catalog-refresh.jpg`,
+        imageAlt:
+          "A shop gone live with 3 items added, noting they were added to this shop and not to a global catalog",
+      },
+      {
+        caption: "90 Day World · Growth",
+        title: "Experiences",
+        description:
+          "A class, a dinner or a day out, added to a shop and paid for in the same points.",
+        image: `${STILL}/still-experiences.jpg`,
+        imageAlt:
+          "A toggle adding experiences to the Branded Shop, where recipients spend points on a class or a dinner",
       },
     ],
   },
