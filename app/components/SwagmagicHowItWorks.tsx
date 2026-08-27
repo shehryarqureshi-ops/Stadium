@@ -36,7 +36,7 @@ export default function SwagmagicHowItWorks() {
       caption="How it works"
       captionColor="#10995A"
       title="From design to delivery, handled"
-      description="Three steps from idea to someone’s doorstep. No minimums, no guesswork."
+      description="Three steps from idea to someone’s doorstep."
       items={items}
     />
   );

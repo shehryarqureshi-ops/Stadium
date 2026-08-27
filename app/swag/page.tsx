@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 import SwagmagicCaseStudy from "../components/SwagmagicCaseStudy";
@@ -17,11 +18,6 @@ import SwagmagicProblem from "../components/SwagmagicProblem";
 import SwagmagicSolution from "../components/SwagmagicSolution";
 import StadiumWay from "../components/StadiumWay";
 
-/* /swag — bespoke page rebuilt 2026-08-19 from Figma n9SjmDjzB1PeZAYJ5w43fr
-   frame 2500:4706 ("Swag" page). Sections are the Swagmagic* components; the
-   older Swag* components stay in the tree because /events and /recognition
-   still compose them. */
-
 export const metadata: Metadata = {
   title: "Swag — The infrastructure behind every swag program | Stadium",
   description:
@@ -37,15 +33,14 @@ export default function SwagPage() {
         tabIndex={-1}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        {/* Hero renders its own shader/bg which extends under Problem */}
         <SwagmagicHero />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <SwagmagicProblem />
           <SwagmagicSolution />
           <SwagmagicOfferings />
           <SwagmagicCatalog />
-          <StadiumWay variant="decoration" />
           <SwagmagicHowItWorks />
+          <StadiumWay variant="decoration" />
           <SwagmagicPlatform />
           <SwagmagicComparison />
           <SwagmagicCommittee />

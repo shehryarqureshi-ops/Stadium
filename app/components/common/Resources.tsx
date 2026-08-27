@@ -123,8 +123,7 @@ export default function Resources({
               className="flex min-w-0 flex-1 flex-col"
             >
               {items.map((item, index) => {
-                const itemCaptionColor =
-                  item.captionColor ?? captionColor;
+                const itemCaptionColor = item.captionColor ?? captionColor;
 
                 return (
                   <li
@@ -182,10 +181,11 @@ export default function Resources({
                   fill
                   quality={90}
                   sizes="30.125rem"
-                  className={`object-cover transition-all duration-500 ease-out ${activeIndex === index
-                    ? "scale-100 opacity-100"
-                    : "pointer-events-none scale-[1.02] opacity-0"
-                    }`}
+                  className={`object-cover transition-all duration-500 ease-out ${
+                    activeIndex === index
+                      ? "scale-100 opacity-100"
+                      : "pointer-events-none scale-[1.02] opacity-0"
+                  }`}
                 />
               ))}
             </div>

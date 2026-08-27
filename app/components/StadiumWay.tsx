@@ -127,7 +127,8 @@ const steps: StepCardsCarouselStep[] = [
         description:
           "They open the shop you curated, pick the thing they actually want, and it ships to them.",
         image: `${STILL}/still-redemption.jpg`,
-        imageAlt: "A shop offering a hoodie, a bottle and a cap, priced in points",
+        imageAlt:
+          "A shop offering a hoodie, a bottle and a cap, priced in points",
       },
       {
         caption: "Engage · They recognise",
@@ -404,10 +405,11 @@ const CONTENT = {
     showNumberInHeading: true,
   },
   decoration: {
-    caption: "Decoration methods",
+    caption: "Make it yours",
     captionColor: "#10995a",
-    title: "Start with the finish you want",
-    description: "Twelve methods, sorted by what you are optimising for.",
+    title: "Your brand, done right",
+    description:
+      "From embroidery and debossing to laser engraving and full-color UV printing, our swag experts match your logo, artwork, and product with the decoration method that will make it look its best.",
     steps: decorationSteps,
     showNumberInHeading: false,
   },

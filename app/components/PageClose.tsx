@@ -74,20 +74,6 @@ export default function PageClose({
   };
   return (
     <section className="bg-[#181818]">
-      <ClosingCTA
-        caption="Get started"
-        title="Ready to build your program?"
-        description="Get a 15-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale."
-        ctaOneLabel="Book a demo"
-        ctaOneLink="#"
-        ctaOneVariant="primary"
-        ctaTwoLabel="Talk to sales"
-        ctaTwoLink="#"
-        ctaTwoVariant="secondary"
-        backgroundColor="#181818"
-      />
-
-      {/* ===== Footer ===== */}
       <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pt-20">
         {/* content caps + centers above 1440; bg stays full-bleed */}
         <div className="mx-auto flex w-full max-w-content flex-col gap-8 lg:gap-12">

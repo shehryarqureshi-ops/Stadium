@@ -257,18 +257,18 @@ export default function StepCardsCarousel({
 
               <h2
                 data-animation="reveal"
-                className="font-display text-heading-sm text-[#1b1b1b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+                className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
               >
                 {title}
               </h2>
-            </div>
 
-            <p
-              data-animation="reveal"
-              className="max-w-[44rem] font-sans text-body-md leading-7 tracking-[0.015em] text-[#1b1b1b]/60 lg:text-[1.125rem]"
-            >
-              {description}
-            </p>
+              <p
+                data-animation="reveal"
+                className="mt-3 max-w-[54rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+              >
+                {description}
+              </p>
+            </div>
           </div>
 
           {/* Steps + carousel */}

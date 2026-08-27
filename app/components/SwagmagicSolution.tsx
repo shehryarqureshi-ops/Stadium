@@ -55,7 +55,7 @@ export default function SwagmagicSolution() {
     <TwoFeaturedCards
       caption="The solution"
       captionColor="#10995a"
-      title="One platform handles your vendors,inventory, and shipping"
+      title="One platform handles your vendors, inventory, and shipping"
       description="Choose guided ordering with our team or self-serve through Swagmagic. Either way, you get the same catalog and fulfillment infrastructure."
       cards={[
         {

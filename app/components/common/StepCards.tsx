@@ -56,9 +56,7 @@ export default function StepCards({
   if (!items.length) return null;
 
   const gridTemplateColumns = items
-    .map((_, index) =>
-      index === active ? `${ACTIVE_RATIO}fr` : "1fr",
-    )
+    .map((_, index) => (index === active ? `${ACTIVE_RATIO}fr` : "1fr"))
     .join(" ");
 
   const sizingGridTemplateColumns = [
@@ -66,8 +64,7 @@ export default function StepCards({
     ...items.slice(1).map(() => "1fr"),
   ].join(" ");
 
-  const expandedFraction =
-    ACTIVE_RATIO / (ACTIVE_RATIO + items.length - 1);
+  const expandedFraction = ACTIVE_RATIO / (ACTIVE_RATIO + items.length - 1);
 
   const totalGridGap = (items.length - 1) * GRID_GAP;
 
@@ -103,7 +100,7 @@ export default function StepCards({
 
           <p
             data-animation="reveal"
-            className="mt-3 font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
+            className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
           >
             {description}
           </p>
@@ -134,18 +131,14 @@ export default function StepCards({
             <div className="col-start-1 grid">
               {items.map((item, index) => {
                 const visualWidth =
-                  item.desktopVisualWidth ??
-                  defaultDesktopVisualWidth;
+                  item.desktopVisualWidth ?? defaultDesktopVisualWidth;
 
                 return (
                   <div
                     key={`sizer-${index}`}
                     className="col-start-1 row-start-1 min-w-0"
                   >
-                    <SizerCard
-                      item={item}
-                      visualWidth={visualWidth}
-                    />
+                    <SizerCard item={item} visualWidth={visualWidth} />
                   </div>
                 );
               })}
@@ -175,16 +168,12 @@ export default function StepCards({
             {items.map((item, index) => {
               const isActive = index === active;
 
-              const number = String(index + 1).padStart(
-                2,
-                "0",
-              );
+              const number = String(index + 1).padStart(2, "0");
 
               const panelId = `step-card-panel-${index}`;
 
               const visualWidth =
-                item.desktopVisualWidth ??
-                defaultDesktopVisualWidth;
+                item.desktopVisualWidth ?? defaultDesktopVisualWidth;
 
               /**
                * Width of the grey/text area when fully expanded.
@@ -225,9 +214,10 @@ export default function StepCards({
                     focus-visible:ring-2
                     focus-visible:ring-[#16171b]
                     focus-visible:ring-offset-2
-                    ${isActive
-                      ? "shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
-                      : "shadow-[0_1px_2px_rgba(0,0,0,0.025)]"
+                    ${
+                      isActive
+                        ? "shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+                        : "shadow-[0_1px_2px_rgba(0,0,0,0.025)]"
                     }
                   `}
                   style={{
@@ -253,9 +243,7 @@ export default function StepCards({
                         duration-[750ms]
                       `}
                       style={{
-                        width: isActive
-                          ? expandedTextWidth
-                          : "100%",
+                        width: isActive ? expandedTextWidth : "100%",
                         transitionTimingFunction: EASE,
                       }}
                     >
@@ -287,16 +275,15 @@ export default function StepCards({
                                 overflow-hidden
                                 transition-[max-height,opacity,transform,margin]
                                 duration-500
-                                ${isActive
-                                  ? "mt-4 max-h-40 translate-y-0 opacity-100"
-                                  : "mt-0 max-h-0 translate-y-2 opacity-0"
+                                ${
+                                  isActive
+                                    ? "mt-4 max-h-40 translate-y-0 opacity-100"
+                                    : "mt-0 max-h-0 translate-y-2 opacity-0"
                                 }
                               `}
                               style={{
                                 transitionTimingFunction: EASE,
-                                transitionDelay: isActive
-                                  ? "220ms"
-                                  : "0ms",
+                                transitionDelay: isActive ? "220ms" : "0ms",
                               }}
                             >
                               <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
@@ -377,10 +364,7 @@ export default function StepCards({
 
         <div className="flex flex-col gap-4 rounded-[1.5rem] bg-[#f2f2f2] p-4 lg:hidden">
           {items.map((item, index) => {
-            const number = String(index + 1).padStart(
-              2,
-              "0",
-            );
+            const number = String(index + 1).padStart(2, "0");
 
             return (
               <article
@@ -446,9 +430,7 @@ function SizerCard({
       <div className="flex min-w-0">
         {/* Grey/text area takes ALL remaining space */}
         <div className="flex min-w-0 flex-1 flex-col justify-between">
-          <span className="p-4 font-sans text-[1rem] leading-5">
-            00
-          </span>
+          <span className="p-4 font-sans text-[1rem] leading-5">00</span>
 
           <div className="rounded-2xl p-6">
             <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.25] tracking-[-0.02em]">

@@ -115,18 +115,13 @@ export default function SwagmagicHero() {
         />
       </div>
 
-      <div className="relative z-10 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[12.75rem]">
-        {/* lg gap = Figma's new 60px between the graphics row (ends 761) and
-            the trust band (starts 821) */}
-        <div className="mx-auto flex w-full max-w-content flex-col lg:gap-[3.75rem]">
-          {/* content row: text (543) + graphics (558), top-aligned */}
-          <div className="flex flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-8">
-            <div className="flex w-full flex-col gap-8 lg:w-[33.9375rem] lg:shrink-0">
+      <div className="relative z-10 px-section-x-sm pt-24 md:px-section-x-md md:pt-28 lg:px-section-x-lg lg:pt-40 lg:pb-[4rem]">
+        <div className="mx-auto flex w-full max-w-content flex-col lg:gap-15">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:justify-between lg:gap-8">
+            <div className="flex w-full flex-col gap-8 lg:w-135.75 lg:shrink-0">
               <div className="flex flex-col gap-8">
                 <div data-animation="reveal" className="flex flex-col gap-2">
-                  {/* Figma 2673:2787 sets a DOUBLE space after the middot
-                      (whitespace-pre there); reproduced verbatim. */}
-                  <p className="whitespace-pre font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#d7fee7]">
+                  <p className="whitespace-pre font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-swag-mint">
                     {"SWAG ·  SWAGMAGIC"}
                   </p>
                   <h1 className="font-[family-name:var(--font-satoshi)] text-[2.5rem] font-black leading-[1.02] tracking-[-0.0625rem] text-white md:text-[3rem] lg:text-[3.625rem] lg:tracking-[-0.09375rem]">
@@ -172,7 +167,6 @@ export default function SwagmagicHero() {
               </div>
             </div>
 
-            {/* product cluster — fixed 558×557 box; scaled as one unit below sm */}
             <div
               data-animation="reveal"
               data-reveal-delay="240"
@@ -192,9 +186,6 @@ export default function SwagmagicHero() {
               </div>
             </div>
           </div>
-
-          {/* trust band (2673:2819): 56 / 40 marquee / 56 — seamless CSS marquee,
-              logos inverted white, edges soft-masked */}
         </div>
       </div>
       <div className="mt-12 lg:mt-24">

@@ -56,14 +56,14 @@ export default function HorizontalCarousel(props: HorizontalCarouselProps) {
 
               <h2
                 data-animation="reveal"
-                className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+                className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
               >
                 {props.title}
               </h2>
 
               <p
                 data-animation="reveal"
-                className="mt-2 font-sans text-[1rem] font-semibold leading-6 text-ink"
+                className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
               >
                 {props.description}
               </p>

@@ -12,16 +12,13 @@ import TeamsTabs from "./components/TeamsTabs";
 import Testimonials from "./components/Testimonials";
 import TrustBand from "./components/TrustBand";
 import Catalog from "./components/Catalog";
+import ClosingCTA from "./components/common/ClosingCTA";
 
 export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main
-        id="main"
-        tabIndex={-1}
-        className="overflow-x-clip"
-      >
+      <main id="main" tabIndex={-1} className="overflow-x-clip">
         <Hero />
         <TrustBand />
         <EveryWay />
@@ -37,6 +34,18 @@ export default function Home() {
         <Testimonials />
       </main>
       <StickyVideo />
+      <ClosingCTA
+        caption="Get started"
+        title="Ready to build your program?"
+        description="Get a 15-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale."
+        ctaOneLabel="Book a demo"
+        ctaOneLink="#"
+        ctaOneVariant="primary"
+        ctaTwoLabel="Talk to sales"
+        ctaTwoLink="#"
+        ctaTwoVariant="secondary"
+        backgroundColor="#181818"
+      />
       <PageClose />
     </>
   );
