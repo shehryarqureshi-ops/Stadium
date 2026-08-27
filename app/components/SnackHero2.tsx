@@ -5,7 +5,17 @@ import { HeroLogoWall } from "./common/HeroLogoWall";
 export default function SnackHeroTwo() {
   return (
     <section className="relative overflow-hidden bg-[#0437a5] pt-[6rem] md:pt-[7rem]">
-      <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
+      <div className="absolute inset-0 z-0 h-full w-full pt-130 lg:pt-0 hidden lg:block">
+        <video
+          src="/snacksHeroBg.mp4"
+          autoPlay
+          muted
+          playsInline
+          className="object-cover h-full w-full girlBg"
+        />
+      </div>
+
+      <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0 lg:aspect-[16/6]">
         {/* left */}
         <div className="carousel-bleed flex w-full flex-col gap-8 md:pr-section-x-md lg:w-full lg:shrink-0 lg:pr-0! lg:pt-[7.5rem] flex-1">
           <div className="flex flex-col gap-6">
@@ -61,7 +71,7 @@ export default function SnackHeroTwo() {
         </div>
 
         {/* right */}
-        <div
+        {/* <div
           data-animation="reveal"
           data-reveal-delay="240"
           className="relative aspect-[804/713.28] w-full lg:ml-auto lg:w-full flex-1 lg:flex-[1.5]"
@@ -75,7 +85,7 @@ export default function SnackHeroTwo() {
             className="select-none object-cover object-left"
             sizes="(min-width:1024px) 56vw, 100vw"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* logo wall */}
