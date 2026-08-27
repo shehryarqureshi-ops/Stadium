@@ -14,6 +14,7 @@ import KitsLoop from "./KitsLoop";
 import KudosLoop from "./KudosLoop";
 import AutomationsLoop from "./AutomationsLoop";
 import BulkSwagLoop from "./BulkSwagLoop";
+import SendPointsLoop from "./SendPointsLoop";
 
 const STILL = "/motion/still";
 
@@ -118,8 +119,7 @@ const steps: StepCardsCarouselStep[] = [
         title: "Send points",
         description:
           "Pick an amount and an audience, and the points are theirs to spend the moment they land.",
-        image: `${STILL}/still-send-points.jpg`,
-        imageAlt: "6,000 points sent to 12 people in Engineering",
+        content: <SendPointsLoop />,
       },
       {
         caption: "Engage · They choose",
