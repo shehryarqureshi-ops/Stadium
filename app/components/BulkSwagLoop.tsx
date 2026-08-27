@@ -188,6 +188,7 @@ export default function BulkSwagLoop() {
       // lands in it. GSAP reverts backgroundColor and color on rewind.
       // Both of these start neutral and go green only when they are earned.
       gsap.set([here, eachRow], { backgroundColor: "#F2F2F2" });
+      gsap.set([q(".bs-saved"), q(".bs-total")], { autoAlpha: 0 });
       gsap.set(hereText, { color: "#1D1D1F" });
       gsap.set(eachText, { color: "#1D1D1F" });
 
@@ -266,7 +267,7 @@ export default function BulkSwagLoop() {
 
       tl.set(q(".bs-qcaret"), { autoAlpha: 0 }, TYPE_AT + TYPE_FOR + 0.2);
       tl.call(() => qcaret.pause(), undefined, TYPE_AT + TYPE_FOR + 0.2);
-      moveTo(tl, 5.1, AT.order, 0.7);
+      moveTo(tl, 5.2, AT.order, 0.7);
       press(tl, 6.0);
 
       // 2 the ladder: why it fell
@@ -277,7 +278,7 @@ export default function BulkSwagLoop() {
       tl.to(here, { backgroundColor: "#D8F1CC", duration: 0.5 }, 8.7);
       tl.to(hereText, { color: "#0B6B3F", duration: 0.5 }, 8.7);
       tl.from(q(".bs-pane-ladder .bs-fine"), { autoAlpha: 0, duration: 0.4 }, 9.4);
-      moveTo(tl, 10.2, AT.ladder, 0.7);
+      moveTo(tl, 10.8, AT.ladder, 0.7);
       press(tl, 11.6);
 
       // 3 the size run: each size fills in turn and the pill counts what has
@@ -294,27 +295,33 @@ export default function BulkSwagLoop() {
             `${comma((this.targets()[0] as { n: number }).n)} UNITS`;
         },
       }, 13.0);
-      moveTo(tl, 15.9, AT.sizes, 0.7);
+      moveTo(tl, 16.4, AT.sizes, 0.7);
       press(tl, 17.2);
 
       // 4 the quote
       tl.addLabel("4 the quote", 17.8);
       swap(tl, PANE.sizes, PANE.quote, H.quote, 17.8);
+      // The saving and the total arrive at their value rather than spinning up
+      // to it. A number that counts is a number performing, and on the one
+      // screen where somebody is reading what they will owe, that reads cheap.
+      // They are held invisible rather than empty, so a rewind cannot leave
+      // last loop's figures showing before the beat that writes them.
       tl.to({ n: 0 }, {
-        n: 1, duration: 1.1, ease: "power2.out",
+        n: 1, duration: 0.01,
         onUpdate() {
-          const p = (this.targets()[0] as { n: number }).n;
-          q(".bs-saved").textContent = `−${money(SAVED * p)}`;
-          q(".bs-total").textContent = money(TOTAL * p);
+          q(".bs-saved").textContent = `−${money(SAVED)}`;
+          q(".bs-total").textContent = money(TOTAL);
         },
-      }, 18.35);
+      }, 18.15);
+      tl.fromTo([q(".bs-saved"), q(".bs-total")], { autoAlpha: 0, y: 6 },
+        { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.09, ease: "power2.out" }, 18.15);
       // What the money does, which every other commitment in the product states
       // and this one did not. "You pay today $0" is the prototype's wording,
       // where the zero is the card and the wallet is what commits; a card that
       // never mentions a card cannot lean on that, so this says the thing that
       // moves instead of the thing that does not.
       tl.from(q(".bs-pane-quote .bs-fine"), { y: 8, autoAlpha: 0, duration: 0.45 }, 19.6);
-      moveTo(tl, 20.2, AT.quote, 0.7);
+      moveTo(tl, 20.7, AT.quote, 0.7);
       press(tl, 21.5);
 
       // 5 placed, in production
