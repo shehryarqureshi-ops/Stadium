@@ -10,6 +10,7 @@ import ExpProblem from "../components/ExpProblem";
 import ExpSolution from "../components/ExpSolution";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
+import ExpHeroTwo from "../components/ExpHero2";
 
 export const metadata: Metadata = {
   title: "Hosted Experiences — Bring your team together | Stadium",
@@ -26,7 +27,7 @@ export default function EventsPage() {
         tabIndex={-1}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <ExpHero />
+        <ExpHeroTwo />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <ExpProblem />
           <ExpSolution />

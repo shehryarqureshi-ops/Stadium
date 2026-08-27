@@ -506,7 +506,7 @@ function DeviceGraphic() {
   );
 }
 
-export default function ExpHero() {
+export default function ExpHeroTwo() {
   return (
     <section className="relative overflow-hidden">
       <div
@@ -525,7 +525,6 @@ export default function ExpHero() {
       </div>
 
       <div className="relative z-10 pt-24 md:pt-28 lg:pt-[9.75rem]">
-        {/* copy column (2673:3337) — centred, on the 1200 content width */}
         <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
           <div className="mx-auto flex w-full max-w-content flex-col items-center gap-8 text-center">
             <div className="flex w-full flex-col gap-5">
@@ -580,24 +579,25 @@ export default function ExpHero() {
           </div>
         </div>
 
-        {/* video-call mockup (2673:3349): 60 below the copy, authored at
-            1160×601 and scaled as one unit so it never overflows. At ≥1360 it
-            renders 1:1 and lands at x=140 — its exact Figma position. */}
         <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
           <div
             data-animation="reveal"
             data-reveal-delay="240"
-            className="mx-auto mt-[3.75rem] h-[10.5175rem] w-[20.3rem] min-[30rem]:h-[14.27375rem] min-[30rem]:w-[27.55rem] md:h-[22.5375rem] md:w-[43.5rem] lg:h-[27.045rem] lg:w-[52.2rem] min-[80rem]:h-[35.30875rem] min-[80rem]:w-[68.15rem] min-[85rem]:h-[37.5625rem] min-[85rem]:w-[72.5rem]"
+            className="mx-auto max-w-content"
           >
-            <div className="h-[37.5625rem] w-[72.5rem] origin-top-left scale-[0.28] overflow-hidden min-[30rem]:scale-[0.38] md:scale-[0.6] lg:scale-[0.72] min-[80rem]:scale-[0.94] min-[85rem]:scale-100">
-              <DeviceGraphic />
+            <div className="pt-12">
+              <img
+                src="/events/heroGraphic.png"
+                alt="Laptop"
+                className="w-full"
+              />
             </div>
           </div>
         </div>
 
         {/* trust band (2673:3446): pt 100 → heading → 40 → stats → pb 100 */}
         <div className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
-          <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 pt-16 md:pt-20 lg:pt-[6.25rem]">
+          <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 pt-16 md:pt-20 lg:pt-[4rem]">
             <h2
               data-animation="reveal"
               className="text-center font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.02] tracking-[-0.03125rem] text-white md:text-[2rem]"
@@ -615,10 +615,10 @@ export default function ExpHero() {
                   data-animation="reveal"
                   className="flex flex-col items-center justify-center gap-2 whitespace-nowrap text-white"
                 >
-                  <p className="font-[family-name:var(--font-satoshi)] text-[2rem] font-black leading-[1.02] tracking-[-0.0625rem] md:text-[2.5rem] lg:text-[2.875rem]">
+                  <p className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-black leading-[1.02] tracking-[-0.0625rem] md:text-[2.5rem] lg:text-[2.875rem]">
                     {s.value}
                   </p>
-                  <p className="font-sans text-[0.9375rem] font-semibold leading-[1.4]">
+                  <p className="font-sans text-[0.75rem] font-semibold leading-[1.4]">
                     {s.label}
                   </p>
                 </div>

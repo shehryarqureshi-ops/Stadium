@@ -11,6 +11,7 @@ import SnackPlatform from "../components/SnackPlatform";
 import SnackProblem from "../components/SnackProblem";
 import SnackSolution from "../components/SnackSolution";
 import SnackStats from "../components/SnackStats";
+import SnackHeroTwo from "../components/SnackHero2";
 
 export const metadata: Metadata = {
   title: "Snacks — Snacks people can’t wait to open | Stadium",
@@ -44,7 +45,7 @@ export default function SnacksPage() {
         style={theme}
         className="flex flex-1 flex-col outline-none overflow-x-clip"
       >
-        <SnackHero />
+        <SnackHeroTwo />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <SnackProblem />
           <SnackSolution />

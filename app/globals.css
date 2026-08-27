@@ -659,3 +659,17 @@ body {
     hsla(228, 100, 99, 1) 90%
   );
 }
+
+@media (max-width: 768px) {
+  .girlBg {
+    object-position: right -200px top 0;
+    object-fit: cover;
+  }
+  .recogHeroTextBg {
+    background-image: linear-gradient(
+      to bottom,
+      hsla(275, 10, 10, 1),
+      hsla(275, 10, 0, 0)
+    );
+  }
+}

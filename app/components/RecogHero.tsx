@@ -50,7 +50,16 @@ import RecognitionTween from "./special/RecognitionTween";
 export default function RecogHero() {
   return (
     <section className="relative">
-      <div
+      <div className="absolute inset-0 z-0 h-full w-full pt-130 lg:pt-0">
+        <video
+          src="/girlBg.mp4"
+          autoPlay
+          muted
+          playsInline
+          className="object-cover h-full w-full girlBg"
+        />
+      </div>
+      {/* <div
         aria-hidden="true"
         className="absolute left-0 top-0 h-[calc(100%)] w-full overflow-hidden bg-[#5a3172]"
       >
@@ -63,10 +72,10 @@ export default function RecogHero() {
           sizes="100vw"
           className="select-none object-cover object-top"
         />
-      </div>
+      </div> */}
 
-      <div className="relative z-10 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem]">
-        <div className="mx-auto flex w-full max-w-content flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-24">
+      <div className="relative z-20 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem] lg:aspect-[16/8] recogHeroTextBg">
+        <div className="mx-auto flex w-full max-w-content flex-col gap-12 lg:flex-row lg:justify-between lg:gap-24">
           {/* left */}
           <div className="flex w-full flex-col gap-8 lg:w-full lg:pt-[7.5rem] flex-[1]">
             <div className="flex flex-col gap-5">
@@ -122,8 +131,9 @@ export default function RecogHero() {
 
           {/* right */}
           {/* <RecognitionTween /> */}
-          <div className="w-full flex-1">
-            <Image
+          <div className="w-full flex-1 lg:pt-66">
+            <video src="/transBgVideo.webm" autoPlay muted playsInline />
+            {/* <Image
               src={"/recognition/recogHero.png"}
               width={0}
               height={0}
@@ -131,7 +141,7 @@ export default function RecogHero() {
               className="w-full h-auto"
               sizes="630px"
               alt="yeah"
-            />
+            /> */}
           </div>
 
           <div
@@ -186,7 +196,9 @@ export default function RecogHero() {
         </div>
       </div>
 
-      <HeroLogoWall />
+      <div className="relative z-30">
+        <HeroLogoWall />
+      </div>
     </section>
   );
 }
