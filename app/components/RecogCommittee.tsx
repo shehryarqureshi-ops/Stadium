@@ -2,34 +2,32 @@ import VariableCardGrid, {
   VariableCardGridItem,
 } from "./common/VariableCardGrid";
 
-import milestones from "@/public/exp2/xp-platform-milestones.jpg";
-import teamWins from "@/public/exp2/xp-platform-team-wins.jpg";
-import allHands from "@/public/exp2/xp-platform-all-hands.jpg";
-import offsites from "@/public/exp2/xp-platform-offsites.jpg";
-import socials from "@/public/exp2/xp-platform-socials.jpg";
-import justBecause from "@/public/exp2/xp-platform-just-because.jpg";
+import hr from "@/public/recognition/signoff/hr.png";
+import leadership from "@/public/recognition/signoff/leadership.png";
+import it from "@/public/recognition/signoff/it.png";
+import finance from "@/public/recognition/signoff/finance.png";
 
 const ITEMS: VariableCardGridItem[] = [
   {
-    image: milestones,
+    image: hr,
     title: "HR & People Ops",
     description:
       "Build recognition around your values and see who’s participating, recognized, and engaged.",
   },
   {
-    image: milestones,
+    image: leadership,
     title: "Leadership",
     description:
       "Reinforce company values and make great work visible across the organization.",
   },
   {
-    image: milestones,
+    image: it,
     title: "IT & Security",
     description:
       "Deploy securely with SSO, SCIM, HRIS integrations, and enterprise controls.",
   },
   {
-    image: milestones,
+    image: finance,
     title: "Finance",
     description:
       "Set budgets, control spend, and see where recognition dollars go.",

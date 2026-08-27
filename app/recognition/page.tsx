@@ -40,7 +40,7 @@ export default function RecognitionPage() {
           <RecogImpact />
           <RecogComparison />
           <RecogCommittee />
-          <RecogCaseStudies />
+          {/* <RecogCaseStudies /> */}
           {/* <RecogPackages /> */}
         </div>
         <RecogExplore />

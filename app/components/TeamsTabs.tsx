@@ -1,10 +1,10 @@
-import cxImg from "@/public/impact/cx.jpeg";
-import financeImg from "@/public/impact/finance.jpeg";
-import hrImg from "@/public/impact/hr.jpeg";
-import leadershipImg from "@/public/impact/leads.jpeg";
-import marketingImg from "@/public/impact/marketing.jpeg";
-import adminsImg from "@/public/impact/operations.jpeg";
-import salesImg from "@/public/impact/sales.jpeg";
+import cxImg from "@/public/impact/c-suite.png";
+import financeImg from "@/public/impact/finance.png";
+import hrImg from "@/public/impact/hr.png";
+import leadershipImg from "@/public/impact/team-leaders.png";
+import marketingImg from "@/public/impact/marketing.png";
+import adminsImg from "@/public/impact/operation.png";
+import salesImg from "@/public/impact/sales.png";
 
 import PillTabs, {
   type TabsShowcaseItem,

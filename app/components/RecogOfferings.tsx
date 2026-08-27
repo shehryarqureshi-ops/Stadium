@@ -1,4 +1,7 @@
-import kudos from "@/public/recog2/rc-offerings-kudos.jpg";
+import kudos from "@/public/recognition/programs/kudos.png";
+import milestone from "@/public/recognition/programs/milestone.png";
+import incentives from "@/public/recognition/programs/incentives.png";
+import service from "@/public/recognition/programs/service.png";
 
 import PillTabs, {
   type TabsShowcaseItem,
@@ -31,7 +34,7 @@ const items: TabsShowcaseItem[] = [
       "Personalized rewards for every milestone.",
       "Never miss a moment across time zones.",
     ],
-    image: kudos,
+    image: milestone,
     href: "#",
   },
   {
@@ -45,7 +48,7 @@ const items: TabsShowcaseItem[] = [
       "Reward performance with real, redeemable value.",
       "Track impact against every program.",
     ],
-    image: kudos,
+    image: incentives,
     href: "#",
   },
   {
@@ -59,7 +62,7 @@ const items: TabsShowcaseItem[] = [
       "Personalized selection for every recipient.",
       "Global fulfillment with tracking included.",
     ],
-    image: kudos,
+    image: service,
     href: "#",
   },
 ];

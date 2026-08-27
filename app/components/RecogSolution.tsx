@@ -58,7 +58,7 @@ export default function RecogSolution() {
       captionColor="#8d12e7"
       title="From recognition to a reward they choose"
       description="Make recognition easy for your team and meaningful for the person receiving it. Stadium handles everything in between."
-      blockquote="Recognition that lasts, backed by a reward people keep."
+      blockquote=""
       quoteAuthor=""
       steps={ROWS.map((row) => ({
         stepLabel: row.n,

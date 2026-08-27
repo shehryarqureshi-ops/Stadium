@@ -2,9 +2,9 @@ import ProblemSection, {
   type ProblemSectionItem,
 } from "@/app/components/common/ProblemSection";
 
-import pointsUnredeemedImage from "@/public/recognition/plat-1.png";
-import genericRewardsImage from "@/public/recognition/plat-2.png";
-import unclearImpactImage from "@/public/recognition/plat-3.png";
+import pointsUnredeemedImage from "@/public/recognition/probOne.png";
+import genericRewardsImage from "@/public/recognition/probTwo.png";
+import unclearImpactImage from "@/public/recognition/probThree.png";
 
 const ITEMS: ProblemSectionItem[] = [
   {

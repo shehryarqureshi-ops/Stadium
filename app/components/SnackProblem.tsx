@@ -1,6 +1,6 @@
-import prob1 from "@/public/snacks/sn2-problem-1.jpg";
-import prob2 from "@/public/snacks/sn2-problem-2.jpg";
-import prob3 from "@/public/snacks/sn2-problem-3.jpg";
+import prob1 from "@/public/snacks/problem/collecting.png";
+import prob2 from "@/public/snacks/problem/one-person.png";
+import prob3 from "@/public/snacks/problem/gift-cards.png";
 
 import ProblemSection, {
   type ProblemSectionItem,
