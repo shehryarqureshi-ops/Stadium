@@ -2,7 +2,7 @@ import Image from "next/image";
 import heroProduct from "@/public/snacks/sn3-hero.png";
 import { HeroLogoWall } from "./common/HeroLogoWall";
 
-export default function SnackHero() {
+export default function SnackHeroTwo() {
   return (
     <section className="relative overflow-hidden bg-[#0437a5] pt-[6rem] md:pt-[7rem]">
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
