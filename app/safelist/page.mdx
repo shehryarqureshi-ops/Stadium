@@ -1,0 +1,45 @@
+import PageLayout from "../components/page/PageLayout";
+
+<PageLayout title="Network Safelist">
+If your corporate server policy allows all outbound http/https communication to any IP address or website, **you do not need to make any changes** to access the website of Stadium or our affiliated brands. However, if your server policy denies access to most or all external IP addresses and websites, you’ll find steps below on configuring your company’s firewall and mail servers. This is to ensure your users can access the emails and web app of Stadium and our affiliated brands.
+
+### Email & Web
+
+- While our servers are hosted on Amazon web services, Stadium's transactional emails are triggered through Mandrill (also known as Mailchimp Transactional).
+- **STEP 1:** Add IP addresses to safelist: Mandrill continually adds new IP addresses in their shared pool. However, checking the SPF record of mandrill (spf.mandrillapp.com), we can see the list of their delivery IPs that we can use to update safelists.
+- **STEP 2:** Add domains to safelist: Please make sure you configure the following hosts as trusted senders on your email server and firewall so that mails from Stadium and its affiliated brands aren't rejected.
+- **STEP 3:** Make sure the email addresses below are not routed to spam or graymail. If you don't do this, your treat recipients may not receive their invitation, order confirmation, and password reset emails.
+- **STEP 4:** Be sure to safelist the following hosts in your firewall for outbound TCP connections over ports 80 and 443 (for HTTP and HTTPS, respectively).
+- Stadium uses AWS. Please check this [AWS List](https://ip-ranges.amazonaws.com/ip-ranges.json) to view AWS IP addresses.
+
+## Domains
+
+## Emails
+
+## Web
+
+@dev.bystadium.com\
+ @bystadium-mail.com \
+ @mail.bystadium.com \
+ @snackmagic.com \
+ @snackmagic-mail.com \
+ @snack-magic.com\
+ @mail.snackmagic.com\
+ @swagmagic.com\
+ @swag-magic.com\
+ @mail.swagmagic.com
+
+## hi@dev.bystadium.com \
+
+hi@bystadium-mail.com \
+ hi@mail.bystadium.com \
+ hi@snackmagic.com\
+ hi@snackmagic-mail.com \
+ hi@snack-magic.com \
+ hi@mail.snackmagic.com \
+ hi@swagmagic.com \
+ hi@swag-magic.com \
+ hi@mail1.swagmagic.com \
+ hi@mail.swagmagic.com
+
+</PageLayout>

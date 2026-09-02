@@ -1,53 +1,60 @@
-import ClosingCTA from "./common/ClosingCTA";
-
-const LINK_COLUMNS: { heading: string; links: string[] }[] = [
-  {
-    heading: "Platform Features",
-    links: [
-      "Integrations",
-      "API",
-      "Wallet",
-      "Kudos Program",
-      "Single Sign-On",
-      "Giftable Moments",
-      "Custom Domain",
-    ],
-  },
-  {
-    heading: "Resources",
-    links: [
-      "Learning Center",
-      "Partnerships",
-      "RFP / RFI",
-      "Help Center",
-      "Videos",
-      "Accessibility",
-      "Contact Us",
-    ],
-  },
-  {
-    heading: "About Us",
-    links: [
-      "Company",
-      "Careers",
-      "CSR",
-      "Reviews & Testimonials",
-      "Partner With Us",
-    ],
-  },
-  {
-    heading: "Other",
-    links: [
-      "Privacy",
-      "Terms",
-      "Safelist",
-      "Points Terms",
-      "Security",
-      "Cookie Preferences",
-      "Need Help?",
-    ],
-  },
-];
+const LINK_COLUMNS: {
+  heading: string;
+  links: {
+    label: string;
+    href: string;
+  }[];
+}[] = [
+    {
+      heading: "Platform Features",
+      links: [
+        { label: "Integrations", href: "/integrations" },
+        { label: "API", href: "/api" },
+        { label: "Wallet", href: "/wallet" },
+        { label: "Kudos Program", href: "/kudos" },
+        { label: "Single Sign-On", href: "/single-sign-on" },
+        { label: "Giftable Moments", href: "/giftable-moments" },
+        { label: "Custom Domain", href: "/custom-domain" },
+      ],
+    },
+    {
+      heading: "Resources",
+      links: [
+        { label: "Learning Center", href: "/learning-center" },
+        { label: "Partnerships", href: "/partnerships" },
+        { label: "RFP / RFI", href: "/rfp-rfi" },
+        { label: "Help Center", href: "/help-center" },
+        { label: "Videos", href: "/videos" },
+        { label: "Accessibility", href: "/accessibility" },
+        { label: "Contact Us", href: "/contact" },
+      ],
+    },
+    {
+      heading: "About Us",
+      links: [
+        { label: "Company", href: "/company" },
+        { label: "Careers", href: "/careers" },
+        { label: "CSR", href: "/csr" },
+        {
+          label: "Reviews & Testimonials",
+          href: "/reviews-and-testimonials",
+        },
+        { label: "Partner With Us", href: "https://by-stadium.typeform.com/Stadiumpartner" },
+      ],
+    },
+    {
+      heading: "Other",
+      links: [
+        { label: "Privacy", href: "/privacy-policy" },
+        { label: "Terms", href: "/terms-of-use" },
+        { label: "Safelist", href: "/safelist" },
+        { label: "Points Terms", href: "/points-terms-of-use" },
+        { label: "Security", href: "/security" },
+        { label: "Cookie Preferences", href: "#cookie-preferences" },
+        { label: "Need Help?", href: "#need-help" },
+      ],
+    },
+  ];
 
 export default function PageClose({
   showCta = true,
@@ -72,15 +79,12 @@ export default function PageClose({
     primaryCta: cta?.primaryCta ?? "Book a demo",
     secondaryCta: cta?.secondaryCta ?? "Talk to sales",
   };
+
   return (
     <section className="bg-[#181818]">
-      <footer className="relative overflow-hidden bg-[#181818] px-section-x-sm pt-12 md:px-section-x-md md:pt-section-y-md lg:px-section-x-lg lg:pt-20">
-        {/* content caps + centers above 1440; bg stays full-bleed */}
+      <footer className="relative overflow-hidden bg-[#181818] pt-12 md:pt-section-y-md lg:pt-20 px-6 md:px-0">
         <div className="mx-auto flex w-full max-w-content flex-col gap-8 lg:gap-12">
-          {/* lg:flex-wrap lets the link columns drop below the brand column on
-            narrow desktop widths (1024–1300) instead of overflowing */}
-          <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-24 justify-between">
-            {/* Brand column: logo lockup + tagline + social, OUR BRANDS pinned to bottom on desktop */}
+          <div className="flex w-full flex-col justify-between gap-8 lg:flex-row lg:gap-24">
             <div className="flex flex-col gap-6 lg:w-[24rem] lg:shrink-0 lg:justify-between">
               <div className="flex flex-col gap-4">
                 <a
@@ -95,9 +99,11 @@ export default function PageClose({
                     className="h-[1.25rem] w-auto md:h-[1.5rem] lg:h-[2.25rem]"
                   />
                 </a>
+
                 <p className="font-sans text-[0.75rem] font-bold uppercase leading-5 tracking-[0.045rem] text-white md:text-[1rem] md:tracking-[0.06rem]">
                   Limitless engagement. One platform.
                 </p>
+
                 <div className="flex items-center gap-2 lg:gap-2.5">
                   <a
                     href="#"
@@ -112,6 +118,7 @@ export default function PageClose({
                       className="w-[42%]"
                     />
                   </a>
+
                   <a
                     href="#"
                     aria-label="YouTube"
@@ -125,6 +132,7 @@ export default function PageClose({
                       className="size-full"
                     />
                   </a>
+
                   <a
                     href="#"
                     aria-label="Instagram"
@@ -146,11 +154,13 @@ export default function PageClose({
                   <p className="whitespace-nowrap font-sans text-[1rem] font-semibold uppercase tracking-[0.07rem] text-grey-400">
                     Our Brands
                   </p>
+
                   <span
                     aria-hidden
                     className="hidden h-px w-64 bg-white/10 lg:block"
                   />
                 </div>
+
                 <div className="flex items-center gap-8 lg:gap-[2.1875rem]">
                   <a
                     href="#"
@@ -164,6 +174,7 @@ export default function PageClose({
                       className="h-[1rem] w-auto md:h-[1.125rem] lg:h-[1.3125rem]"
                     />
                   </a>
+
                   <a
                     href="#"
                     aria-label="Snackmagic"
@@ -176,14 +187,15 @@ export default function PageClose({
                       className="h-[1rem] w-auto md:h-[1.125rem] lg:h-[1.3125rem]"
                     />
                   </a>
+
                   <a
                     href="#"
-                    aria-label="Snackmagic"
+                    aria-label="Confetti"
                     className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                   >
                     <img
                       src="/footer-brand-confetti-mark.svg"
-                      alt="Snackmagic"
+                      alt="Confetti"
                       width={112.692}
                       height={20.614}
                       className="h-[1rem] w-auto md:h-[1.09375rem] lg:h-[1.28125rem]"
@@ -193,7 +205,6 @@ export default function PageClose({
               </div>
             </div>
 
-            {/* Link columns: stacked on mobile, 4-up from tablet */}
             <nav
               aria-label="Footer"
               className="flex flex-col gap-12 md:flex-row md:gap-6 lg:gap-10"
@@ -206,14 +217,15 @@ export default function PageClose({
                   <p className="font-sans text-[1rem] font-semibold text-white">
                     {column.heading}
                   </p>
+
                   <ul className="flex flex-col gap-4">
-                    {column.links.map((link) => (
-                      <li key={link}>
+                    {column.links.map(({ label, href }) => (
+                      <li key={href}>
                         <a
-                          href="#"
-                          className="font-sans text-body-md text-grey-400 transition-colors hover:text-white whitespace-nowrap"
+                          href={href}
+                          className="whitespace-nowrap font-sans text-body-md text-grey-400 transition-colors hover:text-white"
                         >
-                          {link}
+                          {label}
                         </a>
                       </li>
                     ))}
@@ -223,13 +235,14 @@ export default function PageClose({
             </nav>
           </div>
 
-          {/* Legal bar */}
           <div className="flex w-full flex-col gap-5">
             <div aria-hidden className="h-px w-full bg-white/10" />
+
             <div className="flex w-full flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4">
               <p className="whitespace-pre text-center font-sans text-[0.75rem] uppercase leading-none tracking-[0.015rem] text-grey-400">
                 {"© Powered by Stadium   |   Accessibility Support"}
               </p>
+
               <button
                 type="button"
                 className="flex items-center gap-1.5 rounded-[0.375rem] border border-white/20 px-3 py-1.5 transition-colors hover:border-white/40 hover:bg-white/5"
@@ -237,6 +250,7 @@ export default function PageClose({
                 <span className="font-sans text-[0.75rem] leading-none text-white">
                   English
                 </span>
+
                 <img
                   src="/footer-chevron-down.svg"
                   alt=""
@@ -249,10 +263,9 @@ export default function PageClose({
           </div>
         </div>
 
-        {/* Stadium logo */}
         <span
           aria-hidden
-          className="pointer-events-none block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04] -mb-6 lg:-mb-30 mt-8 lg:mt-4"
+          className="pointer-events-none -mb-6 mt-8 block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04] lg:-mb-30 lg:mt-4"
         >
           Stadium
         </span>
