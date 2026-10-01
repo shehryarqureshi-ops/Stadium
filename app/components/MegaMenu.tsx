@@ -179,33 +179,56 @@ export function MenuSwitcher({
   items,
   active,
   onSelect,
+  hrefs,
 }: {
   label: string;
   items: string[];
   active: number;
   onSelect: (i: number) => void;
+  /* optional per-item landing pages: hover still swaps the panel, click navigates */
+  hrefs?: string[];
 }) {
   return (
     <nav
       aria-label={label}
       className="flex w-[15.9375rem] shrink-0 flex-col gap-2 self-start pb-2"
     >
-      {items.map((name, i) => (
-        <button
-          key={name}
-          type="button"
-          aria-pressed={i === active}
-          onMouseEnter={() => onSelect(i)}
-          onClick={() => onSelect(i)}
-          className={`flex h-10 w-full cursor-pointer items-center justify-between rounded-xl border px-3.5 text-left font-sans text-[0.875rem] leading-5 transition-all duration-150 ${i === active
+      {items.map((name, i) => {
+        const className = `flex h-10 w-full cursor-pointer items-center justify-between rounded-xl border px-3.5 text-left font-sans text-[0.875rem] leading-5 transition-all duration-150 ${i === active
             ? "border-grey-200 bg-white font-semibold text-ink shadow-card-soft"
             : "border-transparent font-normal text-grey-500 hover:bg-grey-100 hover:text-ink"
-            }`}
-        >
-          <span className="-translate-y-px">{name}</span>
-          {i === active && <ChevronRight />}
-        </button>
-      ))}
+            }`;
+        const content = (
+          <>
+            <span className="-translate-y-px">{name}</span>
+            {i === active && <ChevronRight />}
+          </>
+        );
+        const href = hrefs?.[i];
+        return href ? (
+          <a
+            key={name}
+            href={href}
+            aria-current={i === active ? "true" : undefined}
+            onMouseEnter={() => onSelect(i)}
+            onFocus={() => onSelect(i)}
+            className={className}
+          >
+            {content}
+          </a>
+        ) : (
+          <button
+            key={name}
+            type="button"
+            aria-pressed={i === active}
+            onMouseEnter={() => onSelect(i)}
+            onClick={() => onSelect(i)}
+            className={className}
+          >
+            {content}
+          </button>
+        );
+      })}
     </nav>
   );
 }

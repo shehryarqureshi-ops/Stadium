@@ -3,8 +3,11 @@ import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
 export type StickyStep = {
-  stepLabel: string;
+  /* omit on every step for a plain sticky feature stack (no pill timeline) */
+  stepLabel?: string;
   image: StaticImageData | string;
+  /* optional small label above the card title (e.g. /impact/sales "CRM integrations") */
+  eyebrow?: string;
   title: string;
   content: ReactNode;
   imageAlt?: string;
@@ -16,8 +19,9 @@ export type StickyStepCardsProps = {
   captionColor?: string;
   title: ReactNode;
   description: string;
-  blockquote: string;
-  quoteAuthor: string;
+  /* optional — omit both for a stack without the pull quote */
+  blockquote?: string;
+  quoteAuthor?: string;
   steps: StickyStep[];
   link?: string;
 };
@@ -52,6 +56,7 @@ export default function StickyStepCards({
   steps,
   link = "",
 }: StickyStepCardsProps) {
+  const showSteps = steps.some((s) => s.stepLabel);
   return (
     <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-10 lg:grid-cols-[minmax(0,30.75rem)_1fr] lg:gap-20">
@@ -83,6 +88,7 @@ export default function StickyStepCards({
             </p>
           </div>
 
+          {(blockquote || quoteAuthor) && (
           <figure data-animation="reveal" className="flex flex-col gap-10">
             {/* Quote mark */}
 
@@ -119,11 +125,13 @@ export default function StickyStepCards({
               </figcaption>
             </div>
           </figure>
+          )}
         </div>
 
         {/* Right: timeline */}
         <div className="flex gap-6">
           {/* Steps column */}
+          {showSteps && (
           <div
             aria-hidden="true"
             className="relative hidden w-[5.625rem] shrink-0 flex-col gap-8 md:flex"
@@ -148,35 +156,38 @@ export default function StickyStepCards({
 
             {steps.map((step) => (
               <div
-                key={step.stepLabel}
+                key={step.stepLabel ?? step.title}
                 className="flex min-h-px flex-1 flex-col md:sticky md:top-26"
               >
                 <StepPill
-                  label={step.stepLabel}
+                  label={step.stepLabel ?? ""}
                   dark={step.dark}
                   className="w-full"
                 />
               </div>
             ))}
           </div>
+          )}
 
           {/* Cards column */}
           <div className="flex min-w-0 flex-1 flex-col gap-8">
             {steps.map((step) => (
               <div
-                key={step.stepLabel}
+                key={step.stepLabel ?? step.title}
                 className="flex flex-col gap-3 md:sticky md:top-26"
               >
                 {/* Mobile-only pill */}
-                <StepPill
-                  label={step.stepLabel}
-                  dark={step.dark}
-                  className="w-fit md:hidden"
-                />
+                {step.stepLabel && (
+                  <StepPill
+                    label={step.stepLabel}
+                    dark={step.dark}
+                    className="w-fit md:hidden"
+                  />
+                )}
 
                 <article
                   data-animation="reveal"
-                  aria-label={`${step.stepLabel}: ${step.title}`}
+                  aria-label={step.stepLabel ? `${step.stepLabel}: ${step.title}` : step.title}
                   className="flex flex-col gap-2.5 rounded-[1.5rem] bg-[#f2f2f2] p-2.5"
                 >
                   <div className="overflow-hidden rounded-[1.25rem]">
@@ -190,9 +201,16 @@ export default function StickyStepCards({
                   </div>
 
                   <div className="flex flex-col gap-6 rounded-[1rem] bg-white px-6 pt-6 pb-7 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] md:px-7 md:pt-7 md:pb-[1.875rem]">
-                    <h3 className="font-[family-name:var(--font-satoshi)] text-[1.375rem] font-bold leading-[1.04] tracking-[-0.0375rem] text-[#16171b] md:text-[1.5rem]">
-                      {step.title}
-                    </h3>
+                    <div className="flex flex-col gap-2">
+                      {step.eyebrow && (
+                        <p className="font-sans text-eyebrow-sm uppercase leading-4 text-[#16171b]">
+                          {step.eyebrow}
+                        </p>
+                      )}
+                      <h3 className="font-[family-name:var(--font-satoshi)] text-[1.375rem] font-bold leading-[1.04] tracking-[-0.0375rem] text-[#16171b] md:text-[1.5rem]">
+                        {step.title}
+                      </h3>
+                    </div>
 
                     <div className="font-sans text-[0.9375rem] leading-[1.45] text-[#16171b]">
                       {step.content}

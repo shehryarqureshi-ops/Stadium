@@ -2,9 +2,12 @@ import Image, { type StaticImageData } from "next/image";
 import { ReactNode } from "react";
 
 export type VariableCardGridItem = {
-  image: StaticImageData;
+  /* omit for a grey placeholder slot (Figma placeholder cards) */
+  image?: StaticImageData;
   imageAlt?: string;
-  title: string;
+  /* omit for text-only cards (e.g. /impact/hr problem cards) — the
+     description then renders at the larger 18px problem-card size */
+  title?: string;
   description: string;
 };
 
@@ -12,9 +15,19 @@ type VariableCardGridProps = {
   caption: string;
   captionColor?: string;
   title: ReactNode;
-  description: string;
+  description?: string;
   gridColumns?: 1 | 2 | 3 | 4;
   items: VariableCardGridItem[];
+  /* "photo" (default): image flush in the card. "panel": the /impact product
+     mockups — the image sits on a lifted panel (rounded-t 8 / b 24, layered
+     drop shadow, Figma 3998:9319). */
+  imageStyle?: "photo" | "panel";
+  /* optional line under the tray (Figma problem sections) */
+  footnote?: string;
+  /* "white" (default) or "transparent" for sections on a page gradient */
+  background?: "white" | "transparent";
+  /* cap the tray at 880 (Figma 2×2 grids, e.g. /impact 3998:15486) */
+  narrow?: boolean;
 };
 
 const GRID_COLUMNS = {
@@ -24,6 +37,9 @@ const GRID_COLUMNS = {
   4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
 } satisfies Record<NonNullable<VariableCardGridProps["gridColumns"]>, string>;
 
+const PANEL_SHADOW =
+  "shadow-[0px_20px_10px_0px_rgba(0,0,0,0.15),0px_6.383px_3.191px_0px_rgba(0,0,0,0.12),0px_2.415px_1.207px_0px_rgba(0,0,0,0.11),0px_0.796px_0.398px_0px_rgba(0,0,0,0.1)]";
+
 export default function VariableCardGrid({
   caption,
   captionColor = "#10995a",
@@ -31,9 +47,24 @@ export default function VariableCardGrid({
   description,
   gridColumns = 3,
   items,
+  imageStyle = "photo",
+  footnote,
+  background = "white",
+  narrow = false,
 }: VariableCardGridProps) {
+  const sizes =
+    gridColumns === 4
+      ? "(min-width:1024px) 25vw, (min-width:640px) 50vw, 92vw"
+      : gridColumns === 3
+        ? "(min-width:1024px) 33vw, (min-width:640px) 50vw, 92vw"
+        : "(min-width:640px) 50vw, 92vw";
+
   return (
-    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section
+      className={`px-section-x-sm md:px-section-x-md lg:px-section-x-lg ${
+        background === "white" ? "bg-white" : ""
+      }`}
+    >
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         {/* Header */}
         <div className="flex w-full max-w-[55rem] flex-col items-center gap-5 text-center">
@@ -54,49 +85,61 @@ export default function VariableCardGrid({
             </h2>
           </div>
 
-          <p
-            data-animation="reveal"
-            className="max-w-[55rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
-          >
-            {description}
-          </p>
+          {description && (
+            <p
+              data-animation="reveal"
+              className="max-w-[55rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+            >
+              {description}
+            </p>
+          )}
         </div>
 
         {/* Grid tray */}
         <div
           data-animation="reveal"
           data-reveal-stagger="80"
-          className="w-full rounded-[2rem] bg-[#f2f2f2] p-4"
+          className={`w-full rounded-[2rem] bg-[#f2f2f2] p-4 ${narrow ? "max-w-[55rem]" : ""}`}
         >
           <ul role="list" className={`grid gap-4 ${GRID_COLUMNS[gridColumns]}`}>
-            {items.map((item) => (
+            {items.map((item, i) => (
               <li
-                key={item.title}
+                key={item.title ?? `${item.description}-${i}`}
                 data-animation="reveal"
                 className="flex flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
               >
-                <div className="overflow-hidden rounded-[1.25rem]">
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt ?? item.title}
-                    quality={100}
-                    className="w-full"
-                    sizes={
-                      gridColumns === 4
-                        ? "(min-width:1024px) 25vw, (min-width:640px) 50vw, 92vw"
-                        : gridColumns === 3
-                          ? "(min-width:1024px) 33vw, (min-width:640px) 50vw, 92vw"
-                          : "(min-width:640px) 50vw, 92vw"
+                {item.image ? (
+                  <div
+                    className={
+                      imageStyle === "panel"
+                        ? `overflow-hidden rounded-t-lg rounded-b-3xl ${PANEL_SHADOW}`
+                        : "overflow-hidden rounded-[1.25rem]"
                     }
-                  />
-                </div>
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt ?? item.title ?? ""}
+                      quality={100}
+                      className="w-full"
+                      sizes={sizes}
+                    />
+                  </div>
+                ) : (
+                  <div aria-hidden className="h-[15.625rem] rounded-[1.25rem] bg-[#f2f2f2]" />
+                )}
 
-                <div className="flex flex-col gap-4 p-8">
-                  <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5625rem] font-bold leading-[1.04] tracking-[-0.01875rem] text-[#16171b]">
-                    {item.title}
-                  </h3>
+                <div className={`flex flex-col gap-4 px-8 pb-8 ${imageStyle === "panel" ? "pt-10" : "pt-8"}`}>
+                  {item.title && (
+                    <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5625rem] font-bold leading-[1.04] tracking-[-0.01875rem] text-[#16171b]">
+                      {item.title}
+                    </h3>
+                  )}
 
-                  <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+                  <p
+                    className={`font-sans leading-[1.5] text-[#6b6c71] ${
+                      item.title ? "text-[0.9375rem]" : "text-[1.0625rem] lg:text-[1.125rem]"
+                    }`}
+                  >
                     {item.description}
                   </p>
                 </div>
@@ -104,6 +147,15 @@ export default function VariableCardGrid({
             ))}
           </ul>
         </div>
+
+        {footnote && (
+          <p
+            data-animation="reveal"
+            className="max-w-[55rem] text-center font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
+          >
+            {footnote}
+          </p>
+        )}
       </div>
     </section>
   );

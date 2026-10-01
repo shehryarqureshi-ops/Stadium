@@ -29,6 +29,22 @@
     rgba(24, 24, 24, 0.62) 4rem,
     rgba(24, 24, 24, 0) 10rem
   );
+  /* /impact/* closing band (Figma 3998:13969 "proof", pixel-sampled): white
+     behind the case studies, a blue ramp, then #181818 into the footer.
+     Stops are relative to the wrapper that starts at the case-study block. */
+  --gradient-impact-closing: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 7%,
+    #ddebfe 23%,
+    #b1cff9 33%,
+    #7aa5e3 42%,
+    #4c7abb 51%,
+    #2c4f82 60%,
+    #1e304b 69%,
+    #1a2029 79%,
+    #181818 93%
+  );
   /* Base 90deg scrim = the Figma frame's own gradient fill (5552:9939),
      layered UNDER the a11y 90deg scrim; the two together match the Figma. */
   --gradient-hero-base-scrim: linear-gradient(

@@ -34,6 +34,9 @@ type StepCardsProps = {
    * item does not specify desktopVisualWidth.
    */
   defaultDesktopVisualWidth?: number;
+
+  /** Header alignment — "left" (default) or "center" (/impact pages). */
+  align?: "left" | "center";
 };
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
@@ -50,6 +53,7 @@ export default function StepCards({
   description,
   items,
   defaultDesktopVisualWidth = 320,
+  align = "left",
 }: StepCardsProps) {
   const [active, setActive] = useState(0);
 
@@ -82,7 +86,7 @@ export default function StepCards({
         {/* HEADER */}
         {/* ========================================= */}
 
-        <div className="flex flex-col gap-2">
+        <div className={`flex flex-col gap-2 ${align === "center" ? "items-center text-center" : ""}`}>
           <p
             data-animation="reveal"
             style={{ color: captionColor }}

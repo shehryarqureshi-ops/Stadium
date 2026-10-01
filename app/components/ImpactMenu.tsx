@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MenuShell, MenuRow, MenuSwitcher, MenuFeaturePanel } from "@/app/components/MegaMenu";
+import { TEAM_ROUTES } from "@/app/components/impact/shared";
 import type { StaticImageData } from "next/image";
 import hrImg from "@/public/menu-team-hr.png";
 import marketingImg from "@/public/menu-team-marketing.png";
@@ -25,6 +26,8 @@ import financeImg from "@/public/menu-team-finance.png";
 type UseCase = { title: string; desc: string };
 type Team = {
   name: string;
+  /* team landing page (app/impact/<team>) */
+  href: string;
   headline: string;
   photo: StaticImageData;
   cols: [UseCase[], UseCase[]];
@@ -34,6 +37,7 @@ type Team = {
 export const TEAMS: Team[] = [
   {
     name: "Human Resources",
+    href: TEAM_ROUTES.hr,
     headline: "Build the engagement program your team actually feels.",
     photo: hrImg,
     cols: [
@@ -54,6 +58,7 @@ export const TEAMS: Team[] = [
   },
   {
     name: "Marketing",
+    href: TEAM_ROUTES.marketing,
     headline: "Events, ABM, and campaign gifting at scale",
     photo: marketingImg,
     cols: [
@@ -71,6 +76,7 @@ export const TEAMS: Team[] = [
   },
   {
     name: "Sales",
+    href: TEAM_ROUTES.sales,
     headline: "Pipeline acceleration and account expansion",
     photo: salesImg,
     cols: [
@@ -86,6 +92,7 @@ export const TEAMS: Team[] = [
   },
   {
     name: "Customer Experience",
+    href: TEAM_ROUTES.cx,
     headline: "Loyalty, retention, and surprise & delight",
     photo: cxImg,
     cols: [
@@ -104,6 +111,7 @@ export const TEAMS: Team[] = [
   },
   {
     name: "Leadership",
+    href: TEAM_ROUTES.leadership,
     headline: "Reputation, retention, and governance",
     photo: leadershipImg,
     cols: [
@@ -122,6 +130,7 @@ export const TEAMS: Team[] = [
   },
   {
     name: "Office Admins",
+    href: TEAM_ROUTES.officeAdmins,
     headline: "Logistics, gifting, and inventory at scale",
     photo: adminsImg,
     cols: [
@@ -138,6 +147,7 @@ export const TEAMS: Team[] = [
   },
   {
     name: "Finance",
+    href: TEAM_ROUTES.finance,
     headline: "Vendor consolidation, control, and visibility",
     photo: financeImg,
     cols: [
@@ -180,6 +190,7 @@ export default function ImpactMenu() {
         <MenuSwitcher
           label="Teams"
           items={TEAMS.map((t) => t.name)}
+          hrefs={TEAMS.map((t) => t.href)}
           active={active}
           onSelect={setActive}
         />
@@ -201,7 +212,7 @@ export default function ImpactMenu() {
                   <ul key={ci} className="engage-group flex w-[15.9375rem] shrink-0 flex-col gap-6">
                     {col.map(({ title, desc }) => (
                       <li key={title}>
-                        <a href="#" className="engage-row flex flex-col gap-2">
+                        <a href={t.href} className="engage-row flex flex-col gap-2">
                           <span className="flex items-start gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                             {title}
                             <ArrowRight />
@@ -223,6 +234,7 @@ export default function ImpactMenu() {
                 aspect="384 / 336"
                 title="One platform for every role"
                 cta="Get bulk pricing"
+                href={TEAM_ROUTES.overview}
               />
             </div>
           ))}

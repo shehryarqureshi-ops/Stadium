@@ -11,8 +11,8 @@ export type TabsShowcaseItem = {
   title: string;
   description: string;
   bullets?: string[];
-  /** a string src is used for vector artwork */
-  image: StaticImageData | string;
+  /** a string src is used for vector artwork; omit for a grey placeholder */
+  image?: StaticImageData | string;
   /** overrides `image` for alt text; falls back to `name` */
   imageAlt?: string;
   href?: string;
@@ -200,10 +200,10 @@ export default function PillTabs({
           aria-hidden="true"
           className="pointer-events-none fixed left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
         >
-          {items.map((preloadItem) => (
+          {items.filter((preloadItem) => preloadItem.image).map((preloadItem) => (
             <Image
               key={`preload-${preloadItem.name}`}
-              src={preloadItem.image}
+              src={preloadItem.image!}
               alt=""
               width={1}
               height={1}
@@ -217,6 +217,7 @@ export default function PillTabs({
           {/* Active image */}
           <div className="w-full shrink-0 lg:w-1/2">
             <div key={`image-${item.name}`} className="teams-panel-in w-full">
+              {item.image ? (
               <Image
                 src={item.image}
                 alt={item.imageAlt ?? item.name}
@@ -226,6 +227,9 @@ export default function PillTabs({
                 className="h-auto w-full rounded-3xl object-top-left"
                 sizes="(min-width: 1024px) 50vw, 92vw"
               />
+              ) : (
+                <div aria-hidden className="aspect-[580/394] w-full rounded-3xl bg-[#e0e0e0]" />
+              )}
             </div>
           </div>
 

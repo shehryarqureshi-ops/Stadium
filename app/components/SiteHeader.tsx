@@ -25,7 +25,7 @@ const NAV_ITEMS: {
   menu?: MenuKey;
 }[] = [
     { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
-    { label: "Impact by Team", href: "#", menu: "impact" },
+    { label: "Impact by Team", href: "/impact", menu: "impact" },
     { label: "The Proof", href: "#", menu: "proof" },
     { label: "Catalog", href: "#", menu: "catalog" },
     { label: "Pricing", href: "/pricing" },
@@ -511,10 +511,19 @@ export default function SiteHeader({
                         </div>
                       ) : item.menu === "impact" ? (
                         <ul className="flex flex-col pb-4 pt-1">
+                          <li>
+                            <a
+                              href="/impact"
+                              onClick={() => setMenuOpen(false)}
+                              className="flex h-10 items-center font-sans text-small font-semibold text-grey-700"
+                            >
+                              All teams
+                            </a>
+                          </li>
                           {IMPACT_TEAMS.map((t) => (
                             <li key={t.name}>
                               <a
-                                href="#"
+                                href={t.href}
                                 onClick={() => setMenuOpen(false)}
                                 className="flex h-10 items-center font-sans text-small text-grey-700"
                               >

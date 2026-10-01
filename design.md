@@ -1417,3 +1417,32 @@ Stack: `BookACallHero` → glass panel + `ProblemSection tone="dark"` → 160 �
 **Testimonials (3998:4261)** — `VerticalTestimonials` stack layout: eyebrow #a4cefe, left column sticky (lg top-28); cards `bg-pricing-cell p-6 gap-6 rounded-3xl`, 72px `rounded-xl` fluted thumb (`recog2/rc-case-thumb.png`), white content `rounded-xl px-7 pt-7 pb-[1.875rem] shadow-pass`, quote Satoshi Medium 25/−0.3, name/role `text-feature`.
 
 **Shared-component options added (all opt-in, defaults unchanged):** `HeroLogoWall variant="inline"`, `ProblemSection tone="dark"` + optional caption/description, `VerticalTestimonials caption / theme / layout`.
+
+---
+
+# /impact — Impact by Team (overview + 7 team pages)
+
+Figma n9SjmDjzB1PeZAYJ5w43fr: /impact 3998:14569 · /impact/hr 3998:9271 · /impact/marketing 3998:18002 · /impact/sales 3998:18764 · /impact/cx 3998:19461 · /impact/leadership 3998:20107 · /impact/office-admins 3998:20924 · /impact/finance 3998:17233 (desktop 1440 only).
+Routes live in `TEAM_ROUTES` (`app/components/impact/shared.ts`) and drive the header's Impact by Team menu (desktop rows, mobile accordion + "All teams"; the top-level item links to /impact). Footer unchanged (user decision).
+
+**Page frame** — `impact/ImpactPageShell`: transparent `SiteHeader` over `TeamHero`, sections on the 160 desktop rhythm (`grid gap-16 / md:gap-24 / lg:gap-40`, same py), then `ImpactClosing`, `PageClose showCta={false}`.
+
+**Shared section components (app/components/common/)**
+| Component | Figma pattern | Notes |
+|---|---|---|
+| `TeamHero` | "Hero · Swag" text | `public/impact/hero-bg.jpg` = Figma "image 13990" cropped to the dark band (cover/top). Eyebrow `text-eyebrow-lg` · title `text-display-pricing` (58) · intro `text-body-xl` · white pill + outline pill. |
+| `SectionIntro` | every centered/left intro | eyebrow 12 Bold +1.6 · 44/1.08/−0.5 (`lg:text-heading-xl`) · 18/1.48 `text-swag-grey`; max 860 centered. |
+| `VariableCardGrid` (extended) | problem / case-study / 2×2 trays | opt-in: `imageStyle="panel"` (lifted mockup, layered shadow, rounded-t-lg/b-3xl), item `title`/`image` optional (no image = #f2f2f2 placeholder 250h), `footnote`, `background="transparent"`, `narrow` (tray max 880). |
+| `LogoBridge` | "icons"/"Integrations" strip | two 50s marquees (`swag-marquee`) toward a white r42 tile (`impact/stadium-tile-mark.svg` 158² with its own inner tile + shadow, inset −4.69/−11.72/−18.75%) on `stadium-tile-glow.png`; `logoOpacity` 0.33 (mid-grey marks) or 1 (pre-tinted); `rightLogos` when sides differ. |
+| `StickyStepCards` (extended) | "across the employee journey" stacks | steps without `stepLabel` hide the pill timeline; quote optional; per-step `eyebrow`. Card body = `FeatureDetails` (16/1.5 #828282 · checks 15/1.4 · underlined 12px link). |
+| `PillTabs` (extended) | "six ways" tabs + band | `image` optional → #e0e0e0 580/394 placeholder; team pages use `autoAdvance={false}`. |
+| `ImageShowcase` | dashboards / big graphics | `framed={false}` when the 2× export already carries Figma's shadow margin. |
+| `StepCards` (extended) | numbered 01/02/03 expanders | `align="center"`. |
+| `ChecklistCards` | two titled checklist cards | tray #f2f2f2 r32 p16 max 1000; #f7f7f7 r16 p24 title (32/40). |
+| `NumberedOfferings` | "five ways" | sticky intro + #f2f2f2 tray of numbered cards (active shadow), 243×216 r20 image or #e0e0e0 placeholder. |
+| `SplitFeature` | /impact workspace + budgets rows | exports include panel frame + shadow (612×482) → rendered unframed. |
+| `ImpactProof` | /impact "The proof" | G2 4.8 row (`/g2-logo.svg`, lucide stars #ff9c00), white logos on the closing gradient, 3 result cards with 159-wide placeholders. |
+| `ImpactClosing` | closing band | `--gradient-impact-closing` (white → #ddebfe → … → #181818, pixel-sampled from 3998:13969) behind the section above the CTA + `ClosingCTA`. |
+
+**Assets** — `public/impact/<team>/` (overview = `/impact/overview/`): product mockups exported from Figma at 2× (`download_assets defaultScale 2`, PNG), photos JPEG q86, logos as Figma SVGs.
+**Content decisions** — Figma grey placeholders kept as placeholders (case studies, five-ways images, proof cards). Undesigned PillTabs tabs use that team's Impact menu use-case copy with placeholder imagery.
