@@ -612,7 +612,7 @@ export default function ExpSolution() {
           data-animation="reveal"
           className="mt-5 text-center font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
         >
-          A real host keeps everyone engaged, whether your team's remote or
+          A real host keeps everyone engaged, whether your team&apos;s remote or
           in-person.
         </p>
 

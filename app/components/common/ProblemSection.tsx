@@ -8,12 +8,16 @@ export type ProblemSectionItem = {
 };
 
 type ProblemSectionProps = {
-  caption: string;
+  /* caption + description are optional — /book-a-call shows the title only */
+  caption?: string;
   captionColor?: string;
   title: string;
-  description: string;
+  description?: string;
   items: ProblemSectionItem[];
   showDivider?: boolean;
+  /* "dark": drops the white header backdrop and flips the title to white for
+     sections sitting on a dark page background. Cards are unchanged. */
+  tone?: "light" | "dark";
 };
 
 export default function ProblemSection({
@@ -23,15 +27,18 @@ export default function ProblemSection({
   description,
   items,
   showDivider = false,
+  tone = "light",
 }: ProblemSectionProps) {
+  const dark = tone === "dark";
   return (
     <section className="relative z-10">
       <div className="overflow-hidden max-w-content mx-auto">
         <div className="flex w-full flex-col items-center">
-          <div className="flex w-full flex-col items-center rounded-[1rem] bg-white">
+          <div className={`flex w-full flex-col items-center rounded-[1rem] ${dark ? "" : "bg-white"}`}>
             {/* Header */}
             <div className="flex w-full max-w-[53.75rem] px-4 flex-col items-center gap-5 text-center">
               <div className="flex flex-col items-center gap-2">
+                {caption && (
                 <p
                   data-animation="reveal"
                   style={{ color: captionColor }}
@@ -39,15 +46,17 @@ export default function ProblemSection({
                 >
                   {caption}
                 </p>
+                )}
 
                 <h2
                   data-animation="reveal"
-                  className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
+                  className={`font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] md:text-[2.25rem] lg:text-[2.75rem] ${dark ? "text-white" : "text-[#16171b]"}`}
                 >
                   {title}
                 </h2>
               </div>
 
+              {description && (
               <p
                 data-animation="reveal"
                 data-reveal-delay="120"
@@ -55,6 +64,7 @@ export default function ProblemSection({
               >
                 {description}
               </p>
+              )}
             </div>
 
             {/* Cards */}

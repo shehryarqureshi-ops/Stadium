@@ -79,6 +79,14 @@
   }
 }
 
+/* Invisible reCAPTCHA (BookACallForm): hide Google's floating bottom-right
+   badge. Allowed only because the form carries the required "protected by
+   reCAPTCHA" attribution under its submit button. visibility (not display:
+   none) per Google's FAQ, so the widget keeps working. */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 /* Site-wide keyboard focus ring (quality bar 2026-06-12: every
    interactive element gets a visible :focus-visible ring, ≥2px, ≥3:1).
    Ink works on light surfaces; dark/photo-context elements override
@@ -159,6 +167,25 @@
   --color-infra-eyebrow: #6b6e74; /* desktop card header label */
   --color-infra-row: #c9cbcf; /* desktop inactive row label */
 
+  /* ===== /pricing (Figma n9SjmDjzB1PeZAYJ5w43fr 3998:4491) ===== */
+  --color-pricing-navy: #011c3d; /* page gradient top + popular-pill ink */
+  --color-pricing-night: #000308; /* page gradient bottom (pixel-sampled at frame end) */
+  --color-pricing-sky: #d8e7fd; /* hero eyebrow, popular pill, featured card hairline */
+  --color-pricing-tray: #f7f7f7; /* pass-card title block */
+  --color-pricing-cell: #f2f2f2; /* comparison cell + secondary pass button fill */
+  --color-pricing-ink: #16171b; /* pass/table text, Explore cell */
+  --color-pricing-cta: #111111; /* featured pass "Talk to sales" fill */
+
+  /* ===== Form fields (BookACallForm, Figma 3998:4924) ===== */
+  --color-field-border: #e2e2de; /* resting hairline */
+  --color-field-border-hover: #c9c9c4; /* hover hairline */
+  --color-field-placeholder: #9999a3; /* placeholder + empty-select text */
+  --color-field-error: #d6293e; /* not in Figma — validation red, 4.9:1 on white */
+  --color-field-error-tint: #fdf2f3; /* error field wash */
+  --color-field-warning-bg: #fff8e6; /* personal-email notice (turmeric tint) */
+  --color-field-warning-border: #ffe3a3;
+  --color-field-warning-icon: #a87600; /* notice icon — 3.6:1 on the tint (non-text) */
+
   /* ===== Type — universal text styles (Figma) ===== */
   --text-small: 0.875rem; /* Type/10 Small */
   --text-small--line-height: 1.25rem;
@@ -179,6 +206,8 @@
   --spacing-section-y-lg: 7.5rem; /* desktop section padding-y */
   --spacing-button-h: 2.5rem; /* button height — 40px system-wide (user decision 2026-06-12; was 44px) */
   --spacing-button-x: 1.5rem; /* button padding-x (spacing/24) */
+  --spacing-field-h: 2.875rem; /* 46 — form input/select height (Figma 3998:4928: p14 + 18 line) */
+  --spacing-field-gap: 0.4375rem; /* 7 — label → control, country → phone */
   --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */
   --spacing-hero-md: 24.875rem; /* hero fixed frame height, tablet (398px) */
   --spacing-hero-lg: 42.25rem; /* hero fixed frame height, desktop (676px) */
@@ -210,6 +239,7 @@
   /* ===== Radii ===== */
   --radius-button: 1.375rem; /* pill buttons */
   --radius-card: 0.75rem; /* card containers */
+  --radius-panel: 3.75rem; /* 60 — /pricing white comparison panel */
 
   /* ===== Type scale — section heading (Satoshi Bold) ===== */
   --text-heading-sm: 1.5rem;
@@ -243,6 +273,43 @@
   --text-narrative-lg--line-height: 3.875rem;
   --text-narrative-lg--letter-spacing: -0.0625rem;
   --text-narrative-lg--font-weight: 700;
+
+  /* ===== Type scale — /pricing (Figma 3998:4491) ===== */
+  --text-display-pricing: 3.625rem; /* 58 / 1.02 / −1.5px — pricing hero headline */
+  --text-display-pricing--line-height: 1.02;
+  --text-display-pricing--letter-spacing: -0.09375rem;
+  --text-display-pricing--font-weight: 700;
+  --text-display-demo: 3.375rem; /* 54 / 1.02 / −1.5px — "Book a Demo" (/pricing) + /book-a-call hero */
+  --text-display-demo--line-height: 1.02;
+  --text-display-demo--letter-spacing: -0.09375rem;
+  --text-display-demo--font-weight: 700;
+  --text-body-xl: 1.1875rem; /* 19 / 1.52 — /book-a-call hero intro */
+  --text-body-xl--line-height: 1.52;
+  --text-heading-xl: 2.75rem; /* 44 / 1.08 / −0.5px — comparison title */
+  --text-heading-xl--line-height: 1.08;
+  --text-heading-xl--letter-spacing: -0.03125rem;
+  --text-heading-xl--font-weight: 700;
+  --text-pass-title: 1.5rem; /* 24/32 Satoshi Bold — pass card title */
+  --text-pass-title--line-height: 2rem;
+  --text-pass-title--font-weight: 700;
+  --text-feature: 0.9375rem; /* 15 / 1.4 — pass card feature row */
+  --text-feature--line-height: 1.4;
+  --text-table: 0.90625rem; /* 14.5 / 1.4 — comparison cells */
+  --text-table--line-height: 1.4;
+  --text-pill: 0.6875rem; /* 11 / 1.4 +0.4px Bold — "Most Popular" pill */
+  --text-pill--line-height: 1.4;
+  --text-pill--letter-spacing: 0.025rem;
+  --text-pill--font-weight: 700;
+  --text-popover: 0.625rem; /* 10 / 1.48 — table feature popover */
+  --text-popover--line-height: 1.48;
+  --text-field-label: 0.78125rem; /* 12.5 / 1.4 +0.3px Bold, uppercase */
+  --text-field-label--line-height: 1.4;
+  --text-field-label--letter-spacing: 0.01875rem;
+  --text-field-label--font-weight: 700;
+  --text-field: 0.8125rem; /* 13 / 1.4 — input + option text */
+  --text-field--line-height: 1.4;
+  --text-field-hint: 0.75rem; /* 12 / 1.4 — field error + notice copy */
+  --text-field-hint--line-height: 1.4;
 
   /* ===== Type scale — statement (Overpass, poster sections) ===== */
   --text-statement-sm: 0.875rem;
@@ -345,6 +412,32 @@
   --inset-shadow-button-dark: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.08); /* dark/filled CTA highlight */
   --shadow-card: 0px 0.25rem 0.75rem 0px rgba(0, 0, 0, 0.08); /* active/elevated cards */
   --shadow-card-soft: 0px 0.25rem 0.375rem 0px rgba(0, 0, 0, 0.08); /* resting cards */
+  /* /pricing — Figma effect styles, px ÷ 16 */
+  --shadow-pass: 0 0.1875rem 0.375rem 0 rgba(0, 0, 0, 0.06); /* resting pass card */
+  --shadow-pass-featured: /* card-heavy-emphasis-shadow */
+    0.042rem 0.042rem 0.0594rem -0.0117rem rgba(0, 0, 0, 0.05),
+    0.0995rem 0.0995rem 0.1407rem -0.0234rem rgba(0, 0, 0, 0.05),
+    0.1815rem 0.1815rem 0.2567rem -0.0352rem rgba(0, 0, 0, 0.05),
+    0.3018rem 0.3018rem 0.4268rem -0.0469rem rgba(0, 0, 0, 0.05),
+    0.4874rem 0.4874rem 0.6893rem -0.0586rem rgba(0, 0, 0, 0.06),
+    0.7978rem 0.7978rem 1.1283rem -0.0703rem rgba(0, 0, 0, 0.06),
+    1.3738rem 1.3738rem 1.9429rem -0.082rem rgba(0, 0, 0, 0.08),
+    2.5rem 2.5rem 3.5355rem -0.0938rem rgba(0, 0, 0, 0.11);
+  --shadow-form: /* card-xh-shadow — Book a Demo form card */
+    0.042rem 0.042rem 0.0594rem -0.0078rem rgba(0, 0, 0, 0.05),
+    0.0995rem 0.0995rem 0.1407rem -0.0156rem rgba(0, 0, 0, 0.06),
+    0.1815rem 0.1815rem 0.2567rem -0.0234rem rgba(0, 0, 0, 0.06),
+    0.3018rem 0.3018rem 0.4268rem -0.0313rem rgba(0, 0, 0, 0.07),
+    0.4874rem 0.4874rem 0.6893rem -0.0391rem rgba(0, 0, 0, 0.08),
+    0.7978rem 0.7978rem 1.1283rem -0.0469rem rgba(0, 0, 0, 0.1),
+    1.3738rem 1.3738rem 1.9429rem -0.0547rem rgba(0, 0, 0, 0.13),
+    2.5rem 2.5rem 3.5355rem -0.0625rem rgba(0, 0, 0, 0.2);
+  --shadow-popover: 0 0.25rem 0.5rem 0 rgba(80, 80, 81, 0.24); /* shadow-small */
+  --shadow-dropdown: /* not in Figma — form select menus */
+    0 0.75rem 2rem -0.5rem rgba(22, 23, 27, 0.18),
+    0 0.125rem 0.375rem 0 rgba(22, 23, 27, 0.06);
+  --shadow-field-focus: 0 0 0 0.25rem rgba(22, 23, 27, 0.06); /* soft focus halo */
+  --shadow-field-error: 0 0 0 0.25rem rgba(214, 41, 62, 0.16);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -387,6 +480,28 @@ body {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* BookACallForm select menus: quick fade + drop on open (not in Figma —
+   interaction polish). Reduced motion shows them instantly. */
+@keyframes field-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.field-menu-in {
+  animation: field-menu-in 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top;
+}
+@media (prefers-reduced-motion: reduce) {
+  .field-menu-in {
+    animation: none;
   }
 }
 

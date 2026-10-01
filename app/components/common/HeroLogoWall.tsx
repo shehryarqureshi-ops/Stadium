@@ -12,40 +12,46 @@ const LOGOS = [
   { src: "/logos/imagine.svg", alt: "Imagine", width: 80, height: 30 },
 ];
 
-export const HeroLogoWall = () => {
+/* variant "band" (default): the full-bleed glass band used under the vertical
+   heroes. "inline": just the masked marquee track, sized by its parent (e.g.
+   the /book-a-call hero left column). */
+export const HeroLogoWall = ({
+  variant = "band",
+}: { variant?: "band" | "inline" } = {}) => {
+  const track = (
+    <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
+      <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
+        {[0, 1].map((group) => (
+          <ul
+            key={group}
+            aria-hidden={group === 1}
+            className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
+          >
+            {LOGOS.map((l, i) => (
+              <li key={`${l.alt}-${i}`} className="flex shrink-0 items-center">
+                {}
+                <Image
+                  src={l.src}
+                  alt={group === 0 ? l.alt : ""}
+                  width={l.width}
+                  height={l.height}
+                  style={{ height: `${l.height / 16}rem` }}
+                  className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
+                />
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (variant === "inline") return track;
+
   return (
     <div className="relative z-10 rounded-t-2xl lg:rounded-t-[2rem] bg-white/20">
       <div className="px-section-x-sm py-10 md:px-section-x-md lg:px-section-x-lg lg:py-14">
-        <div className="mx-auto w-full max-w-content">
-          <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
-            <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
-              {[0, 1].map((group) => (
-                <ul
-                  key={group}
-                  aria-hidden={group === 1}
-                  className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
-                >
-                  {LOGOS.map((l, i) => (
-                    <li
-                      key={`${l.alt}-${i}`}
-                      className="flex shrink-0 items-center"
-                    >
-                      { }
-                      <Image
-                        src={l.src}
-                        alt={group === 0 ? l.alt : ""}
-                        width={l.width}
-                        height={l.height}
-                        style={{ height: `${l.height / 16}rem` }}
-                        className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
-                      />
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
-        </div>
+        <div className="mx-auto w-full max-w-content">{track}</div>
       </div>
     </div>
   );

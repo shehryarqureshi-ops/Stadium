@@ -1346,3 +1346,74 @@ unified). Body = `text-swag-grey`. Green tiles/gradients recreated in CSS.
 - Footer reuses `PageClose`. Verified: 0 horizontal overflow + 0 console errors at
   1440/1280/768/375. Placeholder copy (Workflow tabs 5/6, Catalog cats, Case-study
   quotes) + the Pricing watermark image are the items to swap for real content.
+
+---
+
+# /pricing — pricing page (`app/pricing/page.tsx`)
+
+Figma: n9SjmDjzB1PeZAYJ5w43fr → 3998:4491 "/go/pricing" (desktop 1440 only —
+tablet/mobile derived with the standard breakpoint mapping).
+
+**Page shell**
+- One gradient behind every section: `bg-linear-to-b from-pricing-navy (#011c3d) to-pricing-night (#000308)` — pixel-sampled across the 4230px content frame (top #001b3b → frame end #000409).
+- Rhythm at desktop: hero → 160 → comparison → 160 → Book a Demo → 160 → closing CTA (`pt-16 / md:pt-24 / lg:pt-40`).
+- Composition: `SiteHeader` · `PricingHero` · `PricingComparison` · Book a Demo section + `BookACallForm` · `common/ClosingCTA` (transparent bg, `descriptionClassName` widened to 48rem so Figma's 2-line body holds) · `PageClose showCta={false}`.
+- Anchors: `#compare` (comparison), `#book-a-demo` (form). Both `scroll-mt-16` for the fixed 4rem header.
+
+**Hero (`PricingHero.tsx`, 3998:4515)**
+- Top pad 7.5 / 10 / 12.75rem (= header 4rem + Figma 120 at lg).
+- Eyebrow `text-eyebrow-sm` +1.6px `text-pricing-sky`; headline `text-display-sm → md:text-display-md → lg:text-display-pricing` (58/1.02/−1.5, Satoshi — Figma specs Black, site ships Bold only); truck row lucide 20 + eyebrow style.
+- Pass cards: `rounded-3xl bg-white p-2.5 shadow-pass`; title block `rounded-2xl bg-pricing-tray px-4 py-6 text-pass-title`; body `px-4 py-6`, rows `text-feature` gap 12 + lucide check 14; CTA `h-button-h` pill `bg-pricing-cell` (featured: `bg-pricing-cta` + `border-pricing-sky shadow-pass-featured`). "Most Popular" pill `bg-pricing-sky text-pill text-pricing-navy`, −10px top / 39px right.
+- Grid 1 → `md:` 2 → `wide:` 4 (four 15px feature columns need ≥1300 to stay single-line). Hover: −0.25rem lift (motion-safe).
+- "Talk to sales" → `?interestedPackage=<pass>#book-a-demo`; BookACallForm forwards it as `interested_package`.
+
+**Comparison (`PricingComparison.tsx`, 3998:4666)**
+- Panel `bg-white rounded-[2.5rem] md:rounded-panel (60)`, py 16 / 24 / 40 (160), header → table gap 60.
+- Title `text-heading-xl` (44/1.08/−0.5); subhead `text-body-lg text-swag-grey`.
+- Table: gap 4; header cells white `rounded-3xl`; body cells `bg-pricing-cell rounded-lg`, outer corners `rounded-*-3xl`; `text-table` (14.5/1.4); lucide check 24 / minus 16. Label col 2.62fr (= 500/1280) at lg. Explore cell `bg-pricing-ink rounded-t-lg rounded-b-3xl h-13`.
+- Below lg: horizontal scroll, label column `sticky left-0` with a 4px white ring.
+- Popovers (3998:4917): 280w, `rounded-lg p-3 shadow-popover text-popover`, above the label, open on hover/focus-within.
+
+**Book a Demo form (`BookACallForm.tsx`, 3998:4924)** — styling only; business logic untouched
+- Card `max-w-[40.375rem] rounded-3xl bg-white p-6 md:p-10 shadow-form`; grid 1 → `md:` 2 cols, gap 24.
+- Label `text-field-label` uppercase (12.5/1.4/+0.3 Bold); label → control `gap-field-gap` (7).
+- Control `h-field-h` (46) `rounded-lg border-field-border px-3.5 text-field`, placeholder `text-field-placeholder`; hover `border-field-border-hover`; focus/open `border-pricing-ink shadow-field-focus` (global outline suppressed on text fields — the ink border is the indicator); error `border-field-error bg-field-error-tint` + `text-field-hint` message with CircleAlert. Textarea `rounded-[0.625rem] min-h-28`.
+- Menus (not in Figma): `rounded-xl border-field-border shadow-dropdown`, `.field-menu-in` 160ms entrance, options `rounded-lg px-3 py-2.5`, hover `bg-grey-100`, selected `bg-pricing-cell font-semibold` + check. Close on outside press / Escape.
+- Phone: country trigger (flag + ISO + chevron, searchable menu) · field with dial-code prefix. Offerings: accordion groups with count badge, custom checkboxes (`bg-pricing-ink` when checked), "N selected" + Apply footer.
+- Personal-email notice `bg-field-warning-bg border-field-warning-border`, icon `text-field-warning-icon`.
+- Submit `h-button-h rounded-full bg-grey-800 text-button-primary`, spinner while submitting.
+
+---
+
+# /thank-you — post-booking confirmation (`app/thank-you/page.tsx`)
+
+No Figma frame — recreated from https://www.bystadium.com/thank-you, measured live at 1440 (2026-10-01).
+BookACallForm redirects here after a ChiliPiper booking (`THANK_YOU_PAGE_URL` fallback `/thank-you`; `NEXT_PUBLIC_THANK_YOU_PAGE_URL` still overrides). `noindex`.
+
+- `SiteHeader lightHero` (white page) + `PageClose showCta={false}`.
+- Row capped `max-w-[60rem]` (960, centred): illustration `public/thank-you/call-booked.png` 300w (mobile 240) · gap 160 · copy column 500, top-aligned. Stacks centred below `lg`.
+- Section pad: top 7 / 9 / 14rem (incl. 4rem header), bottom 4 / 6 / 10rem.
+- Eyebrow `text-eyebrow-sm leading-4 text-accent-water` → 16 → heading `text-heading-md text-grey-700` → 12 → body `text-body-lg` +0.25 `text-grey-700` → 28 → CTA `h-button-h rounded-button bg-grey-700 text-grey-100 text-button-primary` → https://app.bystadium.com/dashboard.
+
+---
+
+# /book-a-call — demo request page (`app/book-a-call/page.tsx`)
+
+Figma: n9SjmDjzB1PeZAYJ5w43fr → 3998:4026 (desktop 1440 only).
+
+**Page shell** — same `from-pricing-navy to-pricing-night` gradient as /pricing (Figma #011C3D → #000).
+Stack: `BookACallHero` → glass panel + `ProblemSection tone="dark"` → 160 → `VerticalTestimonials theme="dark" layout="stack"` → 120 → `ClosingCTA` (transparent, 48rem body) → `PageClose showCta={false}`.
+
+**Hero (`BookACallHero.tsx`, 3998:4049)**
+- Top pad 7.5 / 9 / 12.75rem; bottom 3 / 4 / 7.5rem. Grid `max-w-[72.5rem]` (Figma 1160 @ px140), `lg:grid-cols-2 gap-x-[3.75rem]`.
+- Headline `text-display-sm → md:text-display-md → lg:text-display-demo` (54/1.02/−1.5 — shared with /pricing "Book a Demo"); intro `text-body-lg → md:text-body-xl` (19/1.52), max 439; eyebrow `text-eyebrow-sm leading-4`; checks lucide 14 + `text-feature`.
+- Proof block (lg: row 2, `self-end`, min `mt-[6.875rem]`, fixed 170 tall): stars 180w · "2700+ Reviews" `text-body-sm` · G2 (`/g2-logo.svg`) / Capterra / Google 40h (`public/book-a-call/`) → 40 → `HeroLogoWall variant="inline"` (max 514) → 32 → Help Center line `text-field text-grey-200`.
+- Form column: shared `BookACallForm` (550 wide here). Mobile order: copy → form → proof.
+
+**Glass panel (3998:4028)** — `rounded-t-[2rem] bg-linear-to-b from-white/20 to-white/0`; at lg `-mt/pt-[21.375rem]` (= hero pb 120 + proof 170 + 52) so it starts 52 above the rating row; below lg it simply starts at "Why Stadium?".
+
+**Why Stadium? (3998:4237)** — `ProblemSection tone="dark"` title only; images are Figma placeholders → existing photos (`infra-operations.jpg`, `map-faces.jpg`, `catalog-gift-cards.jpg`).
+
+**Testimonials (3998:4261)** — `VerticalTestimonials` stack layout: eyebrow #a4cefe, left column sticky (lg top-28); cards `bg-pricing-cell p-6 gap-6 rounded-3xl`, 72px `rounded-xl` fluted thumb (`recog2/rc-case-thumb.png`), white content `rounded-xl px-7 pt-7 pb-[1.875rem] shadow-pass`, quote Satoshi Medium 25/−0.3, name/role `text-feature`.
+
+**Shared-component options added (all opt-in, defaults unchanged):** `HeroLogoWall variant="inline"`, `ProblemSection tone="dark"` + optional caption/description, `VerticalTestimonials caption / theme / layout`.

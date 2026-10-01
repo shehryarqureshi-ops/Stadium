@@ -12,6 +12,8 @@ type ClosingCTAProps = {
   caption?: string;
   title: ReactNode;
   description: string | ReactNode;
+  /** Width cap for the description; defaults to the standard 44rem measure. */
+  descriptionClassName?: string;
 
   ctaOneLabel?: string;
   ctaOneLink?: string;
@@ -46,6 +48,7 @@ export default function ClosingCTA({
   caption,
   title,
   description,
+  descriptionClassName = "max-w-[44rem]",
 
   ctaOneLabel,
   ctaOneLink = "#",
@@ -93,7 +96,7 @@ export default function ClosingCTA({
               <p
                 data-animation="reveal"
                 data-reveal-delay="80"
-                className="mt-3 max-w-[44rem] font-sans text-[1.125rem] leading-[1.48] text-[#a8a8b8]"
+                className={`mt-3 ${descriptionClassName} font-sans text-[1.125rem] leading-[1.48] text-[#a8a8b8]`}
               >
                 {description}
               </p>

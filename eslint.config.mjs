@@ -12,7 +12,14 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local Claude Code skills/tooling — not part of the app
+    ".claude/**",
   ]),
+  // Plain Node (CommonJS) build scripts — require() is correct here
+  {
+    files: ["scripts/**/*.js"],
+    rules: { "@typescript-eslint/no-require-imports": "off" },
+  },
 ]);
 
 export default eslintConfig;

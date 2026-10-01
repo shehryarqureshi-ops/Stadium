@@ -11,6 +11,9 @@ export type TestimonialItem = {
 };
 
 type TestimonialsProps = {
+  /* optional eyebrow above the title */
+  caption?: string;
+  captionColor?: string;
   title: React.ReactNode;
   showRating?: boolean;
   rating?: number;
@@ -21,7 +24,40 @@ type TestimonialsProps = {
   citation: string;
 
   items: TestimonialItem[];
+
+  /* "dark": transparent section for dark page backgrounds — white headline,
+     quote and light citation. Cards keep their light surfaces. */
+  theme?: "light" | "dark";
+  /* "marquee" (default): auto-scrolling card column. "stack": the cards render
+     once as a static column with larger Satoshi quotes and the left column
+     sticks while they scroll past (/book-a-call, Figma 3998:4261). */
+  layout?: "marquee" | "stack";
 };
+
+/* Stack card — Figma 3998:4276: #f2f2f2 tray p24 gap24 r24, 72px r12 thumb,
+   white content r12 pt28 px28 pb30, quote Satoshi Medium 25/−0.3. */
+function StackCard({ item }: { item: TestimonialItem }) {
+  return (
+    <figure className="flex flex-col items-start gap-6 rounded-3xl bg-pricing-cell p-4 md:flex-row md:p-6">
+      <Image
+        src={item.image}
+        alt=""
+        width={72}
+        height={72}
+        className="size-[4.5rem] shrink-0 rounded-xl object-cover"
+      />
+      <div className="flex min-w-0 flex-1 flex-col gap-8 rounded-xl bg-white px-6 pb-[1.875rem] pt-7 shadow-pass md:px-7">
+        <blockquote className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.35] tracking-[-0.01875rem] text-pricing-ink md:text-[1.5625rem]">
+          &ldquo;{item.text}&rdquo;
+        </blockquote>
+        <figcaption className="flex flex-col gap-1 font-sans text-feature">
+          <span className="font-bold text-grey-800">{item.title}</span>
+          <span className="leading-[1.5] text-swag-grey">{item.subtitle}</span>
+        </figcaption>
+      </div>
+    </figure>
+  );
+}
 
 function TestimonialCard({ item }: { item: TestimonialItem }) {
   return (
@@ -54,6 +90,8 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
 }
 
 export default function Testimonials({
+  caption,
+  captionColor = "#a4cefe",
   title,
   showRating = true,
   rating = 4.8,
@@ -62,11 +100,15 @@ export default function Testimonials({
   blockquote,
   citation,
   items,
+  theme = "light",
+  layout = "marquee",
 }: TestimonialsProps) {
   if (!items.length) return null;
+  const dark = theme === "dark";
+  const stack = layout === "stack";
 
   return (
-    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-[6.25rem]">
+    <section className={`px-section-x-sm md:px-section-x-md lg:px-[6.25rem] ${dark ? "" : "bg-white"}`}>
       <style>{`
         @keyframes testimonial-scroll {
           from {
@@ -95,11 +137,20 @@ export default function Testimonials({
 
       <div className="mx-auto flex w-full max-w-[77.5rem] flex-col gap-12 lg:flex-row lg:gap-20">
         {/* Left */}
-        <div className="flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem]">
+        <div className={`flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem] ${stack ? "lg:sticky lg:top-28 lg:self-start" : ""}`}>
           <div className="flex flex-col gap-8">
+            {caption && (
+              <p
+                data-animation="reveal"
+                style={{ color: captionColor }}
+                className="-mb-6 font-sans text-eyebrow-sm leading-4 uppercase"
+              >
+                {caption}
+              </p>
+            )}
             <h2
               data-animation="reveal"
-              className="font-display text-heading-sm text-[#16171b] md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+              className={`font-display text-heading-sm md:text-heading-md ${dark ? "text-white" : "text-[#16171b]"} lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]`}
             >
               {title}
             </h2>
@@ -157,14 +208,14 @@ export default function Testimonials({
 
             <blockquote
               data-animation="reveal"
-              className="font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] text-[#16171b] lg:text-[2rem] lg:leading-[2.5rem] font-bold"
+              className={`font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] lg:text-[2rem] lg:leading-[2.5rem] font-bold ${dark ? "text-white" : "text-[#16171b]"}`}
             >
               {blockquote}
             </blockquote>
 
             <p
               data-animation="reveal"
-              className="font-sans text-[0.9375rem] text-[#6b6c71]"
+              className={`font-sans text-[0.9375rem] ${dark ? "text-hero-body" : "text-[#6b6c71]"}`}
             >
               {citation}
             </p>
@@ -172,6 +223,13 @@ export default function Testimonials({
         </div>
 
         {/* Right */}
+        {stack ? (
+          <div data-animation="reveal" className="flex flex-1 flex-col gap-6 lg:gap-10">
+            {items.map((item) => (
+              <StackCard key={item.title} item={item} />
+            ))}
+          </div>
+        ) : (
         <div
           className="testimonial-viewport relative flex-1 overflow-hidden lg:h-166"
           style={{
@@ -187,6 +245,7 @@ export default function Testimonials({
             ))}
           </div>
         </div>
+        )}
       </div>
     </section>
   );

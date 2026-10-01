@@ -19,8 +19,10 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
+      // no observer support: reveal on the next frame instead of inside
+      // the effect body (avoids a synchronous cascading render)
+      const id = requestAnimationFrame(() => setShown(true));
+      return () => cancelAnimationFrame(id);
     }
     const io = new IntersectionObserver(
       ([entry]) => {
