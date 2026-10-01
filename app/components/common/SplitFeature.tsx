@@ -6,16 +6,21 @@
    unframed; `reverse` puts the graphic first. */
 
 import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 
+import PillLink from "./PillLink";
 import SectionIntro from "./SectionIntro";
 
 export type SplitFeatureProps = {
   caption?: string;
   title: string;
-  description: string;
+  /* ReactNode so copy can carry an inline link (e.g. /csr "Snack & Give Back") */
+  description: ReactNode;
   image: StaticImageData;
   imageAlt: string;
   reverse?: boolean;
+  /* dark pill under the intro (e.g. /roles-and-permissions "Explore Wallets") */
+  cta?: { label: string; href: string };
 };
 
 export default function SplitFeature({
@@ -25,6 +30,7 @@ export default function SplitFeature({
   image,
   imageAlt,
   reverse = false,
+  cta,
 }: SplitFeatureProps) {
   return (
     <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -33,8 +39,13 @@ export default function SplitFeature({
           reverse ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
-        <div className="w-full min-w-0 flex-1">
+        <div className="flex w-full min-w-0 flex-1 flex-col items-start gap-8 [&_a:not([class])]:font-bold [&_a:not([class])]:underline [&_a:not([class])]:underline-offset-2">
           <SectionIntro caption={caption} title={title} description={description} align="left" />
+          {cta && (
+            <div data-animation="reveal">
+              <PillLink {...cta} />
+            </div>
+          )}
         </div>
         <div data-animation="reveal" className="w-full max-w-[38.25rem] shrink-0 lg:w-[38.25rem]">
           <Image

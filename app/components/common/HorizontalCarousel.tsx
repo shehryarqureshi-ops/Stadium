@@ -18,6 +18,16 @@ export type ContentCarouselItem = {
   radius?: string;
 };
 
+/* /csr "Curated collections" (Figma 3883:3132): 382-wide #f7f7f7 r24 p24
+   cards — title 20 Satoshi Bold, desc 15/1.5 #6b6c71, then a 414-tall r20
+   image (omit for the #e0e0e0 placeholder). */
+export type CollectionCarouselItem = {
+  title: string;
+  description: string;
+  image?: StaticImageData;
+  alt?: string;
+};
+
 type HorizontalCarouselProps =
   | {
       variant: "catalog";
@@ -34,13 +44,27 @@ type HorizontalCarouselProps =
       title: ReactNode;
       description: string;
       items: ContentCarouselItem[];
+    }
+  | {
+      variant: "collection";
+      caption?: string;
+      captionColor?: string;
+      title: ReactNode;
+      description: string;
+      items: CollectionCarouselItem[];
+      /* transparent section (e.g. on the /impact closing gradient) */
+      transparent?: boolean;
     };
 
 export default function HorizontalCarousel(props: HorizontalCarouselProps) {
   const trackId = `horizontal-carousel-${props.variant}`;
 
   return (
-    <section className="w-full overflow-x-hidden bg-white">
+    <section
+      className={`w-full overflow-x-hidden ${
+        props.variant === "collection" && props.transparent ? "" : "bg-white"
+      }`}
+    >
       <div className="flex flex-col gap-10">
         {/* Header */}
         <div className="mx-auto w-full max-w-section px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -78,7 +102,34 @@ export default function HorizontalCarousel(props: HorizontalCarouselProps) {
             id={trackId}
             className="carousel-bleed flex gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {props.variant === "catalog"
+            {props.variant === "collection"
+              ? props.items.map((item) => (
+                  <li key={item.title} className="shrink-0">
+                    <article className="flex w-[18rem] shrink-0 flex-col gap-6 overflow-hidden rounded-3xl bg-pricing-tray p-6 md:w-[23.875rem]">
+                      <div className="flex flex-col gap-3.5">
+                        <h3 className="font-display text-[1.25rem] font-bold text-pricing-ink">
+                          {item.title}
+                        </h3>
+                        <p className="font-sans text-feature leading-[1.5] text-swag-grey">
+                          {item.description}
+                        </p>
+                      </div>
+                      <div className="relative h-[20rem] w-full overflow-hidden rounded-[1.25rem] bg-[#e0e0e0] md:h-[25.875rem]">
+                        {item.image && (
+                          <Image
+                            src={item.image}
+                            alt={item.alt ?? item.title}
+                            fill
+                            quality={90}
+                            sizes="(min-width: 768px) 20.875rem, 15rem"
+                            className="object-cover"
+                          />
+                        )}
+                      </div>
+                    </article>
+                  </li>
+                ))
+              : props.variant === "catalog"
               ? props.items.map((item) => (
                   <li key={item.title} className="shrink-0">
                     <article className="group relative flex aspect-[348/460] w-[17rem] shrink-0 flex-col overflow-hidden rounded-2xl bg-[#f9f7f8] lg:w-[21.75rem]">
@@ -145,7 +196,7 @@ export default function HorizontalCarousel(props: HorizontalCarouselProps) {
           {/* Only this part is client-side */}
           <CarouselControls
             trackId={trackId}
-            scrollAmount={props.variant === "catalog" ? 372 : 289}
+            scrollAmount={props.variant === "catalog" ? 372 : props.variant === "collection" ? 406 : 289}
           />
         </div>
       </div>

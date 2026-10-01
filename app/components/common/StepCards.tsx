@@ -4,6 +4,8 @@ import Image, { type StaticImageData } from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { useState } from "react";
 
+import PillLink from "./PillLink";
+
 export type StepCardItem = {
   title: ReactNode;
   description?: string;
@@ -23,10 +25,12 @@ export type StepCardItem = {
 };
 
 type StepCardsProps = {
-  caption: string;
+  caption?: string;
   captionColor?: string;
   title: string;
-  description: string;
+  description?: string;
+  /* centered dark pill under the cards (e.g. /integrations/webhooks) */
+  cta?: { label: string; href: string };
   items: StepCardItem[];
 
   /**
@@ -54,6 +58,7 @@ export default function StepCards({
   items,
   defaultDesktopVisualWidth = 320,
   align = "left",
+  cta,
 }: StepCardsProps) {
   const [active, setActive] = useState(0);
 
@@ -87,13 +92,15 @@ export default function StepCards({
         {/* ========================================= */}
 
         <div className={`flex flex-col gap-2 ${align === "center" ? "items-center text-center" : ""}`}>
-          <p
-            data-animation="reveal"
-            style={{ color: captionColor }}
-            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem]"
-          >
-            {caption}
-          </p>
+          {caption && (
+            <p
+              data-animation="reveal"
+              style={{ color: captionColor }}
+              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem]"
+            >
+              {caption}
+            </p>
+          )}
 
           <h2
             data-animation="reveal"
@@ -102,12 +109,14 @@ export default function StepCards({
             {title}
           </h2>
 
-          <p
-            data-animation="reveal"
-            className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
-          >
-            {description}
-          </p>
+          {description && (
+            <p
+              data-animation="reveal"
+              className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+            >
+              {description}
+            </p>
+          )}
         </div>
 
         {/* ========================================= */}
@@ -413,6 +422,12 @@ export default function StepCards({
             );
           })}
         </div>
+
+        {cta && (
+          <div data-animation="reveal" className="flex justify-center">
+            <PillLink {...cta} />
+          </div>
+        )}
       </div>
     </section>
   );

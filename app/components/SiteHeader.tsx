@@ -7,6 +7,8 @@ import ImpactMenu, { TEAMS as IMPACT_TEAMS } from "./ImpactMenu";
 import ProofMenu, { PROOF_COLUMNS } from "./ProofMenu";
 import Image from "next/image";
 import Link from "next/link";
+import { APP_URL, useAuth } from "@/hooks/useAuth";
+import AccountMenu from "./AccountMenu";
 
 type MenuKey = "engage" | "impact" | "proof" | "catalog";
 
@@ -26,7 +28,7 @@ const NAV_ITEMS: {
 }[] = [
     { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
     { label: "Impact by Team", href: "/impact", menu: "impact" },
-    { label: "The Proof", href: "#", menu: "proof" },
+    { label: "The Proof", href: "/the-proof", menu: "proof" },
     { label: "Catalog", href: "#", menu: "catalog" },
     { label: "Pricing", href: "/pricing" },
   ];
@@ -79,6 +81,47 @@ function Logo({ light }: { light: boolean }) {
         height={22}
       />
     </Link>
+  );
+}
+
+/* Login/sign up ⇄ account dropdown, driven by the app's session (see
+   hooks/useAuth). While the check is in flight the logged-out link is kept in
+   layout but invisible, so signed-in visitors never see a "Login" flash and
+   nothing shifts when it resolves. */
+function AuthLink({
+  className,
+  menuTextClass,
+  variant,
+  onClick,
+}: {
+  className: string;
+  /* text color for the signed-in trigger (over-hero white vs solid ink) */
+  menuTextClass: string;
+  variant: "desktop" | "mobile";
+  onClick?: () => void;
+}) {
+  const { status, user } = useAuth();
+  if (status === "authed" && user) {
+    return (
+      <AccountMenu
+        user={user}
+        variant={variant}
+        triggerClass={menuTextClass}
+        onNavigate={onClick}
+      />
+    );
+  }
+  const loading = status === "loading";
+  return (
+    <a
+      href={`${APP_URL}/shops/login`}
+      onClick={onClick}
+      aria-hidden={loading || undefined}
+      tabIndex={loading ? -1 : undefined}
+      className={`${className} ${loading ? "invisible" : ""}`}
+    >
+      Login/sign up
+    </a>
   );
 }
 
@@ -297,12 +340,11 @@ export default function SiteHeader({
 
           {/* Desktop actions */}
           <div className="hidden items-center gap-8 lg:flex">
-            <a
-              href="#"
+            <AuthLink
+              variant="desktop"
+              menuTextClass={baseLink}
               className={`flex h-10 pt-0.5 items-center justify-center rounded-lg font-sans text-button-primary uppercase transition-colors duration-300 ${baseLink}`}
-            >
-              Login/sign up
-            </a>
+            />
             <a
               href="/book-a-call"
               className={`inline-flex h-button-h items-center justify-center rounded-button px-button-x font-sans text-button-primary uppercase shadow-button transition-colors duration-300 pt-0.5 ${solid
@@ -534,6 +576,13 @@ export default function SiteHeader({
                         </ul>
                       ) : item.menu === "proof" ? (
                         <div className="flex flex-col gap-4 pb-4 pt-1">
+                          <a
+                            href="/the-proof"
+                            onClick={() => setMenuOpen(false)}
+                            className="flex h-10 items-center font-sans text-small font-semibold text-grey-700"
+                          >
+                            Why Stadium
+                          </a>
                           {PROOF_COLUMNS.map((col) => (
                             <div
                               key={col.label}
@@ -543,10 +592,10 @@ export default function SiteHeader({
                                 {col.label}
                               </p>
                               <ul className="flex flex-col">
-                                {col.items.map(({ title }) => (
+                                {col.items.map(({ title, href }) => (
                                   <li key={title}>
                                     <a
-                                      href="#"
+                                      href={href ?? "#"}
                                       onClick={() => setMenuOpen(false)}
                                       className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >
@@ -606,13 +655,12 @@ export default function SiteHeader({
             >
               Talk to sales
             </a>
-            <a
-              href="#"
+            <AuthLink
+              variant="mobile"
+              menuTextClass="text-ink"
               onClick={() => setMenuOpen(false)}
               className="inline-flex h-button-h items-center justify-center rounded-button border border-ink px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
-            >
-              Login/sign up
-            </a>
+            />
           </div>
         </div>
       </header>

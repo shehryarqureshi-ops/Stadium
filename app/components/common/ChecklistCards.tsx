@@ -13,7 +13,8 @@ export type ChecklistCard = {
   eyebrow?: string;
   title: string;
   description: string;
-  bullets: string[];
+  /* omit for plain title + copy cards (e.g. /integrations/security 3876:11444) */
+  bullets?: string[];
 };
 
 export type ChecklistCardsProps = {
@@ -48,6 +49,7 @@ export default function ChecklistCards({ caption, title, description, cards }: C
               </div>
               <div className="flex flex-col gap-8 p-6">
                 <p className="font-sans text-body-md text-[#828282]">{c.description}</p>
+                {c.bullets?.length ? (
                 <ul className="flex flex-col gap-3 pb-2">
                   {c.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-2.5">
@@ -60,6 +62,7 @@ export default function ChecklistCards({ caption, title, description, cards }: C
                     </li>
                   ))}
                 </ul>
+                ) : null}
               </div>
             </li>
           ))}

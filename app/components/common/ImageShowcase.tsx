@@ -4,7 +4,9 @@
    graphic, rounded + soft shadow when `framed`) → 40 → optional caption. */
 
 import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 
+import PillLink from "./PillLink";
 import SectionIntro from "./SectionIntro";
 
 export type ImageShowcaseProps = {
@@ -13,7 +15,9 @@ export type ImageShowcaseProps = {
   description?: string;
   image: StaticImageData;
   imageAlt: string;
-  footnote?: string;
+  footnote?: ReactNode;
+  /* dark pill between the intro and the image (e.g. /integrations/security "Explore SSO") */
+  cta?: { label: string; href: string };
   /* rounded corners + drop shadow around the image (dashboards) */
   framed?: boolean;
 };
@@ -26,11 +30,19 @@ export default function ImageShowcase({
   imageAlt,
   footnote,
   framed = true,
+  cta,
 }: ImageShowcaseProps) {
   return (
     <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
-        <SectionIntro caption={caption} title={title} description={description} />
+        <div className="flex flex-col items-center gap-5">
+          <SectionIntro caption={caption} title={title} description={description} />
+          {cta && (
+            <div data-animation="reveal">
+              <PillLink {...cta} />
+            </div>
+          )}
+        </div>
 
         <div
           data-animation="reveal"
@@ -52,7 +64,7 @@ export default function ImageShowcase({
         {footnote && (
           <p
             data-animation="reveal"
-            className="max-w-[55rem] text-center font-sans text-body-md leading-[1.48] text-swag-grey md:text-body-lg md:leading-[1.48]"
+            className="max-w-[55rem] text-center font-sans [&_a]:font-semibold [&_a]:underline [&_a]:underline-offset-2 text-body-md leading-[1.48] text-swag-grey md:text-body-lg md:leading-[1.48]"
           >
             {footnote}
           </p>

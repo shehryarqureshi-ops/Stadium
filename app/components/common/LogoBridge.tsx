@@ -5,7 +5,9 @@
    multicolour glow. The marquees pause under reduced motion. */
 
 import Image from "next/image";
+import type { ReactNode } from "react";
 
+import PillLink from "./PillLink";
 import SectionIntro from "./SectionIntro";
 
 import stadiumMark from "@/public/impact/stadium-tile-mark.svg";
@@ -22,6 +24,11 @@ export type LogoBridgeProps = {
   rightLogos?: LogoBridgeLogo[];
   /* Figma dims mid-grey tool logos to 33%; pre-tinted light-grey sets use 1 */
   logoOpacity?: number;
+  /* dark pill under the strip (e.g. /integrations/api "Explore integrations") */
+  cta?: { label: string; href: string };
+  /* extra content between the strip and the CTA (e.g. /roles-and-permissions
+     SSO / HRIS / API cards — pass a VariableCardGrid-style tray) */
+  children?: ReactNode;
 };
 
 function Track({
@@ -79,6 +86,8 @@ export default function LogoBridge({
   logos,
   rightLogos,
   logoOpacity = 0.33,
+  cta,
+  children,
 }: LogoBridgeProps) {
   return (
     <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -112,6 +121,14 @@ export default function LogoBridge({
 
           <Track logos={rightLogos ?? logos} reverse opacity={logoOpacity} />
         </div>
+
+        {children}
+
+        {cta && (
+          <div data-animation="reveal">
+            <PillLink {...cta} />
+          </div>
+        )}
       </div>
     </section>
   );

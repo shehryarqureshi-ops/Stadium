@@ -2,9 +2,12 @@ import Image, { type StaticImageData } from "next/image";
 import { ReactNode } from "react";
 
 type StatLeft = {
-  image: StaticImageData;
+  /* omit for the Figma #f2f2f2 placeholder panel (e.g. /enterprise 3826:9139) */
+  image?: StaticImageData;
   title?: string;
   text?: string;
+  /* number above the label (/enterprise, /the-proof) instead of below */
+  numberFirst?: boolean;
 };
 
 type StatCenter = {
@@ -12,7 +15,8 @@ type StatCenter = {
   title: string;
   backgroundColor?: string;
   text: string;
-  authorImage: StaticImageData;
+  /* omit for the grey radial placeholder avatar */
+  authorImage?: StaticImageData;
   authorName: string;
   authorTitle: string;
   link?: string;
@@ -81,18 +85,24 @@ export default function StatsGrid({
           className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
           {/* Left image stat */}
-          <div className="relative min-h-[22.25rem] overflow-hidden rounded-[1.5rem]">
-            <Image
-              src={statLeft.image}
-              alt={statLeft.text || ""}
-              fill
-              quality={100}
-              className="object-cover"
-              sizes="(min-width:1024px) 25rem, (min-width:768px) 45vw, 92vw"
-            />
+          <div className="relative min-h-[22.25rem] overflow-hidden rounded-[1.5rem] bg-pricing-cell">
+            {statLeft.image && (
+              <Image
+                src={statLeft.image}
+                alt={statLeft.text || ""}
+                fill
+                quality={100}
+                className="object-cover"
+                sizes="(min-width:1024px) 25rem, (min-width:768px) 45vw, 92vw"
+              />
+            )}
 
             {statLeft.title && (
-              <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1.5 p-6 text-black bg-white rounded-2xl shadow-lg">
+              <div
+                className={`absolute inset-x-4 bottom-4 flex gap-1.5 rounded-2xl bg-white p-6 text-black shadow-lg ${
+                  statLeft.numberFirst ? "flex-col-reverse gap-3" : "flex-col"
+                }`}
+              >
                 <p className="font-sans text-[1rem] leading-[1.4]">
                   {statLeft.text}
                 </p>
@@ -125,14 +135,21 @@ export default function StatsGrid({
               </p>
 
               <div className="flex items-center gap-3">
-                <Image
-                  src={statCenter.authorImage}
-                  alt={statCenter.authorName}
-                  width={54}
-                  height={54}
-                  quality={90}
-                  className="size-[2.7rem] rounded-full object-cover"
-                />
+                {statCenter.authorImage ? (
+                  <Image
+                    src={statCenter.authorImage}
+                    alt={statCenter.authorName}
+                    width={54}
+                    height={54}
+                    quality={90}
+                    className="size-[2.7rem] rounded-full object-cover"
+                  />
+                ) : (
+                  <span
+                    aria-hidden
+                    className="size-[2.7rem] shrink-0 rounded-full bg-[radial-gradient(circle,#ffffff,#e5e5e5)]"
+                  />
+                )}
 
                 <div className="leading-normal">
                   <p className="font-sans text-[0.9375rem] font-semibold text-[#16171b]">

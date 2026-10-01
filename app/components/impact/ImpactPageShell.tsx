@@ -30,11 +30,14 @@ export default function ImpactPageShell({
   );
 }
 
-/* Figma "divider" (e.g. 3998:9339): a hairline across the content box */
-export function TeamDivider() {
+/* Figma "divider" (e.g. 3998:9339): a hairline across the content box.
+   `thick`: /the-proof's 4px #f2f2f2 rule (3815:4634). */
+export function TeamDivider({ thick = false }: { thick?: boolean }) {
   return (
     <div aria-hidden className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
-      <div className="mx-auto h-px w-full max-w-content bg-[#e0e0e0]" />
+      <div
+        className={`mx-auto w-full max-w-content ${thick ? "h-1 bg-pricing-cell" : "h-px bg-[#e0e0e0]"}`}
+      />
     </div>
   );
 }

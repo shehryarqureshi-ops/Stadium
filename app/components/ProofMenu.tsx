@@ -4,10 +4,11 @@
    choreography (.engage-row / .engage-group / .engage-arrow) from SiteHeader. */
 
 import { MenuShell, MenuRow, MenuContent, MenuFeaturePanel } from "@/app/components/MegaMenu";
+import { PLATFORM_ROUTES } from "@/app/components/impact/shared";
 import whyImg from "@/public/map-faces.jpg";
 
-type Item = { title: string; desc: string };
-type Column = { label: string; items: Item[] };
+type Item = { title: string; desc: string; href?: string };
+type Column = { label: string; href?: string; items: Item[] };
 
 /* Exported for the mobile nav accordion. Content synced to Figma 2:75894
    (Enterprise-Ready / Social Proof / Resources). Note: the Figma's middle
@@ -16,13 +17,14 @@ type Column = { label: string; items: Item[] };
 export const PROOF_COLUMNS: Column[] = [
   {
     label: "Enterprise-Ready",
+    href: PLATFORM_ROUTES.enterprise,
     items: [
-      { title: "Workspaces", desc: "Company-wide collaboration, control, and visibility." },
-      { title: "Roles & Permissions", desc: "Configurable roles and permissions." },
-      { title: "Wallet & Budgets", desc: "Workspace-level funds, allocations, custom team budgets." },
-      { title: "Integrations", desc: "100+ integrations across your tech stack." },
-      { title: "Single Sign-On", desc: "SSO with your identity provider." },
-      { title: "Security & Compliance", desc: "SOC 2, GDPR, CCPA, and enterprise security." },
+      { title: "Workspaces", desc: "Company-wide collaboration, control, and visibility.", href: PLATFORM_ROUTES.workspaces },
+      { title: "Roles & Permissions", desc: "Configurable roles and permissions.", href: PLATFORM_ROUTES.roles },
+      { title: "Wallet & Budgets", desc: "Workspace-level funds, allocations, custom team budgets.", href: PLATFORM_ROUTES.wallets },
+      { title: "Integrations", desc: "100+ integrations across your tech stack.", href: PLATFORM_ROUTES.integrations },
+      { title: "Single Sign-On", desc: "SSO with your identity provider.", href: PLATFORM_ROUTES.sso },
+      { title: "Security & Compliance", desc: "SOC 2, GDPR, CCPA, and enterprise security.", href: PLATFORM_ROUTES.security },
     ],
   },
   {
@@ -30,7 +32,7 @@ export const PROOF_COLUMNS: Column[] = [
     items: [
       { title: "Case Studies", desc: "Real customer stories with measurable results." },
       { title: "Reviews & Testimonials", desc: "What customers say about Stadium." },
-      { title: "Corporate Social Responsibility", desc: "Sustainability, ethical sourcing, and giving back." },
+      { title: "Corporate Social Responsibility", desc: "Sustainability, ethical sourcing, and giving back.", href: PLATFORM_ROUTES.csr },
     ],
   },
   {
@@ -71,17 +73,26 @@ export default function ProofMenu() {
           <div className="grid grid-cols-3 gap-[2.8125rem]">
             {PROOF_COLUMNS.map((col) => (
               <div key={col.label} className="group/col flex flex-col gap-4">
-                <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[rgba(27,27,27,0.6)] transition-colors duration-200 group-hover/col:text-[#181818]">
-                  {col.label}
-                </p>
+                {col.href ? (
+                  <a
+                    href={col.href}
+                    className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[rgba(27,27,27,0.6)] transition-colors duration-200 group-hover/col:text-[#181818]"
+                  >
+                    {col.label}
+                  </a>
+                ) : (
+                  <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[rgba(27,27,27,0.6)] transition-colors duration-200 group-hover/col:text-[#181818]">
+                    {col.label}
+                  </p>
+                )}
                 {/* divider rule — grey at rest; Stadium gradient wipes in on column hover */}
                 <span aria-hidden className="relative block h-px w-full bg-[#d9d9d9]">
                   <span className="absolute inset-0 origin-left scale-x-0 bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)] transition-transform duration-500 ease-out group-hover/col:scale-x-100" />
                 </span>
                 <ul className="engage-group flex flex-col gap-6">
-                  {col.items.map(({ title, desc }) => (
+                  {col.items.map(({ title, desc, href }) => (
                     <li key={title}>
-                      <a href="#" className="engage-row flex flex-col gap-2">
+                      <a href={href ?? "#"} className="engage-row flex flex-col gap-2">
                         <span className="flex items-start gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                           {title}
                           <ArrowRight className="engage-arrow size-3 shrink-0 text-black mt-0.75" />
@@ -105,6 +116,7 @@ export default function ProofMenu() {
           aspect="384 / 456"
           title="Why teams choose Stadium"
           cta="Learn more"
+          href={PLATFORM_ROUTES.proof}
         />
       </MenuRow>
     </MenuShell>

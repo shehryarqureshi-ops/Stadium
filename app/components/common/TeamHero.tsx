@@ -4,11 +4,18 @@
    public/impact/hero-bg.jpg) behind the transparent SiteHeader, then:
      eyebrow 16 Bold +1 uppercase → 8 → headline 58/1.02/−1.5 (w 543)
      → 32 → intro 19/1.52 → 32 → CTA pair (white pill · white outline pill)
-   Desktop: nav 84 + pt 120 / pb 120. */
+   Desktop: nav 84 + pt 120 / pb 120.
+   `background="green"`: the Batch 3 platform pages (/enterprise,
+   /integrations/*, …) use Figma "image 13706" — navy top-left fading into
+   a deep green (public/impact/hero-bg-green.jpg). `footnote` is the small
+   line under the intro (e.g. /integrations/sso "*Available with …"). */
 
 import Image from "next/image";
 
 import heroBg from "@/public/impact/hero-bg.jpg";
+import heroBgGreen from "@/public/impact/hero-bg-green.jpg";
+
+const BACKGROUNDS = { navy: heroBg, green: heroBgGreen };
 
 type Cta = { label: string; href: string };
 
@@ -18,6 +25,8 @@ export type TeamHeroProps = {
   description: string;
   primaryCta: Cta;
   secondaryCta?: Cta;
+  footnote?: string;
+  background?: keyof typeof BACKGROUNDS;
 };
 
 export default function TeamHero({
@@ -26,6 +35,8 @@ export default function TeamHero({
   description,
   primaryCta,
   secondaryCta,
+  footnote,
+  background = "navy",
 }: TeamHeroProps) {
   return (
     <section
@@ -33,7 +44,7 @@ export default function TeamHero({
       className="relative overflow-hidden bg-[#020912] px-section-x-sm pb-16 pt-[7.5rem] md:px-section-x-md md:pb-24 md:pt-[10rem] lg:px-section-x-lg lg:pb-30 lg:pt-[12.75rem]"
     >
       <Image
-        src={heroBg}
+        src={BACKGROUNDS[background]}
         alt=""
         fill
         loading="eager"
@@ -61,12 +72,19 @@ export default function TeamHero({
                 {title}
               </h1>
             </div>
-            <p
-              data-animation="reveal"
-              className="font-sans text-body-lg text-white md:text-body-xl"
-            >
-              {description}
-            </p>
+            <div className="flex flex-col gap-3">
+              <p
+                data-animation="reveal"
+                className="font-sans text-body-lg text-white md:text-body-xl"
+              >
+                {description}
+              </p>
+              {footnote && (
+                <p data-animation="reveal" className="font-sans text-small text-white">
+                  {footnote}
+                </p>
+              )}
+            </div>
           </div>
 
           <div data-animation="reveal" className="flex flex-wrap gap-3.5">

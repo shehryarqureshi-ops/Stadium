@@ -191,6 +191,10 @@
   --color-pricing-cell: #f2f2f2; /* comparison cell + secondary pass button fill */
   --color-pricing-ink: #16171b; /* pass/table text, Explore cell */
   --color-pricing-cta: #111111; /* featured pass "Talk to sales" fill */
+  /* "Explore our packages" modal (Figma 3401:2352) */
+  --color-modal-scrim: rgba(0, 0, 0, 0.5); /* overlay behind the modal */
+  --color-modal-border: #e0e0e0; /* tab bar + sidebar hairline */
+  --color-modal-scroll-thumb: #ebebeb; /* scrollbar thumb (track = pricing-tray #f7f7f7) */
 
   /* ===== Form fields (BookACallForm, Figma 3998:4924) ===== */
   --color-field-border: #e2e2de; /* resting hairline */
@@ -224,6 +228,8 @@
   --spacing-button-x: 1.5rem; /* button padding-x (spacing/24) */
   --spacing-field-h: 2.875rem; /* 46 — form input/select height (Figma 3998:4928: p14 + 18 line) */
   --spacing-field-gap: 0.4375rem; /* 7 — label → control, country → phone */
+  --spacing-modal-sidebar: 25.875rem; /* 414 — packages modal feature sidebar (lg) */
+  --spacing-modal-media: 17.25rem; /* 276 — packages modal image block height (lg) */
   --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */
   --spacing-hero-md: 24.875rem; /* hero fixed frame height, tablet (398px) */
   --spacing-hero-lg: 42.25rem; /* hero fixed frame height, desktop (676px) */
@@ -256,6 +262,8 @@
   --radius-button: 1.375rem; /* pill buttons */
   --radius-card: 0.75rem; /* card containers */
   --radius-panel: 3.75rem; /* 60 — /pricing white comparison panel */
+  --radius-modal: 2rem; /* 32 — packages modal card */
+  --radius-modal-media: 1.25rem; /* 20 — packages modal image block */
 
   /* ===== Type scale — section heading (Satoshi Bold) ===== */
   --text-heading-sm: 1.5rem;
@@ -318,6 +326,9 @@
   --text-pill--font-weight: 700;
   --text-popover: 0.625rem; /* 10 / 1.48 — table feature popover */
   --text-popover--line-height: 1.48;
+  --text-modal-item: 0.875rem; /* 14/16 +0.16px — packages modal sidebar item */
+  --text-modal-item--line-height: 1rem;
+  --text-modal-item--letter-spacing: 0.01rem;
   --text-field-label: 0.78125rem; /* 12.5 / 1.4 +0.3px Bold, uppercase */
   --text-field-label--line-height: 1.4;
   --text-field-label--letter-spacing: 0.01875rem;
@@ -519,6 +530,53 @@ body {
   .field-menu-in {
     animation: none;
   }
+}
+
+/* PackagesModal (Figma 3401:2352): native <dialog> — fade + rise on open,
+   scrim fades with it. The scroll panes get Figma's slim rounded scrollbar
+   (8 wide, #ebebeb thumb on a #f7f7f7 track). */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes modal-scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+.modal-in[open] {
+  animation: modal-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-in[open]::backdrop {
+  animation: modal-scrim-in 0.32s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-in[open],
+  .modal-in[open]::backdrop {
+    animation: none;
+  }
+}
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-modal-scroll-thumb) var(--color-pricing-tray);
+}
+.modal-scroll::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+.modal-scroll::-webkit-scrollbar-track {
+  border-radius: 0.625rem;
+  background: var(--color-pricing-tray);
+}
+.modal-scroll::-webkit-scrollbar-thumb {
+  border-radius: 0.625rem;
+  background: var(--color-modal-scroll-thumb);
 }
 
 /* TeamsTabs panel swap: fade/slide-up 0.4s (documented in design.md, wired

@@ -1372,7 +1372,18 @@ tablet/mobile derived with the standard breakpoint mapping).
 - Title `text-heading-xl` (44/1.08/−0.5); subhead `text-body-lg text-swag-grey`.
 - Table: gap 4; header cells white `rounded-3xl`; body cells `bg-pricing-cell rounded-lg`, outer corners `rounded-*-3xl`; `text-table` (14.5/1.4); lucide check 24 / minus 16. Label col 2.62fr (= 500/1280) at lg. Explore cell `bg-pricing-ink rounded-t-lg rounded-b-3xl h-13`.
 - Below lg: horizontal scroll, label column `sticky left-0` with a 4px white ring.
-- Popovers (3998:4917): 280w, `rounded-lg p-3 shadow-popover text-popover`, above the label, open on hover/focus-within.
+- Popovers (3998:4917): 280w, `rounded-lg p-3 shadow-popover text-popover`, above the label, open on hover/focus-within. "Read more" opens the packages modal on that feature.
+- Row data lives in `components/pricing/passes.ts` (shared with the modal).
+
+**Packages modal (`pricing/PackagesModal.tsx`, 3401:2352)** — opened by popover "Read more" (on that feature, first pass that includes it) and by the "Explore all features" cell (first pass + feature)
+- Native `<dialog>` + `showModal()` (focus trap, Escape, inert page); scrim `backdrop:bg-modal-scrim` (black 50%) closes on click; page scroll locked while open. `.modal-in` = fade + 1rem rise, 0.32s ease-out-expo.
+- Card `max-w-content` (1200) `rounded-modal` (32) `bg-white shadow-form` (card-xh-shadow), p 5 / 8 / 10 (40). Height capped at `min(1178px, 100dvh − 4rem)` (2rem gutter on mobile); the sidebar list and the content pane scroll inside it.
+- Header: title `text-display-demo` (54) + 40 black close circle (lucide x 20) → 32 → `text-body-xl` (19/1.52) → 32 → pass tabs. Tabs: pill bar `border-modal-border` (#e0e0e0) `bg-white/75 p-2.5 gap-2.5 shadow-pass`; tab `px-5 py-[0.8125rem] text-eyebrow-sm leading-4` (12/16 +1px Bold), active `bg-pricing-ink text-white`. WAI-ARIA tabs (arrows/Home/End).
+- Body (lg): sidebar `w-modal-sidebar` (414) `rounded-2xl border p-2.5 shadow-pass`; items `min-h-12 px-6 rounded-lg text-modal-item` (14/16 +0.16), active `bg-grey-100 text-grey-700`, rest `text-grey-600`. Lists only the features the pass includes. "Talk to sales" pill pinned to its bottom: `bg-pricing-ink px-10 py-6 text-eyebrow-lg`, lucide phone 20 → `?interestedPackage=<pass>#book-a-demo`.
+- Content: 32 from sidebar, `lg:pr-8` before the scrollbar. Image block `h-modal-media` (276) `rounded-modal-media` (20) `bg-pricing-cell` (placeholder) → 32 → "Full access to:" eyebrow (+ a `text-pill` badge when the table cell is a text limit, e.g. "US only") → 32 → checklist `text-feature` gap 12 (lucide check 14; sub-items `pl-6` circle-small) → 32 → summary `text-body-xl`.
+- Scrollbar `.modal-scroll`: 8w, thumb `modal-scroll-thumb` #ebebeb on `pricing-tray` #f7f7f7, r10.
+- Below lg (no Figma frame): sidebar becomes a horizontal chip row (bordered chips, active `border-pricing-ink`), content scrolls under it, "Talk to sales" drops to the bottom (`py-4`). The active item is centred in the list/chip row on open.
+- Copy is placeholder (table popover text + Figma's Shops sample); swap in real copy/images in `passes.ts`.
 
 **Book a Demo form (`BookACallForm.tsx`, 3998:4924)** — styling only; business logic untouched
 - Card `max-w-[40.375rem] rounded-3xl bg-white p-6 md:p-10 shadow-form`; grid 1 → `md:` 2 cols, gap 24.

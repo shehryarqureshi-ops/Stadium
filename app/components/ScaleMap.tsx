@@ -38,7 +38,7 @@ export default function ScaleMap() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-[#fafafb] px-section-x-sm pt-16 md:px-section-x-md md:pt-24 lg:px-section-x-lg lg:pt-[7.5rem] rounded-tr-4xl rounded-tl-4xl">
+    <section className="bg-[#fafafb] px-section-x-sm pt-y6 md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-[7.5rem] rounded-tr-4xl rounded-tl-4xl">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-16 lg:gap-12">
         {/* header */}
         <div className="flex flex-col items-center gap-6 text-center">
@@ -59,7 +59,7 @@ export default function ScaleMap() {
         </div>
 
         {/* stats row — selectable; active stat is dark with a blue line above + below */}
-        <div className="w-full relative z-10">
+        <div className="w-full relative z-10 hidden">
           <StatRule active={active} />
           <div
             data-animation="reveal"
@@ -102,7 +102,7 @@ export default function ScaleMap() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-content">
+      <div className="mx-auto w-full max-w-content hidden">
         <div data-animation="reveal" className="w-full max-w-content relative -mt-8 lg:-mt-12 z-0">
           <svg
             className="absolute inset-0 h-full w-full"
@@ -146,7 +146,7 @@ export default function ScaleMap() {
             </defs>
           </svg>
 
-          <ScaleMapParticles activeTab={active} />
+          {/* <ScaleMapParticles activeTab={active} /> */}
         </div>
       </div>
     </section>

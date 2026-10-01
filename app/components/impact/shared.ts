@@ -45,3 +45,22 @@ export const ENGAGE_OFFERINGS: NumberedOffering[] = [
   { title: "Gifting", description: "They choose their gifts and enter their addresses. You never chase." },
   { title: "Hosted Experiences", description: "A real host for in-person or remote experiences. Zero planning on your end." },
 ];
+
+/* Routes for the platform / proof pages (Figma Batch 3) — used by the header
+   "The Proof" menu and the footer too */
+export const PLATFORM_ROUTES = {
+  proof: "/the-proof",
+  enterprise: "/enterprise",
+  workspaces: "/workspaces",
+  roles: "/roles-and-permissions",
+  wallets: "/wallets-and-budgets",
+  integrations: "/integrations",
+  hris: "/integrations/hris",
+  browserExtension: "/integrations/browser-extension",
+  api: "/integrations/api",
+  zapier: "/integrations/zapier",
+  webhooks: "/integrations/webhooks",
+  sso: "/integrations/sso",
+  security: "/integrations/security",
+  csr: "/csr",
+} as const;
