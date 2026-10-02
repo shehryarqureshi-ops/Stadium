@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import FeatureDetails from "@/app/components/common/FeatureDetails";
@@ -26,16 +28,14 @@ import reporting from "@/public/impact/finance/reporting.png";
 import simplifiedBilling from "@/public/impact/finance/simplified-billing.png";
 import vendorConsolidation from "@/public/impact/finance/vendor-consolidation.png";
 
-export const metadata: Metadata = {
-  title: "Stadium for Finance — One place to manage engagement spend",
-  description:
-    "Consolidate vendors, budgets, and spend while giving teams the freedom to run their own programs.",
-};
+export const metadata: Metadata = seoMetadata("/impact/finance");
 
 /* /impact/finance — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:17233. */
 
 export default function FinancePage() {
   return (
+    <>
+      <JsonLd path="/impact/finance" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -186,5 +186,6 @@ export default function FinancePage() {
         ]}
       />
     </ImpactPageShell>
+    </>
   );
 }

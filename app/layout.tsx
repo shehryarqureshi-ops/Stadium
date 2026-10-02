@@ -6,6 +6,7 @@ import AnalyticsListeners from "./components/tracking/AnalyticsListeners";
 import ConsentManager from "./components/tracking/ConsentManager";
 import TrackingLoader from "./components/tracking/TrackingLoader";
 import TrackingScripts from "./components/tracking/TrackingScripts";
+import { SITE_URL } from "./lib/seo/metadata";
 import "./globals.css";
 
 const overpass = Overpass({
@@ -34,6 +35,7 @@ const satoshiMedium = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Stadium — Show up for your crowd. Everywhere, every time.",
   description:
     "Most companies have the intention. Stadium provides the infrastructure to power every engagement moment globally.",

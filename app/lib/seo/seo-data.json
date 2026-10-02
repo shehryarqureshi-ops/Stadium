@@ -1,0 +1,1297 @@
+{
+  "/": {
+    "sheetPage": "Stadium Homepage",
+    "title": "Stadium: Global Engagement Infrastructure for Teams",
+    "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting & hosted experiences for teams in 170+ countries. Get started.",
+    "keywords": [
+      "Stadium",
+      "Bystadium"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ],
+          "subOrganization": [
+            {
+              "@type": "Organization",
+              "name": "Snackmagic",
+              "url": "https://www.snackmagic.com/"
+            },
+            {
+              "@type": "Organization",
+              "name": "Swagmagic",
+              "url": "https://www.swagmagic.com/"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/#webpage",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium: Global Engagement Infrastructure for Teams",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting & hosted experiences for teams in 170+ countries. Get started.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        }
+      ]
+    }
+  },
+  "/swag": {
+    "sheetPage": "Swag Pillar Page",
+    "title": "Swag Management Platform for Global Teams | Stadium",
+    "description": "Swag management platform for global teams. 5,000+ companies run their whole swag program through Stadium, one vendor, one PO. Talk to sales.",
+    "keywords": [
+      "swag",
+      "swag management platform",
+      "swagmagic"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/swag#webpage",
+          "url": "https://www.bystadium.com/swag",
+          "name": "Swag Management Platform for Global Teams | Stadium",
+          "description": "Swag management platform for global teams. 5,000+ companies run their whole swag program through Stadium, one vendor, one PO. Talk to sales.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/swag#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/swag#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Swag",
+              "item": "https://www.bystadium.com/swag"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/recognition": {
+    "sheetPage": "Recognition Pillar Page",
+    "title": "Employee Recognition Platform for Global Teams | Stadium",
+    "description": "One employee recognition platform for kudos, milestones, incentives, and service awards, with swag, snacks, and gifts in 170+ countries. Talk to sales today.",
+    "keywords": [
+      "Employee Recognition Platform",
+      "Employee Recognition Platform for Global Teams",
+      "all-in-one recognition platform​"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/recognition#webpage",
+          "url": "https://www.bystadium.com/recognition",
+          "name": "Employee Recognition Platform for 170+ Countries | Stadium",
+          "description": "Employee recognition platform for global teams. Turn kudos into real rewards, shipped to 170+ countries from a 25,000+ item catalog. Book a 30-min demo.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/recognition#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/recognition#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Recognition Platform",
+              "item": "https://www.bystadium.com/recognition"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/ways-to-engage": {
+    "sheetPage": "Ways to Engage",
+    "title": "Every Way to Engage & Appreciate Employees | Stadium",
+    "description": "Employee appreciation without five vendors: no service fees, no annual minimums, local fulfillment in 170+ countries. SOC 2 Type II. Talk to sales.",
+    "keywords": [
+      "Employee appreciation",
+      "ways to engage"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/ways-to-engage#webpage",
+          "url": "https://www.bystadium.com/ways-to-engage",
+          "name": "Every Way to Engage & Appreciate Employees | Stadium",
+          "description": "Employee appreciation for global teams, from onboarding to milestones: recognition, swag, snacks, gifting, and hosted experiences. One invoice, Net-30.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/ways-to-engage#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/ways-to-engage#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Ways to Engage",
+              "item": "https://www.bystadium.com/ways-to-engage"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/events": {
+    "sheetPage": "Events (Hosted experiences)",
+    "title": "Hosted Experiences for Teams, Booked in Minutes | Stadium",
+    "description": "Book hosted experiences for your team in minutes. Real hosts, 500+ formats, virtual, in-person, or hybrid. 52,000+ events hosted. Browse experiences now.",
+    "keywords": [
+      "hosted experiences",
+      "events",
+      "confetti"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/events#webpage",
+          "url": "https://www.bystadium.com/events",
+          "name": "Hosted Experiences for Teams, Booked in Minutes | Stadium",
+          "description": "Book hosted experiences for your team in minutes. Real hosts, 500+ formats, virtual, in-person, or hybrid. 52,000+ events hosted. Browse experiences now.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/events#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/events#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Hosted Experiences",
+              "item": "https://www.bystadium.com/events"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/gifting": {
+    "sheetPage": "Gifting",
+    "title": "Corporate Gifting Platform for Enterprise | Stadium",
+    "description": "20,000 companies run corporate gifting on Stadium: 845 brands, 1.5M+ recipients, 170+ countries, 100+ HRIS and CRM integrations. Book a call with sales.",
+    "keywords": [
+      "corporate gifting",
+      "gifting"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/gifting#webpage",
+          "url": "https://www.bystadium.com/gifting",
+          "name": "Corporate Gifting to 170+ Countries, 1 Platform | Stadium",
+          "description": "20,000 companies run corporate gifting on Stadium: 845 brands, 1.5M+ recipients, 170+ countries, 100+ HRIS and CRM integrations. Book a call with sales.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/gifting#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/gifting#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Corporate Gifting",
+              "item": "https://www.bystadium.com/gifting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/snacks": {
+    "sheetPage": "Snacks",
+    "title": "Snack Boxes Sent to 170+ Countries | Snackmagic by Stadium",
+    "description": "19.7M+ snacks delivered in 170+ countries. Let recipients pick from 2,000+ snacks and 1,700+ brands, or curate the box yourself. No subscription.",
+    "keywords": [
+      "snackmagic",
+      "snacks"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/snacks#webpage",
+          "url": "https://www.bystadium.com/snacks",
+          "name": "Snack Boxes Sent to 170+ Countries | Snackmagic by Stadium",
+          "description": "19.7M+ snacks delivered in 170+ countries. Let recipients pick from 2,000+ snacks and 1,700+ brands, or curate the box yourself. No subscription.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/snacks#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/snacks#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Snackmagic",
+              "item": "https://www.bystadium.com/snacks"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact": {
+    "sheetPage": "Impact (starter/overview)",
+    "title": "One Platform for HR, Marketing & Sales Teams | Stadium",
+    "description": "Give HR, Marketing, Sales, and Finance one place to run recognition, gifting, swag, and snacks, with shared budgets and delivery in 170+ countries.",
+    "keywords": [
+      "impact by team"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact#webpage",
+          "url": "https://www.bystadium.com/impact",
+          "name": "One Platform for HR, Marketing & Sales Teams | Stadium",
+          "description": "Give HR, Marketing, Sales, and Finance one place to run recognition, gifting, swag, and snacks, with shared budgets and delivery in 170+ countries.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "https://www.bystadium.com/impact"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/hr": {
+    "sheetPage": "HR",
+    "title": "Stadium for HR: Run Employee Engagement on One Platform",
+    "description": "Stadium for HR runs recognition, milestones, swag and gifting from one platform, triggered by your HRIS and shipped to 170+ countries. Talk to sales.",
+    "keywords": [
+      "Stadium for Human resources",
+      "Stadium for hr",
+      "Stadium for hr team"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/hr#webpage",
+          "url": "https://www.bystadium.com/impact/hr",
+          "name": "Stadium for HR: Run Employee Engagement on One Platform",
+          "description": "Stadium for HR runs recognition, milestones, swag and gifting from one platform, triggered by your HRIS and shipped to 170+ countries. Talk to sales.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/hr#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/hr#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "https://www.bystadium.com/impact"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "HR",
+              "item": "https://www.bystadium.com/impact/hr"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/marketing": {
+    "sheetPage": "Marketing",
+    "title": "Stadium for Marketing Teams | Swag & Campaign Gifting",
+    "description": "Stadium for marketing teams: lock your brand in once, then send swag, gifts, and event kits to 170+ countries. Triggered from HubSpot or Salesforce.",
+    "keywords": [
+      "Stadium for Marketing",
+      "Stadium for marketing team"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/marketing#webpage",
+          "url": "https://www.bystadium.com/impact/marketing",
+          "name": "Stadium for Marketing: Campaign Swag, Gifts & Kits",
+          "description": "Stadium for Marketing sends event swag, ABM gifts, and launch kits to 170+ countries from one on-brand platform. Track every send. Book a demo today.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/marketing#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/marketing#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "https://www.bystadium.com/impact"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Marketing",
+              "item": "https://www.bystadium.com/impact/marketing"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/finance": {
+    "sheetPage": "Finance",
+    "title": "Stadium for Finance | One Vendor for Engagement Spend",
+    "description": "Stadium for Finance puts recognition, swag, snacks and gifting on one invoice. Teams save $15K a year. Set team budgets, see spend live. Talk to sales.",
+    "keywords": [
+      "Stadium for Finance",
+      "Stadium for finance team"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/finance#webpage",
+          "url": "https://www.bystadium.com/impact/finance",
+          "name": "Stadium for Finance | One Vendor for Engagement Spend",
+          "description": "Stadium for Finance puts recognition, swag, snacks and gifting on one invoice. Teams save $15K a year. Set team budgets, see spend live. Talk to sales.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/finance#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/finance#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "https://www.bystadium.com/impact"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Finance",
+              "item": "https://www.bystadium.com/impact/finance"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/sales": {
+    "sheetPage": "Sales",
+    "title": "Sales Gifting Platform | 25K+ Gifts | Stadium",
+    "description": "Build gifting into your sales workflow: CRM triggers, webhooks, a Chrome extension and 25K+ gift options across 170+ countries. See how teams use Stadium.",
+    "keywords": [
+      "Stadium for Sales",
+      "Stadium for sales team"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/sales#webpage",
+          "url": "https://www.bystadium.com/impact/sales",
+          "name": "Stadium for Sales: Automated & Rep-Led Gifting",
+          "description": "Build gifting into your sales workflow: CRM triggers, webhooks, a Chrome extension and 25K+ gift options across 170+ countries. See how teams use Stadium.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/sales#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/sales#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "https://www.bystadium.com/impact"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Sales",
+              "item": "https://www.bystadium.com/impact/sales"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/cx": {
+    "sheetPage": "CX",
+    "title": "Stadium for CX: Gifting from Onboarding to Renewal",
+    "description": "Customer gifting across 170+ countries: welcome kits, swag, snacks and rewards, triggered from Salesforce or HubSpot. See how CX teams scale on Stadium.",
+    "keywords": [
+      "Stadium for CX",
+      "Stadium for customer experience",
+      "stadium for customer experience team"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/cx#webpage",
+          "url": "https://www.bystadium.com/impact/cx",
+          "name": "Stadium for CX Teams: Gift Clients in 170+ Countries",
+          "description": "Customer gifting across 170+ countries: welcome kits, swag, snacks and rewards, triggered from Salesforce or HubSpot. See how CX teams scale on Stadium.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/cx#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/cx#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "https://www.bystadium.com/impact"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Customer Experience",
+              "item": "https://www.bystadium.com/impact/cx"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/leadership": {
+    "sheetPage": "Leadership",
+    "title": "Stadium for Leadership: Engagement Across Every Team",
+    "description": "Consolidate recognition, swag, gifting, snacks and hosted experiences onto one platform. Central budgets and brand control, team autonomy. Book a demo.",
+    "keywords": [
+      "Stadium for leadership"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/leadership#webpage",
+          "url": "https://www.bystadium.com/impact/leadership",
+          "name": "[Stadium for Leadership: Engagement Across Every Team]",
+          "description": "[Consolidate recognition, swag, gifting, snacks and hosted experiences onto one platform. Central budgets and brand control, team autonomy. Book a demo.]",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/leadership#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/leadership#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Team",
+              "item": "[CONFIRM HUB URL — e.g. https://www.bystadium.com/impact/]"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Leadership",
+              "item": "https://www.bystadium.com/impact/leadership"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/impact/office-admins": {
+    "sheetPage": "Admins",
+    "title": "Stadium for Office Admins | Snacks, Swag, Gifts & Events",
+    "description": "Stadium for office admins: one platform for snacks, swag, gifts, and events across every office and 170+ countries. Fewer vendors, one dashboard.",
+    "keywords": [
+      "Stadium for office admins"
+    ],
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.bystadium.com/#organization",
+          "name": "Stadium",
+          "alternateName": "ByStadium",
+          "url": "https://www.bystadium.com/",
+          "logo": "https://www.bystadium.com/wp-content/uploads/2023/06/Stadium-new-logo.svg",
+          "description": "Stadium is the global engagement infrastructure behind recognition, swag, snacks, gifting and hosted experiences for teams in 170+ countries.",
+          "telephone": "+1-888-646-6883",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 E 27th St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10016",
+            "addressCountry": "US"
+          },
+          "sameAs": [
+            "https://www.facebook.com/bystadium/",
+            "https://x.com/bystadium",
+            "https://www.instagram.com/bystadium/",
+            "https://www.linkedin.com/company/bystadium/",
+            "https://www.youtube.com/@bystadium"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bystadium.com/#website",
+          "url": "https://www.bystadium.com/",
+          "name": "Stadium",
+          "publisher": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.bystadium.com/impact/office-admins#webpage",
+          "url": "https://www.bystadium.com/impact/office-admins",
+          "name": "Stadium for Office Admins | Snacks, Swag, Gifts & Events",
+          "description": "Stadium for office admins: one platform for snacks, swag, gifts, and events across every office and 170+ countries. Fewer vendors, one dashboard.",
+          "isPartOf": {
+            "@id": "https://www.bystadium.com/#website"
+          },
+          "about": {
+            "@id": "https://www.bystadium.com/#organization"
+          },
+          "breadcrumb": {
+            "@id": "https://www.bystadium.com/impact/office-admins#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.bystadium.com/impact/office-admins#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.bystadium.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Impact by Teams",
+              "item": "https://www.bystadium.com/impact"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Office Admins",
+              "item": "https://www.bystadium.com/impact/office-admins"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

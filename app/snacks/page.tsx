@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 import type { CSSProperties } from "react";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
@@ -13,11 +15,7 @@ import SnackSolution from "../components/SnackSolution";
 import SnackStats from "../components/SnackStats";
 import SnackHeroTwo from "../components/SnackHero2";
 
-export const metadata: Metadata = {
-  title: "Snacks — Snacks people can’t wait to open | Stadium",
-  description:
-    "Choose from curated boxes or let everyone build their own from 2,000+ snacks. Dietary filters built in, global fulfillment to 170+ countries.",
-};
+export const metadata: Metadata = seoMetadata("/snacks");
 
 /* Blue re-theme (Figma /snacks: CTA #2178f5, light accent #d8e7fd). Overrides
    the swag-green tokens for this page's scope only. */
@@ -38,6 +36,7 @@ const theme = {
 export default function SnacksPage() {
   return (
     <>
+      <JsonLd path="/snacks" />
       <SiteHeader />
       <main
         id="main"

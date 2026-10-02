@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
@@ -19,11 +21,7 @@ import global from "@/public/impact/overview/scale-global.png";
 import vendors from "@/public/impact/overview/scale-vendors.png";
 import tabHr from "@/public/impact/overview/tab-hr.jpg";
 
-export const metadata: Metadata = {
-  title: "Impact by Team — One infrastructure. Every team's program. | Stadium",
-  description:
-    "Run recognition, gifting, swag, snacks, and experiences across your organization with centralized budgets, global fulfillment, and visibility in one place.",
-};
+export const metadata: Metadata = seoMetadata("/impact");
 
 /* /impact — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:14569. The "Explore by team"
    tabs only have Figma content for HR & People; the other teams use their
@@ -42,6 +40,8 @@ const PROOF_LOGOS = [
 
 export default function ImpactPage() {
   return (
+    <>
+      <JsonLd path="/impact" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -139,5 +139,6 @@ export default function ImpactPage() {
         />
       </div>
     </ImpactPageShell>
+    </>
   );
 }

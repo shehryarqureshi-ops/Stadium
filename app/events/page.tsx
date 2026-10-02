@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ExpCaseStudy from "../components/ExpCaseStudy";
 import ExpCategories from "../components/ExpCategories";
@@ -12,15 +14,12 @@ import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 import ExpHeroTwo from "../components/ExpHero2";
 
-export const metadata: Metadata = {
-  title: "Hosted Experiences — Bring your team together | Stadium",
-  description:
-    "Book real hosts for virtual, in-person, or hybrid events in minutes. 500+ experience formats, 52,000+ events hosted, rated 4.8 — team building that people actually turn up for.",
-};
+export const metadata: Metadata = seoMetadata("/events");
 
 export default function EventsPage() {
   return (
     <>
+      <JsonLd path="/events" />
       <SiteHeader />
       <main
         id="main"

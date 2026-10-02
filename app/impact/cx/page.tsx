@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import FeatureDetails from "@/app/components/common/FeatureDetails";
@@ -29,11 +31,7 @@ import wayGifting from "@/public/impact/sales/way-gifting.jpg";
 import waySnacks from "@/public/impact/sales/way-snacks.jpg";
 import waySwag from "@/public/impact/sales/way-swag.jpg";
 
-export const metadata: Metadata = {
-  title: "Stadium for Customer Experience — Build stronger customer relationships at every stage",
-  description:
-    "Connect with customers from onboarding through renewal with thoughtful touchpoints that strengthen relationships and support retention.",
-};
+export const metadata: Metadata = seoMetadata("/impact/cx");
 
 /* /impact/cx — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:19461. Tabs other than
    "Onboarding" have no Figma content: their copy comes from the Customer
@@ -43,6 +41,8 @@ export const metadata: Metadata = {
 
 export default function CxPage() {
   return (
+    <>
+      <JsonLd path="/impact/cx" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -210,5 +210,6 @@ export default function CxPage() {
         ]}
       />
     </ImpactPageShell>
+    </>
   );
 }

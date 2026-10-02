@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
@@ -19,11 +21,7 @@ import problemShipping from "@/public/impact/marketing/problem-shipping.png";
 import problemVendors from "@/public/impact/marketing/problem-vendors.png";
 import stepTriggerSends from "@/public/impact/marketing/step-trigger-sends.png";
 
-export const metadata: Metadata = {
-  title: "Stadium for Marketing — Branded experiences for every campaign",
-  description:
-    "Create and send on-brand experiences across campaigns, audiences, and regions from one platform.",
-};
+export const metadata: Metadata = seoMetadata("/impact/marketing");
 
 /* /impact/marketing — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:18002. Tabs other
    than "Event swag" have no Figma content: their copy comes from the
@@ -33,6 +31,8 @@ export const metadata: Metadata = {
 
 export default function MarketingPage() {
   return (
+    <>
+      <JsonLd path="/impact/marketing" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -173,5 +173,6 @@ export default function MarketingPage() {
         ]}
       />
     </ImpactPageShell>
+    </>
   );
 }

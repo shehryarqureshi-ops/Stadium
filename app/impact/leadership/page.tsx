@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
@@ -24,11 +26,7 @@ import scaleInfrastructure from "@/public/impact/leadership/scale-infrastructure
 import scaleIntegrations from "@/public/impact/leadership/scale-integrations.png";
 import teamsWorkspace from "@/public/impact/leadership/teams-workspace.png";
 
-export const metadata: Metadata = {
-  title: "Stadium for Leadership — One engagement platform for the entire organization",
-  description:
-    "Let teams run their programs while leadership maintains company-wide visibility and control.",
-};
+export const metadata: Metadata = seoMetadata("/impact/leadership");
 
 /* /impact/leadership — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:20107. Tabs other
    than "Onboarding" have no Figma content: "Recognition" uses the Leadership
@@ -38,6 +36,8 @@ export const metadata: Metadata = {
 
 export default function LeadershipPage() {
   return (
+    <>
+      <JsonLd path="/impact/leadership" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -176,5 +176,6 @@ export default function LeadershipPage() {
         ]}
       />
     </ImpactPageShell>
+    </>
   );
 }

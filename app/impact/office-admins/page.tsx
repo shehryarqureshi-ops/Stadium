@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
@@ -24,11 +26,7 @@ import recurringDeliveries from "@/public/impact/office-admins/recurring-schedul
 import recurringPrograms from "@/public/impact/office-admins/recurring-employee-programs.png";
 import recurringSnacks from "@/public/impact/office-admins/recurring-office-snacks.png";
 
-export const metadata: Metadata = {
-  title: "Stadium for Office Admins — Keep workplace operations in one place",
-  description:
-    "Manage snacks, swag, gifts, events, and employee needs across offices and remote teams—without juggling separate vendors and workflows.",
-};
+export const metadata: Metadata = seoMetadata("/impact/office-admins");
 
 /* /impact/office-admins — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:20924. Tabs
    other than "New hires" have no Figma content: their copy comes from the
@@ -37,6 +35,8 @@ export const metadata: Metadata = {
 
 export default function OfficeAdminsPage() {
   return (
+    <>
+      <JsonLd path="/impact/office-admins" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -175,5 +175,6 @@ export default function OfficeAdminsPage() {
         ]}
       />
     </ImpactPageShell>
+    </>
   );
 }

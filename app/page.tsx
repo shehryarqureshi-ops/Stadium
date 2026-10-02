@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 import EveryWay from "./components/EveryWay";
 import Hero from "./components/Hero";
 import Infrastructure from "./components/Infrastructure";
@@ -14,9 +17,12 @@ import TrustBand from "./components/TrustBand";
 import Catalog from "./components/Catalog";
 import ClosingCTA from "./components/common/ClosingCTA";
 
+export const metadata: Metadata = seoMetadata("/");
+
 export default function Home() {
   return (
     <>
+      <JsonLd path="/" />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="overflow-x-clip">
         <Hero />

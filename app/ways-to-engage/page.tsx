@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
@@ -9,15 +11,12 @@ import WteOccasions from "../components/WteOccasions";
 import WtePrograms from "../components/WtePrograms";
 import WteProof from "../components/WteProof";
 
-export const metadata: Metadata = {
-  title: "Ways to Engage — Every way to show up for your people | Stadium",
-  description:
-    "One platform for recognition, swag, gifting, snacks, and hosted experiences — everyday appreciation and life's biggest milestones. One invoice, ships to 170+ countries.",
-};
+export const metadata: Metadata = seoMetadata("/ways-to-engage");
 
 export default function WaysToEngagePage() {
   return (
     <>
+      <JsonLd path="/ways-to-engage" />
       <SiteHeader lightHero />
 
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none overflow-x-clip">

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
@@ -18,15 +20,12 @@ import SwagmagicProblem from "../components/SwagmagicProblem";
 import SwagmagicSolution from "../components/SwagmagicSolution";
 import StadiumWay from "../components/StadiumWay";
 
-export const metadata: Metadata = {
-  title: "Swag — The infrastructure behind every swag program | Stadium",
-  description:
-    "Stop coordinating vendors separately. Run your entire swag program on one platform, one PO — branded stores, inventory, and global fulfillment to 170+ countries.",
-};
+export const metadata: Metadata = seoMetadata("/swag");
 
 export default function SwagPage() {
   return (
     <>
+      <JsonLd path="/swag" />
       <SiteHeader />
       <main
         id="main"

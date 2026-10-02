@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
@@ -22,11 +24,7 @@ import recogPoints from "@/public/impact/hr/recognition-points.png";
 import tabOnboarding from "@/public/impact/hr/tab-onboarding.jpg";
 import workspace from "@/public/impact/hr/workspace.png";
 
-export const metadata: Metadata = {
-  title: "Stadium for HR — Everything you do to engage your people, on one platform",
-  description:
-    "Recognition, onboarding, milestones, swag, gifting, and more—connected to your HR tools and easier to run at scale.",
-};
+export const metadata: Metadata = seoMetadata("/impact/hr");
 
 /* /impact/hr — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:9271. Tabs other than
    "Onboarding" have no Figma content: their copy comes from the HR use cases
@@ -49,6 +47,8 @@ const HRIS_RIGHT = [
 
 export default function HrPage() {
   return (
+    <>
+      <JsonLd path="/impact/hr" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -210,5 +210,6 @@ export default function HrPage() {
         items={ENGAGE_OFFERINGS}
       />
     </ImpactPageShell>
+    </>
   );
 }

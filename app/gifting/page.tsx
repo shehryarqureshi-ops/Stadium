@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import GiftingCatalog from "../components/GiftingCatalog";
 import GiftingClosing from "../components/GiftingClosing";
@@ -11,15 +13,12 @@ import GiftingSolution from "../components/GiftingSolution";
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 
-export const metadata: Metadata = {
-  title: "Gifting — Corporate gifting without the busywork | Stadium",
-  description:
-    "Client, employee, partner, and holiday gifts from one platform. Recipients choose their gift and enter their address — you set the budget, and Stadium delivers to 170+ countries.",
-};
+export const metadata: Metadata = seoMetadata("/gifting");
 
 export default function GiftingPage() {
   return (
     <>
+      <JsonLd path="/gifting" />
       <SiteHeader />
       <main
         id="main"

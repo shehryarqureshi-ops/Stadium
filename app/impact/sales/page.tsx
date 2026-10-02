@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
+import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
@@ -27,11 +29,7 @@ import wayGifting from "@/public/impact/sales/way-gifting.jpg";
 import waySnacks from "@/public/impact/sales/way-snacks.jpg";
 import waySwag from "@/public/impact/sales/way-swag.jpg";
 
-export const metadata: Metadata = {
-  title: "Stadium for Sales — Gifting that keeps deals moving",
-  description:
-    "Automate gifts from your sales workflows or let reps send on demand, with every touchpoint connected back to sales activity.",
-};
+export const metadata: Metadata = seoMetadata("/impact/sales");
 
 /* /impact/sales — Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:18764. Tabs other than
    "Prospecting" have no Figma content: their copy comes from the Sales use
@@ -43,6 +41,8 @@ const FOOTNOTE = "Your reps should focus on the relationship–not the logistics
 
 export default function SalesPage() {
   return (
+    <>
+      <JsonLd path="/impact/sales" />
     <ImpactPageShell
       hero={
         <TeamHero
@@ -234,5 +234,6 @@ export default function SalesPage() {
         ]}
       />
     </ImpactPageShell>
+    </>
   );
 }
