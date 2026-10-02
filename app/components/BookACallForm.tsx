@@ -12,6 +12,7 @@ import React, {
   InputHTMLAttributes,
 } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { trackEvent, type TrackParams } from "../lib/tracking/dataLayer";
 import {
   Check,
   ChevronDown,
@@ -307,10 +308,11 @@ type StadiumWindow = Window & {
 };
 const win = () => window as StadiumWindow;
 
+/* Kept under its old name so call sites don't change. Now pushes a named event
+   to the dataLayer (read by GTM after consent) and strips personal data —
+   name, email, phone and company never leave the form via analytics. */
 export const gtagEvent = (eventName: string, params: Record<string, unknown> = {}) => {
-  if (typeof window !== "undefined" && typeof win().gtag === "function") {
-    win().gtag!("event", eventName, params);
-  }
+  trackEvent(eventName, params as TrackParams);
 };
 
 /* ==========================================================================
@@ -954,7 +956,12 @@ export const BookACallForm: FC<BookACallFormProps> = ({
 
   return (
     <div className="book-a-call-container w-full max-w-[40.375rem] rounded-3xl bg-white p-6 text-left shadow-form md:p-10">
-      <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        data-clarity-mask="True"
+        className="flex flex-col gap-6"
+      >
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* ================= FULL NAME ================= */}
           <div ref={fullNameRef} className={FIELD_WRAP}>

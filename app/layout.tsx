@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
 import RevealOnScroll from "./components/RevealOnScroll";
+import AnalyticsListeners from "./components/tracking/AnalyticsListeners";
+import ConsentManager from "./components/tracking/ConsentManager";
+import TrackingLoader from "./components/tracking/TrackingLoader";
+import TrackingScripts from "./components/tracking/TrackingScripts";
 import "./globals.css";
 
 const overpass = Overpass({
@@ -117,6 +121,14 @@ export default function RootLayout({
         </a>
         {children}
         <RevealOnScroll />
+        {/* Consent (Osano) + Consent Mode v2 defaults + GTM + gated scripts.
+            Analytics run ONLY when NEXT_PUBLIC_APP_ENV=production on a
+            production host — never in dev or staging. See
+            app/lib/tracking/config.ts and .env.example */}
+        <TrackingScripts />
+        <TrackingLoader />
+        <ConsentManager />
+        <AnalyticsListeners />
       </body>
     </html>
   );

@@ -48,3 +48,6 @@ figma-1to1-process.md
 
 # local dev server log
 .devlog.txt
+
+# keep the documented template
+!.env.example
