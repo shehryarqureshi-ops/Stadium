@@ -649,7 +649,7 @@ export default function SiteHeader({
           </nav>
           <div className="flex flex-col gap-3 border-t border-grey-200 px-section-x-sm py-4 md:px-section-x-md">
             <a
-              href="#"
+              href="/book-a-call"
               onClick={() => setMenuOpen(false)}
               className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button inset-shadow-[0_1px_0_0_rgba(255,255,255,0.08)] transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water focus-visible:ring-offset-2 pt-0.5"
             >

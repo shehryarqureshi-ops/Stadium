@@ -1,0 +1,42 @@
+/* Extra CSS for the WordPress shell (header + footer). Appended AFTER the CSS
+   extracted from the Next build. Lives inside each shadow root, so none of it can
+   touch (or be touched by) the WordPress theme, Elementor or any plugin.
+
+   Everything on :host is !important on purpose: for !important declarations the
+   rules inside the shadow root beat the WordPress page's own rules, so even an
+   aggressive `div { font-size: 30px !important }` in the theme cannot reach us. */
+
+:host {
+  /* the font custom properties are generated at build time */
+  __FONT_VARS__
+}
+
+:host {
+  /* Reset every inherited property coming from the WordPress page. Custom
+     properties are not affected by `all`, so the Tailwind theme variables
+     defined on :host keep working. */
+  all: initial !important;
+  display: block !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  color: #181818 !important;
+  font-family: var(--font-overpass) !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  -webkit-text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* The header is position:fixed (as on the Next site). The spacer keeps the
+   WordPress page content from sliding underneath it. 4rem = the header height. */
+.sdm-spacer {
+  height: 4rem;
+}
+
+/* Logged-in WordPress editors have the admin bar on top: shift the fixed header
+   below it (the shell script keeps --sdm-offset in sync). */
+header[data-sdm="header"] {
+  top: var(--sdm-offset, 0px) !important;
+}

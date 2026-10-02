@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Local Claude Code skills/tooling — not part of the app
     ".claude/**",
+    // WordPress shell: ES5 browser scripts + generated output (see wp-shell/README.md)
+    "wp-shell/**",
   ]),
   // Plain Node (CommonJS) build scripts — require() is correct here
   {
