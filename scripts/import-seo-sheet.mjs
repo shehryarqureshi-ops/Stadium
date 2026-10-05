@@ -20,6 +20,7 @@ const OUT = "app/lib/seo/seo-data.json";
 const TABS = [
   { gid: 0, name: "Batch 1: Homepage + Pillar Pages" },
   { gid: 573428151, name: "Batch 2: Impact by Team" },
+  { gid: 1714842832, name: "Batch 3: Proof, Enterprise, Workspaces, Integrations" },
 ];
 
 /* sheet "Page" cell (trimmed) -> route in this app */
@@ -39,6 +40,17 @@ const PAGES = {
   CX: "/impact/cx",
   Leadership: "/impact/leadership",
   Admins: "/impact/office-admins",
+  "The proof": "/the-proof",
+  enterprise: "/enterprise",
+  Workspaces: "/workspaces",
+  integrations: "/integrations",
+  "integrations- HRIS": "/integrations/hris",
+  "integrations- browser extension": "/integrations/browser-extension",
+  "Stadium API": "/integrations/api",
+  Zapier: "/integrations/zapier",
+  Webhook: "/integrations/webhooks",
+  SSO: "/integrations/sso",
+  Security: "/integrations/security",
 };
 
 /* old/typo path in the sheet's JSON-LD -> real route */
