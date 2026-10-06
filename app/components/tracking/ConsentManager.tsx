@@ -57,7 +57,8 @@ function loadClarity() {
 function identifyHubSpot() {
   try {
     const raw = sessionStorage.getItem("auth");
-    const email = raw ? (JSON.parse(raw) as { user?: { email?: string } }).user?.email : null;
+    const auth = raw ? (JSON.parse(raw) as { email?: string; user?: { email?: string } }) : null;
+    const email = auth?.email ?? auth?.user?.email;
     if (email) {
       window._hsq = window._hsq || [];
       window._hsq.push(["identify", { email }]);
@@ -69,6 +70,7 @@ function identifyHubSpot() {
 
 function loadHubSpot() {
   window._hsp = window._hsp || [];
+  window._hsp.push(["setAccount", TRACKING.hubspotPortalId]);
   window._hsp.push(["setAllowLinker", true]);
   appendScript(
     "hs-script-loader",
@@ -164,6 +166,7 @@ export default function ConsentManager() {
       cm.addEventListener?.("osano-cm-initialized", sync);
       cm.addEventListener?.("osano-cm-consent-changed", sync);
       cm.addEventListener?.("osano-cm-consent-saved", sync);
+      cm.addEventListener?.("osano-cm-consent-saved", onSaved);
       sync(); // Osano may already be initialised by the time we mount
       return true;
     };
@@ -174,6 +177,31 @@ export default function ConsentManager() {
       if (cancelled || wire() || attempts > 100) window.clearInterval(timer);
     }, 100);
     wire();
+
+    // The app dispatches a window "auth" event on login: re-identify in HubSpot.
+    const onAuth = () => {
+      if (state.hubspot) identifyHubSpot();
+    };
+    window.addEventListener("auth", onAuth);
+
+    // Osano: a newly DENIED category needs a reload to clear what already ran.
+    let lastConsent: Consent = window.Osano?.cm?.getConsent?.() ?? {};
+    const onSaved = (updated: unknown) => {
+      const next = (updated ?? {}) as Consent;
+      const newlyDenied = Object.keys(next).some(
+        (category) => next[category] === "DENY" && lastConsent[category] !== "DENY",
+      );
+      lastConsent = next;
+      if (
+        newlyDenied &&
+        isTrackingActive() &&
+        confirm(
+          "We will need to refresh the page to save your preferences. Any other unsaved changes will be lost.",
+        )
+      ) {
+        location.reload();
+      }
+    };
 
     const onClick = (event: MouseEvent) => {
       const link = (event.target as Element | null)?.closest?.("a");
@@ -193,6 +221,7 @@ export default function ConsentManager() {
       cancelled = true;
       window.clearInterval(timer);
       document.removeEventListener("click", onClick);
+      window.removeEventListener("auth", onAuth);
     };
   }, []);
 

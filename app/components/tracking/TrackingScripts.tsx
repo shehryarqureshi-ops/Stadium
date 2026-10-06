@@ -38,6 +38,17 @@ gtag('set', 'ads_data_redaction', true);
 export default function TrackingScripts() {
   return (
     <>
+      {/* GTM noscript fallback (Google's snippet, kept for no-JS visitors) */}
+      {TRACKING.enabled && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${TRACKING.gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+      )}
       {TRACKING.enabled && (
         <Script id="consent-defaults" strategy="beforeInteractive">
           {CONSENT_DEFAULTS}
