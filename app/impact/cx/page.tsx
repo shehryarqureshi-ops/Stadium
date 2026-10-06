@@ -11,6 +11,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import GrowthSteps from "@/app/components/impact/GrowthSteps";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
@@ -51,6 +52,10 @@ export default function CxPage() {
           description="Connect with customers from onboarding through renewal with thoughtful touchpoints that strengthen relationships and support retention."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          background="canvas"
+          visual={<GrowthSteps />}
+          visualLayout="aligned"
+          visualMaxWidth="37rem"
         />
       }
       closing={
