@@ -11,6 +11,7 @@ import StepCards from "@/app/components/common/StepCards";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import DealRail from "@/app/components/impact/DealRail";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
@@ -51,6 +52,10 @@ export default function SalesPage() {
           description="Automate gifts from your sales workflows or let reps send on demand, with every touchpoint connected back to sales activity."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          background="canvas"
+          visual={<DealRail />}
+          visualLayout="aligned"
+          visualMaxWidth="37rem"
         />
       }
       closing={

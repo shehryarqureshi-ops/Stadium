@@ -10,6 +10,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StepCards from "@/app/components/common/StepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import BrandKitApplied from "@/app/components/impact/BrandKitApplied";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
@@ -39,8 +40,12 @@ export default function MarketingPage() {
           eyebrow="Stadium for Marketing"
           title="Branded experiences for every campaign"
           description="Create and send on-brand experiences across campaigns, audiences, and regions from one platform."
-          primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
-          secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          primaryCta={{ label: "Book a demo", href: LINKS.sales }}
+          secondaryCta={{ label: "See the brand store", href: LINKS.swag }}
+          background="canvas"
+          visual={<BrandKitApplied />}
+          visualLayout="aligned"
+          visualMaxWidth="37.25rem"
         />
       }
       closing={

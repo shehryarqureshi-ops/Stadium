@@ -12,7 +12,12 @@
    `visual` + `background="canvas"` (/impact, Figma 5152:23461): the copy column
    left edge = the header logo's (same max(gutter, (W − max-w-content)/2) rule) and the visual flush right, a 647 × 724 stage that
    starts under the 84px header band — row max-w-hero (1440), the raster stays
-   full-bleed. Below lg the visual stacks under the copy. */
+   full-bleed. Below lg the visual stacks under the copy.
+   `visualLayout="aligned"` (hero-visual-design v2.3; /impact/marketing): one content
+   box = the header's (logo left → Talk-to-sales right). Copy on its left edge, the
+   visual's RIGHT edge on its right edge (`visualMaxWidth` = the graphic's width, so
+   the gap flexes ≥ 56), both columns top-aligned, and the row centred in a ≥ 724
+   area with ≥ 120 padding — equal blue above and below. */
 
 import type { ReactNode } from "react";
 import Image from "next/image";
@@ -34,6 +39,9 @@ export type TeamHeroProps = {
   footnote?: string;
   background?: keyof typeof BACKGROUNDS;
   visual?: ReactNode;
+  visualLayout?: "edge" | "aligned";
+  /** aligned layout: the graphic's natural width (rem), e.g. "37.25rem" for a 596 stage. */
+  visualMaxWidth?: string;
 };
 
 export default function TeamHero({
@@ -45,13 +53,18 @@ export default function TeamHero({
   footnote,
   background = "navy",
   visual,
+  visualLayout = "edge",
+  visualMaxWidth,
 }: TeamHeroProps) {
+  const aligned = Boolean(visual) && visualLayout === "aligned";
   return (
     <section
       aria-labelledby="team-hero-title"
       className={`relative overflow-hidden bg-impact-hero-night pb-16 pt-[7.5rem] md:pb-24 md:pt-[10rem] ${
         visual
-          ? "lg:pb-0 lg:pt-hero-nav"
+          ? aligned
+            ? "xl:pb-0 xl:pt-hero-nav"
+            : "lg:pb-0 lg:pt-hero-nav"
           : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg lg:pb-30 lg:pt-[12.75rem]"
       }`}
     >
@@ -68,13 +81,15 @@ export default function TeamHero({
 
       <div
         className={
-          visual
-            ? "relative mx-auto flex w-full max-w-hero flex-col px-section-x-sm md:px-section-x-md lg:flex-row lg:gap-8 lg:px-0"
-            : "relative mx-auto w-full max-w-content"
+          aligned
+            ? "relative flex w-full flex-col px-section-x-sm md:px-section-x-md xl:grid xl:min-h-[45.25rem] xl:grid-cols-[auto_minmax(0,1fr)] xl:content-center xl:items-start xl:gap-x-14 xl:px-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] xl:py-30"
+            : visual
+              ? "relative mx-auto flex w-full max-w-hero flex-col px-section-x-sm md:px-section-x-md lg:flex-row lg:gap-8 lg:px-0"
+              : "relative mx-auto w-full max-w-content"
         }
       >
         <div
-          className={`flex max-w-[33.9375rem] flex-col gap-8 ${visual ? "lg:ml-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] lg:shrink-0 lg:pt-section-y-lg" : ""}`}
+          className={`flex max-w-[33.9375rem] flex-col gap-8 ${visual && !aligned ? "lg:ml-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] lg:shrink-0 lg:pt-section-y-lg" : ""}`}
         >
           <div className="flex flex-col gap-6 lg:gap-8">
             <div className="flex flex-col gap-2">
@@ -130,7 +145,14 @@ export default function TeamHero({
         </div>
 
         {visual && (
-          <div className="mx-auto mt-12 w-full max-w-hero-visual md:mt-16 lg:ml-auto lg:mr-0 lg:mt-0 lg:min-w-0 lg:flex-1">
+          <div
+            className={
+              aligned
+                ? "mx-auto mt-12 w-full max-w-(--hero-visual-w) md:mt-16 xl:ml-auto xl:mr-0 xl:mt-0 xl:min-w-0 xl:justify-self-end"
+                : "mx-auto mt-12 w-full max-w-hero-visual md:mt-16 lg:ml-auto lg:mr-0 lg:mt-0 lg:min-w-0 lg:flex-1"
+            }
+            style={aligned && visualMaxWidth ? ({ "--hero-visual-w": visualMaxWidth } as React.CSSProperties) : undefined}
+          >
             {visual}
           </div>
         )}
