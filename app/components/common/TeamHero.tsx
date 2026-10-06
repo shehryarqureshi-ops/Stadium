@@ -8,14 +8,20 @@
    `background="green"`: the Batch 3 platform pages (/enterprise,
    /integrations/*, …) use Figma "image 13706" — navy top-left fading into
    a deep green (public/impact/hero-bg-green.jpg). `footnote` is the small
-   line under the intro (e.g. /integrations/sso "*Available with …"). */
+   line under the intro (e.g. /integrations/sso "*Available with …").
+   `visual` + `background="canvas"` (/impact, Figma 5152:23461): the copy column
+   left edge = the header logo's (same max(gutter, (W − max-w-content)/2) rule) and the visual flush right, a 647 × 724 stage that
+   starts under the 84px header band — row max-w-hero (1440), the raster stays
+   full-bleed. Below lg the visual stacks under the copy. */
 
+import type { ReactNode } from "react";
 import Image from "next/image";
 
 import heroBg from "@/public/impact/hero-bg.jpg";
 import heroBgGreen from "@/public/impact/hero-bg-green.jpg";
+import heroBgCanvas from "@/public/impact/overview/hero-canvas-bg.jpg";
 
-const BACKGROUNDS = { navy: heroBg, green: heroBgGreen };
+const BACKGROUNDS = { navy: heroBg, green: heroBgGreen, canvas: heroBgCanvas };
 
 type Cta = { label: string; href: string };
 
@@ -27,6 +33,7 @@ export type TeamHeroProps = {
   secondaryCta?: Cta;
   footnote?: string;
   background?: keyof typeof BACKGROUNDS;
+  visual?: ReactNode;
 };
 
 export default function TeamHero({
@@ -37,11 +44,16 @@ export default function TeamHero({
   secondaryCta,
   footnote,
   background = "navy",
+  visual,
 }: TeamHeroProps) {
   return (
     <section
       aria-labelledby="team-hero-title"
-      className="relative overflow-hidden bg-[#020912] px-section-x-sm pb-16 pt-[7.5rem] md:px-section-x-md md:pb-24 md:pt-[10rem] lg:px-section-x-lg lg:pb-30 lg:pt-[12.75rem]"
+      className={`relative overflow-hidden bg-impact-hero-night pb-16 pt-[7.5rem] md:pb-24 md:pt-[10rem] ${
+        visual
+          ? "lg:pb-0 lg:pt-hero-nav"
+          : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg lg:pb-30 lg:pt-[12.75rem]"
+      }`}
     >
       <Image
         src={BACKGROUNDS[background]}
@@ -54,8 +66,16 @@ export default function TeamHero({
         className="pointer-events-none object-cover object-top"
       />
 
-      <div className="relative mx-auto w-full max-w-content">
-        <div className="flex max-w-[33.9375rem] flex-col gap-8">
+      <div
+        className={
+          visual
+            ? "relative mx-auto flex w-full max-w-hero flex-col px-section-x-sm md:px-section-x-md lg:flex-row lg:gap-8 lg:px-0"
+            : "relative mx-auto w-full max-w-content"
+        }
+      >
+        <div
+          className={`flex max-w-[33.9375rem] flex-col gap-8 ${visual ? "lg:ml-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] lg:shrink-0 lg:pt-section-y-lg" : ""}`}
+        >
           <div className="flex flex-col gap-6 lg:gap-8">
             <div className="flex flex-col gap-2">
               <p
@@ -108,6 +128,12 @@ export default function TeamHero({
             )}
           </div>
         </div>
+
+        {visual && (
+          <div className="mx-auto mt-12 w-full max-w-hero-visual md:mt-16 lg:ml-auto lg:mr-0 lg:mt-0 lg:min-w-0 lg:flex-1">
+            {visual}
+          </div>
+        )}
       </div>
     </section>
   );

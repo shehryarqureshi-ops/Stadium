@@ -1442,6 +1442,7 @@ Routes live in `TEAM_ROUTES` (`app/components/impact/shared.ts`) and drive the h
 | Component | Figma pattern | Notes |
 |---|---|---|
 | `TeamHero` | "Hero · Swag" text | `public/impact/hero-bg.jpg` = Figma "image 13990" cropped to the dark band (cover/top). Eyebrow `text-eyebrow-lg` · title `text-display-pricing` (58) · intro `text-body-xl` · white pill + outline pill. |
+| `TeamHero` + `visual` | /impact canvas hero (5152:23461) | `background="canvas"` = `public/impact/overview/hero-canvas-bg.jpg` (Figma "image 13989", 2× export, top 808 only). `visual` slot: copy left edge = the header logo's (user decision 2026-10-06, supersedes Figma's 140: `lg:ml-[max(section-x-md,(100% − max-w-content)/2)]`, identical to the header's own rule), visual flush right of a `max-w-hero` (1440) row, starts under the 84 header band (`lg:pt-hero-nav`); stacks under the copy below lg. |
 | `SectionIntro` | every centered/left intro | eyebrow 12 Bold +1.6 · 44/1.08/−0.5 (`lg:text-heading-xl`) · 18/1.48 `text-swag-grey`; max 860 centered. |
 | `VariableCardGrid` (extended) | problem / case-study / 2×2 trays | opt-in: `imageStyle="panel"` (lifted mockup, layered shadow, rounded-t-lg/b-3xl), item `title`/`image` optional (no image = #f2f2f2 placeholder 250h), `footnote`, `background="transparent"`, `narrow` (tray max 880). |
 | `LogoBridge` | "icons"/"Integrations" strip | two 50s marquees (`swag-marquee`) toward a white r42 tile (`impact/stadium-tile-mark.svg` 158² with its own inner tile + shadow, inset −4.69/−11.72/−18.75%) on `stadium-tile-glow.png`; `logoOpacity` 0.33 (mid-grey marks) or 1 (pre-tinted); `rightLogos` when sides differ. |
@@ -1457,3 +1458,23 @@ Routes live in `TEAM_ROUTES` (`app/components/impact/shared.ts`) and drive the h
 
 **Assets** — `public/impact/<team>/` (overview = `/impact/overview/`): product mockups exported from Figma at 2× (`download_assets defaultScale 2`, PNG), photos JPEG q86, logos as Figma SVGs.
 **Content decisions** — Figma grey placeholders kept as placeholders (case studies, five-ways images, proof cards). Undesigned PillTabs tabs use that team's Impact menu use-case copy with placeholder imagery.
+
+## /impact hero — Open Spatial Canvas (added 2026-10-06)
+
+Figma n9SjmDjzB1PeZAYJ5w43fr **5152:23461** (desktop 1440 × 808; no tablet/mobile frames — the visual scales, the copy reuses TeamHero's responsive type). Copy, CTAs and type are unchanged from TeamHero; what's new is the backdrop and the right-hand visual.
+
+**Tokens added (globals.css)** — colours `canvas-muted #919295`, `canvas-pink #fdceda`, `canvas-lilac #e8d0fa`, `canvas-blue #cee4fe`, `canvas-green #d8f1cc`, `canvas-check #267337`, `canvas-seg-pink #f6a3b8` / `-lilac #c99af0` / `-blue #8fbffa`, `impact-hero-night #020912`; spacing `hero-nav` 84; container `hero` 1440 · `hero-visual` 647. Greys reuse `grey-100/200/300/800` and `swag-grey`.
+
+**Visual** — `impact/OpenSpatialCanvasScene.tsx` (a Remotion composition, 647 × 724, 30 fps) hosted by `impact/OpenSpatialCanvas.tsx` (`@remotion/player`). Stage geometry/shadows are Figma values **in stage units** (bare numbers in style objects): the Player scales the whole stage to its container like an exported image, so these are not CSS px and the rem rule does not apply inside the stage. Colours/fonts still use tokens. Shadows: toolbar `0 12 28 .34` · cards `0 16 40 .38` · toast `0 14 32 .36` · cursor pills `0 3 10 .28`.
+
+**Timeline** — 0–96 intro (springs, recipients 0→1,200, $0→$186,400, budget segments, cursors fly in, Alex selects); 96–396 idle loop. Frame 96 = the Figma frame exactly (also the reduced-motion still). Loop values start and end at the Figma rest pose, so `ended` seeks 396 → 96 seamlessly (intro plays once). Always moving: every card floats on its own slow whole-cycle sine (±2.5–4, 1–3 cycles per loop, ramped in over frames 56–96) and the cursors drift continuously. Visits: Maya → Summit card, Grace → Anniversaries (click), Arun → budget (target card lifts), Alex drags Closed-won gifts, "Kit delivered" toast leaves/returns.
+
+**No crop** — Player `overflowVisible`; every moving element (fly-ins, visits, drift, drag) stays inside 0…647 with margin (Grace's 136-wide pill is the binding one).
+
+**Header gutter** — SiteHeader's inner row is now full-width with `md:px-[max(section-x-md,(100% − max-w-content)/2)]` (same 1260 content box and 90px at 1440 as before) so the logo never hugs the viewport edge between 768 and 1320 (it did, at x=0) — hero copy uses the identical rule, so they share one left edge at every width.
+
+**Behaviour** — aria-hidden + non-interactive; pauses off-screen (IntersectionObserver); `prefers-reduced-motion` → still at frame 96; aspect ratio reserves the space (no CLS).
+
+**Assets** (`public/impact/overview/hero/`) — avatars (28 → 56px PNG, + ring variants for the toolbar), thumbs re-cropped square 240px JPEG q90 (hoodie 900², anniversary 633×456, gift 1600×1068 originals were far larger than the 48–60 they render at). Spain flag drawn as 1:2:1 stripes (Figma's flag is a 267 KB sprite).
+
+**Licence note** — Remotion's licence requires a company licence for teams of 4+ (applies to the Player too). Confirm before shipping.

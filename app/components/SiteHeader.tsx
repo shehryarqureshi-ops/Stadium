@@ -282,7 +282,7 @@ export default function SiteHeader({
             </p>
           </div>
         )}
-        <div className="mx-auto flex w-full max-w-content items-center justify-between px-4 md:px-0 py-4 lg:h-16 lg:py-3">
+        <div className="flex w-full items-center justify-between px-4 md:px-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] py-4 lg:h-16 lg:py-3">
           <Logo light={!solid} />
 
           {/* Desktop nav links */}

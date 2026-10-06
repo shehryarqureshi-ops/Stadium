@@ -20,13 +20,13 @@ const LINK_COLUMNS: {
     {
       heading: "Resources",
       links: [
-        { label: "Learning Center", href: "/learning-center" },
-        { label: "Partnerships", href: "/partnerships" },
-        { label: "RFP / RFI", href: "/rfp-rfi" },
-        { label: "Help Center", href: "/help-center" },
-        { label: "Videos", href: "/videos" },
-        { label: "Accessibility", href: "/accessibility" },
-        { label: "Contact Us", href: "/contact" },
+        { label: "Learning Center", href: "https://stadiumhq.notion.site/Stadium-Learning-Resource-Center-2b75247529b5837ebc4181e139d5b6b5" },
+        { label: "Partnerships", href: "https://www.bystadium.com/partnerships" },
+        { label: "RFP / RFI", href: "https://by-stadium.typeform.com/to/iSahZGN8" },
+        { label: "Help Center", href: "https://help.bystadium.com/hc/en-us" },
+        { label: "Videos", href: "https://www.youtube.com/@bystadium/playlists" },
+        { label: "Accessibility", href: "https://help.bystadium.com/hc/en-us/articles/26547964398359-Accessibility-Tool-Overview" },
+        { label: "Contact Us", href: "https://help.bystadium.com/hc/en-us/requests/new?ticket_form_id=25244730714391" },
       ],
     },
     {
