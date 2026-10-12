@@ -189,6 +189,7 @@
   --color-arcade-well: #f3f3f5; /* /impact/marketing hero · product photo well */
   --color-chip-surface: #f3f3f5; /* /impact/sales hero · source chips, recipient pill (same value as arcade-well) */
   --color-signal-green: #2fa64f; /* /impact/sales hero · active-stage dot, travelling gift packet */
+  --color-canvas-yellow: #fcefc2; /* /impact/leadership hero · Finance label */
 
   /* ===== Infrastructure dark section (Figma 205:12251 / 1:66998 / 1:62790) ===== */
   --color-infra-base-1: #1c1d1f; /* section gradient start */

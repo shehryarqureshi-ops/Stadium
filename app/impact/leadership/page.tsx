@@ -9,6 +9,7 @@ import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import GuardrailsTray from "@/app/components/impact/GuardrailsTray";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
@@ -46,6 +47,10 @@ export default function LeadershipPage() {
           description="Let teams run their programs while leadership maintains company-wide visibility and control."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          background="canvas"
+          visual={<GuardrailsTray />}
+          visualLayout="aligned"
+          visualMaxWidth="36.25rem"
         />
       }
       closing={

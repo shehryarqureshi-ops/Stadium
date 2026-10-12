@@ -15,6 +15,7 @@ launch-gated `#` links). Shopify's equivalent is measured first whenever
 one exists — numbers, not vibes.
 
 ### 1. Semantic — structure & meaning
+
 - One `h1` per page; sections head with `h2`, no level skips
 - Right element for the job: links navigate (real `href`), buttons act;
   no clickable divs; no fake controls — a control that does nothing
@@ -25,6 +26,7 @@ one exists — numbers, not vibes.
   wherever the visual implies state
 
 ### 2. Accessible — WCAG 2.2 AA, measured
+
 - Contrast: text ≥4.5:1 (≥3:1 for ≥24px/18.66px-bold); UI parts + focus
   indicators ≥3:1 — measured WORST-CASE (over photos, compute the scrim
   floor like the nav top-scrim: ≥0.62 alpha band ⇒ ~5:1)
@@ -43,6 +45,7 @@ one exists — numbers, not vibes.
   stateful widgets (accordions, tabs, carousels announce state)
 
 ### 3. Aesthetic — system fidelity
+
 - Tokens only — every value traceable here; no rogue hexes (the old
   ScaleMap heading / #C7BCB3 hairline class of bug)
 - One rhythm: 48px heading→content desktop / 24 below; section padding
@@ -79,6 +82,7 @@ one exists — numbers, not vibes.
   `next/image` `sizes`
 
 ### 4. Experiential — alive and honest
+
 - Every interactive element: hover + active + focus-visible states;
   feedback <100ms; zero layout shift on state change (fixed-height
   drawer lesson)
@@ -101,6 +105,7 @@ one exists — numbers, not vibes.
   accident of stacking
 
 ### 5. Performance — felt speed (added 2026-06-12)
+
 - LCP element identified per page; its image `priority` (hero ✓), the
   rest lazy; `sizes` attrs match rendered widths
 - Animations compositor-only (`transform`/`opacity` — never width/top
@@ -112,18 +117,20 @@ one exists — numbers, not vibes.
   multi-MB assets in signed sections
 
 ### 6. Content & resilience (added 2026-06-12)
+
 - **Signed sections contain approved copy only** — INVENTED/PROPOSED
   flags block signing (or ride as a named ledger exception)
 - Long-string tolerance: layouts wrap rather than clip/overflow (~+30%
   string growth, the i18n floor); voice consistency (uppercase CTA
   convention, sentence-case headings)
 - Link text descriptive on its own ("Explore HR", `aria-label="View all
-  Recognition"` — never bare "Learn more" ×5)
+Recognition"` — never bare "Learn more" ×5)
 - Degrades gracefully: content readable and navigable pre-hydration/no-JS;
   every photo sits on a surface fallback (`bg-grey-200` pattern); iOS
   quirks owned (`100dvh` ✓, no hover-only paths)
 
 ### Page-level gates (tracked once, not per section)
+
 - Skip-to-content link · custom `:focus-visible` system — **DONE
   2026-06-12** (global base rule: 2px solid ink ring, offset 2; dark/photo
   contexts override with `focus-visible:outline-white`; skip link =
@@ -165,14 +172,14 @@ min across text bounds) — never from zone math or desktop
 generalization. The hero was signed on desktop-only evidence and had to
 be reopened; that failure mode is now structurally blocked.
 
-| Section | Status | Exceptions |
-| --- | --- | --- |
-| Navigation (all breakpoints) | ✅ SIGNED 2026-06-12 | `#` links launch-gated (focus rings + skip link landed with Hero) |
-| Hero | ✅ RE-SIGNED 2026-06-12 with FULL matrix — glyph-accurate contrast at 375/768/1024/1440/1880 all pass (h1 ≥4.21 vs 3 needed; small text ≥5.69 vs 4.5; CTAs ≥7.83); fixes: below-lg `bg-ink/60` floor + recomputed 90deg scrim stops; 40px CTAs, 2px outline, drift, rings, skip link verified; WIP heroes synced (scrim rect + flat overlays) | `#` CTAs launch-gated; drift interim until brand video. History: signed desktop-only, REOPENED when the matrix caught mobile 1.51:1 — and the matrix then caught the unverified "desktop passes" claim too (1024 h1 was 1.58) |
-| Every Way | 🟡 IN REVIEW 2026-06-12 — geometry + aspect-lock matrix GREEN at 320/375/768/1024/1440 (5 cards every state; 0.691 every card type every width; no orphan headline; descs surfaced; mobile thumb 64px; no page overflow — confirmed EveryWay clean, the 1024 overflow is ScaleMap's). Viewport decision: LEAVE AS-IS (fits standard phones). WIP synced (mobile thumbs 64, headline line-breaks, captions present via accordion component). ONE CELL OPEN: 5s rotation + hover/focus pause needs a 20-second user eyeball in a visible window (occluded remote window keeps it correctly idle) | Pending assets (states 2–4 tiles); "Candidates"/"Life Moments" PROPOSED copy; sub-lg patterns designed in code (no Figma frames) |
-| Trust band | ✅ SIGNED 2026-06-12 (rev 2) — invisible 2.2.2 mechanism verified per modality: hover pause/resume (real mouse), focus-revealed keyboard control (transition-off probe), coarse-pointer tap toggle; matrix at 375/768/1024/1440; h2, dupes aria-hidden, eyebrow 4.66:1; WIP synced (buttons removed) | none — copy real, hrefs n/a, no imagery text |
-| Scale Map | 🔴 REBUILT 2026-07-16 — the `wide`-breakpoint two-column/reach-map layout this row previously tracked is gone; component rewritten to a single light layout with a decorative particle canvas (see section above). **Sign-off not yet run against the new build** — this row's prior overflow/contrast findings are void, need a fresh full-matrix pass | Particle visualization is code-designed with no Figma frame at all (approved one-off exception, not an extrapolation like EveryWay's sub-lg patterns) |
-| (remaining sections) | pending | — |
+| Section                      | Status                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Exceptions                                                                                                                                                                                                                    |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Navigation (all breakpoints) | ✅ SIGNED 2026-06-12                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `#` links launch-gated (focus rings + skip link landed with Hero)                                                                                                                                                             |
+| Hero                         | ✅ RE-SIGNED 2026-06-12 with FULL matrix — glyph-accurate contrast at 375/768/1024/1440/1880 all pass (h1 ≥4.21 vs 3 needed; small text ≥5.69 vs 4.5; CTAs ≥7.83); fixes: below-lg `bg-ink/60` floor + recomputed 90deg scrim stops; 40px CTAs, 2px outline, drift, rings, skip link verified; WIP heroes synced (scrim rect + flat overlays)                                                                                                                                                                                                                                                  | `#` CTAs launch-gated; drift interim until brand video. History: signed desktop-only, REOPENED when the matrix caught mobile 1.51:1 — and the matrix then caught the unverified "desktop passes" claim too (1024 h1 was 1.58) |
+| Every Way                    | 🟡 IN REVIEW 2026-06-12 — geometry + aspect-lock matrix GREEN at 320/375/768/1024/1440 (5 cards every state; 0.691 every card type every width; no orphan headline; descs surfaced; mobile thumb 64px; no page overflow — confirmed EveryWay clean, the 1024 overflow is ScaleMap's). Viewport decision: LEAVE AS-IS (fits standard phones). WIP synced (mobile thumbs 64, headline line-breaks, captions present via accordion component). ONE CELL OPEN: 5s rotation + hover/focus pause needs a 20-second user eyeball in a visible window (occluded remote window keeps it correctly idle) | Pending assets (states 2–4 tiles); "Candidates"/"Life Moments" PROPOSED copy; sub-lg patterns designed in code (no Figma frames)                                                                                              |
+| Trust band                   | ✅ SIGNED 2026-06-12 (rev 2) — invisible 2.2.2 mechanism verified per modality: hover pause/resume (real mouse), focus-revealed keyboard control (transition-off probe), coarse-pointer tap toggle; matrix at 375/768/1024/1440; h2, dupes aria-hidden, eyebrow 4.66:1; WIP synced (buttons removed)                                                                                                                                                                                                                                                                                           | none — copy real, hrefs n/a, no imagery text                                                                                                                                                                                  |
+| Scale Map                    | 🔴 REBUILT 2026-07-16 — the `wide`-breakpoint two-column/reach-map layout this row previously tracked is gone; component rewritten to a single light layout with a decorative particle canvas (see section above). **Sign-off not yet run against the new build** — this row's prior overflow/contrast findings are void, need a fresh full-matrix pass                                                                                                                                                                                                                                        | Particle visualization is code-designed with no Figma frame at all (approved one-off exception, not an extrapolation like EveryWay's sub-lg patterns)                                                                         |
+| (remaining sections)         | pending                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | —                                                                                                                                                                                                                             |
 
 ## Units (2026-06-11)
 
@@ -186,8 +193,8 @@ borders and 1px shadow offsets/inset highlights — these stay crisp.
 — do not reintroduce it.
 
 **Above 1440: Shopify-style centered container** (reference:
-shopify.com — approved 2026-06-11). Section *backgrounds* run full-bleed;
-*content* caps and centers. Tokens (`--container-*` namespace → `max-w-*`
+shopify.com — approved 2026-06-11). Section _backgrounds_ run full-bleed;
+_content_ caps and centers. Tokens (`--container-*` namespace → `max-w-*`
 classes):
 
 - `max-w-content` (88.75rem / 1420px — Shopify's measured content cap, hit
@@ -222,7 +229,7 @@ re-encodes everything to WebP anyway):
    - **Photos:** use the ORIGINAL upload behind the frame — `download_assets`
      → `rawImages` (the /snacks stock photos are 1400–1800px natively) — and
      commit it at native size as JPEG q90 mozjpeg 4:4:4 (~300–450 KB). Only
-     when Figma applies its own crop (catalog cards) export the *image node* at
+     when Figma applies its own crop (catalog cards) export the _image node_ at
      `defaultScale: 4` (Figma's max) so the crop is exact.
    - **UI mockups** (vector in Figma): export at `defaultScale: 4` → PNG
      lossless (step cards 1060×1328, byo 2320×1684). Razor-sharp at any zoom.
@@ -262,11 +269,11 @@ proportions were matched at that width; the audit script is
 
 Figma designs three frame sizes; they map to Tailwind breakpoints as follows:
 
-| Figma frame              | Width  | Tailwind prefix | Token suffix |
-| ------------------------ | ------ | --------------- | ------------ |
-| Mobile (node `98:871`)   | 375px  | (none, default) | `-sm`        |
-| Tablet (node `96:871`)   | 768px  | `md:`           | `-md`        |
-| Desktop (node `87:871`)  | 1440px | `lg:`           | `-lg`        |
+| Figma frame             | Width  | Tailwind prefix | Token suffix |
+| ----------------------- | ------ | --------------- | ------------ |
+| Mobile (node `98:871`)  | 375px  | (none, default) | `-sm`        |
+| Tablet (node `96:871`)  | 768px  | `md:`           | `-md`        |
+| Desktop (node `87:871`) | 1440px | `lg:`           | `-lg`        |
 
 **`wide` (1300px, `--breakpoint-wide`) — code-only, added 2026-06-13.** Not a
 Figma frame. The threshold where a desktop layout that needs more room than the
@@ -279,34 +286,34 @@ as a routine fourth Figma breakpoint.
 
 ## Fonts
 
-| Role     | Family   | Source                                | CSS variable      | Tailwind class |
-| -------- | -------- | ------------------------------------- | ----------------- | -------------- |
-| Display  | Satoshi Bold (700) | local `app/fonts/Satoshi-Bold.woff2` (Fontshare) | `--font-satoshi`  | `font-display` |
-| Body/UI  | Overpass 400/500/600/700 | `next/font/google`          | `--font-overpass` | `font-sans`    |
+| Role    | Family                   | Source                                           | CSS variable      | Tailwind class |
+| ------- | ------------------------ | ------------------------------------------------ | ----------------- | -------------- |
+| Display | Satoshi Bold (700)       | local `app/fonts/Satoshi-Bold.woff2` (Fontshare) | `--font-satoshi`  | `font-display` |
+| Body/UI | Overpass 400/500/600/700 | `next/font/google`                               | `--font-overpass` | `font-sans`    |
 
 Both are loaded in `app/layout.tsx` via `next/font` and exposed as CSS
 variables on `<html>`.
 
 ## Colors
 
-| Token (Figma name)  | Value                      | Tailwind token        | Class            |
-| ------------------- | -------------------------- | --------------------- | ---------------- |
-| `color/brand/hero`  | `#181818`                  | `--color-brand-hero`  | `text-brand-hero`, `bg-brand-hero` |
-| Hero body text      | `rgba(255,255,255,0.86)`   | `--color-hero-body`   | `text-hero-body` |
-| Hero text / labels  | `#ffffff`                  | (Tailwind `white`)    | `text-white`     |
+| Token (Figma name) | Value                    | Tailwind token       | Class                              |
+| ------------------ | ------------------------ | -------------------- | ---------------------------------- |
+| `color/brand/hero` | `#181818`                | `--color-brand-hero` | `text-brand-hero`, `bg-brand-hero` |
+| Hero body text     | `rgba(255,255,255,0.86)` | `--color-hero-body`  | `text-hero-body`                   |
+| Hero text / labels | `#ffffff`                | (Tailwind `white`)   | `text-white`                       |
 
 ### Infrastructure dark section palette (Figma 205:12251, added 2026-06-12)
 
-| Role                        | Value     | Tailwind token           |
-| --------------------------- | --------- | ------------------------ |
-| Section gradient start      | `#1c1d1f` | `--color-infra-base-1`   |
-| Section gradient end        | `#0e0f11` | `--color-infra-base-2`   |
-| Chapter card surface        | `#17181b` | `--color-infra-card`     |
-| Card/video hairline border  | `#26282c` | `--color-infra-border`   |
-| Video panel gradient start  | `#202227` | `--color-infra-panel-1`  |
-| Video panel gradient end    | `#121316` | `--color-infra-panel-2`  |
-| Desktop card header label   | `#6b6e74` | `--color-infra-eyebrow`  |
-| Desktop inactive row label  | `#c9cbcf` | `--color-infra-row`      |
+| Role                       | Value     | Tailwind token          |
+| -------------------------- | --------- | ----------------------- |
+| Section gradient start     | `#1c1d1f` | `--color-infra-base-1`  |
+| Section gradient end       | `#0e0f11` | `--color-infra-base-2`  |
+| Chapter card surface       | `#17181b` | `--color-infra-card`    |
+| Card/video hairline border | `#26282c` | `--color-infra-border`  |
+| Video panel gradient start | `#202227` | `--color-infra-panel-1` |
+| Video panel gradient end   | `#121316` | `--color-infra-panel-2` |
+| Desktop card header label  | `#6b6e74` | `--color-infra-eyebrow` |
+| Desktop inactive row label | `#c9cbcf` | `--color-infra-row`     |
 
 ### Hero background scrim
 
@@ -362,8 +369,8 @@ Horizontal margins follow **shopify.com** (measured live 2026-06-11),
 superseding Figma's 24/48/120 by user decision. Vertical paddings remain
 the Figma values.
 
-| Breakpoint | Margin X (Shopify) | Padding Y (Figma) | Tokens                                          |
-| ---------- | ------------------ | ----------------- | ----------------------------------------------- |
+| Breakpoint | Margin X (Shopify) | Padding Y (Figma) | Tokens                                              |
+| ---------- | ------------------ | ----------------- | --------------------------------------------------- |
 | Mobile     | 16px               | 32px              | `--spacing-section-x-sm` / `--spacing-section-y-sm` |
 | Tablet     | 30px               | 64px              | `--spacing-section-x-md` / `--spacing-section-y-md` |
 | Desktop    | 90px               | 96px              | `--spacing-section-x-lg` / `--spacing-section-y-lg` |
@@ -377,8 +384,8 @@ side paddings were retired with this change).
 Fixed-height frames with content vertically **centered** (`justify-center`).
 Implemented as min-heights (`min-h-hero-sm md:min-h-hero-md lg:min-h-hero-lg`):
 
-| Breakpoint | Height | Token              |
-| ---------- | ------ | ------------------ |
+| Breakpoint | Height | Token               |
+| ---------- | ------ | ------------------- |
 | Mobile     | 422px  | `--spacing-hero-sm` |
 | Tablet     | 398px  | `--spacing-hero-md` |
 | Desktop    | 676px  | `--spacing-hero-lg` |
@@ -406,8 +413,8 @@ letter-spacing, and weight sub-values baked in).
 
 ### Display headline — Satoshi Bold (`font-display`) — 2026-06-11 rev
 
-| Breakpoint | Size | Line height | Tracking | Class            |
-| ---------- | ---- | ----------- | -------- | ---------------- |
+| Breakpoint | Size | Line height | Tracking | Class             |
+| ---------- | ---- | ----------- | -------- | ----------------- |
 | Mobile     | 32px | 40px        | -0.5px   | `text-display-sm` |
 | Tablet     | 52px | 60px        | -1.25px  | `text-display-md` |
 | Desktop    | 64px | 72px        | -1.5px   | `text-display-lg` |
@@ -427,8 +434,8 @@ already is the new building photo.
 
 Solid leading (line-height = size), 10% tracking:
 
-| Breakpoint | Size | Line height | Tracking | Class            |
-| ---------- | ---- | ----------- | -------- | ---------------- |
+| Breakpoint | Size | Line height | Tracking | Class             |
+| ---------- | ---- | ----------- | -------- | ----------------- |
 | Mobile     | 12px | 12px        | 1.2px    | `text-eyebrow-sm` |
 | Tablet     | 14px | 14px        | 1.4px    | `text-eyebrow-md` |
 | Desktop    | 16px | 16px        | 1.6px    | `text-eyebrow-lg` |
@@ -585,6 +592,7 @@ Figma: desktop 1:62045, tablet 1:66913+1:66916, mobile 1:62691+1:62694.
 sticky nav is now the topmost element.
 
 **Nav bar**
+
 - **Fixed + transparent-to-solid** (Shopify pattern, approved 2026-06-11;
   not in Figma): at the top of the page the bar is transparent over the hero
   photo — white links, white CTA pill, and the standard logo lockup
@@ -750,8 +758,8 @@ Figma: 107:946 / 110:946 / 113:943.
   - Pointer: hovering the strip pauses (`animation-play-state` via CSS
     `:hover`), leaving resumes — no UI
   - Keyboard: focus-REVEALED 40px control (skip-link pattern: `opacity:0`
-    + `pointer-events:none` until `:focus-visible`), `aria-pressed`,
-    state-swapped label, toggles via inline style
+    - `pointer-events:none` until `:focus-visible`), `aria-pressed`,
+      state-swapped label, toggles via inline style
   - Touch: tapping the strip toggles, gated to `(pointer: coarse)` so
     mouse clicks never freeze it; button click stops propagation
   - Reduced motion: loop off, control `display:none`
@@ -784,12 +792,12 @@ Figma: 1:62096 / 1:66950 / 1:62728. **States: 141:84860.**
 The headline is interactive — each sentence is a state trigger (active
 sentence `ink`, others `grey-400`; client component):
 
-| Sentence (trigger) | Card row |
-| --- | --- |
-| "Every way you show up." (default) | 5 pillars (layout below) |
-| "However you want." | Company Stores, Bundled Kits, Automations, Sender Choice, Recipient Choice — 240×320 tiles, 20px gap |
-| "For everyone you care about." | Employees, Customers, Partners, Prospects — 295×320 tiles, 24px gap |
-| "Whenever it matters." | Onboarding, Milestones, Events, Holidays — 295×320 tiles, 24px gap |
+| Sentence (trigger)                 | Card row                                                                                             |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| "Every way you show up." (default) | 5 pillars (layout below)                                                                             |
+| "However you want."                | Company Stores, Bundled Kits, Automations, Sender Choice, Recipient Choice — 240×320 tiles, 20px gap |
+| "For everyone you care about."     | Employees, Customers, Partners, Prospects — 295×320 tiles, 24px gap                                  |
+| "Whenever it matters."             | Onboarding, Milestones, Events, Holidays — 295×320 tiles, 24px gap                                   |
 
 States 2–4 tiles are **pending-asset placeholders** per the design: bg
 `#f0f0f7`, 1px dashed `#8C94A6` border, `rounded-card`, yellow
@@ -824,9 +832,10 @@ cover scales by height). WIP tablet tiles + mobile thumbnails resized to
 match. Single upload per pillar now reads identically everywhere.
 
 **Headline wrapping + card upgrade + viewport fit (user-flagged 2026-06-12):**
+
 - **Orphan fix:** the trailing "For" was unintentional inline wrapping.
   Sentences are now unbreakable units at md+ (`md:inline
-  md:whitespace-nowrap` — wraps happen BETWEEN sentences only); on mobile
+md:whitespace-nowrap` — wraps happen BETWEEN sentences only); on mobile
   each sentence is its own `block` line (no orphans, bigger tap targets).
   Verified: no mid-sentence break at 320/375/768/1024/1440.
 - **Card design:** desktop/tablet cards now render the `desc` line under
@@ -858,15 +867,15 @@ match. Single upload per pillar now reads identically everywhere.
   to match the code's stacked mobile headline (was showing the "For"
   orphan as static text flow).
 - **Single-viewport (mobile):** section ≈ 600–650px content (headline ~120
-  + 5 rows ~490 + gaps), 754px including py. FITS modern phones (iPhone
-  14/15, Pixel — ~700px+ visible); BORDERLINE on iPhone-SE-class
-  (~560px visible — last card below fold). 5 stacked tappable rows +
-  headline have a ~590px floor; tightening further trades against the
-  no-orphan stacked headline. DECISION 2026-06-12 (user: "take the best
-  call"): LEAVE AS-IS — content (headline + 5 cards) ≈ 570px fits
-  standard phones in one viewport; the original sin (horizontal scroll
-  hiding 3.6 cards) is fully solved; cramping for marginal SE-class gain
-  would degrade the 99%.
+  - 5 rows ~490 + gaps), 754px including py. FITS modern phones (iPhone
+    14/15, Pixel — ~700px+ visible); BORDERLINE on iPhone-SE-class
+    (~560px visible — last card below fold). 5 stacked tappable rows +
+    headline have a ~590px floor; tightening further trades against the
+    no-orphan stacked headline. DECISION 2026-06-12 (user: "take the best
+    call"): LEAVE AS-IS — content (headline + 5 cards) ≈ 570px fits
+    standard phones in one viewport; the original sin (horizontal scroll
+    hiding 3.6 cards) is fully solved; cramping for marginal SE-class gain
+    would degrade the 99%.
 
 **Sub-lg pattern unification (user-flagged 2026-06-12 — "5 cards off
 the viewport defeats the purpose"):** the horizontal scroll rows for
@@ -929,6 +938,7 @@ takes over permanently (rotation never resumes). Disabled entirely under
 LIGHT, WHITE bg, per the user. cobe (V8–V11) was dropped — on a real screen
 its dotted ball read "nowhere close to Shopify". Replaced with a CUSTOM
 Canvas-2D dot-globe in `ChaosGlobe.tsx`:
+
 - **Real continents** wrap the sphere — dot positions come from
   `public/map-dot-mask.svg` (a dotted equirectangular world map, 3582 dots),
   precomputed by `scripts/gen-globe-dots.js` → `app/data/globeDots.ts`
@@ -942,22 +952,23 @@ Canvas-2D dot-globe in `ChaosGlobe.tsx`:
   round the limb (duck behind the globe). Glowing markers (alarm one red).
 - Stadium-blue (`DOT_RGB 11,122,252`) on white; soft CSS atmosphere glow
   behind the canvas. Tuning knobs are the consts at the top of `ChaosGlobe.tsx`.
-WHY Canvas-2D not WebGL/three.js: full color/bg control, lightweight (no
-heavy dep), and — critically — it RENDERS in the occluded remote browser so
-it's screenshot-verifiable (WebGL throttled to partial frames; see
-[[per-breakpoint-signoff]]). VERIFIED by me via screenshot: continents wrap +
-rotate (two frames 2s apart showed the spin), pills anchored + spread, white
-bg, no overflow, no console errors. PENDING user eyeball: drag feel, exact
-blue/scale/tilt to taste. ONLY step beyond this: a photoreal textured earth
-(three.js + earth texture/normal/emissive maps) — bigger build, offer only if
-the dot-globe isn't enough. This V12 hits the user's 4 asks: map wrapping the
-sphere ✓, pill movement ✓, tilted-axis rotation ✓, white bg ✓.
-Maps the four asks from the user's Shopify "Rock steady. Blazing fast."
-reference (large off-center tilted globe, brand-color grainy continents,
-moving location pills) into our palette.
+  WHY Canvas-2D not WebGL/three.js: full color/bg control, lightweight (no
+  heavy dep), and — critically — it RENDERS in the occluded remote browser so
+  it's screenshot-verifiable (WebGL throttled to partial frames; see
+  [[per-breakpoint-signoff]]). VERIFIED by me via screenshot: continents wrap +
+  rotate (two frames 2s apart showed the spin), pills anchored + spread, white
+  bg, no overflow, no console errors. PENDING user eyeball: drag feel, exact
+  blue/scale/tilt to taste. ONLY step beyond this: a photoreal textured earth
+  (three.js + earth texture/normal/emissive maps) — bigger build, offer only if
+  the dot-globe isn't enough. This V12 hits the user's 4 asks: map wrapping the
+  sphere ✓, pill movement ✓, tilted-axis rotation ✓, white bg ✓.
+  Maps the four asks from the user's Shopify "Rock steady. Blazing fast."
+  reference (large off-center tilted globe, brand-color grainy continents,
+  moving location pills) into our palette.
 
 REFINEMENTS (2026-06-13, after user feedback "some jitter in the rotation /
 see what tags to use to show all the things / left typography can be better"):
+
 - **Jitter fixed** — rotation is now TIME-BASED (phi advances by elapsed
   seconds with a 50ms cap), and pills are positioned by `transform` only (no
   `left/top` reflow per frame); sphere gradient cached. These were the two
@@ -1145,7 +1156,7 @@ tokens in `globals.css` are leftover from that prior layout and are unused by
 any current component — left in place, not cleaned up as part of this change.
 
 - Single light layout at all breakpoints (`bg-gradient-to-b from-[#fafafb]
-  to-white`), no `wide:` split: centered heading, a 4-stat row
+to-white`), no `wide:` split: centered heading, a 4-stat row
   (Countries/Items/Integrations/Recipients), and a canvas visualization below.
 - **Figma exception:** the visualization is a decorative Canvas-2D particle
   system ported directly from a user-supplied prototype — like EveryWay's
@@ -1237,11 +1248,13 @@ Figma: 1:62543 / 1:70997 / 1:66786.
 Figma: 1:62590 / 1:71024 / 1:66813.
 
 **Final CTA**
+
 - `bg-surface-subtle`; padding 24/56 → 48/72 → 120/64; centered
 - Heading `text-heading-*` (lg max-w 722); body `text-body-md|lg` (copy differs lg vs sm/md per Figma)
 - Buttons: primary `bg-cta-fill text-cta-on` pill + `inset-shadow-button-dark`; secondary outline pill; full-width stacked mobile
 
 **Footer**
+
 - `bg-grey-800`; padding 24/48 → 48/64 → 80; gap 32/32/48
 - Brand col (lg 409px): white lockup `footer-logo-lockup.svg` h 20/24/36; tagline Overpass Bold uppercase white; social circles 23/24.5/30.5 (footer-social-linkedin/youtube/instagram.svg)
 - OUR BRANDS: `text-label` uppercase grey-400 + hairline #C7BCB3 (lg) + Swagmagic/Snackmagic logotypes
@@ -1258,6 +1271,7 @@ Green SwagMagic brand accent throughout; same Satoshi/Overpass type system and
 white rounded content sections as the homepage.
 
 **Tokens (new, globals.css):**
+
 - `--color-swag-green: #03ba4f` — primary CTA / brand green (hero CTA 344:11927)
 - `--color-swag-mint: #d7fee7` — eyebrow / light accent on the dark-green hero
 - `--gradient-swag-hero` — mesh sampled from the Figma bg image 13674: green
@@ -1265,11 +1279,13 @@ white rounded content sections as the homepage.
   `#063018`/`#04180f` (recreated in CSS, not shipped as a raster)
 
 ## Hero · Swag (`SwagHero.tsx`, Figma 344:11903)
+
 Background is now an animated WebGL shader (`SwagHeroShader.tsx`), not the Figma
 mesh-gradient photo (`swag-hero-bg.jpg`, kept on disk, unused). `SiteHeader`
 auto-themes white (scroll ≤ 8).
 
 ### Swag hero shader (`SwagHeroShader.tsx`)
+
 Recreation of a Figma shader-playground export the user supplied (import from
 `shaders/react`, a composed `<Shader>` wrapper with `Swirl`/`ChromaFlow`/
 `FlutedGlass`/`FilmGrain`). That package + wrapper + the `ChromaFlow`/`FilmGrain`
@@ -1277,6 +1293,7 @@ shaders are Figma-internal and unpublished — no build of
 `@paper-design/shaders-react` (latest 0.0.77, next, canary, experimental) ships
 them, and prop names differ. So the layered look is rebuilt from the real
 published shaders. Layer → equivalent → params:
+
 - **Swirl + ChromaFlow → `MeshGradient`** (dark base + electric flow). colors
   `['#050506','#101018','#18181a','#0033ff','#00e1ff','#5500ff','#0059ff']`
   (base anchor `#18181a` + the export's up/down/left/right hues, dark-biased),
@@ -1303,14 +1320,15 @@ published shaders. Layer → equivalent → params:
   primary `bg-swag-green text-white`, secondary `bg-white border-#e2e2de text-ink`
 - Teams line: Overpass SemiBold 13px #fbfeff
 - Product cluster (344:11932, 558×557): warehouse photo 295×470 rounded-16 shadow
-  + frosted hoodie card (bg-black/33, rounded-20, w-259) — hoodie cut-out,
-  "Embroidered hoodie" (Overpass Bold 17.5 #ddd) + desc (12 #ccc) + ADD TO CART
-  (border white/25) + floating vertical size pill (SIZE / S·M·L·XL, L active bg-black/75)
+  - frosted hoodie card (bg-black/33, rounded-20, w-259) — hoodie cut-out,
+    "Embroidered hoodie" (Overpass Bold 17.5 #ddd) + desc (12 #ccc) + ADD TO CART
+    (border white/25) + floating vertical size pill (SIZE / S·M·L·XL, L active bg-black/75)
 - Logo marquee: `/trust-*.svg` inverted white (brightness-0 invert), opacity 90,
   CSS marquee, edge mask-fade
 - Assets: `public/swag/swag-hoodie.png`, `swag-warehouse.jpg`
 
 ## Remaining sections (component · Figma node · notes)
+
 Section headings share one scale: Satoshi 28/36/44 (`text-[1.75rem] md:text-[2.25rem]
 lg:text-[2.75rem]`, tracking −0.5); eyebrows `text-eyebrow-sm/md` uppercase
 `text-swag-green-deep` (normalized — Figma's per-section eyebrow greens/weights
@@ -1355,12 +1373,14 @@ Figma: n9SjmDjzB1PeZAYJ5w43fr → 3998:4491 "/go/pricing" (desktop 1440 only —
 tablet/mobile derived with the standard breakpoint mapping).
 
 **Page shell**
+
 - One gradient behind every section: `bg-linear-to-b from-pricing-navy (#011c3d) to-pricing-night (#000308)` — pixel-sampled across the 4230px content frame (top #001b3b → frame end #000409).
 - Rhythm at desktop: hero → 160 → comparison → 160 → Book a Demo → 160 → closing CTA (`pt-16 / md:pt-24 / lg:pt-40`).
 - Composition: `SiteHeader` · `PricingHero` · `PricingComparison` · Book a Demo section + `BookACallForm` · `common/ClosingCTA` (transparent bg, `descriptionClassName` widened to 48rem so Figma's 2-line body holds) · `PageClose showCta={false}`.
 - Anchors: `#compare` (comparison), `#book-a-demo` (form). Both `scroll-mt-16` for the fixed 4rem header.
 
 **Hero (`PricingHero.tsx`, 3998:4515)**
+
 - Top pad 7.5 / 10 / 12.75rem (= header 4rem + Figma 120 at lg).
 - Eyebrow `text-eyebrow-sm` +1.6px `text-pricing-sky`; headline `text-display-sm → md:text-display-md → lg:text-display-pricing` (58/1.02/−1.5, Satoshi — Figma specs Black, site ships Bold only); truck row lucide 20 + eyebrow style.
 - Pass cards: `rounded-3xl bg-white p-2.5 shadow-pass`; title block `rounded-2xl bg-pricing-tray px-4 py-6 text-pass-title`; body `px-4 py-6`, rows `text-feature` gap 12 + lucide check 14; CTA `h-button-h` pill `bg-pricing-cell` (featured: `bg-pricing-cta` + `border-pricing-sky shadow-pass-featured`). "Most Popular" pill `bg-pricing-sky text-pill text-pricing-navy`, −10px top / 39px right.
@@ -1368,6 +1388,7 @@ tablet/mobile derived with the standard breakpoint mapping).
 - "Talk to sales" → `?interestedPackage=<pass>#book-a-demo`; BookACallForm forwards it as `interested_package`.
 
 **Comparison (`PricingComparison.tsx`, 3998:4666)**
+
 - Panel `bg-white rounded-[2.5rem] md:rounded-panel (60)`, py 16 / 24 / 40 (160), header → table gap 60.
 - Title `text-heading-xl` (44/1.08/−0.5); subhead `text-body-lg text-swag-grey`.
 - Table: gap 4; header cells white `rounded-3xl`; body cells `bg-pricing-cell rounded-lg`, outer corners `rounded-*-3xl`; `text-table` (14.5/1.4); lucide check 24 / minus 16. Label col 2.62fr (= 500/1280) at lg. Explore cell `bg-pricing-ink rounded-t-lg rounded-b-3xl h-13`.
@@ -1376,6 +1397,7 @@ tablet/mobile derived with the standard breakpoint mapping).
 - Row data lives in `components/pricing/passes.ts` (shared with the modal).
 
 **Packages modal (`pricing/PackagesModal.tsx`, 3401:2352)** — opened by popover "Read more" (on that feature, first pass that includes it) and by the "Explore all features" cell (first pass + feature)
+
 - Native `<dialog>` + `showModal()` (focus trap, Escape, inert page); scrim `backdrop:bg-modal-scrim` (black 50%) closes on click; page scroll locked while open. `.modal-in` = fade + 1rem rise, 0.32s ease-out-expo.
 - Card `max-w-content` (1200) `rounded-modal` (32) `bg-white shadow-form` (card-xh-shadow), p 5 / 8 / 10 (40). Height capped at `min(1178px, 100dvh − 4rem)` (2rem gutter on mobile); the sidebar list and the content pane scroll inside it.
 - Header: title `text-display-demo` (54) + 40 black close circle (lucide x 20) → 32 → `text-body-xl` (19/1.52) → 32 → pass tabs. Tabs: pill bar `border-modal-border` (#e0e0e0) `bg-white/75 p-2.5 gap-2.5 shadow-pass`; tab `px-5 py-[0.8125rem] text-eyebrow-sm leading-4` (12/16 +1px Bold), active `bg-pricing-ink text-white`. WAI-ARIA tabs (arrows/Home/End).
@@ -1386,6 +1408,7 @@ tablet/mobile derived with the standard breakpoint mapping).
 - Copy is placeholder (table popover text + Figma's Shops sample); swap in real copy/images in `passes.ts`.
 
 **Book a Demo form (`BookACallForm.tsx`, 3998:4924)** — styling only; business logic untouched
+
 - Card `max-w-[40.375rem] rounded-3xl bg-white p-6 md:p-10 shadow-form`; grid 1 → `md:` 2 cols, gap 24.
 - Label `text-field-label` uppercase (12.5/1.4/+0.3 Bold); label → control `gap-field-gap` (7).
 - Control `h-field-h` (46) `rounded-lg border-field-border px-3.5 text-field`, placeholder `text-field-placeholder`; hover `border-field-border-hover`; focus/open `border-pricing-ink shadow-field-focus` (global outline suppressed on text fields — the ink border is the indicator); error `border-field-error bg-field-error-tint` + `text-field-hint` message with CircleAlert. Textarea `rounded-[0.625rem] min-h-28`.
@@ -1416,6 +1439,7 @@ Figma: n9SjmDjzB1PeZAYJ5w43fr → 3998:4026 (desktop 1440 only).
 Stack: `BookACallHero` → glass panel + `ProblemSection tone="dark"` → 160 → `VerticalTestimonials theme="dark" layout="stack"` → 120 → `ClosingCTA` (transparent, 48rem body) → `PageClose showCta={false}`.
 
 **Hero (`BookACallHero.tsx`, 3998:4049)**
+
 - Top pad 7.5 / 9 / 12.75rem; bottom 3 / 4 / 7.5rem. Grid `max-w-[72.5rem]` (Figma 1160 @ px140), `lg:grid-cols-2 gap-x-[3.75rem]`.
 - Headline `text-display-sm → md:text-display-md → lg:text-display-demo` (54/1.02/−1.5 — shared with /pricing "Book a Demo"); intro `text-body-lg → md:text-body-xl` (19/1.52), max 439; eyebrow `text-eyebrow-sm leading-4`; checks lucide 14 + `text-feature`.
 - Proof block (lg: row 2, `self-end`, min `mt-[6.875rem]`, fixed 170 tall): stars 180w · "2700+ Reviews" `text-body-sm` · G2 (`/g2-logo.svg`) / Capterra / Google 40h (`public/book-a-call/`) → 40 → `HeroLogoWall variant="inline"` (max 514) → 32 → Help Center line `text-field text-grey-200`.
@@ -1447,6 +1471,7 @@ Routes live in `TEAM_ROUTES` (`app/components/impact/shared.ts`) and drive the h
 | `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/sales hero (5205:17055) | Same grid as /impact/marketing; `visual={<DealRail />}`, `visualMaxWidth="37rem"` (592 stage). See "/impact/sales hero — Deal rail". |
 | `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/cx hero (5212:17243) | Same grid; `visual={<GrowthSteps />}`, `visualMaxWidth="37rem"` (592 stage). See "/impact/cx hero — Growth steps". |
 | `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/hr hero (5388:21262) | Same grid; `visual={<MomentsBento />}`, `visualMaxWidth="35rem"` (560 stage). See "/impact/hr hero — Moments bento". |
+| `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/leadership hero (5401:23861) | Same grid; `visual={<GuardrailsTray />}`, `visualMaxWidth="36.25rem"` (580 stage). See "/impact/leadership hero — Guardrails tray". |
 | `SectionIntro` | every centered/left intro | eyebrow 12 Bold +1.6 · 44/1.08/−0.5 (`lg:text-heading-xl`) · 18/1.48 `text-swag-grey`; max 860 centered. |
 | `VariableCardGrid` (extended) | problem / case-study / 2×2 trays | opt-in: `imageStyle="panel"` (lifted mockup, layered shadow, rounded-t-lg/b-3xl), item `title`/`image` optional (no image = #f2f2f2 placeholder 250h), `footnote`, `background="transparent"`, `narrow` (tray max 880). |
 | `LogoBridge` | "icons"/"Integrations" strip | two 50s marquees (`swag-marquee`) toward a white r42 tile (`impact/stadium-tile-mark.svg` 158² with its own inner tile + shadow, inset −4.69/−11.72/−18.75%) on `stadium-tile-glow.png`; `logoOpacity` 0.33 (mid-grey marks) or 1 (pre-tinted); `rightLogos` when sides differ. |
@@ -1541,4 +1566,18 @@ Figma n9SjmDjzB1PeZAYJ5w43fr **5388:21262** (V2 of the HR hero variations; deskt
 
 **No crop** — Player `overflowVisible`; nothing leaves 0…560. **Behaviour** — aria-hidden, non-interactive, pauses off-screen, reduced motion → still at frame 96. **Assets** (`public/impact/hr/hero/`) — `photo-welcome-kit.jpg` (600²), `photo-anniversary-gift.jpg` (320 wide), `avatar-{arun,jordan}.png` (56²), `logo-ukg.svg` (teal, from Figma; the shared `logos/ukg.svg` is grey-tinted for the logo strip). Spain flag drawn in CSS; calendar icon inline SVG.
 
-**Licence note** — Remotion company-licence caveat as for /impact, /impact/marketing, /sales and /cx.
+# **Licence note** — Remotion company-licence caveat as for /impact, /impact/marketing, /sales and /cx.
+
+## /impact/leadership hero — Guardrails tray (added 2026-10-12)
+
+Figma n9SjmDjzB1PeZAYJ5w43fr **5401:23861** (V4, "tray + strip"; desktop 1440 × 808, visual frame 5405:22662 = 580 × 357, the graphic cluster). `TeamHero background="canvas" visualLayout="aligned" visualMaxWidth="36.25rem"` — same alignment grid as /impact/marketing, /sales and /cx. Page copy kept as shipped ("Talk to sales" primary; the Figma frame labels it "Book a demo").
+
+**Tokens** — new: `canvas-yellow` #fcefc2 (Finance label). Reused: `chip-surface`, `grey-300/800`, `canvas-{lilac,pink,blue,green,muted}`, `signal-green`, `swag-grey`.
+
+**Visual** — `impact/GuardrailsTrayScene.tsx` (Remotion, 580 × 357, 30 fps) hosted by `impact/GuardrailsTray.tsx`. Stage-unit numbers. Tray 580 × 285 (`chip-surface`, pad 14, gap 8, r22, shadow `0 16 40 .38`): header (shield chip 28 r10 + "Company guardrails" 15 bold; Arun Mehta · COO avatar pill) and three white r16 rules 63 high (budget cap `$25,000 / qtr` pill; two dark toggles 40 × 24). Connector 2 × 22 at x 289, y 285 with two 9px nodes; strip 580 × 50 at y 307 (white r18, shadow `0 12 28 .34`) "Applies to" + HR / Marketing / Sales / CX / Finance labels.
+
+**Timeline** — 0–96 intro: tray springs in, rules at 10/18/26, cap counts $0 → $25,000, toggles flip on, connector draws, strip and labels pop. Frame 96 = the Figma frame (also the reduced-motion still). 96–396 loop: rules light in turn, the approval toggle goes off and back on, a green policy packet runs the connector at loop frames 150 and 250 and the team labels light left → right; rest pose at both loop ends, whole stage floats ±2.5 on one whole cycle.
+
+**No crop** — Player `overflowVisible`; nothing leaves 0…580. **Behaviour** — aria-hidden, non-interactive, pauses off-screen, reduced motion → still at frame 96. **Assets** (`public/impact/leadership/hero/`) — `avatar-arun.png` (copy of the /impact one).
+
+**Licence note** — Remotion company-licence caveat as for /impact, /impact/marketing, /impact/sales and /impact/cx.
