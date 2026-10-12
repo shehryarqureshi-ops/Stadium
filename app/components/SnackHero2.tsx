@@ -1,19 +1,12 @@
 import Image from "next/image";
 import heroProduct from "@/public/snacks/sn3-hero.png";
 import { HeroLogoWall } from "./common/HeroLogoWall";
+import SnackHeroVideo from "./SnackHeroVideo";
 
 export default function SnackHeroTwo() {
   return (
-    <section className="relative overflow-hidden bg-[#0437a5] pt-[6rem] md:pt-[7rem]">
-      <div className="absolute inset-0 z-0 h-full w-full pt-130 lg:pt-0 hidden lg:block">
-        <video
-          src="/snacksHeroBg.mp4"
-          autoPlay
-          muted
-          playsInline
-          className="object-cover h-full w-full girlBg"
-        />
-      </div>
+    <section className="relative overflow-hidden bg-[#042a8b] pt-[6rem] lg:bg-[#033fad] md:pt-[7rem]">
+      <SnackHeroVideo layout="bg" />
 
       <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0 lg:aspect-[16/6]">
         {/* left */}
@@ -88,8 +81,10 @@ export default function SnackHeroTwo() {
         </div> */}
       </div>
 
+      <SnackHeroVideo layout="inline" />
+
       {/* logo wall */}
-      <div className="mt-12 lg:mt-24">
+      <div className="mt-0 lg:mt-24">
         <HeroLogoWall />
       </div>
     </section>
