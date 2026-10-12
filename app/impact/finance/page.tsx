@@ -11,6 +11,7 @@ import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import FinanceBudgetBar from "@/app/components/impact/FinanceBudgetBar";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
 
@@ -44,6 +45,10 @@ export default function FinancePage() {
           description="Consolidate vendors, budgets, and spend while giving teams the freedom to run their own programs."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          background="canvas"
+          visual={<FinanceBudgetBar />}
+          visualLayout="aligned"
+          visualMaxWidth="36.25rem"
         />
       }
       closing={

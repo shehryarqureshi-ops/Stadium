@@ -10,6 +10,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
+import OfficeNeedsBoard from "@/app/components/impact/OfficeNeedsBoard";
 import { LINKS } from "@/app/components/impact/shared";
 
 import offeringExperiences from "@/public/impact/office-admins/offering-experiences.jpg";
@@ -45,6 +46,10 @@ export default function OfficeAdminsPage() {
           description="Manage snacks, swag, gifts, events, and employee needs across offices and remote teams–without juggling separate vendors and workflows."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          background="canvas"
+          visual={<OfficeNeedsBoard />}
+          visualLayout="aligned"
+          visualMaxWidth="36.25rem"
         />
       }
       closing={
