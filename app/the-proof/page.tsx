@@ -8,6 +8,7 @@ import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import QuoteSplit from "@/app/components/common/QuoteSplit";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import TeamHero from "@/app/components/common/TeamHero";
+import TheProofGrowth from "@/app/components/impact/batch3/TheProofGrowth";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { ENGAGE_OFFERINGS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
@@ -27,8 +28,12 @@ export default function TheProofPage() {
             eyebrow="The Proof"
             title="Proven results, at every scale"
             description="Companies use Stadium to cut manual work, engage employees and customers across every team, and expand into new programs without adding headcount."
-            primaryCta={{ label: "Get started", href: LINKS.sales }}
-            background="green"
+            primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
+            secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+            background="canvas"
+            visual={<TheProofGrowth />}
+            visualLayout="aligned"
+            visualMaxWidth="32.8125rem"
           />
         }
         closing={

@@ -10,6 +10,7 @@ import QuoteSplit from "@/app/components/common/QuoteSplit";
 import SplitFeature from "@/app/components/common/SplitFeature";
 import StepCards from "@/app/components/common/StepCards";
 import TeamHero from "@/app/components/common/TeamHero";
+import HrisMoments from "@/app/components/impact/batch3/HrisMoments";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
@@ -35,7 +36,10 @@ export default function HrisPage() {
             description="Use the data already in your HRIS or ATS to run onboarding, birthdays, anniversaries, and more."
             primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
             secondaryCta={{ label: "Explore integrations", href: PLATFORM_ROUTES.integrations }}
-            background="green"
+            background="canvas"
+            visual={<HrisMoments />}
+            visualLayout="aligned"
+            visualMaxWidth="36.25rem"
           />
         }
         closing={

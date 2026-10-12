@@ -9,6 +9,7 @@ import IntegrationsDirectory from "@/app/components/common/IntegrationsDirectory
 import QuoteSplit from "@/app/components/common/QuoteSplit";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import IntegrationsWays from "@/app/components/impact/batch3/IntegrationsWays";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
@@ -38,7 +39,10 @@ export default function IntegrationsPage() {
             description="Stadium automates programs, reduces manual work, and keeps your teams and systems in sync."
             primaryCta={{ label: "Explore integrations", href: "#directory" }}
             secondaryCta={{ label: "Talk to sales", href: LINKS.sales }}
-            background="green"
+            background="canvas"
+            visual={<IntegrationsWays />}
+            visualLayout="aligned"
+            visualMaxWidth="36.25rem"
           />
         }
         closing={

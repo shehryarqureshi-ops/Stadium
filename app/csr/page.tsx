@@ -5,6 +5,7 @@ import HorizontalCarousel from "@/app/components/common/HorizontalCarousel";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import SplitFeature from "@/app/components/common/SplitFeature";
+import CsrImpact from "@/app/components/impact/batch3/CsrImpact";
 import { LINKS } from "@/app/components/impact/shared";
 
 import catalogFilters from "@/public/csr/catalog-filters.png";
@@ -31,6 +32,8 @@ export default function CsrPage() {
         primaryCta: { label: "Talk to sales", href: LINKS.sales },
         secondaryCta: { label: "Explore the platform", href: LINKS.platform },
       }}
+      heroVisual={<CsrImpact />}
+      heroVisualWidth="36.25rem"
       closingSections={
         <>
           <HorizontalCarousel

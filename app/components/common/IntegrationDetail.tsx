@@ -24,6 +24,10 @@ export type IntegrationDetailProps = {
     primaryCta?: Cta;
     secondaryCta?: Cta;
   };
+  /* animated hero visual (hero-visual-design): rendered in TeamHero's aligned slot */
+  heroVisual?: ReactNode;
+  /* the visual's stage width in rem, e.g. "36.25rem" */
+  heroVisualWidth?: string;
   /* sections on the white page body */
   children: ReactNode;
   /* sections that sit on the closing gradient, above the logo strip + CTA */
@@ -40,6 +44,8 @@ export type IntegrationDetailProps = {
 
 export default function IntegrationDetail({
   hero,
+  heroVisual,
+  heroVisualWidth,
   children,
   closingSections,
   moreWays,
@@ -55,7 +61,10 @@ export default function IntegrationDetail({
           footnote={hero.footnote}
           primaryCta={hero.primaryCta ?? { label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={hero.secondaryCta}
-          background="green"
+          background="canvas"
+          visual={heroVisual}
+          visualLayout={heroVisual ? "aligned" : undefined}
+          visualMaxWidth={heroVisualWidth}
         />
       }
       closing={

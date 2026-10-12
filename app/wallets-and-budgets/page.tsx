@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import ImageShowcase from "@/app/components/common/ImageShowcase";
+import WalletLimits from "@/app/components/impact/batch3/WalletLimits";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import StepCards from "@/app/components/common/StepCards";
 import TeamHero from "@/app/components/common/TeamHero";
@@ -40,7 +41,10 @@ export default function WalletsAndBudgetsPage() {
           description="Fund programs in advance and set spending limits before money moves."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
-          background="green"
+          background="canvas"
+          visual={<WalletLimits />}
+          visualLayout="aligned"
+          visualMaxWidth="27.5625rem"
         />
       }
       closing={

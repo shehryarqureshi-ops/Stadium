@@ -9,6 +9,7 @@ import ImageShowcase from "@/app/components/common/ImageShowcase";
 import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import SecurityTrack from "@/app/components/impact/batch3/SecurityTrack";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
 import encryption from "@/public/integrations/security/encryption.png";
@@ -37,6 +38,8 @@ export default function SecurityPage() {
           primaryCta: { label: "Explore trust center", href: TRUST_CENTER },
           secondaryCta: { label: "Talk to sales", href: LINKS.sales },
         }}
+        heroVisual={<SecurityTrack />}
+        heroVisualWidth="36.25rem"
         closingSections={
           <>
             <VariableCardGrid

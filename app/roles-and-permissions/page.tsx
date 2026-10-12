@@ -7,6 +7,7 @@ import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import SplitFeature from "@/app/components/common/SplitFeature";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import AccessSheet from "@/app/components/impact/batch3/AccessSheet";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
@@ -34,7 +35,10 @@ export default function RolesAndPermissionsPage() {
           description="Distribute responsibility across your company while controlling what each person can access and manage."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
-          background="green"
+          background="canvas"
+          visual={<AccessSheet />}
+          visualLayout="aligned"
+          visualMaxWidth="35rem"
         />
       }
       closing={

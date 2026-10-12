@@ -7,6 +7,7 @@ import ImpactClosing from "@/app/components/common/ImpactClosing";
 import LogoBridge from "@/app/components/common/LogoBridge";
 import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import TeamHero from "@/app/components/common/TeamHero";
+import EnterpriseTiers from "@/app/components/impact/batch3/EnterpriseTiers";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
@@ -26,9 +27,12 @@ export default function EnterprisePage() {
             eyebrow="Enterprise-ready"
             title="The infrastructure enterprises run on"
             description="Teams get the flexibility to run their programs. Your company keeps the oversight it needs."
-            primaryCta={{ label: "Get started", href: LINKS.sales }}
+            primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
             secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
-            background="green"
+            background="canvas"
+            visual={<EnterpriseTiers />}
+            visualLayout="aligned"
+            visualMaxWidth="36.25rem"
           />
         }
         closing={

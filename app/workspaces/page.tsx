@@ -6,6 +6,7 @@ import { seoMetadata } from "@/app/lib/seo/metadata";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import WorkspaceTree from "@/app/components/impact/batch3/WorkspaceTree";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
@@ -26,7 +27,10 @@ export default function WorkspacesPage() {
             description="Teams use Stadium for their own needs. You keep visibility and control as usage grows."
             primaryCta={{ label: "Get started", href: LINKS.sales }}
             secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
-            background="green"
+            background="canvas"
+            visual={<WorkspaceTree />}
+            visualLayout="aligned"
+            visualMaxWidth="36.25rem"
           />
         }
         closing={

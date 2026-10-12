@@ -9,6 +9,7 @@ import LogoBridge from "@/app/components/common/LogoBridge";
 import PillTabs from "@/app/components/common/PillTabs";
 import StepListMedia from "@/app/components/common/StepListMedia";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import ZapStack from "@/app/components/impact/batch3/ZapStack";
 import { HR_TOOLS, LINKS } from "@/app/components/impact/shared";
 
 import admin from "@/public/integrations/zapier/admin.png";
@@ -39,6 +40,8 @@ export default function ZapierPage() {
           primaryCta: { label: "Set up on Zapier", href: ZAPIER },
           secondaryCta: { label: "Talk to sales", href: LINKS.sales },
         }}
+        heroVisual={<ZapStack />}
+        heroVisualWidth="36.25rem"
         closingSections={
           <StepListMedia
             caption="How it works"

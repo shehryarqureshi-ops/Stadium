@@ -7,6 +7,7 @@ import ImageShowcase from "@/app/components/common/ImageShowcase";
 import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import PillTabs from "@/app/components/common/PillTabs";
 import StepCards from "@/app/components/common/StepCards";
+import WebhookSequence from "@/app/components/impact/batch3/WebhookSequence";
 import { LINKS } from "@/app/components/impact/shared";
 
 import admin from "@/public/integrations/webhooks/admin.png";
@@ -32,6 +33,8 @@ export default function WebhooksPage() {
           primaryCta: { label: "Talk to sales", href: LINKS.sales },
           secondaryCta: { label: "View webhook documentation", href: DOCS },
         }}
+        heroVisual={<WebhookSequence />}
+        heroVisualWidth="36.25rem"
         closingSections={
           <StepCards
             caption="How it works"

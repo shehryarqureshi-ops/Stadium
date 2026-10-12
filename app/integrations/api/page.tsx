@@ -7,6 +7,7 @@ import ImageShowcase from "@/app/components/common/ImageShowcase";
 import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import NumberedMediaList from "@/app/components/common/NumberedMediaList";
 import PillTabs from "@/app/components/common/PillTabs";
+import ApiOverCode from "@/app/components/impact/batch3/ApiOverCode";
 import { LINKS } from "@/app/components/impact/shared";
 
 import contactUs from "@/public/integrations/api/contact-us.png";
@@ -33,6 +34,8 @@ export default function ApiPage() {
           primaryCta: { label: "Talk to sales", href: LINKS.sales },
           secondaryCta: { label: "View API docs", href: DOCS },
         }}
+        heroVisual={<ApiOverCode />}
+        heroVisualWidth="25.75rem"
         closingSections={
           <NumberedMediaList
             caption="Get connected"

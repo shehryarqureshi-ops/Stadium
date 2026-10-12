@@ -1612,3 +1612,28 @@ Figma n9SjmDjzB1PeZAYJ5w43fr **5434:22890** (V1 of the Finance hero variations i
 
 **Licence note** — Remotion company-licence caveat as for /impact, /impact/marketing, /sales, /cx, /hr, /leadership and /office-admins.
 
+## Batch 3 hero visuals — animated (added 2026-10-12)
+
+Figma n9SjmDjzB1PeZAYJ5w43fr, frame **Batch 3** `5443:23009` on "🧪 Final Hero Sections" (14 approved heroes; read from the *current, hand-tweaked* frames — where a visual frame no longer hugged its content, the stage is the bounding box of the visible content, hidden layers ignored). One Remotion scene per page in `app/components/impact/batch3/` (default export = host built on `SceneHost` in `batch3/shared.tsx`: play-once intro, loop 96 → 396, pause off-screen, reduced motion = still at frame 96, `aria-hidden`). Pages: `/the-proof`, `/enterprise`, `/workspaces`, `/roles-and-permissions`, `/wallets-and-budgets`, `/integrations`, `/integrations/{hris,browser-extension,api,zapier,webhooks,sso,security}`, `/csr` — all `TeamHero background="canvas" visualLayout="aligned"` (the blue Impact-by-team backdrop; the green backdrop is no longer used by these pages); the `/integrations/*` detail pages pass `heroVisual` + `heroVisualWidth` through `IntegrationDetail` (new optional props).
+
+| Page | Scene | Stage (W×H) | `visualMaxWidth` | Story / loop |
+|---|---|---|---|---|
+| /the-proof | `TheProofGrowth` | 525×411 | 32.8125rem | 3 cards: 100 → 350 → 800 employees, one admin; years light in turn |
+| /enterprise | `EnterpriseTiers` | 580×390 | 36.25rem | programs on controls on infrastructure; pulse runs down the tiers |
+| /workspaces | `WorkspaceTree` | 580×321 | 36.25rem | company → regions tree; packet runs each branch |
+| /roles-and-permissions | `AccessSheet` | 560×423 (visible content; 2 hidden "Cannot" rows omitted) | 35rem | role selector slides Manager → Contributor → Manager, toggles respond |
+| /wallets-and-budgets | `WalletLimits` | 441×413 | 27.5625rem | wallet + approved / held orders; limit check cycle |
+| /integrations | `IntegrationsWays` | 580×377 | 36.25rem | tabs over connected systems; sync dots pulse |
+| /integrations/hris | `HrisMoments` | 580×329 | 36.25rem | record fields → three automatic moments |
+| /integrations/browser-extension | `ExtensionPopup` | 564×364 | 35.25rem | popup over profile; amount steps, send, toast |
+| /integrations/api | `ApiOverCode` | 412×482 | 25.75rem | request card above app UI; request cycle |
+| /integrations/zapier | `ZapStack` | 580×363 | 36.25rem | run cycle down the expanded Zap |
+| /integrations/webhooks | `WebhookSequence` | 580×384 | 36.25rem | sequence diagram replayed as packets |
+| /integrations/sso | `SsoSignIn` | 610×508 | 37.5rem (scaled ×0.98) | packet IdP → sign-in; button press |
+| /integrations/security | `SecurityTrack` | 580×283 | 36.25rem | shield passes the four stages; scanner sweeps the day ticks |
+| /csr | `CsrImpact` | 580×324 | 36.25rem | impact cards lift in turn; stat counts to 62% |
+
+**Timeline** (all scenes, 30 fps): 0–96 intro (frame 96 = the Figma frame), 96–396 loop; every loop value is at its rest pose at both ends (verified: all 14 scenes have rect/opacity/text deltas ≤ 0.13 stage units between frames 96 and 395). **No crop** — Player `overflowVisible`; nothing leaves the stage. **Tokens** — none added; stage-internal inline values are rgba glows/shadows and a few documented hex mixes. **Assets** (`public/impact/batch3/`) — avatars (56²), photos (hoodie, hoodie-big, cap, tee, snacks, gift, anniv), logos (UKG svg; ADP/Gusto/Paylocity small PNGs at 1×), `stadium-mark.svg`. **Copy** — `/the-proof` and `/enterprise` CTAs changed to "Talk to sales" + "Explore the platform" to match Figma. **Known caveats** — Gusto/Paylocity logos are 1× PNGs (soft on high-DPI); hero visuals on the pages were verified at 1280/1440 only.
+
+**Licence note** — Remotion company-licence caveat as for the earlier hero visuals; these are the first Player visuals on these 14 pages.
+

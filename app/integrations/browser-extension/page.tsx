@@ -8,6 +8,7 @@ import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import PillTabs from "@/app/components/common/PillTabs";
 import SplitFeature from "@/app/components/common/SplitFeature";
 import StepCards from "@/app/components/common/StepCards";
+import ExtensionPopup from "@/app/components/impact/batch3/ExtensionPopup";
 import { LINKS } from "@/app/components/impact/shared";
 
 import admin from "@/public/integrations/browser-extension/admin.png";
@@ -32,6 +33,8 @@ export default function BrowserExtensionPage() {
           primaryCta: { label: "Install extension", href: "#" },
           secondaryCta: { label: "Talk to sales", href: LINKS.sales },
         }}
+        heroVisual={<ExtensionPopup />}
+        heroVisualWidth="35.25rem"
         closingSections={
           <SplitFeature
             caption="Stadium Points"

@@ -8,6 +8,7 @@ import ImageShowcase from "@/app/components/common/ImageShowcase";
 import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import NumberedMediaList from "@/app/components/common/NumberedMediaList";
+import SsoSignIn from "@/app/components/impact/batch3/SsoSignIn";
 import { LINKS } from "@/app/components/impact/shared";
 
 import admin from "@/public/integrations/sso/admin.png";
@@ -36,6 +37,8 @@ export default function SsoPage() {
           primaryCta: { label: "Talk to sales", href: LINKS.sales },
           secondaryCta: { label: "Explore the platform", href: LINKS.platform },
         }}
+        heroVisual={<SsoSignIn />}
+        heroVisualWidth="37.5rem"
         closingSections={
           <>
             <NumberedMediaList
