@@ -1446,6 +1446,7 @@ Routes live in `TEAM_ROUTES` (`app/components/impact/shared.ts`) and drive the h
 | `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/marketing hero (5195:17478) | Same canvas backdrop; visual right-aligned to the header's Talk-to-sales edge, top-aligned with the copy, equal padding; `visualMaxWidth` = stage width in rem. See "/impact/marketing hero — Brand kit applied". |
 | `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/sales hero (5205:17055) | Same grid as /impact/marketing; `visual={<DealRail />}`, `visualMaxWidth="37rem"` (592 stage). See "/impact/sales hero — Deal rail". |
 | `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/cx hero (5212:17243) | Same grid; `visual={<GrowthSteps />}`, `visualMaxWidth="37rem"` (592 stage). See "/impact/cx hero — Growth steps". |
+| `TeamHero` + `visual` + `visualLayout="aligned"` | /impact/hr hero (5388:21262) | Same grid; `visual={<MomentsBento />}`, `visualMaxWidth="35rem"` (560 stage). See "/impact/hr hero — Moments bento". |
 | `SectionIntro` | every centered/left intro | eyebrow 12 Bold +1.6 · 44/1.08/−0.5 (`lg:text-heading-xl`) · 18/1.48 `text-swag-grey`; max 860 centered. |
 | `VariableCardGrid` (extended) | problem / case-study / 2×2 trays | opt-in: `imageStyle="panel"` (lifted mockup, layered shadow, rounded-t-lg/b-3xl), item `title`/`image` optional (no image = #f2f2f2 placeholder 250h), `footnote`, `background="transparent"`, `narrow` (tray max 880). |
 | `LogoBridge` | "icons"/"Integrations" strip | two 50s marquees (`swag-marquee`) toward a white r42 tile (`impact/stadium-tile-mark.svg` 158² with its own inner tile + shadow, inset −4.69/−11.72/−18.75%) on `stadium-tile-glow.png`; `logoOpacity` 0.33 (mid-grey marks) or 1 (pre-tinted); `rightLogos` when sides differ. |
@@ -1527,3 +1528,17 @@ Figma n9SjmDjzB1PeZAYJ5w43fr **5212:17243** (C1 of three static variations in "f
 **No crop** — Player `overflowVisible`; nothing leaves 0…592. **Behaviour** — aria-hidden, non-interactive, pauses off-screen, reduced motion → still at frame 96. **Assets** (`public/impact/cx/hero/`) — `photo-{onboarding,milestone,thankyou,renewal,loyalty}.jpg` (the Figma photos, q88, ≤ 900px on the long side so the narrow portrait crops stay sharp) and `stadium-mark.svg`.
 
 **Licence note** — Remotion company-licence caveat as for /impact, /impact/marketing and /impact/sales.
+
+## /impact/hr hero — Moments bento (added 2026-10-12)
+
+Figma n9SjmDjzB1PeZAYJ5w43fr **5388:21262** (V2 of the HR hero variations; desktop 1440 × 808, visual frame 5391:22411 = 560 × 423, the graphic cluster). `TeamHero background="canvas" visualLayout="aligned" visualMaxWidth="35rem"` — same alignment grid as /impact/marketing, /sales and /cx. Hero copy taken from the Figma frame: the description now ends "…connected to your HR tools and automated to run at scale." (was "easier to run at scale"); eyebrow, headline and CTAs unchanged.
+
+**Tokens** — new: `canvas-yellow` #fcefc2 ("Scheduled" label). Reused: `chip-surface` (photo wells, avatar pills), `canvas-{blue,green,lilac,pink,muted,check}`, `grey-200/600/700/800`, `swag-grey`.
+
+**Visual** — `impact/MomentsBentoScene.tsx` (Remotion, 560 × 423, 30 fps) hosted by `impact/MomentsBento.tsx` (same host behaviour as OpenSpatialCanvas). Stage-unit numbers. Three white r22 cards (shadow `0 16 40 .38`): Welcome kit 300 × 423 at (0, 0) — 276 × 268 photo well (hoodie 230², multiply), Onboarding / Delivered labels, title, hairline, UKG "New hire synced" + Spain · Madrid; Recognition 244 × 204 at (316, 0); Milestone 244 × 205 at (316, 218) with Jordan Lee pill, "5 years" (Satoshi 30), 84² gift photo, "Gift ships Friday".
+
+**Timeline** — 0–96 intro: cards spring in at frames 0 / 10 / 20, the hoodie settles, "Delivered" pops, "+50 pts" counts 0 → 50, "5 years" counts 0 → 5, the gift photo settles. Frame 96 = the Figma frame (also the reduced-motion still). 96–396 loop: the three moments take turns — Welcome kit lifts and "Delivered" pulses (loop frame 20–70), Recognition lifts and "+50 pts" pulses (105–155), Milestone lifts and the gift photo breathes (190–240); values are at rest at both loop ends; each card floats on a whole-cycle sine (±2).
+
+**No crop** — Player `overflowVisible`; nothing leaves 0…560. **Behaviour** — aria-hidden, non-interactive, pauses off-screen, reduced motion → still at frame 96. **Assets** (`public/impact/hr/hero/`) — `photo-welcome-kit.jpg` (600²), `photo-anniversary-gift.jpg` (320 wide), `avatar-{arun,jordan}.png` (56²), `logo-ukg.svg` (teal, from Figma; the shared `logos/ukg.svg` is grey-tinted for the logo strip). Spain flag drawn in CSS; calendar icon inline SVG.
+
+**Licence note** — Remotion company-licence caveat as for /impact, /impact/marketing, /sales and /cx.

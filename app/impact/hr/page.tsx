@@ -11,6 +11,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import MomentsBento from "@/app/components/impact/MomentsBento";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { CASE_STUDY_CAPTION, ENGAGE_OFFERINGS, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
 
@@ -54,9 +55,13 @@ export default function HrPage() {
         <TeamHero
           eyebrow="Stadium for HR"
           title="Everything you do to engage your people, on one platform"
-          description="Recognition, onboarding, milestones, swag, gifting, and more–connected to your HR tools and easier to run at scale."
+          description="Recognition, onboarding, milestones, swag, gifting, and more–connected to your HR tools and automated to run at scale."
           primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+          background="canvas"
+          visual={<MomentsBento />}
+          visualLayout="aligned"
+          visualMaxWidth="35rem"
         />
       }
       closing={
