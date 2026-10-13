@@ -11,16 +11,22 @@ import StepCards from "@/app/components/common/StepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import BrandKitApplied from "@/app/components/impact/BrandKitApplied";
+import { ConnectedToolsGraphic, RecipientActivityGraphic, TriggerSendsGraphic } from "@/app/components/impact/IntegrationGraphics";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
 import campaignActivity from "@/public/impact/marketing/campaign-activity.png";
 import campaignWorkspace from "@/public/impact/marketing/campaign-workspace.png";
-import problemData from "@/public/impact/marketing/problem-data.png";
-import problemInventory from "@/public/impact/marketing/problem-inventory.png";
-import problemShipping from "@/public/impact/marketing/problem-shipping.png";
-import problemVendors from "@/public/impact/marketing/problem-vendors.png";
-import stepTriggerSends from "@/public/impact/marketing/step-trigger-sends.png";
+import problemData from "@/public/impact/marketing/v2/problem-data.jpg";
+import problemInventory from "@/public/impact/marketing/v2/problem-inventory.jpg";
+import problemShipping from "@/public/impact/marketing/v2/problem-shipping.jpg";
+import problemVendors from "@/public/impact/marketing/v2/problem-vendors.jpg";
+import brandEventSwag from "@/public/impact/marketing/v2/brand-event-swag.jpg";
+import brandAbm from "@/public/impact/marketing/v2/brand-abm.jpg";
+import brandWebinar from "@/public/impact/marketing/v2/brand-webinar.jpg";
+import brandLaunches from "@/public/impact/marketing/v2/brand-launches.jpg";
+import brandFieldKits from "@/public/impact/marketing/v2/brand-field-kits.jpg";
+import brandAdvocacy from "@/public/impact/marketing/v2/brand-advocacy.jpg";
 
 export const metadata: Metadata = seoMetadata("/impact/marketing");
 
@@ -77,13 +83,14 @@ export default function MarketingPage() {
         captionColor="#16171b"
         title="Every campaign has too many moving parts"
         description="Branded campaigns get harder to scale when products, vendors, inventory, shipping, and recipient details are managed separately."
-        gridColumns={4}
+        gridColumns={2}
+        narrow
         imageStyle="panel"
         items={[
-          { image: problemVendors, imageAlt: "Campaign vendors: three campaigns split across PrintCo, SwagHub, and GiftBox Inc", description: "Different campaigns rely on different vendors." },
-          { image: problemInventory, imageAlt: "Stored inventory with unused tumblers, backordered hoodies, and $1,200 a month in storage fees", description: "Inventory creates extra work." },
-          { image: problemShipping, imageAlt: "An order to Berlin held at customs, with rejected and unassigned shipments to Tokyo and São Paulo", description: "Global shipping gets complicated." },
-          { image: problemData, imageAlt: "Campaign data split across a vendor export, a gift portal, and a CRM report", description: "Campaign and send data lives in different places." },
+          { image: problemVendors, imageAlt: "A marketer sorting branded shirts, a tumbler, and paperwork from different vendors", description: "Different campaigns rely on different vendors." },
+          { image: problemInventory, imageAlt: "A person unpacking a box in a storage room of branded apparel", description: "Inventory creates extra work." },
+          { image: problemShipping, imageAlt: "A marketer labeling a large shipping box at a front desk", description: "Global shipping gets complicated." },
+          { image: problemData, imageAlt: "A marketer comparing campaign data across two laptops", description: "Campaign and send data lives in different places." },
         ]}
         footnote="Your team should focus on the campaign–not the logistics behind it."
       />
@@ -130,12 +137,54 @@ export default function MarketingPage() {
             title: "Show up event-ready",
             description: "Send branded merchandise and kits directly to the venue.",
             bullets: ["Bulk and custom kits", "Direct-to-venue delivery", "Easy to reorder"],
+            image: brandEventSwag,
+            imageAlt: "Staff setting up a branded event booth with merchandise kits",
           },
-          { name: "ABM gifts", tab: "ABM gifts", title: "Account-Based Marketing", description: "Gifting mapped to ABM programs and target accounts." },
-          { name: "Webinar gifts", tab: "Webinar gifts", title: "Webinar Gifts", description: "Timed sends for launches, announcements, key moments." },
-          { name: "Product launches", tab: "Product launches", title: "Product Launches", description: "Campaign drops for product announcements and launches." },
-          { name: "Field kits", tab: "Field kits", title: "Field Kits", description: "Branded kits for field teams, roadshows, and regional events." },
-          { name: "Customer advocacy", tab: "Customer advocacy", title: "Customer Advocacy", description: "Kits and materials for partners and influencers at scale." },
+          {
+            name: "ABM gifts",
+            tab: "ABM gifts",
+            title: "Make outreach stand out",
+            description: "Send personalized gifts to priority accounts at the moments that matter.",
+            bullets: ["Personalized sends", "Recipient gift choice", "Ships to 170+ countries"],
+            image: brandAbm,
+            imageAlt: "Two colleagues choosing a personalized gift kit on a desktop monitor",
+          },
+          {
+            name: "Webinar gifts",
+            tab: "Webinar gifts",
+            title: "Extend the webinar experience",
+            description: "Reward attendees with a branded gift before or after the event.",
+            bullets: ["Individual or bulk sends", "Recipient gift choice", "Ships to 170+ countries"],
+            image: brandWebinar,
+            imageAlt: "A person opening a branded gift box at a desk",
+          },
+          {
+            name: "Product launches",
+            tab: "Product launches",
+            title: "Bring launches to life",
+            description: "Coordinate branded sends for customers, partners, press, and teams.",
+            bullets: ["Multiple audiences", "Coordinated sends", "Consistent branding"],
+            image: brandLaunches,
+            imageAlt: "Two colleagues arranging branded launch kits and merchandise on a table",
+          },
+          {
+            name: "Field kits",
+            tab: "Field kits",
+            title: "Keep field teams ready",
+            description: "Give teams access to approved merchandise and kits wherever they work.",
+            bullets: ["Approved branded items", "Kits for teams or prospects", "Easy to reorder"],
+            image: brandFieldKits,
+            imageAlt: "A field team member ordering approved merchandise on a laptop",
+          },
+          {
+            name: "Customer advocacy",
+            tab: "Customer advocacy",
+            title: "Give customers something worth sharing",
+            description: "Celebrate customers and support advocacy programs with thoughtful branded sends.",
+            bullets: ["Customer appreciation", "Personalized gifting", "Global delivery"],
+            image: brandAdvocacy,
+            imageAlt: "A customer admiring a branded tumbler from a gift box",
+          },
         ]}
       />
 
@@ -145,16 +194,23 @@ export default function MarketingPage() {
         captionColor="#16171b"
         title="Make branded sends part of your campaigns"
         description="Connect Stadium with Salesforce, HubSpot, and the tools your team already uses to trigger branded experiences from existing marketing workflows."
+        defaultDesktopVisualWidth={235}
         items={[
           {
             title: "Trigger sends automatically",
             description: "Turn campaign actions and CRM activity into branded sends without adding another manual step.",
-            image: stepTriggerSends,
-            imageAlt: "Automation: when a contact becomes an MQL in HubSpot, send a branded kit, and a meeting is booked three days after delivery",
-            desktopVisualWidth: 265,
+            content: <TriggerSendsGraphic />,
           },
-          { title: <>Keep workflows<br />connected</> },
-          { title: <>Track<br />recipient activity</> },
+          {
+            title: "Keep workflows connected",
+            description: "Build Stadium into the systems and processes your Marketing and Sales teams already use.",
+            content: <ConnectedToolsGraphic />,
+          },
+          {
+            title: <>Track<br />recipient activity</>,
+            description: "Keep send and redemption activity connected to the campaigns and audiences behind it.",
+            content: <RecipientActivityGraphic />,
+          },
         ]}
       />
 

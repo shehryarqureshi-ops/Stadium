@@ -12,19 +12,20 @@ import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import FinanceBudgetBar from "@/app/components/impact/FinanceBudgetBar";
+import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
 
 import financeRecords from "@/public/impact/finance/finance-records.png";
-import offeringGifting from "@/public/impact/finance/offering-gifting.jpg";
-import offeringHosted from "@/public/impact/finance/offering-hosted-experiences.jpg";
-import offeringRecognition from "@/public/impact/finance/offering-recognition.jpg";
-import offeringSnacks from "@/public/impact/finance/offering-snacks.jpg";
-import offeringSwag from "@/public/impact/finance/offering-swag.jpg";
-import problemBudgets from "@/public/impact/finance/problem-budgets.png";
-import problemInvoices from "@/public/impact/finance/problem-invoices.png";
-import problemReconciling from "@/public/impact/finance/problem-reconciling.png";
-import problemVendors from "@/public/impact/finance/problem-vendors.png";
+import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
+import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
+import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
+import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
+import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import problemBudgets from "@/public/impact/finance/v2/problem-budgets.jpg";
+import problemInvoices from "@/public/impact/finance/v2/problem-invoices.jpg";
+import problemReconciling from "@/public/impact/finance/v2/problem-reconciling.jpg";
+import problemVendors from "@/public/impact/finance/v2/problem-vendors.jpg";
 import reporting from "@/public/impact/finance/reporting.png";
 import simplifiedBilling from "@/public/impact/finance/simplified-billing.png";
 import vendorConsolidation from "@/public/impact/finance/vendor-consolidation.png";
@@ -85,13 +86,14 @@ export default function FinancePage() {
           </>
         }
         description="Engagement spend gets scattered across vendors, invoices, budgets, and teams–leaving you to piece everything together."
-        gridColumns={4}
+        gridColumns={2}
+        narrow
         imageStyle="panel"
         items={[
-          { image: problemVendors, imageAlt: "Active vendors card showing 10 vendors across People, Marketing, and Sales", description: "Vendors multiply across teams." },
-          { image: problemBudgets, imageAlt: "Engagement budgets split across a spreadsheet, a card statement, and vendor portal credit, with the company total not tracked", description: "Budgets live in different places." },
-          { image: problemInvoices, imageAlt: "A stack of invoices from separate vendors with one overdue", description: "Invoices pile up across programs." },
-          { image: problemReconciling, imageAlt: "Reconciliation list with 6 unmatched invoices and budgets", description: "You’re left reconciling the pieces." },
+          { image: problemVendors, imageAlt: "A finance manager reviewing vendor paperwork at a desk", description: "Vendors multiply across teams." },
+          { image: problemBudgets, imageAlt: "A finance manager comparing budget spreadsheets across screens", description: "Budgets live in different places." },
+          { image: problemInvoices, imageAlt: "A stack of invoices from separate vendors on a desk", description: "Invoices pile up across programs." },
+          { image: problemReconciling, imageAlt: "A finance manager reconciling records on a laptop", description: "You’re left reconciling the pieces." },
         ]}
         footnote="Your teams need flexibility. You need control. You shouldn’t have to choose."
       />
@@ -183,11 +185,11 @@ export default function FinancePage() {
         title="One platform behind every team’s programs"
         description="Support the ways teams engage employees, customers, and partners without adding more vendors for Finance to manage."
         items={[
-          { title: "Recognition", description: "Kudos, employee recognition, and rewards.", image: offeringRecognition, imageAlt: "Hands holding a Stadium gift box covered in stickers" },
-          { title: "Swag", description: "Branded merchandise and company stores.", image: offeringSwag, imageAlt: "Branded hoodie, cap, bottle, mug, notebook, and tote" },
-          { title: "Snacks", description: "Personalized snack boxes for teams and recipients.", image: offeringSnacks, imageAlt: "An assortment of packaged snacks" },
-          { title: "Gifting", description: "Employee, customer, and partner gifting.", image: offeringGifting, imageAlt: "A boxed gift set with a bottle, pen, and notebook" },
-          { title: "Hosted Experiences", description: "Live-hosted experiences for teams and events.", image: offeringHosted, imageAlt: "A live-hosted virtual game show on a video call" },
+          { title: "Recognition", description: "Kudos, employee recognition, and rewards.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
+          { title: "Swag", description: "Branded merchandise and company stores.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+          { title: "Snacks", description: "Personalized snack boxes for teams and recipients.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+          { title: "Gifting", description: "Employee, customer, and partner gifting.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+          { title: "Hosted Experiences", description: "Live-hosted experiences for teams and events.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
         ]}
       />
     </ImpactPageShell>

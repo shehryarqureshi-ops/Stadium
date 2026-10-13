@@ -6,23 +6,35 @@ import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import LogoBridge from "@/app/components/common/LogoBridge";
-import NumberedOfferings from "@/app/components/common/NumberedOfferings";
+import NumberedOfferings, { type NumberedOffering } from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import MomentsBento from "@/app/components/impact/MomentsBento";
+import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { CASE_STUDY_CAPTION, ENGAGE_OFFERINGS, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
+import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
 
-import problem1 from "@/public/impact/hr/problem-1.png";
-import problem2 from "@/public/impact/hr/problem-2.png";
-import problem3 from "@/public/impact/hr/problem-3.png";
-import problem4 from "@/public/impact/hr/problem-4.png";
+import problem1 from "@/public/impact/hr/v2/problem-recognition.jpg";
+import problem2 from "@/public/impact/hr/v2/problem-fragmented.jpg";
+import problem3 from "@/public/impact/hr/v2/problem-manual.jpg";
+import problem4 from "@/public/impact/hr/v2/problem-scale.jpg";
 import recogSlack from "@/public/impact/hr/recognition-slack.png";
 import recogFeed from "@/public/impact/hr/recognition-feed.png";
 import recogPoints from "@/public/impact/hr/recognition-points.png";
-import tabOnboarding from "@/public/impact/hr/tab-onboarding.jpg";
+import tabOnboarding from "@/public/impact/hr/v2/journey-onboarding.jpg";
+import tabMilestone from "@/public/impact/hr/v2/journey-milestone.jpg";
+import tabCare from "@/public/impact/hr/v2/journey-care.jpg";
+import tabBirthday from "@/public/impact/hr/v2/journey-birthday.jpg";
+import tabYearEndCollage from "@/public/impact/hr/v2/journey-year-end-collage.jpg";
+import tabYearEnd from "@/public/impact/hr/v2/journey-year-end.jpg";
+import tabOffboarding from "@/public/impact/hr/v2/journey-offboarding.jpg";
+import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
+import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
+import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
+import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
+import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
 import workspace from "@/public/impact/hr/workspace.png";
 
 export const metadata: Metadata = seoMetadata("/impact/hr");
@@ -44,6 +56,14 @@ const HRIS_RIGHT = [
     width: 534,
     height: 60,
   },
+];
+
+const HR_ENGAGE_OFFERINGS: NumberedOffering[] = [
+  { title: "Recognition", description: "More than a notification; a reward that shows up at their door.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
+  { title: "Swag", description: "Design, storage, shipping, all handled.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+  { title: "Snacks", description: "Vegan, gluten-free, nut-free, and more. Everyone's covered.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+  { title: "Gifting", description: "They choose their gifts and enter their addresses. You never chase.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+  { title: "Hosted Experiences", description: "A real host for in-person or remote experiences. Zero planning on your end.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
 ];
 
 export default function HrPage() {
@@ -99,13 +119,14 @@ export default function HrPage() {
           </>
         }
         description="Managing programs across disconnected tools, vendors, and workflows means more manual work–and less visibility into what’s happening."
-        gridColumns={4}
+        gridColumns={2}
+        narrow
         imageStyle="panel"
         items={[
-          { image: problem1, imageAlt: "Kudos by week chart showing the last kudos 23 days ago", description: "Recognition isn’t happening consistently." },
-          { image: problem2, imageAlt: "Programs spread across a spreadsheet, a swag portal, a gift card site, and a kudos app", description: "Programs are fragmented." },
-          { image: problem3, imageAlt: "A to-do list of manual HR tasks worth 11 hours", description: "Manual work eats up HR’s time." },
-          { image: problem4, imageAlt: "Engagement score falling 14% as headcount grows", description: "More and engagement are harder to maintain at scale." },
+          { image: problem1, imageAlt: "An HR manager reviewing a recognition dashboard at a desk", description: "Recognition isn’t happening consistently." },
+          { image: problem2, imageAlt: "An HR manager working across several program tools on a laptop", description: "Programs are fragmented." },
+          { image: problem3, imageAlt: "An HR manager packing and labeling envelopes by hand", description: "Manual work eats up HR’s time." },
+          { image: problem4, imageAlt: "A manager presenting a declining employee engagement chart in a meeting room", description: "More and engagement are harder to maintain at scale." },
         ]}
         footnote="You don’t need another point solution. You need the infrastructure to run employee engagement–and see how it’s working."
       />
@@ -178,14 +199,64 @@ export default function HrPage() {
             description: "Set up the experience once, and Stadium handles each new hire from there.",
             bullets: ["Triggered from your HRIS", "Branded welcome kits", "Ships to 170+ countries"],
             image: tabOnboarding,
-            imageAlt: "A new hire unboxing a branded welcome kit",
+            imageAlt: "An HR manager reviewing the onboarding dashboard on a desktop monitor",
           },
-          { name: "Anniversaries", tab: "Anniversaries", title: "Work Anniversaries", description: "Gifts and recognition for years of service." },
-          { name: "Birthdays", tab: "Birthdays", title: "Birthdays & Life Moments", description: "Gifts for birthdays, weddings, new babies, and more." },
-          { name: "Wellness", tab: "Wellness", title: "Wellness Programs", description: "Wellness gifts, snack boxes, and care packages." },
-          { name: "Holidays", tab: "Holidays", title: "Holiday & Year-End Gifting", description: "Holiday gifts for teams around the world." },
-          { name: "All-hands", tab: "All-hands", title: "All-Hands & Team Events", description: "Swag, snacks, and event kits for company gatherings." },
-          { name: "Offboarding", tab: "Offboarding", title: "Offboarding & Farewells", description: "Thoughtful gifts for departures and retirements." },
+          {
+            name: "Anniversaries",
+            tab: "Anniversaries",
+            title: "Celebrate every work milestone",
+            description: "Anniversaries trigger automatically from employee start dates, with rewards employees can choose themselves.",
+            bullets: ["Triggered from your HRIS", "Can be tiered by milestone", "No manual reminders needed"],
+            image: tabMilestone,
+            imageAlt: "A team member reviewing work anniversaries on a desktop monitor",
+          },
+          {
+            name: "Wellness",
+            tab: "Wellness",
+            title: "Show employees you care",
+            description: "Send a favorite snack or let employees choose something they’ll enjoy from the Stadium catalog.",
+            bullets: ["Dietary preferences supported", "No addresses to collect", "Ships to 170+ countries"],
+            href: LINKS.snacks,
+            cta: "Powered by Snackmagic",
+            image: tabCare,
+            imageAlt: "An employee browsing the Snackmagic catalog on a laptop",
+          },
+          {
+            name: "Birthdays",
+            tab: "Birthdays",
+            title: "Never miss a birthday",
+            description: "Give every employee a birthday moment that feels thoughtful, without another reminder on your calendar.",
+            bullets: ["Triggered from your HRIS", "Gifts go out automatically", "Ships to 170+ countries"],
+            image: tabBirthday,
+            imageAlt: "An employee opening a birthday gift box full of snacks",
+          },
+          {
+            name: "Holidays",
+            tab: "Holidays",
+            title: "Close out the year with ease",
+            description: "Give employees their choice of gift or send one branded option to everyone.",
+            bullets: ["One program to manage", "No guesswork", "Ships to 170+ countries"],
+            image: tabYearEndCollage,
+            imageAlt: "A collage of employees unwrapping holiday gifts",
+          },
+          {
+            name: "Year-end",
+            tab: "Year-end",
+            title: "Close out the year with ease",
+            description: "Give employees their choice of gift or send one branded option to everyone.",
+            bullets: ["One program to manage", "No guesswork", "Ships to 170+ countries"],
+            image: tabYearEnd,
+            imageAlt: "An employee relaxing on a sofa with a Snackmagic gift box",
+          },
+          {
+            name: "Offboarding",
+            tab: "Offboarding",
+            title: "Leave a lasting impression",
+            description: "Give departing employees a thoughtful sendoff that shows their time with your company mattered.",
+            bullets: ["Personalized farewell", "Employee gift choice", "Easy to send anywhere"],
+            image: tabOffboarding,
+            imageAlt: "A manager handing a farewell gift to a departing employee",
+          },
         ]}
       />
 
@@ -212,7 +283,7 @@ export default function HrPage() {
         caption="Employee engagement"
         title="One platform. More ways to engage your people."
         description="Use Stadium across recognition, swag, snacks, and gifting as your employee programs evolve."
-        items={ENGAGE_OFFERINGS}
+        items={HR_ENGAGE_OFFERINGS}
       />
     </ImpactPageShell>
     </>

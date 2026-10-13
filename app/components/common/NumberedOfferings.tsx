@@ -6,6 +6,7 @@
    placeholder. */
 
 import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 
 import SectionIntro from "./SectionIntro";
 
@@ -14,6 +15,8 @@ export type NumberedOffering = {
   description: string;
   image?: StaticImageData;
   imageAlt?: string;
+  /* floating UI card pinned top-right of the image (e.g. HR Recognition kudos toast) */
+  overlay?: ReactNode;
 };
 
 export type NumberedOfferingsProps = {
@@ -69,6 +72,7 @@ export default function NumberedOfferings({
                     className="object-cover"
                   />
                 )}
+                {item.overlay}
               </div>
             </li>
           ))}

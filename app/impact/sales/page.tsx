@@ -12,6 +12,7 @@ import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import DealRail from "@/app/components/impact/DealRail";
+import { ChooseGiftGraphic, EnterAddressGraphic, FollowUpGraphic } from "@/app/components/impact/SalesGraphics";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
@@ -20,15 +21,24 @@ import stackApi from "@/public/impact/sales/stack-api.png";
 import stackChrome from "@/public/impact/sales/stack-chrome-extension.png";
 import stackCrm from "@/public/impact/sales/stack-crm.png";
 import stackWebhooks from "@/public/impact/sales/stack-webhooks.png";
-import stepChooseGift from "@/public/impact/sales/step-choose-gift.png";
+import problemSpend from "@/public/impact/sales/v2/problem-spend.jpg";
+import problemAddresses from "@/public/impact/sales/v2/problem-addresses.jpg";
+import problemStages from "@/public/impact/sales/v2/problem-stages.jpg";
+import problemResults from "@/public/impact/sales/v2/problem-results.jpg";
+import journeyProspecting from "@/public/impact/sales/v2/journey-prospecting.jpg";
+import journeyMeetings from "@/public/impact/sales/v2/journey-meetings.jpg";
+import journeyDeal from "@/public/impact/sales/v2/journey-deal-progression.jpg";
+import journeyClosedWon from "@/public/impact/sales/v2/journey-closed-won.jpg";
+import journeyRenewal from "@/public/impact/sales/v2/journey-renewal.jpg";
+import journeyWinBack from "@/public/impact/sales/v2/journey-win-back.jpg";
 import visDelivery from "@/public/impact/sales/visibility-delivery.png";
 import visRedemptions from "@/public/impact/sales/visibility-redemptions.png";
 import visSalesActivity from "@/public/impact/sales/visibility-sales-activity.png";
 import visTrackSends from "@/public/impact/sales/visibility-track-sends.png";
-import wayExperiences from "@/public/impact/sales/way-experiences.jpg";
-import wayGifting from "@/public/impact/sales/way-gifting.jpg";
-import waySnacks from "@/public/impact/sales/way-snacks.jpg";
-import waySwag from "@/public/impact/sales/way-swag.jpg";
+import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
+import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
+import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
+import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
 
 export const metadata: Metadata = seoMetadata("/impact/sales");
 
@@ -89,13 +99,14 @@ export default function SalesPage() {
         captionColor="#16171b"
         title="Gifting shouldn’t create more work for reps"
         description="When gifting happens outside the sales workflow, reps are left managing purchases, collecting addresses, and tracking sends themselves."
-        gridColumns={4}
+        gridColumns={2}
+        narrow
         imageStyle="panel"
         items={[
-          { title: "Gifting spend is hard to track.", description: "Reps use corporate cards across individual sends, making budgets and gifting spend harder to manage." },
-          { title: "Addresses create extra follow-up.", description: "Reps shouldn’t have to chase prospects and customers for shipping details." },
-          { title: "Sends are disconnected from deal stages.", description: "The right sales moment shouldn’t depend on a rep remembering to send something." },
-          { title: "It’s hard to connect gifting to results.", description: "When gifting happens outside the sales workflow, its impact on opportunities and pipeline is harder to see." },
+          { image: problemSpend, imageAlt: "A sales rep reviewing gifting receipts and a laptop at a desk", title: "Gifting spend is hard to track.", description: "Reps use corporate cards across individual sends, making budgets and gifting spend harder to manage." },
+          { image: problemAddresses, imageAlt: "A sales rep looking for shipping details on a laptop", title: "Addresses create extra follow-up.", description: "Reps shouldn’t have to chase prospects and customers for shipping details." },
+          { image: problemStages, imageAlt: "A sales rep checking a deal pipeline on a laptop", title: "Sends are disconnected from deal stages.", description: "The right sales moment shouldn’t depend on a rep remembering to send something." },
+          { image: problemResults, imageAlt: "A sales rep reviewing pipeline results on a laptop", title: "It’s hard to connect gifting to results.", description: "When gifting happens outside the sales workflow, its impact on opportunities and pipeline is harder to see." },
         ]}
         footnote={FOOTNOTE}
       />
@@ -117,16 +128,23 @@ export default function SalesPage() {
         captionColor="#16171b"
         title="Send the gift. They handle the details."
         description="Recipients choose what they want and enter their own shipping information, so reps don’t have to chase addresses or guess what to send."
+        defaultDesktopVisualWidth={235}
         items={[
           {
-            title: "They choose the gift",
+            title: <>They choose<br />the gift</>,
             description: "Give recipients something they actually want.",
-            image: stepChooseGift,
-            imageAlt: "Gift picker with drinkware, bags, tech, and desk options",
-            desktopVisualWidth: 235,
+            content: <ChooseGiftGraphic />,
           },
-          { title: <>They enter<br />the address</> },
-          { title: <>Reps know when<br />to follow up</> },
+          {
+            title: <>They enter<br />the address</>,
+            description: "No shipping details for reps to chase.",
+            content: <EnterAddressGraphic />,
+          },
+          {
+            title: "Reps know when to follow up",
+            description: "Track the gift through delivery and use receipt as a natural next touchpoint.",
+            content: <FollowUpGraphic />,
+          },
         ]}
       />
 
@@ -143,12 +161,54 @@ export default function SalesPage() {
             title: "Make outreach stand out",
             description: "Give priority prospects a reason to engage with your outreach.",
             bullets: ["Personalized sends", "Recipient gift choice", "No address needed upfront"],
+            image: journeyProspecting,
+            imageAlt: "A sales rep preparing outreach on a laptop",
           },
-          { name: "Meetings booked", tab: "Meetings booked", title: "Meeting Gifts", description: "Thank prospects for their time with a gift before or after the call." },
-          { name: "Deal progression", tab: "Deal progression", title: "Deal Acceleration", description: "Sends orchestrated by account plays and pipeline stages." },
-          { name: "Closed won", tab: "Closed won", title: "Closed-Won Gifting", description: "Programs supporting retention motions." },
-          { name: "Renewal", tab: "Renewal", title: "Renewal Gifting", description: "Thank customers for renewing and keep the relationship strong." },
-          { name: "Win-back", tab: "Win-back", title: "Win-Back Campaigns", description: "Re-engage former customers and stalled deals with a thoughtful send." },
+          {
+            name: "Meetings booked",
+            tab: "Meetings booked",
+            title: "Keep the conversation going",
+            description: "Build on the conversation with a timely follow-up after the meeting.",
+            bullets: ["Send directly to prospects", "25K+ gift options", "Recipients enter addresses"],
+            image: journeyMeetings,
+            imageAlt: "A sales rep following up after a meeting",
+          },
+          {
+            name: "Deal progression",
+            tab: "Deal progression",
+            title: "Mark the moments that move deals forward",
+            description: "Add a thoughtful touch at key stages of the deal.",
+            bullets: ["Automated by deal-stage", "Personalized sends", "Recipient gift choice"],
+            image: journeyDeal,
+            imageAlt: "A sales rep reviewing deal stages on a laptop",
+          },
+          {
+            name: "Closed won",
+            tab: "Closed won",
+            title: "Start the relationship strong",
+            description: "Give new customers a polished handoff from prospect to customer.",
+            bullets: ["Premium branded options", "Customer welcome kits", "Recipient gift choice"],
+            image: journeyClosedWon,
+            imageAlt: "A sales rep unboxing a premium branded gift",
+          },
+          {
+            name: "Renewal",
+            tab: "Renewal",
+            title: "Make customer milestones count",
+            description: "Support renewal conversations with a personalized touch for key customers.",
+            bullets: ["Personalized customer sends", "Premium gift options", "Customize with a personalized note"],
+            image: journeyRenewal,
+            imageAlt: "A customer opening a branded gift box at home",
+          },
+          {
+            name: "Win-back",
+            tab: "Win-back",
+            title: "Give them a reason to reconnect",
+            description: "Use gifting to support re-engagement with customers who have gone quiet.",
+            bullets: ["Personalized gift choice", "Rep-led sends", "No address needed upfront"],
+            image: journeyWinBack,
+            imageAlt: "A customer opening a gift box in a kitchen",
+          },
         ]}
       />
 
@@ -231,10 +291,10 @@ export default function SalesPage() {
         title="Give reps more ways to make an impression"
         description="When the moment calls for a personal touch, reps can choose from gifts, swag, snacks, experiences, and more."
         items={[
-          { title: "Gifting", description: "Personalized gifts for important sales moments.", image: wayGifting, imageAlt: "A Swagmagic gift box with a tumbler, pen, and notebook" },
-          { title: "Swag", description: "Premium branded merchandise for prospects and customers.", image: waySwag, imageAlt: "Branded hoodie, cap, bottle, mug, notebook, and tote" },
-          { title: "Snacks", description: "Personalized snack experiences for meetings and follow-ups.", image: waySnacks, imageAlt: "An assortment of packaged snacks" },
-          { title: "Hosted Experiences", description: "Live experiences that bring prospects and customers together.", image: wayExperiences, imageAlt: "A hosted virtual game show with participants on video" },
+          { title: "Gifting", description: "Personalized gifts for important sales moments.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+          { title: "Swag", description: "Premium branded merchandise for prospects and customers.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+          { title: "Snacks", description: "Personalized snack experiences for meetings and follow-ups.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+          { title: "Hosted Experiences", description: "Live experiences that bring prospects and customers together.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
           { title: "Gift Cards", description: "A flexible option when recipients prefer to choose." },
         ]}
       />
