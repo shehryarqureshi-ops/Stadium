@@ -19,18 +19,26 @@ import automationApi from "@/public/impact/cx/automation-api.png";
 import automationCrm from "@/public/impact/cx/automation-crm.png";
 import automationWebhooks from "@/public/impact/cx/automation-webhooks.png";
 import dashboard from "@/public/impact/cx/dashboard.png";
-import problemAddresses from "@/public/impact/cx/problem-addresses.png";
-import problemRecurring from "@/public/impact/cx/problem-recurring.png";
-import problemVendors from "@/public/impact/cx/problem-vendors.png";
 import visActivity from "@/public/impact/cx/visibility-activity.png";
 import visBudgets from "@/public/impact/cx/visibility-budgets.png";
 import visRedemptions from "@/public/impact/cx/visibility-redemptions.png";
 import visSends from "@/public/impact/cx/visibility-sends.png";
-/* same Figma photography as the /impact/sales "five ways" cards */
-import wayExperiences from "@/public/impact/sales/way-experiences.jpg";
-import wayGifting from "@/public/impact/sales/way-gifting.jpg";
-import waySnacks from "@/public/impact/sales/way-snacks.jpg";
-import waySwag from "@/public/impact/sales/way-swag.jpg";
+
+import problemVendors from "@/public/impact/cx/v2/problem-vendors.jpg";
+import problemAddresses from "@/public/impact/cx/v2/problem-addresses.jpg";
+import problemRecurring from "@/public/impact/cx/v2/problem-recurring.jpg";
+import journeyOnboarding from "@/public/impact/cx/v2/journey-onboarding.jpg";
+import journeyMilestones from "@/public/impact/cx/v2/journey-milestones.jpg";
+import journeyAppreciation from "@/public/impact/cx/v2/journey-appreciation.jpg";
+import journeyEvents from "@/public/impact/cx/v2/journey-events.jpg";
+import journeyResolution from "@/public/impact/cx/v2/journey-resolution.jpg";
+import journeyRenewal from "@/public/impact/cx/v2/journey-renewal.jpg";
+import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
+import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
+import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
+import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
+import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import KudosToast from "@/app/components/impact/KudosToast";
 
 export const metadata: Metadata = seoMetadata("/impact/cx");
 
@@ -91,9 +99,9 @@ export default function CxPage() {
         gridColumns={3}
         imageStyle="panel"
         items={[
-          { image: problemVendors, imageAlt: "Order confirmations and receipts from three different gifting vendors", description: "Gifting happens across different vendors." },
-          { image: problemAddresses, imageAlt: "An email thread asking a customer for a shipping address and t-shirt size, 12 of 40 replied", description: "Teams spend time collecting addresses and preferences." },
-          { image: problemRecurring, imageAlt: "Renewal gifts list with 24 sends left to set up manually", description: "Recurring sends require manual setup." },
+          { image: problemVendors, imageAlt: "A customer success manager sorting gifts and paperwork from different vendors", description: "Gifting happens across different vendors." },
+          { image: problemAddresses, imageAlt: "A customer success manager collecting addresses and preferences by email", description: "Teams spend time collecting addresses and preferences." },
+          { image: problemRecurring, imageAlt: "A customer success manager setting up recurring sends by hand", description: "Recurring sends require manual setup." },
         ]}
         footnote="Your team should focus on customers–not coordinating every send."
       />
@@ -140,12 +148,54 @@ export default function CxPage() {
             title: "Start with a memorable welcome",
             description: "Make new customers feel valued from the moment they come on board.",
             bullets: ["Welcome kits", "Branded swag kits", "Recipient gift choice"],
+            image: journeyOnboarding,
+            imageAlt: "A welcome kit prepared for a new customer",
           },
-          { name: "Milestones", tab: "Milestones", title: "Customer Milestones", description: "Celebrate go-lives, anniversaries, and wins with the customers behind them." },
-          { name: "Appreciation", tab: "Appreciation", title: "Surprise & Delight Gifting", description: "Unexpected moments that build loyalty." },
-          { name: "Customer events", tab: "Customer events", title: "Customer Events", description: "Swag, snacks, and kits for user groups, summits, and virtual events." },
-          { name: "Resolution", tab: "Resolution", title: "Service Recovery", description: "Turn a tough support moment around with a thoughtful send." },
-          { name: "Renewal & loyalty", tab: "Renewal & loyalty", title: "Renewal Gifting", description: "Kits mapped to renewal and retention motions." },
+          {
+            name: "Milestones",
+            tab: "Milestones",
+            title: "Celebrate the wins along the way",
+            description: "Mark launches, anniversaries, and standout customer achievements.",
+            bullets: ["Personalized sends", "Flexible gift options", "Custom notes"],
+            image: journeyMilestones,
+            imageAlt: "A customer celebrating a milestone with a gift",
+          },
+          {
+            name: "Appreciation",
+            tab: "Appreciation",
+            title: "Make thank-yous stand out",
+            description: "Go beyond another email when a customer deserves extra appreciation.",
+            bullets: ["Send on demand", "Recipient gift choice", "Premium options"],
+            image: journeyAppreciation,
+            imageAlt: "A customer receiving a thank-you gift",
+          },
+          {
+            name: "Customer events",
+            tab: "Customer events",
+            title: "Bring the event to them",
+            description: "Give customers something to enjoy before, during, or after a virtual or in-person event.",
+            bullets: ["Event kits", "Individual or bulk sends", "Branded options"],
+            image: journeyEvents,
+            imageAlt: "A customer enjoying an event kit",
+          },
+          {
+            name: "Resolution",
+            tab: "Resolution",
+            title: "Follow up beyond the fix",
+            description: "Show customers you care after an issue is resolved.",
+            bullets: ["Rep-led sends", "Flexible gift options", "Personalized notes"],
+            image: journeyResolution,
+            imageAlt: "A customer opening a follow-up gift",
+          },
+          {
+            name: "Renewal & loyalty",
+            tab: "Renewal & loyalty",
+            title: "Make long-term customers feel valued",
+            description: "Strengthen the relationship around renewals, anniversaries, and other moments that build long-term loyalty.",
+            bullets: ["Premium gift options", "Personalized sends", "Recipient gift choice"],
+            image: journeyRenewal,
+            imageAlt: "A long-term customer opening a premium gift",
+          },
         ]}
       />
 
@@ -207,11 +257,11 @@ export default function CxPage() {
         title="More ways to engage customers"
         description="Choose the experience that fits the customer, the relationship, and the occasion."
         items={[
-          { title: "Swag", description: "Branded merchandise and kits for customers.", image: waySwag, imageAlt: "Branded hoodie, cap, bottle, mug, notebook, and tote" },
-          { title: "Gifting", description: "Personalized gifts for meaningful customer moments.", image: wayGifting, imageAlt: "A Swagmagic gift box with a tumbler, pen, and notebook" },
-          { title: "Snacks", description: "Personalized snack experiences for meetings and events.", image: waySnacks, imageAlt: "An assortment of packaged snacks" },
-          { title: "Hosted Experiences", description: "Live-hosted events for customers and groups.", image: wayExperiences, imageAlt: "A hosted virtual game show with participants on video" },
-          { title: "Recognition", description: "Points and rewards customers can redeem." },
+          { title: "Swag", description: "Branded merchandise and kits for customers.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+          { title: "Gifting", description: "Personalized gifts for meaningful customer moments.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+          { title: "Snacks", description: "Personalized snack experiences for meetings and events.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+          { title: "Hosted Experiences", description: "Live-hosted events for customers and groups.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
+          { title: "Recognition", description: "Points and rewards customers can redeem.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
         ]}
       />
     </ImpactPageShell>

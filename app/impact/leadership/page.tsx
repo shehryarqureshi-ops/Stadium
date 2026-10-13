@@ -13,19 +13,29 @@ import GuardrailsTray from "@/app/components/impact/GuardrailsTray";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
-import offeringGifting from "@/public/impact/finance/offering-gifting.jpg";
-import offeringHosted from "@/public/impact/finance/offering-hosted-experiences.jpg";
-import offeringSnacks from "@/public/impact/finance/offering-snacks.jpg";
-import offeringSwag from "@/public/impact/finance/offering-swag.jpg";
 import companyOverview from "@/public/impact/leadership/company-overview.png";
-import problemBudgets from "@/public/impact/leadership/problem-budgets.png";
-import problemConsistency from "@/public/impact/leadership/problem-consistency.png";
-import problemOversight from "@/public/impact/leadership/problem-oversight.png";
-import problemTools from "@/public/impact/leadership/problem-tools.png";
 import scaleCountries from "@/public/impact/leadership/scale-countries.png";
 import scaleInfrastructure from "@/public/impact/leadership/scale-infrastructure.png";
 import scaleIntegrations from "@/public/impact/leadership/scale-integrations.png";
 import teamsWorkspace from "@/public/impact/leadership/teams-workspace.png";
+
+import problemTools from "@/public/impact/leadership/v2/problem-tools.jpg";
+import problemBudgets from "@/public/impact/leadership/v2/problem-budgets.jpg";
+import problemConsistency from "@/public/impact/leadership/v2/problem-consistency.jpg";
+import problemOversight from "@/public/impact/leadership/v2/problem-oversight.jpg";
+import journeyOnboarding from "@/public/impact/leadership/v2/journey-onboarding.jpg";
+import journeyRecognition from "@/public/impact/leadership/v2/journey-recognition.jpg";
+import journeyMilestones from "@/public/impact/leadership/v2/journey-milestones.jpg";
+import journeyEvents from "@/public/impact/leadership/v2/journey-events.jpg";
+import journeyAppreciation from "@/public/impact/leadership/v2/journey-appreciation.jpg";
+import journeySales from "@/public/impact/leadership/v2/journey-sales.jpg";
+import RecognitionToast from "@/app/components/impact/RecognitionToast";
+import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
+import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
+import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
+import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
+import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import KudosToast from "@/app/components/impact/KudosToast";
 
 export const metadata: Metadata = seoMetadata("/impact/leadership");
 
@@ -82,13 +92,14 @@ export default function LeadershipPage() {
         captionColor="#16171b"
         title="Growth makes engagement harder to govern"
         description="As organizations expand, programs spread across teams, tools, vendors, budgets, and regions."
-        gridColumns={4}
+        gridColumns={2}
+        narrow
         imageStyle="panel"
         items={[
-          { image: problemTools, imageAlt: "Four teams using four separate tools with no shared view", description: "Teams use separate tools." },
-          { image: problemBudgets, imageAlt: "Regional budgets tracked in a spreadsheet, a vendor portal, and an email thread", description: "Budgets live in different places." },
-          { image: problemConsistency, imageAlt: "The same onboarding kit with different items and costs in the US and UK offices", description: "Programs become harder to scale consistently." },
-          { image: problemOversight, imageAlt: "Company spend with only 2 of 6 teams reporting", description: "Leadership lacks company-wide oversight." },
+          { image: problemTools, imageAlt: "Four teams each working in a separate tool", description: "Teams use separate tools." },
+          { image: problemBudgets, imageAlt: "A leader comparing budgets that live in different places", description: "Budgets live in different places." },
+          { image: problemConsistency, imageAlt: "Programs running differently across offices", description: "Programs become harder to scale consistently." },
+          { image: problemOversight, imageAlt: "A leader without company-wide oversight of engagement spend", description: "Leadership lacks company-wide oversight." },
         ]}
         footnote="Scaling engagement shouldn’t mean adding more tools, vendors, and workflows."
       />
@@ -135,12 +146,55 @@ export default function LeadershipPage() {
             title: "Give every new hire a strong start",
             description: "Create a consistent welcome for new hires across teams, offices, and regions.",
             bullets: ["New hire kits", "Branded swag", "Automated sends"],
+            image: journeyOnboarding,
+            imageAlt: "A new hire welcome kit",
           },
-          { name: "Recognition", tab: "Recognition", title: "Lower Voluntary Turnover", description: "Recognition programs that build loyalty and retention." },
-          { name: "Milestones", tab: "Milestones", title: "Company Milestones", description: "Anniversaries, launches, and achievements." },
-          { name: "Events", tab: "Events", title: "All-Hands & Team Events", description: "Swag, snacks, and event kits for company gatherings." },
-          { name: "Customer appreciation", tab: "Customer appreciation", title: "Surprise & Delight Gifting", description: "Unexpected moments that build loyalty." },
-          { name: "Sales", tab: "Sales", title: "Deal Acceleration", description: "Sends orchestrated by account plays and pipeline stages." },
+          {
+            name: "Recognition",
+            tab: "Recognition",
+            title: "Recognize great work as it happens",
+            description: "Help employees and managers recognize contributions, reinforce company values, and build morale across teams and locations.",
+            bullets: ["Employee-to-employee recognition", "Slack + Teams recognition", "Points and rewards"],
+            image: journeyRecognition,
+            imageAlt: "A recognition moment shown on a laptop",
+            overlay: <RecognitionToast />,
+          },
+          {
+            name: "Milestones",
+            tab: "Milestones",
+            title: "Mark the milestones people reach",
+            description: "Recognize progress at every level, from employee anniversaries to company achievements.",
+            bullets: ["Work anniversaries", "Team achievements", "Company milestones"],
+            image: journeyMilestones,
+            imageAlt: "A team celebrating a milestone",
+          },
+          {
+            name: "Events",
+            tab: "Events",
+            title: "Make company events feel connected",
+            description: "Support distributed teams with branded experiences before, during, and after an event.",
+            bullets: ["Company kickoffs", "Team gatherings", "Event kits"],
+            image: journeyEvents,
+            imageAlt: "A team gathering with branded event kits",
+          },
+          {
+            name: "Customer appreciation",
+            tab: "Customer appreciation",
+            title: "Show customers they’re valued",
+            description: "Mark anniversaries and renewals, or send a thank-you that goes beyond the usual email.",
+            bullets: ["Customer thank-yous", "Renewal gifts", "Partner appreciation"],
+            image: journeyAppreciation,
+            imageAlt: "A customer receiving a thank-you gift",
+          },
+          {
+            name: "Sales",
+            tab: "Sales",
+            title: "Support reps beyond the conversation",
+            description: "Send gifts after meetings, as deals progress, or when a prospect becomes a customer.",
+            bullets: ["Prospect gifts", "CRM-triggered sends", "Customer welcomes"],
+            image: journeySales,
+            imageAlt: "A sales rep preparing a gift",
+          },
         ]}
       />
 
@@ -173,11 +227,11 @@ export default function LeadershipPage() {
         title="More ways to connect with the people who matter"
         description="Give teams the flexibility to run recognition, swag, gifting, snacks, and hosted experiences from one company-wide platform."
         items={[
-          { title: "Recognition", description: "Points and rewards for recognition programs." },
-          { title: "Swag", description: "Branded merchandise for teams and audiences.", image: offeringSwag, imageAlt: "Branded hoodie, cap, bottle, mug, notebook, and tote" },
-          { title: "Gifting", description: "Flexible gifting across employee and business programs.", image: offeringGifting, imageAlt: "A boxed gift set with a bottle, pen, and notebook" },
-          { title: "Snacks", description: "Food and treats for teams, customers, and events.", image: offeringSnacks, imageAlt: "An assortment of packaged snacks" },
-          { title: "Hosted Experiences", description: "Live-hosted events that bring people together.", image: offeringHosted, imageAlt: "A live-hosted virtual game show on a video call" },
+          { title: "Recognition", description: "Points and rewards for recognition programs.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
+          { title: "Swag", description: "Branded merchandise for teams and audiences.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+          { title: "Gifting", description: "Flexible gifting across employee and business programs.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+          { title: "Snacks", description: "Food and treats for teams, customers, and events.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+          { title: "Hosted Experiences", description: "Live-hosted events that bring people together.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
         ]}
       />
     </ImpactPageShell>

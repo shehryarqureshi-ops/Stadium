@@ -13,19 +13,26 @@ import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPage
 import OfficeNeedsBoard from "@/app/components/impact/OfficeNeedsBoard";
 import { LINKS } from "@/app/components/impact/shared";
 
-import offeringExperiences from "@/public/impact/office-admins/offering-experiences.jpg";
-import offeringGifting from "@/public/impact/office-admins/offering-gifting.jpg";
-import offeringSnacks from "@/public/impact/office-admins/offering-snacks.jpg";
-import offeringSwag from "@/public/impact/office-admins/offering-swag.jpg";
 import operationsOverview from "@/public/impact/office-admins/operations-overview.png";
 import operationsWorkspace from "@/public/impact/office-admins/operations-workspace.png";
-import problemDeliveries from "@/public/impact/office-admins/problem-deliveries.png";
-import problemInventory from "@/public/impact/office-admins/problem-inventory.png";
-import problemInvoices from "@/public/impact/office-admins/problem-invoices.png";
-import problemVendors from "@/public/impact/office-admins/problem-vendors.png";
 import recurringDeliveries from "@/public/impact/office-admins/recurring-scheduled-deliveries.png";
 import recurringPrograms from "@/public/impact/office-admins/recurring-employee-programs.png";
 import recurringSnacks from "@/public/impact/office-admins/recurring-office-snacks.png";
+
+import problemVendors from "@/public/impact/office-admins/v2/problem-vendors.jpg";
+import problemDeliveries from "@/public/impact/office-admins/v2/problem-deliveries.jpg";
+import problemInventory from "@/public/impact/office-admins/v2/problem-inventory.jpg";
+import problemInvoices from "@/public/impact/office-admins/v2/problem-invoices.jpg";
+import journeyNewHires from "@/public/impact/office-admins/v2/journey-new-hires.jpg";
+import journeyEmployeeGifts from "@/public/impact/office-admins/v2/journey-employee-gifts.jpg";
+import journeyCompanyEvents from "@/public/impact/office-admins/v2/journey-company-events.jpg";
+import journeyExecutive from "@/public/impact/office-admins/v2/journey-executive.jpg";
+import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
+import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
+import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
+import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
+import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import KudosToast from "@/app/components/impact/KudosToast";
 
 export const metadata: Metadata = seoMetadata("/impact/office-admins");
 
@@ -81,13 +88,14 @@ export default function OfficeAdminsPage() {
         captionColor="#16171b"
         title="Too many needs. Too many moving parts."
         description="As workplace needs grow, keeping track of what’s ordered, shipped, stocked, and spent gets harder."
-        gridColumns={4}
+        gridColumns={2}
+        narrow
         imageStyle="panel"
         items={[
-          { image: problemVendors, imageAlt: "This week: snacks, swag, events, and gifts split across four vendors", description: "Programs rely on multiple vendors." },
-          { image: problemDeliveries, imageAlt: "Snack deliveries confirmed for Austin HQ but unconfirmed for Berlin and London", description: "Deliveries require follow-up across locations." },
-          { image: problemInventory, imageAlt: "An office inventory spreadsheet last edited five weeks ago with uncertain counts", description: "Inventory is difficult to keep current." },
-          { image: problemInvoices, imageAlt: "An inbox with nine unread vendor invoices and statements", description: "Orders and invoices create extra admin work." },
+          { image: problemVendors, imageAlt: "An office admin juggling orders from multiple vendors", description: "Programs rely on multiple vendors." },
+          { image: problemDeliveries, imageAlt: "An office admin following up on deliveries across locations", description: "Deliveries require follow-up across locations." },
+          { image: problemInventory, imageAlt: "An office admin counting inventory", description: "Inventory is difficult to keep current." },
+          { image: problemInvoices, imageAlt: "An office admin handling orders and invoices", description: "Orders and invoices create extra admin work." },
         ]}
         footnote="Your team needs one place to manage programs, orders, and deliveries."
       />
@@ -136,10 +144,36 @@ export default function OfficeAdminsPage() {
             title: "Get new hires ready for day one",
             description: "Give new hires a consistent welcome whether they start in the office or remotely.",
             bullets: ["New hire kits", "Branded swag", "Direct-to-home shipping"],
+            image: journeyNewHires,
+            imageAlt: "A new hire welcome kit",
           },
-          { name: "Employee gifts", tab: "Employee gifts", title: "Employee Gifts", description: "Gifts for birthdays, milestones, and thank-yous, sent wherever employees work." },
-          { name: "Company events", tab: "Company events", title: "Offsite Room Drops", description: "Room drops and kits for offsite events." },
-          { name: "Executive requests", tab: "Executive requests", title: "Executive Gifting", description: "High-touch gifting for executives and VIPs." },
+          {
+            name: "Employee gifts",
+            tab: "Employee gifts",
+            title: "Take care of employee occasions",
+            description: "Handle birthdays, anniversaries, and thank-yous that come up.",
+            bullets: ["Birthdays", "Work anniversaries", "Employee thank-yous"],
+            image: journeyEmployeeGifts,
+            imageAlt: "An employee opening a gift",
+          },
+          {
+            name: "Company events",
+            tab: "Company events",
+            title: "Get teams ready for company events",
+            description: "Coordinate what teams need before, during, and after company events.",
+            bullets: ["Event swag", "Snacks and treats", "Individual or bulk sends"],
+            image: journeyCompanyEvents,
+            imageAlt: "Event supplies prepared for a company event",
+          },
+          {
+            name: "Executive requests",
+            tab: "Executive requests",
+            title: "Handle the last-minute ask",
+            description: "Take care of one-off sends without finding another vendor.",
+            bullets: ["Executive gifts", "Premium merchandise", "Personalized sends"],
+            image: journeyExecutive,
+            imageAlt: "A premium gift prepared for an executive",
+          },
         ]}
       />
 
@@ -172,11 +206,11 @@ export default function OfficeAdminsPage() {
         title="More ways to support your teams"
         description="Choose the right experience for office needs, employee welcomes, company events, and more—all through one partner."
         items={[
-          { title: "Snacks", description: "Food and treats for offices, meetings, and events.", image: offeringSnacks, imageAlt: "An assortment of packaged snacks" },
-          { title: "Swag", description: "Branded merchandise for employees and company programs.", image: offeringSwag, imageAlt: "Branded hoodie, cap, bottle, mug, notebook, and tote" },
-          { title: "Gifting", description: "Flexible gifts for employees and one-off requests.", image: offeringGifting, imageAlt: "A branded gift box with a tumbler, pen, and leather notebook" },
-          { title: "Hosted Experiences", description: "Live-hosted events that bring teams together.", image: offeringExperiences, imageAlt: "A live-hosted virtual game with participants on a video call" },
-          { title: "Recognition", description: "Points and rewards for employee recognition." },
+          { title: "Snacks", description: "Food and treats for offices, meetings, and events.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+          { title: "Swag", description: "Branded merchandise for employees and company programs.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+          { title: "Gifting", description: "Flexible gifts for employees and one-off requests.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+          { title: "Hosted Experiences", description: "Live-hosted events that bring teams together.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
+          { title: "Recognition", description: "Points and rewards for employee recognition.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
         ]}
       />
     </ImpactPageShell>

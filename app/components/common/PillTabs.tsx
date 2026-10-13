@@ -2,7 +2,7 @@
 
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 export type TabsShowcaseItem = {
@@ -15,6 +15,8 @@ export type TabsShowcaseItem = {
   image?: StaticImageData | string;
   /** overrides `image` for alt text; falls back to `name` */
   imageAlt?: string;
+  /** floating UI pinned over the image (e.g. a notification toast) */
+  overlay?: ReactNode;
   href?: string;
   cta?: string;
 };
@@ -216,7 +218,7 @@ export default function PillTabs({
         <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
           {/* Active image */}
           <div className="w-full shrink-0 lg:w-1/2">
-            <div key={`image-${item.name}`} className="teams-panel-in w-full">
+            <div key={`image-${item.name}`} className="teams-panel-in relative w-full">
               {item.image ? (
               <Image
                 src={item.image}
@@ -230,6 +232,7 @@ export default function PillTabs({
               ) : (
                 <div aria-hidden className="aspect-[580/394] w-full rounded-3xl bg-[#e0e0e0]" />
               )}
+              {item.overlay}
             </div>
           </div>
 
