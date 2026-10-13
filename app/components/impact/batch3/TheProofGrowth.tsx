@@ -10,9 +10,9 @@
 
    TIMELINE (30 fps)
      0 – 96    INTRO: Year 1, Year 2, Year 3 spring in stage by stage; each counter runs
-               up and its program pills pop in; the hours chip lands last and counts
+               up once and its program pills pop in; the hours chip lands last and counts
                up. Frame 96 = the Figma frame (also the reduced-motion still).
-     96 – 396  LOOP: each year is lit in turn (card lifts, count replays 60% → 100%,
+     96 – 396  LOOP: each year is lit in turn (card lifts, 
                pills pulse in order), the hours chip pulses after each. All values rest
                at both ends (seamless); cards float on whole-cycle sines (±2).
    NO CROP: nothing leaves 0 … STAGE_W. */
@@ -33,7 +33,6 @@ type Year = {
   x: number;
   y: number;
   h: number;
-  numW: number;
   rows: string[][];
   programs: string;
   delay: number;
@@ -44,16 +43,16 @@ type Year = {
 
 const YEARS: Year[] = [
   {
-    label: "Year 1", n: 100, x: 0, y: 232, h: 179, numW: 76, rows: [["Snacks", "Swag"]],
+    label: "Year 1", n: 100, x: 0, y: 232, h: 179, rows: [["Snacks", "Swag"]],
     programs: "2 programs", delay: 0, s: 8, bobCycles: 1, bobAmp: -2,
   },
   {
-    label: "Year 2", n: 350, x: 64, y: 64, h: 205, numW: 79,
+    label: "Year 2", n: 350, x: 64, y: 64, h: 205,
     rows: [["Snacks", "Swag", "Recognition"], ["Gifting"]],
     programs: "4 programs", delay: 14, s: 108, bobCycles: 2, bobAmp: 2,
   },
   {
-    label: "Year 3", n: 800, x: 275, y: 0, h: 205, numW: 87,
+    label: "Year 3", n: 800, x: 275, y: 0, h: 205,
     rows: [["Snacks", "Swag", "Recognition"], ["Gifting", "Events", "Onboarding"]],
     programs: "6 programs", delay: 28, s: 208, bobCycles: 3, bobAmp: -1.5,
   },
@@ -85,10 +84,8 @@ function Pill({ text, f, delay, boost }: { text: string; f: number; delay: numbe
 function YearCard({ y, f, lt }: { y: Year; f: number; lt: number }) {
   const p = pop(f, y.delay);
   const lift = win(lt, y.s, y.s + 8, y.s + 58, y.s + 70);
-  /* loop count replay: drops to 60% then counts back up (0 at both loop ends) */
-  const dip = seg(lt, y.s, y.s + 3, LIN) * (1 - seg(lt, y.s + 3, y.s + 34));
   const intro = seg(f, y.delay + 4, y.delay + 52);
-  const count = Math.round(y.n * intro * (1 - 0.4 * dip));
+  const count = Math.round(y.n * intro);
   const float = bob(f, y.bobCycles, y.bobAmp);
   let pillIndex = 0;
   return (
@@ -115,11 +112,13 @@ function YearCard({ y, f, lt }: { y: Year; f: number; lt: number }) {
         {y.label}
       </p>
       <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 46 }}>
+        {/* the final value sizes the box (invisible), so the gap to "employees" is the same on every card */}
         <p
           className="font-display text-grey-800"
-          style={{ fontSize: 42, lineHeight: "46px", width: y.numW, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}
+          style={{ position: "relative", fontSize: 42, lineHeight: "46px", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}
         >
-          {count}
+          <span style={{ visibility: "hidden" }}>{y.n}</span>
+          <span style={{ position: "absolute", left: 0, top: 0 }}>{count}</span>
         </p>
         <p className="text-grey-600" style={{ fontSize: 12, lineHeight: "16px", paddingBottom: 6, whiteSpace: "nowrap" }}>
           employees

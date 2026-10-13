@@ -3,20 +3,49 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
+import ImageShowcase from "@/app/components/common/ImageShowcase";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
-import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import QuoteSplit from "@/app/components/common/QuoteSplit";
+import SplitFeature from "@/app/components/common/SplitFeature";
+import StatsGrid from "@/app/components/common/StatsGrid";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import TeamHero from "@/app/components/common/TeamHero";
 import TheProofGrowth from "@/app/components/impact/batch3/TheProofGrowth";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { ENGAGE_OFFERINGS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
+import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
 export const metadata: Metadata = seoMetadata("/the-proof");
 
-/* /the-proof — Figma n9SjmDjzB1PeZAYJ5w43fr → 3815:4571. Product mockups
-   have no exported art: cards without an image render the placeholder slot. */
+import caseTime from "@/public/the-proof/case-time.png";
+import caseMoney from "@/public/the-proof/case-money.png";
+import casePeace from "@/public/the-proof/case-peace.png";
+import caseControl from "@/public/the-proof/case-control.png";
+import savingsReport from "@/public/the-proof/savings-report.jpg";
+import companyOverview from "@/public/the-proof/company-overview.jpg";
+import swagProject from "@/public/the-proof/swag-project.jpg";
+import yourTeam from "@/public/the-proof/your-stadium-team.jpg";
+
+/* /the-proof — Figma n9SjmDjzB1PeZAYJ5w43fr → 3815:4571. Mockups are 2×
+   exports of the Figma frames (public/the-proof/). Customer-result image
+   slots and the global-network visual are grey placeholders in Figma too. */
+
+const PROOF_LOGOS = [
+  { src: "/impact/overview/logos/google.svg", alt: "Google", width: 74, height: 24 },
+  { src: "/impact/overview/logos/amazon.svg", alt: "Amazon", width: 80, height: 24 },
+  { src: "/impact/overview/logos/pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
+  { src: "/impact/overview/logos/accenture.svg", alt: "Accenture", width: 84, height: 24 },
+  { src: "/impact/overview/logos/bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
+  { src: "/impact/overview/logos/salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
+  { src: "/impact/overview/logos/netflix.svg", alt: "Netflix", width: 75, height: 20 },
+];
+
+const CUSTOMER_RESULTS = [
+  { eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8—10 hours to 1—2 hours", description: "Expanded recognition without adding administrative overhead." },
+  { eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
+  { eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
+];
 
 export default function TheProofPage() {
   return (
@@ -46,42 +75,54 @@ export default function TheProofPage() {
               secondary: { label: "Explore the platform", href: LINKS.platform },
             }}
           >
-            <VariableCardGrid
-              background="transparent"
-              caption="Customer results"
-              captionColor="#16171b"
-              title="See what companies accomplish with Stadium"
-              gridColumns={3}
-              items={[
-                { eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8–10 hours to 1–2 hours", description: "Expanded recognition without adding administrative overhead." },
-                { eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
-                { eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
+            <QuoteSplit
+              caption="An extension of your team"
+              title="The expertise you need, without the team you’d have to hire"
+              description="Program strategy, merchandising, global logistics, and live support all come standard, so your team coordinates less and ships more."
+              quote="“I didn’t realize how much mental load came with managing two vendors until it was gone. Now I just go to Stadium.”"
+              attribution="Philo-Marie W., Sr. Specialist of Events & Experience"
+              image={yourTeam}
+              imageAlt="Your Stadium team: a program strategist, merchandiser, global logistics lead and live support, with a delivery update"
+            />
+            <ImpactProof
+              large
+              caption="In good company"
+              title="Trusted by 10,000+ companies worldwide"
+              rating={{ score: "4.8", label: "on G2 from 1,515 reviews" }}
+              logos={PROOF_LOGOS}
+              quotes={[
+                { company: "WORKATO", quote: "“Stadium stood out to me because it made global gifting simple, inclusive, scalable, and cost-effective.”", name: "Michelle D.", role: "Director of Administrative Operations" },
+                { company: "KENTRO", quote: "“I know I have a trusted partner with Stadium, and I know they’re going to work with me to meet all my needs.”", name: "Felicia W.", role: "Communications Manager" },
+                { company: "ISOLVED", quote: "“Stadium is all-encompassing. It’s allowed our team to collaborate. Not just for our internal HR to use, but now we have marketing and sales coming and asking for things to be in our store…”", name: "Natalie A.", role: "Senior Enablement & Engagement Specialist" },
               ]}
             />
           </ImpactClosing>
         }
       >
-        <NumberedCardGrid
-          caption="The business case"
+        <VariableCardGrid
+          caption="Why Stadium"
+          captionColor="#16171b"
           title="The business case for Stadium"
           description="Bring recognition, swag, snack boxes, gifting, and hosted experiences together with one global partner."
-          cards={[
-            { title: "Reduce manual work", description: "Reduce manual work across vendors, tools, and logistics." },
-            { title: "Lower costs", description: "Lower costs by consolidating vendors, contracts, and invoices into one partner." },
-            { title: "Peace of Mind", description: "Rely on Stadium to handle sourcing, fulfillment, logistics, and execution." },
-            { title: "Stay in Control", description: "Centralized control. Decentralized execution." },
+          gridColumns={2}
+          narrow
+          imageStyle="panel"
+          items={[
+            { image: caseTime, imageAlt: "Saved this month: 14 hours, with vendor quotes, shipping labels and inventory checks automated", title: "Save Time", description: "Reduce manual work across vendors, tools, and logistics." },
+            { image: caseMoney, imageAlt: "Annual vendor spend down from $61,200 to $46,200 with one partner", title: "Save Money", description: "Lower costs by consolidating vendors, contracts, and invoices into one partner." },
+            { image: casePeace, imageAlt: "Holiday gifting on track: sourcing, fulfillment, logistics and execution handled by Stadium", title: "Peace of Mind", description: "Rely on Stadium to handle sourcing, fulfillment, logistics, and execution." },
+            { image: caseControl, imageAlt: "Company controls set centrally by Admin: team budget, approved brand assets, 3 teams sending", title: "Stay in Control", description: "Centralized control. Decentralized execution." },
           ]}
         />
 
         <TeamDivider thick />
 
-        <VariableCardGrid
+        <ImageShowcase
           caption="Measurable impact"
-          captionColor="#16171b"
-          title="Savings you can see"
-          description="Consolidate six vendors into one partner and track what you saved in a single report."
-          gridColumns={1}
-          items={[{ description: "Savings report: 6 vendors consolidated into 1 partner with Stadium." }]}
+          title="$15K Average Customer Savings"
+          description="*based on vendor consolidation"
+          image={savingsReport}
+          imageAlt="Stadium savings report: $15,240 saved, 6 vendors consolidated into 1 partner"
         />
 
         <VariableCardGrid
@@ -89,58 +130,54 @@ export default function TheProofPage() {
           captionColor="#16171b"
           title="See what companies accomplish with Stadium"
           gridColumns={3}
-          items={[
-            { eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8–10 hours to 1–2 hours", description: "Expanded recognition without adding administrative overhead." },
-            { eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
-            { eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
-          ]}
+          items={CUSTOMER_RESULTS}
         />
 
-        <VariableCardGrid
+        <ImageShowcase
           caption="Built for complex organizations"
-          captionColor="#16171b"
           title="Centralized control. Decentralized execution."
           description="Manage budgets, permissions, and activity centrally while giving teams flexibility to execute."
-          gridColumns={1}
-          items={[{ description: "Company overview: budgets, permissions, and brand set centrally; teams execute within budget." }]}
+          image={companyOverview}
+          imageAlt="Stadium company overview: budgets, permissions and brand set centrally, with teams executing within budget"
         />
 
-        <QuoteSplit
+        <SplitFeature
           caption="Real results"
-          title="One company, one partner"
-          quote="ConstructConnect reduced the time spent manually coordinating pricing and vendors for customer swag projects."
-          attribution="ConstructConnect"
+          title="2—4 hours saved per project"
+          description="ConstructConnect reduced the time spent manually coordinating pricing and vendors for customer swag projects."
+          image={swagProject}
+          imageAlt="Customer swag project: instant quote, one partner and live order status, 3.5 hours saved"
         />
 
-        <NumberedCardGrid
+        <StatsGrid
           caption="Global infrastructure"
+          captionColor="#16171b"
           title="Reach people around the world with less complexity"
           description="Fulfill closer to recipients with less shipping, customs, and logistics to manage."
-          cards={[
-            { title: "500+", description: "Global Warehousing Network" },
-            { title: "100+", description: "Integrations" },
-            { title: "170+", description: "Countries" },
-          ]}
+          statLeft={{}}
+          statCenter={{
+            caption: "Global Warehousing Network",
+            title: "500+",
+            text: "“Typically, gifting globally would take a day. Now I can do it in 15 minutes, even for 500+ people.”",
+            authorName: "Shaira J.",
+            authorTitle: "Apollo",
+          }}
+          rightTopStat={{ title: "100+", text: "Integrations" }}
+          rightBottomStat={{ title: "170+", text: "Countries" }}
         />
 
         <NumberedCardGrid
+          panel
           caption="Built for trust"
           title="Security built into everything we do"
           description="Protect organizational data with enterprise-grade security, privacy, and compliance standards."
           cta={{ label: "Explore Security", href: PLATFORM_ROUTES.security }}
           cards={[
-            { title: "SOC 2 Type 2", description: "Controls for security, confidentiality, and availability." },
+            { title: "SOC 2 TYPE 2", description: "Controls for security, confidentiality, and availability." },
             { title: "Encryption", description: "TLS 1.2/1.3 in transit and AES-256 at rest." },
             { title: "24/7 Monitoring", description: "Continuous monitoring and incident response." },
             { title: "GDPR", description: "Privacy controls designed to support global requirements." },
           ]}
-        />
-
-        <NumberedOfferings
-          caption="Employee engagement"
-          title="One platform. More ways to engage your people."
-          description="Use Stadium across recognition, swag, snacks, and gifting as your employee programs evolve."
-          items={ENGAGE_OFFERINGS}
         />
       </ImpactPageShell>
     </>

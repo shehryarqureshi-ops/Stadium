@@ -193,11 +193,11 @@ function Lane({
   const p = pop(f, delay);
   const runBell = bell(state.tp, 0, PACKET);
   const inRun = state.tp >= 0 && state.tp <= PACKET;
-  /* packet (x relative to the chain row): sources → Stadium (136→164), Stadium pulse, Stadium → recipient (213→233) */
+  /* packet (x relative to the chain row): sources → Stadium (136→164), Stadium pulse, Stadium → recipient (209→229) */
   const t = state.tp;
   const leg1 = seg(t, 0, 14, IN_OUT);
   const leg2 = seg(t, 18, 32, IN_OUT);
-  const x = t < 16 ? 136 + 28 * leg1 : 213 + 20 * leg2;
+  const x = t < 16 ? 136 + 28 * leg1 : 209 + 20 * leg2;
   const opacity = !inRun ? 0 : Math.min(seg(t, 0, 5, LIN), 1 - seg(t, 14, 16, LIN) + seg(t, 17, 19, LIN) * (1 - seg(t, 30, 34, LIN)));
   const hubPulse = 1 + 0.12 * bell(t, 12, 24);
   const rcptPulse = 1 + 0.05 * bell(t, 32, 40);
@@ -251,24 +251,30 @@ function Lane({
         <div style={{ padding: "0 5px", display: "flex" }} className="text-grey-400">
           <ArrowRight />
         </div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, transform: `scale(${hubPulse})` }}>
-          <div
-            className="bg-white"
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0px 2px 8px 0px rgba(0, 0, 0, 0.16)",
-            }}
-          >
-            <Image src={stadiumMark} alt="" style={{ width: 11.5, height: "auto", display: "block" }} />
+        {/* org avatar · Stadium mark: 40 circle, 3 right padding nudges the half-star left so it reads optically centred */}
+        <div
+          className="bg-white"
+          style={{
+            width: 40,
+            height: 40,
+            boxSizing: "border-box",
+            paddingRight: 3,
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            transform: `scale(${hubPulse})`,
+            boxShadow: "0px 3.636px 10.909px 0px rgba(0, 0, 0, 0.25)",
+          }}
+        >
+          <div style={{ position: "relative", width: 11, height: 20, overflow: "hidden", flexShrink: 0 }}>
+            <Image
+              src={stadiumMark}
+              alt=""
+              style={{ position: "absolute", left: 0.36, top: 0.91, width: 10.277, height: 18.182, maxWidth: "none", display: "block" }}
+            />
           </div>
-          <span className="text-grey-800" style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600 }}>
-            Stadium
-          </span>
         </div>
         <div style={{ padding: "0 5px", display: "flex" }} className="text-grey-400">
           <ArrowRight />
@@ -424,7 +430,7 @@ export function DealRailScene() {
           style={{
             position: "absolute",
             left: 0,
-            top: 12,
+            top: 13,
             width: STAGE_W,
             height: 2,
             opacity: 0.35,
