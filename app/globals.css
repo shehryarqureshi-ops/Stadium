@@ -895,3 +895,135 @@ body {
     );
   }
 }
+
+/* ===== /catalog (Figma n9SjmDjzB1PeZAYJ5w43fr → 5291:18726) — all values rem ===== */
+@theme {
+  --color-catalog-tile: #202020; /* brand / country / coverage card surface */
+  --color-catalog-ink: #16171b; /* tab pill active fill + dark CTA pill */
+  --color-catalog-cta: #2178f5; /* hero "Book a call" fill */
+  --color-catalog-eyebrow: #d8e7fd; /* hero eyebrow */
+  --color-catalog-lead: #fbfeff; /* hero description */
+  --color-catalog-meta: #cccccc; /* hero rating line */
+  --color-catalog-chip: #eff0f2; /* modal category pill */
+  --color-catalog-scrim: rgba(0, 0, 0, 0.5); /* modal overlay */
+
+  --radius-catalog-chip: 0.5rem; /* 8 — hero marquee tile */
+  --radius-catalog-tile: 1.25rem; /* 20 — product tile */
+  --radius-catalog-card: 1.5rem; /* 24 — brand / country card, modal image */
+  --radius-catalog-modal: 2rem; /* 32 — modal card */
+  --radius-catalog-panel: 3.75rem; /* 60 — section heading panel (sm: 2.5rem) */
+
+  --spacing-catalog-gap: 0.8333rem; /* 13.33 — mosaic gutter */
+  --spacing-catalog-hero-grid: 71.25rem; /* 1140 — hero marquee viewport (lg) */
+  --spacing-catalog-mosaic: 120rem; /* 1920 — mosaic viewport (lg); 100rem tablet, 90rem phone */
+  --spacing-catalog-heading: 33.6875rem; /* 539 — section heading panel (lg) */
+  --container-catalog-pill: 50.625rem; /* 810 — category tab pill */
+  --container-catalog-modal: 75rem; /* 1200 — modal card */
+  --container-catalog-grid: 75rem; /* 1200 — marquee + mosaic content width */
+
+  --text-catalog-brand: 1.875rem; /* 30 / normal −0.6px — brand wordmark card */
+  --text-catalog-brand--line-height: 1.2;
+  --text-catalog-brand--letter-spacing: -0.0375rem;
+  --text-catalog-brand--font-weight: 700;
+    --text-catalog-country: 1rem; /* 16 Satoshi Bold */
+  --text-catalog-country--line-height: 1.4;
+  --text-catalog-country--font-weight: 700;
+  --text-catalog-stat: 0.875rem; /* 14 body under the country name */
+  --text-catalog-stat--line-height: 1.4;
+  --text-catalog-body: 1.1875rem; /* 19 / 1.52 — hero + modal description */
+  --text-catalog-body--line-height: 1.52;
+  --text-catalog-modal-title: 2rem; /* 32 / 1.02 −0.6px */
+  --text-catalog-modal-title--line-height: 1.02;
+  --text-catalog-modal-title--letter-spacing: -0.0375rem;
+  --text-catalog-modal-title--font-weight: 700;
+  --text-catalog-tab: 0.75rem; /* 12 / 16 +1px Overpass Bold uppercase */
+  --text-catalog-tab--line-height: 1rem;
+  --text-catalog-tab--letter-spacing: 0.0625rem;
+  --text-catalog-tab--font-weight: 700;
+  --text-catalog-tab-sm: 0.6875rem; /* 11 — mobile tab / CTA pill label (no Figma frame) */
+  --text-catalog-tab-sm--line-height: 1rem;
+  --text-catalog-tab-sm--letter-spacing: 0.0625rem;
+  --text-catalog-tab-sm--font-weight: 700;
+  --text-catalog-button-lg: 1rem; /* 16 SemiBold +1.16px — modal CTAs */
+  --text-catalog-button-lg--line-height: 1rem;
+  --text-catalog-button-lg--letter-spacing: 0.0725rem;
+  --text-catalog-button-lg--font-weight: 600;
+
+  /* card-xh-shadow (Figma) — floating pills + modal */
+  --shadow-catalog-pill:
+    2.5rem 2.5rem 1.768rem 0 rgba(0, 0, 0, 0.2), 1.374rem 1.374rem 0.971rem 0 rgba(0, 0, 0, 0.13),
+    0.798rem 0.798rem 0.564rem 0 rgba(0, 0, 0, 0.1), 0.487rem 0.487rem 0.345rem 0 rgba(0, 0, 0, 0.08),
+    0.302rem 0.302rem 0.213rem 0 rgba(0, 0, 0, 0.07), 0.182rem 0.182rem 0.128rem 0 rgba(0, 0, 0, 0.06),
+    0.1rem 0.1rem 0.07rem 0 rgba(0, 0, 0, 0.06), 0.042rem 0.042rem 0.03rem 0 rgba(0, 0, 0, 0.05);
+  --shadow-catalog-modal:
+    2.5rem 2.5rem 3.5355rem -0.0625rem rgba(0, 0, 0, 0.2),
+    1.3738rem 1.3738rem 1.9429rem -0.0547rem rgba(0, 0, 0, 0.13),
+    0.7978rem 0.7978rem 1.1283rem -0.0469rem rgba(0, 0, 0, 0.1),
+    0.4874rem 0.4874rem 0.6893rem -0.0391rem rgba(0, 0, 0, 0.08),
+    0.3018rem 0.3018rem 0.4268rem -0.0313rem rgba(0, 0, 0, 0.07),
+    0.1816rem 0.1816rem 0.2568rem -0.0234rem rgba(0, 0, 0, 0.06),
+    0.0995rem 0.0995rem 0.1407rem -0.0156rem rgba(0, 0, 0, 0.06),
+    0.042rem 0.042rem 0.0594rem -0.0078rem rgba(0, 0, 0, 0.05);
+}
+
+/* Hero marquee — every column is an endless vertical loop. The track holds two
+   identical halves, so translating −50% lands exactly on the start. Speed and
+   direction come per column (--catalog-dur / --catalog-dir) and the phase from
+   a negative delay so columns never move in lockstep. */
+@keyframes catalog-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+.catalog-track {
+  animation: catalog-marquee var(--catalog-dur, 80s) linear infinite var(--catalog-dir, normal);
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .catalog-track {
+    animation: none;
+  }
+}
+/* Pause the loops while the hero is off-screen (class set by CatalogHero's observer). */
+.catalog-paused .catalog-track {
+  animation-play-state: paused;
+}
+
+/* /catalog product modal — scrim fades, card rises + de-scales in (same expo
+   curve as the site's reveal). Reduced motion: instant. */
+@keyframes catalog-modal-scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes catalog-modal-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.96);
+    filter: blur(0.5rem);
+  }
+}
+.catalog-modal-scrim {
+  animation: catalog-modal-scrim-in 0.35s ease-out both;
+}
+.catalog-modal-card {
+  animation: catalog-modal-card-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .catalog-modal-scrim,
+  .catalog-modal-card {
+    animation: none;
+  }
+}
+
+/* Circle flag defaults — same names as the Figma "Circle flag" variables.
+   Override on any ancestor to restyle every flag beneath it. */
+:root {
+  --circle-flag-border-width: 0.09375rem; /* 1.5px */
+  --circle-flag-border-color: #ffffff;
+  --circle-flag-shadow: none;
+}
+       

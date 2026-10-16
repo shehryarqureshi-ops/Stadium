@@ -29,7 +29,7 @@ const NAV_ITEMS: {
     { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
     { label: "Impact by Team", href: "/impact", menu: "impact" },
     { label: "The Proof", href: "/the-proof", menu: "proof" },
-    { label: "Catalog", href: "#", menu: "catalog" },
+    { label: "Catalog", href: "/catalog", menu: "catalog" },
     { label: "Pricing", href: "/pricing" },
   ];
 
@@ -616,13 +616,15 @@ export default function SiteHeader({
                               </p>
                               <ul className="flex flex-col">
                                 {t.explore.map((c) => (
-                                  <li key={c}>
+                                  <li key={c.label}>
                                     <a
-                                      href="#"
+                                      href={c.href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
                                       onClick={() => setMenuOpen(false)}
                                       className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >
-                                      {c}
+                                      {c.label}
                                     </a>
                                   </li>
                                 ))}

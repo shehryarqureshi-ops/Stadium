@@ -1773,3 +1773,118 @@ and add it to `/mdx-components.tsx`. In `.tsx` pages import it directly.
   (header row + one list per column; scrolls sideways below `sm`). GFM
   `| pipe |` tables are not enabled in the MDX config — use `ColumnTable`, or
   plain `<table>` JSX (styled by the `table/th/td` mappings).
+
+---
+
+# /catalog — product catalog page (`app/catalog/page.tsx`, added 2026-10-16)
+
+Figma `n9SjmDjzB1PeZAYJ5w43fr` frame **5291:18726** (desktop only — narrower
+layouts reuse the same tokens). Components live in `app/components/catalog/`;
+all copy, links and card data in `data.ts`. Every value below is a token in the
+`/catalog` `@theme` block at the bottom of `globals.css`.
+
+## Structure
+
+`CatalogHero` (black) → `CatalogExplorer` (client: four sections, tab pill, CTA
+pills, modal) → `ClosingCTA` → `PageClose`.
+
+| Part | Figma | Notes |
+| --- | --- | --- |
+| Hero copy | 5291:18747 | eyebrow `text-eyebrow-sm` `catalog-eyebrow`; h1 58/1.02 (`text-display-pricing`); lead 19/1.52 (`text-catalog-body`); CTAs `catalog-cta` blue + white outline |
+| Marquee wall | 5297:6154 | 14 columns × 15 cards (≈210 slots over all 176 section photos — each used at least once; shuffled so every column mixes sections, see `buildHeroColumns`), 75-wide tiles (ratio 1 : 1–1.44, r8 `rounded-catalog-chip`), gutter 11 (0.6875rem); 5 cols mobile / 9 tablet / 14 desktop; viewport 1140 (`h-catalog-hero-grid`); bottom fade 62% to black |
+| Tab pill | 5291:19092 | white pill, p10, 4 × 190 tabs, active `catalog-ink`; label 12/16 +1px bold (`text-catalog-tab`) — mobile 11px `text-catalog-tab-sm`, short labels below `lg` |
+| CTA pill | 5633:24820 | `catalog-ink` pill, two 190-wide white-outline buttons; mobile = flex-1, "View {noun}" |
+| Heading panel | 5291:18798 | black, r60 (`rounded-catalog-panel`), min-h 539 (`min-h-catalog-heading`); overlaps previous mosaic by 60 |
+| Mosaic | 5299:6294 … 5340:27624 | 7 cols (tablet 5, phone 2), 160 tile, gutter 13.33 (`catalog-gap`); product r20, brand/country r24 on `catalog-tile` #202020 spanning 2 cols |
+| Modal | 3693:8077 | 1200 card r32, 16px well + 600×691 r24 photo, 40px copy column; shadow `shadow-catalog-modal` |
+
+## Behaviour
+
+- **Marquee**: pure CSS (`.catalog-track`, `@keyframes catalog-marquee`). Two
+  identical halves → translate −50%; per-column duration 70–109s, alternating
+  direction, negative-delay phase. Static under `prefers-reduced-motion`.
+- **Page + panels**: the whole page is `#000` (hero, mosaics, closing). Each
+  category intro panel is `min-h-svh` (full height); mosaic fades run to black.
+- **Sticky docks**: the white tab pill is pinned for the whole catalog (one
+  zero-height `sticky bottom-0` dock as the last child of the hero + sections
+  wrapper, so it releases at "Ready to get started?"); the active tab follows the
+  section under the viewport's 45% line (Swag in the hero). Each
+  section's dark CTA pill sits in its own raised dock *inside the section* — it
+  slides up above the tab pill (transform only — no fade) once its section's top crosses the viewport's 50% line, and stays "shown" until the section has left the screen so it scrolls away with its
+  parent. Both CTAs share one width (`inline-grid auto-cols-fr`, nowrap) so the
+  longest label ("View experiences catalog") is never trimmed. Tab click → smooth
+  `scrollIntoView` (instant when reduced).
+- **Mosaic marquee**: `buildMosaicColumns()` (data.ts) deals every photo in the
+  section exactly once — 35 swag · 9 gifts · 97 snacks · 35 experiences, from the
+  Figma tab frames, products in `products.ts` — plus 5 brand cards, 5 country
+  cards and 1 "170+ countries" coverage card into 7 independent columns (tablet
+  shows 5, phone 2). Every column is an endless vertical marquee — the same
+  two-identical-halves `.catalog-track` as the hero but slower (≈6.5–13px/s vs
+  ≈10–23px/s in the hero): every column gets its own speed — evenly spread over
+  the range then shuffled per section (`spreadSpeeds`) — a random direction and a
+  random negative-delay phase; duration = loop height ÷ speed. A half must be taller than the viewport
+  (`MIN_LOOP_REM` 100) or the loop shows a gap, so short columns (gifts has only
+  9 photos) repeat their cards inside the loop. Loops pause while the mosaic is
+  off-screen (`.catalog-paused`) and are static under reduced motion. Cards are
+  single-column width with fixed rem heights (photos 3:4 → ≈13.3rem); the mosaic
+  viewport is tall to show catalog scale (`h-catalog-mosaic` 120rem lg, 100rem tablet,
+  90rem phone; `MIN_LOOP_REM` 140 keeps loops taller than it) with black fades. The looping second half is clickable but `tabIndex=-1` / `aria-hidden`.
+- **Page end**: the active tab never snaps back to Swag — below the last section
+  it stays on Hosted Experiences. Once the last section's bottom is above 90% of
+  the viewport both pills fade out in place (`ended`, opacity only, 0.5s).
+- **Reveal**: cards use the global `data-animation="reveal"` (fade + rise +
+  de-blur) with explicit `data-reveal-delay` (0–280ms by column) so a whole
+  mosaic does not cascade by sibling index.
+- **Modal**: card click opens `CatalogProductModal` — Esc / scrim / ✕ close,
+  focus moves to ✕ and returns, Tab trapped, body scroll locked. "Book a call"
+  → `/book-a-call`; "View {noun} catalog ↗" opens `section.catalogHref` in a new tab.
+
+## Content notes (not in Figma)
+
+- Product names/descriptions, the four blurbs and the coverage card copy are
+  written for this build; "Seedly Peppermint Bark" and the brand/country cards
+  come straight from the Figma frames. Brand cards show each brand's own mark in white —
+  Simple Icons SVGs (simple-icons@13.21.0, CC0 icon files; the marks remain the
+  owners' trademarks), viewBox cropped to the glyph and `fill="#fff"`, in
+  `public/catalog-page/logos/`.
+- Photos and product names come from the Figma tab frames (5747:6964 swag,
+  5781:15841 gifts, 5727:7488 snacks, 5772:6917 hosted experiences), exported as
+  1200w JPEG q88 into `public/catalog-page/{swag,gifts,snacks,experiences}/NN.jpg`
+  (the 14 hero tiles stay at the folder root). The modal pill shows the item's
+  subcategory ("Apparel", "Team Games" …; "Gifts" for gifts). Descriptions are
+  written per subcategory (gifts: per item) — Figma has none. Gift photos are
+  named by type only ("coffee set", "watch box" …), so those titles are descriptive.
+- Catalog links: Swag → swagmagic.com catalog, Snacks → snackmagic.com/our-snacks,
+  Experiences → withconfetti.com/explore, Gifts → `/gifting`.
+
+## Circle flags (added 2026-10-16)
+
+Wherever a country flag is shown, use `<CircleFlag code="de" />`
+(`app/components/CircleFlag.tsx`) — never an emoji. It mirrors the **Circle flag**
+component set on the Figma "Circle flags" page (file `n9SjmDjzB1PeZAYJ5w43fr`,
+set `5795:7082`): 15 flags (AE AU BR CA DE FR GB IN IT JP MX NL SE SG US), a
+`Country` variant property, `Border` / `Shadow` boolean properties, and the
+variables `circle-flag/border-width` (1.5) and `circle-flag/border-color` (#fff)
+bound to the border layer, plus the effect style `Circle flag/shadow`. Artwork:
+MIT-licensed circle-flags SVGs in `public/flags/{code}.svg`.
+
+Code knobs: `size` (default 1.25rem — the 20px in the Figma design), `border`,
+`borderWidth`, `borderColor`, `shadow` (boolean or any CSS shadow), `label`; or
+set `--circle-flag-border-width` / `--circle-flag-border-color` /
+`--circle-flag-shadow` on any ancestor (defaults in `:root`, globals.css). The
+catalog country cards use `size="3.375rem"`. New flag = drop the SVG in
+`public/flags/`, add the code to `FLAG_CODES`, add a variant in Figma.
+
+## Catalog content — update 2026-10-16
+
+- **Snacks** now uses the whole SnackMagic taxonomy frame (Figma 5727:7180 "02 ·
+  Snacks — by taxonomy"): Snacks 25 + Beverages 24 + Pantry 24 + Work & Play 24 =
+  97 photos (`public/catalog-page/snacks/01–97.jpg`; modal pill = subcategory such
+  as "Cold Brew" or "Everyday Carry"). Swag (35 / frame 5747:6964) is unchanged.
+- **Hero wall** shuffle: all 176 photos (35 + 9 + 97 + 35), 34 spare slots repeat
+  swag / gifts / experiences so snacks (55% of the photos) do not dominate. Each
+  section's photos are dealt evenly across the 14 columns, then every column is
+  ordered greedily — pull from the section with the most cards left that differs
+  from the previous card, and prefer a different category.
+
+- **Marquee pacing (2026-10-16)**: hero and mosaic speeds are per-column and seeded-random (not alternating); both ranges are 25% slower than the first pass (hero 10–23px/s on the 75px Figma tile, mosaic 0.4–0.82rem/s).

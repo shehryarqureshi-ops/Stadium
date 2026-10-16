@@ -111,6 +111,7 @@ export function MenuFeaturePanel({
   title,
   cta,
   href = "#",
+  external = false,
 }: {
   eyebrow: string;
   image: StaticImageData;
@@ -118,6 +119,7 @@ export function MenuFeaturePanel({
   title: string;
   cta: string;
   href?: string;
+  external?: boolean;
 }) {
   return (
     <div className="-mt-8 -mb-[5.25rem] flex w-[18.75rem] shrink-0 flex-col gap-6 self-stretch bg-[#f2f2f2] px-6 py-8">
@@ -126,6 +128,7 @@ export function MenuFeaturePanel({
       </p>
       <a
         href={href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className="group flex flex-col gap-3 rounded-[0.75rem] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
       >
         <span
