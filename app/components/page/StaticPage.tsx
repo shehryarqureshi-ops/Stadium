@@ -26,6 +26,9 @@
 
      </StaticPage>
 
+   Optional right-hand / closing cards: pass `aside` (see ./StaticPageAside):
+     aside={<><CtaCard title="Need help?" action={{ label: "Book a call", href: "/book-a-call" }} />
+              <RelatedLinks links={[{ label: "Terms of Use", href: "/terms-of-use" }]} /></>}
    The TOC, anchor ids and reading time are derived from the content:
      • every `##` becomes a TOC entry (leading "1." is stripped from the label)
      • `\{#id}` after a heading pins its anchor; otherwise it is slugified
@@ -38,6 +41,7 @@ import { Children, cloneElement, isValidElement, type ReactElement, type ReactNo
 import PageClose from "../PageClose";
 import SiteHeader from "../SiteHeader";
 import { H2, H3, parseHeading, slugify, textOf } from "./mdx";
+import { AsideStack, CtaCard } from "./StaticPageAside";
 import StaticPageHero from "./StaticPageHero";
 import { TocDropdown, TocRail, type TocItem } from "./StaticPageToc";
 
@@ -53,8 +57,13 @@ export type StaticPageProps = {
   updated?: string;
   /** Override the computed reading time, or `false` to hide it. */
   readTime?: string | false;
-  /** Contact card after the content; `false` hides it. */
+  /** Shorthand for the default aside: a dark mailto call-to-action card; `false` hides it.
+      Ignored when `aside` is given. */
   contact?: Contact | false;
+  /** Replaces the default contact card. Sticky right column at lg+ on pages without a
+      TOC, otherwise the closing block under the article. Use the cards from
+      ./StaticPageAside (CtaCard, RelatedLinks, AtAGlance) or any JSX. */
+  aside?: ReactNode;
   /** Label for the rail / dropdown. */
   tocLabel?: string;
   children: ReactNode;
@@ -75,6 +84,7 @@ export default function StaticPage({
   updated,
   readTime,
   contact = DEFAULT_CONTACT,
+  aside,
   tocLabel = "On this page",
   children,
 }: StaticPageProps) {
@@ -105,23 +115,22 @@ export default function StaticPage({
   ].filter((item): item is string => Boolean(item));
 
   const hasToc = items.length > 1;
+  const asideContent =
+    aside ??
+    (contact ? (
+      <CtaCard title={contact.title} body={contact.body} action={{ label: contact.email, href: `mailto:${contact.email}` }} />
+    ) : null);
 
+  /* With a TOC the aside closes the article. Without one, lg+ puts it in a sticky
+     right column (the space the rail would use) and the article's own copy is
+     hidden at lg+ so it never shows twice. */
   const article = (
     <article className="flex min-w-0 flex-col gap-5 lg:gap-6">
       {content}
-      {contact && (
-        <aside className="mt-6 flex flex-col gap-5 rounded-3xl bg-impact-hero-night p-7 md:flex-row md:items-center md:justify-between md:p-8 lg:mt-10">
-          <div className="flex flex-col gap-1.5">
-            <p className="font-display text-heading-sm text-white">{contact.title}</p>
-            <p className="font-sans text-body-md text-hero-body">{contact.body}</p>
-          </div>
-          <a
-            href={`mailto:${contact.email}`}
-            className="inline-flex h-button-h items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white"
-          >
-            <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">{contact.email}</span>
-          </a>
-        </aside>
+      {asideContent && (
+        <div className={`mt-6 lg:mt-10 ${hasToc ? "" : "lg:hidden"}`}>
+          <AsideStack>{asideContent}</AsideStack>
+        </div>
       )}
     </article>
   );
@@ -143,7 +152,17 @@ export default function StaticPage({
                   {article}
                 </div>
               ) : (
-                <div className="mx-auto max-w-article">{article}</div>
+                /* No TOC: the reading column sits on the content box's left edge (shared
+                   with the hero copy and header logo); a sticky CTA card takes the
+                   right column, flush with the header's right edge. */
+                <div className="lg:grid lg:grid-cols-[minmax(0,var(--container-article))_var(--container-rail)] lg:justify-between lg:gap-x-22">
+                  {article}
+                  {asideContent && (
+                    <aside className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
+                      <AsideStack>{asideContent}</AsideStack>
+                    </aside>
+                  )}
+                </div>
               )}
             </div>
           </div>

@@ -18,31 +18,21 @@ If your corporate server policy allows all outbound http/https communication to 
 - **STEP 4:** Be sure to safelist the following hosts in your firewall for outbound TCP connections over ports 80 and 443 (for HTTP and HTTPS, respectively).
 - Stadium uses AWS. Please check this [AWS List](https://ip-ranges.amazonaws.com/ip-ranges.json) to view AWS IP addresses.
 
-## Domains
-
-- @dev.bystadium.com
-- @bystadium-mail.com
-- @mail.bystadium.com
-- @snackmagic.com
-- @snackmagic-mail.com
-- @snack-magic.com
-- @mail.snackmagic.com
-- @swagmagic.com
-- @swag-magic.com
-- @mail.swagmagic.com
-
-## Emails
-
-- hi@dev.bystadium.com
-- hi@bystadium-mail.com
-- hi@mail.bystadium.com
-- hi@snackmagic.com
-- hi@snackmagic-mail.com
-- hi@snack-magic.com
-- hi@mail.snackmagic.com
-- hi@swagmagic.com
-- hi@swag-magic.com
-- hi@mail1.swagmagic.com
-- hi@mail.swagmagic.com
+<ColumnTable
+  columns={[
+    {
+      title: "Domains",
+      items: ["@dev.bystadium.com", "@bystadium-mail.com", "@mail.bystadium.com", "@snackmagic.com", "@snackmagic-mail.com", "@snack-magic.com", "@mail.snackmagic.com", "@swagmagic.com", "@swag-magic.com", "@mail.swagmagic.com"],
+    },
+    {
+      title: "Emails",
+      items: ["hi@dev.bystadium.com", "hi@bystadium-mail.com", "hi@mail.bystadium.com", "hi@snackmagic.com", "hi@snackmagic-mail.com", "hi@snack-magic.com", "hi@mail.snackmagic.com", "hi@swagmagic.com", "hi@swag-magic.com", "hi@mail1.swagmagic.com", "hi@mail.swagmagic.com"],
+    },
+    {
+      title: "Web",
+      items: ["*.bystadium.com", "*.snackmagic.com", "*.swagmagic.com", "*.cpgpulse.com"],
+    },
+  ]}
+/>
 
 </StaticPage>

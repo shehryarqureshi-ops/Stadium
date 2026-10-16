@@ -4,6 +4,7 @@ import {
   A,
   Blockquote,
   Code,
+  ColumnTable,
   H2,
   H3,
   H4,
@@ -17,6 +18,7 @@ import {
   TH,
   UL,
 } from './app/components/page/mdx'
+import { AsideStack, AtAGlance, CtaCard, RelatedLinks } from './app/components/page/StaticPageAside'
 
 /* Markdown → Stadium static-page typography. Only the StaticPage template
    consumes MDX today (app/components/page/StaticPage.tsx). */
@@ -36,6 +38,11 @@ const components: MDXComponents = {
   th: TH,
   td: TD,
   code: Code,
+  ColumnTable,
+  AsideStack,
+  AtAGlance,
+  CtaCard,
+  RelatedLinks,
 }
 
 export function useMDXComponents(): MDXComponents {

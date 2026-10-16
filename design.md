@@ -1654,6 +1654,7 @@ Files (`app/components/page/`):
 | `StaticPage.tsx` | Server template: SiteHeader → hero → sheet (TOC + article) → PageClose. Derives TOC, anchor ids and reading time from its children. |
 | `StaticPageHero.tsx` | Night hero (same raster + type as `TeamHero`, `hero-canvas-bg.jpg`), eyebrow → title → summary → outlined meta pills. |
 | `StaticPageToc.tsx` | Client. `TocRail` (lg+, sticky) and `TocDropdown` (< lg, sticky bar + search panel). One scroll-spy (`useActiveId`). |
+| `StaticPageAside.tsx` | Cards for the `aside` slot: `CtaCard`, `RelatedLinks`, `AtAGlance`, `AsideStack`. |
 | `mdx.tsx` | Markdown element styling (h2/h3/h4, p + "In short" callout, lists, links, table…), wired in `/mdx-components.tsx`. |
 
 ## Adding a page
@@ -1682,7 +1683,8 @@ Body, lists, tables, links…
 
 Props: `title` (required), `eyebrow` (default "Legal"), `summary`, `updated`,
 `readTime` (auto from word count at 200 wpm; `false` hides), `contact`
-(`{title, body, email}` or `false`), `tocLabel` (default "On this page").
+(`{title, body, email}` or `false` — shorthand for the default aside), `aside`
+(JSX that replaces the default aside, see below), `tocLabel` (default "On this page").
 
 Authoring rules:
 - Every `##` is a TOC entry; a leading "1\." is stripped from the TOC label but
@@ -1690,7 +1692,13 @@ Authoring rules:
 - `\{#id}` after a heading pins a stable anchor (needed when other pages link
   to `/privacy-policy#rights`). Without it the id is slugified from the title.
   Duplicate ids get `-2`, `-3`. The marker is stripped from the rendered text.
-- Pages with ≤ 1 `##` render without a TOC (single centered column).
+- Pages with ≤ 1 `##` render without a TOC: the 50rem reading column is pinned to
+  the content box's left edge (same edge as the hero copy and header logo — a
+  centered column looked misaligned against the left-aligned hero) and, at lg+,
+  the `contact` card moves into a **sticky right column** (`--container-rail`
+  wide, `sticky top-28`, flush with the header's right edge). Below lg that card
+  closes the article instead, so it is never shown twice. With `contact={false}`
+  (and no `aside`) the right column is simply empty.
 - Write headings in sentence case (`## 3\. Will your information be shared?`).
 - Always spell brands Stadium / Snackmagic / Swagmagic.
 
@@ -1705,10 +1713,39 @@ Authoring rules:
 | Body | `text-legal` (17 / 1.62, `--text-legal`), `text-grey-700`, column gap `gap-6` | `text-body-md` / 1.6, `gap-5` |
 | h2 | `text-heading-md`, `border-t border-grey-200 pt-12 mt-6` (rule between sections), `scroll-mt-28` | `text-heading-sm`, `pt-8`, `scroll-mt-40` (clears header + dropdown bar) |
 | Callout | `bg-grey-100 rounded-2xl`, eyebrow "In short" (`text-eyebrow-sm`, grey-500) + `font-semibold` text | same |
-| Contact card | `bg-impact-hero-night rounded-3xl`, white pill CTA (`mailto:`) | stacked |
+| Contact card | `bg-impact-hero-night rounded-3xl`, white pill CTA (`mailto:`). With a TOC: closes the article (row layout from md). Without a TOC: sticky right column at lg+, stacked layout | stacked, closes the article |
 
 Tokens added to `globals.css`: `--container-rail` 18.5rem, `--container-article`
 50rem, `--text-legal` 1.0625rem / 1.62.
+
+## The `aside` slot (sticky CTA / extra cards)
+
+`aside` takes any JSX. Where it lands:
+- no TOC, lg+ → sticky right column (`--container-rail` wide, `top-28`, flush with
+  the header's right edge); below lg → closes the article
+- with a TOC → closes the article (the rail occupies the left column)
+Default (nothing passed) = the dark `contact` CtaCard, so existing pages are unchanged.
+Several cards are stacked with `gap-4` automatically.
+
+Ready-made cards — registered in `/mdx-components.tsx`, **no import needed in MDX**:
+
+| Component | Props | Look |
+| --- | --- | --- |
+| `<CtaCard>` | `title`, `body?`, `action: {label, href}` | dark night card, white pill button; row layout when it spans the article, stacked in the column (CSS container query) |
+| `<RelatedLinks>` | `title?` ("Related documents"), `links: [{label, href}]` | light grey card, hairline-separated rows with an arrow |
+| `<AtAGlance>` | `title?` ("At a glance"), `items: [{label, value}]` | light grey card, label / value pairs |
+
+```mdx
+<StaticPage title="Cookie Notice" aside={<>
+  <CtaCard title="Need help?" body="Talk to our team." action={{ label: "Book a call", href: "/book-a-call" }} />
+  <AtAGlance items={[{ label: "Last updated", value: "June 17, 2025" }]} />
+  <RelatedLinks links={[{ label: "Privacy Policy", href: "/privacy-policy" }]} />
+</>}>
+```
+
+Adding a new card type: export a component from `StaticPageAside.tsx` (use
+`LightCard` for the grey style, or wrap in `@container` for width-aware layouts)
+and add it to `/mdx-components.tsx`. In `.tsx` pages import it directly.
 
 ## Mobile dropdown behaviour (`TocDropdown`)
 
@@ -1728,6 +1765,11 @@ Tokens added to `globals.css`: `--container-rail` 18.5rem, `--container-article`
 - TOC extraction runs on the **top-level** children of `<StaticPage>` (what
   Markdown produces). Headings nested inside custom JSX wrappers are styled but
   not added to the TOC.
-- `/safelist` was restructured when migrating: the orphaned `Web` heading (it had
-  no content), the broken `## hi@dev.bystadium.com \` heading and the
-  backslash line-break lists were turned into proper `Domains` / `Emails` lists.
+- `/safelist` follows the original bystadium.com page: one "Email & Web" section
+  (so no TOC rail — single left-aligned column) followed by a 3-column
+  Domains | Emails | Web table. It uses `<ColumnTable>`, available in any
+  StaticPage MDX file without an import:
+  `<ColumnTable columns={[{ title: "Domains", items: ["@a.com", …] }, …]} />`
+  (header row + one list per column; scrolls sideways below `sm`). GFM
+  `| pipe |` tables are not enabled in the MDX config — use `ColumnTable`, or
+  plain `<table>` JSX (styled by the `table/th/td` mappings).

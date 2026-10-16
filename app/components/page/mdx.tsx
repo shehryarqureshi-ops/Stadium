@@ -169,3 +169,45 @@ export function TD({ ...rest }: ComponentPropsWithoutRef<"td">) {
 export function Code({ ...rest }: ComponentPropsWithoutRef<"code">) {
   return <code {...rest} className="rounded bg-grey-100 px-1.5 py-0.5 font-mono text-[0.9em] text-grey-800" />;
 }
+
+/* <ColumnTable columns={[{ title: "Domains", items: ["@a.com", …] }, …]} />
+   Header row + one list per column — for allow-lists and other side-by-side
+   reference data (e.g. /safelist). Available in every StaticPage MDX file
+   without an import (registered in /mdx-components.tsx). Scrolls sideways
+   below sm instead of squashing the entries. */
+export function ColumnTable({ columns }: { columns: { title: string; items: string[] }[] }) {
+  return (
+    <div className="overflow-x-auto rounded-2xl border border-grey-200">
+      <table className="w-full min-w-[34rem] border-collapse text-left font-sans text-body-sm text-grey-700">
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th
+                key={column.title}
+                scope="col"
+                className="border-l border-grey-200 bg-grey-100 px-5 py-4 font-display text-lg text-grey-800 first:border-l-0"
+              >
+                {column.title}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {columns.map((column) => (
+              <td key={column.title} className="border-l border-t border-grey-200 px-5 py-4 align-top first:border-l-0">
+                <ul className="flex flex-col gap-1.5">
+                  {column.items.map((item) => (
+                    <li key={item} className="break-all">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
