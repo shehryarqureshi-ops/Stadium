@@ -13,6 +13,17 @@ import { BOOK_A_CALL_HREF, HERO_COLUMNS } from "./data";
 
 const COLUMN_GAP = "gap-[0.6875rem]"; /* 11px — Figma tile gutter */
 
+/* Columns revealed as the page widens: 5 → 9 (md) → 10 (lg) → 13 (1280) → 15 (1440) → 17 (1680) → 20 (1920). */
+function heroColVisibility(c: number) {
+  if (c < 5) return "";
+  if (c < 9) return "hidden md:block";
+  if (c < 10) return "hidden lg:block";
+  if (c < 13) return "hidden min-[80rem]:block";
+  if (c < 15) return "hidden min-[90rem]:block";
+  if (c < 17) return "hidden min-[105rem]:block";
+  return "hidden min-[120rem]:block";
+}
+
 export default function CatalogHero() {
   return (
     <section aria-labelledby="catalog-hero-title" className="relative bg-black">
@@ -76,13 +87,13 @@ export default function CatalogHero() {
       {/* Marquee wall */}
       <div
         aria-hidden
-        className="relative mx-auto mt-12 h-[34rem] w-full max-w-catalog-grid overflow-hidden px-section-x-sm md:mt-14 md:h-[46rem] md:px-section-x-md lg:mt-[3.75rem] lg:h-catalog-hero-grid lg:px-0"
+        className="relative mx-auto mt-12 h-[34rem] w-full lg:max-w-catalog-grid overflow-hidden px-section-x-sm md:mt-14 md:h-[46rem] md:px-section-x-md lg:mt-[3.75rem] lg:h-catalog-hero-grid lg:px-0"
       >
-        <div className={`grid h-full grid-cols-5 md:grid-cols-9 lg:grid-cols-14 ${COLUMN_GAP}`}>
+        <div className={`grid h-full grid-cols-5 md:grid-cols-9 lg:grid-cols-10 min-[80rem]:grid-cols-13 min-[90rem]:grid-cols-15 min-[105rem]:grid-cols-17 min-[120rem]:grid-cols-20 ${COLUMN_GAP}`}>
           {HERO_COLUMNS.map((col, c) => (
             <div
               key={c}
-              className={`relative overflow-hidden ${c >= 9 ? "hidden lg:block" : c >= 5 ? "hidden md:block" : ""}`}
+              className={`relative overflow-hidden ${heroColVisibility(c)}`}
             >
               <div
                 className="catalog-track flex flex-col"

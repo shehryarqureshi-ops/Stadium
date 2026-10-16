@@ -12,6 +12,7 @@ import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import IntegrationsWays from "@/app/components/impact/batch3/IntegrationsWays";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
+import { FEATURED_INTEGRATIONS } from "@/app/data/integrationsDirectory";
 
 import workExtension from "@/public/integrations/work-extension.png";
 import workSlack from "@/public/integrations/work-slack.png";
@@ -20,12 +21,6 @@ import workflow from "@/public/integrations/workflow.png";
 export const metadata: Metadata = seoMetadata("/integrations");
 
 /* /integrations — Figma n9SjmDjzB1PeZAYJ5w43fr → 3866:1921. */
-
-const TOOLS = [
-  { name: "LinkedIn", logo: { src: "/impact/hr/logos/linkedin.svg", width: 45, height: 45 } },
-  { name: "Slack", logo: { src: "/impact/hr/logos/slack.svg", width: 45, height: 45 } },
-  { name: "Gmail", logo: { src: "/impact/hr/logos/gmail.svg", width: 58.5, height: 45 } },
-];
 
 export default function IntegrationsPage() {
   return (
@@ -88,8 +83,8 @@ export default function IntegrationsPage() {
               { label: "ATS", value: "ats" },
               { label: "CRM", value: "crm" },
             ]}
-            items={TOOLS.map((t) => ({ ...t, categories: ["all"] }))}
-            cta={{ label: "Explore all integrations", href: PLATFORM_ROUTES.hris }}
+            items={FEATURED_INTEGRATIONS}
+            cta={{ label: "Explore all integrations", href: "/integrations-listing" }}
           />
         </div>
 

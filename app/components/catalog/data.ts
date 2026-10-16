@@ -13,6 +13,9 @@ export type Product = {
   image: string;
 };
 
+/** A brand logo tile — or, when `logo` is omitted, a text tile (name + `stat`). */
+export type Brand = { name: string; logo?: string; /** taller box for square / stacked marks */ tall?: boolean; stat?: string };
+
 export type Country = { code: FlagCode; name: string; stat: string };
 
 export type SectionData = {
@@ -28,7 +31,7 @@ export type SectionData = {
   blurb: string;
   catalogHref: string;
   products: Product[];
-  brands: { name: string; logo: string }[];
+  brands: Brand[];
   countries: Country[];
 };
 
@@ -47,7 +50,14 @@ export const SECTIONS: SectionData[] = [
     blurb: "Premium brands, print-on-demand and global fulfillment — merch your people actually keep.",
     catalogHref: "https://www.swagmagic.com/us-en/s/promotional-products/catalog",
     products: SWAG_PRODUCTS,
-    brands: [{ name: "Airbnb", logo: "/catalog-page/logos/airbnb.svg" }, { name: "Slack", logo: "/catalog-page/logos/slack.svg" }, { name: "Amazon", logo: "/catalog-page/logos/amazon.svg" }, { name: "Spotify", logo: "/catalog-page/logos/spotify.svg" }, { name: "Nike", logo: "/catalog-page/logos/nike.svg" }],
+    brands: [
+      { name: "Nike", logo: "/catalog-page/logos/nike.svg" },
+      { name: "Carhartt", logo: "/catalog-page/logos/carhartt.svg", tall: true },
+      { name: "The North Face", logo: "/catalog-page/logos/thenorthface.svg", tall: true },
+      { name: "TravisMathew", logo: "/catalog-page/logos/travismathew.svg" },
+      { name: "New Era", logo: "/catalog-page/logos/newera.svg", tall: true },
+      { name: "adidas", logo: "/catalog-page/logos/adidas.svg", tall: true },
+    ],
     countries: [
       { code: "de", name: "Germany", stat: "1,800+ teams reached across the EU" },
       { code: "ae", name: "United Arab Emirates", stat: "Delivering worldwide to 170+ countries" },
@@ -65,7 +75,14 @@ export const SECTIONS: SectionData[] = [
     blurb: "Curated pantry, drinks and keepsakes — thoughtful gifts that land anywhere, with controls built in.",
     catalogHref: "/gifting",
     products: GIFTS_PRODUCTS,
-    brands: [{ name: "Stripe", logo: "/catalog-page/logos/stripe.svg" }, { name: "Notion", logo: "/catalog-page/logos/notion.svg" }, { name: "Salesforce", logo: "/catalog-page/logos/salesforce.svg" }, { name: "Adidas", logo: "/catalog-page/logos/adidas.svg" }, { name: "Figma", logo: "/catalog-page/logos/figma.svg" }],
+    brands: [
+      { name: "Apple", logo: "/catalog-page/logos/apple.svg", tall: true },
+      { name: "Rubik's", logo: "/catalog-page/logos/rubiks.svg" },
+      { name: "Logitech", logo: "/catalog-page/logos/logitech.svg" },
+      { name: "Sony", logo: "/catalog-page/logos/sony.svg" },
+      { name: "Ray-Ban", logo: "/catalog-page/logos/rayban.svg" },
+      { name: "JBL", logo: "/catalog-page/logos/jbl.svg", tall: true },
+    ],
     countries: [
       { code: "mx", name: "Mexico", stat: "700+ teams reached across Mexico" },
       { code: "au", name: "Australia", stat: "Delivering worldwide to 170+ countries" },
@@ -83,7 +100,14 @@ export const SECTIONS: SectionData[] = [
     blurb: "Snacks, drinks, pantry staples and work-and-play finds — curated boxes your team will fight over, delivered across 170+ countries.",
     catalogHref: "https://www.snackmagic.com/our-snacks",
     products: SNACKS_PRODUCTS,
-    brands: [{ name: "Northface", logo: "/catalog-page/logos/thenorthface.svg" }, { name: "Adidas", logo: "/catalog-page/logos/adidas.svg" }, { name: "Nike", logo: "/catalog-page/logos/nike.svg" }, { name: "Shopify", logo: "/catalog-page/logos/shopify.svg" }, { name: "Google", logo: "/catalog-page/logos/google.svg" }],
+    brands: [
+      { name: "Hal's New York", logo: "/catalog-page/logos/hals.svg", tall: true },
+      { name: "Hu", logo: "/catalog-page/logos/hu.svg", tall: true },
+      { name: "SmartSweets", logo: "/catalog-page/logos/smartsweets.svg", tall: true },
+      { name: "Tate's Bake Shop", logo: "/catalog-page/logos/tates.svg", tall: true },
+      { name: "Poppi", logo: "/catalog-page/logos/poppi.svg" },
+      { name: "Hippeas", logo: "/catalog-page/logos/hippeas.svg" },
+    ],
     countries: [
       { code: "us", name: "USA", stat: "Delivering worldwide to 170+ countries" },
       { code: "jp", name: "Japan", stat: "Next-day delivery across Tokyo & Osaka" },
@@ -101,7 +125,13 @@ export const SECTIONS: SectionData[] = [
     blurb: "Live, hosted tastings and classes with the kit shipped to every attendee — remote, hybrid or in person.",
     catalogHref: "https://www.withconfetti.com/explore",
     products: EXPERIENCES_PRODUCTS,
-    brands: [{ name: "Airbnb", logo: "/catalog-page/logos/airbnb.svg" }, { name: "Slack", logo: "/catalog-page/logos/slack.svg" }, { name: "Amazon", logo: "/catalog-page/logos/amazon.svg" }, { name: "Spotify", logo: "/catalog-page/logos/spotify.svg" }, { name: "Notion", logo: "/catalog-page/logos/notion.svg" }],
+    brands: [
+      { name: "Escape Quest", stat: "6.6K+ bookings" },
+      { name: "Coworker Clash", stat: "6.1K+ bookings" },
+      { name: "Team Trivia", stat: "1.6K+ bookings" },
+      { name: "Puzzles", stat: "1.3K+ bookings" },
+      { name: "Terrarium Workshop", stat: "800+ bookings" },
+    ],
     countries: [
       { code: "de", name: "Germany", stat: "1,800+ teams reached across the EU" },
       { code: "ae", name: "United Arab Emirates", stat: "Delivering worldwide to 170+ countries" },
@@ -143,13 +173,6 @@ function shuffled<T>(list: T[], rand: () => number): T[] {
   return a;
 }
 
-/* n speeds spread evenly over [min, max] and shuffled — every column gets a
-   distinct pace, and neighbours are not ordered by speed. */
-function spreadSpeeds(n: number, min: number, max: number, rand: () => number): number[] {
-  const steps = Array.from({ length: n }, (_, i) => min + ((max - min) * i) / Math.max(1, n - 1));
-  return shuffled(steps, rand);
-}
-
 /* Tile heights ÷ 75 (Figma: 75–108 on a 75 wide tile) — aspect-ratio sequence. */
 const HERO_RATIOS = [1.3067, 1.2, 1.24, 1.16, 1, 1.1067, 1.2, 1.36, 1.36, 1.2, 1, 1.24, 1.1, 1.44, 1.3, 0.96];
 
@@ -160,40 +183,40 @@ export type HeroColumn = {
   phase: number;
 };
 
-/* 14 columns × ~15 cards (14–16) = 210 slots over all 176 photos. Snacks alone are 97, so
-   every photo is used once and the 34 spare slots repeat swag / gifts / experience
-   photos to keep the wall balanced. Each section's photos are shuffled and dealt
-   across the columns evenly (every column gets a share of every section), then each
+/* 20 columns × 15 cards = 300 slots over all 202 photos. Snacks alone are 97, so
+   every photo is used once and the repeats land only in non-adjacent columns (see the parity split below). Then each
    column is ordered greedily: always pull from the section with the most cards left
    that differs from the previous card — and prefer a different category — so a
    column reads as a mix instead of one family. */
-const HERO_COLS = 14;
+/* 20 columns: the wall is ~100px short of the page width each side, so wider
+   screens reveal more columns (CatalogHero shows 10 / 13 / 15 / 17 / 20). */
+const HERO_COLS = 20;
+/* cards per column from each section, in SECTION_ORDER (swag, gifts, snacks, experiences) = 15 */
+const HERO_QUOTA = [3, 3, 6, 3];
+/* One constant pace for every column (px/s on the 75px-wide Figma tile) —
+   matches the Swag mosaic's average pace; direction alternates by column. */
+const HERO_SPEED = 9.8;
 const SECTION_ORDER = ["swag", "gifts", "snacks", "experiences"] as const;
 
 function buildHeroColumns(): HeroColumn[] {
   const rand = mulberry32(20261016);
   type Tile = (typeof ALL_TILES)[number];
-  const bySection = new Map<string, Tile[]>(SECTION_ORDER.map((sec) => [sec, ALL_TILES.filter((t) => t.section === sec)]));
 
-  // spare slots: gifts ×1 (9) + swag (13) + experiences (12) = 34
-  const spare: Tile[] = [
-    ...bySection.get("gifts")!,
-    ...shuffled(bySection.get("swag")!, rand).slice(0, 13),
-    ...shuffled(bySection.get("experiences")!, rand).slice(0, 12),
-  ];
-  const pool = new Map<string, Tile[]>(
-    SECTION_ORDER.map((sec) => [
-      sec,
-      shuffled([...bySection.get(sec)!, ...spare.filter((t) => t.section === sec)], rand),
-    ]),
-  );
+  /* Photos are split in two halves per section — even columns draw only from half A, odd columns only
+     from half B — so two neighbouring columns never share a photo, and a column never repeats one
+     (it draws fewer cards per section than the half holds). Every photo is still used. */
+  const halves = SECTION_ORDER.map((sec) => {
+    const list = shuffled(ALL_TILES.filter((t) => t.section === sec), rand);
+    return [list.filter((_, i) => i % 2 === 0), list.filter((_, i) => i % 2 === 1)] as Tile[][];
+  });
+  const ptr = [0, 1].map(() => SECTION_ORDER.map(() => 0));
 
-  // deal each section round-robin across columns, starting at a rotating offset
-  const perCol: Tile[][][] = Array.from({ length: HERO_COLS }, () => SECTION_ORDER.map(() => [] as Tile[]));
-  let offset = 0;
-  SECTION_ORDER.forEach((sec, si) => {
-    pool.get(sec)!.forEach((t, i) => perCol[(i + offset) % HERO_COLS][si].push(t));
-    offset += pool.get(sec)!.length;
+  const perCol: Tile[][][] = Array.from({ length: HERO_COLS }, (_, c) => {
+    const p = c % 2;
+    return SECTION_ORDER.map((_, si) => {
+      const pool = halves[si][p];
+      return Array.from({ length: HERO_QUOTA[si] }, () => pool[ptr[p][si]++ % pool.length]);
+    });
   });
 
   const cols: Tile[][] = perCol.map((groups) => {
@@ -215,18 +238,16 @@ function buildHeroColumns(): HeroColumn[] {
     return out;
   });
 
-  /* Each column drifts at its own speed: 10–23px/s on the 75px-wide Figma tile
-     (≈25% slower than before), so duration = one half's height ÷ speed. */
-  const speeds = spreadSpeeds(HERO_COLS, 10, 23, rand);
+  /* Constant pace: duration = one half's height ÷ HERO_SPEED. */
   return cols.map((col, c) => {
     const tiles = col.map((t, i) => ({ src: t.src, ratio: HERO_RATIOS[(c * 3 + i * 5) % HERO_RATIOS.length] }));
     const loopPx = tiles.reduce((a, t) => a + 75 * t.ratio + 11, 0);
-    const duration = Math.round(loopPx / speeds[c]);
+    const duration = Math.round(loopPx / HERO_SPEED);
     return {
       tiles,
       duration,
-      reverse: rand() < 0.5,
-      phase: Math.round(rand() * duration),
+      reverse: c % 2 === 1, // strict up / down alternation
+      phase: 0,
     };
   });
 }
@@ -237,7 +258,7 @@ export const HERO_COLUMNS: HeroColumn[] = buildHeroColumns();
 
 export type MosaicItem =
   | { kind: "product"; product: Product; h: number; delay: number }
-  | { kind: "brand"; name: string; logo: string; h: number; delay: number }
+  | { kind: "brand"; brand: Brand; h: number; delay: number }
   | { kind: "country"; country: Country; h: number; delay: number }
   | { kind: "coverage"; h: number; delay: number };
 
@@ -253,69 +274,74 @@ export type MosaicColumn = {
 /* Heights in rem. Product photos are 3:4 portraits and a column is ~10rem wide,
    so tiles sit around 13.3rem tall (Figma 520×693) with a little variety. */
 const PRODUCT_H = [13.4, 14.6, 12.6, 15.4, 13.4, 16, 12.6, 14];
-const BRAND_H = [9.375, 10.625, 10, 9.375, 10.625];
+const BRAND_H = [10, 10.625, 9.375, 10.625, 10, 9.375];
 const COUNTRY_H = [13.125, 11.875, 12.5, 11.875, 13.125];
 const GUTTER = 0.8333; /* rem — --spacing-catalog-gap */
 
-export const MOSAIC_COLUMNS = 7;
-/* Per-column pace in rem/s (×16 = px/s): 0.4–0.82 ≈ 6.5–13px/s, 25% slower than
-   before; spread and shuffled per section (see spreadSpeeds). */
-const MOSAIC_SPEED_RANGE = [0.4, 0.82] as const;
+/* 9 columns; the explorer shows 2 / 5 / 5 / 6 / 7 / 8 / 9 as the page widens. */
+export const MOSAIC_COLUMNS = 9;
+const MOSAIC_SPEED = 0.61; /* rem/s ≈ 9.8px/s — one constant pace for every column and section */
 /* A half of a column must be taller than the viewport or the loop shows a gap. */
 const MIN_LOOP_REM = 140; /* > the tallest mosaic viewport (120rem) */
 
-/* Every photo in the section is used exactly once (35 swag, 9 gifts, 25 snacks,
-   35 experiences), plus 5 brand cards, 5 country cards and 1 global-coverage
-   card, dealt into 7 independent columns. Every column is an endless vertical
-   marquee; a column whose cards are shorter than the viewport repeats them
-   inside its loop (gifts only has 9 photos), so the loop height — the sum of its
-   card heights — decides its duration at constant speed. */
+/* Each column is an endless vertical marquee holding ≥ MIN_LOOP_REM of cards, so no
+   card shows twice at once inside a column. Products are split in two halves — even
+   columns draw only from half A, odd columns only from half B — so two neighbouring
+   columns never show the same product. Every brand / activity, country and the
+   coverage card appears exactly once per section (in one column), and every product is
+   used. Loop height ÷ the constant pace gives each column's duration. */
 export function buildMosaicColumns(section: SectionData): MosaicColumn[] {
+  const rand = mulberry32(section.id.split("").reduce((a, ch) => a * 31 + ch.charCodeAt(0), 7));
   const products: MosaicItem[] = section.products.map((product, i) => ({
     kind: "product",
     product,
     h: PRODUCT_H[i % PRODUCT_H.length],
     delay: 0,
   }));
+  const shuffledProducts = shuffled(products, rand);
+  const halves = [shuffledProducts.filter((_, i) => i % 2 === 0), shuffledProducts.filter((_, i) => i % 2 === 1)];
 
   const specials: MosaicItem[] = [];
-  for (let i = 0; i < 5; i++) {
-    specials.push({ kind: "brand", name: section.brands[i].name, logo: section.brands[i].logo, h: BRAND_H[i], delay: 0 });
-    specials.push({ kind: "country", country: section.countries[i], h: COUNTRY_H[i], delay: 0 });
+  const n = Math.max(section.brands.length, section.countries.length);
+  for (let i = 0; i < n; i++) {
+    if (section.brands[i]) specials.push({ kind: "brand", brand: section.brands[i], h: BRAND_H[i % BRAND_H.length], delay: 0 });
+    if (section.countries[i]) specials.push({ kind: "country", country: section.countries[i], h: COUNTRY_H[i % COUNTRY_H.length], delay: 0 });
     if (i === 1) specials.push({ kind: "coverage", h: 17, delay: 0 });
   }
+  // spread the specials over the columns (4 is coprime to 9, so neighbours rarely both get one)
+  const colSpecials: MosaicItem[][] = Array.from({ length: MOSAIC_COLUMNS }, () => []);
+  specials.forEach((sp, j) => colSpecials[(j * 4) % MOSAIC_COLUMNS].push(sp));
 
-  const cols: { products: MosaicItem[]; specials: MosaicItem[] }[] = Array.from(
-    { length: MOSAIC_COLUMNS },
-    () => ({ products: [], specials: [] }),
-  );
-  products.forEach((p, i) => cols[i % MOSAIC_COLUMNS].products.push(p));
-  specials.forEach((sp, j) => cols[(j * 3) % MOSAIC_COLUMNS].specials.push(sp));
-
-  const rand = mulberry32(section.id.split("").reduce((a, ch) => a * 31 + ch.charCodeAt(0), 7));
-  const speeds = spreadSpeeds(MOSAIC_COLUMNS, MOSAIC_SPEED_RANGE[0], MOSAIC_SPEED_RANGE[1], rand);
-  const directions = shuffled(Array.from({ length: MOSAIC_COLUMNS }, (_, i) => i % 2 === 1), rand);
-
-  return cols.map((col, c) => {
-    // weave specials evenly through the column's products
-    const gap = Math.max(1, Math.ceil(col.products.length / (col.specials.length + 1)));
+  const ptr = [0, 0];
+  return colSpecials.map((sp, c) => {
+    const p = c % 2;
+    const pool = halves[p];
+    const used = new Set<MosaicItem>();
+    let rem = sp.reduce((a, it) => a + it.h + GUTTER, 0);
+    const picked: MosaicItem[] = [];
+    while (rem < MIN_LOOP_REM && used.size < pool.length) {
+      const it = pool[ptr[p]++ % pool.length];
+      if (used.has(it)) continue;
+      used.add(it);
+      picked.push(it);
+      rem += it.h + GUTTER;
+    }
+    // weave the specials evenly through the products
+    const gap = Math.max(1, Math.ceil(picked.length / (sp.length + 1)));
     const base: MosaicItem[] = [];
     let sIdx = 0;
-    col.products.forEach((p, i) => {
-      base.push(p);
-      if ((i + 1) % gap === 0 && sIdx < col.specials.length) base.push(col.specials[sIdx++]);
+    picked.forEach((it, i) => {
+      base.push(it);
+      if ((i + 1) % gap === 0 && sIdx < sp.length) base.push(sp[sIdx++]);
     });
-    while (sIdx < col.specials.length) base.push(col.specials[sIdx++]);
+    while (sIdx < sp.length) base.push(sp[sIdx++]);
 
-    const baseRem = base.reduce((a, it) => a + it.h + GUTTER, 0);
-    const reps = Math.max(1, Math.ceil(MIN_LOOP_REM / baseRem));
-    const items = Array.from({ length: reps }, () => base).flat();
-    const duration = Math.round((baseRem * reps) / speeds[c]);
+    const loopRem = base.reduce((a, it) => a + it.h + GUTTER, 0);
     return {
-      items: items.map((it, i) => ({ ...it, delay: (i % 4) * 70 })),
-      duration,
-      reverse: directions[c],
-      phase: Math.round(rand() * duration),
+      items: base.map((it, i) => ({ ...it, delay: (i % 4) * 70 })),
+      duration: Math.round(loopRem / MOSAIC_SPEED),
+      reverse: c % 2 === 1, // strict up / down alternation
+      phase: 0,
     };
   });
 }

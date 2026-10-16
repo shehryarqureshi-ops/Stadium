@@ -103,7 +103,11 @@ export default function IntegrationsDirectory({
           </label>
         </div>
 
-        <div data-animation="reveal" className="w-full rounded-[2rem] bg-pricing-cell p-4">
+        <div
+          /* a tray taller than ~3 viewports never reaches RevealOnScroll's 33% threshold */
+          data-animation={items.length > 24 ? undefined : "reveal"}
+          className="w-full rounded-[2rem] bg-pricing-cell p-4"
+        >
           {visible.length ? (
             <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite">
               {visible.map((item) => (
@@ -121,7 +125,7 @@ export default function IntegrationsDirectory({
                       width={item.logo.width}
                       height={item.logo.height}
                       style={{ height: `${Math.min(item.logo.height, 45) / 16}rem` }}
-                      className="w-auto max-w-[6rem] shrink-0 object-contain"
+                      className="w-auto max-w-[7rem] min-w-0 shrink object-contain"
                     />
                   )}
                 </li>

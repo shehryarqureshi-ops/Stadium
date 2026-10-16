@@ -1791,7 +1791,7 @@ pills, modal) → `ClosingCTA` → `PageClose`.
 | Part | Figma | Notes |
 | --- | --- | --- |
 | Hero copy | 5291:18747 | eyebrow `text-eyebrow-sm` `catalog-eyebrow`; h1 58/1.02 (`text-display-pricing`); lead 19/1.52 (`text-catalog-body`); CTAs `catalog-cta` blue + white outline |
-| Marquee wall | 5297:6154 | 14 columns × 15 cards (≈210 slots over all 176 section photos — each used at least once; shuffled so every column mixes sections, see `buildHeroColumns`), 75-wide tiles (ratio 1 : 1–1.44, r8 `rounded-catalog-chip`), gutter 11 (0.6875rem); 5 cols mobile / 9 tablet / 14 desktop; viewport 1140 (`h-catalog-hero-grid`); bottom fade 62% to black |
+| Marquee wall | 5297:6154 | 14 columns × 15 cards (≈210 slots over all 202 section photos — each used at least once; shuffled so every column mixes sections, see `buildHeroColumns`), 75-wide tiles (ratio 1 : 1–1.44, r8 `rounded-catalog-chip`), gutter 11 (0.6875rem); 5 cols mobile / 9 tablet / 14 desktop; viewport 1140 (`h-catalog-hero-grid`); bottom fade 62% to black |
 | Tab pill | 5291:19092 | white pill, p10, 4 × 190 tabs, active `catalog-ink`; label 12/16 +1px bold (`text-catalog-tab`) — mobile 11px `text-catalog-tab-sm`, short labels below `lg` |
 | CTA pill | 5633:24820 | `catalog-ink` pill, two 190-wide white-outline buttons; mobile = flex-1, "View {noun}" |
 | Heading panel | 5291:18798 | black, r60 (`rounded-catalog-panel`), min-h 539 (`min-h-catalog-heading`); overlaps previous mosaic by 60 |
@@ -1815,7 +1815,7 @@ pills, modal) → `ClosingCTA` → `PageClose`.
   longest label ("View experiences catalog") is never trimmed. Tab click → smooth
   `scrollIntoView` (instant when reduced).
 - **Mosaic marquee**: `buildMosaicColumns()` (data.ts) deals every photo in the
-  section exactly once — 35 swag · 9 gifts · 97 snacks · 35 experiences, from the
+  section exactly once — 35 swag · 35 gifts · 97 snacks · 35 experiences, from the
   Figma tab frames, products in `products.ts` — plus 5 brand cards, 5 country
   cards and 1 "170+ countries" coverage card into 7 independent columns (tablet
   shows 5, phone 2). Every column is an endless vertical marquee — the same
@@ -1881,7 +1881,7 @@ catalog country cards use `size="3.375rem"`. New flag = drop the SVG in
   Snacks — by taxonomy"): Snacks 25 + Beverages 24 + Pantry 24 + Work & Play 24 =
   97 photos (`public/catalog-page/snacks/01–97.jpg`; modal pill = subcategory such
   as "Cold Brew" or "Everyday Carry"). Swag (35 / frame 5747:6964) is unchanged.
-- **Hero wall** shuffle: all 176 photos (35 + 9 + 97 + 35), 34 spare slots repeat
+- **Hero wall** shuffle: all 202 photos (35 + 35 + 97 + 35), 8 spare slots repeat
   swag / gifts / experiences so snacks (55% of the photos) do not dominate. Each
   section's photos are dealt evenly across the 14 columns, then every column is
   ordered greedily — pull from the section with the most cards left that differs
@@ -1903,3 +1903,19 @@ catalog country cards use `size="3.375rem"`. New flag = drop the SVG in
   blur .5rem→0 + 0.75rem rise, 0.9s expo — instead of sliding from below the fold.
   No tab is selected until a section crosses the 45% line (the hero has none); it
   stays on Hosted Experiences below the last section.
+
+## Header "Catalog" link (2026-10-16)
+
+The Catalog mega-menu is parked: `NAV_ITEMS` in `SiteHeader.tsx` renders "Catalog" as
+a plain link to `/catalog` (no chevron, no dropdown, plain link on mobile too). To
+restore the dropdown set `SHOW_CATALOG_DROPDOWN = true` at the top of that file —
+`CatalogMenu.tsx`, its drawer panel and the mobile accordion are untouched.
+
+
+## /catalog — motion, columns and width (latest)
+- **Container**: marquee + mosaic are `page width − 12.5rem` (100px a side) at `lg+` (`--container-catalog-grid: calc(100% - 12.5rem)`); below `lg` the section padding applies as before.
+- **Columns reveal with width** so tiles keep their size: hero 5 → 9 (md) → 10 (lg) → 13 (80rem) → 15 (90rem) → 17 (105rem) → 20 (120rem); mosaic 2 → 5 (md) → 6 (80rem) → 7 (90rem) → 8 (105rem) → 9 (120rem).
+- **Motion**: one constant pace everywhere (hero 9.8px/s on the 75px tile, mosaic 0.61rem/s — the Swag benchmark), strict alternation (`column index % 2` → up/down), phase 0 (no per-column offset).
+- **Logo (brand) tiles removed** from the mosaics; the `/public/catalog-page/logos` files are now unused.
+- **Brand tiles (re-added)**: white SVG marks in `public/catalog-page/logos/` — Swag: Nike, Carhartt, The North Face, TravisMathew, New Era, adidas · Gifts: Apple, Rubik's, Logitech, Sony, Ray-Ban, JBL · Snacks: Hal's New York, Hu, SmartSweets, Tate's, Poppi, Hippeas · Experiences (no logos, text tiles with bookings): Escape Quest, Coworker Clash, Team Trivia, Puzzles, Terrarium Workshop. Hu, Hippeas and Tate's were traced from the brands' PNG logos (no SVG published).
+- **No repeats in neighbouring columns**: hero photos and mosaic products are split into two halves; even columns draw from half A, odd from half B, and a column never repeats a card. Brand / country / coverage tiles appear once per section.

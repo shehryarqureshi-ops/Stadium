@@ -88,15 +88,15 @@ function TabsPill({
       ended={ended}
       className="w-full max-w-catalog-pill rounded-full bg-white p-2.5 shadow-catalog-pill"
     >
-      <nav aria-label="Catalog categories" className="flex gap-1 md:gap-2.5">
+      <nav aria-label="Catalog categories" className="flex justify-between gap-1 md:gap-2.5">
         {SECTIONS.map((s) => (
           <button
             key={s.id}
             type="button"
             onClick={() => onJump(s.id)}
             aria-current={activeId === s.id ? "true" : undefined}
-            className={`flex-1 cursor-pointer rounded-full px-1 py-3.5 text-center font-sans text-catalog-tab-sm uppercase transition-colors duration-200 md:px-5 md:py-[0.8125rem] md:text-catalog-tab focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-catalog-ink ${
-              activeId === s.id ? "bg-catalog-ink text-white" : "text-catalog-ink hover:bg-grey-200"
+            className={`cursor-pointer rounded-full py-3.5 md:flex-1 text-center font-sans text-catalog-tab-sm uppercase transition-colors duration-200 md:px-5 md:py-[0.8125rem] md:text-catalog-tab focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-catalog-ink ${
+              activeId === s.id ? "bg-catalog-ink px-5 text-white" : "px-2 text-catalog-ink hover:bg-grey-200 md:px-5"
             }`}
           >
             <span className="lg:hidden">{s.tabShort}</span>
@@ -137,6 +137,19 @@ function CtaPill({ section, show, ended }: { section: SectionData; show: boolean
 
 const COLUMN_GAP = "gap-catalog-gap";
 
+/* Columns revealed as the page widens (grid-cols above): 2 → 5 (md) → 6 (1280) → 7 (1440) → 8 (1680) → 9 (1920). */
+const MOSAIC_COL_VISIBILITY = [
+  "",
+  "",
+  "hidden md:block",
+  "hidden md:block",
+  "hidden md:block",
+  "hidden min-[80rem]:block",
+  "hidden min-[90rem]:block",
+  "hidden min-[105rem]:block",
+  "hidden min-[120rem]:block",
+];
+
 function Mosaic({
   section,
   onOpen,
@@ -162,13 +175,13 @@ function Mosaic({
   return (
     <div
       ref={ref}
-      className="relative mx-auto h-[90rem] w-full max-w-catalog-grid overflow-hidden px-section-x-sm md:h-[100rem] md:px-section-x-md lg:h-catalog-mosaic lg:px-0"
+      className="relative mx-auto h-[90rem] w-full lg:max-w-catalog-grid overflow-hidden px-section-x-sm md:h-[100rem] md:px-section-x-md lg:h-catalog-mosaic lg:px-0"
     >
-      <div className={`grid h-full grid-cols-2 md:grid-cols-5 lg:grid-cols-7 ${COLUMN_GAP}`}>
+      <div className={`grid h-full grid-cols-2 md:grid-cols-5 min-[80rem]:grid-cols-6 min-[90rem]:grid-cols-7 min-[105rem]:grid-cols-8 min-[120rem]:grid-cols-9 ${COLUMN_GAP}`}>
         {columns.map((col, c) => (
           <div
             key={c}
-            className={`relative overflow-hidden ${c >= 5 ? "hidden lg:block" : c >= 2 ? "hidden md:block" : ""}`}
+            className={`relative overflow-hidden ${MOSAIC_COL_VISIBILITY[c]}`}
           >
             <ul
               className="catalog-track flex flex-col"
@@ -245,11 +258,21 @@ function MosaicCard({
         </button>
       );
     case "brand":
-      return (
+      return item.brand.logo ? (
         <div className={tile}>
-          {/* original mark, recoloured white (public/catalog-page/logos, Simple Icons) */}
+          {/* white brand mark (public/catalog-page/logos) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={item.logo} alt={item.name} className="h-10 w-28 object-contain" loading="lazy" />
+          <img
+            src={item.brand.logo}
+            alt={item.brand.name}
+            className={`object-contain ${item.brand.tall ? "h-16 w-24" : "h-12 w-32"}`}
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div className={`${tile} gap-2 px-4`}>
+          <p className="font-display text-catalog-country">{item.brand.name}</p>
+          <p className="font-sans text-catalog-stat text-white/80">{item.brand.stat}</p>
         </div>
       );
     case "country":
@@ -262,15 +285,8 @@ function MosaicCard({
       );
     case "coverage":
       return (
-        <div className={`${tile} relative gap-3 overflow-hidden px-4`}>
-          <span
-            aria-hidden
-            className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)]"
-          />
-          <p className="bg-[linear-gradient(270deg,#8d12e7,#0b7afc,#ffb800,#ff5b77,#00c036)] bg-clip-text font-display text-display-md text-transparent">
-            170+
-          </p>
-          <p className="font-display text-catalog-country">countries. One catalog.</p>
+        <div className={`${tile} gap-3 px-4`}>
+          <p className="font-display text-display-md text-white">170+</p>
           <p className="font-sans text-catalog-stat text-white/80">
             Local sourcing, duties handled and doorstep delivery wherever your people are.
           </p>
@@ -304,7 +320,7 @@ function CatalogSection({
       className="relative scroll-mt-0"
     >
       <div
-        className={`relative z-10 flex flex-col items-center justify-center gap-4 rounded-catalog-panel bg-black px-section-x-sm py-16 text-center min-h-svh md:px-section-x-md ${
+        className={`relative z-10 flex flex-col items-center justify-center gap-4 rounded-catalog-panel bg-black px-section-x-sm py-16 text-center h-catalog-heading md:px-section-x-md ${
           index > 0 ? "-mt-10 md:-mt-[3.75rem]" : ""
         }`}
       >

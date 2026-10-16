@@ -119,7 +119,7 @@ export default function CatalogProductModal({
           <div className="flex flex-col gap-3.5 pt-2 sm:flex-row lg:pt-8">
             <a
               href={BOOK_A_CALL_HREF}
-              className="inline-flex h-[3.75rem] flex-1 items-center justify-center whitespace-nowrap rounded-full bg-black px-6 font-sans text-catalog-button-lg uppercase text-white transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              className="inline-flex h-[3.75rem] shrink-0 items-center sm:flex-1 justify-center whitespace-nowrap rounded-full bg-black px-6 font-sans text-catalog-button-lg uppercase text-white transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
               <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Book a call</span>
             </a>
@@ -127,7 +127,7 @@ export default function CatalogProductModal({
               href={section.catalogHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-[3.75rem] items-center justify-center gap-2 whitespace-nowrap rounded-full border border-black px-6 font-sans text-catalog-button-lg uppercase text-black transition-all duration-200 hover:bg-black hover:text-white active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black "
+              className="inline-flex h-[3.75rem] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-black px-6 font-sans text-catalog-button-lg uppercase text-black transition-all duration-200 hover:bg-black hover:text-white active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black "
             >
               <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
                 View {section.noun} catalog

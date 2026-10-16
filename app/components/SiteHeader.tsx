@@ -16,6 +16,11 @@ type MenuKey = "engage" | "impact" | "proof" | "catalog";
    drawer shifts left/right between sections in nav order (Linear behavior). */
 const MENU_KEYS: MenuKey[] = ["engage", "impact", "proof", "catalog"];
 
+/* Catalog mega-menu (CatalogMenu.tsx) is parked: "Catalog" is a plain link to
+   /catalog like Pricing. Flip this to `true` to bring the dropdown back — the
+   menu, its panel and the mobile accordion are all still wired to menu: "catalog". */
+const SHOW_CATALOG_DROPDOWN = false;
+
 /* `active` = current-page marker (bold). Never hardcoded: the homepage is
    none of these pages, and Shopify keeps nav weight uniform until you're
    actually on a section's page (2026-06-12 audit). Set it from the route
@@ -29,7 +34,7 @@ const NAV_ITEMS: {
     { label: "Ways to Engage", href: "/ways-to-engage", menu: "engage" },
     { label: "Impact by Team", href: "/impact", menu: "impact" },
     { label: "The Proof", href: "/the-proof", menu: "proof" },
-    { label: "Catalog", href: "/catalog", menu: "catalog" },
+    { label: "Catalog", href: "/catalog", menu: SHOW_CATALOG_DROPDOWN ? "catalog" : undefined },
     { label: "Pricing", href: "/pricing" },
   ];
 

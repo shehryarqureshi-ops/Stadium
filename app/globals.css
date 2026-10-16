@@ -916,10 +916,10 @@ body {
   --spacing-catalog-gap: 0.8333rem; /* 13.33 — mosaic gutter */
   --spacing-catalog-hero-grid: 71.25rem; /* 1140 — hero marquee viewport (lg) */
   --spacing-catalog-mosaic: 120rem; /* 1920 — mosaic viewport (lg); 100rem tablet, 90rem phone */
-  --spacing-catalog-heading: 33.6875rem; /* 539 — section heading panel (lg) */
+  --spacing-catalog-heading: 33.75rem; /* 540 — section heading panel */
   --container-catalog-pill: 50.625rem; /* 810 — category tab pill */
   --container-catalog-modal: 75rem; /* 1200 — modal card */
-  --container-catalog-grid: 75rem; /* 1200 — marquee + mosaic content width */
+  --container-catalog-grid: calc(100% - 12.5rem); /* page width − 200 (100 a side) — marquee + mosaic content width at lg+ */
 
   --text-catalog-brand: 1.875rem; /* 30 / normal −0.6px — brand wordmark card */
   --text-catalog-brand--line-height: 1.2;
