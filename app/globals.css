@@ -279,6 +279,8 @@
   --container-band: 60rem; /* 960px — narrow-desktop (1024–1300) single-column
                               cap: keeps the stacked ScaleMap treatment from
                               sprawling across desktop-width viewports */
+  --container-rail: 18.5rem; /* 296 — StaticPage sticky "On this page" rail */
+  --container-article: 50rem; /* 800 — StaticPage reading column */
 
   /* ===== Radii ===== */
   --radius-button: 1.375rem; /* pill buttons */
@@ -446,6 +448,8 @@
   --text-body-md--line-height: 1.5rem;
   --text-body-lg: 1.125rem;
   --text-body-lg--line-height: 1.75rem;
+  --text-legal: 1.0625rem; /* 17 / 1.62 — StaticPage long-form reading copy (desktop) */
+  --text-legal--line-height: 1.62;
 
   /* Subtitle — Overpass SemiBold (PDL "Big Semi 1.2"): 18/24 SemiBold.
      Emphasized supporting line under a headline (e.g. Catalog subhead). */

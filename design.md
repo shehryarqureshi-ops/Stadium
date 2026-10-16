@@ -1638,3 +1638,96 @@ Figma n9SjmDjzB1PeZAYJ5w43fr, frame **Batch 3** `5443:23009` on "🧪 Final Hero
 
 **Licence note** — Remotion company-licence caveat as for the earlier hero visuals; these are the first Player visuals on these 14 pages.
 
+
+# Static content pages — `StaticPage` (added 2026-10-16)
+
+Reusable template for long-form static content: `/privacy-policy`,
+`/terms-of-use`, `/points-terms-of-use`, `/safelist`, and any future legal /
+policy page. Figma `n9SjmDjzB1PeZAYJ5w43fr` → frame "static content page
+template" (`5706:6693`) → **FINAL · Layout B** (desktop 1440 + mobile 390 closed /
+dropdown open / dropdown search). Replaces the old `PageLayout` + `PageHero`.
+
+Files (`app/components/page/`):
+
+| File | Role |
+| --- | --- |
+| `StaticPage.tsx` | Server template: SiteHeader → hero → sheet (TOC + article) → PageClose. Derives TOC, anchor ids and reading time from its children. |
+| `StaticPageHero.tsx` | Night hero (same raster + type as `TeamHero`, `hero-canvas-bg.jpg`), eyebrow → title → summary → outlined meta pills. |
+| `StaticPageToc.tsx` | Client. `TocRail` (lg+, sticky) and `TocDropdown` (< lg, sticky bar + search panel). One scroll-spy (`useActiveId`). |
+| `mdx.tsx` | Markdown element styling (h2/h3/h4, p + "In short" callout, lists, links, table…), wired in `/mdx-components.tsx`. |
+
+## Adding a page
+
+Create `app/<route>/page.mdx` (nothing else to register):
+
+```mdx
+import StaticPage from "@/app/components/page/StaticPage";
+
+export const metadata = { title: "Cookie Notice | Stadium", description: "…" };
+
+<StaticPage title="Cookie Notice" updated="June 17, 2025" summary="One-line hero summary.">
+
+Intro paragraphs…
+
+## 1\. What we use cookies for \{#use}
+
+**In Short:** one-sentence summary (renders as the grey callout).
+
+Body, lists, tables, links…
+
+### Sub-heading (anchor only)
+
+</StaticPage>
+```
+
+Props: `title` (required), `eyebrow` (default "Legal"), `summary`, `updated`,
+`readTime` (auto from word count at 200 wpm; `false` hides), `contact`
+(`{title, body, email}` or `false`), `tocLabel` (default "On this page").
+
+Authoring rules:
+- Every `##` is a TOC entry; a leading "1\." is stripped from the TOC label but
+  kept in the heading. `###` / `####` get anchors but are **not** in the TOC.
+- `\{#id}` after a heading pins a stable anchor (needed when other pages link
+  to `/privacy-policy#rights`). Without it the id is slugified from the title.
+  Duplicate ids get `-2`, `-3`. The marker is stripped from the rendered text.
+- Pages with ≤ 1 `##` render without a TOC (single centered column).
+- Write headings in sentence case (`## 3\. Will your information be shared?`).
+- Always spell brands Stadium / Snackmagic / Swagmagic.
+
+## Layout spec (tokens only — no new colours)
+
+| Part | Desktop (lg+) | Below lg |
+| --- | --- | --- |
+| Hero | `px-section-x-lg`, `pt-44 pb-40`, title `text-display-pricing`, summary `text-body-xl`, pills `h-button-h` outlined white | `pt-32 pb-24` (md: `pt-40 pb-28`), title `text-display-sm` / `md:text-display-md` |
+| Sheet | white, `rounded-t-panel` (60), overlaps hero `-mt-16` | `rounded-t-modal` (32), `-mt-8` |
+| Grid | `[var(--container-rail)=18.5rem] / minmax(0, var(--container-article)=50rem)`, `gap-x-22` (5.5rem), inside `max-w-content` so the rail aligns with the header logo | single column, `px-section-x-sm` / `md:px-section-x-md` |
+| TOC | `TocRail`: `sticky top-28`, `border-l-2` items, active = `border-grey-800` + semibold, `text-body-sm` | `TocDropdown`: bar `sticky top-16` (= SiteHeader's 4rem scrolled height), trigger shows "On this page / 03 Section title", panel = search + list |
+| Body | `text-legal` (17 / 1.62, `--text-legal`), `text-grey-700`, column gap `gap-6` | `text-body-md` / 1.6, `gap-5` |
+| h2 | `text-heading-md`, `border-t border-grey-200 pt-12 mt-6` (rule between sections), `scroll-mt-28` | `text-heading-sm`, `pt-8`, `scroll-mt-40` (clears header + dropdown bar) |
+| Callout | `bg-grey-100 rounded-2xl`, eyebrow "In short" (`text-eyebrow-sm`, grey-500) + `font-semibold` text | same |
+| Contact card | `bg-impact-hero-night rounded-3xl`, white pill CTA (`mailto:`) | stacked |
+
+Tokens added to `globals.css`: `--container-rail` 18.5rem, `--container-article`
+50rem, `--text-legal` 1.0625rem / 1.62.
+
+## Mobile dropdown behaviour (`TocDropdown`)
+
+- Sticky under the fixed header; trigger is a `button[aria-expanded][aria-controls]`.
+- Opening focuses the search field, dims the page (`bg-ink/45` scrim, closes on
+  tap), `Esc` closes and returns focus to the trigger, ↓/↑ move between the
+  field and the options.
+- Search filters section titles (case-insensitive substring), highlights the
+  match in `accent-water`, announces "n results" via `aria-live="polite"`, and
+  shows "No sections match “…”" when empty. Clear (×) button resets.
+- Selecting an option is a normal `#id` link: the page jumps, the dropdown
+  closes and the trigger label updates. Works without JS (anchors only).
+- Current section: scroll-spy picks the last heading above the 30% viewport line.
+
+## Notes / known limits
+
+- TOC extraction runs on the **top-level** children of `<StaticPage>` (what
+  Markdown produces). Headings nested inside custom JSX wrappers are styled but
+  not added to the TOC.
+- `/safelist` was restructured when migrating: the orphaned `Web` heading (it had
+  no content), the broken `## hi@dev.bystadium.com \` heading and the
+  backslash line-break lists were turned into proper `Domains` / `Emails` lists.
