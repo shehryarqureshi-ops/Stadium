@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
 import RevealOnScroll from "./components/RevealOnScroll";
+import MarkerFeedback from "./components/tracking/MarkerFeedback";
 import AnalyticsListeners from "./components/tracking/AnalyticsListeners";
 import ConsentManager from "./components/tracking/ConsentManager";
 import TrackingLoader from "./components/tracking/TrackingLoader";
@@ -131,6 +132,7 @@ export default function RootLayout({
         <TrackingLoader />
         <ConsentManager />
         <AnalyticsListeners />
+        <MarkerFeedback />
       </body>
     </html>
   );
