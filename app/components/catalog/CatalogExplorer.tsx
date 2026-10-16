@@ -53,7 +53,7 @@ function PillShell({
   children,
 }: {
   show: boolean;
-  /** past the last section — fade out in place (no slide) */
+  /** past the last section — same fade / zoom / blur out */
   ended?: boolean;
   className?: string;
   children: ReactNode;
@@ -62,9 +62,11 @@ function PillShell({
     <div
       inert={!show || ended}
       aria-hidden={!show || ended}
-      className={`pointer-events-auto transition-[transform,opacity] duration-700 ${EASE} motion-reduce:transition-none ${
-        show ? "translate-y-0" : "pointer-events-none translate-y-[calc(100%+9rem)]"
-      } ${ended ? "pointer-events-none opacity-0 duration-500" : "opacity-100"} ${className}`}
+      className={`pointer-events-auto origin-bottom transition-[opacity,transform,filter] duration-[900ms] ${EASE} motion-reduce:transition-none ${
+        show && !ended
+          ? "translate-y-0 scale-100 opacity-100 blur-0"
+          : "pointer-events-none translate-y-3 scale-90 opacity-0 blur-[0.5rem]"
+      } ${className}`}
     >
       {children}
     </div>
@@ -76,7 +78,7 @@ function TabsPill({
   ended,
   onJump,
 }: {
-  activeId: SectionId;
+  activeId: SectionId | null;
   ended: boolean;
   onJump: (id: SectionId) => void;
 }) {
@@ -108,7 +110,7 @@ function TabsPill({
 
 function CtaPill({ section, show, ended }: { section: SectionData; show: boolean; ended: boolean }) {
   const btn =
-    "flex whitespace-nowrap items-center justify-center rounded-full border border-white px-3 py-[1.125rem] text-center font-sans text-catalog-tab-sm uppercase text-white transition-colors duration-200 hover:bg-white hover:text-catalog-ink md:px-5 md:text-catalog-tab focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+    "flex whitespace-nowrap items-center justify-center rounded-full border border-white px-3 py-3.5 text-center font-sans text-catalog-tab-sm uppercase text-white transition-colors duration-200 hover:bg-white hover:text-catalog-ink md:px-5 md:py-[0.8125rem] md:text-catalog-tab focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
   return (
     <PillShell
       show={show}
@@ -306,20 +308,22 @@ function CatalogSection({
           index > 0 ? "-mt-10 md:-mt-[3.75rem]" : ""
         }`}
       >
+        {/* Name only — huge, Satoshi Light (the lightest Satoshi cut), very tight
+            tracking, one line. Same size for every name: min(16rem, -0.406504rem + 10.5501vw). */}
         <h2
           id={`${section.id}-title`}
           data-animation="reveal"
-          className="font-display text-display-md text-white lg:text-display-lg"
+          className="whitespace-nowrap text-white"
+          style={{
+            fontFamily: "var(--font-satoshi-light), var(--font-satoshi), sans-serif",
+            fontWeight: 300,
+            letterSpacing: "-0.075em",
+            lineHeight: 1,
+            fontSize: "min(16rem, -0.406504rem + 10.5501vw)",
+          }}
         >
           {section.title}
         </h2>
-        <p
-          data-animation="reveal"
-          data-reveal-delay="100"
-          className="max-w-[30rem] text-balance font-sans text-body-md text-catalog-meta"
-        >
-          {section.blurb}
-        </p>
       </div>
 
       <Mosaic section={section} onOpen={onOpen} />
@@ -414,7 +418,7 @@ export default function CatalogExplorer({ hero }: { hero: ReactNode }) {
         ))}
         {/* tab pill: pinned for the whole catalog, released at "Ready to get started?" */}
         <Dock>
-          <TabsPill activeId={activeId ?? "swag"} ended={ended} onJump={jump} />
+          <TabsPill activeId={activeId} ended={ended} onJump={jump} />
         </Dock>
       </div>
 

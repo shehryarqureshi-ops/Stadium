@@ -35,6 +35,14 @@ const satoshiMedium = localFont({
   weight: "500",
 });
 
+/* Satoshi Light 300 — ISOLATED, opt-in weight (`--font-satoshi-light`) ONLY for the
+   /catalog section-intro names; Satoshi has no lighter cut. Fontshare free license. */
+const satoshiLight = localFont({
+  variable: "--font-satoshi-light",
+  src: "./fonts/Satoshi-Light.woff2",
+  weight: "300",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Stadium — Show up for your crowd. Everywhere, every time.",
@@ -50,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${overpass.variable} ${satoshi.variable} ${satoshiMedium.variable} h-full antialiased`}
+      className={`${overpass.variable} ${satoshi.variable} ${satoshiMedium.variable} ${satoshiLight.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {/* Quality bar: first tab stop jumps past the nav (Shopify ships

@@ -1888,3 +1888,18 @@ catalog country cards use `size="3.375rem"`. New flag = drop the SVG in
   from the previous card, and prefer a different category.
 
 - **Marquee pacing (2026-10-16)**: hero and mosaic speeds are per-column and seeded-random (not alternating); both ranges are 25% slower than the first pass (hero 10–23px/s on the 75px Figma tile, mosaic 0.4–0.82rem/s).
+
+## Catalog polish — 2026-10-16
+
+- **Section intros**: the black panel holds only the section name — `h2` in **Satoshi
+  Light 300** (`app/fonts/Satoshi-Light.woff2` from Fontshare, loaded as
+  `--font-satoshi-light`, isolated like Medium; 300 is Satoshi's lightest cut),
+  letter-spacing −0.075em, one line, white. Font size:
+  one size for every name, `min(16rem, -0.406504rem + 10.5501vw)` (≈ 151px
+  at 1440, capped at 16rem from ≈ 1560px wide). The old blurb copy is no
+  longer rendered.
+- **Pills**: CTA buttons use the tab pill's button height (py-3.5 / md py-0.8125rem →
+  42px). All pills appear and leave with the site reveal — opacity + scale .9→1 +
+  blur .5rem→0 + 0.75rem rise, 0.9s expo — instead of sliding from below the fold.
+  No tab is selected until a section crosses the 45% line (the hero has none); it
+  stays on Hosted Experiences below the last section.
