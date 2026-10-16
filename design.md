@@ -1384,16 +1384,17 @@ tablet/mobile derived with the standard breakpoint mapping).
 - Top pad 7.5 / 10 / 12.75rem (= header 4rem + Figma 120 at lg).
 - Eyebrow `text-eyebrow-sm` +1.6px `text-pricing-sky`; headline `text-display-sm → md:text-display-md → lg:text-display-pricing` (58/1.02/−1.5, Satoshi — Figma specs Black, site ships Bold only); truck row lucide 20 + eyebrow style.
 - Pass cards: `rounded-3xl bg-white p-2.5 shadow-pass`; title block `rounded-2xl bg-pricing-tray px-4 py-6 text-pass-title`; body `px-4 py-6`, rows `text-feature` gap 12 + lucide check 14; CTA `h-button-h` pill `bg-pricing-cell` (featured: `bg-pricing-cta` + `border-pricing-sky shadow-pass-featured`). "Most Popular" pill `bg-pricing-sky text-pill text-pricing-navy`, −10px top / 39px right.
-- Grid 1 → `md:` 2 → `wide:` 4 (four 15px feature columns need ≥1300 to stay single-line). Hover: −0.25rem lift (motion-safe).
+- **Updated to Figma 3338:3171 (/go/pricing):** five passes (Pay-as-you-go → Shops → Swag → Engagement [Most Popular] → Enterprise); Pay-as-you-go CTA reads "Get started". Cards `wide:h-[29.375rem]` (470); feature rows `text-feature-sm` (12/1.4, new token) with lucide check 14; card row is Figma 1360 @ 40px from `wide` (`max-w-pricing-cards` 85rem + `wide:px-10`).
+- Grid 1 → `md:` 2 (6-col grid, last card centred) → `wide:` 5. Hover: −0.25rem lift (motion-safe).
 - "Talk to sales" → `?interestedPackage=<pass>#book-a-demo`; BookACallForm forwards it as `interested_package`.
 
 **Comparison (`PricingComparison.tsx`, 3998:4666)**
 
 - Panel `bg-white rounded-[2.5rem] md:rounded-panel (60)`, py 16 / 24 / 40 (160), header → table gap 60.
 - Title `text-heading-xl` (44/1.08/−0.5); subhead `text-body-lg text-swag-grey`.
-- Table: gap 4; header cells white `rounded-3xl`; body cells `bg-pricing-cell rounded-lg`, outer corners `rounded-*-3xl`; `text-table` (14.5/1.4); lucide check 24 / minus 16. Label col 2.62fr (= 500/1280) at lg. Explore cell `bg-pricing-ink rounded-t-lg rounded-b-3xl h-13`.
+- Table: gap 4; header cells white `rounded-3xl`; body cells `bg-pricing-cell rounded-lg`, outer corners `rounded-*-3xl`; `text-table` (14.5/1.4); lucide check 24 / minus 16. Label col 2.31fr (= 400/1280) at lg, five 1fr pass columns. Rows grouped under section labels (`h-10`, `text-table-label` 12/1.4 +0.72 SemiBold, `text-pricing-ink/55`): Pay-as-you-go products · Every pass · Swag management · Engagement · Enterprise. Text cells ("Add-on") `font-semibold`. The old "Explore all features" dark cell is gone in Figma 3442:16733 (the modal is still reachable via popover "Read more").
 - Below lg: horizontal scroll, label column `sticky left-0` with a 4px white ring.
-- Popovers (3998:4917): 280w, `rounded-lg p-3 shadow-popover text-popover`, above the label, open on hover/focus-within. "Read more" opens the packages modal on that feature.
+- Popovers (3998:4917): 280w, `rounded-lg p-3 shadow-popover text-popover` (12px — Figma specs 10, bumped for legibility), above the label, open on hover/focus-within. "Read more" opens the packages modal on that feature.
 - Row data lives in `components/pricing/passes.ts` (shared with the modal).
 
 **Packages modal (`pricing/PackagesModal.tsx`, 3401:2352)** — opened by popover "Read more" (on that feature, first pass that includes it) and by the "Explore all features" cell (first pass + feature)

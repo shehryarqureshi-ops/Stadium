@@ -1,32 +1,29 @@
 /* /pricing · THE COMPARISON — "Our platform covers every category" (Figma
    n9SjmDjzB1PeZAYJ5w43fr → 3998:4666 "Comparison · 3 wedges"). A full-bleed
    white panel (r60 all corners) floating on the page gradient, holding a
-   5-column feature table: label column + Shops / Swag / Engagement /
-   Enterprise. Same table system as SwagmagicComparison.tsx — gap 4, cells
+   5-pass feature table (Figma 3442:16733): label column + Pay-as-you-go /
+   Shops / Swag / Engagement / Enterprise, rows grouped under section labels. Same table system as SwagmagicComparison.tsx — gap 4, cells
    py16 px24, #f2f2f2 body cells r8 with r24 on the outer corners, white r24
    header cells, lucide check 24 / minus 16 — plus a dark "Explore all
    features" cell under the label column and hover popovers on the
    dotted-underlined features (Figma 3998:4917).
 
    Figma stack (desktop): panel py 160 px 80 → eyebrow 12 → 8 → title 44/1.08
-   → 20 → subhead 18/1.48 (2 lines) → 60 → table (header 52, 15 rows × 56,
-   explore 52, all gap 4). Label column = 500 of 1280 → 2.62fr against four
+   → 20 → subhead 18/1.48 (2 lines) → 60 → table (header, 5 section labels × 40,
+   19 rows × 56, all gap 4). Label column = 400 of 1280 → 2.31fr against five
    1fr value columns so it scales with the site's content box.
 
    Below lg the table scrolls horizontally with the label column pinned
    (sticky), a 4px white ring masking the cells sliding under it.
 
    Rows + passes live in pricing/passes.ts (shared with the packages modal).
-   Popover "Read more" and "Explore all features" open PackagesModal
-   (Figma 3401:2352). */
+   Popover "Read more" opens PackagesModal (Figma 3401:2352). */
 
 import { Check, Minus } from "lucide-react";
+import { Fragment } from "react";
 
 import { PackagesModalProvider, PackagesModalTrigger } from "./pricing/PackagesModal";
 import { FEATURES as ROWS, PASSES, type Cell, type Feature } from "./pricing/passes";
-
-const LAST_ROW = ROWS.length - 1;
-const LAST_COL = PASSES.length - 1;
 
 /* label column pins below lg; the white ring hides cells scrolling beneath */
 const STICKY = "sticky left-0 z-10 shadow-[0.25rem_0_0_0_white] lg:static lg:shadow-none";
@@ -127,7 +124,7 @@ export default function PricingComparison() {
             <div
               role="table"
               aria-label="Features included in each Stadium pass"
-              className="grid min-w-[42rem] grid-cols-[11rem_repeat(4,minmax(0,1fr))] gap-1 md:grid-cols-[15rem_repeat(4,minmax(0,1fr))] lg:min-w-0 lg:grid-cols-[minmax(0,2.62fr)_repeat(4,minmax(0,1fr))]"
+              className="grid min-w-[52rem] grid-cols-[11rem_repeat(5,minmax(0,1fr))] gap-1 md:grid-cols-[15rem_repeat(5,minmax(0,1fr))] lg:min-w-0 lg:grid-cols-[minmax(0,2.31fr)_repeat(5,minmax(0,1fr))]"
             >
               {/* header row */}
               <div role="row" className="contents">
@@ -149,37 +146,37 @@ export default function PricingComparison() {
               </div>
 
               {ROWS.map((r, ri) => (
-                <div key={r.label} role="row" className="contents">
-                  <div
-                    role="rowheader"
-                    className={`relative flex items-center bg-pricing-cell px-4 py-4 font-sans text-table text-pricing-ink md:px-6 ${STICKY} ${
-                      ri === 0 ? "rounded-lg rounded-tl-3xl" : "rounded-lg"
-                    }`}
-                  >
-                    {r.hint ? <Hint id={`pricing-hint-${ri}`} label={r.label} hint={r.hint} /> : r.label}
-                  </div>
-                  {r.vals.map((v, ci) => (
-                    <div
-                      key={ci}
-                      role="cell"
-                      className={`flex min-h-14 items-center justify-center rounded-lg bg-pricing-cell px-2 py-4 md:px-4 lg:px-6 ${
-                        ri === 0 && ci === LAST_COL ? "rounded-tr-3xl" : ""
-                      } ${ri === LAST_ROW && ci === LAST_COL ? "rounded-br-3xl" : ""}`}
-                    >
-                      <Value v={v} />
+                <Fragment key={r.label}>
+                  {r.section !== ROWS[ri - 1]?.section && (
+                    <div role="row" className="contents">
+                      <div
+                        role="rowheader"
+                        className={`flex h-10 items-center rounded-l-3xl px-4 font-sans text-table-label uppercase text-pricing-ink/55 md:px-6 ${STICKY}`}
+                      >
+                        {r.section}
+                      </div>
+                      <div role="presentation" className="col-span-5" />
                     </div>
-                  ))}
-                </div>
+                  )}
+                  <div role="row" className="contents">
+                    <div
+                      role="rowheader"
+                      className={`relative flex items-center rounded-lg bg-pricing-cell px-4 py-4 font-sans text-table text-pricing-ink md:px-6 ${STICKY}`}
+                    >
+                      {r.hint ? <Hint id={`pricing-hint-${ri}`} label={r.label} hint={r.hint} /> : r.label}
+                    </div>
+                    {r.vals.map((v, ci) => (
+                      <div
+                        key={ci}
+                        role="cell"
+                        className="flex min-h-14 items-center justify-center rounded-lg bg-pricing-cell px-2 py-4 md:px-4 lg:px-6"
+                      >
+                        <Value v={v} />
+                      </div>
+                    ))}
+                  </div>
+                </Fragment>
               ))}
-
-              {/* explore — dark cell under the label column */}
-              <div role="row" className="contents">
-                <div role="cell" className={`${STICKY} rounded-b-3xl rounded-t-lg`}>
-                  <PackagesModalTrigger className="flex h-13 w-full items-center justify-center rounded-b-3xl rounded-t-lg bg-pricing-ink px-6 font-sans text-table text-white transition-colors duration-200 hover:bg-black focus-visible:outline-offset-2">
-                    Explore all features
-                  </PackagesModalTrigger>
-                </div>
-              </div>
             </div>
           </div>
         </div>

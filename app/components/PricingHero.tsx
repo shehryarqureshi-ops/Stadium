@@ -1,18 +1,20 @@
 /* /pricing · HERO (Figma n9SjmDjzB1PeZAYJ5w43fr → 3998:4515 "hero").
    Sits on the page-wide navy→night gradient painted by app/pricing/page.tsx.
-   Eyebrow + 58px headline + truck "free delivery" line, then four Pass cards
-   (Shops → Swag → Engagement [Most Popular, elevated] → Enterprise) and a
+   Eyebrow + 58px headline + truck "free delivery" line, then five Pass cards
+   (Pay-as-you-go → Shops → Swag → Engagement [Most Popular, elevated] → Enterprise) and a
    "compare all features" anchor down to the comparison table.
 
    Figma stack (desktop 1440, nav band 84 above):
      text      pt 120   eyebrow 12 → 8 → headline 58/1.02 (w 726) → 32 → truck row
      gap 80
-     cards     h 428    4 × flex-1, gap 16; card p-10 r24 → title block (#f7f7f7,
+     cards     h 470    5 × flex-1, gap 16; card p-10 r24 → title block (#f7f7f7,
                         r16, px16 py24) → 10 → body (px16 py24: rows gap 12, pb 8 →
                         32 → pill CTA)
      gap 40
      compare   12 Bold uppercase +1px, white underline (pb 2)
-   Content box: Figma 1280 @ 80px → site max-w-content inside section-x padding.
+   Five passes (Pay-as-you-go → Enterprise); card row is Figma 1360 @ 40px from
+   `wide` (max-w-pricing-cards), site max-w-content inside section-x below that.
+   Cards: h 470 (wide), feature rows 12px (text-feature-sm).
 
    Each "Talk to sales" sets ?interestedPackage=<pass> and jumps to the Book a
    Demo form — BookACallForm already reads that param on submit and forwards it
@@ -21,18 +23,21 @@
 import Link from "next/link";
 import { Check, Star, Truck } from "lucide-react";
 
-type Pass = { title: string; features: string[]; popular?: boolean };
+type Pass = { title: string; features: string[]; popular?: boolean; cta?: string };
 
-/* Figma repeats placeholder rows (e.g. "Gifting Catalog" ×3); duplicates are
-   dropped here — the CTA pins to the card bottom so uneven lists still align. */
+/* The CTA pins to the card bottom so uneven lists still align. */
 const PASSES: Pass[] = [
+  {
+    title: "Pay-as-you-go",
+    cta: "Get started",
+    features: ["Snack Boxes (Snackmagic)", "Bulk Swag (Swagmagic)", "Hosted Experiences (Confetti)"],
+  },
   {
     title: "Shops Pass",
     features: [
-      "Unlimited Global Print-On-Demand",
-      "Snack Boxes (Snackmagic)",
-      "Bulk Swag (Swagmagic)",
-      "Gifting Catalog",
+      "Everything in Pay-as-you-go",
+      "Unlimited Global Swag & Gift Shops",
+      "Free Domestic Delivery",
     ],
   },
   {
@@ -50,7 +55,7 @@ const PASSES: Pass[] = [
     features: [
       "Everything in Swag Pass",
       "Automated Gifting",
-      "HRIS/ATS/CRM Integration",
+      "HRIS, ATS, & CRM Integrations",
       "Kudos Programs",
     ],
   },
@@ -59,10 +64,10 @@ const PASSES: Pass[] = [
     features: [
       "Everything in Engagement Pass",
       "SSO",
-      "Custom Shops Domain",
       "Stadium API",
-      "Net Terms",
-      "Customer Success Manager",
+      "Custom Contracts",
+      "Custom Domain & White-Labeled Shops",
+      "Customer Success",
     ],
   },
 ];
@@ -71,9 +76,9 @@ export default function PricingHero() {
   return (
     <section
       aria-labelledby="pricing-hero-title"
-      className="px-section-x-sm pt-[7.5rem] md:px-section-x-md md:pt-[10rem] lg:px-section-x-lg lg:pt-[12.75rem]"
+      className="px-section-x-sm pt-[7.5rem] md:px-section-x-md md:pt-[10rem] lg:px-section-x-lg lg:pt-[12.75rem] wide:px-10"
     >
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-12 md:gap-16 lg:gap-20">
+      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-12 wide:max-w-pricing-cards md:gap-16 lg:gap-20">
         {/* text — eyebrow → 8 → headline → 32 → free-delivery row */}
         <div className="flex flex-col items-center gap-6 text-center lg:gap-8">
           <div className="flex flex-col items-center gap-3 lg:gap-2">
@@ -101,16 +106,18 @@ export default function PricingHero() {
         </div>
 
         <div className="flex w-full flex-col items-center gap-10">
-          {/* cards — 1-up mobile, 2-up tablet/narrow desktop, 4-up from `wide`
-              (four 15px feature columns need ≥ ~1300 to stay single-line) */}
+          {/* cards — 1-up mobile, 2-up tablet/narrow desktop (last card centred), 5-up from `wide`
+              (five columns need ≥ ~1300) */}
           <ul
             data-animation="reveal"
-            className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 wide:grid-cols-4 wide:gap-4"
+            className="grid w-full grid-cols-1 gap-4 md:grid-cols-6 md:gap-5 wide:grid-cols-5 wide:gap-4"
           >
-            {PASSES.map((p) => (
+            {PASSES.map((p, i) => (
               <li
                 key={p.title}
-                className={`group relative flex flex-col gap-2.5 rounded-3xl bg-white p-2.5 transition-[translate,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-1 ${
+                className={`group relative flex flex-col gap-2.5 rounded-3xl bg-white p-2.5 md:col-span-3 wide:col-span-1 wide:h-[29.375rem] ${
+                  i === PASSES.length - 1 ? "md:col-start-2 wide:col-start-auto" : ""
+                } transition-[translate,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-1 ${
                   p.popular
                     ? "border border-pricing-sky shadow-pass-featured"
                     : "shadow-pass hover:shadow-card"
@@ -133,17 +140,17 @@ export default function PricingHero() {
                       <li key={f} className="flex items-start gap-2.5">
                         <Check
                           aria-hidden
-                          className="mt-[0.1875rem] size-3.5 shrink-0 text-pricing-ink"
+                          className="mt-[0.0625rem] size-3.5 shrink-0 text-pricing-ink"
                           strokeWidth={2}
                         />
-                        <span className="font-sans text-feature text-pricing-ink">{f}</span>
+                        <span className="font-sans text-feature-sm text-pricing-ink">{f}</span>
                       </li>
                     ))}
                   </ul>
 
                   <Link
                     href={`?interestedPackage=${encodeURIComponent(p.title)}#book-a-demo`}
-                    aria-label={`Talk to sales about the ${p.title}`}
+                    aria-label={`${p.cta ?? "Talk to sales"} — ${p.title}`}
                     className={`mt-auto inline-flex h-button-h w-full items-center justify-center rounded-full px-button-x font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] ${
                       p.popular
                         ? "bg-pricing-cta text-white hover:bg-black"
@@ -151,7 +158,7 @@ export default function PricingHero() {
                     }`}
                   >
                     <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                      Talk to sales
+                      {p.cta ?? "Talk to sales"}
                     </span>
                   </Link>
                 </div>

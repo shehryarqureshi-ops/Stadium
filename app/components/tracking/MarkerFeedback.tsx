@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { TRACKING } from "../../lib/tracking/config";
+// import { TRACKING } from "../../lib/tracking/config";
 
 /* Marker.io visual-feedback widget (QA / design review).
    Loads in development and staging ONLY — never on the live production site,
@@ -9,7 +9,7 @@ const MARKER_PROJECT_ID =
   process.env.NEXT_PUBLIC_MARKER_PROJECT_ID ?? "6ad1a477d58ca9070ea3b560";
 
 export default function MarkerFeedback() {
-  if (TRACKING.env === "production") return null;
+  // if (TRACKING.env === "production") return null; // ENABLE THIS LINE TO STOP THIS IN PRODUCTION
 
   return (
     <>

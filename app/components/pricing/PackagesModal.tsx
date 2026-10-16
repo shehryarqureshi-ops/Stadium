@@ -226,9 +226,8 @@ function ModalBody({
               aria-controls={`${uid}-panel`}
               tabIndex={i === pass ? 0 : -1}
               onClick={() => onPass(i)}
-              className={`flex flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-eyebrow-sm leading-4 uppercase transition-colors duration-200 ${
-                i === pass ? "bg-pricing-ink text-white" : "text-pricing-ink hover:bg-grey-100"
-              }`}
+              className={`flex flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-eyebrow-sm leading-4 uppercase transition-colors duration-200 ${i === pass ? "bg-pricing-ink text-white" : "text-pricing-ink hover:bg-grey-100"
+                }`}
             >
               {p}
             </button>
@@ -257,11 +256,10 @@ function ModalBody({
                     type="button"
                     aria-current={active || undefined}
                     onClick={() => onFeature(f.label)}
-                    className={`flex min-h-12 w-full items-center whitespace-nowrap rounded-lg px-6 py-3 text-left font-sans text-modal-item transition-colors duration-200 max-lg:border max-lg:border-modal-border lg:whitespace-normal ${
-                      active
-                        ? "bg-grey-100 text-grey-700 max-lg:border-pricing-ink"
-                        : "bg-white text-grey-600 hover:bg-grey-100"
-                    }`}
+                    className={`flex min-h-12 w-full items-center whitespace-nowrap rounded-lg px-6 py-3 text-left font-sans text-modal-item transition-colors duration-200 max-lg:border max-lg:border-modal-border lg:whitespace-normal ${active
+                      ? "bg-grey-100 text-grey-700 max-lg:border-pricing-ink"
+                      : "bg-white text-grey-600 hover:bg-grey-100"
+                      }`}
                   >
                     {f.label}
                   </button>
@@ -273,7 +271,7 @@ function ModalBody({
             href={`?interestedPackage=${encodeURIComponent(passName)}#book-a-demo`}
             onClick={onClose}
             aria-label={`Talk to sales about the ${passName}`}
-            className="order-last flex shrink-0 items-center justify-center gap-4 rounded-full bg-pricing-ink px-10 py-4 font-sans text-eyebrow-lg uppercase text-white transition-colors duration-200 hover:bg-black lg:order-none lg:py-6"
+            className="order-last flex shrink-0 items-center justify-center gap-4 rounded-full bg-pricing-ink px-10 py-4 font-sans text-eyebrow-lg uppercase text-white transition-colors duration-200 hover:bg-black lg:order-0 lg:py-4"
           >
             <Phone aria-hidden className="size-5" strokeWidth={2} />
             Talk to sales
