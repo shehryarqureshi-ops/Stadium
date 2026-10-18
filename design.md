@@ -1791,7 +1791,7 @@ pills, modal) → `ClosingCTA` → `PageClose`.
 | Part | Figma | Notes |
 | --- | --- | --- |
 | Hero copy | 5291:18747 | eyebrow `text-eyebrow-sm` `catalog-eyebrow`; h1 58/1.02 (`text-display-pricing`); lead 19/1.52 (`text-catalog-body`); CTAs `catalog-cta` blue + white outline |
-| Marquee wall | 5297:6154 | 14 columns × 15 cards (≈210 slots over all 202 section photos — each used at least once; shuffled so every column mixes sections, see `buildHeroColumns`), 75-wide tiles (ratio 1 : 1–1.44, r8 `rounded-catalog-chip`), gutter 11 (0.6875rem); 5 cols mobile / 9 tablet / 14 desktop; viewport 1140 (`h-catalog-hero-grid`); bottom fade 62% to black |
+| Marquee wall | 5297:6154 | 14 columns × 15 cards (≈210 slots over all 178 section photos — each used at least once; shuffled so every column mixes sections, see `buildHeroColumns`), 75-wide tiles (ratio 1 : 1–1.44, r8 `rounded-catalog-chip`), gutter 11 (0.6875rem); 5 cols mobile / 9 tablet / 14 desktop; viewport 1140 (`h-catalog-hero-grid`); bottom fade 62% to black |
 | Tab pill | 5291:19092 | white pill, p10, 4 × 190 tabs, active `catalog-ink`; label 12/16 +1px bold (`text-catalog-tab`) — mobile 11px `text-catalog-tab-sm`, short labels below `lg` |
 | CTA pill | 5633:24820 | `catalog-ink` pill, two 190-wide white-outline buttons; mobile = flex-1, "View {noun}" |
 | Heading panel | 5291:18798 | black, r60 (`rounded-catalog-panel`), min-h 539 (`min-h-catalog-heading`); overlaps previous mosaic by 60 |
@@ -1815,7 +1815,7 @@ pills, modal) → `ClosingCTA` → `PageClose`.
   longest label ("View experiences catalog") is never trimmed. Tab click → smooth
   `scrollIntoView` (instant when reduced).
 - **Mosaic marquee**: `buildMosaicColumns()` (data.ts) deals every photo in the
-  section exactly once — 35 swag · 35 gifts · 97 snacks · 35 experiences, from the
+  section exactly once — 35 swag · 35 gifts · 73 snacks · 35 experiences, from the
   Figma tab frames, products in `products.ts` — plus 5 brand cards, 5 country
   cards and 1 "170+ countries" coverage card into 7 independent columns (tablet
   shows 5, phone 2). Every column is an endless vertical marquee — the same
@@ -1878,10 +1878,10 @@ catalog country cards use `size="3.375rem"`. New flag = drop the SVG in
 ## Catalog content — update 2026-10-16
 
 - **Snacks** now uses the whole SnackMagic taxonomy frame (Figma 5727:7180 "02 ·
-  Snacks — by taxonomy"): Snacks 25 + Beverages 24 + Pantry 24 + Work & Play 24 =
-  97 photos (`public/catalog-page/snacks/01–97.jpg`; modal pill = subcategory such
-  as "Cold Brew" or "Everyday Carry"). Swag (35 / frame 5747:6964) is unchanged.
-- **Hero wall** shuffle: all 202 photos (35 + 35 + 97 + 35), 8 spare slots repeat
+  Snacks — by taxonomy"): Snacks 25 + Beverages 24 + Pantry 24 =
+  73 photos (`public/catalog-page/snacks/01–73.jpg`; modal pill = subcategory such
+  as "Cold Brew"; the Work & Play tab, 74–97, was removed 2026-10-18). Swag (35 / frame 5747:6964) is unchanged.
+- **Hero wall** shuffle: all 178 photos (35 + 35 + 73 + 35), 8 spare slots repeat
   swag / gifts / experiences so snacks (55% of the photos) do not dominate. Each
   section's photos are dealt evenly across the 14 columns, then every column is
   ordered greedily — pull from the section with the most cards left that differs
