@@ -139,7 +139,7 @@ export default function Hero() {
           className="flex w-full flex-col items-start gap-2 md:w-auto md:flex-row md:items-center md:gap-3 lg:gap-4"
         >
           <a
-            href="#"
+            href="/book-a-call"
             className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
@@ -147,7 +147,7 @@ export default function Hero() {
             </span>
           </a>
           <a
-            href="#"
+            href="/catalog"
             className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white md:w-auto"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">

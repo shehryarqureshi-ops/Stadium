@@ -23,7 +23,7 @@ export const SWAG_PRICING: SwagPricingContent = {
   heading: "Start with swag and expand when ready",
   body: "Add new capabilities over time without changing platforms.",
   ctaLabel: "Explore pricing",
-  ctaHref: "#",
+  ctaHref: "/pricing",
   popularLabel: "Popular",
   passes: [
     { n: "01", title: "Shops Pass", desc: "Branded stores, on-demand, and the full catalog." },

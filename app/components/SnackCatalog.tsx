@@ -191,7 +191,7 @@ export default function SnackCatalog() {
             </p>
           </div>
           <a
-            href="#"
+            href="/catalog#snacks"
             data-animation="reveal"
             className="w-fit font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#16171b]"
           >

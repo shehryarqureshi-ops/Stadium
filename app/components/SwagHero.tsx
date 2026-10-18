@@ -60,8 +60,8 @@ export const SWAG_HERO: SwagHeroContent = {
   eyebrow: "SWAG · SWAGMAGIC",
   heading: "The infrastructure behind every swag program",
   body: "Stop coordinating vendors separately. Run your entire swag program, one platform, one PO.",
-  primaryCta: { label: "Book a demo", href: "#" },
-  secondaryCta: { label: "Browse the catalog", href: "#" },
+  primaryCta: { label: "Book a demo", href: "/book-a-call" },
+  secondaryCta: { label: "Browse the catalog", href: "/catalog#swag" },
   socialProof: "5,000+ teams ship swag this way, to 170+ countries",
   product: {
     warehouseImage: {

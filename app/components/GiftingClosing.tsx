@@ -59,10 +59,10 @@ export default function GiftingClosing() {
         }
         description="See how Stadium can bring your gifting programs, budgets, fulfillment, and reporting into one place."
         ctaOneLabel="Talk to sales"
-        ctaOneLink="#"
+        ctaOneLink="/book-a-call"
         ctaOneVariant="yellow"
         ctaTwoLabel="Browse the catalog"
-        ctaTwoLink="#"
+        ctaTwoLink="/catalog#gifts"
         ctaTwoVariant="secondary"
         backgroundColor="transparent"
       />

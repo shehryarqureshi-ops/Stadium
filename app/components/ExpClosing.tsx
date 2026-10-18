@@ -53,10 +53,10 @@ export default function ExpClosing() {
         title="Bring your team together, in minutes"
         description="Browse 350+ hosted experiences, or tell us what you're planning, and we'll handle the rest."
         ctaOneLabel="Browse experiences"
-        ctaOneLink="#"
+        ctaOneLink="/catalog#experiences"
         ctaOneVariant="pink"
         ctaTwoLabel="Talk to sales"
-        ctaTwoLink="#"
+        ctaTwoLink="/book-a-call"
         ctaTwoVariant="secondary"
         backgroundColor="#181818"
       />

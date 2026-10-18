@@ -11,10 +11,10 @@ export default function RecogClosing() {
         </>
       }
       ctaOneLabel="Talk to sales"
-      ctaOneLink="#"
+      ctaOneLink="/book-a-call"
       ctaOneVariant="purple"
       ctaTwoLabel="Explore rewards"
-      ctaTwoLink="#"
+      ctaTwoLink="/catalog#gifts"
       ctaTwoVariant="secondary"
       backgroundColor="#181818"
       desktopTopSpacing="8.75rem"

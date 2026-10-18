@@ -8,10 +8,10 @@ export default function SwagmagicClosing() {
       title="Make swag run itself"
       description="Talk to our team and leave with a plan built around your brand, budget, and goals. Mockups included."
       ctaOneLabel="Talk to sales"
-      ctaOneLink="#"
+      ctaOneLink="/book-a-call"
       ctaOneVariant="green"
       ctaTwoLabel="Shop swag"
-      ctaTwoLink="#"
+      ctaTwoLink="/catalog#swag"
       ctaTwoVariant="secondary"
       backgroundColor="#181818"
     />

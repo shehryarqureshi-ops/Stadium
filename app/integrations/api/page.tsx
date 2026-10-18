@@ -20,7 +20,7 @@ export const metadata: Metadata = seoMetadata("/integrations/api");
 /* /integrations/api — Figma n9SjmDjzB1PeZAYJ5w43fr → 3867:5113. Tabs other
    than "Embedded gifting" have no Figma content (placeholder copy). */
 
-const DOCS = "#";
+const DOCS = "https://help.bystadium.com/hc/en-us";
 
 export default function ApiPage() {
   return (

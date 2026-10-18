@@ -29,7 +29,7 @@ function Copy() {
       </p>
       <a
         data-animation="reveal"
-        href="#"
+        href="/book-a-call"
         className="mt-2 inline-flex h-button-h w-fit items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white"
       >
         Talk to sales

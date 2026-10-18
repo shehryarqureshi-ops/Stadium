@@ -125,7 +125,7 @@ export default function BookACallPage() {
           ctaOneLink="#main"
           ctaOneVariant="primary"
           ctaTwoLabel="Browse the catalog"
-          ctaTwoLink="#"
+          ctaTwoLink="/catalog"
           ctaTwoVariant="secondary"
           backgroundColor="transparent"
         />

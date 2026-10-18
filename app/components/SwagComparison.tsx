@@ -62,7 +62,7 @@ export const SWAG_COMPARISON: SwagComparisonContent = {
       vals: ["check", "minus", "minus", "minus"],
     },
   ],
-  cta: { label: "Book a call", href: "#" },
+  cta: { label: "Book a call", href: "/book-a-call" },
 };
 
 function Cell({ v }: { v: string }) {

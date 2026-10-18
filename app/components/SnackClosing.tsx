@@ -6,10 +6,10 @@ export default function SnackClosing() {
       title="Send something they’ll actually want"
       description="Set the budget, let recipients choose, and send thoughtful snack gifts without collecting addresses or dietary needs."
       ctaOneLabel="Build a box"
-      ctaOneLink="#"
+      ctaOneLink="/catalog#snacks"
       ctaOneVariant="primary"
       ctaTwoLabel="Talk to sales"
-      ctaTwoLink="#"
+      ctaTwoLink="/book-a-call"
       ctaTwoVariant="secondary"
       backgroundColor="#181818"
     />

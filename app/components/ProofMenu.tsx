@@ -30,17 +30,17 @@ export const PROOF_COLUMNS: Column[] = [
   {
     label: "Social Proof",
     items: [
-      { title: "Case Studies", desc: "Real customer stories with measurable results." },
-      { title: "Reviews & Testimonials", desc: "What customers say about Stadium." },
+      { title: "Case Studies", desc: "Real customer stories with measurable results.", href: "https://www.bystadium.com/case-studies" },
+      { title: "Reviews & Testimonials", desc: "What customers say about Stadium.", href: "https://www.bystadium.com/reviews" },
       { title: "Corporate Social Responsibility", desc: "Sustainability, ethical sourcing, and giving back.", href: PLATFORM_ROUTES.csr },
     ],
   },
   {
     label: "Resources",
     items: [
-      { title: "Learning Center", desc: "Articles, videos, webinars, and best practices." },
-      { title: "Guides & Templates", desc: "RFP templates, ROI calculators, and planning tools." },
-      { title: "Help Center", desc: "Documentation, FAQs, and product support." },
+      { title: "Learning Center", desc: "Articles, videos, webinars, and best practices.", href: "https://stadiumhq.notion.site/Stadium-Learning-Resource-Center-2b75247529b5837ebc4181e139d5b6b5" },
+      { title: "Guides & Templates", desc: "RFP templates, ROI calculators, and planning tools.", href: "https://www.bystadium.com/resources" },
+      { title: "Help Center", desc: "Documentation, FAQs, and product support.", href: "https://help.bystadium.com/hc/en-us" },
     ],
   },
 ];

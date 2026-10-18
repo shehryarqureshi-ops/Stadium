@@ -19,7 +19,7 @@ export const metadata: Metadata = seoMetadata("/integrations/webhooks");
    other than "Sales & customer teams" have no Figma content (placeholder
    copy). */
 
-const DOCS = "#";
+const DOCS = "https://help.bystadium.com/hc/en-us";
 
 export default function WebhooksPage() {
   return (

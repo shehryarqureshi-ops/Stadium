@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const LINK_COLUMNS: {
   heading: string;
   links: {
@@ -11,10 +13,10 @@ const LINK_COLUMNS: {
         { label: "Integrations", href: "/integrations" },
         { label: "API", href: "/integrations/api" },
         { label: "Wallet", href: "/wallets-and-budgets" },
-        { label: "Kudos Program", href: "/kudos" },
+        { label: "Kudos Program", href: "/recognition" },
         { label: "Single Sign-On", href: "/integrations/sso" },
-        { label: "Giftable Moments", href: "/giftable-moments" },
-        { label: "Custom Domain", href: "/custom-domain" },
+        { label: "Giftable Moments", href: "/gifting" },
+        { label: "Custom Domain", href: "https://www.bystadium.com/custom-domain-setup-guide" },
       ],
     },
     {
@@ -32,12 +34,12 @@ const LINK_COLUMNS: {
     {
       heading: "About Us",
       links: [
-        { label: "Company", href: "/company" },
-        { label: "Careers", href: "/careers" },
+        { label: "Company", href: "https://www.bystadium.com/about" },
+        { label: "Careers", href: "https://www.bystadium.com/careers" },
         { label: "CSR", href: "/csr" },
         {
           label: "Reviews & Testimonials",
-          href: "/reviews-and-testimonials",
+          href: "https://www.bystadium.com/reviews",
         },
         { label: "Partner With Us", href: "https://by-stadium.typeform.com/Stadiumpartner" },
       ],
@@ -87,8 +89,8 @@ export default function PageClose({
           <div className="flex w-full flex-col justify-between gap-8 lg:flex-row lg:gap-24">
             <div className="flex flex-col gap-6 lg:w-[24rem] lg:shrink-0 lg:justify-between">
               <div className="flex flex-col gap-4">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="inline-flex transition-opacity hover:opacity-80"
                 >
                   <img
@@ -98,7 +100,7 @@ export default function PageClose({
                     height={36.278}
                     className="h-[1.25rem] w-auto md:h-[1.5rem] lg:h-[2.25rem]"
                   />
-                </a>
+                </Link>
 
                 <p className="font-sans text-[0.75rem] font-bold uppercase leading-5 tracking-[0.045rem] text-white md:text-[1rem] md:tracking-[0.06rem]">
                   Limitless engagement. One platform.
@@ -106,7 +108,9 @@ export default function PageClose({
 
                 <div className="flex items-center gap-2 lg:gap-2.5">
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/company/bystadium"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="LinkedIn"
                     className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                   >
@@ -120,7 +124,9 @@ export default function PageClose({
                   </a>
 
                   <a
-                    href="#"
+                    href="https://www.youtube.com/@bystadium"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="YouTube"
                     className="block size-[1.4375rem] transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                   >
@@ -134,7 +140,9 @@ export default function PageClose({
                   </a>
 
                   <a
-                    href="#"
+                    href="https://www.instagram.com/bystadium/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Instagram"
                     className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                   >
@@ -163,7 +171,9 @@ export default function PageClose({
 
                 <div className="flex items-center gap-8 lg:gap-[2.1875rem]">
                   <a
-                    href="#"
+                    href="https://www.swagmagic.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Swagmagic"
                     className="inline-flex transition-opacity hover:opacity-70"
                   >
@@ -176,7 +186,9 @@ export default function PageClose({
                   </a>
 
                   <a
-                    href="#"
+                    href="https://www.snackmagic.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Snackmagic"
                     className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                   >
@@ -189,7 +201,9 @@ export default function PageClose({
                   </a>
 
                   <a
-                    href="#"
+                    href="https://www.withconfetti.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Confetti"
                     className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                   >

@@ -107,7 +107,7 @@ export default function Occasions() {
         <div className="flex flex-wrap items-center justify-center gap-3.5">
           <a
             data-animation="reveal"
-            href="#"
+            href="/book-a-call"
             className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water focus-visible:ring-offset-2"
           >
             Book a demo

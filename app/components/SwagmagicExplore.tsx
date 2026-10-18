@@ -9,7 +9,7 @@ const ITEMS = [
     captionColor: "#10995a",
     title: "No-Minimums Swag Playbook",
     description: "Run a swag program without storing inventory.",
-    url: "#",
+    url: "https://www.bystadium.com/resources",
     image: guideImage,
   },
   {
@@ -17,7 +17,7 @@ const ITEMS = [
     captionColor: "#10995a",
     title: "Onboarding Kit Checklist",
     description: "What goes in a new-hire kit, by role.",
-    url: "#",
+    url: "https://www.bystadium.com/resources",
     image: reportImage,
   },
   {
@@ -25,7 +25,7 @@ const ITEMS = [
     captionColor: "#10995a",
     title: "Fintech Branded Stores",
     description: "How multi-office stores, budgets, and approvals work.",
-    url: "#",
+    url: "/the-proof",
     image: templateImage,
   },
 ];

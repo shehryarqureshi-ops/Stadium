@@ -182,7 +182,7 @@ export default function RecogComparison() {
               <div role="cell" className="rounded-[1.5rem] bg-white" />
               <div role="cell" className="flex">
                 <a
-                  href="#"
+                  href="/book-a-call"
                   className="flex w-full items-center justify-center rounded-b-[1rem] rounded-t-[0.5rem] bg-[#16171b] px-6 py-4 font-sans text-[0.90625rem] font-semibold leading-[1.4] text-white transition-all duration-200 hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#16171b] active:scale-[0.98]"
                 >
                   <span className="whitespace-nowrap">TALK TO SALES</span>

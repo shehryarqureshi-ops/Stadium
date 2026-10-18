@@ -197,13 +197,13 @@ export default function GiftHero() {
             <div data-animation="reveal" className="flex flex-col gap-8">
               <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center">
                 <a
-                  href="#"
+                  href="/catalog#gifts"
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#ffb800] px-[1.375rem] font-sans text-button-primary uppercase text-[#1b1b1b] transition-all duration-200 hover:brightness-105 active:scale-[0.98] focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Browse the catalog</span>
                 </a>
                 <a
-                  href="#"
+                  href="/book-a-call"
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Talk to sales</span>

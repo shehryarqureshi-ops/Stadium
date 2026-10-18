@@ -45,10 +45,10 @@ export default function Home() {
         title="Ready to build your program?"
         description="Get a 30-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale."
         ctaOneLabel="Book a demo"
-        ctaOneLink="#"
+        ctaOneLink="/book-a-call"
         ctaOneVariant="primary"
         ctaTwoLabel="Talk to sales"
-        ctaTwoLink="#"
+        ctaTwoLink="/book-a-call"
         ctaTwoVariant="secondary"
         backgroundColor="#181818"
       />

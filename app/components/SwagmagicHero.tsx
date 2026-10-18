@@ -145,7 +145,7 @@ export default function SwagmagicHero() {
               >
                 <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center">
                   <a
-                    href="#"
+                    href="/catalog#swag"
                     className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#03ba4f] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-white"
                   >
                     <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
@@ -153,7 +153,7 @@ export default function SwagmagicHero() {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="/book-a-call"
                     className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
                   >
                     <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">

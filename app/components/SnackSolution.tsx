@@ -78,7 +78,7 @@ export default function SwagmagicSolution() {
           ),
           ctaLabel: "Start a box",
           ctaVariant: "dark",
-          ctaLink: "#",
+          ctaLink: "/catalog#snacks",
         },
         {
           title: "Curated boxes",
@@ -97,7 +97,7 @@ export default function SwagmagicSolution() {
           ),
           ctaLabel: "Browse boxes",
           ctaVariant: "light",
-          ctaLink: "#",
+          ctaLink: "/catalog#snacks",
         },
       ]}
     />

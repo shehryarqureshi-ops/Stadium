@@ -27,7 +27,7 @@ const items: TabsShowcaseItem[] = [
     imageAlt:
       "A kraft-paper gift box tied with a red ribbon and a sprig of pine, left on a sunlit stone doorstep",
     cta: "Explore HOLIDAY gifting",
-    href: "#",
+    href: "/catalog#gifts",
   },
   {
     name: "Employee Gifting",
@@ -43,7 +43,7 @@ const items: TabsShowcaseItem[] = [
     imageAlt:
       "An employee at a sunlit desk lifting the lid off a cream gift box holding a folded knit sweater",
     cta: "Explore EMPLOYEE gifting",
-    href: "#",
+    href: "/catalog#gifts",
   },
   {
     name: "Client & Prospect Gifting",
@@ -60,7 +60,7 @@ const items: TabsShowcaseItem[] = [
     imageAlt:
       "A handwritten note being signed beside an open gift box and a bottle of red wine on a wooden desk",
     cta: "Explore CLIENT gifting",
-    href: "#",
+    href: "/catalog#gifts",
   },
   {
     name: "Partner Gifting",
@@ -77,7 +77,7 @@ const items: TabsShowcaseItem[] = [
     imageAlt:
       "A black partner gift box holding a tumbler, a notebook and a folded scarf, with a thank-you card and a vase of olive leaves",
     cta: "Explore partner gifting",
-    href: "#",
+    href: "/catalog#gifts",
   },
   {
     name: "Automated Gifting",
@@ -93,7 +93,7 @@ const items: TabsShowcaseItem[] = [
     imageAlt:
       "The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations",
     cta: "Explore AUTOMATED gifting",
-    href: "#",
+    href: "/book-a-call",
   },
   {
     name: "Gift Stores",
@@ -106,7 +106,7 @@ const items: TabsShowcaseItem[] = [
     imageAlt:
       "A branded Halden gift shop page with a Featured Picks grid of wine glasses, a leather backpack, a brass tumbler and a steel tumbler, each priced in points",
     cta: "Explore gift stores",
-    href: "#",
+    href: "/catalog#gifts",
   },
 ];
 

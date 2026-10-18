@@ -51,12 +51,12 @@ export default function ClosingCTA({
   descriptionClassName = "max-w-[44rem]",
 
   ctaOneLabel,
-  ctaOneLink = "#",
+  ctaOneLink = "/book-a-call",
   ctaOneVariant = "primary",
   ctaOneColor,
 
   ctaTwoLabel,
-  ctaTwoLink = "#",
+  ctaTwoLink = "/catalog",
   ctaTwoVariant = "secondary",
 
   backgroundColor = "#2e6ae8",

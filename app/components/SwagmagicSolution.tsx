@@ -76,7 +76,7 @@ export default function SwagmagicSolution() {
           ),
           ctaLabel: "Talk to sales",
           ctaVariant: "dark",
-          ctaLink: "#",
+          ctaLink: "/book-a-call",
         },
 
         {
@@ -95,7 +95,7 @@ export default function SwagmagicSolution() {
           ),
           ctaLabel: "Shop SwagMagic",
           ctaVariant: "light",
-          ctaLink: "#",
+          ctaLink: "/catalog#swag",
         },
       ]}
     />

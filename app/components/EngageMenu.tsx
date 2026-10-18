@@ -317,7 +317,7 @@ function RightRail() {
       <div className="flex flex-col gap-5">
         <RailEyebrow>Latest at Stadium</RailEyebrow>
         <a
-          href="#"
+          href="/the-proof"
           className="group flex flex-col gap-3 rounded-xl bg-white p-2.5 shadow-[0_3px_6px_rgba(0,0,0,0.06)]"
         >
           <span className="relative h-[6.5rem] w-full overflow-hidden rounded-lg">
@@ -341,7 +341,7 @@ function RightRail() {
           {POPULAR.map((img, i) => (
             <a
               key={i}
-              href="#"
+              href="/swag"
               className="flex items-center gap-2.5 rounded-xl bg-white p-2 shadow-[0_3px_6px_rgba(0,0,0,0.06)] transition-shadow duration-200 hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
             >
               <span className="relative h-[2.1875rem] w-[2.8125rem] shrink-0 overflow-hidden rounded-md">

@@ -23,7 +23,7 @@ export default function WteProof() {
             </h2>
           </div>
           <a
-            href="#"
+            href="/the-proof"
             className="font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] text-[#16171b] transition-colors hover:text-[#6b6c71]"
           >
             <span className="border-b border-black pb-[2px]">View case study</span>

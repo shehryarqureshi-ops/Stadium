@@ -54,7 +54,7 @@ export default function CsrPage() {
             caption="Responsible business"
             title="Modern Slavery Statement"
             description="Read Stadium’s statement on modern slavery and responsible business practices."
-            cta={{ label: "Download statement", href: "#" }}
+            cta={{ label: "Download statement", href: "mailto:hi@bystadium.com?subject=Modern%20Slavery%20Statement" }}
             image={statement}
             imageAlt="Modern Slavery Statement 2026 document with a PDF download chip"
           />

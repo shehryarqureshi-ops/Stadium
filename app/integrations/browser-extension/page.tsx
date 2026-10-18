@@ -30,7 +30,7 @@ export default function BrowserExtensionPage() {
           eyebrow: "Browser extension",
           title: "Recognize and gift without leaving the page you’re on",
           description: "Pull recipient details from the page and send Stadium Points right from your browser.",
-          primaryCta: { label: "Install extension", href: "#" },
+          primaryCta: { label: "Install extension", href: "https://help.bystadium.com/hc/en-us" },
           secondaryCta: { label: "Talk to sales", href: LINKS.sales },
         }}
         heroVisual={<ExtensionPopup />}
@@ -51,7 +51,7 @@ export default function BrowserExtensionPage() {
         cta={{
           title: "Gift right where the work happens",
           description: "Give teams a faster way to reward and recognize people directly from their browser.",
-          primary: { label: "Install extension", href: "#" },
+          primary: { label: "Install extension", href: "https://help.bystadium.com/hc/en-us" },
           secondary: { label: "Talk to sales", href: LINKS.sales },
         }}
       >

@@ -30,7 +30,7 @@ export default function Packages({
   description,
   showCta = true,
   ctaLabel = "See full pricing",
-  ctaLink = "#",
+  ctaLink = "/pricing",
   items,
 }: PackagesProps) {
   return (

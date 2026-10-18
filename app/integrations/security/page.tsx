@@ -23,7 +23,7 @@ export const metadata: Metadata = seoMetadata("/integrations/security");
    FAQ answers other than the first are collapsed in Figma; copy for them is
    derived from the rest of the page. */
 
-const TRUST_CENTER = "#";
+const TRUST_CENTER = "https://help.bystadium.com/hc/en-us";
 
 export default function SecurityPage() {
   return (
@@ -94,7 +94,7 @@ export default function SecurityPage() {
           title: "Meet your organization’s security requirements",
           description: "Get support with security reviews and documentation.",
           primary: { label: "Talk to sales", href: LINKS.sales },
-          secondary: { label: "View SSO documentation", href: "#" },
+          secondary: { label: "View SSO documentation", href: "https://help.bystadium.com/hc/en-us" },
         }}
       >
         <NumberedCardGrid
@@ -166,7 +166,7 @@ export default function SecurityPage() {
           description="Stadium supports data retention and deletion requirements."
           gridColumns={4}
           media={false}
-          cta={{ label: "View subprocessors", href: "#" }}
+          cta={{ label: "View subprocessors", href: "https://www.bystadium.com/security-subprocessors" }}
           items={[
             { title: "Data Ownership", description: "Your organization retains ownership of its data." },
             { title: "Data Management", description: "Stadium supports data retention and deletion requirements." },

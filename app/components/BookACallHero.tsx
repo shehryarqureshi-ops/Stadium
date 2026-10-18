@@ -123,7 +123,7 @@ export default function BookACallHero() {
           <p className="font-sans text-field text-grey-200 lg:mt-8">
             For technical or product support, please visit our{" "}
             <a
-              href="/help-center"
+              href="https://help.bystadium.com/hc/en-us"
               className="font-bold underline underline-offset-2 transition-opacity hover:opacity-80 focus-visible:outline-white"
             >
               Help Center

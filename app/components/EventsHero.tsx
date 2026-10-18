@@ -64,7 +64,7 @@ export default function EventsHero() {
           <div data-animation="reveal" className="flex flex-col items-center gap-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href="#"
+                href="/book-a-call"
                 className="inline-flex h-button-h items-center justify-center rounded-full bg-swag-green px-button-x font-sans text-button-primary uppercase text-[var(--color-swag-on-accent,#ffffff)] transition-all duration-200 hover:brightness-95 active:scale-[0.98] focus-visible:outline-white"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
@@ -72,7 +72,7 @@ export default function EventsHero() {
                 </span>
               </a>
               <a
-                href="#"
+                href="/catalog"
                 className="inline-flex h-button-h items-center justify-center rounded-full border border-white bg-transparent px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">

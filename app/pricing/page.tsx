@@ -75,7 +75,7 @@ export default function PricingPage() {
           ctaOneLink="#book-a-demo"
           ctaOneVariant="primary"
           ctaTwoLabel="Browse the catalog"
-          ctaTwoLink="#"
+          ctaTwoLink="/catalog"
           ctaTwoVariant="secondary"
           backgroundColor="transparent"
         />

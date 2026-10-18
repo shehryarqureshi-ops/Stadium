@@ -26,7 +26,7 @@ export const metadata: Metadata = seoMetadata("/integrations/zapier");
    than "Onboarding" have no Figma content (placeholder copy); the
    "[how_it_works_video]" slot renders as the StepListMedia placeholder. */
 
-const ZAPIER = "#";
+const ZAPIER = "https://help.bystadium.com/hc/en-us";
 
 export default function ZapierPage() {
   return (

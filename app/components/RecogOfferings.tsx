@@ -20,7 +20,7 @@ const items: TabsShowcaseItem[] = [
       "Recognition tied to company values",
     ],
     image: kudos,
-    href: "#",
+    href: "/pricing",
     cta: "Explore Kudos",
   },
   {
@@ -35,7 +35,7 @@ const items: TabsShowcaseItem[] = [
       "Never miss a moment across time zones.",
     ],
     image: milestone,
-    href: "#",
+    href: "/catalog#gifts",
   },
   {
     name: "Incentives",
@@ -49,7 +49,7 @@ const items: TabsShowcaseItem[] = [
       "Track impact against every program.",
     ],
     image: incentives,
-    href: "#",
+    href: "/catalog#gifts",
   },
   {
     name: "Service Awards",
@@ -63,7 +63,7 @@ const items: TabsShowcaseItem[] = [
       "Global fulfillment with tracking included.",
     ],
     image: service,
-    href: "#",
+    href: "/catalog#gifts",
   },
 ];
 

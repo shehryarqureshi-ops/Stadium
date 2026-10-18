@@ -23,7 +23,7 @@ const items = [
     ],
     cta: "Build a kit",
     image: swagKits,
-    href: "#",
+    href: "/catalog#swag",
   },
   {
     name: "Branded Stores",
@@ -38,7 +38,7 @@ const items = [
     ],
     cta: "See stores",
     image: brandedStores,
-    href: "#",
+    href: "/book-a-call",
   },
   {
     name: "On-Demand Swag",
@@ -53,7 +53,7 @@ const items = [
     ],
     cta: "Order on demand",
     image: onDemand,
-    href: "#",
+    href: "/catalog#swag",
   },
   {
     name: "Bulk Swag",
@@ -68,7 +68,7 @@ const items = [
     ],
     cta: "Get bulk pricing",
     image: bulkSwag,
-    href: "#",
+    href: "/book-a-call",
   },
   {
     name: "Self-Serve Swag",
@@ -83,7 +83,7 @@ const items = [
     ],
     cta: "Start designing",
     image: selfServe,
-    href: "#",
+    href: "/catalog#swag",
   },
   {
     name: "Swag Storage",
@@ -98,7 +98,7 @@ const items = [
     ],
     cta: "See storage",
     image: swagStorage,
-    href: "#",
+    href: "/book-a-call",
   },
 ];
 

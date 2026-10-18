@@ -24,7 +24,7 @@ const items: TabsShowcaseItem[] = [
       "Trade show & event merchandise",
     ],
     image: marketingImg,
-    href: "/marketing",
+    href: "/impact/marketing",
   },
   {
     name: "HR",
@@ -39,7 +39,7 @@ const items: TabsShowcaseItem[] = [
       "Prove engagement impact",
     ],
     image: hrImg,
-    href: "/hr",
+    href: "/impact/hr",
   },
   {
     name: "Sales",
@@ -54,7 +54,7 @@ const items: TabsShowcaseItem[] = [
       "Tie sends to pipeline",
     ],
     image: salesImg,
-    href: "/sales",
+    href: "/impact/sales",
   },
   {
     name: "Operations",
@@ -69,7 +69,7 @@ const items: TabsShowcaseItem[] = [
       "Cut fulfillment tickets",
     ],
     image: adminsImg,
-    href: "/operations",
+    href: "/impact/office-admins",
   },
   {
     name: "Team Leaders",
@@ -84,7 +84,7 @@ const items: TabsShowcaseItem[] = [
       "See what landed",
     ],
     image: leadershipImg,
-    href: "/team-leaders",
+    href: "/impact/leadership",
   },
   {
     name: "Finance",
@@ -99,7 +99,7 @@ const items: TabsShowcaseItem[] = [
       "Audit-ready reporting",
     ],
     image: financeImg,
-    href: "/finance",
+    href: "/impact/finance",
   },
   {
     name: "C-Suite",
@@ -114,7 +114,7 @@ const items: TabsShowcaseItem[] = [
       "Measure the return",
     ],
     image: cxImg,
-    href: "/c-suite",
+    href: "/impact/leadership",
   },
 ];
 

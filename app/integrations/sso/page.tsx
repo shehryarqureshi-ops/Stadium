@@ -87,7 +87,7 @@ export default function SsoPage() {
           title: "Secure access. Simpler sign-in.",
           description: "Reduce sign-in friction for employees and IT.",
           primary: { label: "Talk to sales", href: LINKS.sales },
-          secondary: { label: "View SSO documentation", href: "#" },
+          secondary: { label: "View SSO documentation", href: "https://help.bystadium.com/hc/en-us" },
         }}
       >
         <ImageShowcase

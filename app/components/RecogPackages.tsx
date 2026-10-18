@@ -33,7 +33,7 @@ export default function RecogPackages() {
       description="Start with kudos, then add rewards, automations, and analytics when you're ready. You only pay for active people."
       showCta
       ctaLabel="See full pricing"
-      ctaLink="#"
+      ctaLink="/pricing"
       items={ITEMS}
     />
   );

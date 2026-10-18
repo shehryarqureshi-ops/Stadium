@@ -33,7 +33,7 @@ export default function SwagmagicPackages() {
       description="Add new capabilities over time without changing platforms."
       showCta
       ctaLabel="Explore pricing"
-      ctaLink="#"
+      ctaLink="/pricing"
       items={ITEMS}
     />
   );
