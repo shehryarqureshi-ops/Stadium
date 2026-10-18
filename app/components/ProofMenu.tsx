@@ -31,7 +31,7 @@ export const PROOF_COLUMNS: Column[] = [
     label: "Social Proof",
     items: [
       { title: "Case Studies", desc: "Real customer stories with measurable results.", href: "https://www.bystadium.com/case-studies" },
-      { title: "Reviews & Testimonials", desc: "What customers say about Stadium.", href: "https://www.bystadium.com/reviews" },
+      { title: "Reviews & Testimonials", desc: "What customers say about Stadium.", href: "/reviews" },
       { title: "Corporate Social Responsibility", desc: "Sustainability, ethical sourcing, and giving back.", href: PLATFORM_ROUTES.csr },
     ],
   },

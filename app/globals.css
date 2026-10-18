@@ -272,7 +272,7 @@
      max-w-section = capped section that carries its own side padding;
      max-w-content = inner content row inside a full-bleed section. */
   --container-content: 78.75rem; /* 1260px — content container cap → 120px margins at 1440 (user 2026-06-17) */
-  --container-pricing-cards: 85rem; /* 1360px — /pricing hero cards row (Figma 40px side padding at 1440) */
+  --container-pricing-cards: 96.25rem; /* 1540px — /pricing hero container cap (user 2026-10-18; was 1360 = Figma 40px padding at 1440) */
   --container-section: 86.25rem; /* 1380px — section cap → 1200 content + 2×90px padding */
   --container-hero: 90rem; /* 1440px — /impact canvas hero row (visual sits flush to its right edge) */
   --container-hero-visual: 40.4375rem; /* 647 — Open Spatial Canvas stage width */
@@ -491,6 +491,7 @@
     0.7978rem 0.7978rem 1.1283rem -0.0469rem rgba(0, 0, 0, 0.1),
     1.3738rem 1.3738rem 1.9429rem -0.0547rem rgba(0, 0, 0, 0.13),
     2.5rem 2.5rem 3.5355rem -0.0625rem rgba(0, 0, 0, 0.2);
+  --shadow-header-stuck: 0 0.5rem 0.75rem -0.25rem rgba(0, 0, 0, 0.14); /* pinned comparison header */
   --shadow-popover: 0 0.25rem 0.5rem 0 rgba(80, 80, 81, 0.24); /* shadow-small */
   --shadow-dropdown: /* not in Figma — form select menus */
     0 0.75rem 2rem -0.5rem rgba(22, 23, 27, 0.18),

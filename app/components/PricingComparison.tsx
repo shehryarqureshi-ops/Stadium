@@ -22,6 +22,7 @@
 import { Check, Minus } from "lucide-react";
 import { Fragment } from "react";
 
+import StickyHeadRow from "./pricing/StickyHeadRow";
 import { PackagesModalProvider, PackagesModalTrigger } from "./pricing/PackagesModal";
 import { FEATURES as ROWS, PASSES, type Cell, type Feature } from "./pricing/passes";
 
@@ -127,7 +128,7 @@ export default function PricingComparison() {
               className="grid min-w-[52rem] grid-cols-[11rem_repeat(5,minmax(0,1fr))] gap-1 md:grid-cols-[15rem_repeat(5,minmax(0,1fr))] lg:min-w-0 lg:grid-cols-[minmax(0,2.31fr)_repeat(5,minmax(0,1fr))]"
             >
               {/* header row */}
-              <div role="row" className="contents">
+              <StickyHeadRow>
                 <div
                   role="columnheader"
                   className={`flex items-center rounded-3xl bg-white px-4 py-4 font-sans text-table font-semibold text-pricing-ink md:px-6 ${STICKY}`}
@@ -143,7 +144,7 @@ export default function PricingComparison() {
                     {p}
                   </div>
                 ))}
-              </div>
+              </StickyHeadRow>
 
               {ROWS.map((r, ri) => (
                 <Fragment key={r.label}>

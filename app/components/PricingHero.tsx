@@ -21,48 +21,52 @@
    to sales as `interested_package`. */
 
 import Link from "next/link";
-import { Check, Star, Truck } from "lucide-react";
+import { Check, Plus, Star, Truck, Wallet } from "lucide-react";
 
-type Pass = { title: string; features: string[]; popular?: boolean; cta?: string };
+type Pass = {
+  title: string;
+  tagline: string;
+  lead: string;
+  features: string[];
+  addOns?: string[];
+  popular?: boolean;
+  cta?: string;
+};
 
 /* The CTA pins to the card bottom so uneven lists still align. */
 const PASSES: Pass[] = [
   {
     title: "Pay-as-you-go",
+    tagline: "Order what you need, when you need it.",
+    lead: "No pass needed",
     cta: "Get started",
     features: ["Snack Boxes (Snackmagic)", "Bulk Swag (Swagmagic)", "Hosted Experiences (Confetti)"],
   },
   {
     title: "Shops Pass",
-    features: [
-      "Everything in Pay-as-you-go",
-      "Unlimited Global Swag & Gift Shops",
-      "Free Domestic Delivery",
-    ],
+    tagline: "Launch branded swag and gift shops.",
+    lead: "Pay-as-you-go, plus",
+    features: ["Unlimited Swag & Gift Shops", "Free Domestic Delivery"],
   },
   {
     title: "Swag Pass",
-    features: [
-      "Everything in Shops Pass",
-      "Swag Storage",
-      "Inventory Management",
-      "Swag Kits",
-    ],
+    tagline: "Store, manage, and ship swag at scale.",
+    lead: "All of Shops, plus",
+    features: ["Swag Storage", "Inventory Management", "Swag Kits"],
   },
   {
     title: "Engagement Pass",
+    tagline: "Automate gifting and recognition.",
+    lead: "All of Swag, plus",
     popular: true,
-    features: [
-      "Everything in Swag Pass",
-      "Automated Gifting",
-      "HRIS, ATS, & CRM Integrations",
-      "Kudos Programs",
-    ],
+    features: ["Automated Gifting", "HRIS, ATS, & CRM Integrations", "Kudos Programs"],
+    addOns: ["Hosted Event Refundable Attendance", "Self-Guided Engagement Toolkits"],
   },
   {
     title: "Enterprise Pass",
+    tagline: "Security, scale, and a dedicated partner.",
+    lead: "All of Engagement, plus",
     features: [
-      "Everything in Engagement Pass",
       "SSO",
       "Stadium API",
       "Custom Contracts",
@@ -98,11 +102,24 @@ export default function PricingHero() {
           </div>
           <p
             data-animation="reveal"
-            className="flex items-center gap-2.5 font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-white"
+            className="max-w-[30rem] text-balance font-sans text-body-md text-grey-200 md:text-body-lg"
           >
-            <Truck aria-hidden className="size-5 shrink-0" strokeWidth={1.75} />
-            Free delivery on domestic orders
+            Pick a pass and unlock free domestic shipping across your engagement needs.
           </p>
+          <ul
+            data-animation="reveal"
+            aria-label="Included with every pass"
+            className="flex flex-col items-center gap-2 font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-white md:flex-row md:gap-6"
+          >
+            <li className="flex items-center gap-2.5">
+              <Truck aria-hidden className="size-5 shrink-0" strokeWidth={1.75} />
+              Free delivery on domestic orders
+            </li>
+            <li className="flex items-center gap-2.5">
+              <Wallet aria-hidden className="size-5 shrink-0" strokeWidth={1.75} />
+              One Wallet across every Stadium brand
+            </li>
+          </ul>
         </div>
 
         <div className="flex w-full flex-col items-center gap-10">
@@ -115,7 +132,7 @@ export default function PricingHero() {
             {PASSES.map((p, i) => (
               <li
                 key={p.title}
-                className={`group relative flex flex-col gap-2.5 rounded-3xl bg-white p-2.5 md:col-span-3 wide:col-span-1 wide:h-[29.375rem] ${
+                className={`group relative flex flex-col gap-2.5 rounded-3xl bg-white p-2.5 md:col-span-3 wide:col-span-1 wide:min-h-[29.375rem] ${
                   i === PASSES.length - 1 ? "md:col-start-2 wide:col-start-auto" : ""
                 } transition-[translate,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-1 ${
                   p.popular
@@ -132,10 +149,14 @@ export default function PricingHero() {
 
                 <div className="rounded-2xl bg-pricing-tray px-4 py-6">
                   <h2 className="font-display text-pass-title text-pricing-ink">{p.title}</h2>
+                  <p className="mt-1 font-sans text-feature-sm text-pricing-ink/70">{p.tagline}</p>
                 </div>
 
                 <div className="flex flex-1 flex-col gap-8 px-4 py-6">
-                  <ul className="flex flex-col gap-3 pb-2" aria-label={`${p.title} includes`}>
+                  <p className="w-fit rounded-md bg-pricing-tray px-2.5 py-1.5 font-sans text-pill uppercase tracking-[0.0625rem] text-pricing-ink">
+                    {p.lead}
+                  </p>
+                  <ul className="flex flex-col gap-3" aria-label={`${p.title} includes`}>
                     {p.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5">
                         <Check
@@ -147,6 +168,26 @@ export default function PricingHero() {
                       </li>
                     ))}
                   </ul>
+
+                  {p.addOns && (
+                    <div className="flex flex-col gap-3 rounded-xl bg-pricing-tray p-3">
+                      <p className="font-sans text-pill uppercase tracking-[0.0625rem] text-pricing-ink/60">
+                        Optional add-ons (Confetti)
+                      </p>
+                      <ul className="flex flex-col gap-3" aria-label="Optional Confetti add-ons">
+                        {p.addOns.map((f) => (
+                          <li key={f} className="flex items-start gap-2.5">
+                            <Plus
+                              aria-hidden
+                              className="mt-[0.0625rem] size-3.5 shrink-0 text-pricing-ink"
+                              strokeWidth={2}
+                            />
+                            <span className="font-sans text-feature-sm text-pricing-ink">{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   <Link
                     href={`?interestedPackage=${encodeURIComponent(p.title)}#book-a-demo`}

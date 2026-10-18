@@ -10,7 +10,7 @@ export type VariableCardGridItem = {
   /* omit for text-only cards (e.g. /impact/hr problem cards) — the
      description then renders at the larger 18px problem-card size */
   title?: string;
-  description: string;
+  description?: string;
   /* small label above the title (e.g. /the-proof customer results "EVERFLOW") */
   eyebrow?: string;
   /* underlined text link under the description (e.g. /integrations "Learn more") */
@@ -132,7 +132,7 @@ export default function VariableCardGrid({
           <ul role="list" className={`grid gap-4 ${GRID_COLUMNS[gridColumns]}`}>
             {items.map((item, i) => (
               <li
-                key={item.title ?? `${item.description}-${i}`}
+                key={item.title ?? `${item.description ?? "card"}-${i}`}
                 data-animation="reveal"
                 className="flex flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
               >
@@ -168,13 +168,15 @@ export default function VariableCardGrid({
                     </h3>
                   )}
 
-                  <p
-                    className={`font-sans leading-[1.5] text-[#6b6c71] ${
-                      item.title ? "text-[0.9375rem]" : "text-[1.0625rem] lg:text-[1.125rem]"
-                    }`}
-                  >
-                    {item.description}
-                  </p>
+                  {item.description && (
+                    <p
+                      className={`font-sans leading-[1.5] text-[#6b6c71] ${
+                        item.title ? "text-[0.9375rem]" : "text-[1.0625rem] lg:text-[1.125rem]"
+                      }`}
+                    >
+                      {item.description}
+                    </p>
+                  )}
 
                   {item.link && (
                     <a

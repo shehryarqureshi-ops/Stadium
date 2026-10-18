@@ -67,7 +67,22 @@ function OccasionPill({ occasion }: { occasion: Occasion }) {
   );
 }
 
-export default function Occasions() {
+type OccasionsProps = {
+  /* small label above the title (omit for none) */
+  eyebrow?: string;
+  title?: string;
+  /* omit to hide the paragraph */
+  description?: string;
+  /* omit to hide the button */
+  cta?: { label: string; href: string } | null;
+};
+
+export default function Occasions({
+  eyebrow,
+  title = "100+ use cases and counting",
+  description = "Get a 15-minute walkthrough. We\u2019ll show you live campaigns, sample boxes, and how teams use Stadium at scale.",
+  cta = { label: "Book a demo", href: "/book-a-call" },
+}: OccasionsProps = {}) {
   // Three distinct rows (Figma 803:48505); each scrolls horizontally.
   const rows = [
     OCCASIONS.slice(0, 7),
@@ -90,29 +105,42 @@ export default function Occasions() {
       {/* Header — centered */}
       <div className="flex w-full max-w-content flex-col items-center gap-8 px-section-x-sm text-center md:px-section-x-md lg:px-section-x-lg">
         <div className="flex flex-col items-center gap-5">
-          <h2
-            data-animation="reveal"
-            className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
-          >
-            100+ use cases and counting
-          </h2>
-          <p
-            data-animation="reveal"
-            className="max-w-[38rem] font-sans text-body-md text-[#474b5c] lg:text-[1.125rem] lg:leading-7"
-          >
-            Get a 15-minute walkthrough. We&rsquo;ll show you live campaigns,
-            sample boxes, and how teams use Stadium at scale.
-          </p>
+          <div className="flex flex-col items-center gap-2">
+            {eyebrow && (
+              <p
+                data-animation="reveal"
+                className="font-sans text-eyebrow-sm uppercase leading-4 text-[#16171b]"
+              >
+                {eyebrow}
+              </p>
+            )}
+            <h2
+              data-animation="reveal"
+              className="font-display text-heading-sm text-ink md:text-heading-md lg:text-[3.4375rem] lg:leading-[3.75rem] lg:tracking-[-0.075rem]"
+            >
+              {title}
+            </h2>
+          </div>
+          {description && (
+            <p
+              data-animation="reveal"
+              className="max-w-[38rem] font-sans text-body-md text-[#474b5c] lg:text-[1.125rem] lg:leading-7"
+            >
+              {description}
+            </p>
+          )}
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-3.5">
-          <a
-            data-animation="reveal"
-            href="/book-a-call"
-            className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water focus-visible:ring-offset-2"
-          >
-            Book a demo
-          </a>
-        </div>
+        {cta && (
+          <div className="flex flex-wrap items-center justify-center gap-3.5">
+            <a
+              data-animation="reveal"
+              href={cta.href}
+              className="inline-flex h-button-h items-center justify-center rounded-button bg-cta-fill px-button-x font-sans text-button-primary uppercase text-cta-on shadow-button transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-water focus-visible:ring-offset-2"
+            >
+              {cta.label}
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Scrolling rows — full-bleed with edge fades; 4 copies per track keep the

@@ -7,7 +7,7 @@ export type TestimonialItem = {
   image: StaticImageData;
   text: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
 };
 
 type TestimonialsProps = {
@@ -20,8 +20,9 @@ type TestimonialsProps = {
   ratingLabel?: string;
   ratingLogoSrc?: string;
 
-  blockquote: string;
-  citation: string;
+  /* optional featured quote under the headline (omit both for a quote-less header) */
+  blockquote?: string;
+  citation?: string;
 
   items: TestimonialItem[];
 
@@ -52,7 +53,7 @@ function StackCard({ item }: { item: TestimonialItem }) {
         </blockquote>
         <figcaption className="flex flex-col gap-1 font-sans text-feature">
           <span className="font-bold text-grey-800">{item.title}</span>
-          <span className="leading-[1.5] text-swag-grey">{item.subtitle}</span>
+          {item.subtitle && <span className="leading-[1.5] text-swag-grey">{item.subtitle}</span>}
         </figcaption>
       </div>
     </figure>
@@ -72,9 +73,11 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
             {item.title}
           </span>
 
-          <span className="font-sans text-[0.8125rem] text-grey-500">
-            {item.subtitle}
-          </span>
+          {item.subtitle && (
+            <span className="font-sans text-[0.8125rem] text-grey-500">
+              {item.subtitle}
+            </span>
+          )}
         </figcaption>
       </div>
 
@@ -186,40 +189,42 @@ export default function Testimonials({
             )}
           </div>
 
-          <div className="flex flex-col gap-8">
-            <span
-              data-animation="reveal"
-              aria-hidden
-              className="mb-10 font-display text-[4rem] leading-none text-grey-300"
-            >
-              <svg
-                width="109"
-                height="79"
-                viewBox="0 0 109 79"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          {blockquote && (
+            <div className="flex flex-col gap-8">
+              <span
+                data-animation="reveal"
+                aria-hidden
+                className="mb-10 font-display text-[4rem] leading-none text-grey-300"
               >
-                <path
-                  d="M47.4683 55.9455C47.4683 69.4708 38.2809 79 24.806 79C10.4124 79 0 67.3191 0 48.8755C0 23.0545 17.1498 3.07395 41.6496 0V14.7549C28.481 17.214 19.2936 25.5136 19.2936 36.2724C21.7436 35.3502 24.4998 34.7354 27.8685 34.7354C38.8934 34.7354 47.4683 42.7276 47.4683 55.9455ZM108.105 55.9455C108.105 69.4708 98.9178 79 85.443 79C71.0493 79 60.6369 67.3191 60.6369 48.8755C60.6369 23.0545 77.7868 3.07395 102.287 0V14.7549C89.1179 17.214 79.6243 25.5136 79.6243 36.5798C82.0742 35.3502 84.8305 34.7354 88.1992 34.7354C99.2241 34.7354 108.105 42.7276 108.105 55.9455Z"
-                  fill="#F2F2F2"
-                />
-              </svg>
-            </span>
+                <svg
+                  width="109"
+                  height="79"
+                  viewBox="0 0 109 79"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M47.4683 55.9455C47.4683 69.4708 38.2809 79 24.806 79C10.4124 79 0 67.3191 0 48.8755C0 23.0545 17.1498 3.07395 41.6496 0V14.7549C28.481 17.214 19.2936 25.5136 19.2936 36.2724C21.7436 35.3502 24.4998 34.7354 27.8685 34.7354C38.8934 34.7354 47.4683 42.7276 47.4683 55.9455ZM108.105 55.9455C108.105 69.4708 98.9178 79 85.443 79C71.0493 79 60.6369 67.3191 60.6369 48.8755C60.6369 23.0545 77.7868 3.07395 102.287 0V14.7549C89.1179 17.214 79.6243 25.5136 79.6243 36.5798C82.0742 35.3502 84.8305 34.7354 88.1992 34.7354C99.2241 34.7354 108.105 42.7276 108.105 55.9455Z"
+                    fill="#F2F2F2"
+                  />
+                </svg>
+              </span>
 
-            <blockquote
-              data-animation="reveal"
-              className={`font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] lg:text-[2rem] lg:leading-[2.5rem] font-bold ${dark ? "text-white" : "text-[#16171b]"}`}
-            >
-              {blockquote}
-            </blockquote>
+              <blockquote
+                data-animation="reveal"
+                className={`font-[family-name:var(--font-satoshi-medium)] text-[1.625rem] leading-[2.25rem] lg:text-[2rem] lg:leading-[2.5rem] font-bold ${dark ? "text-white" : "text-[#16171b]"}`}
+              >
+                {blockquote}
+              </blockquote>
 
-            <p
-              data-animation="reveal"
-              className={`font-sans text-[0.9375rem] ${dark ? "text-hero-body" : "text-[#6b6c71]"}`}
-            >
-              {citation}
-            </p>
-          </div>
+              <p
+                data-animation="reveal"
+                className={`font-sans text-[0.9375rem] ${dark ? "text-hero-body" : "text-[#6b6c71]"}`}
+              >
+                {citation}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Right */}

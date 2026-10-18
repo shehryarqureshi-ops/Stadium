@@ -1384,7 +1384,7 @@ tablet/mobile derived with the standard breakpoint mapping).
 - Top pad 7.5 / 10 / 12.75rem (= header 4rem + Figma 120 at lg).
 - Eyebrow `text-eyebrow-sm` +1.6px `text-pricing-sky`; headline `text-display-sm → md:text-display-md → lg:text-display-pricing` (58/1.02/−1.5, Satoshi — Figma specs Black, site ships Bold only); truck row lucide 20 + eyebrow style.
 - Pass cards: `rounded-3xl bg-white p-2.5 shadow-pass`; title block `rounded-2xl bg-pricing-tray px-4 py-6 text-pass-title`; body `px-4 py-6`, rows `text-feature` gap 12 + lucide check 14; CTA `h-button-h` pill `bg-pricing-cell` (featured: `bg-pricing-cta` + `border-pricing-sky shadow-pass-featured`). "Most Popular" pill `bg-pricing-sky text-pill text-pricing-navy`, −10px top / 39px right.
-- **Updated to Figma 3338:3171 (/go/pricing):** five passes (Pay-as-you-go → Shops → Swag → Engagement [Most Popular] → Enterprise); Pay-as-you-go CTA reads "Get started". Cards `wide:h-[29.375rem]` (470); feature rows `text-feature-sm` (12/1.4, new token) with lucide check 14; card row is Figma 1360 @ 40px from `wide` (`max-w-pricing-cards` 85rem + `wide:px-10`).
+- **Updated to Figma 3338:3171 (/go/pricing):** five passes (Pay-as-you-go → Shops → Swag → Engagement [Most Popular] → Enterprise); Pay-as-you-go CTA reads "Get started". Cards `wide:h-[29.375rem]` (470); feature rows `text-feature-sm` (12/1.4, new token) with lucide check 14; card row is Figma 1360 @ 40px from `wide` (`max-w-pricing-cards` now 96.25rem / 1540px (user 2026-10-18) + `wide:px-10`).
 - Grid 1 → `md:` 2 (6-col grid, last card centred) → `wide:` 5. Hover: −0.25rem lift (motion-safe).
 - "Talk to sales" → `?interestedPackage=<pass>#book-a-demo`; BookACallForm forwards it as `interested_package`.
 
@@ -1919,3 +1919,8 @@ restore the dropdown set `SHOW_CATALOG_DROPDOWN = true` at the top of that file 
 - **Logo (brand) tiles removed** from the mosaics; the `/public/catalog-page/logos` files are now unused.
 - **Brand tiles (re-added)**: white SVG marks in `public/catalog-page/logos/` — Swag: Nike, Carhartt, The North Face, TravisMathew, New Era, adidas · Gifts: Apple, Rubik's, Logitech, Sony, Ray-Ban, JBL · Snacks: Hal's New York, Hu, SmartSweets, Tate's, Poppi, Hippeas · Experiences (no logos, text tiles with bookings): Escape Quest, Coworker Clash, Team Trivia, Puzzles, Terrarium Workshop. Hu, Hippeas and Tate's were traced from the brands' PNG logos (no SVG published).
 - **No repeats in neighbouring columns**: hero photos and mosaic products are split into two halves; even columns draw from half A, odd from half B, and a column never repeats a card. Brand / country / coverage tiles appear once per section.
+
+## /pricing updates (hero parity with bystadium.com/go/pricing)
+
+- Hero: subhead + "included with every pass" row (truck + wallet); each pass card has tagline, "lead" chip (No pass needed / X, plus) and Engagement carries an "Optional add-ons (Confetti)" tray. Card height is `min-h` so the add-ons card grows the row.
+- Comparison header row is sticky at lg+ (`top-16`, under the fixed header): white bg always; `shadow-header-stuck` (`0 0.5rem 0.75rem -0.25rem rgba(0,0,0,.14)`) only while pinned (IntersectionObserver in `pricing/StickyHeadRow.tsx`). Below lg the table scrolls horizontally, so sticky-top is not applied there.

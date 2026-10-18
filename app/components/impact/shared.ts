@@ -25,6 +25,13 @@ export const TEAM_ROUTES = {
   finance: "/impact/finance",
 } as const;
 
+/* "Customer results" cards — /the-proof and /reviews */
+export const CUSTOMER_RESULTS = [
+  { eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8—10 hours to 1—2 hours", description: "Expanded recognition without adding administrative overhead." },
+  { eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
+  { eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
+];
+
 export const CASE_STUDY_CAPTION = "Case studies";
 
 /* Workplace tools strip (Figma 3998:9351) — mid-grey marks at 33% */

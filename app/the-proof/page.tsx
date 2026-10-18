@@ -14,7 +14,7 @@ import TeamHero from "@/app/components/common/TeamHero";
 import TheProofGrowth from "@/app/components/impact/batch3/TheProofGrowth";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
+import { CUSTOMER_RESULTS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
 export const metadata: Metadata = seoMetadata("/the-proof");
 
@@ -39,12 +39,6 @@ const PROOF_LOGOS = [
   { src: "/impact/overview/logos/bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
   { src: "/impact/overview/logos/salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
   { src: "/impact/overview/logos/netflix.svg", alt: "Netflix", width: 75, height: 20 },
-];
-
-const CUSTOMER_RESULTS = [
-  { eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8—10 hours to 1—2 hours", description: "Expanded recognition without adding administrative overhead." },
-  { eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
-  { eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
 ];
 
 export default function TheProofPage() {

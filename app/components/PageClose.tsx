@@ -39,7 +39,7 @@ const LINK_COLUMNS: {
         { label: "CSR", href: "/csr" },
         {
           label: "Reviews & Testimonials",
-          href: "https://www.bystadium.com/reviews",
+          href: "/reviews",
         },
         { label: "Partner With Us", href: "https://by-stadium.typeform.com/Stadiumpartner" },
       ],
