@@ -4,6 +4,7 @@ import meganImg from "@/public/testimonials/megan.png";
 import natalieImg from "@/public/testimonials/natalie.png";
 import shairaImg from "@/public/testimonials/shaira.png";
 
+import GradientBand from "@/app/components/common/GradientBand";
 import Testimonials, {
   type TestimonialItem,
 } from "@/app/components/common/VerticalTestimonials";
@@ -43,9 +44,10 @@ const items: TestimonialItem[] = [
 
 export default function TestimonialsSection() {
   return (
-    <div className="bg-linear-to-b from-white via-[#2178F5] to-[#181818]">
+    <GradientBand via="#2178F5">
       <div className="max-w-content mx-auto bg-white">
         <Testimonials
+          flush
           title={
             <>
               The proof is
@@ -60,7 +62,6 @@ export default function TestimonialsSection() {
           items={items}
         />
       </div>
-      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl hidden lg:block" />
-    </div>
+    </GradientBand>
   );
 }

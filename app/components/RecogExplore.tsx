@@ -1,3 +1,4 @@
+import GradientBand from "./common/GradientBand";
 import Resources, {
   type ResourcesItem,
 } from "@/app/components/common/Resources";
@@ -35,15 +36,15 @@ const ITEMS: ResourcesItem[] = [
 
 export default function RecogExplore() {
   return (
-    <div className="bg-linear-to-b from-white via-[#6b33db] to-[#181818]">
+    <GradientBand via="#6b33db">
       <Resources
+        flush
         caption="Resources"
         captionColor="#6b33db"
         title="More on getting employee recognition right"
         description=""
         items={ITEMS}
       />
-      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
-    </div>
+    </GradientBand>
   );
 }

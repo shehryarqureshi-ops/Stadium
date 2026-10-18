@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import ClosingCTA from "@/app/components/common/ClosingCTA";
+import GradientBand from "@/app/components/common/GradientBand";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import Testimonials, { type TestimonialItem } from "@/app/components/common/VerticalTestimonials";
 import { LINKS } from "@/app/components/impact/shared";
@@ -76,20 +77,18 @@ export default function ReviewsPage() {
           />
         </div>
 
-        <div className="bg-linear-to-b from-white via-[#2178F5] to-[#181818]">
-          <div className="mx-auto max-w-content bg-white">
-            <Testimonials
-              caption="Hear it from our customers"
-              captionColor="#16171b"
-              title="What keeps ‘em coming"
-              showRating={false}
-              blockquote="What sets Stadium apart is their ability to deliver a complete solution and empower our team — no matter the challenge."
-              citation="Maxime Bascon • Chief of Staff • Elktech"
-              items={TESTIMONIALS}
-            />
-          </div>
-          <div className="mx-auto hidden max-w-content rounded-b-4xl bg-white p-10 lg:block" />
-        </div>
+        <GradientBand>
+          <Testimonials
+            flush
+            caption="Hear it from our customers"
+            captionColor="#16171b"
+            title="What keeps ‘em coming"
+            showRating={false}
+            blockquote="What sets Stadium apart is their ability to deliver a complete solution and empower our team — no matter the challenge."
+            citation="Maxime Bascon • Chief of Staff • Elktech"
+            items={TESTIMONIALS}
+          />
+        </GradientBand>
       </main>
       <ClosingCTA
         title={

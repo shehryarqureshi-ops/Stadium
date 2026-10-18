@@ -74,7 +74,9 @@ export default async function G2Reviews() {
       className="px-section-x-sm pt-10 md:px-section-x-md lg:px-section-x-lg lg:pt-[3.75rem]"
     >
       <div className="mx-auto flex w-full max-w-content flex-col gap-4">
-        <div className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-[#f2f2f2] p-6 sm:flex-row sm:items-center">
+        <div
+          data-animation="reveal"
+          className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-[#f2f2f2] p-6 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
             <Image src="/g2-logo.svg" alt="" width={32} height={32} className="size-8 shrink-0" />
             <span className="font-sans text-[1.125rem] font-bold text-ink">Reviews</span>
@@ -96,10 +98,11 @@ export default async function G2Reviews() {
           </a>
         </div>
 
-        <ul role="list" className="columns-1 gap-4 sm:columns-2 lg:columns-4">
+        <ul role="list" data-reveal-stagger="80" className="columns-1 gap-4 sm:columns-2 lg:columns-4">
           {reviews.map((r) => (
             <li
               key={r.url}
+              data-animation="reveal"
               className="mb-4 break-inside-avoid rounded-3xl bg-[#f2f2f2] p-5"
             >
               <figure className="flex flex-col gap-3">

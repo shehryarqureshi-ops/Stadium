@@ -3,6 +3,7 @@ import reportImage from "@/public/recog2/rc-solution-insights.png";
 import templateImage from "@/public/recog2/rc-solution-logistics.png";
 
 import ClosingCTA from "./common/ClosingCTA";
+import GradientBand from "./common/GradientBand";
 import Resources from "./common/Resources";
 
 const ITEMS = [
@@ -38,16 +39,16 @@ const ITEMS = [
 export default function ExpClosing() {
   return (
     <>
-      <div className="bg-linear-to-b from-white via-[#FF5B77] to-[#181818]">
+      <GradientBand via="#FF5B77">
         <Resources
+          flush
           caption="Steal our ideas"
           captionColor="#FF5B77"
           title="Resources for better team events"
           description=""
           items={ITEMS}
         />
-        <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
-      </div>
+      </GradientBand>
 
       <ClosingCTA
         title="Bring your team together, in minutes"

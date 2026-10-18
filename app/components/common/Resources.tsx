@@ -19,6 +19,8 @@ type ResourcesProps = {
   title: string;
   description?: string;
   items: ResourcesItem[];
+  /* true: no gutters of its own; the GradientBand box supplies them */
+  flush?: boolean;
 };
 
 export default function Resources({
@@ -27,12 +29,13 @@ export default function Resources({
   title,
   description,
   items,
+  flush = false,
 }: ResourcesProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="relative z-10 bg-white lg:bg-transparent">
-      <div className="mx-auto bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg w-full max-w-content">
+      <div className={`mx-auto bg-white w-full max-w-content ${flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg"}`}>
         <div className="flex flex-col gap-10">
           <div className="flex max-w-[55rem] flex-col gap-5">
             <div className="flex flex-col gap-2">

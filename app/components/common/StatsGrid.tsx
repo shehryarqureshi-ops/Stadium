@@ -36,6 +36,8 @@ type StatsGridProps = {
   statCenter: StatCenter;
   rightTopStat: RightStat;
   rightBottomStat: RightStat;
+  /* true: no gutters of its own; the GradientBand box supplies them */
+  flush?: boolean;
 };
 
 const NUM =
@@ -50,9 +52,10 @@ export default function StatsGrid({
   statCenter,
   rightTopStat,
   rightBottomStat,
+  flush = false,
 }: StatsGridProps) {
   return (
-    <section className="rounded-b-4xl px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className={`rounded-b-4xl ${flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg"}`}>
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex max-w-[53.75rem] flex-col items-center gap-2 text-center">
           {caption && (

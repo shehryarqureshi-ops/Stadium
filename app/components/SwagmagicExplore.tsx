@@ -1,6 +1,7 @@
 import guideImage from "@/public/recog2/rc-solution-catalog.png";
 import reportImage from "@/public/recog2/rc-solution-insights.png";
 import templateImage from "@/public/recog2/rc-solution-logistics.png";
+import GradientBand from "./common/GradientBand";
 import Resources from "./common/Resources";
 
 const ITEMS = [
@@ -32,15 +33,15 @@ const ITEMS = [
 
 export default function SwagmagicExplore() {
   return (
-    <div className="bg-linear-to-b from-white via-[#10995a] to-[#181818]">
+    <GradientBand via="#10995a">
       <Resources
+        flush
         caption="Keep Exploring"
         captionColor="#10995a"
         title="More on getting swag right"
         description=""
         items={ITEMS}
       />
-      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
-    </div>
+    </GradientBand>
   );
 }

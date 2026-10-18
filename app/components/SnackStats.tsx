@@ -1,12 +1,14 @@
+import GradientBand from "@/app/components/common/GradientBand";
 import StatsGrid from "@/app/components/common/StatsGrid";
 import statsPhoto from "@/public/snacks/sn2-stats-photo.jpg";
 import avatar from "@/public/snacks/sn2-avatar.jpg";
 
 export default function SnackStats() {
   return (
-    <div className="bg-linear-to-b from-white via-[#2178F5] to-[#181818]">
+    <GradientBand via="#2178F5">
       <div className="max-w-content mx-auto bg-white">
         <StatsGrid
+          flush
           caption="The proof"
           captionColor="#2178f5"
           title={<>Built to send snacks at scale</>}
@@ -36,7 +38,6 @@ export default function SnackStats() {
           }}
         />
       </div>
-      <div className="bg-white p-10 max-w-content mx-auto rounded-b-4xl" />
-    </div>
+    </GradientBand>
   );
 }

@@ -33,6 +33,9 @@ type TestimonialsProps = {
      once as a static column with larger Satoshi quotes and the left column
      sticks while they scroll past (/book-a-call, Figma 3998:4261). */
   layout?: "marquee" | "stack";
+  /* true: no section padding / width cap of its own. A parent supplies the gutters
+     and the max-w-content container (the inset white box on /reviews). */
+  flush?: boolean;
 };
 
 /* Stack card — Figma 3998:4276: #f2f2f2 tray p24 gap24 r24, 72px r12 thumb,
@@ -105,13 +108,14 @@ export default function Testimonials({
   items,
   theme = "light",
   layout = "marquee",
+  flush = false,
 }: TestimonialsProps) {
   if (!items.length) return null;
   const dark = theme === "dark";
   const stack = layout === "stack";
 
   return (
-    <section className={`px-section-x-sm md:px-section-x-md lg:px-[6.25rem] ${dark ? "" : "bg-white"}`}>
+    <section className={`${flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-[6.25rem]"} ${dark ? "" : "bg-white"}`}>
       <style>{`
         @keyframes testimonial-scroll {
           from {
@@ -138,7 +142,7 @@ export default function Testimonials({
         }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[77.5rem] flex-col gap-12 lg:flex-row lg:gap-20">
+      <div className={`mx-auto flex w-full ${flush ? "max-w-content" : "max-w-[77.5rem]"} flex-col gap-12 lg:flex-row lg:gap-20`}>
         {/* Left */}
         <div className={`flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem] ${stack ? "lg:sticky lg:top-28 lg:self-start" : ""}`}>
           <div className="flex flex-col gap-8">
