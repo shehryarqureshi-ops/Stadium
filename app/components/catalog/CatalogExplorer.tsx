@@ -356,7 +356,7 @@ function CatalogSection({
       className="relative scroll-mt-0"
     >
       <div
-        className={`relative z-10 flex flex-col items-center justify-start gap-5 rounded-catalog-panel bg-black px-section-x-sm pb-14 pt-[6rem] text-center md:min-h-catalog-heading md:gap-7 md:px-section-x-md md:pb-[10.625rem] md:pt-[11.25rem] ${
+        className={`relative z-10 flex flex-col items-center justify-start gap-5 rounded-catalog-panel bg-black px-section-x-sm pb-[6.25rem] pt-[6.25rem] text-center md:min-h-catalog-heading md:gap-7 md:px-section-x-md md:pb-[10.625rem] md:pt-[11.25rem] ${
           index > 0 ? "-mt-10 md:-mt-[3.75rem]" : ""
         }`}
       >
