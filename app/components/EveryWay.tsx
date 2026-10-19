@@ -9,7 +9,7 @@ import snacksImg from "@/public/oneplatform/snacks.jpg";
 import swagImg from "@/public/oneplatform/swag.jpg";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 /* "One platform." — synced to the behavior spec (Figma 50:725). The headline is
@@ -141,7 +141,9 @@ function QuoteNote({ quote }: { quote: Quote }) {
         </span>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img loading="lazy" decoding="async"
+        <img
+          loading="lazy"
+          decoding="async"
           src="/oneplatform/slack.svg"
           alt=""
           width={18}
@@ -199,6 +201,144 @@ function PendingCard({ card }: { card: Card }) {
   );
 }
 
+/* PHONE (< md) — one card at a time: big card, label + counter below, then
+   prev / dots / next (Figma variation A). Keyed by the active headline line so
+   every line starts on its first card. All slides sit in one track that
+   translates on change, so the photo AND its title slide together (images are
+   eager-loaded, so nothing pops in mid-slide). Swipe works too. */
+function PhoneDeck({ cards }: { cards: Card[] }) {
+  const [idx, setIdx] = useState(0);
+  const touchX = useRef<number | null>(null);
+  const go = (d: 1 | -1) => setIdx((i) => (i + d + cards.length) % cards.length);
+
+  return (
+    <div className="flex flex-col gap-6 md:hidden">
+      <div
+        className="overflow-hidden [touch-action:pan-y]"
+        onTouchStart={(e) => {
+          touchX.current = e.touches[0].clientX;
+        }}
+        onTouchEnd={(e) => {
+          if (touchX.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          touchX.current = null;
+          if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        }}
+      >
+        <div
+          className="flex transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+          style={{ transform: `translateX(-${idx * 100}%)` }}
+        >
+          {cards.map((card, i) => (
+            <div
+              key={card.label}
+              aria-hidden={i !== idx}
+              className={`w-full shrink-0 transition-opacity duration-500 motion-reduce:transition-none ${
+                i === idx ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <div className="relative aspect-[343/400] w-full overflow-hidden rounded-card bg-grey-200">
+                {card.image ? (
+                  <Image
+                    src={card.image}
+                    alt=""
+                    fill
+                    sizes="100vw"
+                    quality={90}
+                    loading="eager"
+                    className="object-cover"
+                  />
+                ) : (
+                  <span className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full bg-[#ffb800] px-2 py-0.5">
+                    <span className="size-1 rounded-full bg-black/70" />
+                    <span className="font-sans text-[0.5rem] font-bold uppercase tracking-[0.05em] text-black/80">
+                      Pending Asset
+                    </span>
+                  </span>
+                )}
+                {card.quote && (
+                  <div className="absolute inset-x-4 bottom-4 flex flex-col gap-3.5 rounded-[0.875rem] bg-white p-[1.125rem] shadow-[0_0.75rem_2rem_rgba(0,0,0,0.16)]">
+                    <p className="font-display text-[1.0625rem] leading-[1.375rem] text-[#0f0821]">
+                      {card.quote.text}
+                    </p>
+                    <div className="flex items-center gap-2.5">
+                      <span className="flex">
+                        {card.quote.avatars.map((a, j) => (
+                          <span
+                            key={j}
+                            className={`size-7 overflow-hidden rounded-full ring-2 ring-white ${j ? "-ml-2" : ""}`}
+                          >
+                            <Image src={a} alt="" width={56} height={56} quality={90} />
+                          </span>
+                        ))}
+                      </span>
+                      <span className="font-sans text-[0.75rem] leading-4 text-[#6b7280]">
+                        {card.quote.from}
+                      </span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/oneplatform/slack.svg"
+                        alt=""
+                        loading="lazy"
+                        className="ml-auto size-[1.125rem]"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-6 flex items-center justify-between" aria-live={i === idx ? "polite" : "off"}>
+                <h3 className="font-display text-[1.625rem] leading-[1.875rem] tracking-[-0.0188rem] text-ink">
+                  {card.label}
+                </h3>
+                <span className="font-sans text-[0.8125rem] font-semibold tabular-nums leading-4 tracking-[0.0625rem] text-[#8e8e8e]">
+                  {String(i + 1).padStart(2, "0")} / {String(cards.length).padStart(2, "0")}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        {([-1, 1] as const).map((d) => (
+          <button
+            key={d}
+            type="button"
+            onClick={() => go(d)}
+            aria-label={d === 1 ? "Next card" : "Previous card"}
+            className={`flex size-12 cursor-pointer items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0b7afc]/40 ${
+              d === 1 ? "order-3 bg-[#1b1b1b] text-white" : "order-1 border border-[#1b1b1b]/20 text-[#1b1b1b]"
+            }`}
+          >
+            <svg viewBox="0 0 24 24" className="size-[1.375rem]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d={d === 1 ? "M9 18l6-6-6-6" : "M15 18l-6-6 6-6"} />
+            </svg>
+          </button>
+        ))}
+        <div className="order-2 flex items-center gap-2">
+          {cards.map((c, i) => (
+            <button
+              key={c.label}
+              type="button"
+              onClick={() => setIdx(i)}
+              aria-label={`Show ${c.label}`}
+              aria-current={i === idx}
+              className="flex h-6 cursor-pointer items-center"
+            >
+              <span
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === idx ? "w-6 bg-[#1b1b1b]" : "w-2 bg-[#1b1b1b]/20"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function EveryWay() {
   const [active, setActive] = useState(0);
   const { sectionRef, takeOver } = useAutoAdvance<HTMLDivElement>(
@@ -240,8 +380,11 @@ export default function EveryWay() {
           ))}
         </h2>
 
+        {/* Phone: one card at a time */}
+        <PhoneDeck key={active} cards={SEGMENTS[active].cards} />
+
         {/* Card row — slides to the active line's deck */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden max-md:hidden">
           <div
             className="flex transition-transform duration-1000 ease"
             style={{ transform: `translateX(-${active * 100}%)` }}

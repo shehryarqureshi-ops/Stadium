@@ -621,8 +621,23 @@ body {
 .infra-video-in {
   animation: infra-video-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+/* Infrastructure phone stage: step number + title fade and rise on change. */
+@keyframes infra-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.infra-title-in {
+  animation: infra-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
 @media (prefers-reduced-motion: reduce) {
-  .infra-video-in {
+  .infra-video-in,
+  .infra-title-in {
     animation: none;
   }
 }
