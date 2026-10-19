@@ -7,6 +7,9 @@
                           (default https://www.bystadium.com)
      --skip-build         reuse the existing .next build
      --port <n>           port for the temporary server (default 3199)
+     --hosted             serve images/fonts from --asset-base instead of embedding
+                          them (default: everything is embedded as data: URIs, so
+                          the header/footer need nothing else deployed)
      --rem                keep rem units (default converts to px so a WordPress
                           html{font-size:…} rule cannot resize the header/footer)
      --chrome <path>      Chrome/Chromium executable (or set CHROME_PATH)
@@ -33,6 +36,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from
 import { basename, extname, join, resolve } from "node:path";
 import { chromium } from "playwright-core";
 import postcss from "postcss";
+import sharp from "sharp";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const args = process.argv.slice(2);
@@ -45,6 +49,8 @@ const flag = (name) => args.includes(name);
 const ASSET_BASE = opt("--asset-base", "https://www.bystadium.com/wp-shell").replace(/\/$/, "");
 const SITE_BASE = opt("--site-base", "https://www.bystadium.com").replace(/\/$/, "");
 const PORT = Number(opt("--port", "3199"));
+const INLINE = !flag("--hosted"); // embed images + fonts as data: URIs (self-contained)
+const MAX_IMG_PX = 560; // inline rasters are downscaled to this width (largest slot is a ~280px card @2x)
 const PX = !flag("--rem"); // px by default: immune to WordPress changing the root font size
 const ORIGIN = `http://localhost:${PORT}`;
 const OUT = join(ROOT, "wp-shell", "dist");
@@ -169,7 +175,7 @@ function capturePage([kind, variants]) {
 }
 
 /* menu index -> trigger index in the desktop nav; these two swap content on hover */
-const STATEFUL_PANES = { 1: "impact", 3: "catalog" };
+const STATEFUL_PANES = { 1: { key: "impact", label: "Impact by Team" }, 3: { key: "catalog", label: "Catalog" } };
 
 async function capture(path, kind, { auth = false } = {}) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -191,11 +197,15 @@ async function capture(path, kind, { auth = false } = {}) {
   if (kind === "header") {
     // open each stateful mega-menu and hover every rail item to capture each state
     for (const idx of Object.keys(STATEFUL_PANES)) {
-      await page.locator('header nav[aria-label="Main"] [aria-haspopup="true"]').nth(Number(idx)).hover();
+      const { key, label } = STATEFUL_PANES[idx];
+      const trigger = page.locator('header nav[aria-label="Main"] [aria-haspopup="true"]').filter({ hasText: label });
+      // Catalog is a plain link while SHOW_CATALOG_DROPDOWN is false in SiteHeader.tsx: nothing to capture
+      if (!(await trigger.count())) { console.log(`  (no "${label}" dropdown in the header, skipped)`); continue; }
+      await trigger.hover();
       await page.waitForTimeout(500);
       const rail = page.locator(".menu-pane").nth(Number(idx)).locator("nav[aria-label] > *");
       const count = await rail.count();
-      if (count < 2) throw new Error(`Mega-menu ${STATEFUL_PANES[idx]}: expected a rail of items, found ${count}`);
+      if (count < 2) throw new Error(`Mega-menu ${key}: expected a rail of items, found ${count}`);
       variants[idx] = [];
       for (let i = 0; i < count; i++) {
         await rail.nth(i).hover();
@@ -223,7 +233,8 @@ stopServer();
 
 /* sanity checks: fail loudly if the components changed shape */
 const triggerKeys = header.triggers.map((l) => NAV_KEYS[l]);
-if (header.triggers.length !== 4 || triggerKeys.includes(undefined) || triggerKeys.join() !== "engage,impact,proof,catalog")
+const ALLOWED_TRIGGERS = ["engage,impact,proof", "engage,impact,proof,catalog"]; // catalog dropdown is optional
+if (triggerKeys.includes(undefined) || !ALLOWED_TRIGGERS.includes(triggerKeys.join()))
   throw new Error(`Header mega-menu triggers changed: ${JSON.stringify(header.triggers)}. Update NAV_KEYS in this script and KEYS in wp-shell/header.js.`);
 if (header.panes !== 4 || !header.hasMobile || !header.hasScrim || header.logins !== 2)
   throw new Error(`Header structure changed: ${JSON.stringify({ panes: header.panes, mobile: header.hasMobile, scrim: header.hasScrim, logins: header.logins })}`);
@@ -243,13 +254,32 @@ function resolveSource(url) {
   if (url.startsWith("/_next/static/media/")) return join(ROOT, ".next/static/media", basename(url));
   return join(ROOT, "public", url.replace(/^\//, ""));
 }
+const dataUri = (mime, buf) => `data:${mime};base64,${buf.toString("base64")}`;
+const inlineImages = new Map(); // src -> data URI (built async below, before finalise runs)
+async function prepareInlineImage(src) {
+  const file = resolveSource(src);
+  if (!existsSync(file)) throw new Error(`Image not found for ${src} (${file})`);
+  const ext = extname(file).toLowerCase();
+  if (ext === ".svg") { inlineImages.set(src, dataUri("image/svg+xml", readFileSync(file))); return; }
+  const buf = await sharp(file).resize({ width: MAX_IMG_PX, withoutEnlargement: true }).webp({ quality: 76 }).toBuffer();
+  inlineImages.set(src, dataUri("image/webp", buf));
+}
 function imageUrl(src) {
+  if (INLINE) {
+    if (!inlineImages.has(src)) throw new Error(`Inline image not prepared: ${src}`);
+    imgMap.set(src, inlineImages.get(src));
+    return inlineImages.get(src);
+  }
   if (!imgMap.has(src)) {
     const file = resolveSource(src);
     if (!existsSync(file)) throw new Error(`Image not found for ${src} (${file})`);
     imgMap.set(src, `${ASSET_BASE}/img/${stableName(file, join(PUBLIC_OUT, "img"))}`);
   }
   return imgMap.get(src);
+}
+if (INLINE) {
+  const all = new Set([...header.imgs, ...footer.imgs, ...account.imgs]);
+  await Promise.all([...all].map(prepareInlineImage));
 }
 const finalise = (html) =>
   html
@@ -263,6 +293,20 @@ let headerHtml = finalise(header.html).replace(
 );
 /* menu triggers are tagged with their label in the page; header.js wants the menu key */
 headerHtml = headerHtml.replace(/data-sdm-trigger="([^"]+)"/g, (_, label) => `data-sdm-trigger="${NAV_KEYS[label]}"`);
+/* The Impact mega-menu embeds every hover state, so the same image can appear many times.
+   Keep each repeated data: URI once (in the script config) and let header.js fill the copies in. */
+const sharedImgs = {};
+if (INLINE) {
+  const counts = new Map();
+  for (const m of headerHtml.matchAll(/ src="(data:image\/[^"]+)"/g)) counts.set(m[1], (counts.get(m[1]) ?? 0) + 1);
+  let n = 0;
+  for (const [uri, count] of counts) {
+    if (count < 2 || uri.length < 2000) continue;
+    const id = `i${n++}`;
+    sharedImgs[id] = uri;
+    headerHtml = headerHtml.split(` src="${uri}"`).join(` src="data:," data-sdm-img="${id}"`);
+  }
+}
 const footerHtml = finalise(footer.html);
 
 /* account menu templates (sentinel values are replaced at runtime by header.js) */
@@ -353,8 +397,10 @@ for (const ff of headerBuild.fontFaces) {
   const key = `${sdm}|${basename(url)}|${d["font-style"]}|${d["unicode-range"]}`;
   const existing = fonts.find((f) => f.key === key);
   if (existing) { existing.weights.push(d["font-weight"]); continue; }
-  const name = stableName(file, join(PUBLIC_OUT, "fonts"));
-  fonts.push({ key, family: sdm, src: `${ASSET_BASE}/fonts/${name}`, style: d["font-style"] ?? "normal", range: d["unicode-range"], weights: [d["font-weight"]] });
+  // inline builds only ship the Latin subsets (drops Cyrillic/Vietnamese, ~50 KB of base64 per shell)
+  if (INLINE && /U\+(400|460|102)-/.test(d["unicode-range"] ?? "")) continue;
+  const src = INLINE ? dataUri("font/woff2", readFileSync(file)) : `${ASSET_BASE}/fonts/${stableName(file, join(PUBLIC_OUT, "fonts"))}`;
+  fonts.push({ key, family: sdm, src, style: d["font-style"] ?? "normal", range: d["unicode-range"], weights: [d["font-weight"]] });
   seen.add(key);
 }
 const fontConfig = fonts.map(({ key, weights, ...f }) => {
@@ -395,7 +441,7 @@ const noscript = `<noscript><style>[data-sdm-login]{visibility:visible!important
 
 const headerJs = readFileSync(join(ROOT, "wp-shell", "header.js"), "utf8").replace(
   "__SDM_CONFIG__",
-  cfg({ sessionUrl: process.env.NEXT_PUBLIC_AUTH_SESSION_URL ?? `${APP_URL}/api/auth/session`, graphqlUrl: process.env.NEXT_PUBLIC_ACCOUNT_GRAPHQL_URL ?? "https://account.bystadium.com/graphql", appUrl: APP_URL }),
+  cfg({ sessionUrl: process.env.NEXT_PUBLIC_AUTH_SESSION_URL ?? `${APP_URL}/api/auth/session`, graphqlUrl: process.env.NEXT_PUBLIC_ACCOUNT_GRAPHQL_URL ?? "https://account.bystadium.com/graphql", appUrl: APP_URL, imgs: sharedImgs }),
 );
 const footerJs = readFileSync(join(ROOT, "wp-shell", "footer.js"), "utf8").replace("__SDM_CONFIG__", cfg());
 
@@ -427,6 +473,8 @@ html{font-size:62.5%} body{font:20px/1.2 Georgia,serif;color:#c00;margin:0} a{co
 
 const kb = (s) => `${(Buffer.byteLength(s) / 1024).toFixed(0)} KB`;
 console.log(`\n✓ header.html ${kb(headerOut)} · footer.html ${kb(footerOut)}`);
-console.log(`✓ ${imgMap.size} images + ${fontConfig.length} font files copied to public/wp-shell/`);
-console.log(`  asset base: ${ASSET_BASE}   site base: ${SITE_BASE || "(relative)"}   units: ${PX ? "px" : "rem"}`);
+console.log(INLINE
+  ? `✓ ${imgMap.size} images + ${fontConfig.length} font files embedded as data: URIs (self-contained)`
+  : `✓ ${imgMap.size} images + ${fontConfig.length} font files copied to public/wp-shell/`);
+console.log(`  asset base: ${INLINE ? "(inline)" : ASSET_BASE}   site base: ${SITE_BASE || "(relative)"}   units: ${PX ? "px" : "rem"}`);
 console.log(`  output: ${OUT}`);

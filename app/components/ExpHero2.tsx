@@ -1,5 +1,6 @@
 import Image from "next/image";
 import heroBg from "@/public/exp2/xp-hero-bg.jpg";
+import EventsHeroGraphic from "./EventsHeroGraphic";
 import { HeroLogoWall } from "./common/HeroLogoWall";
 
 /* trust band stats (2673:3448) */
@@ -111,11 +112,9 @@ export default function ExpHeroTwo() {
             className="mx-auto max-w-content"
           >
             <div className="pt-12">
-              <img
-                src="/events/heroGraphic.png"
-                alt="Laptop"
-                className="w-full"
-              />
+              {/* Figma 5892:11404 — live UI (text/icons stay vector-crisp),
+                  only the webcam photos are raster. */}
+              <EventsHeroGraphic />
             </div>
           </div>
         </div>

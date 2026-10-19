@@ -11,6 +11,10 @@ export type Product = {
   category: string;
   description: string;
   image: string;
+  /** set on decoration-method cards (Swag) — opens the deco methods modal at this method */
+  deco?: string;
+  /** set on dietary / taste cards (Snacks) — opens the dietary modal */
+  diet?: string;
 };
 
 /** A brand logo tile — or, when `logo` is omitted, a text tile (name + `stat`). */
@@ -96,7 +100,7 @@ export const SECTIONS: SectionData[] = [
     tab: "Snacks",
     tabShort: "Snacks",
     title: "Snacks",
-    noun: "snack",
+    noun: "snacks",
     blurb: "Snacks, drinks, pantry staples and work-and-play finds — curated boxes your team will fight over, delivered across 170+ countries.",
     catalogHref: "https://www.snackmagic.com/our-snacks",
     products: SNACKS_PRODUCTS,
@@ -152,7 +156,7 @@ const ALL_TILES = [
   ["snacks", SNACKS_PRODUCTS],
   ["experiences", EXPERIENCES_PRODUCTS],
 ].flatMap(([sec, list]) =>
-  (list as Product[]).map((p) => ({ src: p.image, family: `${sec}/${p.category}`, section: sec as string })),
+  (list as Product[]).filter((p) => !p.diet).map((p) => ({ src: p.image, family: `${sec}/${p.category}`, section: sec as string })),
 );
 
 /* Seeded PRNG + Fisher–Yates: "random" but identical on server and client. */

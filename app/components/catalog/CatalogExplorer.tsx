@@ -5,6 +5,10 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 
 import CircleFlag from "../CircleFlag";
 import CatalogProductModal from "./CatalogProductModal";
+import DecoMethodsModal from "./DecoMethodsModal";
+import CatalogHeader from "./CatalogHeader";
+import DietModal from "./DietModal";
+import { DIET_ENTRIES } from "./dietData";
 import {
   BOOK_A_CALL_HREF,
   SECTIONS,
@@ -214,11 +218,17 @@ function Mosaic({
           </div>
         ))}
       </div>
-      {/* fades — cards emerge from the heading panel above and dissolve into the next one */}
+      {/* fades — cards emerge from the heading panel above and dissolve into the next one. The next panel overlaps the last 2.5rem / 3.75rem, so the bottom fade is solid there and then matches the top fade (6rem / 8rem). */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black to-transparent md:h-32" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent md:h-56" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[8.5rem] bg-gradient-to-t from-black from-[2.5rem] to-transparent md:h-[11.75rem] md:from-[3.75rem]" />
     </div>
   );
+}
+
+/* illustration size inside a tile: Figma card art (natural px) scaled 0.85 to suit the narrower tile */
+function dietSize(id: string) {
+  const d = DIET_ENTRIES.find((e) => e.id === id);
+  return { w: Math.round((d?.w ?? 108) * 0.85), h: Math.round((d?.h ?? 108) * 0.85) };
 }
 
 function MosaicCard({
@@ -246,14 +256,40 @@ function MosaicCard({
           tabIndex={dup ? -1 : undefined}
           className="group relative block cursor-pointer h-full w-full overflow-hidden rounded-catalog-tile bg-catalog-tile focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-catalog-ink"
         >
-          <Image
-            src={item.product.image}
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 11rem, (min-width: 768px) 20vw, 45vw"
-            quality={90}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-          />
+          {item.product.diet ? (
+            /* dietary / taste card (Figma 6031:15508): black card, white illustration over the name */
+            <span className="flex h-full w-full flex-col items-center justify-center gap-1.5 px-3 text-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={item.product.image}
+                alt=""
+                width={dietSize(item.product.diet).w}
+                height={dietSize(item.product.diet).h}
+                className="max-w-none"
+                style={{ width: `${dietSize(item.product.diet).w / 16}rem`, height: `${dietSize(item.product.diet).h / 16}rem` }}
+                loading="lazy"
+              />
+              <span className="font-display text-[1.125rem] leading-[1.1] tracking-[-0.0187rem] text-white">{item.product.name}</span>
+            </span>
+          ) : (
+            <Image
+              src={item.product.image}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 11rem, (min-width: 768px) 20vw, 45vw"
+              quality={90}
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+            />
+          )}
+          {item.product.deco && (
+            /* decoration-method card: black fade + name (Figma C1 style) */
+            <>
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/90 to-transparent" />
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 px-3.5 pb-3.5 text-left font-display text-[1.125rem] leading-[1.1] tracking-[-0.0187rem] text-white">
+                {item.product.name}
+              </span>
+            </>
+          )}
           <span className="pointer-events-none absolute inset-0 rounded-catalog-tile ring-1 ring-inset ring-white/10" />
         </button>
       );
@@ -320,26 +356,11 @@ function CatalogSection({
       className="relative scroll-mt-0"
     >
       <div
-        className={`relative z-10 flex flex-col items-center justify-start gap-4 rounded-catalog-panel bg-black px-section-x-sm pt-[13.5rem] text-center h-catalog-heading md:px-section-x-md ${
+        className={`relative z-10 flex flex-col items-center justify-start gap-5 rounded-catalog-panel bg-black px-section-x-sm pb-14 pt-[6rem] text-center md:min-h-catalog-heading md:gap-7 md:px-section-x-md md:pb-[10.625rem] md:pt-[11.25rem] ${
           index > 0 ? "-mt-10 md:-mt-[3.75rem]" : ""
         }`}
       >
-        {/* Name only — huge, Satoshi Light (the lightest Satoshi cut), very tight
-            tracking, one line. Same size for every name: min(16rem, -0.406504rem + 10.5501vw). */}
-        <h2
-          id={`${section.id}-title`}
-          data-animation="reveal"
-          className="whitespace-nowrap text-white"
-          style={{
-            fontFamily: "var(--font-satoshi-light), var(--font-satoshi), sans-serif",
-            fontWeight: 300,
-            letterSpacing: "-0.075em",
-            lineHeight: 1,
-            fontSize: "min(16rem, -0.406504rem + 10.5501vw)",
-          }}
-        >
-          {section.title}
-        </h2>
+        <CatalogHeader section={section} />
       </div>
 
       <Mosaic section={section} onOpen={onOpen} />
@@ -438,7 +459,14 @@ export default function CatalogExplorer({ hero }: { hero: ReactNode }) {
         </Dock>
       </div>
 
-      {modal && <CatalogProductModal product={modal.product} section={modal.section} onClose={close} />}
+      {modal &&
+        (modal.product.diet ? (
+          <DietModal initialId={modal.product.diet} section={modal.section} onClose={close} />
+        ) : modal.product.deco ? (
+          <DecoMethodsModal initialId={modal.product.deco} section={modal.section} onClose={close} />
+        ) : (
+          <CatalogProductModal product={modal.product} section={modal.section} onClose={close} />
+        ))}
     </>
   );
 }

@@ -2,6 +2,8 @@
    5772:6917 hosted experiences): every photo in each frame is used once. */
 
 import type { Product } from "./data";
+import { DECO_METHODS } from "./decoMethods";
+import { DIET_ENTRIES, dietIcon } from "./dietData";
 
 export const SWAG_PRODUCTS: Product[] = [
   { name: "Crown Comfort Quarter-Zip (Men's)", category: "Apparel", description: "Premium, wearable merch in sizes for everyone — decorated with your brand and shipped worldwide.", image: "/catalog-page/swag/01.jpg" },
@@ -39,6 +41,9 @@ export const SWAG_PRODUCTS: Product[] = [
   { name: "Clearwater Beach Backpack Chair", category: "Outdoor & Leisure", description: "Weekend-ready gear for the park, the beach and the backyard — a branded excuse to get outside.", image: "/catalog-page/swag/33.jpg" },
   { name: "Happy Camper Kit", category: "Outdoor & Leisure", description: "Weekend-ready gear for the park, the beach and the backyard — a branded excuse to get outside.", image: "/catalog-page/swag/34.jpg" },
   { name: "Rosewood 5-Piece Wine Tool Gift Set", category: "Auto, Home & Tools", description: "A thoughtful home gift that's as useful as it is giftable, ready to personalize.", image: "/catalog-page/swag/35.jpg" },
+  ...DECO_METHODS.map(
+    (m): Product => ({ name: m.name, category: "Decoration methods", description: m.description, image: m.image, deco: m.id }),
+  ),
 ];
 
 export const GIFTS_PRODUCTS: Product[] = [
@@ -153,6 +158,15 @@ export const SNACKS_PRODUCTS: Product[] = [
   { name: "Agave Margarita Batching Mix", category: "Mixers", description: "Cocktail and mocktail mixers that make a good drink easy.", image: "/catalog-page/snacks/71.jpg" },
   { name: "Espresso Martini Single Serve", category: "Mixers", description: "Cocktail and mocktail mixers that make a good drink easy.", image: "/catalog-page/snacks/72.jpg" },
   { name: "Blueberry Lemonade Single Serve", category: "Mixers", description: "Cocktail and mocktail mixers that make a good drink easy.", image: "/catalog-page/snacks/73.jpg" },
+  ...DIET_ENTRIES.map(
+    (d): Product => ({
+      name: d.name,
+      category: d.group === "dietary" ? "Dietary restrictions" : "Taste profiles",
+      description: d.description,
+      image: dietIcon(d.id),
+      diet: d.id,
+    }),
+  ),
 ];
 
 export const EXPERIENCES_PRODUCTS: Product[] = [

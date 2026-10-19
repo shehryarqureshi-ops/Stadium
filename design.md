@@ -1925,3 +1925,89 @@ restore the dropdown set `SHOW_CATALOG_DROPDOWN = true` at the top of that file 
 - Hero: subhead + "included with every pass" row (truck + wallet); each pass card has tagline, "lead" chip (No pass needed / X, plus) and Engagement carries an "Optional add-ons (Confetti)" tray. Card height is `min-h` so the add-ons card grows the row.
 - Comparison header row is sticky at lg+ (`top-16`, under the fixed header): white bg always; `shadow-header-stuck` (`0 0.5rem 0.75rem -0.25rem rgba(0,0,0,.14)`) only while pinned (IntersectionObserver in `pricing/StickyHeadRow.tsx`). Below lg the table scrolls horizontally, so sticky-top is not applied there.
 - **Section heading panels** are a fixed 720px (45rem, `h-catalog-heading`) so the start of each section is unmistakable.
+
+## /events hero graphic — Confetti design system (2026-10-19)
+
+Figma `n9SjmDjzB1PeZAYJ5w43fr` → **5892:11404** (1160 × 600, r20). Component
+`app/components/EventsHeroGraphic.tsx`, used by `ExpHero2` in place of the old
+flat `heroGraphic.png`. Live UI: text, icons, cards and tags are real DOM (vector-
+crisp at any pixel density); only the webcam photos are raster — 16 tiles
+(`public/events/hero/tile-*.webp`, 308 × 220 = 2× the 154 × 110 tile, Lanczos +
+light unsharp, ≈ 3 KB each) and the host (`host.webp`, 956 × 928, ≈ 140 KB),
+served through `next/image`. Wordmark: `public/events/hero/confetti-logo.svg`.
+Tiles are the Zoom-collage crops (Figma 5892:11540); host photo is the original
+hero portrait.
+
+**Confetti tokens** (`globals.css` `@theme`): `cf-ink #120E14` (all text/fills are
+alpha steps: /80 secondary, /64 tertiary, /8 track, /4 well), `cf-gold #F5BB1D`
+(rank 1), `cf-blue #3E97FF` (rank 2), `cf-red #F04561` (rank 3), `cf-violet #8E67FF`,
+`cf-coral #FD5565` (game tile), `cf-live #FF2840`; `shadow-cf-card` = 0 4 16 −4
+ink@16 %, `shadow-cf-frame` = 0 24 48 −12 black@35 %.
+Type: **Nunito** 700/800 via `next/font/google` (scoped to this component).
+
+**Layout** — frame r20 (`1.25rem`), 2px white border, 16px padding, gradient
+`135deg #FFE1EA 0 → #FFF0DC 30 → #E9F8E3 55 → #E1F0FF 80 → #EDE6FF 100`. 7-column
+grid, gap 8, tiles `aspect 154/110` r12 (2px white border; leaders 3px in their
+rank colour); host spans cols 3–5 × 4 rows (r16); lower third spans all 7 cols
+(white, r24, h 96, `shadow-cf-card`): zap tile 30 r10 coral · "Friday Team
+Showdown" 12/800 + 4 round steps (22 × 6) + "Round 3 of 5" 12/700 · question
+24/800 · team score (34/800 "2,340" + "pts") · 1px divider · stats (users,
+clock, 12/700). Tags r8 (rank chip white, "Hosted by" + wordmark ink@94 %, "Live ·
+47 playing" white@94 %); name tags r6, ink@64 %, 11/800.
+
+**Responsive** (Figma only has desktop, so this is derived, not specced): below
+`md` the gap/padding/radii shrink and only photos + question + score show;
+`md` adds the rank discs, the meta row, "Hosted by" pill and a bigger question;
+`lg` adds name tags, rank percentages, the "Live" pill, divider and stats.
+
+## /ways-to-engage — hub hero (2026-10-19)
+
+Figma `n9SjmDjzB1PeZAYJ5w43fr` → **5714:12422** "V2 · Light editorial" (desktop
+only; mobile/tablet derived). `WteHero` is now the hub: eyebrow 12/1.4 bold
+caps `#6b6c71` tracking 1.6px · h1 Satoshi 56/1.04 tracking −1.4 `#16171b`,
+760 wide. Five cards (`#f8f8f8`, r24, pad 22/12/12, gap 14; title Satoshi 22/1.2,
+body Overpass 14/1.46 `#6b6c71`; visual slot 260 tall r18) in a 1240 row, gap 16,
+section pt 48 below nav / gap 48 / pb 56. Each card links to its page:
+Recognition `/recognition`, Swag `/swag`, Snacks `/snacks`, Gifting `/gifting`,
+Hosted Experiences `/events`. Recognition's visual is coded UI (Punch `#ff5b77`
+slot, "Kudos redeemed" white chip, three gift options); the others are photos
+`public/wte/hub-*.jpg` (800 wide). Responsive: 1 col → `md:` 3 cols → `lg:` 5.
+
+The old in-hero logo marquee is replaced by the shared home-page `TrustBand`
+(latest logo set; the Figma frame's logo row is the outdated one). The
+"programs" section (`WtePrograms`) is gone — the hero cards replace it. Closing
+is `ClosingCTA` "Every program, one platform" (Talk to sales / Browse catalog).
+
+### /ways-to-engage — lower sections (2026-10-19, Figma 5714:12582 → 13193)
+All sections: `py-[7.5rem]` (problem `6.25rem`), inner `max-w-[90rem]` + `lg:px-[6.25rem]` = 1240 content. Section
+headers: eyebrow 12 caps `#6b6c71` tracking 1.6 · h2 Satoshi 44/1.08 −0.5 (760 wide).
+- **Problem** `WteProblem`: plum `#1b002f` r28 card 430 wide (eyebrow `#d8b4fe`, h2 40, chip: white/7 % fill, white/16 % border, five 68px
+  pastel discs with 4px `#2a1244` ring overlapping −6px, white "ONE PLATFORM" pill) + `#f2f2f2` r28 tray of five white r18 rows
+  (44px pastel disc, Satoshi 19 title, Overpass 15 body). Icons: `public/wte/icons/*.svg`.
+- **Solution** `WteSolution`: "Before" `#f2f2f2` / "On Stadium" `#020912` panels r28, rows h92 with top hairline (`#d9d9d9` / white 16 %),
+  28px marker disc, caps label (`#6b6c71` / `#9cc3fa`), 16px copy.
+- **Journey** `WteOccasions`: six cards, images are Figma renders (`public/wte/journey-*.jpg`, UI overlays baked in); sub-line "Automated for predictable moments, ready for the rest."
+- **Proof** `WteProof`: real portrait `public/wte/proof-kate.jpg`, name "Kate W.". The brand-spectrum divider between problem and solution is gone.
+
+**/ways-to-engage hero width (2026-10-19):** the hero card row now uses the /pricing five-card container — `max-w-content` inside
+`section-x` below `wide` (1300), then `max-w-pricing-cards` (1540) with 40px gutters (`wide:px-10`). Card design unchanged.
+
+## Catalog — Swag decoration methods (2026-10-19)
+- **15 deco-method cards** are part of `SWAG_PRODUCTS` (`app/components/catalog/decoMethods.ts` → `products.ts`, category "Decoration methods", `deco` = method id). They render in the Swag mosaic as product tiles with a bottom black fade + name (Figma C1, node 6031:15507) and, because the hero wall is built from the same lists, in the hero grid too. Images: `public/catalog-page/deco/*.jpg` (12 from the Figma deco frames, 3 swag-photo placeholders: cut-and-sew-sublimation, uv-printing, digital-printing).
+- **`DecoMethodsModal`** (Figma 6059:9608, D2 style): left rail of all methods (thumb + name), right panel with header image, title, description, finish / min. order / lead time, "Best for" chips, and a **sticky bottom CTA bar** ("Book a call", "Browse swag ↗" — 60px pills, px 40) over a white fade. Close, rail items and CTAs all have `cursor-pointer`. Info only — nothing filters the grid. Clicking any deco card opens it at that method.
+
+## Catalog — Snacks dietary / taste cards + modal (2026-10-19)
+
+- Figma: cards `6031:15508` (black #202020 card, white illustration over Satoshi Bold name), modal `6046:8983`.
+- 15 cards (7 dietary + 8 taste) are appended to `SNACKS_PRODUCTS` (`diet` id on `Product`), data in `catalog/dietData.ts`, icons in `public/catalog-page/diet/<id>.svg` (white, cards) and `<id>-dark.svg` (black, modal). They're excluded from the hero wall (no photo).
+- Tile: vertical stack — icon (Figma art size × 0.85) + name `font-display` 1.125rem. Opens `DietModal`.
+- Modal: 65rem card, r2rem, padding 2.5/2.75rem, gap 1.625rem; title Satoshi 2.25rem −0.7px; two 28.25rem columns (gap 3rem) of rows (py 0.875rem, gap 1rem, hairline #e3e4e7); name 1.0625rem, % 0.9375rem semibold #737880, desc 0.875rem #4a4f57; CTAs equal-width 3.75rem pills ("Browse snacks" — Figma typo "SNCAKS" corrected). Close + CTAs `cursor-pointer`.
+
+## Catalog — H3 section headers (2026-10-19)
+
+Figma "H3 — tabs: one block at a time" (swag 6036:8674, snacks 6036:9262, gifts 6075:9607, experiences 6075:9665). Implemented in `catalog/CatalogHeader.tsx`, content in `catalog/headerData.ts`.
+- Panel: black, padding 6.25rem top / 5.625rem bottom (md), gap 1.75rem, min-height `catalog-heading` (45rem). Mobile: pt 6rem, pb 3.5rem, gap 1.25rem.
+- Title Satoshi Light 8rem (md) / 17vw (mobile), tracking −0.03em; stat line Satoshi Bold 2rem −0.6px (mobile 1.25rem, wraps).
+- Tab pill: #202020, p 0.375rem, gap 0.375rem, tabs px 1.375rem py 0.75rem Overpass SemiBold 0.9375rem; active white/black, inactive white/70. Mobile: tighter tabs, pill scrolls sideways.
+- Block: max 68.75rem, r1.75rem, 1px white/18 border, p 2rem (mobile 1rem); chips centered, gap 0.625rem, border white/30, px 1rem py 0.5625rem, count white/55; dietary/taste chips carry the white diet icon.
+- Tabs: Swag (Decoration Methods/Categories/Brands), Gifts (Gift Shop/Price Points/Brands), Snacks (Dietary/Taste/Categories/Brands), Experiences (Collections/Top Events/Proof). Only the first tab of each is designed in Figma; the others are derived from the info cards.

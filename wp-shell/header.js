@@ -32,6 +32,14 @@
     tpl.parentNode.removeChild(tpl);
   }
 
+  /* Images repeated in the markup (mega-menu hover states) are stored once in CFG.imgs */
+  if (CFG.imgs) {
+    Array.prototype.forEach.call(root.querySelectorAll('[data-sdm-img]'), function (img) {
+      var uri = CFG.imgs[img.getAttribute('data-sdm-img')];
+      if (uri) img.setAttribute('src', uri);
+    });
+  }
+
   var q = function (s, r) { return (r || root).querySelector(s); };
   var qa = function (s, r) { return Array.prototype.slice.call((r || root).querySelectorAll(s)); };
 
@@ -100,6 +108,7 @@
     if (panel) {
       panel.setAttribute('aria-hidden', String(!open));
       panel.classList.toggle('pointer-events-none', !open);
+      if (open) panel.removeAttribute('inert'); else panel.setAttribute('inert', ''); // captured closed: must be lifted or nothing inside is hoverable/clickable
       if (panelWrap) panelWrap.classList.toggle('engage-open', open);
     }
     if (scrim) {
@@ -121,6 +130,7 @@
       var on = KEYS[i] === shown;
       p.classList.toggle('menu-pane--on', on);
       p.setAttribute('aria-hidden', String(!on));
+      if (on) p.removeAttribute('inert'); else p.setAttribute('inert', '');
     });
     if (viewport) {
       viewport.classList.toggle('is-animating', anim);
@@ -190,6 +200,7 @@
       if (body) {
         body.classList.toggle('grid-rows-[1fr]', on);
         body.classList.toggle('grid-rows-[0fr]', !on);
+        if (on) body.removeAttribute('inert'); else body.setAttribute('inert', '');
       }
     });
   }

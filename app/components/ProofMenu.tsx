@@ -39,7 +39,7 @@ export const PROOF_COLUMNS: Column[] = [
     label: "Resources",
     items: [
       { title: "Learning Center", desc: "Articles, videos, webinars, and best practices.", href: "https://stadiumhq.notion.site/Stadium-Learning-Resource-Center-2b75247529b5837ebc4181e139d5b6b5" },
-      { title: "Guides & Templates", desc: "RFP templates, ROI calculators, and planning tools.", href: "https://www.bystadium.com/resources" },
+      { title: "Guides & Templates", desc: "RFP templates, ROI calculators, and planning tools.", href: "https://app.bystadium.com/default/shops/templates/trending" },
       { title: "Help Center", desc: "Documentation, FAQs, and product support.", href: "https://help.bystadium.com/hc/en-us" },
     ],
   },

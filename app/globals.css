@@ -1011,3 +1011,17 @@ body {
 [data-offscreen] {
   animation-play-state: paused !important;
 }
+
+/* ===== /events hero graphic — Confetti design system (Figma n9SjmDjzB1PeZAYJ5w43fr → 5892:11404) ===== */
+@theme {
+  --color-cf-ink: #120e14; /* Confetti ink — text + tinted fills are alpha steps of it */
+  --color-cf-gold: #f5bb1d; /* rank 1 */
+  --color-cf-blue: #3e97ff; /* rank 2 */
+  --color-cf-red: #f04561; /* rank 3 */
+  --color-cf-violet: #8e67ff; /* team tile */
+  --color-cf-coral: #fd5565; /* game tile */
+  --color-cf-live: #ff2840; /* live dot */
+
+  --shadow-cf-card: 0 0.25rem 1rem -0.25rem rgb(18 14 20 / 0.16); /* 0 4 16 −4 ink@16% */
+  --shadow-cf-frame: 0 1.5rem 3rem -0.75rem rgb(0 0 0 / 0.35); /* 0 24 48 −12 @35% */
+}
