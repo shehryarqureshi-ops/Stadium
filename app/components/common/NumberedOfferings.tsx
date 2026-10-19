@@ -49,7 +49,7 @@ export default function NumberedOfferings({
               className={`flex flex-col-reverse gap-2.5 overflow-hidden rounded-3xl bg-white p-2.5 sm:flex-row sm:items-stretch ${ACTIVE_SHADOW}`}
             >
               <div className="flex min-w-0 flex-1 flex-col justify-between gap-4">
-                <span className="p-4 font-sans text-body-md leading-none tracking-[0.025rem] text-[#828282]">
+                <span className="p-4 font-sans text-body-md leading-none tracking-[0.025rem] text-[#757575]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="flex flex-col gap-4 rounded-3xl bg-pricing-tray p-6">

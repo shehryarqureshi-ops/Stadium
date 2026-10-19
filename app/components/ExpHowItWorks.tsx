@@ -40,7 +40,7 @@ export default function ExpHowItWorks() {
   return (
     <StepCards
       caption="How it works"
-      captionColor="#FF5B77"
+      captionColor="#CB495F"
       title="Booking takes minutes, not meetings"
       description="Faster than the back-and-forth of planning one yourself."
       items={items}

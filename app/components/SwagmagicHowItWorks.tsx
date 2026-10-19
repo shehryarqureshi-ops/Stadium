@@ -34,7 +34,7 @@ export default function SwagmagicHowItWorks() {
   return (
     <StepCards
       caption="How it works"
-      captionColor="#10995A"
+      captionColor="#0e8850"
       title="From design to delivery, handled"
       description="Three steps from idea to someone’s doorstep."
       items={items}

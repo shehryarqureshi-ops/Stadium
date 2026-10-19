@@ -50,7 +50,7 @@ export default function SwagPage() {
         <SwagmagicExplore />
         <SwagmagicClosing />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

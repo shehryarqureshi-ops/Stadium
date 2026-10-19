@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import ScaleMapParticles from "./ScaleMapParticles";
 
 /* "Scale to wherever your people are" — synced to Figma 2:33685. Interactive:
    a centered 55px header, a 4-stat row where hovering/selecting a stat makes it
@@ -73,17 +72,17 @@ export default function ScaleMap() {
                 onFocus={() => setActive(i)}
                 onClick={() => setActive(i)}
                 aria-pressed={i === active}
-                className="flex cursor-pointer flex-col items-center gap-4 px-5 pb-8 pt-8 text-center outline-none"
+                className="flex cursor-pointer flex-col items-center gap-4 px-5 pb-8 pt-8 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
               >
                 <div className="flex flex-col items-center gap-1">
                   <p
-                    className={`font-display text-[1.75rem] font-bold leading-none tracking-[-0.03em] transition-colors duration-200 lg:text-[2.5rem] ${i === active ? "text-[#181818]" : "text-[#9499ad]"
+                    className={`font-display text-[1.75rem] font-bold leading-none tracking-[-0.03em] transition-colors duration-200 lg:text-[2.5rem] ${i === active ? "text-[#181818]" : "text-[#72757f]"
                       }`}
                   >
                     {s.value}
                   </p>
                   <p
-                    className={`font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 hidden ${i === active ? "text-[#181818]" : "text-[#9499ad]"
+                    className={`font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 hidden ${i === active ? "text-[#181818]" : "text-[#72757f]"
                       }`}
                   >
                     {s.label}
@@ -146,7 +145,6 @@ export default function ScaleMap() {
             </defs>
           </svg>
 
-          {/* <ScaleMapParticles activeTab={active} /> */}
         </div>
       </div>
     </section>

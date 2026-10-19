@@ -106,7 +106,7 @@ export default function SwagmagicOfferings() {
   return (
     <PillTabs
       caption="Swag Options"
-      captionColor="#10995a"
+      captionColor="#0e8850"
       title="Every fulfillment model, one setup"
       description="Whether you print swag on demand, buy in bulk, or pull from stock, Stadium does all three. Most vendors only do one."
       autoAdvance={false}

@@ -34,15 +34,7 @@ export default function WaysToEngagePage() {
         <WteProof />
       </main>
 
-      <PageClose
-        cta={{
-          eyebrow: "Get started",
-          heading: "One platform. Every employee program.",
-          body: "Recognition, swag, gifting, snacks, and hosted experiences — all in one place.",
-          primaryCta: "Talk to sales",
-          secondaryCta: "Browse the catalog",
-        }}
-      />
+      <PageClose />
     </>
   );
 }

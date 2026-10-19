@@ -69,7 +69,7 @@ export default function NumberedCardGrid({
                 i === highlight ? ACTIVE_SHADOW : "shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
               }`}
             >
-              <span className="font-sans text-body-md leading-none tracking-[0.025rem] text-[#828282]">
+              <span className="font-sans text-body-md leading-none tracking-[0.025rem] text-[#757575]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="flex flex-col gap-3.5">

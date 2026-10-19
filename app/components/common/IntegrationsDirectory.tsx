@@ -90,7 +90,7 @@ export default function IntegrationsDirectory({
             htmlFor={searchId}
             className="flex w-full items-center gap-1.5 rounded-lg border border-[#e2e2de] bg-white p-3.5 focus-within:border-pricing-ink md:w-[27.6875rem]"
           >
-            <Search aria-hidden className="size-4 shrink-0 text-[#9999a3]" strokeWidth={2} />
+            <Search aria-hidden className="size-4 shrink-0 text-[#76767e]" strokeWidth={2} />
             <span className="sr-only">Search integrations</span>
             <input
               id={searchId}
@@ -98,7 +98,7 @@ export default function IntegrationsDirectory({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search"
-              className="w-full bg-transparent font-sans text-small text-pricing-ink placeholder:text-[#9999a3] focus:outline-none!"
+              className="w-full bg-transparent font-sans text-small text-pricing-ink placeholder:text-[#76767e] focus:outline-none!"
             />
           </label>
         </div>

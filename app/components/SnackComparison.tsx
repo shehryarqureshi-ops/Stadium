@@ -103,7 +103,7 @@ export default function SnackComparison() {
         <div className="flex max-w-[46rem] flex-col items-center gap-5 text-center">
           <p
             data-animation="reveal"
-            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
+            className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#1f71e7]"
           >
             Why teams choose us
           </p>
@@ -123,7 +123,7 @@ export default function SnackComparison() {
 
         <div
           data-animation="reveal"
-          className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          tabIndex={0} role="region" aria-label="Comparison table (scrollable)" className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div className="grid min-w-[52rem] grid-cols-[2.09fr_1fr_1fr_1fr_1fr] gap-1">
             <div />

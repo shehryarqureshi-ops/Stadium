@@ -56,10 +56,10 @@ export default function FaqAccordion({ caption, title, description, items }: Faq
                     className="flex w-full items-center justify-between gap-4 px-5 pb-[1.875rem] pt-7 text-left md:px-7"
                   >
                     <span className="flex items-start gap-3 font-[family-name:var(--font-satoshi-medium)] text-[1.125rem] leading-[1.2] md:text-[1.25rem] md:leading-[1.04]">
-                      <span className={isOpen ? "text-[#8c92a6]" : "text-[#c5c8d3]"}>
+                      <span className={isOpen ? "text-[#72757f]" : "text-[#72757f]"}>
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className={`transition-colors ${isOpen ? "text-pricing-ink" : "text-[#a9adbc]"}`}>
+                      <span className={`transition-colors ${isOpen ? "text-pricing-ink" : "text-[#72757f]"}`}>
                         {item.question}
                       </span>
                     </span>
@@ -80,7 +80,7 @@ export default function FaqAccordion({ caption, title, description, items }: Faq
                   hidden={!isOpen}
                   className="-mt-0.5 px-5 pb-[1.875rem] md:px-7"
                 >
-                  <p className="font-sans text-small tracking-[0.01rem] text-[#828282]">{item.answer}</p>
+                  <p className="font-sans text-small tracking-[0.01rem] text-[#757575]">{item.answer}</p>
                 </div>
               </li>
             );

@@ -7,7 +7,6 @@ import SiteHeader from "../components/SiteHeader";
 import SnackCatalog from "../components/SnackCatalog";
 import SnackClosing from "../components/SnackClosing";
 import SnackComparison from "../components/SnackComparison";
-import SnackHero from "../components/SnackHero";
 import SnackHowItWorks from "../components/SnackHowItWorks";
 import SnackPlatform from "../components/SnackPlatform";
 import SnackProblem from "../components/SnackProblem";
@@ -56,7 +55,7 @@ export default function SnacksPage() {
         <SnackStats />
         <SnackClosing />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

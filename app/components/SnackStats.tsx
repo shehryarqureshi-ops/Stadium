@@ -10,7 +10,7 @@ export default function SnackStats() {
         <StatsGrid
           flush
           caption="The proof"
-          captionColor="#2178f5"
+          captionColor="#1f71e7"
           title={<>Built to send snacks at scale</>}
           description="Real numbers from teams sending snacks on Snackmagic."
           statLeft={{

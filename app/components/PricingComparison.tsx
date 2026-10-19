@@ -120,7 +120,7 @@ export default function PricingComparison() {
 
           <div
             data-animation="reveal"
-            className="w-full overflow-x-auto overscroll-x-contain [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+            tabIndex={0} role="region" aria-label="Plan comparison table (scrollable)" className="w-full overflow-x-auto overscroll-x-contain [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
           >
             <div
               role="table"

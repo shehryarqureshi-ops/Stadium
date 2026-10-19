@@ -130,7 +130,7 @@ export default function BookACallPage() {
           backgroundColor="transparent"
         />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

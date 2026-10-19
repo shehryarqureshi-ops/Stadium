@@ -1,6 +1,5 @@
 import TwoFeaturedCards from "@/app/components/common/TwoFeaturedCards";
 
-import offerOne from "@/public/swag/admin-view.png";
 
 function Check() {
   return (
@@ -54,7 +53,7 @@ export default function SwagmagicSolution() {
   return (
     <TwoFeaturedCards
       caption="The solution"
-      captionColor="#10995a"
+      captionColor="#0e8850"
       title="One platform handles your vendors, inventory, and shipping"
       description="Choose guided ordering with our team or self-serve through Swagmagic. Either way, you get the same catalog and fulfillment infrastructure."
       cards={[

@@ -79,7 +79,7 @@ export default function NumberedMediaList({
                 )}
               </div>
               <div className="flex min-w-0 flex-1 flex-col gap-4 px-6 py-6 sm:px-8 [&_a]:underline [&_a]:underline-offset-2">
-                <span className="font-sans text-body-md leading-none tracking-[0.025rem] text-[#828282]">
+                <span className="font-sans text-body-md leading-none tracking-[0.025rem] text-[#757575]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="font-display text-[1.5625rem] font-bold leading-[1.04] tracking-[-0.01875rem] text-pricing-ink">

@@ -9,15 +9,15 @@ import { useState } from "react";
    Bloomberg was 1.78× the median (21→16); Google/Accenture were ~0.8×
    (24→26); Amazon ~1.16× (24→23). Widths follow each SVG's aspect. */
 const LOGOS = [
-  { src: "/logos/fidelity.svg", alt: "Spotify", width: 81, height: 24 },
-  { src: "/logos/solved.svg", alt: "Amazon", width: 77, height: 20 },
-  { src: "/logos/western-union.svg", alt: "Pinterest", width: 87, height: 25 },
-  { src: "/logos/figma.svg", alt: "Accenture", width: 91, height: 24 },
-  { src: "/logos/microsoft.svg", alt: "Bloomberg", width: 90, height: 24 },
-  { src: "/logos/united-healthcare.svg", alt: "Salesforce", width: 37, height: 27 },
-  { src: "/logos/amazon.svg", alt: "Netflix", width: 75, height: 30 },
-  { src: "/logos/premier.svg", alt: "Google", width: 80, height: 25 },
-  { src: "/logos/imagine.svg", alt: "Imagine", width: 80, height: 30 },
+  { src: "/logos/fidelity.svg", alt: "Fidelity Investments", width: 81, height: 24 },
+  { src: "/logos/solved.svg", alt: "isolved", width: 77, height: 20 },
+  { src: "/logos/western-union.svg", alt: "Western Union", width: 87, height: 25 },
+  { src: "/logos/figma.svg", alt: "Figma", width: 91, height: 24 },
+  { src: "/logos/microsoft.svg", alt: "Microsoft", width: 90, height: 24 },
+  { src: "/logos/united-healthcare.svg", alt: "UnitedHealthcare", width: 37, height: 27 },
+  { src: "/logos/amazon.svg", alt: "Amazon", width: 75, height: 30 },
+  { src: "/logos/premier.svg", alt: "Premier", width: 80, height: 25 },
+  { src: "/logos/imagine.svg", alt: "Imagine Pediatrics", width: 80, height: 30 },
 ];
 
 const COPIES = 3;
@@ -62,7 +62,7 @@ export default function TrustBand() {
       {/* h2 (was a p, 2026-06-12): the band is a real section of social
           proof — the eyebrow IS its heading, styled unchanged */}
       <h2
-        className="px-section-x-sm text-center font-sans text-eyebrow-sm uppercase tracking-[0.0625rem] text-[#919295] md:whitespace-nowrap md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6"
+        className="px-section-x-sm text-center font-sans text-eyebrow-sm uppercase tracking-[0.0625rem] text-[#757679] md:whitespace-nowrap md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6"
         data-animation="reveal"
       >
         10,000+ companies count on Stadium

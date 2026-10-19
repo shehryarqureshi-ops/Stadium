@@ -60,7 +60,7 @@ export default function SwagmagicCatalog() {
   return (
     <HorizontalCarousel
       caption="The Catalog"
-      captionColor="#10995a"
+      captionColor="#0e8850"
       title="25,000+ products. Hundreds of brands. One catalog."
       description="Not your generic promo catalog. Browse premium brands across every category, all ready to customize with your logo."
       variant="catalog"

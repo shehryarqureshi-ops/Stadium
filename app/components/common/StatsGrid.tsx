@@ -45,7 +45,7 @@ const NUM =
 
 export default function StatsGrid({
   caption = "",
-  captionColor = "#2178f5",
+  captionColor = "#1f71e7",
   title,
   description,
   statLeft,
@@ -168,8 +168,10 @@ export default function StatsGrid({
             {statCenter.link && (
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href={statCenter.link}
-                className="absolute inset-0"
+                aria-label={`${statCenter.caption ? `${statCenter.caption}: ` : ""}${statCenter.title} — read the story from ${statCenter.authorName} (opens in a new tab)`}
+                className="absolute inset-0 rounded-[inherit]"
               />
             )}
           </div>

@@ -48,7 +48,7 @@ export default function SwagmagicPlatform() {
   return (
     <VariableCardGrid
       caption="The platform"
-      captionColor="#10995a"
+      captionColor="#0e8850"
       title="The stack behind every send"
       description="Everything you need to run swag at scale, from storefronts and inventory to automation and reporting."
       gridColumns={3}

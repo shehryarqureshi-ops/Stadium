@@ -48,7 +48,7 @@ export default function ChecklistCards({ caption, title, description, cards }: C
                 </h3>
               </div>
               <div className="flex flex-col gap-8 p-6">
-                <p className="font-sans text-body-md text-[#828282]">{c.description}</p>
+                <p className="font-sans text-body-md text-[#757575]">{c.description}</p>
                 {c.bullets?.length ? (
                 <ul className="flex flex-col gap-3 pb-2">
                   {c.bullets.map((b) => (

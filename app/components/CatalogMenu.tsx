@@ -214,7 +214,7 @@ function ArrowRight({ className = "" }: { className?: string }) {
    a 16×16 round flag. Lives at public/flag-us.svg. */
 function FlagUS({ className = "" }: { className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src="/flag-us.svg" alt="" className={className} />;
+  return <img loading="lazy" decoding="async" src="/flag-us.svg" alt="" className={className} />;
 }
 
 function LinkRow({ label, href, active = false }: { label: string; href: string; active?: boolean }) {
@@ -279,7 +279,7 @@ export default function CatalogMenu() {
         </button>
         {brand ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={brand.src} alt={tab.name} height={22} className="h-[1.375rem] w-auto" />
+          <img loading="lazy" decoding="async" src={brand.src} alt={tab.name} height={22} className="h-[1.375rem] w-auto" />
         ) : (
           <span className="font-display text-[1.25rem] font-bold text-ink">{tab.name}</span>
         )}

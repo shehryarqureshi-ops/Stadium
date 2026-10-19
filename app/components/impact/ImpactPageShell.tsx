@@ -25,7 +25,7 @@ export default function ImpactPageShell({
         <div className="grid gap-16 py-16 md:gap-24 md:py-24 lg:gap-40 lg:py-40">{children}</div>
         {closing}
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

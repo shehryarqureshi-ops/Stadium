@@ -1,4 +1,4 @@
-import Globe from "./Globe";
+import ResponsiveGlobe from "./ResponsiveGlobe";
 import Starfield from "./Starfield";
 
 function Copy() {
@@ -52,7 +52,7 @@ export default function RedactedPoster() {
         {/* interactive cobe globe — Figma placement (3D Globe 2:33352:
             abs x508 / y-351 / 1250², offset off the top-right) */}
         <div className="absolute left-[35.3%] top-[-25.1%] aspect-square w-[86.8%]">
-          <Globe />
+          <ResponsiveGlobe slot="desktop" />
         </div>
         {/* text block at frame coords (x120 / y~305 / w573) */}
         <div className="absolute left-[8.33%] top-[30.5%] flex w-[41%] flex-col gap-6">
@@ -66,7 +66,7 @@ export default function RedactedPoster() {
           <Copy />
         </div>
         <div className="relative aspect-square w-full max-w-[26rem] self-center">
-          <Globe />
+          <ResponsiveGlobe slot="stacked" />
         </div>
       </div>
     </section>

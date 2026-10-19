@@ -80,7 +80,7 @@ export default function PricingPage() {
           backgroundColor="transparent"
         />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

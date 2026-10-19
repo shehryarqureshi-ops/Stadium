@@ -5,7 +5,6 @@ import { seoMetadata } from "@/app/lib/seo/metadata";
 import ExpCaseStudy from "../components/ExpCaseStudy";
 import ExpCategories from "../components/ExpCategories";
 import ExpClosing from "../components/ExpClosing";
-import ExpHero from "../components/ExpHero";
 import ExpHowItWorks from "../components/ExpHowItWorks";
 import ExpPlatform from "../components/ExpPlatform";
 import ExpProblem from "../components/ExpProblem";
@@ -37,7 +36,7 @@ export default function EventsPage() {
         </div>
         <ExpClosing />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

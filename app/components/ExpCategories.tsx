@@ -339,7 +339,7 @@ export default function ExpCategories() {
   return (
     <StepCardsCarousel
       caption="Browse by category"
-      captionColor="#FF5B77"
+      captionColor="#CB495F"
       title="Pick what fits your team, not a generic list"
       description="Some teams want to compete. Others want to create, learn, or unwind."
       steps={steps}

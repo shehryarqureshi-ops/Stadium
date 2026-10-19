@@ -100,7 +100,7 @@ export default function HorizontalCarousel(props: HorizontalCarouselProps) {
           <ul
             data-animation="reveal"
             id={trackId}
-            className="carousel-bleed flex gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            tabIndex={0} aria-label="Scrollable carousel" className="carousel-bleed flex gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {props.variant === "collection"
               ? props.items.map((item) => (

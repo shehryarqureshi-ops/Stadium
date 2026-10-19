@@ -146,7 +146,7 @@ export default function GiftingComparison() {
         {/* table — horizontal scroll below lg, 360 + 4×flex at lg */}
         <div
           data-animation="reveal"
-          className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          tabIndex={0} role="region" aria-label="Comparison table (scrollable)" className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div
             role="table"

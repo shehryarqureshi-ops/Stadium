@@ -197,23 +197,6 @@ export default function PillTabs({
           </ul>
         </div>
 
-        {/* Preload all images */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
-        >
-          {items.filter((preloadItem) => preloadItem.image).map((preloadItem) => (
-            <Image
-              key={`preload-${preloadItem.name}`}
-              src={preloadItem.image!}
-              alt=""
-              width={1}
-              height={1}
-              priority
-            />
-          ))}
-        </div>
-
         {/* Content card */}
         <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
           {/* Active image */}
@@ -246,7 +229,7 @@ export default function PillTabs({
                 {item.title}
               </h3>
 
-              <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#828282]">
+              <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#757575]">
                 {item.description}
               </p>
             </div>

@@ -137,7 +137,7 @@ export function A({ href = "", ...rest }: ComponentPropsWithoutRef<"a">) {
       {...rest}
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="break-words font-semibold text-accent-water underline underline-offset-4 transition-colors hover:text-grey-800"
+      className="break-words font-semibold text-accent-water-text underline underline-offset-4 transition-colors hover:text-grey-800"
     />
   );
 }
@@ -152,7 +152,7 @@ export function HR() {
 
 export function Table({ ...rest }: ComponentPropsWithoutRef<"table">) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-grey-200">
+    <div tabIndex={0} role="region" aria-label="Table (scrollable)" className="overflow-x-auto rounded-2xl border border-grey-200">
       <table {...rest} className="w-full min-w-[32rem] border-collapse text-left font-sans text-body-sm text-grey-700" />
     </div>
   );
@@ -177,7 +177,7 @@ export function Code({ ...rest }: ComponentPropsWithoutRef<"code">) {
    below sm instead of squashing the entries. */
 export function ColumnTable({ columns }: { columns: { title: string; items: string[] }[] }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-grey-200">
+    <div tabIndex={0} role="region" aria-label="Table (scrollable)" className="overflow-x-auto rounded-2xl border border-grey-200">
       <table className="w-full min-w-[34rem] border-collapse text-left font-sans text-body-sm text-grey-700">
         <thead>
           <tr>

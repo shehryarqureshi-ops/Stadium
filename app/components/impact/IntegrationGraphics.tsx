@@ -79,7 +79,7 @@ export function TriggerSendsGraphic() {
         </div>
         <div className="flex items-center gap-1.5">
           <span className="font-sans text-sm font-bold leading-[1.125rem] text-[#1b7a36]">142</span>
-          <span className="font-sans text-[0.65625rem] leading-[0.875rem] text-[#919295]">
+          <span className="font-sans text-[0.65625rem] leading-[0.875rem] text-[#757679]">
             sent automatically
           </span>
         </div>
@@ -118,7 +118,7 @@ export function ConnectedToolsGraphic() {
             <Svg name="dot" className="size-[0.4375rem]" />
           </div>
         ))}
-        <p className="font-sans text-[0.65625rem] leading-[0.875rem] text-[#919295]">
+        <p className="font-sans text-[0.65625rem] leading-[0.875rem] text-[#757679]">
           Sends sync back automatically
         </p>
       </div>
@@ -146,7 +146,7 @@ export function RecipientActivityGraphic() {
           />
           <div className="flex flex-col gap-1">
             <p className="font-sans text-xs font-bold leading-4 text-[#181818]">Dana Brooks</p>
-            <p className="font-sans text-[0.625rem] leading-[0.8125rem] text-[#919295]">Q4 Launch campaign</p>
+            <p className="font-sans text-[0.625rem] leading-[0.8125rem] text-[#757679]">Q4 Launch campaign</p>
           </div>
         </div>
         <div className="h-px bg-[#eff0f2]" />
@@ -169,7 +169,7 @@ export function RecipientActivityGraphic() {
                   {event.label}
                 </span>
               </div>
-              <span className="font-sans text-[0.625rem] leading-[0.8125rem] text-[#919295]">{event.date}</span>
+              <span className="font-sans text-[0.625rem] leading-[0.8125rem] text-[#757679]">{event.date}</span>
             </div>
           ))}
         </div>

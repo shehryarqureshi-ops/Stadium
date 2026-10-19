@@ -1,4 +1,3 @@
-import gradient from "@/public/swag2/sw2-closing-gradient.jpg";
 
 import ClosingCTA from "@/app/components/common/ClosingCTA";
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePrefersReducedMotion } from "../lib/motion";
 
 /* Twinkling starfield behind the globe beat — ported from the cobe.html
    prototype. Sizes to its parent, pauses when off-screen, and never captures
@@ -22,6 +23,7 @@ const MAX_SPEED = 0.4;
 export default function Starfield({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
+  const reduced = usePrefersReducedMotion();
   useEffect(() => {
     const canvas = ref.current;
     const parent = canvas?.parentElement;
@@ -31,7 +33,7 @@ export default function Starfield({ className = "" }: { className?: string }) {
     let w = 0;
     let h = 0;
     let stars: Star[] = [];
-    let visible = true;
+    let visible = false;
 
     const makeStar = (): Star => ({
       x: Math.random() * w,
@@ -50,26 +52,10 @@ export default function Starfield({ className = "" }: { className?: string }) {
     };
     resize();
 
-    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), {
-      threshold: 0,
-    });
-    io.observe(canvas);
-
-    // pause during scroll (keeps the dark section scrolling smoothly)
-    let scrolling = false;
-    let scrollTimer: ReturnType<typeof setTimeout>;
-    const onScroll = () => {
-      scrolling = true;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        scrolling = false;
-      }, 120);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
+    /* Runs only while on-screen and the tab is visible; the rAF is cancelled
+       otherwise (not just skipped). */
     let raf = 0;
     const animate = () => {
-      // if (visible && !scrolling) {
       ctx.clearRect(0, 0, w, h);
       for (const s of stars) {
         s.y += s.speed;
@@ -90,20 +76,36 @@ export default function Starfield({ className = "" }: { className?: string }) {
         ctx.fillStyle = `rgba(255, 255, 255, ${s.a})`;
         ctx.fill();
       }
-      // }
-      raf = requestAnimationFrame(animate);
+      if (!reduced) raf = requestAnimationFrame(animate);
     };
-    animate();
+    const sync = () => {
+      const run = visible && !document.hidden && !reduced;
+      if (run && !raf) raf = requestAnimationFrame(animate);
+      else if (!run && raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+    const io = new IntersectionObserver(
+      ([e]) => {
+        visible = e.isIntersecting;
+        sync();
+      },
+      { threshold: 0 },
+    );
+    io.observe(canvas);
+    document.addEventListener("visibilitychange", sync);
+    /* reduced motion / paused: one static frame, no loop */
+    if (reduced) animate();
 
     window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(raf);
-      clearTimeout(scrollTimer);
       io.disconnect();
+      document.removeEventListener("visibilitychange", sync);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <canvas

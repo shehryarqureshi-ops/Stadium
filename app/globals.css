@@ -141,15 +141,17 @@
   --color-surface-subtle: #f8f8f8; /* surface/subtle */
   --color-accent-lilac: #8d12e7; /* Stadium/Accents/Lilac */
   --color-accent-water: #0b7afc; /* Stadium/Accents/Water */
+  --color-accent-water-text: #0969da; /* Water as TEXT on white or #f8f8f8 — 5.0:1 / 4.7:1 (A11Y-02); fills keep accent-water */
   --color-accent-turmeric: #ffb800; /* Stadium/Accents/Turmeric */
   --color-accent-lime: #00c036; /* Stadium/Accents/Lime */
   --color-accent-punch: #ff5b77; /* Stadium/Accents/Punch */
+  --color-accent-punch-text: #cb495f; /* Punch as TEXT on white — 4.5:1 (A11Y-02); fills keep accent-punch */
 
   /* ===== Swag / SwagMagic accent (Figma Stadium-Enterprise /swag 2:24733) —
      the swag vertical's green brand palette, used across the whole page. ===== */
   --color-swag-green: #03ba4f; /* primary CTA + brand green (hero CTA 344:11927) */
   --color-swag-mint: #d7fee7; /* eyebrow / light accent on dark-green hero */
-  --color-swag-green-deep: #10995a; /* eyebrow / accent green on white sections */
+  --color-swag-green-deep: #0e8850; /* eyebrow / accent green on white sections */
   --color-swag-green-alt: #218554; /* secondary eyebrow/CTA green (catalog, pricing, committee, paperchase) */
   /* Hero background + closing-CTA gradient + workflow glow, all as tokens so a
      per-page scope (recognition/snacks/gifting) can re-tint the whole vertical
@@ -168,14 +170,14 @@
   --color-grey-200: #eff0f2; /* Universal/Greyscale/200-Selected Surface-Divider Light */
   --color-grey-300: #cdced0; /* Universal/Greyscale/300 — borders/dividers */
   --color-grey-400: #9fa0a2; /* Universal/Greyscale/400-Lightest Text */
-  --color-grey-500: #6f7072; /* Universal/Greyscale/500 — muted eyebrow on light */
+  --color-grey-500: #6d6e70; /* Universal/Greyscale/500 — muted eyebrow on light */
   --color-grey-600: #4f5052; /* Universal/Greyscale/600 */
   --color-grey-700: #2c2d2e; /* Universal/Greyscale/700-Main Text */
   --color-grey-800: #181818; /* Universal/Greyscale/800-Buttons+Selected Tabs Nav */
 
   /* ===== /impact hero · Open Spatial Canvas (Figma n9SjmDjzB1PeZAYJ5w43fr 5152:23461) ===== */
   --color-impact-hero-night: #020912; /* hero backdrop behind the raster (matches TeamHero) */
-  --color-canvas-muted: #919295; /* toolbar "Programs", "Shared budget" label */
+  --color-canvas-muted: #757679; /* toolbar "Programs", "Shared budget" label */
   --color-canvas-pink: #fdceda; /* Marketing label */
   --color-canvas-lilac: #e8d0fa; /* People label · Grace cursor pill */
   --color-canvas-blue: #cee4fe; /* Sales label · Alex selection pill */
@@ -217,7 +219,7 @@
   /* ===== Form fields (BookACallForm, Figma 3998:4924) ===== */
   --color-field-border: #e2e2de; /* resting hairline */
   --color-field-border-hover: #c9c9c4; /* hover hairline */
-  --color-field-placeholder: #9999a3; /* placeholder + empty-select text */
+  --color-field-placeholder: #76767e; /* placeholder + empty-select text */
   --color-field-error: #d6293e; /* not in Figma — validation red, 4.9:1 on white */
   --color-field-error-tint: #fdf2f3; /* error field wash */
   --color-field-warning-bg: #fff8e6; /* personal-email notice (turmeric tint) */
@@ -511,36 +513,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-overpass), Arial, Helvetica, sans-serif;
-}
-
-/* Scroll-reveal (Apple-style): sections fade + rise into place the first time
-   they enter the viewport. Driven by <Reveal> (an IntersectionObserver adds
-   .reveal-in). Hidden by default so the entrance always plays; shown
-   immediately under reduced-motion and with no JS. */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(2rem);
-  transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-[data-reveal].reveal-in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-@media (scripting: none) {
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 /* BookACallForm select menus: quick fade + drop on open (not in Figma —
@@ -874,15 +846,6 @@ body {
   }
 }
 
-.bg-particles {
-  background: radial-gradient(
-    circle,
-    hsla(228, 100, 95, 1) 0%,
-    hsla(228, 100, 97, 1) 50%,
-    hsla(228, 100, 99, 1) 90%
-  );
-}
-
 @media (max-width: 768px) {
   .girlBg {
     object-position: right -200px top 0;
@@ -901,7 +864,7 @@ body {
 @theme {
   --color-catalog-tile: #202020; /* brand / country / coverage card surface */
   --color-catalog-ink: #16171b; /* tab pill active fill + dark CTA pill */
-  --color-catalog-cta: #2178f5; /* hero "Book a call" fill */
+  --color-catalog-cta: #1f71e7; /* hero "Book a call" fill */
   --color-catalog-eyebrow: #d8e7fd; /* hero eyebrow */
   --color-catalog-lead: #fbfeff; /* hero description */
   --color-catalog-meta: #cccccc; /* hero rating line */

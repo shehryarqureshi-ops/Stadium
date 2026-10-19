@@ -171,7 +171,7 @@ export default function SnackCatalog() {
             <div className="flex flex-col gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#2178f5]"
+                className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#1f71e7]"
               >
                 The catalog
               </p>
@@ -233,7 +233,7 @@ export default function SnackCatalog() {
         <div
           ref={track}
           data-animation="reveal"
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          tabIndex={0} role="region" aria-label="Snack catalog carousel" className="flex snap-x snap-mandatory gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {visible.map((c) => (
             <article

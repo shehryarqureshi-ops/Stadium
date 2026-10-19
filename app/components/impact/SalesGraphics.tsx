@@ -87,7 +87,7 @@ export function EnterAddressGraphic() {
       <p className="font-sans text-[0.78125rem] font-bold leading-4 text-[#181818]">Where should we ship it?</p>
       {FIELDS.map((field) => (
         <div key={field.label} className="flex flex-col gap-1">
-          <span className="font-sans text-[0.59375rem] font-semibold uppercase leading-3 tracking-[0.0375rem] text-[#919295]">
+          <span className="font-sans text-[0.59375rem] font-semibold uppercase leading-3 tracking-[0.0375rem] text-[#757679]">
             {field.label}
           </span>
           <div
@@ -120,7 +120,7 @@ export function FollowUpGraphic() {
         <p className="font-sans text-[0.71875rem] font-semibold leading-[0.9375rem] text-[#2c2d2e]">
           Dana Brooks got her gift
         </p>
-        <p className="font-sans text-[0.625rem] leading-[0.8125rem] text-[#919295]">Today · 10:42 AM</p>
+        <p className="font-sans text-[0.625rem] leading-[0.8125rem] text-[#757679]">Today · 10:42 AM</p>
       </div>
       <span className="w-fit rounded-full bg-[#ddf5e3] px-2.5 py-1 font-sans text-[0.625rem] font-bold leading-[0.8125rem] text-[#1b7a36]">
         Good time to follow up

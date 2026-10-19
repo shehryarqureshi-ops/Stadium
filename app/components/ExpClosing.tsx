@@ -9,7 +9,7 @@ import Resources from "./common/Resources";
 const ITEMS = [
   {
     caption: "GUIDE",
-    captionColor: "#FF5B77",
+    captionColor: "#CB495F",
     title: "Self-Guided Toolkits",
     description:
       "Access practical resources and insights to help you build a stronger workplace culture.",
@@ -18,7 +18,7 @@ const ITEMS = [
   },
   {
     caption: "Playbook",
-    captionColor: "#FF5B77",
+    captionColor: "#CB495F",
     title: "Employee Engagement Calendars",
     description:
       "Plan ahead with key dates and ideas to engage employees throughout the year.",
@@ -27,7 +27,7 @@ const ITEMS = [
   },
   {
     caption: "Checklist",
-    captionColor: "#FF5B77",
+    captionColor: "#CB495F",
     title: "Culture Knowledge Hub",
     description:
       "Get step-by-step guidance to plan and run employee programs on your own.",
@@ -43,7 +43,7 @@ export default function ExpClosing() {
         <Resources
           flush
           caption="Steal our ideas"
-          captionColor="#FF5B77"
+          captionColor="#CB495F"
           title="Resources for better team events"
           description=""
           items={ITEMS}

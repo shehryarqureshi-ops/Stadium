@@ -141,7 +141,7 @@ function QuoteNote({ quote }: { quote: Quote }) {
         </span>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <img loading="lazy" decoding="async"
           src="/oneplatform/slack.svg"
           alt=""
           width={18}
@@ -231,7 +231,7 @@ export default function EveryWay() {
                 className={`cursor-pointer rounded-sm outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#0b7afc]/40 ${
                   i === active
                     ? "text-[#1b1b1b]"
-                    : "text-[#c9c9c9] hover:text-[#9a9a9a]"
+                    : "text-[#8e8e8e] hover:text-[#6f6f6f]"
                 }`}
               >
                 {seg.label}

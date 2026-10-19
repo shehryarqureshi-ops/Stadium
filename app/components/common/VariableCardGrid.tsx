@@ -57,7 +57,7 @@ const PANEL_SHADOW =
 
 export default function VariableCardGrid({
   caption,
-  captionColor = "#10995a",
+  captionColor = "#0e8850",
   title,
   description,
   gridColumns = 3,

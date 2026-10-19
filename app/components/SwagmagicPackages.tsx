@@ -15,7 +15,7 @@ const ITEMS = [
     description: "+ Automation, integrations, and recognition.",
     isFeatured: true,
     featuredLabel: "Popular",
-    featuredColor: "#10995a",
+    featuredColor: "#0e8850",
   },
   {
     title: "Enterprise Pass",
@@ -28,7 +28,7 @@ export default function SwagmagicPackages() {
   return (
     <Packages
       caption="STADIUM PASSES"
-      captionColor="#10995a"
+      captionColor="#0e8850"
       title={"Start with swag and expand when ready"}
       description="Add new capabilities over time without changing platforms."
       showCta

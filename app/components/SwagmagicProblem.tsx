@@ -37,7 +37,7 @@ export default function SwagmagicProblem() {
   return (
     <ProblemSection
       caption="The problem"
-      captionColor="#10995a"
+      captionColor="#0e8850"
       title="Swag becomes its own supply chain"
       description="Swag starts as one task: choosing what to send. Before long, you’re managing vendors, boxes, and spreadsheets full of addresses."
       items={items}

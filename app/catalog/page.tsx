@@ -41,7 +41,7 @@ export default function CatalogPage() {
           backgroundColor="#000000"
         />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

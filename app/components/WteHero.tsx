@@ -135,7 +135,7 @@ export default function WteHero() {
           never scrolls sideways. */}
       <div
         data-reveal-stagger="80"
-        className="mx-auto mt-10 flex w-full max-w-[90rem] snap-x snap-mandatory gap-4 overflow-x-auto px-section-x-sm md:px-section-x-md lg:mt-[3.75rem] lg:px-[1.625rem] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        tabIndex={0} role="region" aria-label="Programs carousel" className="mx-auto mt-10 flex w-full max-w-[90rem] snap-x snap-mandatory gap-4 overflow-x-auto px-section-x-sm md:px-section-x-md lg:mt-[3.75rem] lg:px-[1.625rem] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {CARDS.map((c, i) => (
           <article

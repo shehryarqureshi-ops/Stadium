@@ -1,9 +1,7 @@
 import Image from "next/image";
-import heroBg from "@/public/rec-hero-bg.png";
 import heroPhoto from "@/public/recog2/rc-hero-photo.png";
 import toastAvatar from "@/public/recog2/rc-hero-avatar.png";
 import { HeroLogoWall } from "./common/HeroLogoWall";
-import RecognitionTween from "./special/RecognitionTween";
 
 export default function RecogHero() {
   return (
@@ -11,26 +9,13 @@ export default function RecogHero() {
       <div className="absolute inset-0 z-0 h-full w-full pt-130 lg:pt-0">
         <video
           src="/girlBg.mp4"
+          aria-hidden="true"
           autoPlay
           muted
           playsInline
           className="object-cover h-full w-full girlBg"
         />
       </div>
-      {/* <div
-        aria-hidden="true"
-        className="absolute left-0 top-0 h-[calc(100%)] w-full overflow-hidden bg-[#5a3172]"
-      >
-        <Image
-          src={heroBg}
-          alt=""
-          fill
-          priority
-          quality={90}
-          sizes="100vw"
-          className="select-none object-cover object-top"
-        />
-      </div> */}
 
       <div className="relative z-20 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem] lg:aspect-[16/8] recogHeroTextBg">
         <div className="mx-auto flex w-full max-w-content flex-col gap-12 lg:flex-row lg:justify-between lg:gap-24">
@@ -88,18 +73,8 @@ export default function RecogHero() {
           </div>
 
           {/* right */}
-          {/* <RecognitionTween /> */}
           <div className="w-full flex-1 lg:pt-66">
-            <video src="/transBgVideo.webm" autoPlay muted playsInline />
-            {/* <Image
-              src={"/recognition/recogHero.png"}
-              width={0}
-              height={0}
-              quality={100}
-              className="w-full h-auto"
-              sizes="630px"
-              alt="yeah"
-            /> */}
+            <video src="/transBgVideo.webm" aria-hidden="true" autoPlay muted playsInline />
           </div>
 
           <div

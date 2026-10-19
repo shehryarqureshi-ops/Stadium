@@ -97,7 +97,7 @@ function Highlight({ text, query }: { text: string; query: string }): ReactNode 
   return (
     <>
       {text.slice(0, at)}
-      <mark className="bg-transparent font-bold text-accent-water">{text.slice(at, at + query.length)}</mark>
+      <mark className="bg-transparent font-bold text-accent-water-text">{text.slice(at, at + query.length)}</mark>
       {text.slice(at + query.length)}
     </>
   );
@@ -260,7 +260,7 @@ export function TocDropdown({
                           current ? "bg-grey-100 font-semibold text-grey-800" : "text-grey-700"
                         }`}
                       >
-                        <span className={`pt-0.5 text-xs font-bold ${current ? "text-grey-800" : "text-grey-400"}`}>
+                        <span className={`pt-0.5 text-xs font-bold ${current ? "text-grey-800" : "text-grey-500"}`}>
                           {pad2(index + 1)}
                         </span>
                         <span className="min-w-0 flex-1">

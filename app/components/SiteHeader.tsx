@@ -234,16 +234,93 @@ export default function SiteHeader({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Keyboard access (WCAG 2.1.1 / 2.4.3, A11Y-01): triggers open their menu on
+     focus, ArrowDown / Tab moves into the panel, Escape closes it and returns
+     focus to the trigger, and Tab past the last item continues to the next
+     nav item. Hover stays as the pointer enhancement. */
+  const navRefs = useRef<Record<string, HTMLElement | null>>({});
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const suppressFocusOpen = useRef(false);
+  const focusablesIn = (el: HTMLElement | null) =>
+    el
+      ? Array.from(
+          el.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
+        )
+      : [];
+  const focusFirstInMenu = (menu: MenuKey) => {
+    setTimeout(() => {
+      focusablesIn(panelRefs.current[MENU_KEYS.indexOf(menu)])[0]?.focus();
+    }, 0);
+  };
+  const returnFocusToTrigger = (menu: MenuKey) => {
+    suppressFocusOpen.current = true;
+    navRefs.current[menu]?.focus();
+    suppressFocusOpen.current = false;
+  };
+  const onTriggerFocus = (menu: MenuKey) => {
+    if (!suppressFocusOpen.current) openMenu(menu);
+  };
+  const onTriggerKeyDown = (
+    e: React.KeyboardEvent<HTMLElement>,
+    menu: MenuKey,
+  ) => {
+    if (
+      e.key === "ArrowDown" ||
+      (e.key === "Tab" && !e.shiftKey && activeMenu === menu)
+    ) {
+      e.preventDefault();
+      openMenu(menu);
+      focusFirstInMenu(menu);
+    }
+  };
+  const onMenuKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "Tab" || !activeMenu) return;
+    const items = focusablesIn(panelRefs.current[MENU_KEYS.indexOf(activeMenu)]);
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      returnFocusToTrigger(activeMenu);
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      const idx = NAV_ITEMS.findIndex((n) => n.menu === activeMenu);
+      const next = NAV_ITEMS[idx + 1];
+      closeMenu();
+      (next
+        ? navRefs.current[next.label]
+        : focusablesIn(actionsRef.current)[0]
+      )?.focus();
+    }
+  };
+
   /* Esc closes the mega-menu (through closeMenu so the nav-solid hold
-     sequences with the retract) */
+     sequences with the retract) and returns focus to its trigger */
   useEffect(() => {
     if (!engageOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeMenu();
+      if (e.key === "Escape") {
+        const menu = activeMenu;
+        closeMenu();
+        if (menu) returnFocusToTrigger(menu);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   });
+
+  /* Esc closes the mobile / tablet panel and returns focus to the hamburger */
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        hamburgerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   const solid =
     scrolled || menuOpen || engageOpen || drawerSettling || lightHero;
@@ -268,6 +345,13 @@ export default function SiteHeader({
 
       <header
         onMouseLeave={closeMenu}
+        onBlur={(e) => {
+          if (
+            activeMenu !== null &&
+            !e.currentTarget.contains(e.relatedTarget as Node | null)
+          )
+            closeMenu();
+        }}
         /* the bg transition is suppressed while the mega-menu is open: the
            panel appears instantly, so a lagging 300ms bg fade reads as a
            white flash under a still-transparent nav */
@@ -298,11 +382,17 @@ export default function SiteHeader({
                    the dropdown; click navigates to the overview page. */
                 <a
                   key={item.label}
+                  ref={(el) => {
+                    navRefs.current[item.menu!] = el;
+                    navRefs.current[item.label] = el;
+                  }}
                   href={item.href}
                   aria-haspopup="true"
                   aria-expanded={activeMenu === item.menu}
                   aria-controls="engage-menu"
                   onMouseEnter={() => openMenu(item.menu!)}
+                  onFocus={() => onTriggerFocus(item.menu!)}
+                  onKeyDown={(e) => onTriggerKeyDown(e, item.menu!)}
                   className={`flex h-6 cursor-pointer items-center gap-1.5 font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${item.active ? "font-bold" : "font-normal"
                     }`}
                 >
@@ -313,11 +403,17 @@ export default function SiteHeader({
                 /* Mega-menu trigger without a landing page — hover opens / swaps; click toggles */
                 <button
                   key={item.label}
+                  ref={(el) => {
+                    navRefs.current[item.menu!] = el;
+                    navRefs.current[item.label] = el;
+                  }}
                   type="button"
                   aria-haspopup="true"
                   aria-expanded={activeMenu === item.menu}
                   aria-controls="engage-menu"
                   onMouseEnter={() => openMenu(item.menu!)}
+                  onFocus={() => onTriggerFocus(item.menu!)}
+                  onKeyDown={(e) => onTriggerKeyDown(e, item.menu!)}
                   onClick={() =>
                     activeMenu === item.menu
                       ? closeMenu()
@@ -332,6 +428,9 @@ export default function SiteHeader({
               ) : (
                 <a
                   key={item.label}
+                  ref={(el) => {
+                    navRefs.current[item.label] = el;
+                  }}
                   href={item.href}
                   onMouseEnter={closeMenu}
                   className={`flex h-6 pt-0.5 items-center font-sans text-body-md tracking-[0.01563rem] transition-colors duration-300 ${baseLink} ${item.active ? "font-bold" : "font-normal"
@@ -344,7 +443,7 @@ export default function SiteHeader({
           </nav>
 
           {/* Desktop actions */}
-          <div className="hidden items-center gap-8 lg:flex">
+          <div ref={actionsRef} className="hidden items-center gap-8 lg:flex">
             <AuthLink
               variant="desktop"
               menuTextClass={baseLink}
@@ -363,6 +462,7 @@ export default function SiteHeader({
 
           {/* Hamburger (mobile + tablet) */}
           <button
+            ref={hamburgerRef}
             type="button"
             aria-expanded={menuOpen}
             aria-controls="site-menu"
@@ -397,6 +497,8 @@ export default function SiteHeader({
         <div
           id="engage-menu"
           aria-hidden={!engageOpen}
+          inert={!engageOpen}
+          onKeyDown={onMenuKeyDown}
           className={`absolute inset-x-0 top-full hidden overflow-hidden lg:block ${engageOpen ? "" : "pointer-events-none"
             }`}
         >
@@ -469,6 +571,7 @@ export default function SiteHeader({
                         panelRefs.current[i] = el;
                       }}
                       aria-hidden={shownMenu !== key}
+                      inert={shownMenu !== key}
                       className={`menu-pane absolute inset-x-0 top-0 ${shownMenu === key ? "menu-pane--on" : ""}`}
                     >
                       {key === "engage" ? (
@@ -520,6 +623,7 @@ export default function SiteHeader({
                   {/* grid-rows height animation; motion-reduce snaps */}
                   <div
                     id={`site-menu-${item.menu}`}
+                    inert={openSection !== item.menu}
                     className={`grid transition-[grid-template-rows] duration-300 motion-reduce:transition-none ${openSection === item.menu
                       ? "grid-rows-[1fr]"
                       : "grid-rows-[0fr]"
@@ -536,7 +640,7 @@ export default function SiteHeader({
                               <a
                                 href={group.href ?? "#"}
                                 onClick={() => setMenuOpen(false)}
-                                className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water"
+                                className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water-text"
                               >
                                 {group.label}
                               </a>
@@ -593,7 +697,7 @@ export default function SiteHeader({
                               key={col.label}
                               className="flex flex-col gap-1"
                             >
-                              <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water">
+                              <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water-text">
                                 {col.label}
                               </p>
                               <ul className="flex flex-col">
@@ -616,7 +720,7 @@ export default function SiteHeader({
                         <div className="flex flex-col gap-4 pb-4 pt-1">
                           {CATALOG_TABS.map((t) => (
                             <div key={t.name} className="flex flex-col gap-1">
-                              <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water">
+                              <p className="font-sans text-[0.75rem] font-semibold uppercase leading-[0.9rem] tracking-[0.045rem] text-accent-water-text">
                                 {t.name}
                               </p>
                               <ul className="flex flex-col">

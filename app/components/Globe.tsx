@@ -229,20 +229,19 @@ export default function Globe({ className = "" }: { className?: string }) {
     let phi = 9.5;
     let spring = 0;
     let size = canvas.offsetWidth;
-    let visible = true;
+    let visible = false;
+    let raf = 0;
 
     const onResize = () => {
       size = canvas.offsetWidth;
     };
     window.addEventListener("resize", onResize);
 
-    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), {
-      threshold: 0,
-    });
-    io.observe(canvas);
+    /* Capped at 1.5 — 2x quadruples fill cost for a decorative dot globe. */
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: 2,
+      devicePixelRatio: dpr,
       width: size,
       height: size,
       phi: 0,
@@ -265,30 +264,32 @@ export default function Globe({ className = "" }: { className?: string }) {
       arcHeight: 0.3,
     });
 
-    // Pause rendering during scroll — recompositing the mix-blend globe on
-    // every scroll frame made the dark section scroll sluggishly. Freeze the
-    // last frame while scrolling; resume shortly after it stops.
-    let scrolling = false;
-    let scrollTimer: ReturnType<typeof setTimeout>;
-    const onScroll = () => {
-      scrolling = true;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        scrolling = false;
-      }, 120);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    let raf = 0;
+    /* The loop only exists while the canvas is on-screen AND the tab is
+       visible: it is cancelled (not just skipped) otherwise, so an off-screen
+       globe costs nothing. */
     const render = () => {
-      // if (visible && !scrolling) {
       phi += 0.001;
       spring += (pointerMovement.current - spring) * 0.1;
       globe.update({ phi: phi + spring * 0.01, width: size, height: size });
-      // }
       raf = requestAnimationFrame(render);
     };
-    render();
+    const sync = () => {
+      const run = visible && !document.hidden;
+      if (run && !raf) raf = requestAnimationFrame(render);
+      else if (!run && raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+    const io = new IntersectionObserver(
+      ([e]) => {
+        visible = e.isIntersecting;
+        sync();
+      },
+      { threshold: 0 },
+    );
+    io.observe(canvas);
+    document.addEventListener("visibilitychange", sync);
 
     // fade in once the first frame is painted
     const fade = requestAnimationFrame(() => {
@@ -298,11 +299,10 @@ export default function Globe({ className = "" }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       cancelAnimationFrame(fade);
-      clearTimeout(scrollTimer);
       io.disconnect();
+      document.removeEventListener("visibilitychange", sync);
       globe.destroy();
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("scroll", onScroll);
     };
   }, [instanceId]);
 

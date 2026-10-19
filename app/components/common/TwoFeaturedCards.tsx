@@ -40,7 +40,7 @@ const HEAVY_SHADOW =
 
 export default function TwoFeaturedCards({
   caption,
-  captionColor = "#10995a",
+  captionColor = "#0e8850",
   title,
   description,
   cards,
@@ -131,7 +131,7 @@ export default function TwoFeaturedCards({
                   </h3>
 
                   {card.subtitle && (
-                    <p className="my-3 font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#828282]">
+                    <p className="my-3 font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#757575]">
                       {card.subtitle}
                     </p>
                   )}

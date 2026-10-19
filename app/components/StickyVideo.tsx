@@ -58,6 +58,7 @@ export default function StickyVideo() {
   return (
     <div
       aria-hidden={!visible}
+      inert={!visible}
       className={`fixed bottom-4 right-4 z-30 w-[14rem] transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:bottom-6 md:right-6 md:w-[17rem] ${
         visible
           ? "translate-y-0 opacity-100"

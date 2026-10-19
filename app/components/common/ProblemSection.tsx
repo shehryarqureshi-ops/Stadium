@@ -22,7 +22,7 @@ type ProblemSectionProps = {
 
 export default function ProblemSection({
   caption,
-  captionColor = "#2178f5",
+  captionColor = "#1f71e7",
   title,
   description,
   items,

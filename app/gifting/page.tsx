@@ -36,7 +36,7 @@ export default function GiftingPage() {
         </div>
         <GiftingClosing />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

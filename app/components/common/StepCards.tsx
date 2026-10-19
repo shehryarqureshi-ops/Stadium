@@ -52,7 +52,7 @@ const CONTENT_GAP = 10;
 
 export default function StepCards({
   caption,
-  captionColor = "#2178f5",
+  captionColor = "#1f71e7",
   title,
   description,
   items,
@@ -260,7 +260,7 @@ export default function StepCards({
                         transitionTimingFunction: EASE,
                       }}
                     >
-                      <span className="shrink-0 p-4 font-sans text-[1rem] leading-5 text-[#a9a9ad]">
+                      <span className="shrink-0 p-4 font-sans text-[1rem] leading-5 text-[#72757f]">
                         {number}
                       </span>
 
@@ -386,7 +386,7 @@ export default function StepCards({
               >
                 <div className="flex flex-col gap-2.5">
                   <div className="flex flex-col gap-6">
-                    <span className="p-4 font-sans text-[1rem] leading-5 text-[#a9a9ad]">
+                    <span className="p-4 font-sans text-[1rem] leading-5 text-[#72757f]">
                       {number}
                     </span>
 

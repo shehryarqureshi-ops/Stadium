@@ -48,7 +48,7 @@ export default function ExpPlatform() {
   return (
     <VariableCardGrid
       caption="Any moment"
-      captionColor="#FF5B77"
+      captionColor="#CB495F"
       title={<>The calendar is full of reasons to gather</>}
       description="From onboarding to holidays and the dozens of occasions between, regular events keep teams close."
       gridColumns={3}

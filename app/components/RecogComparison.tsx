@@ -106,7 +106,7 @@ export default function RecogComparison() {
         {/* table — horizontal scroll below lg, Figma's 540 : 4×171 ratio at lg */}
         <div
           data-animation="reveal"
-          className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          tabIndex={0} role="region" aria-label="Comparison table (scrollable)" className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div
             role="table"

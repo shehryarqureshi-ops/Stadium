@@ -59,7 +59,7 @@ export default function WtePrograms() {
               className={`group flex items-stretch gap-2.5 overflow-hidden rounded-[1.5rem] bg-white p-2.5 transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink active:scale-[0.995] ${CARD_SHADOW}`}
             >
               <div className="relative flex flex-1 flex-col justify-between p-4">
-                <span className="font-sans text-[1rem] tracking-[0.025em] text-[#828282]">
+                <span className="font-sans text-[1rem] tracking-[0.025em] text-[#757575]">
                   {c.n}
                 </span>
                 <div className="flex flex-col gap-4 rounded-[1.5rem] bg-[#f7f7f7] p-6">

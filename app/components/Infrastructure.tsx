@@ -14,23 +14,26 @@ import { useEffect, useRef, useState } from "react";
    (they're large, so we don't stream them off-screen); reduced-motion users get
    the poster with native controls instead of autoplay. */
 
-type Step = { num: string; label: string; video?: string };
+type Step = { num: string; label: string; video?: string; poster?: string };
 
 const steps: Step[] = [
   {
     num: "01",
     label: "Printing & Production",
     video: "/videos/infrastructure/printing.mp4",
+    poster: "/videos/infrastructure/printing.webp",
   },
   {
     num: "02",
     label: "Warehousing & Storage",
     video: "/videos/infrastructure/warehousing.mp4",
+    poster: "/videos/infrastructure/warehousing.webp",
   },
   {
     num: "03",
     label: "Shipping & Delivery",
     video: "/videos/infrastructure/shipping.mp4",
+    poster: "/videos/infrastructure/shipping.webp",
   },
   { num: "04", label: "Customs, Tax, & Compliance" },
   { num: "05", label: "Integrations & Automated Gifting" },
@@ -135,14 +138,14 @@ export default function Infrastructure() {
                   >
                     <span
                       className={`font-sans text-[0.75rem] font-semibold tabular-nums tracking-[0.0725rem] ${
-                        on ? "text-[#a4cefe]" : "text-white/30"
+                        on ? "text-[#a4cefe]" : "text-white/60"
                       }`}
                     >
                       {s.num}
                     </span>
                     <span
                       className={`font-sans text-[1.125rem] font-normal leading-7 tracking-[0.0156rem] ${
-                        on ? "text-white" : "text-white/33"
+                        on ? "text-white" : "text-white/60"
                       }`}
                     >
                       {s.label}
@@ -162,10 +165,11 @@ export default function Infrastructure() {
                   key={activeStep.video}
                   ref={videoRef}
                   src={activeStep.video}
+                  poster={activeStep.poster}
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   controls={reduceMotion}
                   className={`absolute inset-0 h-full w-full object-cover ${
                     reduceMotion ? "" : "infra-video-in"

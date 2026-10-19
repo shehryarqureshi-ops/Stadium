@@ -299,7 +299,7 @@ export default function StepCardsCarousel({
                         {showNumberInHeading && (
                           <span
                             className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${
-                              active ? "text-[#8c92a6]" : "text-[#c5c8d3]"
+                              active ? "text-[#72757f]" : "text-[#72757f]"
                             }`}
                           >
                             {number}
@@ -308,7 +308,7 @@ export default function StepCardsCarousel({
 
                         <span
                           className={`font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.05] transition-colors duration-300 ${
-                            active ? "text-[#16171b]" : "text-[#a9adbc]"
+                            active ? "text-[#16171b]" : "text-[#72757f]"
                           }`}
                         >
                           {step.title}
@@ -326,7 +326,7 @@ export default function StepCardsCarousel({
                     >
                       <span className="overflow-hidden">
                         <span
-                          className={`block pt-7 font-sans text-[0.875rem] leading-5 tracking-[0.01em] text-[#828282] transition-opacity duration-300 ${
+                          className={`block pt-7 font-sans text-[0.875rem] leading-5 tracking-[0.01em] text-[#757575] transition-opacity duration-300 ${
                             active ? "opacity-100 delay-150" : "opacity-0"
                           }`}
                         >

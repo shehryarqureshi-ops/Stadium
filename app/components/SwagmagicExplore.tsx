@@ -7,7 +7,7 @@ import Resources from "./common/Resources";
 const ITEMS = [
   {
     caption: "GUIDE",
-    captionColor: "#10995a",
+    captionColor: "#0e8850",
     title: "No-Minimums Swag Playbook",
     description: "Run a swag program without storing inventory.",
     url: "https://www.bystadium.com/resources",
@@ -15,7 +15,7 @@ const ITEMS = [
   },
   {
     caption: "TEMPLATE",
-    captionColor: "#10995a",
+    captionColor: "#0e8850",
     title: "Onboarding Kit Checklist",
     description: "What goes in a new-hire kit, by role.",
     url: "https://www.bystadium.com/resources",
@@ -23,7 +23,7 @@ const ITEMS = [
   },
   {
     caption: "STORY",
-    captionColor: "#10995a",
+    captionColor: "#0e8850",
     title: "Fintech Branded Stores",
     description: "How multi-office stores, budgets, and approvals work.",
     url: "/the-proof",
@@ -37,7 +37,7 @@ export default function SwagmagicExplore() {
       <Resources
         flush
         caption="Keep Exploring"
-        captionColor="#10995a"
+        captionColor="#0e8850"
         title="More on getting swag right"
         description=""
         items={ITEMS}

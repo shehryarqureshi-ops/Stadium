@@ -597,7 +597,7 @@ export default function ExpSolution() {
         <div className="flex flex-col items-center gap-2 text-center">
           <p
             data-animation="reveal"
-            className="font-sans text-[0.75rem] font-semibold uppercase leading-normal tracking-[0.045rem] text-[#ff5b77]"
+            className="font-sans text-[0.75rem] font-semibold uppercase leading-normal tracking-[0.045rem] text-[#cb495f]"
           >
             The solution
           </p>

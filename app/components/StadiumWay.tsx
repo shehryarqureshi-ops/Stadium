@@ -1,21 +1,22 @@
 "use client";
 
+import { lazyLoop } from "@/app/components/common/LazyLoop";
 import StepCardsCarousel, {
   type StepCardsCarouselStep,
 } from "@/app/components/common/StepCardsCarousel";
-import InviteTeamLoop from "./InviteTeamLoop";
-import RolesPermissionsLoop from "./RolesPermissionsLoop";
-import WalletSetupLoop from "./WalletSetupLoop";
-import IntegrationsLoop from "./IntegrationsLoop";
-import SlackTeamsLoop from "./SlackTeamsLoop";
-import SsoDomainLoop from "./SsoDomainLoop";
-import ShopsLoop from "./ShopsLoop";
-import KitsLoop from "./KitsLoop";
-import KudosLoop from "./KudosLoop";
-import AutomationsLoop from "./AutomationsLoop";
-import BulkSwagLoop from "./BulkSwagLoop";
-import SendPointsLoop from "./SendPointsLoop";
-import RedemptionLoop from "./RedemptionLoop";
+const InviteTeamLoop = lazyLoop(() => import("./InviteTeamLoop"));
+const RolesPermissionsLoop = lazyLoop(() => import("./RolesPermissionsLoop"));
+const WalletSetupLoop = lazyLoop(() => import("./WalletSetupLoop"));
+const IntegrationsLoop = lazyLoop(() => import("./IntegrationsLoop"));
+const SlackTeamsLoop = lazyLoop(() => import("./SlackTeamsLoop"));
+const SsoDomainLoop = lazyLoop(() => import("./SsoDomainLoop"));
+const ShopsLoop = lazyLoop(() => import("./ShopsLoop"));
+const KitsLoop = lazyLoop(() => import("./KitsLoop"));
+const KudosLoop = lazyLoop(() => import("./KudosLoop"));
+const AutomationsLoop = lazyLoop(() => import("./AutomationsLoop"));
+const BulkSwagLoop = lazyLoop(() => import("./BulkSwagLoop"));
+const SendPointsLoop = lazyLoop(() => import("./SendPointsLoop"));
+const RedemptionLoop = lazyLoop(() => import("./RedemptionLoop"));
 
 const STILL = "/motion/still";
 
@@ -405,7 +406,7 @@ const CONTENT = {
   },
   decoration: {
     caption: "Make it yours",
-    captionColor: "#10995a",
+    captionColor: "#0e8850",
     title: "Your brand, done right",
     description:
       "From embroidery and debossing to laser engraving and full-color UV printing, our swag experts match your logo, artwork, and product with the decoration method that will make it look its best.",

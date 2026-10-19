@@ -1,17 +1,8 @@
-import gradient from "@/public/recog2/rc-closing-gradient.jpg";
 
-import Image from "next/image";
 import statsPhoto from "@/public/gifting/stats/statLeftBg.png";
 import avatar from "@/public/gift2/gf-closing-avatar-charlene.png";
 import ClosingCTA from "./common/ClosingCTA";
 import StatsGrid from "./common/StatsGrid";
-
-/* Satoshi Medium — Figma specs "Satoshi:Medium" on every stat number. */
-const NUM =
-  "font-[family-name:var(--font-satoshi-medium)] leading-[1.04] tracking-[-0.0625rem] not-italic";
-const STAT_LABEL = "font-sans text-[1rem] leading-[1.4]";
-const PILL =
-  "inline-flex h-[2.9375rem] items-center justify-center rounded-[100px] px-[1.375rem] font-sans text-[0.9375rem] font-semibold uppercase leading-[1.4] transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
 export default function GiftingClosing() {
   return (

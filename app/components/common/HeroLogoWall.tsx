@@ -1,15 +1,15 @@
 import Image from "next/image";
 
 const LOGOS = [
-  { src: "/logos/fidelity.svg", alt: "Spotify", width: 81, height: 24 },
-  { src: "/logos/solved.svg", alt: "Amazon", width: 77, height: 20 },
-  { src: "/logos/western-union.svg", alt: "Pinterest", width: 87, height: 25 },
-  { src: "/logos/figma.svg", alt: "Accenture", width: 91, height: 24 },
-  { src: "/logos/microsoft.svg", alt: "Bloomberg", width: 90, height: 24 },
-  { src: "/logos/united-healthcare.svg", alt: "Salesforce", width: 37, height: 27 },
-  { src: "/logos/amazon.svg", alt: "Netflix", width: 75, height: 30 },
-  { src: "/logos/premier.svg", alt: "Google", width: 80, height: 25 },
-  { src: "/logos/imagine.svg", alt: "Imagine", width: 80, height: 30 },
+  { src: "/logos/fidelity.svg", alt: "Fidelity Investments", width: 81, height: 24 },
+  { src: "/logos/solved.svg", alt: "isolved", width: 77, height: 20 },
+  { src: "/logos/western-union.svg", alt: "Western Union", width: 87, height: 25 },
+  { src: "/logos/figma.svg", alt: "Figma", width: 91, height: 24 },
+  { src: "/logos/microsoft.svg", alt: "Microsoft", width: 90, height: 24 },
+  { src: "/logos/united-healthcare.svg", alt: "UnitedHealthcare", width: 37, height: 27 },
+  { src: "/logos/amazon.svg", alt: "Amazon", width: 75, height: 30 },
+  { src: "/logos/premier.svg", alt: "Premier", width: 80, height: 25 },
+  { src: "/logos/imagine.svg", alt: "Imagine Pediatrics", width: 80, height: 30 },
 ];
 
 /* variant "band" (default): the full-bleed glass band used under the vertical

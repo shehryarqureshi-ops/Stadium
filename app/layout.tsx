@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
 import RevealOnScroll from "./components/RevealOnScroll";
+import MotionToggle from "./components/MotionToggle";
 import MarkerFeedback from "./components/tracking/MarkerFeedback";
 import AnalyticsListeners from "./components/tracking/AnalyticsListeners";
 import ConsentManager from "./components/tracking/ConsentManager";
@@ -33,6 +34,9 @@ const satoshiMedium = localFont({
   variable: "--font-satoshi-medium",
   src: "./fonts/Satoshi-Medium.woff2",
   weight: "500",
+  /* opt-in weight used in a few spots — no sitewide preload (it competes with
+     the LCP asset on every page) */
+  preload: false,
 });
 
 /* Satoshi Light 300 — ISOLATED, opt-in weight (`--font-satoshi-light`) ONLY for the
@@ -41,6 +45,7 @@ const satoshiLight = localFont({
   variable: "--font-satoshi-light",
   src: "./fonts/Satoshi-Light.woff2",
   weight: "300",
+  preload: false, // /catalog-only weight — see note above
 });
 
 export const metadata: Metadata = {
@@ -59,6 +64,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${overpass.variable} ${satoshi.variable} ${satoshiMedium.variable} ${satoshiLight.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         {/* Quality bar: first tab stop jumps past the nav (Shopify ships
@@ -79,8 +85,23 @@ export default function RootLayout({
             translate: 0 0;
             opacity: 1;
           }
+          .skip-link--second { left: 12rem; }
           @media (prefers-reduced-motion: reduce) {
             .skip-link { transition: none; }
+          }
+
+          /* Site-wide "Pause animations" switch (app/lib/motion.ts, A11Y-04):
+             freezes every CSS animation and shows scroll-reveal content. */
+          [data-motion="paused"] *,
+          [data-motion="paused"] *::before,
+          [data-motion="paused"] *::after {
+            animation-play-state: paused !important;
+          }
+          [data-motion="paused"] [data-animation="reveal"] {
+            opacity: 1;
+            transform: none;
+            filter: none;
+            transition: none;
           }
 
           /* Per-element scroll reveal (data-animation="reveal") — the premium
@@ -130,6 +151,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <MotionToggle variant="skip" />
         {children}
         <RevealOnScroll />
         {/* Consent (Osano) + Consent Mode v2 defaults + GTM + gated scripts.

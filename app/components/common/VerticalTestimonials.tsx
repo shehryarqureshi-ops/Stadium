@@ -166,6 +166,8 @@ export default function Testimonials({
               <div data-animation="reveal" className="flex items-center gap-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={ratingLogoSrc}
                   alt=""
                   width={32}

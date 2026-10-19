@@ -35,13 +35,13 @@ type ClosingCTAProps = {
 
 const CTA_VARIANTS: Record<CTAButtonVariant, string> = {
   primary:
-    "bg-[#2178f5] text-white hover:brightness-110 focus-visible:outline-white",
+    "bg-[#1f71e7] text-white hover:brightness-110 focus-visible:outline-white",
   secondary:
     "border border-[#4d4d5c] bg-[#292933] text-white hover:bg-[#33333f] focus-visible:outline-white",
   yellow: "bg-[#FFB800] text-black focus-visible:outline-white",
-  green: "bg-[#10995A] text-white focus-visible:outline-white",
+  green: "bg-[#0e8850] text-white focus-visible:outline-white",
   purple: "bg-[#8d12e7] text-white focus-visible:outline-white",
-  pink: "bg-[#FF5B77] text-white focus-visible:outline-white",
+  pink: "bg-[#FF5B77] text-ink focus-visible:outline-white",
 };
 
 export default function ClosingCTA({

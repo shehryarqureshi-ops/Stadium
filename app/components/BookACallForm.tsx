@@ -580,6 +580,9 @@ export const BookACallForm: FC<BookACallFormProps> = ({
   const [showEmailWarning, setShowEmailWarning] = useState(false);
   const [isEmailTouched, setIsEmailTouched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  /* A11Y-09: live status for submit progress / failure (WCAG 4.1.3) */
+  const [submitStatus, setSubmitStatus] = useState("");
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   // Countries
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
@@ -710,28 +713,46 @@ export const BookACallForm: FC<BookACallFormProps> = ({
     return result;
   };
 
+  /* Human labels for the error summary, in on-screen order */
+  const FIELD_LABELS: Record<string, string> = {
+    fullName: "Full name",
+    email: "Work email",
+    phone: "Phone",
+    companyName: "Company name",
+    role: "Team",
+    companySize: "Company size",
+    offerings: "Interested in",
+    stadiumUsage: "How you will use Stadium",
+  };
+  const focusField = (name: string) => {
+    const el = fieldRefs[name]?.current;
+    const control = el?.querySelector<HTMLElement>("input, textarea, button");
+    (control ?? el)?.focus({ preventScroll: true });
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
   // Validation
   const validateForm = () => {
     const errors: Record<string, string> = {};
 
-    if (!formValues.fullName.value.trim()) errors.fullName = "Required";
-    if (!formValues.companyName.value.trim()) errors.companyName = "Required";
+    if (!formValues.fullName.value.trim()) errors.fullName = "Enter your full name";
+    if (!formValues.companyName.value.trim()) errors.companyName = "Enter your company name";
 
     if (!formValues.email.value.trim()) {
-      errors.email = "Required";
+      errors.email = "Enter your work email";
     } else if (!EMAIL_REGEX.test(formValues.email.value)) {
-      errors.email = "Invalid Email";
+      errors.email = "Enter a valid email, like name@company.com";
     }
 
-    if (!formValues.phone.value.trim()) errors.phone = "Required";
-    if (!formValues.role.value.trim()) errors.role = "Required";
-    if (!formValues.companySize.value.trim()) errors.companySize = "Required";
-    if (!formValues.stadiumUsage.value.trim()) errors.stadiumUsage = "Required";
+    if (!formValues.phone.value.trim()) errors.phone = "Enter your phone number";
+    if (!formValues.role.value.trim()) errors.role = "Select your team";
+    if (!formValues.companySize.value.trim()) errors.companySize = "Select your company size";
+    if (!formValues.stadiumUsage.value.trim()) errors.stadiumUsage = "Select how you plan to use Stadium";
 
     const hasOfferings =
       formValues.offerings.value.length > 0 ||
       formValues.offerings.otherValue.trim().length > 0;
-    if (!hasOfferings) errors.offerings = "Required";
+    if (!hasOfferings) errors.offerings = "Select at least one thing you want to learn about";
 
     return errors;
   };
@@ -740,17 +761,19 @@ export const BookACallForm: FC<BookACallFormProps> = ({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSubmitFailed(false);
+    setSubmitStatus("Submitting your details…");
 
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       setIsLoading(false);
-      // Auto-scroll to first error
-      const firstErrorField = Object.keys(errors)[0];
-      fieldRefs[firstErrorField]?.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      // Move focus to the first invalid field (summary above is announced via role="alert")
+      const order = Object.keys(FIELD_LABELS);
+      const firstErrorField = order.find((k) => errors[k]) ?? Object.keys(errors)[0];
+      setSubmitFailed(false);
+      setSubmitStatus("");
+      setTimeout(() => focusField(firstErrorField), 0);
       return;
     }
 
@@ -862,6 +885,7 @@ export const BookACallForm: FC<BookACallFormProps> = ({
         }
       };
 
+      setSubmitStatus("Details submitted. Loading scheduling options…");
       submitChiliPiperModal(
         analyticsPayload,
         ENV_CONFIG.CHILI_PIPER_ROUTER,
@@ -874,6 +898,8 @@ export const BookACallForm: FC<BookACallFormProps> = ({
       );
     } catch (err) {
       console.error("Submission failed:", err);
+      setSubmitStatus("");
+      setSubmitFailed(true);
     } finally {
       setIsLoading(false);
     }
@@ -962,6 +988,43 @@ export const BookACallForm: FC<BookACallFormProps> = ({
         data-clarity-mask="True"
         className="flex flex-col gap-6"
       >
+        {/* Live region: progress + failure (WCAG 4.1.3) */}
+        <p role="status" aria-live="polite" className="sr-only">
+          {submitStatus}
+        </p>
+        {submitFailed && (
+          <p
+            role="alert"
+            className="rounded-lg border border-field-error bg-field-error-tint px-3.5 py-3 font-sans text-field text-field-error"
+          >
+            We couldn’t submit the form. Check your connection and try again.
+          </p>
+        )}
+        {Object.keys(formErrors).length > 0 && (
+          <div
+            role="alert"
+            className="rounded-lg border border-field-error bg-field-error-tint px-3.5 py-3 font-sans text-field text-field-error"
+          >
+            <p className="font-bold">
+              Please fix {Object.keys(formErrors).length === 1 ? "1 field" : `${Object.keys(formErrors).length} fields`} to continue:
+            </p>
+            <ul className="mt-1 list-disc pl-5">
+              {Object.keys(FIELD_LABELS)
+                .filter((k) => formErrors[k])
+                .map((k) => (
+                  <li key={k}>
+                    <button
+                      type="button"
+                      onClick={() => focusField(k)}
+                      className="text-left underline underline-offset-2"
+                    >
+                      {FIELD_LABELS[k]}: {formErrors[k]}
+                    </button>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* ================= FULL NAME ================= */}
           <div ref={fullNameRef} className={FIELD_WRAP}>

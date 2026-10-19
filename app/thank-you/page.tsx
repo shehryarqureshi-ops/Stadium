@@ -52,7 +52,7 @@ export default function ThankYouPage() {
             <div className="flex max-w-[31.25rem] flex-col items-center lg:items-start">
               <p
                 data-animation="reveal"
-                className="font-sans text-eyebrow-sm leading-4 uppercase text-accent-water"
+                className="font-sans text-eyebrow-sm leading-4 uppercase text-accent-water-text"
               >
                 You’re all set!
               </p>
@@ -83,7 +83,7 @@ export default function ThankYouPage() {
           </div>
         </section>
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

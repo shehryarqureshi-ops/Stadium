@@ -89,7 +89,7 @@ export default function Packages({
                 className={`relative flex flex-col gap-10 rounded-[1.5rem] bg-white p-6 justify-between ${item.isFeatured ? CARD_SHADOW_ACTIVE : CARD_SHADOW
                   }`}
               >
-                <p className="font-sans text-[1rem] leading-[1.25] tracking-[0.025rem] text-[#828282]">
+                <p className="font-sans text-[1rem] leading-[1.25] tracking-[0.025rem] text-[#757575]">
                   {String(index + 1).padStart(2, "0")}
                 </p>
 

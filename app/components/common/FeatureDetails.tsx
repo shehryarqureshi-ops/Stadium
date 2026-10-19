@@ -13,7 +13,7 @@ export type FeatureDetailsProps = {
 export default function FeatureDetails({ description, bullets, link }: FeatureDetailsProps) {
   return (
     <div className="flex flex-col gap-6">
-      <p className="font-sans text-body-md text-[#828282]">{description}</p>
+      <p className="font-sans text-body-md text-[#757575]">{description}</p>
       {(!!bullets?.length || link) && (
         <div className="flex flex-col gap-8">
           {!!bullets?.length && (

@@ -45,7 +45,7 @@ export default function SnackPlatform() {
   return (
     <VariableCardGrid
       caption="Use cases"
-      captionColor="#2178F5"
+      captionColor="#1f71e7"
       title="Snacks for every kind of send"
       description="Hire dates, anniversaries, and the occasional random Tuesday all call for snacks."
       gridColumns={3}

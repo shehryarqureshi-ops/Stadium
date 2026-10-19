@@ -108,7 +108,7 @@ export default function SwagmagicComparison() {
           <div className="flex w-full flex-col items-center gap-2">
             <p
               data-animation="reveal"
-              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#10995a]"
+              className="font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#0e8850]"
             >
               WHY TEAMS CHOOSE STADIUM
             </p>
@@ -132,7 +132,7 @@ export default function SwagmagicComparison() {
         {/* table — horizontal scroll below lg, 360 + 4×flex at lg */}
         <div
           data-animation="reveal"
-          className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          tabIndex={0} role="region" aria-label="Comparison table (scrollable)" className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div
             role="table"

@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 

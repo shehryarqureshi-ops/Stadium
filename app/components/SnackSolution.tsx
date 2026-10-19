@@ -55,7 +55,7 @@ export default function SwagmagicSolution() {
   return (
     <TwoFeaturedCards
       caption="The solution"
-      captionColor="#2178f5"
+      captionColor="#1f71e7"
       title="A real gift, without the guesswork"
       description="Send a curated box or let every recipient build their own. They choose their snacks, share their address, and set their dietary needs–you don’t collect any of it."
       cards={[

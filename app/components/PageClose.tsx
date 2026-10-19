@@ -1,3 +1,4 @@
+import MotionToggle from "./MotionToggle";
 import Link from "next/link";
 
 const LINK_COLUMNS: {
@@ -58,30 +59,7 @@ const LINK_COLUMNS: {
     },
   ];
 
-export default function PageClose({
-  showCta = true,
-  cta,
-}: {
-  showCta?: boolean;
-  /** Optional CTA copy override. Defaults preserve the standard closing. */
-  cta?: {
-    eyebrow?: string;
-    heading?: string;
-    body?: string;
-    primaryCta?: string;
-    secondaryCta?: string;
-  };
-}) {
-  const c = {
-    eyebrow: cta?.eyebrow ?? "Get started",
-    heading: cta?.heading ?? "Ready to build your program?",
-    body:
-      cta?.body ??
-      "Get a 30-minute walkthrough. We’ll show you live campaigns, sample boxes, and how teams use Stadium at scale.",
-    primaryCta: cta?.primaryCta ?? "Book a demo",
-    secondaryCta: cta?.secondaryCta ?? "Talk to sales",
-  };
-
+export default function PageClose() {
   return (
     <section className="bg-[#181818]">
       <footer className="relative overflow-hidden bg-[#181818] pt-12 md:pt-section-y-md lg:pt-20 px-6 md:px-0">
@@ -93,7 +71,7 @@ export default function PageClose({
                   href="/"
                   className="inline-flex transition-opacity hover:opacity-80"
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/footer-logo-lockup.svg"
                     alt="Stadium"
                     width={203.675}
@@ -114,7 +92,7 @@ export default function PageClose({
                     aria-label="LinkedIn"
                     className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/footer-social-linkedin.svg"
                       alt=""
                       width={12.763}
@@ -130,7 +108,7 @@ export default function PageClose({
                     aria-label="YouTube"
                     className="block size-[1.4375rem] transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/footer-social-youtube.svg"
                       alt=""
                       width={30.632}
@@ -146,7 +124,7 @@ export default function PageClose({
                     aria-label="Instagram"
                     className="flex size-[1.4375rem] items-center justify-center rounded-full bg-white transition hover:opacity-80 md:size-[1.53125rem] lg:size-[1.90625rem]"
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/footer-social-instagram.svg"
                       alt=""
                       width={15.316}
@@ -177,7 +155,7 @@ export default function PageClose({
                     aria-label="Swagmagic"
                     className="inline-flex transition-opacity hover:opacity-70"
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/footer-brand-swagmagic.svg"
                       alt="Swagmagic"
                       height={24}
@@ -192,7 +170,7 @@ export default function PageClose({
                     aria-label="Snackmagic"
                     className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/footer-brand-snackmagic.svg"
                       alt="Snackmagic"
                       height={24}
@@ -207,7 +185,7 @@ export default function PageClose({
                     aria-label="Confetti"
                     className="inline-flex items-center gap-[0.1875rem] transition-opacity hover:opacity-70"
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/footer-brand-confetti-mark.svg"
                       alt="Confetti"
                       width={112.692}
@@ -257,6 +235,8 @@ export default function PageClose({
                 {"© Powered by Stadium   |   Accessibility Support"}
               </p>
 
+              <MotionToggle variant="footer" />
+
               <button
                 type="button"
                 className="flex items-center gap-1.5 rounded-[0.375rem] border border-white/20 px-3 py-1.5 transition-colors hover:border-white/40 hover:bg-white/5"
@@ -265,7 +245,7 @@ export default function PageClose({
                   English
                 </span>
 
-                <img
+                <img loading="lazy" decoding="async"
                   src="/footer-chevron-down.svg"
                   alt=""
                   width={11.5}
@@ -279,10 +259,8 @@ export default function PageClose({
 
         <span
           aria-hidden
-          className="pointer-events-none -mb-6 mt-8 block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04] lg:-mb-30 lg:mt-4"
-        >
-          Stadium
-        </span>
+          className="pointer-events-none -mb-6 mt-8 block select-none text-center font-display text-[19vw] font-bold leading-none text-white/[0.04] before:content-['Stadium'] lg:-mb-30 lg:mt-4"
+        />
       </footer>
     </section>
   );

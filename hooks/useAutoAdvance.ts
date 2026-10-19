@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/app/lib/motion";
 
 /**
  * shopify.com headline-tabs behavior (measured live 2026-06-11): advance to
@@ -22,6 +23,8 @@ export function useAutoAdvance<T extends HTMLElement = HTMLElement>(
 ) {
   const sectionRef = useRef<T>(null);
   const [userTookOver, setUserTookOver] = useState(false);
+  /* OS reduced-motion OR the site "Pause animations" switch (app/lib/motion.ts) */
+  const reduced = usePrefersReducedMotion();
   // keep the latest advance() without re-arming the timer every render
   const advanceRef = useRef(advance);
   useEffect(() => {
@@ -30,7 +33,7 @@ export function useAutoAdvance<T extends HTMLElement = HTMLElement>(
 
   useEffect(() => {
     if (userTookOver) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (reduced) return;
     let visible = false;
     let hovered = false;
     let focused = false;
@@ -71,7 +74,7 @@ export function useAutoAdvance<T extends HTMLElement = HTMLElement>(
       node?.removeEventListener("focusin", onFocusIn);
       node?.removeEventListener("focusout", onFocusOut);
     };
-  }, [userTookOver, intervalMs]);
+  }, [userTookOver, intervalMs, reduced]);
 
   return { sectionRef, takeOver: () => setUserTookOver(true) };
 }

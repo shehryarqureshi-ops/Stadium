@@ -29,7 +29,7 @@ export default function ExpProblem() {
   return (
     <ProblemSection
       caption="The problem"
-      captionColor="#FF5B77"
+      captionColor="#CB495F"
       title="Planning a team event takes hours you don't have"
       description="No agenda, no structure, and no way to know who'll stick around."
       items={items}

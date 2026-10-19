@@ -3,16 +3,13 @@ import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import PageClose from "../components/PageClose";
-import RecogCaseStudies from "../components/RecogCaseStudies";
 import RecogClosing from "../components/RecogClosing";
 import RecogCommittee from "../components/RecogCommittee";
 import RecogComparison from "../components/RecogComparison";
-import RecogContact from "../components/RecogContact";
 import RecogExplore from "../components/RecogExplore";
 import RecogHero from "../components/RecogHero";
 import RecogImpact from "../components/RecogImpact";
 import RecogOfferings from "../components/RecogOfferings";
-import RecogPackages from "../components/RecogPackages";
 import RecogPlatform from "../components/RecogPlatform";
 import RecogProblem from "../components/RecogProblem";
 import RecogSolution from "../components/RecogSolution";
@@ -45,7 +42,7 @@ export default function RecognitionPage() {
         <RecogExplore />
         <RecogClosing />
       </main>
-      <PageClose showCta={false} />
+      <PageClose />
     </>
   );
 }

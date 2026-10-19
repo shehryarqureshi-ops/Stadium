@@ -68,7 +68,7 @@ export default function SnackHowItWorks() {
   return (
     <StepCards
       caption="How it works"
-      captionColor="#2178f5"
+      captionColor="#1f71e7"
       title="They pick the snacks. We handle the rest."
       description="Send globally with local fulfillment, giving every recipient the freedom to choose snacks that fit their tastes and dietary needs."
       items={items}

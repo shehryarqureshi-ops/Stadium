@@ -1,20 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import type { HeroSlide } from "../data/heroRotation";
 
-/* Full-bleed hero background: every slide's video is mounted and preloaded up
-   front (preload="auto") so switching is instant with no black flash — the
-   hero still image (heroBg) is each video's poster, so even before a clip
-   buffers the section shows the photo, never black.
+/* Full-bleed hero background, built to stay light on phones.
 
-   Only the active clip plays (plus the outgoing one during the crossfade), so
-   at most two videos decode at once instead of all five. Crossfade is opacity
-   only. When `playing` is false (section off-screen / tab hidden) or reduced
-   motion is on, everything pauses and the posters show — which gracefully
-   degrades the hero back to the original static photo under reduced motion. */
+   - The first slide's poster is always rendered as a real <Image> (priority) —
+     it is the LCP element and the whole background on phones, with Save-Data,
+     or under reduced motion. No video bytes are requested in those cases.
+   - On larger screens ONE clip is mounted at a time (plus the outgoing clip
+     for the 700ms crossfade). The next clip is fetched only when its slide
+     becomes active, instead of preloading all five up front. Each <video>
+     carries its own poster, so a clip that is still buffering shows its photo
+     rather than black.
+   - Video mounting waits until the page has finished loading (idle) so it
+     never competes with fonts / HTML / the poster. Pausing off-screen is
+     owned by `playing`. */
 
 const CROSSFADE_MS = 700;
+
+type NavigatorWithConnection = Navigator & {
+  connection?: { saveData?: boolean };
+};
 
 export default function HeroBackgroundVideo({
   slides,
@@ -27,56 +35,98 @@ export default function HeroBackgroundVideo({
   playing: boolean;
   reduce: boolean;
 }) {
-  const refs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [allowVideo, setAllowVideo] = useState(false);
+  const [outgoing, setOutgoing] = useState<number | null>(null);
+  const refs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const prevIndex = useRef(index);
 
+  /* Decide once, after load: phones (< md), Save-Data and reduced motion get
+     the poster only. Re-checked live if the viewport crosses the breakpoint. */
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    let idle: number | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const saveData =
+      (navigator as NavigatorWithConnection).connection?.saveData === true;
+
+    const evaluate = () => {
+      window.clearTimeout(timer);
+      if (idle !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idle);
+      }
+      if (!mq.matches || saveData) {
+        setAllowVideo(false);
+        return;
+      }
+      const start = () => setAllowVideo(true);
+      const arm = () => {
+        if ("requestIdleCallback" in window) {
+          idle = window.requestIdleCallback(start, { timeout: 2500 });
+        } else {
+          timer = setTimeout(start, 1500);
+        }
+      };
+      if (document.readyState === "complete") arm();
+      else window.addEventListener("load", arm, { once: true });
+    };
+
+    evaluate();
+    mq.addEventListener("change", evaluate);
+    return () => {
+      mq.removeEventListener("change", evaluate);
+      window.clearTimeout(timer);
+    };
+  }, []);
+
+  const videoOn = allowVideo && !reduce;
+
+  /* Track the outgoing clip for the crossfade, then unmount it. */
   useEffect(() => {
     const prev = prevIndex.current;
+    prevIndex.current = index;
+    if (prev === index) return;
+    setOutgoing(prev);
+    const t = setTimeout(() => setOutgoing(null), CROSSFADE_MS + 50);
+    return () => clearTimeout(t);
+  }, [index]);
+
+  /* Play / pause the mounted clips. */
+  useEffect(() => {
     refs.current.forEach((v, i) => {
-      if (!v) return;
       v.muted = true;
-      if (!playing || reduce) {
+      if (!playing || !videoOn) {
         v.pause();
       } else if (i === index) {
-        // On a real switch, restart the incoming clip from the top so it plays
-        // in lockstep with the new word (and never resumes mid-clip).
-        if (i !== prev) {
-          try {
-            v.currentTime = 0;
-          } catch {
-            /* not seekable yet — it'll still play from wherever it is */
-          }
-        }
         v.play().catch(() => {});
-      } else if (i !== prev) {
-        v.pause();
       }
-      // the outgoing clip (i === prev) keeps playing through the crossfade
     });
+  }, [index, playing, videoOn, outgoing]);
 
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    if (prev !== index) {
-      timer = setTimeout(() => {
-        const outgoing = refs.current[prev];
-        if (outgoing && prevIndex.current !== prev) outgoing.pause();
-      }, CROSSFADE_MS + 50);
-    }
-    prevIndex.current = index;
-    return () => clearTimeout(timer);
-  }, [index, playing, reduce]);
+  const mounted = videoOn
+    ? [index, ...(outgoing !== null && outgoing !== index ? [outgoing] : [])]
+    : [];
 
   return (
     <>
-      {slides.map((s, i) => (
+      {/* base layer: LCP poster, always present */}
+      <Image
+        src={slides[0].poster}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        quality={75}
+        className="object-cover"
+      />
+      {mounted.map((i) => (
         <video
-          // slides are a stable, ordered config, so index identity is exactly
-          // what we want for keys here
-          key={i}
+          key={slides[i].video}
           ref={(el) => {
-            refs.current[i] = el;
+            if (el) refs.current.set(i, el);
+            else refs.current.delete(i);
           }}
-          src={s.video}
-          // poster={heroBg.src}
+          src={slides[i].video}
+          poster={slides[i].poster}
           muted
           playsInline
           preload="auto"
