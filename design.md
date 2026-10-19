@@ -2011,3 +2011,7 @@ Figma "H3 — tabs: one block at a time" (swag 6036:8674, snacks 6036:9262, gift
 - Tab pill: #202020, p 0.375rem, gap 0.375rem, tabs px 1.375rem py 0.75rem Overpass SemiBold 0.9375rem; active white/black, inactive white/70. Mobile: tighter tabs, pill scrolls sideways.
 - Block: max 68.75rem, r1.75rem, 1px white/18 border, p 2rem (mobile 1rem); chips centered, gap 0.625rem, border white/30, px 1rem py 0.5625rem, count white/55; dietary/taste chips carry the white diet icon.
 - Tabs: Swag (Decoration Methods/Categories/Brands), Gifts (Gift Shop/Price Points/Brands), Snacks (Dietary/Taste/Categories/Brands), Experiences (Collections/Top Events/Proof). Only the first tab of each is designed in Figma; the others are derived from the info cards.
+
+## Catalog — Deco methods modal, S1 layout (2026-10-19)
+
+Figma `6078:9607`. `DecoMethodsModal` replaces the sidebar/detail design with the dietary-modal layout (65rem card, r2rem, two columns, hairline rows, equal-width CTAs) plus 4.5rem (mobile 3.5rem) r1rem photo thumbnails. Copy and column groups: `DECO_SHORT` / `DECO_GROUPS` in `decoMethods.ts`. Info only; the opened method's row starts highlighted until another row is hovered. The old `spec` / `best` fields are no longer shown.

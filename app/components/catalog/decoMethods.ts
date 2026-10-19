@@ -161,3 +161,34 @@ export const DECO_METHODS: DecoMethod[] = [
     spec: { finish: "Metallic", minOrder: "50 pc", leadTime: "10 days" },
   },
 ];
+
+/* Modal list (Figma 6078:9607, S1-style two lists with D1 thumbnails): one-to-two-line
+   description per method and the two column groups. */
+export const DECO_SHORT: Record<string, string> = {
+  embroidery: "Classic flat to 3D puff — stitched details with a premium, textured finish.",
+  "screen-printing": "Standard, puff, metallic or glow inks for bold, long-lasting prints.",
+  dtg: "High-resolution, full-color prints that blend into the fabric.",
+  dtf: "Durable, bold transfers for cotton, polyester and blends.",
+  sublimation: "Vibrant all-over prints with dye-infused designs that won’t fade or peel.",
+  "cut-and-sew-sublimation": "Edge-to-edge printing on fabric panels before they’re stitched.",
+  "rotary-printing": "Continuous full-color printing at volume, consistent from first piece to last.",
+  "vinyl-cut": "Heat-applied cut vinyl — no screens or dies, ideal for small one-to-three-color runs.",
+  "uv-printing": "Ink cured instantly by ultraviolet light for crisp, high-contrast designs.",
+  "digital-printing": "Sharp, high-resolution graphics with smooth color gradients.",
+  "laser-engraving": "Precision laser or rotary engraving for sleek, permanent designs.",
+  "laser-etching": "A laser removes the surface layer — a clean, permanent mark on metal.",
+  debossing: "Artwork pressed into the surface for a refined tone-on-tone mark.",
+  embossing: "The surface raised into relief for a tactile, three-dimensional logo.",
+  "foil-printing": "Metallic foil pressed on with heat for a bright, reflective finish.",
+};
+
+export const DECO_GROUPS: { title: string; ids: string[] }[] = [
+  {
+    title: "Applied & printed",
+    ids: ["embroidery", "screen-printing", "dtg", "dtf", "sublimation", "cut-and-sew-sublimation", "rotary-printing", "vinyl-cut"],
+  },
+  {
+    title: "Digital, laser & finishes",
+    ids: ["uv-printing", "digital-printing", "laser-engraving", "laser-etching", "debossing", "embossing", "foil-printing"],
+  },
+];
