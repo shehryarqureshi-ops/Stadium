@@ -87,8 +87,8 @@ export default function DietModal({
         aria-labelledby="diet-modal-title"
         className="catalog-modal-card relative my-auto flex w-full max-w-[65rem] cursor-auto flex-col gap-6 rounded-catalog-modal bg-white px-5 pb-5 pt-6 shadow-catalog-modal sm:px-8 sm:pb-8 sm:pt-8 lg:gap-[1.625rem] lg:px-[2.75rem] lg:pb-10 lg:pt-10"
       >
-        <header className="flex items-start justify-between gap-6">
-          <div className="flex flex-col gap-2">
+        <header>
+          <div className="flex flex-col gap-2 pr-14">
             <h2
               id="diet-modal-title"
               className="font-display text-[1.75rem] leading-[1.1] tracking-[-0.0437rem] text-catalog-ink sm:text-[2.25rem]"
@@ -102,9 +102,9 @@ export default function DietModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-catalog-ink text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-catalog-ink"
+            className="absolute right-6 top-6 z-10 sm:right-8 sm:top-8 lg:right-10 lg:top-10 inline-flex size-10 cursor-pointer items-center justify-center rounded-full bg-black text-white transition-transform duration-200 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
-            <X aria-hidden className="size-4" strokeWidth={2} />
+            <X aria-hidden className="size-5" strokeWidth={2} />
           </button>
         </header>
 
