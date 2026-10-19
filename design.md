@@ -1924,3 +1924,4 @@ restore the dropdown set `SHOW_CATALOG_DROPDOWN = true` at the top of that file 
 
 - Hero: subhead + "included with every pass" row (truck + wallet); each pass card has tagline, "lead" chip (No pass needed / X, plus) and Engagement carries an "Optional add-ons (Confetti)" tray. Card height is `min-h` so the add-ons card grows the row.
 - Comparison header row is sticky at lg+ (`top-16`, under the fixed header): white bg always; `shadow-header-stuck` (`0 0.5rem 0.75rem -0.25rem rgba(0,0,0,.14)`) only while pinned (IntersectionObserver in `pricing/StickyHeadRow.tsx`). Below lg the table scrolls horizontally, so sticky-top is not applied there.
+- **Section heading panels** are a fixed 720px (45rem, `h-catalog-heading`) so the start of each section is unmistakable.

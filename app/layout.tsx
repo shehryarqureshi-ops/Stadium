@@ -105,38 +105,81 @@ export default function RootLayout({
             transition: none;
           }
 
-          /* Per-element scroll reveal (data-animation="reveal") — the premium
-             Linear/Apple entrance: fade in + rise from slightly below on one
-             eased curve. Opacity + transform only — animating filter: blur
-             (and parking will-change on ~90 elements) was costly on iOS. RevealOnScroll adds
-             .is-revealed the first time each element enters the viewport, and
-             sets --reveal-delay per element so sibling groups cascade instead
-             of firing together (see RevealOnScroll.tsx for the stagger logic).
+          /* Per-element scroll reveal (data-animation="reveal"). RevealOnScroll
+             adds .is-revealed the first time each element enters the viewport,
+             sets --reveal-delay so sibling groups cascade, and tags every
+             element with data-reveal-size so the effect matches its weight:
+               sm  headings, eyebrows, copy, buttons — fade + rise + de-blur
+                   (10px blur → sharp; h1/h2 line by line, Linear-style)
+               lg  cards, images, panels, anything tall — opacity fade only
+                   (blurring a large layer is what made Safari's GPU work
+                   constantly, so big surfaces never get filter or will-change)
              Inlined here (not globals.css) so it always ships before content
              paints — no flash. Reduced-motion / no-JS show content instantly. */
           [data-animation="reveal"] {
             opacity: 0;
-            transform: translateY(1.5rem);
-            transition:
-              opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             transition-delay: var(--reveal-delay, 0s);
+          }
+          [data-animation="reveal"]:not([data-reveal-size="lg"]) {
+            transform: translateY(0.75rem);
+            filter: blur(0.625rem);
+            transition:
+              opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          /* h1/h2 are revealed line by line in JS (Linear-style stagger): the
+             box itself switches on instantly and its lines animate. */
+          [data-animation="reveal"][data-reveal-lines].is-revealed {
+            transition: none;
+          }
+          [data-animation="reveal"][data-reveal-size="lg"] {
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
           }
           [data-animation="reveal"].is-revealed {
             opacity: 1;
             transform: none;
+            filter: none;
           }
           @media (prefers-reduced-motion: reduce) {
             [data-animation="reveal"] {
               opacity: 1;
               transform: none;
+              filter: none;
               transition: none;
             }
+          }
+          /* /catalog hero copy entrance — plays at first paint (pure CSS, no
+             hydration wait, no delay): fade + rise + de-blur. Inlined with the
+             reveal rules so it ships before content paints. */
+          @keyframes catalog-hero-in {
+            from {
+              opacity: 0;
+              transform: translateY(0.75rem);
+              filter: blur(0.625rem);
+            }
+            to {
+              opacity: 1;
+              transform: none;
+              filter: blur(0);
+            }
+          }
+          .catalog-hero-in {
+            animation: catalog-hero-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .catalog-hero-in {
+              animation: none;
+            }
+          }
+          [data-motion="paused"] .catalog-hero-in {
+            animation: none;
           }
           @media (scripting: none) {
             [data-animation="reveal"] {
               opacity: 1;
               transform: none;
+              filter: none;
             }
           }
         `}</style>

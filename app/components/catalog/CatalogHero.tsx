@@ -32,35 +32,26 @@ export default function CatalogHero() {
           <div className="flex flex-col items-center gap-8">
             <div className="flex flex-col items-center gap-2">
               <p
-                data-animation="reveal"
-                className="font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-catalog-eyebrow"
+                className="catalog-hero-in font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-catalog-eyebrow"
               >
                 Stadium catalog
               </p>
               <h1
                 id="catalog-hero-title"
-                data-animation="reveal"
-                data-reveal-delay="80"
-                className="max-w-[53.625rem] text-balance font-display text-display-sm text-white md:text-display-md lg:text-display-pricing"
+                className="catalog-hero-in max-w-[53.625rem] text-balance font-display text-display-sm text-white md:text-display-md lg:text-display-pricing"
               >
                 Everything you need to engage anyone, anywhere.
               </h1>
             </div>
             <p
-              data-animation="reveal"
-              data-reveal-delay="160"
-              className="max-w-[38.125rem] text-balance font-sans text-body-md text-catalog-lead lg:text-catalog-body"
+              className="catalog-hero-in max-w-[38.125rem] text-balance font-sans text-body-md text-catalog-lead lg:text-catalog-body"
             >
               A diverse selection of gifts and swag your people will love—filled with top-tier brands
               and globally sourced goodies.
             </p>
           </div>
 
-          <div
-            data-animation="reveal"
-            data-reveal-delay="240"
-            className="flex flex-col items-center gap-8"
-          >
+          <div className="catalog-hero-in flex flex-col items-center gap-8">
             <div className="flex flex-col gap-3.5 sm:flex-row">
               <a
                 href={BOOK_A_CALL_HREF}

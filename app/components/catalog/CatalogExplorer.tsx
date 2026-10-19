@@ -320,7 +320,7 @@ function CatalogSection({
       className="relative scroll-mt-0"
     >
       <div
-        className={`relative z-10 flex flex-col items-center justify-center gap-4 rounded-catalog-panel bg-black px-section-x-sm py-16 text-center h-catalog-heading md:px-section-x-md ${
+        className={`relative z-10 flex flex-col items-center justify-start gap-4 rounded-catalog-panel bg-black px-section-x-sm pt-[13.5rem] text-center h-catalog-heading md:px-section-x-md ${
           index > 0 ? "-mt-10 md:-mt-[3.75rem]" : ""
         }`}
       >
