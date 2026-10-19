@@ -55,6 +55,11 @@ export default function Starfield({ className = "" }: { className?: string }) {
     /* Runs only while on-screen and the tab is visible; the rAF is cancelled
        otherwise (not just skipped). */
     let raf = 0;
+    /* Phones get one static frame: 220 arcs repainted at 60 fps behind a full
+       section is pure heat for a decorative effect. */
+    const still =
+      window.matchMedia("(max-width: 767px)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const animate = () => {
       ctx.clearRect(0, 0, w, h);
       for (const s of stars) {

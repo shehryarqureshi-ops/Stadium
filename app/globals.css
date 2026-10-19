@@ -991,3 +991,8 @@ body {
   --circle-flag-shadow: none;
 }
             
+/* Set by MarqueeGate on infinite animations that are off-screen: an endless
+   transform animation otherwise forces a compositor frame on every vsync. */
+[data-offscreen] {
+  animation-play-state: paused !important;
+}

@@ -53,6 +53,9 @@ function CheckIcon() {
   );
 }
 
+const glowVariantFor = (c?: string) =>
+  !c ? "default" : c.toLowerCase() === "#8d12e7" ? "purple" : "green";
+
 export default function PillTabs({
   caption,
   title,
@@ -63,6 +66,7 @@ export default function PillTabs({
   glowColor,
 }: TabsShowcaseProps) {
   const [active, setActive] = useState(0);
+  const glowVariant = glowVariantFor(glowColor);
 
   const item = items[active];
 
@@ -86,65 +90,22 @@ export default function PillTabs({
       ref={sectionRef}
       className="relative min-w-0 bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
     >
-      {/* Background blurred symbol */}
-      <div className="absolute inset-0 flex justify-center-safe blur-[400px]">
-        <svg
-          width="983"
-          height="554"
-          viewBox="0 0 983 554"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g opacity="0.33">
-            {glowColor ? (
-              <>
-                <path
-                  d="M983 553.983L673.231 553.983L597.904 480.36L673.231 406.874L983 406.874L983 553.983Z"
-                  fill={glowColor}
-                />
-                <path
-                  d="M597.912 480.381L491.511 376.388L785.882 88.8161L892.282 192.808L597.912 480.381Z"
-                  fill={glowColor}
-                />
-                <path
-                  d="M673.234 554L460.431 554L90.8746 192.808L197.274 88.8161L673.234 554Z"
-                  fill={glowColor}
-                />
-                <path
-                  d="M491.502 376.379L416.314 302.893L416.314 -2.47706e-05L566.827 -1.81915e-05L566.827 302.893L491.502 376.379Z"
-                  fill={glowColor}
-                />
-                <path
-                  d="M460.418 553.983L-3.70809e-05 553.983L-3.06506e-05 406.874L309.906 406.874L460.418 553.983Z"
-                  fill={glowColor}
-                />
-              </>
-            ) : (
-              <>
-                <path
-                  d="M983 553.983L673.231 553.983L597.904 480.36L673.231 406.874L983 406.874L983 553.983Z"
-                  fill="#8D12E7"
-                />
-                <path
-                  d="M597.912 480.381L491.511 376.388L785.882 88.8161L892.282 192.808L597.912 480.381Z"
-                  fill="#0B7AFC"
-                />
-                <path
-                  d="M673.234 554L460.431 554L90.8746 192.808L197.274 88.8161L673.234 554Z"
-                  fill="#FF5B77"
-                />
-                <path
-                  d="M491.502 376.379L416.314 302.893L416.314 -2.47706e-05L566.827 -1.81915e-05L566.827 302.893L491.502 376.379Z"
-                  fill="#FFB800"
-                />
-                <path
-                  d="M460.418 553.983L-3.70809e-05 553.983L-3.06506e-05 406.874L309.906 406.874L460.418 553.983Z"
-                  fill="#00C036"
-                />
-              </>
-            )}
-          </g>
-        </svg>
+      {/* Background glow: the brand mark at 33% opacity under a 400px blur.
+          A live blur-[400px] on a section-sized layer is extremely expensive
+          for Safari to rasterise, so it is baked into a ~12 KB webp (pad 1200px
+          around the 983×554 mark; the soft image upscales cleanly). Variants:
+          default multicolour, purple, green. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 flex justify-center-safe">
+        <div className="relative h-[34.625rem] w-[61.4375rem] shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/pilltabs-glow-${glowVariant}.webp`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="absolute -left-[75rem] -top-[75rem] h-[184.625rem] max-w-none w-[211.4375rem]"
+          />
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-content flex-col gap-10">

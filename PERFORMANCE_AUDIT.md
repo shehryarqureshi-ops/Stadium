@@ -131,3 +131,27 @@ Method: traced every import from the app entry points (pages, layouts, MDX), re-
 - **Dependencies:** removed `shaders`.
 - **Verified:** `tsc` clean, lint 0 errors, build generates 43/43 pages, and a crawl of all 40 routes on the production server checked 8,795 asset URLs with 0 broken.
 - **Left alone:** `scripts/` and `wp-shell/` (tooling / WordPress export), `design.md` (design record, still mentions some removed names), unused exports inside live files, unused `@theme` tokens.
+
+## Round 2: still hot on iPhone (2026-10-19)
+
+The live site was light on transfer (0.47 MB at load; 2.8 s load on a 4 Mbps / 150 ms connection with 4x CPU slowdown, FCP 1.5 s, TBT 146 ms) but the phone stayed hot. My first theory (endless marquees) was **wrong**.
+
+**Measured in real WebKit** (Safari on the Mac, GPU process CPU while the page sits idle, one change per build):
+
+| Build | GPU process CPU |
+|---|---|
+| Live site / pre-fix build | 100–400% |
+| Only marquees paused | 100–400% |
+| Only lighter reveal animation | 100–400% |
+| Only static starfield | 100–400% |
+| Only Infrastructure glow replaced | 100–400% |
+| **Only the PillTabs `blur-[400px]` replaced with a baked image** | **~5%** |
+| All round-2 changes | 1–9% |
+
+**Cause:** `PillTabs` painted its brand-mark background under `blur-[400px]` on a section-sized layer. Safari re-rasterises it constantly, even far off-screen. **Fix:** baked to `public/pilltabs-glow-*.webp` (12 KB each, identical look).
+
+Also changed (cheap hygiene, no measurable effect on their own): `MarqueeGate` pauses off-screen infinite animations, reveal is opacity+transform only, Infrastructure glow is a gradient, starfield is static on phones, `backdrop-blur` only from `lg`.
+
+**Other routes** (/swag, /recognition, /catalog, /snacks, /events, /gifting, /pricing, /ways-to-engage, /impact/hr) idle at 0–6% GPU after the fix.
+
+**Open:** deploy (Vercel only shows this after commit + push); third-party scripts (Clarity etc. show in CPU profiles when consent is given; marker.io feedback widget loads in production); 7 `mix-blend-multiply` catalog images; verify on the real iPhone.

@@ -113,12 +113,12 @@ export default function Infrastructure() {
           {/* #0b7afc glow, bottom-weighted behind the card (Ellipse 22) */}
           <div
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-[50%] z-0 h-[24rem] w-[68.5rem] max-w-[105%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#0b7afc] opacity-70 blur-[170px]"
+            className="pointer-events-none absolute left-1/2 top-[50%] z-0 h-[52rem] w-[100rem] max-w-[160%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(closest-side,rgba(11,122,252,0.5)_0%,rgba(11,122,252,0.42)_38%,rgba(11,122,252,0.16)_68%,rgba(11,122,252,0)_100%)]"
           />
           {/* card — step pills + video */}
           <div
             data-animation="reveal"
-            className="relative z-10 grid grid-cols-1 gap-2.5 rounded-[1.5rem] border-t border-[#4d4d4d] bg-black/90 p-2.5 backdrop-blur-[30px] lg:grid-cols-[26.25rem_minmax(0,1fr)]"
+            className="relative z-10 grid grid-cols-1 gap-2.5 rounded-[1.5rem] border-t border-[#4d4d4d] bg-black/90 p-2.5 lg:backdrop-blur-[30px] lg:grid-cols-[26.25rem_minmax(0,1fr)]"
           >
             {/* step pills */}
             <div className="flex flex-col gap-2.5">
@@ -132,7 +132,7 @@ export default function Infrastructure() {
                     aria-current={on}
                     className={`flex h-[3.75rem] w-full items-center gap-3.5 rounded-lg px-3.5 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer ${
                       on
-                        ? "bg-white/20 backdrop-blur-[18px]"
+                        ? "bg-white/20 lg:backdrop-blur-[18px]"
                         : "bg-white/[0.08]"
                     }`}
                   >

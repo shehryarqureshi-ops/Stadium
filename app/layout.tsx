@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import localFont from "next/font/local";
+import MarqueeGate from "./components/MarqueeGate";
 import RevealOnScroll from "./components/RevealOnScroll";
 import MotionToggle from "./components/MotionToggle";
 import MarkerFeedback from "./components/tracking/MarkerFeedback";
@@ -105,8 +106,9 @@ export default function RootLayout({
           }
 
           /* Per-element scroll reveal (data-animation="reveal") — the premium
-             Linear/Apple entrance: fade in + rise from slightly below + de-blur
-             into focus, in parallel on one eased curve. RevealOnScroll adds
+             Linear/Apple entrance: fade in + rise from slightly below on one
+             eased curve. Opacity + transform only — animating filter: blur
+             (and parking will-change on ~90 elements) was costly on iOS. RevealOnScroll adds
              .is-revealed the first time each element enters the viewport, and
              sets --reveal-delay per element so sibling groups cascade instead
              of firing together (see RevealOnScroll.tsx for the stagger logic).
@@ -115,25 +117,19 @@ export default function RootLayout({
           [data-animation="reveal"] {
             opacity: 0;
             transform: translateY(1.5rem);
-            filter: blur(0.5rem);
             transition:
-              opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 2.5s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+              opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             transition-delay: var(--reveal-delay, 0s);
-            will-change: opacity, transform, filter;
           }
           [data-animation="reveal"].is-revealed {
             opacity: 1;
             transform: none;
-            filter: none;
-            will-change: auto;
           }
           @media (prefers-reduced-motion: reduce) {
             [data-animation="reveal"] {
               opacity: 1;
               transform: none;
-              filter: none;
               transition: none;
             }
           }
@@ -141,7 +137,6 @@ export default function RootLayout({
             [data-animation="reveal"] {
               opacity: 1;
               transform: none;
-              filter: none;
             }
           }
         `}</style>
@@ -154,6 +149,7 @@ export default function RootLayout({
         <MotionToggle variant="skip" />
         {children}
         <RevealOnScroll />
+        <MarqueeGate />
         {/* Consent (Osano) + Consent Mode v2 defaults + GTM + gated scripts.
             Analytics run ONLY when NEXT_PUBLIC_APP_ENV=production on a
             production host — never in dev or staging. See

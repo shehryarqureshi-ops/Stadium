@@ -14,7 +14,7 @@ const items = [
     description:
       "Browse hundreds of events, narrowed to your team's preferences.",
     image: pickYourEvent,
-    imageAlt: "Pick a Box — Crowd Pleasers snack box selected in Snackmagic",
+    imageAlt: "Event picker showing filters and a grid of matched classes, with Mixology Class selected",
     desktopVisualWidth,
   },
   {
@@ -23,7 +23,7 @@ const items = [
       "Browse hundreds of events, narrowed to your team's preferences.",
     image: bookInMinutes,
     imageAlt:
-      "Add Recipients — a list of teammates with checkboxes and a Confirm Order button",
+      "Booking card for Mixology Class with date, time, guest count, total and a Confirm button",
     desktopVisualWidth,
   },
   {
@@ -31,7 +31,7 @@ const items = [
     description:
       "Everything’s handled. Your team simply enjoys the experience.",
     image: showUp,
-    imageAlt: "Hit Send — order details for Crowd Pleasers going to 15 people",
+    imageAlt: "Confirmed Mixology Class event card with 23 attendees and a Join Event button",
     desktopVisualWidth,
   },
 ];
