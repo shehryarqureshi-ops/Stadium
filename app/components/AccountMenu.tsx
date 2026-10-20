@@ -1,5 +1,6 @@
 "use client";
 
+import { externalLinkProps } from "@/app/lib/links";
 import { useEffect, useId, useRef, useState } from "react";
 import { APP_URL, logout, type AuthUser } from "@/hooks/useAuth";
 
@@ -151,6 +152,7 @@ export default function AccountMenu({
             <li key={label}>
               <a
                 href={href}
+                {...externalLinkProps(href)}
                 onClick={onNavigate}
                 className="flex h-11 items-center rounded-button px-3 font-sans text-body-md text-grey-700 transition-colors hover:bg-grey-100 hover:text-ink"
               >

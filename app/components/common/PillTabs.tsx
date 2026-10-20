@@ -2,10 +2,13 @@
 
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 export type TabsShowcaseItem = {
+  /** url-hash slug (e.g. "onboarding" → /impact/hr#onboarding). When any item
+   *  has one, the active tab is synced to the hash and deep-linkable. */
+  id?: string;
   name: string;
   tab: string;
   title: string;
@@ -29,6 +32,8 @@ type TabsShowcaseProps = {
   autoAdvance?: boolean;
   captionColor?: string;
   glowColor?: string;
+  /** id of the <section>, so the block can also be linked to as a whole */
+  sectionId?: string;
 };
 
 function CheckIcon() {
@@ -64,6 +69,7 @@ export default function PillTabs({
   autoAdvance = true,
   captionColor: accent,
   glowColor,
+  sectionId = "journey",
 }: TabsShowcaseProps) {
   const [active, setActive] = useState(0);
   const glowVariant = glowVariantFor(glowColor);
@@ -76,11 +82,63 @@ export default function PillTabs({
     setActive((i) => (i + 1) % items.length);
   });
 
+  /* set once a pill is clicked: pills never scroll, and must cancel the
+     late re-scroll of a deep link */
+  const clicked = useRef(false);
+  const hashEnabled = items.some((i) => i.id);
+
+  /* Deep links: `#<item.id>` selects that tab and scrolls the block into
+     view — on load, and on later hash changes (header menu, back/forward).
+     Mount-only on purpose: takeOver/items change identity across renders, and
+     re-running this after a pill click would re-scroll to the section. */
+  const latest = useRef({ items, takeOver, sectionRef });
+  useEffect(() => {
+    latest.current = { items, takeOver, sectionRef };
+  });
+
+  useEffect(() => {
+    if (!hashEnabled) return;
+    const apply = (scroll: boolean) => {
+      const { items: list, sectionRef: ref } = latest.current;
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+      const index = hash ? list.findIndex((i) => i.id === hash) : -1;
+      if (index < 0) return;
+      setActive(index);
+      if (scroll) {
+        /* wait a frame so layout (and the tab swap) has settled */
+        requestAnimationFrame(() =>
+          ref.current?.scrollIntoView({ behavior: "auto", block: "start" }),
+        );
+      }
+    };
+    const onHash = () => {
+      latest.current.takeOver();
+      apply(true);
+    };
+    /* initial load: images above may still shift layout, so re-scroll once */
+    const t0 = window.setTimeout(() => apply(true), 0);
+    const t1 = window.setTimeout(() => {
+      if (!clicked.current) apply(true);
+    }, 400);
+    window.addEventListener("hashchange", onHash);
+    return () => {
+      window.clearTimeout(t0);
+      window.clearTimeout(t1);
+      window.removeEventListener("hashchange", onHash);
+    };
+  }, [hashEnabled]);
+
   const select = (index: number) => {
     if (index === active) return;
 
     takeOver();
+    clicked.current = true;
     setActive(index);
+    const id = items[index]?.id;
+    /* Bypass Next's patched history.replaceState: its router treats a hash
+       change as a navigation and scrolls (to top when no element has that id). */
+    if (id)
+      History.prototype.replaceState.call(window.history, window.history.state, "", `#${id}`);
   };
 
   if (!items.length) return null;
@@ -88,7 +146,8 @@ export default function PillTabs({
   return (
     <section
       ref={sectionRef}
-      className="relative min-w-0 bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
+      id={hashEnabled ? sectionId : undefined}
+      className="relative min-w-0 scroll-mt-[11.5rem] bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
     >
       {/* Background glow: the brand mark at 33% opacity under a 400px blur.
           A live blur-[400px] on a section-sized layer is extremely expensive
@@ -144,6 +203,7 @@ export default function PillTabs({
                 <button
                   type="button"
                   onClick={() => select(index)}
+                  id={item.id ? `tab-${item.id}` : undefined}
                   aria-pressed={index === active}
                   className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
                     index === active
@@ -162,7 +222,17 @@ export default function PillTabs({
         <div className="flex flex-col gap-6 overflow-hidden rounded-[2rem] border border-[#e0e0e0] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] lg:flex-row lg:gap-[3.75rem]">
           {/* Active image */}
           <div className="w-full shrink-0 lg:w-1/2">
-            <div key={`image-${item.name}`} className="teams-panel-in relative w-full">
+            <div
+              key={`image-${item.name}`}
+              className="teams-panel-in relative w-full"
+              /* reserve the image's height up front: width/height={0} below
+                 collapses the card until the new image loads, shifting the page */
+              style={
+                typeof item.image === "object"
+                  ? { aspectRatio: `${item.image.width} / ${item.image.height}` }
+                  : undefined
+              }
+            >
               {item.image ? (
               <Image
                 src={item.image}

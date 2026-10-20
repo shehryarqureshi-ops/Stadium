@@ -130,6 +130,7 @@ export default function MarketingPage() {
         autoAdvance={false}
         items={[
           {
+            id: "event-swag",
             name: "Event swag",
             tab: "Event swag",
             title: "Show up event-ready",
@@ -139,6 +140,7 @@ export default function MarketingPage() {
             imageAlt: "Staff setting up a branded event booth with merchandise kits",
           },
           {
+            id: "abm-gifts",
             name: "ABM gifts",
             tab: "ABM gifts",
             title: "Make outreach stand out",
@@ -148,6 +150,7 @@ export default function MarketingPage() {
             imageAlt: "Two colleagues choosing a personalized gift kit on a desktop monitor",
           },
           {
+            id: "webinar-gifts",
             name: "Webinar gifts",
             tab: "Webinar gifts",
             title: "Extend the webinar experience",
@@ -157,6 +160,7 @@ export default function MarketingPage() {
             imageAlt: "A person opening a branded gift box at a desk",
           },
           {
+            id: "product-launches",
             name: "Product launches",
             tab: "Product launches",
             title: "Bring launches to life",
@@ -166,6 +170,7 @@ export default function MarketingPage() {
             imageAlt: "Two colleagues arranging branded launch kits and merchandise on a table",
           },
           {
+            id: "field-kits",
             name: "Field kits",
             tab: "Field kits",
             title: "Keep field teams ready",
@@ -175,6 +180,7 @@ export default function MarketingPage() {
             imageAlt: "A field team member ordering approved merchandise on a laptop",
           },
           {
+            id: "customer-advocacy",
             name: "Customer advocacy",
             tab: "Customer advocacy",
             title: "Give customers something worth sharing",

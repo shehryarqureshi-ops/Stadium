@@ -137,6 +137,7 @@ export default function OfficeAdminsPage() {
         autoAdvance={false}
         items={[
           {
+            id: "new-hires",
             name: "New hires",
             tab: "New hires",
             title: "Get new hires ready for day one",
@@ -146,6 +147,7 @@ export default function OfficeAdminsPage() {
             imageAlt: "A new hire welcome kit",
           },
           {
+            id: "employee-gifts",
             name: "Employee gifts",
             tab: "Employee gifts",
             title: "Take care of employee occasions",
@@ -155,6 +157,7 @@ export default function OfficeAdminsPage() {
             imageAlt: "An employee opening a gift",
           },
           {
+            id: "company-events",
             name: "Company events",
             tab: "Company events",
             title: "Get teams ready for company events",
@@ -164,6 +167,7 @@ export default function OfficeAdminsPage() {
             imageAlt: "Event supplies prepared for a company event",
           },
           {
+            id: "executive-requests",
             name: "Executive requests",
             tab: "Executive requests",
             title: "Handle the last-minute ask",

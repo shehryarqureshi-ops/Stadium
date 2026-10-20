@@ -33,6 +33,46 @@ type Team = {
   cols: [UseCase[], UseCase[]];
 };
 
+/* Use case → "Across the …  journey" tab id on that team's page (PillTabs
+   hash, e.g. /impact/hr#onboarding). Use cases without a tab link to the
+   team page itself. Keep in sync with the `id`s in app/impact/<team>/page.tsx. */
+const TAB_IDS: Record<string, Record<string, string>> = {
+  "Human Resources": {
+    "New Hire Onboarding": "onboarding",
+    "Work Anniversaries": "anniversaries",
+    "Wellness Programs": "wellness",
+    "Offboarding & Farewells": "offboarding",
+    "Birthdays & Life Moments": "birthdays",
+    "Holiday & Year-End Gifting": "holidays",
+  },
+  Marketing: {
+    "Event Swag": "event-swag",
+    "Account-Based Marketing": "abm-gifts",
+    "Webinar Gifts": "webinar-gifts",
+    "Product Launches": "product-launches",
+  },
+  Sales: {
+    "Deal Acceleration": "deal-progression",
+    "Closed-Won Gifting": "closed-won",
+  },
+  "Customer Experience": {
+    "Welcome Gifts": "onboarding",
+    "Loyalty Programs": "renewal-loyalty",
+    "Renewal Gifting": "renewal-loyalty",
+    "Surprise & Delight Gifting": "appreciation",
+  },
+  "Office Admins": {
+    "Meeting Snack Trays": "company-events",
+    "Offsite Room Drops": "company-events",
+    "Executive Gifting": "executive-requests",
+  },
+};
+
+const getUseCaseHref = (t: Team, title: string) => {
+  const id = TAB_IDS[t.name]?.[title];
+  return id ? `${t.href}#${id}` : t.href;
+};
+
 /* Exported for the mobile nav accordion (2026-06-12) */
 export const TEAMS: Team[] = [
   {
@@ -212,7 +252,7 @@ export default function ImpactMenu() {
                   <ul key={ci} className="engage-group flex w-[15.9375rem] shrink-0 flex-col gap-6">
                     {col.map(({ title, desc }) => (
                       <li key={title}>
-                        <a href={t.href} className="engage-row flex flex-col gap-2">
+                        <a href={getUseCaseHref(t, title)} className="engage-row flex flex-col gap-2">
                           <span className="flex items-start gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                             {title}
                             <ArrowRight />

@@ -139,6 +139,7 @@ export default function LeadershipPage() {
         autoAdvance={false}
         items={[
           {
+            id: "onboarding",
             name: "Onboarding",
             tab: "Onboarding",
             title: "Give every new hire a strong start",
@@ -148,6 +149,7 @@ export default function LeadershipPage() {
             imageAlt: "A new hire welcome kit",
           },
           {
+            id: "recognition",
             name: "Recognition",
             tab: "Recognition",
             title: "Recognize great work as it happens",
@@ -158,6 +160,7 @@ export default function LeadershipPage() {
             overlay: <RecognitionToast />,
           },
           {
+            id: "milestones",
             name: "Milestones",
             tab: "Milestones",
             title: "Mark the milestones people reach",
@@ -167,6 +170,7 @@ export default function LeadershipPage() {
             imageAlt: "A team celebrating a milestone",
           },
           {
+            id: "events",
             name: "Events",
             tab: "Events",
             title: "Make company events feel connected",
@@ -176,6 +180,7 @@ export default function LeadershipPage() {
             imageAlt: "A team gathering with branded event kits",
           },
           {
+            id: "customer-appreciation",
             name: "Customer appreciation",
             tab: "Customer appreciation",
             title: "Show customers they’re valued",
@@ -185,6 +190,7 @@ export default function LeadershipPage() {
             imageAlt: "A customer receiving a thank-you gift",
           },
           {
+            id: "sales",
             name: "Sales",
             tab: "Sales",
             title: "Support reps beyond the conversation",

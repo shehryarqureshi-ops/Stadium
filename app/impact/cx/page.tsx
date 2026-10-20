@@ -141,6 +141,7 @@ export default function CxPage() {
         autoAdvance={false}
         items={[
           {
+            id: "onboarding",
             name: "Onboarding",
             tab: "Onboarding",
             title: "Start with a memorable welcome",
@@ -150,6 +151,7 @@ export default function CxPage() {
             imageAlt: "A welcome kit prepared for a new customer",
           },
           {
+            id: "milestones",
             name: "Milestones",
             tab: "Milestones",
             title: "Celebrate the wins along the way",
@@ -159,6 +161,7 @@ export default function CxPage() {
             imageAlt: "A customer celebrating a milestone with a gift",
           },
           {
+            id: "appreciation",
             name: "Appreciation",
             tab: "Appreciation",
             title: "Make thank-yous stand out",
@@ -168,6 +171,7 @@ export default function CxPage() {
             imageAlt: "A customer receiving a thank-you gift",
           },
           {
+            id: "customer-events",
             name: "Customer events",
             tab: "Customer events",
             title: "Bring the event to them",
@@ -177,6 +181,7 @@ export default function CxPage() {
             imageAlt: "A customer enjoying an event kit",
           },
           {
+            id: "resolution",
             name: "Resolution",
             tab: "Resolution",
             title: "Follow up beyond the fix",
@@ -186,6 +191,7 @@ export default function CxPage() {
             imageAlt: "A customer opening a follow-up gift",
           },
           {
+            id: "renewal-loyalty",
             name: "Renewal & loyalty",
             tab: "Renewal & loyalty",
             title: "Make long-term customers feel valued",

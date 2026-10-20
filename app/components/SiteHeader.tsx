@@ -1,5 +1,6 @@
 "use client";
 
+import { externalLinkProps } from "@/app/lib/links";
 import { useEffect, useRef, useState } from "react";
 import CatalogMenu, { CATALOG_TABS } from "./CatalogMenu";
 import EngageMenu, { COLUMNS as ENGAGE_COLUMNS } from "./EngageMenu";
@@ -119,7 +120,7 @@ function AuthLink({
     );
   }
   return (
-    <a href={`${APP_URL}/shops/login`} onClick={onClick} className={className}>
+    <a href={`${APP_URL}/shops/login`} {...externalLinkProps(APP_URL)} onClick={onClick} className={className}>
       Login/sign up
     </a>
   );
@@ -644,6 +645,7 @@ export default function SiteHeader({
                                   <li key={label}>
                                     <a
                                       href={href ?? "#"}
+                                      {...externalLinkProps(href)}
                                       onClick={() => setMenuOpen(false)}
                                       className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >
@@ -700,6 +702,7 @@ export default function SiteHeader({
                                   <li key={title}>
                                     <a
                                       href={href ?? "#"}
+                                      {...externalLinkProps(href)}
                                       onClick={() => setMenuOpen(false)}
                                       className="flex h-10 items-center font-sans text-small text-grey-700 transition-colors hover:text-ink"
                                     >

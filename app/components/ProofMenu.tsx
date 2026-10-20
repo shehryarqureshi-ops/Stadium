@@ -3,6 +3,7 @@
    Proof / Trust & Security) beside a "Why Stadium" image card. Shares the hover
    choreography (.engage-row / .engage-group / .engage-arrow) from SiteHeader. */
 
+import { externalLinkProps } from "@/app/lib/links";
 import { MenuShell, MenuRow, MenuContent, MenuFeaturePanel } from "@/app/components/MegaMenu";
 import { PLATFORM_ROUTES } from "@/app/components/impact/shared";
 import whyImg from "@/public/map-faces.jpg";
@@ -76,6 +77,7 @@ export default function ProofMenu() {
                 {col.href ? (
                   <a
                     href={col.href}
+                    {...externalLinkProps(col.href)}
                     className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[rgba(27,27,27,0.6)] transition-colors duration-200 group-hover/col:text-[#181818]"
                   >
                     {col.label}
@@ -92,7 +94,7 @@ export default function ProofMenu() {
                 <ul className="engage-group flex flex-col gap-6">
                   {col.items.map(({ title, desc, href }) => (
                     <li key={title}>
-                      <a href={href ?? "#"} className="engage-row flex flex-col gap-2">
+                      <a href={href ?? "#"} {...externalLinkProps(href)} className="engage-row flex flex-col gap-2">
                         <span className="flex items-start gap-1 font-sans text-[0.875rem] font-normal leading-5 text-black">
                           {title}
                           <ArrowRight className="engage-arrow size-3 shrink-0 text-black mt-0.75" />

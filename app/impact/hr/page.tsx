@@ -191,6 +191,7 @@ export default function HrPage() {
         autoAdvance={false}
         items={[
           {
+            id: "onboarding",
             name: "Onboarding",
             tab: "Onboarding",
             title: "Welcome them from day one",
@@ -200,6 +201,7 @@ export default function HrPage() {
             imageAlt: "An HR manager reviewing the onboarding dashboard on a desktop monitor",
           },
           {
+            id: "anniversaries",
             name: "Anniversaries",
             tab: "Anniversaries",
             title: "Celebrate every work milestone",
@@ -209,6 +211,7 @@ export default function HrPage() {
             imageAlt: "A team member reviewing work anniversaries on a desktop monitor",
           },
           {
+            id: "wellness",
             name: "Wellness",
             tab: "Wellness",
             title: "Show employees you care",
@@ -220,6 +223,7 @@ export default function HrPage() {
             imageAlt: "An employee browsing the Snackmagic catalog on a laptop",
           },
           {
+            id: "birthdays",
             name: "Birthdays",
             tab: "Birthdays",
             title: "Never miss a birthday",
@@ -229,6 +233,7 @@ export default function HrPage() {
             imageAlt: "An employee opening a birthday gift box full of snacks",
           },
           {
+            id: "holidays",
             name: "Holidays",
             tab: "Holidays",
             title: "Close out the year with ease",
@@ -238,6 +243,7 @@ export default function HrPage() {
             imageAlt: "A collage of employees unwrapping holiday gifts",
           },
           {
+            id: "year-end",
             name: "Year-end",
             tab: "Year-end",
             title: "Close out the year with ease",
@@ -247,6 +253,7 @@ export default function HrPage() {
             imageAlt: "An employee relaxing on a sofa with a Snackmagic gift box",
           },
           {
+            id: "offboarding",
             name: "Offboarding",
             tab: "Offboarding",
             title: "Leave a lasting impression",

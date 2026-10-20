@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { externalLinkProps } from "@/app/lib/links";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 
@@ -70,6 +71,7 @@ export function MenuCard({
   return (
     <a
       href={href}
+      {...externalLinkProps(href)}
       className="group relative flex min-h-[20rem] w-[24rem] shrink-0 flex-col justify-end overflow-hidden rounded-card bg-grey-800"
     >
       <Image
@@ -128,7 +130,7 @@ export function MenuFeaturePanel({
       </p>
       <a
         href={href}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : externalLinkProps(href))}
         className="group flex flex-col gap-3 rounded-[0.75rem] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
       >
         <span
@@ -212,6 +214,7 @@ export function MenuSwitcher({
           <a
             key={name}
             href={href}
+            {...externalLinkProps(href)}
             aria-current={i === active ? "true" : undefined}
             onMouseEnter={() => onSelect(i)}
             onFocus={() => onSelect(i)}

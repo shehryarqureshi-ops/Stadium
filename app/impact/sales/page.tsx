@@ -154,6 +154,7 @@ export default function SalesPage() {
         autoAdvance={false}
         items={[
           {
+            id: "prospecting",
             name: "Prospecting",
             tab: "Prospecting",
             title: "Make outreach stand out",
@@ -163,6 +164,7 @@ export default function SalesPage() {
             imageAlt: "A sales rep preparing outreach on a laptop",
           },
           {
+            id: "meetings-booked",
             name: "Meetings booked",
             tab: "Meetings booked",
             title: "Keep the conversation going",
@@ -172,6 +174,7 @@ export default function SalesPage() {
             imageAlt: "A sales rep following up after a meeting",
           },
           {
+            id: "deal-progression",
             name: "Deal progression",
             tab: "Deal progression",
             title: "Mark the moments that move deals forward",
@@ -181,6 +184,7 @@ export default function SalesPage() {
             imageAlt: "A sales rep reviewing deal stages on a laptop",
           },
           {
+            id: "closed-won",
             name: "Closed won",
             tab: "Closed won",
             title: "Start the relationship strong",
@@ -190,6 +194,7 @@ export default function SalesPage() {
             imageAlt: "A sales rep unboxing a premium branded gift",
           },
           {
+            id: "renewal",
             name: "Renewal",
             tab: "Renewal",
             title: "Make customer milestones count",
@@ -199,6 +204,7 @@ export default function SalesPage() {
             imageAlt: "A customer opening a branded gift box at home",
           },
           {
+            id: "win-back",
             name: "Win-back",
             tab: "Win-back",
             title: "Give them a reason to reconnect",
