@@ -2,6 +2,7 @@
    on-demand image optimizer, so hundreds of tiles never queue behind each other):
      -s  160 px wide  (hero wall tiles, ~80 px on screen @2x)
      -m  400 px wide  (section mosaic tiles, ~176 px on screen @2x)
+     -l  1200 px wide (product modal photo, 600 px on screen @2x)
    Output: public/catalog-page/thumbs/<section>/<name>-{s,m}.webp
    Run: node scripts/gen-catalog-thumbs.mjs  (skips thumbs that are newer than their source) */
 import fs from "node:fs";
@@ -9,7 +10,7 @@ import path from "node:path";
 import sharp from "sharp";
 
 const root = "public/catalog-page";
-const SIZES = { s: [160, 72], m: [400, 78] };
+const SIZES = { s: [160, 72], m: [400, 78], l: [1200, 80] };
 let made = 0;
 for (const sec of ["swag", "gifts", "snacks", "experiences", "deco"]) {
   const dir = path.join(root, sec);

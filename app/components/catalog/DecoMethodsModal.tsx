@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 
 import { BOOK_A_CALL_HREF, type SectionData } from "./data";
+import { thumb } from "./thumb";
 import { DECO_GROUPS, DECO_METHODS, DECO_SHORT } from "./decoMethods";
 
 /* Decoration methods modal (Figma 6078:9607 — S1 layout with D1 thumbnails): 1040
@@ -117,7 +117,8 @@ export default function DecoMethodsModal({
                       }`}
                     >
                       <span className="relative size-14 shrink-0 overflow-hidden rounded-2xl bg-grey-200 sm:size-[4.5rem]">
-                        <Image src={d.image} alt="" fill sizes="4.5rem" className="object-cover" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={thumb(d.image, "s")} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover" />
                       </span>
                       <div className="flex min-w-0 flex-1 flex-col gap-[0.1875rem]">
                         <p className="font-display text-[1.0625rem] leading-[1.35] tracking-[-0.0125rem] text-catalog-ink">{d.title}</p>

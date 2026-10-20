@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 
+import { thumb } from "./thumb";
 import { BOOK_A_CALL_HREF, type Product, type SectionData } from "./data";
 
 /* Product modal (Figma 3693:8077): 1200 card, r32, 16px image well holding a
@@ -76,14 +76,15 @@ export default function CatalogProductModal({
         {/* photo well */}
         <div className="p-3 sm:p-4 lg:shrink-0">
           <div className="relative aspect-[4/4.4] w-full overflow-hidden rounded-catalog-card bg-grey-200 lg:aspect-auto lg:h-[43.1875rem] lg:w-[37.5rem]">
-            <Image
-              src={product.image}
+            {/* pre-sized 1200 px WebP (scripts/gen-catalog-thumbs.mjs): a static file, so it can never
+                be a stale optimizer-cache entry and opens instantly */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={thumb(product.image, "l")}
               alt={product.name}
-              fill
-              sizes="(min-width: 1024px) 37.5rem, 100vw"
-              quality={90}
-              priority
-              className="object-cover"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover"
             />
           </div>
         </div>
