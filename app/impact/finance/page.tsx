@@ -11,6 +11,7 @@ import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import FinanceBudgetBar from "@/app/components/impact/FinanceBudgetBar";
 import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
@@ -67,11 +68,8 @@ export default function FinancePage() {
             caption={CASE_STUDY_CAPTION}
             captionColor="#16171b"
             title="See the time Stadium gives back"
-            items={[
-              { title: "ButcherBox", description: "Replaced multiple vendors with one platform, cutting coordination and saving 1–2 hours of manual work every week." },
-              { title: "Kentro", description: "Reduced swag setup time by 67% while moving from manual bulk orders to a scalable, on-demand program." },
-              { title: "Workato", description: "Centralized global gifting across 25+ countries. Gifting now takes just 20 minutes to manage, saving hours of manual work." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.finance}
           />
         </ImpactClosing>
       }

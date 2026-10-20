@@ -10,6 +10,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StepCards from "@/app/components/common/StepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import BrandKitApplied from "@/app/components/impact/BrandKitApplied";
 import { ConnectedToolsGraphic, RecipientActivityGraphic, TriggerSendsGraphic } from "@/app/components/impact/IntegrationGraphics";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
@@ -69,11 +70,8 @@ export default function MarketingPage() {
             caption="Customer results"
             captionColor="#16171b"
             title="See how Marketing teams scale with Stadium"
-            items={[
-              { title: "ConstructConnect", description: "Centralized swag across teams, saving 2–4 hours per customer project while scaling events and customer advocacy." },
-              { title: "PlanSource", description: "Cut its swag timeline in half, delivering a branded event campaign in under four weeks." },
-              { title: "Workato", description: "Scaled gifting across 25+ countries for customers, partners, and employees while reducing hours of manual work." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.marketing}
           />
         </ImpactClosing>
       }

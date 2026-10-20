@@ -90,9 +90,11 @@ function Logo({ light }: { light: boolean }) {
 }
 
 /* Login/sign up ⇄ account dropdown, driven by the app's session (see
-   hooks/useAuth). While the check is in flight the logged-out link is kept in
-   layout but invisible, so signed-in visitors never see a "Login" flash and
-   nothing shifts when it resolves. */
+   hooks/useAuth). The logged-out link renders IMMEDIATELY — the session check is a
+   cross-origin round trip (often 1–2s) and must never gate the header. Returning
+   visitors still get their account menu at once from the sessionStorage cache;
+   a signed-in visitor without a cache sees "Login/sign up" until the check
+   resolves, then it swaps to the account menu. */
 function AuthLink({
   className,
   menuTextClass,
@@ -116,15 +118,8 @@ function AuthLink({
       />
     );
   }
-  const loading = status === "loading";
   return (
-    <a
-      href={`${APP_URL}/shops/login`}
-      onClick={onClick}
-      aria-hidden={loading || undefined}
-      tabIndex={loading ? -1 : undefined}
-      className={`${className} ${loading ? "invisible" : ""}`}
-    >
+    <a href={`${APP_URL}/shops/login`} onClick={onClick} className={className}>
       Login/sign up
     </a>
   );

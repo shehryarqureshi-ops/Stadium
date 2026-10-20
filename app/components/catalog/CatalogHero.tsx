@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { getImageProps } from "next/image";
 
 import { BOOK_A_CALL_HREF, HERO_COLUMNS } from "./data";
 
@@ -22,6 +22,22 @@ function heroColVisibility(c: number) {
   if (c < 15) return "hidden min-[90rem]:block";
   if (c < 17) return "hidden min-[105rem]:block";
   return "hidden min-[120rem]:block";
+}
+
+/* The wall holds ~600 photos. next/image is a client component, so 600 <Image>s would
+   all hydrate in the browser (≈1s of main-thread work that delays every other effect on
+   the page). getImageProps runs on the server and returns the exact same optimised
+   src / srcSet / sizes, rendered as a plain <img> — same pictures, zero hydration. */
+function HeroPhoto({ src }: { src: string }) {
+  const { props } = getImageProps({
+    src,
+    alt: "",
+    fill: true,
+    sizes: "(min-width: 1024px) 5rem, (min-width: 768px) 9vw, 20vw",
+    quality: 75,
+  });
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img {...props} alt="" className="object-cover" />;
 }
 
 export default function CatalogHero() {
@@ -104,14 +120,7 @@ export default function CatalogHero() {
                         className="relative w-full shrink-0 overflow-hidden rounded-catalog-chip bg-grey-800"
                         style={{ aspectRatio: `1 / ${tile.ratio}` }}
                       >
-                        <Image
-                          src={tile.src}
-                          alt=""
-                          fill
-                          sizes="(min-width: 1024px) 5rem, (min-width: 768px) 9vw, 20vw"
-                          quality={75}
-                          className="object-cover"
-                        />
+                        <HeroPhoto src={tile.src} />
                       </div>
                     ))}
                   </div>

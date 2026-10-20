@@ -1,3 +1,4 @@
+import { BRANDS } from "@/app/components/common/customerBrands";
 import johnnyImg from "@/public/testimonials/johnny.png";
 import kateImg from "@/public/testimonials/kate.png";
 import meganImg from "@/public/testimonials/megan.png";
@@ -10,30 +11,35 @@ import Testimonials, {
 
 const items: TestimonialItem[] = [
   {
+    ...BRANDS.apollo,
     title: "Shaira Javier",
     subtitle: "People Experience Manager",
     text: "Stadium’s customer service is really proactive. That level of care is rare.",
     image: shairaImg,
   },
   {
+    ...BRANDS.plansource,
     title: "Johnny Sorman",
     subtitle: "Manager, Customer Support",
     text: "I cut my time in half by gifting with Stadium this year. What normally took 2–3 months was condensed into just under four weeks.",
     image: johnnyImg,
   },
   {
+    ...BRANDS.constructconnect,
     title: "Kate Wenzel",
     subtitle: "Director of Brand and Marketing",
     text: "Since moving to Stadium, we’ve been able to expand multiple rewards and recognition programs because the foundation and stores already exist.",
     image: kateImg,
   },
   {
+    ...BRANDS.keyfactor,
     title: "Megan Caldwell",
     subtitle: "Global People Experience Specialist",
     text: "The onboarding experience for new hires is unmatched. It’s automated, it’s on brand, and we’ve received the most amount of praise we've ever had.",
     image: meganImg,
   },
   {
+    ...BRANDS.isolved,
     title: "Natalie Alexander",
     subtitle: "Senior Enablement & Engagement Specialist",
     text: "Everything we want, eventually, Stadium is like, ‘oh, we’ve got it.’",

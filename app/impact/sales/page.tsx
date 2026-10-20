@@ -11,6 +11,7 @@ import StepCards from "@/app/components/common/StepCards";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import DealRail from "@/app/components/impact/DealRail";
 import { ChooseGiftGraphic, EnterAddressGraphic, FollowUpGraphic } from "@/app/components/impact/SalesGraphics";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
@@ -85,11 +86,8 @@ export default function SalesPage() {
             captionColor="#16171b"
             title="See how teams scale sales gifting with Stadium"
             description="Give reps more ways to connect with prospects and customers throughout the relationship."
-            items={[
-              { title: "Octus", description: "Expanded from employee swag to customer and VIP gifting, making external sends easier to scale from one platform." },
-              { title: "Workato", description: "Scaled gifting across 25+ countries for customers and partners while cutting hours of manual work." },
-              { title: "Isolved", description: "Expanded its swag program from 15 to 200 products as Sales, Marketing, employees, and customers adopted the platform." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.sales}
           />
         </ImpactClosing>
       }

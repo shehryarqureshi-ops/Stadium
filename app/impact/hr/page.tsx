@@ -11,6 +11,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import MomentsBento from "@/app/components/impact/MomentsBento";
 import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
@@ -100,11 +101,8 @@ export default function HrPage() {
             caption={CASE_STUDY_CAPTION}
             captionColor="#16171b"
             title="See how HR teams use Stadium"
-            items={[
-              { title: "Everflow", description: "Made recognition more visible and rewarding while cutting hours of manual HR work." },
-              { title: "Keyfactor", description: "Scaled recognition across its global workforce, reaching a record 1,000 recognition posts in a single month." },
-              { title: "Octus", description: "Built a global swag and gifting program that scaled employee engagement with less manual work." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.hr}
           />
         </ImpactClosing>
       }

@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import { ReactNode } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 import PillLink from "./PillLink";
 
@@ -15,6 +16,10 @@ export type VariableCardGridItem = {
   eyebrow?: string;
   /* underlined text link under the description (e.g. /integrations "Learn more") */
   link?: { label: string; href: string };
+  /* makes the whole card a link (stretched title anchor) and adds a
+     "Read more" + arrow affordance — e.g. impact case-study cards */
+  href?: string;
+  hrefLabel?: string;
 };
 
 type VariableCardGridProps = {
@@ -43,6 +48,9 @@ type VariableCardGridProps = {
   /* drop the section padding/background — for a tray nested inside another
      section (e.g. LogoBridge children on /roles-and-permissions) */
   bare?: boolean;
+  /* "cover": every image fills one fixed-height slot (cropped) so cards with
+     differently-shaped images line up — same height as the grey placeholder */
+  imageFit?: "natural" | "cover";
 };
 
 const GRID_COLUMNS = {
@@ -69,6 +77,7 @@ export default function VariableCardGrid({
   media = true,
   cta,
   bare = false,
+  imageFit = "natural",
 }: VariableCardGridProps) {
   const sizes =
     gridColumns === 4
@@ -134,7 +143,7 @@ export default function VariableCardGrid({
               <li
                 key={item.title ?? `${item.description ?? "card"}-${i}`}
                 data-animation="reveal"
-                className="flex flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
+                className={`relative flex flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] ${item.href ? "group" : ""}`}
               >
                 {!media ? null : item.image ? (
                   <div
@@ -144,19 +153,32 @@ export default function VariableCardGrid({
                         : "overflow-hidden rounded-[1.25rem]"
                     }
                   >
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt ?? item.title ?? ""}
-                      quality={100}
-                      className="w-full"
-                      sizes={sizes}
-                    />
+                    {imageFit === "cover" ? (
+                      <div className="relative h-[15.625rem]">
+                        <Image
+                          src={item.image}
+                          alt={item.imageAlt ?? item.title ?? ""}
+                          fill
+                          quality={100}
+                          className="object-cover"
+                          sizes={sizes}
+                        />
+                      </div>
+                    ) : (
+                      <Image
+                        src={item.image}
+                        alt={item.imageAlt ?? item.title ?? ""}
+                        quality={100}
+                        className="w-full"
+                        sizes={sizes}
+                      />
+                    )}
                   </div>
                 ) : (
                   <div aria-hidden className="h-[15.625rem] rounded-[1.25rem] bg-[#f2f2f2]" />
                 )}
 
-                <div className={`flex flex-col gap-4 px-8 pb-8 ${!media ? "pt-8" : imageStyle === "panel" ? "pt-10" : "pt-8"}`}>
+                <div className={`flex flex-1 flex-col gap-4 px-8 pb-8 ${!media ? "pt-8" : imageStyle === "panel" ? "pt-10" : "pt-8"}`}>
                   {item.eyebrow && (
                     <p className="font-sans text-eyebrow-sm uppercase leading-4 text-pricing-ink">
                       {item.eyebrow}
@@ -164,7 +186,13 @@ export default function VariableCardGrid({
                   )}
                   {item.title && (
                     <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5625rem] font-bold leading-[1.04] tracking-[-0.01875rem] text-[#16171b]">
-                      {item.title}
+                      {item.href ? (
+                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0 after:content-['']">
+                          {item.title}
+                        </a>
+                      ) : (
+                        item.title
+                      )}
                     </h3>
                   )}
 
@@ -176,6 +204,16 @@ export default function VariableCardGrid({
                     >
                       {item.description}
                     </p>
+                  )}
+
+                  {item.href && (
+                    <span
+                      aria-hidden
+                      className="mt-auto inline-flex items-center gap-1 font-sans text-button-primary uppercase text-pricing-ink transition-transform group-hover:translate-x-0.5"
+                    >
+                      {item.hrefLabel ?? "Read more"}
+                      <ArrowUpRight className="size-4" strokeWidth={2.5} />
+                    </span>
                   )}
 
                   {item.link && (

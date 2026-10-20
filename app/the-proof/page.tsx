@@ -4,7 +4,6 @@ import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ImageShowcase from "@/app/components/common/ImageShowcase";
-import ImpactProof from "@/app/components/common/ImpactProof";
 import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import QuoteSplit from "@/app/components/common/QuoteSplit";
 import SplitFeature from "@/app/components/common/SplitFeature";
@@ -12,6 +11,9 @@ import StatsGrid from "@/app/components/common/StatsGrid";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import TeamHero from "@/app/components/common/TeamHero";
 import TheProofGrowth from "@/app/components/impact/batch3/TheProofGrowth";
+import VerticalTestimonials from "@/app/components/common/VerticalTestimonials";
+import { BRANDS } from "@/app/components/common/customerBrands";
+import WhiteBox from "@/app/components/common/WhiteBox";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { CUSTOMER_RESULTS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
@@ -25,6 +27,9 @@ import caseControl from "@/public/the-proof/case-control.png";
 import savingsReport from "@/public/the-proof/savings-report.jpg";
 import companyOverview from "@/public/the-proof/company-overview.jpg";
 import swagProject from "@/public/the-proof/swag-project.jpg";
+import michellePhoto from "@/public/the-proof/customers/michelle-workato.jpg";
+import feliciaPhoto from "@/public/the-proof/customers/felicia-kentro.jpg";
+import nataliePhoto from "@/public/testimonials/natalie.png";
 import yourTeam from "@/public/the-proof/your-stadium-team.jpg";
 
 /* /the-proof — Figma n9SjmDjzB1PeZAYJ5w43fr → 3815:4571. Mockups are 2×
@@ -69,7 +74,10 @@ export default function TheProofPage() {
               secondary: { label: "Explore the platform", href: LINKS.platform },
             }}
           >
+          <WhiteBox>
             <QuoteSplit
+              flush
+              reverse
               caption="An extension of your team"
               title="The expertise you need, without the team you’d have to hire"
               description="Program strategy, merchandising, global logistics, and live support all come standard, so your team coordinates less and ships more."
@@ -78,18 +86,19 @@ export default function TheProofPage() {
               image={yourTeam}
               imageAlt="Your Stadium team: a program strategist, merchandiser, global logistics lead and live support, with a delivery update"
             />
-            <ImpactProof
-              large
+            <VerticalTestimonials
+              flush
               caption="In good company"
+              captionColor="#16171b"
               title="Trusted by 10,000+ companies worldwide"
-              rating={{ score: "4.8", label: "on G2 from 1,515 reviews" }}
               logos={PROOF_LOGOS}
-              quotes={[
-                { company: "WORKATO", quote: "“Stadium stood out to me because it made global gifting simple, inclusive, scalable, and cost-effective.”", name: "Michelle D.", role: "Director of Administrative Operations" },
-                { company: "KENTRO", quote: "“I know I have a trusted partner with Stadium, and I know they’re going to work with me to meet all my needs.”", name: "Felicia W.", role: "Communications Manager" },
-                { company: "ISOLVED", quote: "“Stadium is all-encompassing. It’s allowed our team to collaborate. Not just for our internal HR to use, but now we have marketing and sales coming and asking for things to be in our store…”", name: "Natalie A.", role: "Senior Enablement & Engagement Specialist" },
+              items={[
+                { ...BRANDS.workato, image: michellePhoto, title: "Michelle D.", subtitle: "Director of Administrative Operations", text: "Stadium stood out to me because it made global gifting simple, inclusive, scalable, and cost-effective." },
+                { ...BRANDS.kentro, image: feliciaPhoto, title: "Felicia W.", subtitle: "Communications Manager", text: "I know I have a trusted partner with Stadium, and I know they’re going to work with me to meet all my needs." },
+                { ...BRANDS.isolved, image: nataliePhoto, title: "Natalie A.", subtitle: "Senior Enablement & Engagement Specialist", text: "Stadium is all-encompassing. It’s allowed our team to collaborate. Not just for our internal HR to use, but now we have marketing and sales coming and asking for things to be in our store…" },
               ]}
             />
+          </WhiteBox>
           </ImpactClosing>
         }
       >

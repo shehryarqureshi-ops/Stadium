@@ -22,7 +22,7 @@ export type ImpactClosingProps = {
 export default function ImpactClosing({ children, cta }: ImpactClosingProps) {
   return (
     <div className="bg-[image:var(--gradient-impact-closing)]">
-      <div className="grid gap-16 md:gap-24 lg:gap-40">{children}</div>
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-16 md:gap-24 lg:gap-40">{children}</div>
       <ClosingCTA
         caption={cta.caption}
         title={cta.title}

@@ -3,6 +3,7 @@ import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
 import ImageShowcase from "@/app/components/common/ImageShowcase";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import ImpactProof from "@/app/components/common/ImpactProof";
 import PillTabs from "@/app/components/common/PillTabs";
@@ -13,7 +14,7 @@ import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import OpenSpatialCanvas from "@/app/components/impact/OpenSpatialCanvas";
 import { LINKS, TEAM_ROUTES } from "@/app/components/impact/shared";
 
-import problemTeams from "@/public/impact/overview/problem-teams.png";
+import problemTeams from "@/public/impact/overview/problem-teams.jpg";
 import workspace from "@/public/impact/overview/workspace.png";
 import budgets from "@/public/impact/overview/budgets.png";
 import saveTime from "@/public/impact/overview/scale-save-time.png";
@@ -21,6 +22,12 @@ import connect from "@/public/impact/overview/scale-connect.png";
 import global from "@/public/impact/overview/scale-global.png";
 import vendors from "@/public/impact/overview/scale-vendors.png";
 import tabHr from "@/public/impact/overview/tab-hr.jpg";
+import tabMarketing from "@/public/impact/overview/tab-marketing.jpg";
+import tabSales from "@/public/impact/overview/tab-sales.jpg";
+import tabCx from "@/public/impact/overview/tab-cx.jpg";
+import tabLeadership from "@/public/impact/overview/tab-leadership.jpg";
+import tabOffice from "@/public/impact/overview/tab-office-admin.jpg";
+import tabFinance from "@/public/impact/overview/tab-finance.jpg";
 
 export const metadata: Metadata = seoMetadata("/impact");
 
@@ -71,11 +78,7 @@ export default function ImpactPage() {
               title="What teams are accomplishing with Stadium"
               rating={{ score: "4.8", label: "on G2 from 1,515 reviews" }}
               logos={PROOF_LOGOS}
-              cards={[
-                { title: "Octus", description: "Engaged 1,000 recipients company-wide and achieved an 87% redemption rate." },
-                { title: "ConstructConnect", description: "Cut 2–4 hours of logistics work per send while reaching 850+ recipients." },
-                { title: "PlanSource", description: "Gifted 350+ recipients across its programs and cut execution time by 50%." },
-              ]}
+              cards={CASE_STUDIES.hub}
             />
           </ImpactClosing>
         }
@@ -85,8 +88,8 @@ export default function ImpactPage() {
           title="Every team engages people. Most do it separately."
           description="HR runs recognition. Marketing manages swag. Sales sends gifts. Customer teams celebrate milestones. Soon, every team has its own tools, vendors, budgets, and workflows."
           image={problemTeams}
-          imageAlt="HR, Marketing, Sales, and Customer teams each running their own vendors, tools, budgets, and invoices — 8 vendors, 4 budgets, 4 invoice streams, no shared view"
-          framed={false}
+          imageAlt="Employees in a bright open office, one packing a hoodie into a box beside a laptop while colleagues work separately at nearby desks"
+          framed
           footnote="More vendors. More admin. Less visibility."
         />
 
@@ -131,13 +134,13 @@ export default function ImpactPage() {
             description="Each team can run the programs they own while staying connected to the same company infrastructure."
             autoAdvance={false}
             items={[
-              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", image: tabHr, imageAlt: "A colleague handing over a black gift box", href: TEAM_ROUTES.hr, cta: "Explore Stadium for HR" },
-              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", href: TEAM_ROUTES.marketing, cta: "Explore Stadium for Marketing" },
-              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", href: TEAM_ROUTES.sales, cta: "Explore Stadium for Sales" },
-              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", href: TEAM_ROUTES.cx, cta: "Explore Stadium for CX" },
-              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", href: TEAM_ROUTES.leadership, cta: "Explore Stadium for Leadership" },
-              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", href: TEAM_ROUTES.officeAdmins, cta: "Explore Stadium for Office Admins" },
-              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", href: TEAM_ROUTES.finance, cta: "Explore Stadium for Finance" },
+              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", image: tabHr, imageAlt: "A new hire's welcome kit on her desk, with a delivery timeline showing the kit delivered and a welcome post sent", href: TEAM_ROUTES.hr, cta: "Explore Stadium for HR" },
+              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "Two colleagues handing over a branded gift bag at an event", href: TEAM_ROUTES.marketing, cta: "Explore Stadium for Marketing" },
+              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A seller on a video call with a prospect, a premium gift box open on the desk", href: TEAM_ROUTES.sales, cta: "Explore Stadium for Sales" },
+              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling as she unboxes a branded tumbler gift", href: TEAM_ROUTES.cx, cta: "Explore Stadium for CX" },
+              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", image: tabLeadership, imageAlt: "A leader reviewing recognition and budget dashboards on a desktop", href: TEAM_ROUTES.leadership, cta: "Explore Stadium for Leadership" },
+              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", image: tabOffice, imageAlt: "An office admin managing a new-hire journey and milestones calendar on screen, with branded swag on the desk", href: TEAM_ROUTES.officeAdmins, cta: "Explore Stadium for Office Admins" },
+              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", image: tabFinance, imageAlt: "A finance lead reviewing the team budget and approvals on a desktop", href: TEAM_ROUTES.finance, cta: "Explore Stadium for Finance" },
             ]}
           />
         </div>

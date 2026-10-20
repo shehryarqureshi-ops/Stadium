@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-const LOGOS = [
+export type HeroLogo = { src: string; alt: string; width: number; height: number };
+
+const LOGOS: HeroLogo[] = [
   { src: "/logos/fidelity.svg", alt: "Fidelity Investments", width: 81, height: 24 },
   { src: "/logos/solved.svg", alt: "isolved", width: 77, height: 20 },
   { src: "/logos/western-union.svg", alt: "Western Union", width: 87, height: 25 },
@@ -12,12 +14,16 @@ const LOGOS = [
   { src: "/logos/imagine.svg", alt: "Imagine Pediatrics", width: 80, height: 30 },
 ];
 
-/* variant "band" (default): the full-bleed glass band used under the vertical
+/* tone "light" (default): white marks for dark/blue grounds. "dark": near-black
+   marks for white grounds (e.g. the boxed ImpactProof).
+   variant "band" (default): the full-bleed glass band used under the vertical
    heroes. "inline": just the masked marquee track, sized by its parent (e.g.
    the /book-a-call hero left column). */
 export const HeroLogoWall = ({
   variant = "band",
-}: { variant?: "band" | "inline" } = {}) => {
+  logos = LOGOS,
+  tone = "light",
+}: { variant?: "band" | "inline"; logos?: HeroLogo[]; tone?: "light" | "dark" } = {}) => {
   const track = (
     <div className="relative h-10 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
       <div className="flex h-full w-max animate-[swag-marquee_40s_linear_infinite] motion-reduce:animate-none">
@@ -27,7 +33,7 @@ export const HeroLogoWall = ({
             aria-hidden={group === 1}
             className="flex h-full shrink-0 list-none items-center gap-x-10 pr-10 md:gap-x-14 md:pr-14"
           >
-            {LOGOS.map((l, i) => (
+            {logos.map((l, i) => (
               <li key={`${l.alt}-${i}`} className="flex shrink-0 items-center">
                 {}
                 <Image
@@ -36,7 +42,7 @@ export const HeroLogoWall = ({
                   width={l.width}
                   height={l.height}
                   style={{ height: `${l.height / 16}rem` }}
-                  className="w-auto max-w-none select-none opacity-90 brightness-0 invert"
+                  className={`w-auto max-w-none select-none ${tone === "dark" ? "opacity-60 brightness-0" : "opacity-90 brightness-0 invert"}`}
                 />
               </li>
             ))}

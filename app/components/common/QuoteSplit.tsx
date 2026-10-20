@@ -23,6 +23,8 @@ export type QuoteSplitProps = {
   image?: StaticImageData;
   imageAlt?: string;
   reverse?: boolean;
+  /* no section gutters — the parent (e.g. WhiteBox) supplies them */
+  flush?: boolean;
 };
 
 export default function QuoteSplit({
@@ -36,9 +38,10 @@ export default function QuoteSplit({
   image,
   imageAlt = "",
   reverse = false,
+  flush = false,
 }: QuoteSplitProps) {
   return (
-    <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className={flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg"}>
       <div
         className={`mx-auto flex w-full max-w-content flex-col gap-10 lg:items-stretch lg:gap-25 ${
           reverse ? "lg:flex-row-reverse" : "lg:flex-row"

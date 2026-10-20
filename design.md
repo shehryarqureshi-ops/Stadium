@@ -1450,7 +1450,7 @@ Stack: `BookACallHero` → glass panel + `ProblemSection tone="dark"` → 160 �
 
 **Why Stadium? (3998:4237)** — `ProblemSection tone="dark"` title only; images are Figma placeholders → existing photos (`infra-operations.jpg`, `map-faces.jpg`, `catalog-gift-cards.jpg`).
 
-**Testimonials (3998:4261)** — `VerticalTestimonials` stack layout: eyebrow #a4cefe, left column sticky (lg top-28); cards `bg-pricing-cell p-6 gap-6 rounded-3xl`, 72px `rounded-xl` fluted thumb (`recog2/rc-case-thumb.png`), white content `rounded-xl px-7 pt-7 pb-[1.875rem] shadow-pass`, quote Satoshi Medium 25/−0.3, name/role `text-feature`.
+**Testimonials (3998:4261)** — `VerticalTestimonials` (the single testimonial component — home card style everywhere; the old stack layout was removed): eyebrow #a4cefe, left column no longer sticky — cards scroll as a QuoteMarquee (continuous, pause on hover, 6% top/bottom fade, column height = max(650px / 40.625rem, left column)); cards `bg-pricing-cell p-6 gap-6 rounded-3xl`, 72px `rounded-xl` fluted thumb (`recog2/rc-case-thumb.png`), white content `rounded-xl px-7 pt-7 pb-[1.875rem] shadow-pass`, quote Satoshi Medium 25/−0.3, name/role `text-feature`.
 
 **Shared-component options added (all opt-in, defaults unchanged):** `HeroLogoWall variant="inline"`, `ProblemSection tone="dark"` + optional caption/description, `VerticalTestimonials caption / theme / layout`.
 
@@ -2015,3 +2015,7 @@ Figma "H3 — tabs: one block at a time" (swag 6036:8674, snacks 6036:9262, gift
 ## Catalog — Deco methods modal, S1 layout (2026-10-19)
 
 Figma `6078:9607`. `DecoMethodsModal` replaces the sidebar/detail design with the dietary-modal layout (65rem card, r2rem, two columns, hairline rows, equal-width CTAs) plus 4.5rem (mobile 3.5rem) r1rem photo thumbnails. Copy and column groups: `DECO_SHORT` / `DECO_GROUPS` in `decoMethods.ts`. Info only; the opened method's row starts highlighted until another row is hovered. The old `spec` / `best` fields are no longer shown.
+
+## /catalog — load performance (2026-10-20)
+
+Post-hydration effects (header scroll state, reveals, auth) were delayed ~2s by hydration weight, not by network. Fixes: (1) hero wall renders via `getImageProps` → plain `<img>` on the server (600 `next/image` client components no longer hydrate); (2) section mosaics mount client-side only within 1.5 viewports of the screen and only render the columns visible at the current width (DOM 6.2k → ~3.4k nodes); (3) header "Login/sign up" renders immediately — the cross-origin session check no longer gates it (cached profile still gives returning visitors the account menu instantly). Measured (prod, 4× CPU): effects ran at ~1.0s → ~0.65s; login visible at ~2.0s → ~0.57s. Dev: effects ~2.6s → ~1.3s.

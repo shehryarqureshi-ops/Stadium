@@ -12,7 +12,10 @@ import SiteHeader from "../components/SiteHeader";
 import fulfillmentImg from "@/public/infra-operations.jpg";
 import scaleImg from "@/public/map-faces.jpg";
 import catalogImg from "@/public/catalog-gift-cards.jpg";
-import flutedThumb from "@/public/recog2/rc-case-thumb.png";
+import feliciaImg from "@/public/the-proof/customers/felicia-kentro.jpg";
+import johnnyImg from "@/public/testimonials/johnny.png";
+import shairaImg from "@/public/testimonials/shaira.png";
+import { BRANDS } from "@/app/components/common/customerBrands";
 
 export const metadata: Metadata = {
   title: "Book a Call — See how Stadium can work for your team | Stadium",
@@ -56,22 +59,25 @@ const WHY_STADIUM: ProblemSectionItem[] = [
 
 const TESTIMONIALS: TestimonialItem[] = [
   {
-    image: flutedThumb,
+    ...BRANDS.kentro,
+    image: feliciaImg,
     text: "Stadium isn’t just a swag platform. It’s a scalable engagement tool that grows with you.",
     title: "Felicia W.",
-    subtitle: "Communications Manager ·\u00a0 Kentro",
+    subtitle: "Communications Manager",
   },
   {
-    image: flutedThumb,
+    ...BRANDS.apollo,
+    image: shairaImg,
     text: "Typically, gifting globally would take a day. Now I can do it in 15 minutes, even for 500+ people.",
     title: "Shaira J.",
-    subtitle: "People Experience Manager ·\u00a0 Apollo",
+    subtitle: "People Experience Manager",
   },
   {
-    image: flutedThumb,
+    ...BRANDS.plansource,
+    image: johnnyImg,
     text: "I’m full of ideas on how to use Stadium. What Stadium offers goes way beyond what I expected.",
     title: "Johnny S.",
-    subtitle: "Customer Support Manager ·\u00a0 PlanSource",
+    subtitle: "Customer Support Manager",
   },
 ];
 
@@ -95,7 +101,6 @@ export default function BookACallPage() {
         <div className="pb-16 pt-16 md:pb-20 md:pt-24 lg:pb-[7.5rem] lg:pt-40">
           <VerticalTestimonials
             theme="dark"
-            layout="stack"
             caption="Hear it from our customers"
             showRating={false}
             title={

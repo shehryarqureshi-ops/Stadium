@@ -9,6 +9,7 @@ import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import OfficeNeedsBoard from "@/app/components/impact/OfficeNeedsBoard";
 import { LINKS } from "@/app/components/impact/shared";
@@ -74,11 +75,8 @@ export default function OfficeAdminsPage() {
             caption="Customer results"
             captionColor="#16171b"
             title="See how teams simplify the work"
-            items={[
-              { title: "Apollo", description: "Supported employee programs for 700+ team members across 20+ countries while reducing the time required to manage global gifting." },
-              { title: "Kentro", description: "Scaled employee swag and recognition as the company grew from 100 to 800 employees while cutting hours of manual work." },
-              { title: "The Standard", description: "Coordinated 300+ orders for 600+ employees while saving more than 37 hours of administrative work." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.officeAdmins}
           />
         </ImpactClosing>
       }

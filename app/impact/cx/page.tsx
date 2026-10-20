@@ -11,6 +11,7 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import GrowthSteps from "@/app/components/impact/GrowthSteps";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
@@ -82,11 +83,8 @@ export default function CxPage() {
             caption="Customer results"
             captionColor="#16171b"
             title="See how teams scale customer engagement with Stadium"
-            items={[
-              { title: "Workato", description: "Used global gifting to engage customers and partners, show appreciation, and reward customer advocacy through G2 reviews." },
-              { title: "Octus", description: "Drove customer survey participation and supported VIP gifting at scale, with predictable costs and minimal manual work." },
-              { title: "Isolved", description: "Extended its branded swag experience to customers, who actively ask for and purchase company swag." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.cx}
           />
         </ImpactClosing>
       }

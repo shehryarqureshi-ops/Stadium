@@ -3,11 +3,21 @@
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 
+import { HeroLogoWall, type HeroLogo } from "./HeroLogoWall";
+import QuoteMarquee, { QUOTE_ROW_MIN_H } from "./QuoteMarquee";
+
 export type TestimonialItem = {
-  image: StaticImageData;
+  /* omit for a text-only card (no thumbnail) */
+  image?: StaticImageData;
   text: string;
   title: string;
   subtitle?: string;
+  /* optional brand name (uppercase, top of the card) and brand logo (top
+     right) — /the-proof "In good company" */
+  eyebrow?: string;
+  logo?: StaticImageData;
+  /* makes the whole card an external link (new tab) with a hover shadow */
+  href?: string;
 };
 
 type TestimonialsProps = {
@@ -29,44 +39,32 @@ type TestimonialsProps = {
   /* "dark": transparent section for dark page backgrounds — white headline,
      quote and light citation. Cards keep their light surfaces. */
   theme?: "light" | "dark";
-  /* "marquee" (default): auto-scrolling card column. "stack": the cards render
-     once as a static column with larger Satoshi quotes and the left column
-     sticks while they scroll past (/book-a-call, Figma 3998:4261). */
-  layout?: "marquee" | "stack";
+  /* optional customer-logo marquee pinned to the foot of the left column
+     (/the-proof "In good company"); marks follow the theme */
+  logos?: HeroLogo[];
   /* true: no section padding / width cap of its own. A parent supplies the gutters
      and the max-w-content container (the inset white box on /reviews). */
   flush?: boolean;
 };
 
-/* Stack card — Figma 3998:4276: #f2f2f2 tray p24 gap24 r24, 72px r12 thumb,
-   white content r12 pt28 px28 pb30, quote Satoshi Medium 25/−0.3. */
-function StackCard({ item }: { item: TestimonialItem }) {
-  return (
-    <figure className="flex flex-col items-start gap-6 rounded-3xl bg-pricing-cell p-4 md:flex-row md:p-6">
-      <Image
-        src={item.image}
-        alt=""
-        width={72}
-        height={72}
-        className="size-[4.5rem] shrink-0 rounded-xl object-cover"
-      />
-      <div className="flex min-w-0 flex-1 flex-col gap-8 rounded-xl bg-white px-6 pb-[1.875rem] pt-7 shadow-pass md:px-7">
-        <blockquote className="font-[family-name:var(--font-satoshi-medium)] text-[1.25rem] leading-[1.35] tracking-[-0.01875rem] text-pricing-ink md:text-[1.5625rem]">
-          &ldquo;{item.text}&rdquo;
-        </blockquote>
-        <figcaption className="flex flex-col gap-1 font-sans text-feature">
-          <span className="font-bold text-grey-800">{item.title}</span>
-          {item.subtitle && <span className="leading-[1.5] text-swag-grey">{item.subtitle}</span>}
-        </figcaption>
-      </div>
-    </figure>
-  );
-}
-
 function TestimonialCard({ item }: { item: TestimonialItem }) {
   return (
     <figure className="flex flex-col lg:flex-row items-start gap-4 rounded-3xl bg-[#f2f2f2] p-6">
-      <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] lg:order-1">
+      <div
+        className={`flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] lg:order-1 ${
+          item.href ? "relative transition-shadow duration-200 hover:shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.12)]" : ""
+        }`}
+      >
+        {(item.eyebrow || item.logo) && (
+          <div className="mb-4 flex items-center justify-between gap-4">
+            {item.eyebrow && (
+              <p className="font-sans text-eyebrow-sm uppercase leading-4 text-pricing-ink">{item.eyebrow}</p>
+            )}
+            {item.logo && (
+              <Image src={item.logo} alt="" className="h-5 w-auto shrink-0 object-contain" />
+            )}
+          </div>
+        )}
         <blockquote className="font-sans text-[1rem] leading-6 text-ink">
           &ldquo;{item.text}&rdquo;
         </blockquote>
@@ -82,15 +80,27 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
             </span>
           )}
         </figcaption>
+
+        {item.href && (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Read the ${item.eyebrow ?? item.title} case study`}
+            className="absolute inset-0 rounded-2xl"
+          />
+        )}
       </div>
 
-      <Image
-        src={item.image}
-        alt={item.title}
-        width={72}
-        height={72}
-        className="size-[72px] rounded-2xl object-cover lg:order-0"
-      />
+      {item.image && (
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={72}
+          height={72}
+          className="size-[72px] rounded-2xl object-cover max-lg:order-first lg:order-0"
+        />
+      )}
     </figure>
   );
 }
@@ -107,44 +117,17 @@ export default function Testimonials({
   citation,
   items,
   theme = "light",
-  layout = "marquee",
+  logos,
   flush = false,
 }: TestimonialsProps) {
   if (!items.length) return null;
   const dark = theme === "dark";
-  const stack = layout === "stack";
 
   return (
     <section className={`${flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-[6.25rem]"} ${dark ? "" : "bg-white"}`}>
-      <style>{`
-        @keyframes testimonial-scroll {
-          from {
-            transform: translateY(0);
-          }
-
-          to {
-            transform: translateY(-50%);
-          }
-        }
-
-        .testimonial-marquee {
-          animation: testimonial-scroll 44s linear infinite;
-        }
-
-        .testimonial-viewport:hover .testimonial-marquee {
-          animation-play-state: paused;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .testimonial-marquee {
-            animation: none;
-          }
-        }
-      `}</style>
-
-      <div className={`mx-auto flex w-full ${flush ? "max-w-content" : "max-w-[77.5rem]"} flex-col gap-12 lg:flex-row lg:gap-20`}>
+      <div className={`mx-auto flex w-full ${flush ? "max-w-content" : "max-w-[77.5rem]"} flex-col gap-12 lg:flex-row lg:gap-20 ${QUOTE_ROW_MIN_H}`}>
         {/* Left */}
-        <div className={`flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:gap-[7.5rem] ${stack ? "lg:sticky lg:top-28 lg:self-start" : ""}`}>
+        <div className="flex shrink-0 flex-col gap-12 lg:w-[31.6875rem] lg:justify-between lg:gap-[7.5rem]">
           <div className="flex flex-col gap-8">
             {caption && (
               <p
@@ -231,32 +214,15 @@ export default function Testimonials({
               </p>
             </div>
           )}
+          {logos && (
+            <div data-animation="reveal" aria-label="Customers" className="w-full max-w-[32.125rem]">
+              <HeroLogoWall variant="inline" logos={logos} tone={dark ? "light" : "dark"} />
+            </div>
+          )}
         </div>
 
         {/* Right */}
-        {stack ? (
-          <div data-animation="reveal" className="flex flex-1 flex-col gap-6 lg:gap-10">
-            {items.map((item) => (
-              <StackCard key={item.title} item={item} />
-            ))}
-          </div>
-        ) : (
-        <div
-          className="testimonial-viewport relative flex-1 overflow-hidden lg:h-166"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",
-          }}
-        >
-          <div className="testimonial-marquee flex flex-col gap-4">
-            {[...items, ...items].map((item, index) => (
-              <TestimonialCard key={`${item.title}-${index}`} item={item} />
-            ))}
-          </div>
-        </div>
-        )}
+        <QuoteMarquee items={items.map((item) => <TestimonialCard key={item.title} item={item} />)} />
       </div>
     </section>
   );

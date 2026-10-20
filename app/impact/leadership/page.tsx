@@ -9,6 +9,7 @@ import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import GuardrailsTray from "@/app/components/impact/GuardrailsTray";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
@@ -78,11 +79,8 @@ export default function LeadershipPage() {
             caption="Customer results"
             captionColor="#16171b"
             title="Organizations scaling with Stadium"
-            items={[
-              { title: "Isolved", description: "Expanded its swag program from 15 to 200 products as Sales, Marketing, employees, and customers adopted the platform." },
-              { title: "Workato", description: "Scaled gifting for customers and partners across 25+ countries while reducing hours of manual work." },
-              { title: "Octus", description: "Expanded from employee swag into customer and VIP gifting, bringing more programs onto one platform." },
-            ]}
+            imageFit="cover"
+            items={CASE_STUDIES.leadership}
           />
         </ImpactClosing>
       }

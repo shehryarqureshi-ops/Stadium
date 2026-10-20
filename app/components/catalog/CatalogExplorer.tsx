@@ -154,6 +154,22 @@ const MOSAIC_COL_VISIBILITY = [
   "hidden min-[120rem]:block",
 ];
 
+/* Column count the mosaic grid shows at a given viewport width — mirrors the Tailwind
+   breakpoints on the grid (2 → 5 → 6 → 7 → 8 → 9). */
+function mosaicColumnCount(width: number) {
+  if (width >= 1920) return 9;
+  if (width >= 1680) return 8;
+  if (width >= 1440) return 7;
+  if (width >= 1280) return 6;
+  if (width >= 768) return 5;
+  return 2;
+}
+
+/* The mosaic is ~850 DOM nodes per section — hydrating four of them (plus the CSS-hidden
+   columns) at load blocked every post-hydration effect on the page (header scroll state,
+   reveals, auth) for seconds. So it is client-mounted only when its section is within 1.5
+   viewport of the screen, and only the columns that are visible at the current width are
+   rendered. The wrapper (fixed height + edge fades) is always in the HTML, so nothing shifts. */
 function Mosaic({
   section,
   onOpen,
@@ -163,61 +179,86 @@ function Mosaic({
 }) {
   const columns = useMemo(() => buildMosaicColumns(section), [section]);
   const ref = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
+  const [colCount, setColCount] = useState(0);
 
-  // Pause the (very slow) column loops while the mosaic is off-screen.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([e]) => el.classList.toggle("catalog-paused", !e.isIntersecting),
-      { rootMargin: "20% 0px" },
+      ([e]) => {
+        // Pause the (very slow) column loops while the mosaic is off-screen.
+        el.classList.toggle("catalog-paused", !e.isIntersecting);
+        if (e.isIntersecting || e.boundingClientRect.top < window.innerHeight * 2) setNear(true);
+      },
+      { rootMargin: "150% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!near) return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      setColCount(mosaicColumnCount(window.innerWidth));
+    };
+    measure();
+    const onResize = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [near]);
 
   return (
     <div
       ref={ref}
       className="relative mx-auto h-[90rem] w-full lg:max-w-catalog-grid overflow-hidden px-section-x-sm md:h-[100rem] md:px-section-x-md lg:h-catalog-mosaic lg:px-0"
     >
-      <div className={`grid h-full grid-cols-2 md:grid-cols-5 min-[80rem]:grid-cols-6 min-[90rem]:grid-cols-7 min-[105rem]:grid-cols-8 min-[120rem]:grid-cols-9 ${COLUMN_GAP}`}>
-        {columns.map((col, c) => (
-          <div
-            key={c}
-            className={`relative overflow-hidden ${MOSAIC_COL_VISIBILITY[c]}`}
-          >
-            <ul
-              className="catalog-track flex flex-col"
-              style={
-                {
-                  "--catalog-dur": `${col.duration}s`,
-                  "--catalog-dir": col.reverse ? "reverse" : "normal",
-                  animationDelay: `-${col.phase}s`,
-                } as React.CSSProperties
-              }
+      {colCount > 0 && (
+        <div className={`grid h-full grid-cols-2 md:grid-cols-5 min-[80rem]:grid-cols-6 min-[90rem]:grid-cols-7 min-[105rem]:grid-cols-8 min-[120rem]:grid-cols-9 ${COLUMN_GAP}`}>
+          {columns.slice(0, colCount).map((col, c) => (
+            <div
+              key={c}
+              className={`relative overflow-hidden ${MOSAIC_COL_VISIBILITY[c]}`}
             >
-              {[0, 1].map((half) => (
-                <li key={half} aria-hidden={half === 1 ? true : undefined} className="list-none">
-                  <ul className={`flex flex-col pb-catalog-gap ${COLUMN_GAP}`}>
-                    {col.items.map((item, i) => (
-                      <li
-                        key={i}
-                        data-animation="reveal"
-                        data-reveal-delay={item.delay + c * 40}
-                        style={{ height: `${item.h}rem` }}
-                        className="shrink-0"
-                      >
-                        <MosaicCard item={item} section={section} onOpen={onOpen} dup={half === 1} />
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+              <ul
+                className="catalog-track flex flex-col"
+                style={
+                  {
+                    "--catalog-dur": `${col.duration}s`,
+                    "--catalog-dir": col.reverse ? "reverse" : "normal",
+                    animationDelay: `-${col.phase}s`,
+                  } as React.CSSProperties
+                }
+              >
+                {[0, 1].map((half) => (
+                  <li key={half} aria-hidden={half === 1 ? true : undefined} className="list-none">
+                    <ul className={`flex flex-col pb-catalog-gap ${COLUMN_GAP}`}>
+                      {col.items.map((item, i) => (
+                        <li
+                          key={i}
+                          data-animation="reveal"
+                          data-reveal-delay={item.delay + c * 40}
+                          style={{ height: `${item.h}rem` }}
+                          className="shrink-0"
+                        >
+                          <MosaicCard item={item} section={section} onOpen={onOpen} dup={half === 1} />
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
       {/* fades — cards emerge from the heading panel above and dissolve into the next one. The next panel overlaps the last 2.5rem / 3.75rem, so the bottom fade is solid there and then matches the top fade (6rem / 8rem). */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black to-transparent md:h-32" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[8.5rem] bg-gradient-to-t from-black from-[2.5rem] to-transparent md:h-[11.75rem] md:from-[3.75rem]" />
