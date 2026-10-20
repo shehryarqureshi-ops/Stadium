@@ -29,6 +29,7 @@ export default function IntegrationsListingPage() {
           primaryCta={{ label: "Browse integrations", href: "#directory" }}
           secondaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           background="canvas"
+          align="center"
         />
       }
       closing={
@@ -47,7 +48,6 @@ export default function IntegrationsListingPage() {
     >
       <div id="directory" className="scroll-mt-24">
         <IntegrationsDirectory
-          caption={`${INTEGRATIONS.length} integrations`}
           title="Connect the tools you already rely on"
           description="Filter by HRIS, ATS, or CRM, or search for your system by name."
           filters={INTEGRATION_FILTERS}

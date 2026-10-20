@@ -22,7 +22,7 @@ export default function ImpactPageShell({
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex flex-1 flex-col overflow-x-clip bg-white outline-none">
         {hero}
-        <div className="grid gap-16 py-16 md:gap-24 md:py-24 lg:gap-40 lg:py-40">{children}</div>
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-16 py-16 md:gap-24 md:py-24 lg:gap-40 lg:py-40">{children}</div>
         {closing}
       </main>
       <PageClose />

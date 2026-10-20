@@ -3,19 +3,43 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
+import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import LogoBridge from "@/app/components/common/LogoBridge";
-import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
+import QuoteSplit from "@/app/components/common/QuoteSplit";
+import StatsGrid from "@/app/components/common/StatsGrid";
+import StepCards from "@/app/components/common/StepCards";
 import TeamHero from "@/app/components/common/TeamHero";
 import EnterpriseTiers from "@/app/components/impact/batch3/EnterpriseTiers";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
+import WhiteBox from "@/app/components/common/WhiteBox";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
+import budgetAllocate from "@/public/enterprise/budget/allocate.png";
+import budgetBilling from "@/public/enterprise/budget/billing.png";
+import budgetOrganize from "@/public/enterprise/budget/organize.png";
+import laurenBerry from "@/public/enterprise/lauren.jpg";
+import savingsReport from "@/public/enterprise/savings-report.png";
+import secEncryption from "@/public/enterprise/security/encryption.png";
+import secGdpr from "@/public/enterprise/security/gdpr.png";
+import secMonitoring from "@/public/enterprise/security/monitoring.png";
+import secSoc2 from "@/public/enterprise/security/soc2.png";
+import secSso from "@/public/enterprise/security/sso.png";
+import supportFulfillment from "@/public/enterprise/support/fulfillment.png";
+import supportLogistics from "@/public/enterprise/support/logistics.png";
+import supportOnboarding from "@/public/enterprise/support/onboarding.png";
+import supportSourcing from "@/public/enterprise/support/sourcing.png";
+import teamsOnStadium from "@/public/enterprise/teams-on-stadium.png";
+import wsBrand from "@/public/enterprise/workspaces/brand.png";
+import wsRoles from "@/public/enterprise/workspaces/roles.png";
+import wsVisibility from "@/public/enterprise/workspaces/visibility.png";
+
 export const metadata: Metadata = seoMetadata("/enterprise");
 
-/* /enterprise — Figma n9SjmDjzB1PeZAYJ5w43fr → 3816:6904. Graphics are
-   product mockups with no exported art: image-less cards render placeholders. */
+/* /enterprise — Figma n9SjmDjzB1PeZAYJ5w43fr → 3816:6904. Mockups and photos
+   are 2× exports of the Figma graphic frames (public/enterprise/). The
+   photo cards are cropped to the 250-high image slot (shadow bleed removed). */
 
 export default function EnterprisePage() {
   return (
@@ -38,26 +62,32 @@ export default function EnterprisePage() {
         closing={
           <ImpactClosing
             cta={{
-              caption: "Get started",
-              title: "Run your programs on infrastructure built for scale",
-              description: "Give teams flexibility and keep the oversight your company needs.",
+              caption: "Talk to our team",
+              title: "See how Stadium fits your requirements",
+              description: "Talk with our team about what your organization needs from Stadium.",
               primary: { label: "Talk to sales", href: LINKS.sales },
-              secondary: { label: "Explore the platform", href: LINKS.platform },
             }}
           >
-            <VariableCardGrid
-              background="transparent"
-              caption="Built for trust"
-              captionColor="#16171b"
-              title="Security built into everything we do"
-              gridColumns={2}
-              narrow
-              cta={{ label: "Explore Security", href: PLATFORM_ROUTES.security }}
-              items={[
-                { title: "SOC 2 Type 2", description: "Controls for security, confidentiality, and availability." },
-                { title: "Encryption", description: "TLS 1.2/1.3 in transit and AES-256 at rest." },
-              ]}
-            />
+            <WhiteBox>
+              <ImageShowcase
+                flush
+                caption="Measurable impact"
+                title="$15K Average Customer Savings"
+                description="One partner for recognition, swag, gifting, and more. Lower costs, less administrative work."
+                image={savingsReport}
+                imageAlt="Stadium billing: one October invoice of $18,420 across four programs, with 24 hours of admin time saved each month"
+                footnote="*Based on vendor consolidation"
+              />
+              <QuoteSplit
+                flush
+                caption="Company-wide adoption"
+                title="Bring more teams onto one platform"
+                quote="“Stadium is all-encompassing. It’s allowed our team to collaborate. Not just for our internal HR to use, but now we have marketing and sales coming and asking for things to be in our store…”"
+                attribution="Natalie A., Senior Enablement & Engagement Specialist"
+                image={teamsOnStadium}
+                imageAlt="Teams on Stadium: People, Marketing, Sales and Customer Success in one Workspace"
+              />
+            </WhiteBox>
           </ImpactClosing>
         }
       >
@@ -67,22 +97,23 @@ export default function EnterprisePage() {
           title="Organize your company with Workspaces"
           description="Give teams room to operate independently—while keeping everything organized in one place."
           gridColumns={3}
+          imageFit="cover"
           items={[
-            { title: "Company-Wide Visibility", description: "See activity across every team from one view." },
-            { title: "Roles & Permissions", description: "Give users the access they need based on their role and responsibilities." },
-            { title: "Brand Control", description: "Keep teams on-brand with approved assets without reviewing every request." },
+            { image: wsVisibility, imageAlt: "A manager presenting an organization dashboard to her team", title: "Company-Wide Visibility", description: "See activity across every team from one view." },
+            { image: wsRoles, imageAlt: "Two colleagues reviewing roles and permissions on a laptop", title: "Roles & Permissions", description: "Give users the access they need based on their role and responsibilities." },
+            { image: wsBrand, imageAlt: "A team member reviewing approved brand merchandise on a laptop", title: "Brand Control", description: "Keep teams on-brand with approved assets without reviewing every request." },
           ]}
         />
 
-        <NumberedCardGrid
+        <StepCards
           caption="Budget control"
+          captionColor="#16171b"
           title="Control budgets across your organization"
           description="Give teams access to funds while keeping company spend visible and organized."
-          cta={{ label: "How it works", href: PLATFORM_ROUTES.wallets }}
-          cards={[
-            { title: "Allocate Funds", description: "Distribute funds across teams and initiatives." },
-            { title: "Organize Budgets", description: "Your inventory lives in our warehouse, with live counts. No closets, no spreadsheets." },
-            { title: "Corporate Billing", description: "Open a store, send a kit, or bulk-ship to 170+ countries. People add their own size and address." },
+          items={[
+            { title: "Allocate Funds", description: "Distribute funds across teams and initiatives.", image: budgetAllocate, imageAlt: "Allocating a $120,000 Q4 budget across Sales, Marketing and People", desktopVisualWidth: 265 },
+            { title: "Organize Budgets", description: "Create separate Wallets and reallocate funds as needs change.", image: budgetOrganize, imageAlt: "Three team Wallets, with $2,000 moved from Events to Onboarding", desktopVisualWidth: 265 },
+            { title: "Corporate Billing", description: "Simplify purchasing with a single, centralized invoice.", image: budgetBilling, imageAlt: "A consolidated October invoice of $48,250 across four teams", desktopVisualWidth: 265 },
           ]}
         />
 
@@ -99,12 +130,47 @@ export default function EnterprisePage() {
           captionColor="#16171b"
           title="Meet enterprise security requirements"
           description="Identity, security, privacy, and compliance safeguards protect your data and control access."
-          gridColumns={4}
+          gridColumns={3}
           items={[
-            { title: "SSO", description: "Support centralized identity and secure access." },
-            { title: "SOC 2 Type 2", description: "Controls for security, confidentiality, and availability." },
-            { title: "Encryption", description: "TLS 1.2/1.3 in transit and AES-256 at rest." },
-            { title: "24/7 Monitoring", description: "Continuous monitoring and incident response." },
+            { image: secSso, imageAlt: "Sign in to a Stadium Workspace with SSO", title: "SSO", description: "Support centralized identity and secure access." },
+            { image: secSoc2, imageAlt: "SOC 2 Type II audit report: security, confidentiality and availability passed", title: "SOC 2 Type 2", description: "Controls for security, confidentiality, and availability." },
+            { image: secEncryption, imageAlt: "A secure connection using TLS 1.2 / 1.3 in transit and AES-256 at rest", title: "Encryption", description: "TLS 1.2/1.3 in transit and AES-256 at rest." },
+            { image: secMonitoring, imageAlt: "All systems operational with 99.99% uptime and 24/7 monitoring", title: "24/7 Monitoring", description: "Continuous monitoring and incident response." },
+            { image: secGdpr, imageAlt: "A completed privacy request to delete personal data", title: "GDPR", description: "Privacy controls designed to support global requirements." },
+          ]}
+        />
+
+        <StatsGrid
+          caption="Global scale"
+          captionColor="#16171b"
+          title="Support your organization around the world"
+          description="Fulfill locally with less international shipping, customs, and logistics to manage."
+          statLeft={{ title: "10,000+", text: "Companies Trust Stadium", numberFirst: true }}
+          statCenter={{
+            caption: "Global Warehousing Network",
+            title: "500+",
+            text: "“Typically, gifting globally would take a day. Now I can do it in 15 minutes, even for 500+ people.”",
+            authorImage: laurenBerry,
+            authorName: "Lauren Berry",
+            authorTitle: "Apollo",
+          }}
+          rightTopStat={{ title: "100+", text: "Integrations" }}
+          rightBottomStat={{ title: "170+", text: "Countries" }}
+        />
+
+        <VariableCardGrid
+          caption="Expert support"
+          captionColor="#16171b"
+          title="The team behind your team"
+          description="You get hands-on support from people who know how to execute your programs, start to finish."
+          gridColumns={2}
+          narrow
+          imageFit="cover"
+          items={[
+            { image: supportSourcing, imageAlt: "Two colleagues choosing a branded bottle", title: "Product Sourcing", description: "Give teams more choice from 25,000+ products without adding more suppliers." },
+            { image: supportFulfillment, imageAlt: "A fulfillment specialist checking an order against a packing list", title: "Global Fulfillment", description: "Fulfill globally without coordinating partners across regions." },
+            { image: supportLogistics, imageAlt: "Two logistics managers reviewing a shipment on screen", title: "Logistics Management", description: "Let Stadium handle the logistics from fulfillment through delivery." },
+            { image: supportOnboarding, imageAlt: "Two colleagues working through onboarding on a laptop", title: "Onboarding & Support", description: "Get expert guidance from onboarding through ongoing execution." },
           ]}
         />
       </ImpactPageShell>

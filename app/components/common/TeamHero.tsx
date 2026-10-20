@@ -42,6 +42,8 @@ export type TeamHeroProps = {
   visualLayout?: "edge" | "aligned";
   /** aligned layout: the graphic's natural width (rem), e.g. "37.25rem" for a 596 stage. */
   visualMaxWidth?: string;
+  /** "center": copy, intro and CTAs centered (visual-less heroes, e.g. /integrations-listing). */
+  align?: "left" | "center";
 };
 
 export default function TeamHero({
@@ -55,7 +57,9 @@ export default function TeamHero({
   visual,
   visualLayout = "edge",
   visualMaxWidth,
+  align = "left",
 }: TeamHeroProps) {
+  const centered = align === "center" && !visual;
   const aligned = Boolean(visual) && visualLayout === "aligned";
   return (
     <section
@@ -89,10 +93,10 @@ export default function TeamHero({
         }
       >
         <div
-          className={`flex max-w-[33.9375rem] flex-col gap-8 ${visual && !aligned ? "lg:ml-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] lg:shrink-0 lg:pt-section-y-lg" : ""}`}
+          className={`flex flex-col gap-8 ${centered ? "mx-auto max-w-[48rem] items-center text-center" : "max-w-[33.9375rem]"} ${visual && !aligned ? "lg:ml-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] lg:shrink-0 lg:pt-section-y-lg" : ""}`}
         >
-          <div className="flex flex-col gap-6 lg:gap-8">
-            <div className="flex flex-col gap-2">
+          <div className={`flex flex-col gap-6 lg:gap-8 ${centered ? "items-center" : ""}`}>
+            <div className={`flex flex-col gap-2 ${centered ? "items-center" : ""}`}>
               <p
                 data-animation="reveal"
                 className="font-sans text-eyebrow-md uppercase leading-6 text-white md:text-eyebrow-lg md:leading-6"
@@ -107,7 +111,7 @@ export default function TeamHero({
                 {title}
               </h1>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className={`flex flex-col gap-3 ${centered ? "items-center" : ""}`}>
               <p
                 data-animation="reveal"
                 className="font-sans text-body-lg text-white md:text-body-xl"
@@ -122,7 +126,7 @@ export default function TeamHero({
             </div>
           </div>
 
-          <div data-animation="reveal" className="flex flex-wrap gap-3.5">
+          <div data-animation="reveal" className={`flex flex-wrap gap-3.5 ${centered ? "justify-center" : ""}`}>
             <a
               href={primaryCta.href}
               className="inline-flex h-button-h items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white"

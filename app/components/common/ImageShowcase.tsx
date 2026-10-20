@@ -20,6 +20,8 @@ export type ImageShowcaseProps = {
   cta?: { label: string; href: string };
   /* rounded corners + drop shadow around the image (dashboards) */
   framed?: boolean;
+  /* no section gutters — the parent (e.g. WhiteBox) supplies them */
+  flush?: boolean;
 };
 
 export default function ImageShowcase({
@@ -31,9 +33,10 @@ export default function ImageShowcase({
   footnote,
   framed = true,
   cta,
+  flush = false,
 }: ImageShowcaseProps) {
   return (
-    <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className={flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg"}>
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex flex-col items-center gap-5">
           <SectionIntro caption={caption} title={title} description={description} />

@@ -98,7 +98,7 @@ export default function IntegrationsDirectory({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search"
-              className="w-full bg-transparent font-sans text-small text-pricing-ink placeholder:text-[#76767e] focus:outline-none!"
+              className="w-full bg-transparent pt-0.5 font-sans text-small text-pricing-ink placeholder:text-[#76767e] focus:outline-none!"
             />
           </label>
         </div>
@@ -115,7 +115,7 @@ export default function IntegrationsDirectory({
                   key={item.name}
                   className="flex min-h-[5.8125rem] items-center justify-between gap-4 rounded-3xl border-8 border-white bg-white p-4 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] md:p-6"
                 >
-                  <span className="font-display text-[1.5rem] font-bold leading-[1.875rem] tracking-[-0.01875rem] text-pricing-ink md:text-[1.6875rem]">
+                  <span className="font-[family-name:var(--font-satoshi-medium)] text-[1rem] font-normal leading-[1.5rem] text-pricing-ink md:text-[1.25rem] md:leading-[1.75rem]">
                     {item.name}
                   </span>
                   {item.logo && (

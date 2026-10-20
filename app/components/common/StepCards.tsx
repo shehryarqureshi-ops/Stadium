@@ -390,7 +390,7 @@ export default function StepCards({
                       {number}
                     </span>
 
-                    <div className="rounded-2xl bg-[#f4f4f5] p-6">
+                    <div className="overflow-hidden rounded-2xl bg-[#f4f4f5] p-6">
                       <h3 className="font-[family-name:var(--font-satoshi)] text-2xl font-bold leading-[1.3] tracking-[-0.01em] text-[#16171b]">
                         {item.title}
                       </h3>
@@ -451,7 +451,7 @@ function SizerCard({
         <div className="flex min-w-0 flex-1 flex-col justify-between">
           <span className="p-4 font-sans text-[1rem] leading-5">00</span>
 
-          <div className="rounded-2xl p-6">
+          <div className="overflow-hidden rounded-2xl p-6">
             <h3 className="font-[family-name:var(--font-satoshi)] text-[1.5rem] font-bold leading-[1.25] tracking-[-0.02em]">
               {item.title}
             </h3>
