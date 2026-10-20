@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import CircleFlag from "../CircleFlag";
@@ -9,10 +8,13 @@ import DecoMethodsModal from "./DecoMethodsModal";
 import CatalogHeader from "./CatalogHeader";
 import DietModal from "./DietModal";
 import { DIET_ENTRIES } from "./dietData";
+import { logoSize } from "./logoSize";
+import { thumb } from "./thumb";
 import {
   BOOK_A_CALL_HREF,
   SECTIONS,
   buildMosaicColumns,
+  mosaicHeightRem,
   type MosaicItem,
   type Product,
   type SectionData,
@@ -218,7 +220,8 @@ function Mosaic({
   return (
     <div
       ref={ref}
-      className="relative mx-auto h-[90rem] w-full lg:max-w-catalog-grid overflow-hidden px-section-x-sm md:h-[100rem] md:px-section-x-md lg:h-catalog-mosaic lg:px-0"
+      className="relative mx-auto h-[min(var(--mosaic-h),90rem)] w-full lg:max-w-catalog-grid overflow-hidden px-section-x-sm md:h-[min(var(--mosaic-h),100rem)] md:px-section-x-md lg:h-[var(--mosaic-h)] lg:px-0"
+      style={{ "--mosaic-h": `${mosaicHeightRem(columns)}rem` } as React.CSSProperties}
     >
       {colCount > 0 && (
         <div className={`grid h-full grid-cols-2 md:grid-cols-5 min-[80rem]:grid-cols-6 min-[90rem]:grid-cols-7 min-[105rem]:grid-cols-8 min-[120rem]:grid-cols-9 ${COLUMN_GAP}`}>
@@ -313,13 +316,15 @@ function MosaicCard({
               <span className="font-display text-[1.125rem] leading-[1.1] tracking-[-0.0187rem] text-white">{item.product.name}</span>
             </span>
           ) : (
-            <Image
-              src={item.product.image}
+            /* pre-sized 400 px static WebP (scripts/gen-catalog-thumbs.mjs): no optimizer queue; the
+               modal still opens the full-size photo through next/image */
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={thumb(item.product.image, "m")}
               alt=""
-              fill
-              sizes="(min-width: 1024px) 11rem, (min-width: 768px) 20vw, 45vw"
-              quality={90}
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             />
           )}
           {item.product.deco && (
@@ -334,19 +339,24 @@ function MosaicCard({
           <span className="pointer-events-none absolute inset-0 rounded-catalog-tile ring-1 ring-inset ring-white/10" />
         </button>
       );
-    case "brand":
-      return item.brand.logo ? (
+    case "brand": {
+      /* white brand mark (public/catalog-page/logos), sized by its aspect ratio */
+      const { w, h } = logoSize(item.brand.ratio ?? 3);
+      return (
         <div className={tile}>
-          {/* white brand mark (public/catalog-page/logos) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={item.brand.logo}
             alt={item.brand.name}
-            className={`object-contain ${item.brand.tall ? "h-16 w-24" : "h-12 w-32"}`}
+            className="max-w-none object-contain"
+            style={{ width: `${w}rem`, height: `${h}rem` }}
             loading="lazy"
           />
         </div>
-      ) : (
+      );
+    }
+    case "event":
+      return (
         <div className={`${tile} gap-2 px-4`}>
           <p className="font-display text-catalog-country">{item.brand.name}</p>
           <p className="font-sans text-catalog-stat text-white/80">{item.brand.stat}</p>
@@ -360,13 +370,17 @@ function MosaicCard({
           <p className="font-sans text-catalog-stat text-white/80">{item.country.stat}</p>
         </div>
       );
-    case "coverage":
+    case "stat":
       return (
         <div className={`${tile} gap-3 px-4`}>
-          <p className="font-display text-display-md text-white">170+</p>
-          <p className="font-sans text-catalog-stat text-white/80">
-            Local sourcing, duties handled and doorstep delivery wherever your people are.
+          <p
+            className={`font-display text-white ${
+              item.stat.value.length <= 4 ? "text-display-md" : item.stat.value.length <= 6 ? "text-[2.25rem] leading-none" : "text-[1.75rem] leading-none"
+            }`}
+          >
+            {item.stat.value}
           </p>
+          <p className="font-sans text-catalog-stat text-white/80">{item.stat.label}</p>
         </div>
       );
   }

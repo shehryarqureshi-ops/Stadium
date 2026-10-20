@@ -1,3 +1,4 @@
+import { BRAND_LOGOS } from "./brandLogos";
 import type { SectionId } from "./data";
 
 /* Section headers — Figma "H3 — tabs: one block at a time" (swag 6036:8674,
@@ -5,60 +6,54 @@ import type { SectionId } from "./data";
    has a stat line and 3–4 tabs; each tab is a block of chips (label + muted
    count, optional dietary / taste icon from public/catalog-page/diet). */
 
-export type HeaderChip = { label: string; count?: string; icon?: string; /** white brand mark (public/catalog-page/logos) — replaces the text label */ logo?: string };
-export type HeaderTab = { id: string; label: string; chips: HeaderChip[]; /** brand tabs: bare logos, no pills */ logos?: boolean; /** eyebrow line under the logos */ more?: string };
+export type HeaderChip = { label: string; count?: string; icon?: string; /** white brand mark (public/catalog-page/logos) — replaces the text label */ logo?: string; /** logo viewBox ratio */ ratio?: number };
+export type HeaderTab = { id: string; label: string; chips: HeaderChip[]; /** brand tabs: bare logos, no pills */ logos?: boolean };
 export type SectionHeader = { stat: string; tabs: HeaderTab[] };
+
+const logoChips = (sec: "swag" | "gifts" | "snacks"): HeaderChip[] =>
+  BRAND_LOGOS[sec].map((b) => ({ label: b.name, logo: b.logo, ratio: b.ratio }));
+const plain = (labels: string[]): HeaderChip[] => labels.map((label) => ({ label }));
 
 export const SECTION_HEADERS: Record<SectionId, SectionHeader> = {
   swag: {
     stat: "26,000 styles. 760 brands. 100+ decoration methods.",
     tabs: [
       {
-        id: "methods",
-        label: "Decoration Methods",
-        chips: [
-          { label: "Embroidery", count: "7,390 styles" },
-          { label: "Screen printing" },
-          { label: "DTF / heat transfer" },
-          { label: "Patches" },
-          { label: "Digital full-color" },
-          { label: "Laser engraving" },
-          { label: "Pad printing" },
-          { label: "Deboss" },
-          { label: "Sublimation" },
-          { label: "Foil" },
-          { label: "Epoxy dome" },
-          { label: "+ 100 more" },
-        ],
-      },
-      {
         id: "categories",
         label: "Categories",
-        chips: [
-          { label: "Apparel", count: "7,000+" },
-          { label: "Bags", count: "2,600+" },
-          { label: "Drinkware", count: "2,300+" },
-          { label: "Office & writing", count: "1,300+" },
-          { label: "Home & outdoor", count: "1,200+" },
-          { label: "Tech", count: "1,100+" },
-          { label: "Headwear", count: "1,000+" },
-          { label: "Signage & print", count: "800+" },
-        ],
+        /* swagmagic.com's 11 top-level categories */
+        chips: plain([
+          "Apparel",
+          "Bags",
+          "Drinkware",
+          "Technology",
+          "Office Supplies",
+          "Health & Wellness",
+          "Events & Tradeshows",
+          "Outdoor & Leisure",
+          "Auto, Home & Tools",
+          "Swag Kits",
+          "Baby",
+        ]),
       },
       {
-        id: "brands",
-        label: "Brands",
-        logos: true,
-        more: "+100 more",
-        chips: [
-          { label: "Nike", logo: "/catalog-page/logos/nike.svg" },
-          { label: "Carhartt", logo: "/catalog-page/logos/carhartt.svg" },
-          { label: "The North Face", logo: "/catalog-page/logos/thenorthface.svg" },
-          { label: "TravisMathew", logo: "/catalog-page/logos/travismathew.svg" },
-          { label: "New Era", logo: "/catalog-page/logos/newera.svg" },
-          { label: "adidas", logo: "/catalog-page/logos/adidas.svg" },
-        ],
+        id: "methods",
+        label: "Decoration Methods",
+        chips: plain([
+          "Embroidery",
+          "Screen printing",
+          "DTF / heat transfer",
+          "Patches",
+          "Digital full-color",
+          "Laser engraving",
+          "Pad printing",
+          "Deboss",
+          "Sublimation",
+          "Foil",
+          "Epoxy dome",
+        ]),
       },
+      { id: "brands", label: "Brands", logos: true, chips: logoChips("swag") },
     ],
   },
   gifts: {
@@ -67,42 +62,44 @@ export const SECTION_HEADERS: Record<SectionId, SectionHeader> = {
       {
         id: "shop",
         label: "Gift Shop",
-        chips: [
-          { label: "Physical gifts", count: "1,800+" },
-          { label: "Food & drink", count: "~1,500" },
-          { label: "Gift cards", count: "290" },
-          { label: "Bookable experiences", count: "106" },
-          { label: "Charities", count: "47" },
-        ],
+        chips: plain(["Physical gifts", "Food & drink", "Gift cards", "Bookable experiences", "Charities"]),
       },
       {
         id: "prices",
         label: "Price Points",
-        chips: [
-          { label: "Physical gifts $100 or less", count: "7 in 10" },
-          { label: "Median", count: "~$62" },
-          { label: "Per person", count: "$50" },
-        ],
+        chips: plain(["Under $50", "$50 – $100", "$100 – $250", "$250 – $500", "$500 +"]),
       },
-      {
-        id: "brands",
-        label: "Brands",
-        logos: true,
-        more: "+100 more",
-        chips: [
-          { label: "Apple", logo: "/catalog-page/logos/apple.svg" },
-          { label: "Rubik’s", logo: "/catalog-page/logos/rubiks.svg" },
-          { label: "Logitech", logo: "/catalog-page/logos/logitech.svg" },
-          { label: "Sony", logo: "/catalog-page/logos/sony.svg" },
-          { label: "Ray-Ban", logo: "/catalog-page/logos/rayban.svg" },
-          { label: "JBL", logo: "/catalog-page/logos/jbl.svg" },
-        ],
-      },
+      { id: "brands", label: "Brands", logos: true, chips: logoChips("gifts") },
     ],
   },
   snacks: {
     stat: "2,000+ snacks & sips. 80 brands. 170+ countries.",
     tabs: [
+      {
+        id: "categories",
+        label: "Categories",
+        /* snackmagic.com — Snacks, Beverages and Pantry */
+        chips: plain([
+          "Chocolates",
+          "Cookies & Confections",
+          "Bars & Bites",
+          "Chips, Puffs & Crunch",
+          "Jerky",
+          "Nuts, Seeds & Granola",
+          "Wellness & Functional",
+          "Seltzer & Sparkling",
+          "Cold Brew & Coffee",
+          "Tea",
+          "Energy & Shots",
+          "Mixers",
+          "Sauces & Seasonings",
+          "Dips & Salsas",
+          "Spreads & Condiments",
+          "Coffee, Tea & Cocoa",
+          "Broths & Soups",
+          "Specialty Staples",
+        ]),
+      },
       {
         id: "dietary",
         label: "Dietary Restrictions",
@@ -131,35 +128,7 @@ export const SECTION_HEADERS: Record<SectionId, SectionHeader> = {
           { label: "Floral", icon: "floral-botanical" },
         ],
       },
-      {
-        id: "categories",
-        label: "Categories",
-        chips: [
-          { label: "Chocolate" },
-          { label: "Cookies" },
-          { label: "Chips" },
-          { label: "Popcorn & pretzels" },
-          { label: "Snack bars" },
-          { label: "Jerky" },
-          { label: "Cold brew" },
-          { label: "Tea" },
-          { label: "+ 16 more" },
-        ],
-      },
-      {
-        id: "brands",
-        label: "Brands",
-        logos: true,
-        more: "+100 more",
-        chips: [
-          { label: "Hal’s New York", logo: "/catalog-page/logos/hals.svg" },
-          { label: "Hu", logo: "/catalog-page/logos/hu.svg" },
-          { label: "SmartSweets", logo: "/catalog-page/logos/smartsweets.svg" },
-          { label: "Tate’s Bake Shop", logo: "/catalog-page/logos/tates.svg" },
-          { label: "Poppi", logo: "/catalog-page/logos/poppi.svg" },
-          { label: "Hippeas", logo: "/catalog-page/logos/hippeas.svg" },
-        ],
-      },
+      { id: "brands", label: "Brands", logos: true, chips: logoChips("snacks") },
     ],
   },
   experiences: {
@@ -168,7 +137,7 @@ export const SECTION_HEADERS: Record<SectionId, SectionHeader> = {
       {
         id: "collections",
         label: "Collections",
-        chips: ["Cooking", "Mixology", "Trivia", "Escape rooms", "Wellness", "DEI & heritage", "Onboarding", "Holidays"].map((label) => ({ label })),
+        chips: plain(["Cooking", "Mixology", "Trivia", "Escape rooms", "Wellness", "DEI & heritage", "Onboarding", "Holidays"]),
       },
       {
         id: "top",

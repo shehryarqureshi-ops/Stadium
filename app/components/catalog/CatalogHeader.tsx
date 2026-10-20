@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 
 import type { SectionData } from "./data";
+import { logoSize } from "./logoSize";
 import { SECTION_HEADERS } from "./headerData";
 
 /* Section header — Figma "H3 — tabs: one block at a time": huge Satoshi Light
@@ -78,7 +79,7 @@ export default function CatalogHeader({ section }: { section: SectionData }) {
       >
         <ul
           key={current.id}
-          className={`catalog-hero-in flex flex-wrap items-center justify-center ${current.logos ? "gap-x-8 gap-y-6 md:gap-x-14 md:gap-y-8" : "gap-2 md:gap-2.5"}`}
+          className={`catalog-hero-in flex flex-wrap items-center justify-center ${current.logos ? "[--logo-k:0.7] gap-x-7 gap-y-5 md:[--logo-k:1] md:gap-x-12 md:gap-y-7" : "gap-2 md:gap-2.5"}`}
         >
           {current.chips.map((c) => (
             <li
@@ -93,7 +94,16 @@ export default function CatalogHeader({ section }: { section: SectionData }) {
               )}
               {c.logo ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={c.logo} alt={c.label} className={current.logos ? "h-8 w-auto max-w-[7rem] object-contain md:h-10 md:max-w-[9rem]" : "h-[1.375rem] w-auto max-w-[6.5rem] object-contain md:h-6"} loading="lazy" />
+                <img
+                  src={c.logo}
+                  alt={c.label}
+                  className="max-w-none object-contain"
+                  style={{
+                    width: `calc(${logoSize(c.ratio ?? 3, { area: 14, maxW: 8, maxH: 2.75 }).w}rem * var(--logo-k))`,
+                    height: `calc(${logoSize(c.ratio ?? 3, { area: 14, maxW: 8, maxH: 2.75 }).h}rem * var(--logo-k))`,
+                  }}
+                  loading="eager"
+                />
               ) : (
                 <span>{c.label}</span>
               )}
@@ -101,11 +111,6 @@ export default function CatalogHeader({ section }: { section: SectionData }) {
             </li>
           ))}
         </ul>
-        {current.more && (
-          <p className="catalog-hero-in mt-6 font-sans text-xs font-bold uppercase leading-[0.9375rem] tracking-[0.1rem] text-white/60 md:mt-8">
-            {current.more}
-          </p>
-        )}
       </div>
     </>
   );

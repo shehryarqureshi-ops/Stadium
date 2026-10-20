@@ -114,6 +114,43 @@ export default function CatalogProductModal({
             </div>
             <div className="h-px w-full bg-grey-200" />
             <p className="font-sans text-body-md text-grey-700 lg:text-catalog-body">{product.description}</p>
+
+            {product.brand && (
+              <div className="flex flex-col gap-1.5">
+                <p className="font-sans text-[0.6875rem] font-bold uppercase leading-4 tracking-[0.1rem] text-black/50">Brand</p>
+                <p className="font-display text-[1.5rem] leading-[1.15] tracking-[-0.0187rem] text-black">{product.brand}</p>
+              </div>
+            )}
+            {product.decoMethods && product.decoMethods.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <p className="font-sans text-[0.6875rem] font-bold uppercase leading-4 tracking-[0.1rem] text-black/50">Decoration methods</p>
+                <ul className="flex flex-wrap gap-2">
+                  {product.decoMethods.map((m) => (
+                    <li
+                      key={m}
+                      className="inline-flex items-center rounded-full border border-black/15 px-3.5 py-2 font-sans text-[0.8125rem] font-semibold leading-none text-black"
+                    >
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {product.dietary && product.dietary.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <p className="font-sans text-[0.6875rem] font-bold uppercase leading-4 tracking-[0.1rem] text-black/50">Dietary</p>
+                <ul className="flex flex-wrap gap-2">
+                  {product.dietary.map((m) => (
+                    <li
+                      key={m}
+                      className="inline-flex items-center rounded-full bg-catalog-ink px-3.5 py-2 font-sans text-[0.8125rem] font-semibold leading-none text-white"
+                    >
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-3.5 pt-2 sm:flex-row lg:pt-8">

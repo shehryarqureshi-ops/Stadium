@@ -1,4 +1,4 @@
-import { getImageProps } from "next/image";
+import { thumb } from "./thumb";
 
 import { BOOK_A_CALL_HREF, HERO_COLUMNS } from "./data";
 
@@ -24,20 +24,12 @@ function heroColVisibility(c: number) {
   return "hidden min-[120rem]:block";
 }
 
-/* The wall holds ~600 photos. next/image is a client component, so 600 <Image>s would
-   all hydrate in the browser (≈1s of main-thread work that delays every other effect on
-   the page). getImageProps runs on the server and returns the exact same optimised
-   src / srcSet / sizes, rendered as a plain <img> — same pictures, zero hydration. */
+/* The wall holds ~600 photos (300 distinct). They are pre-sized 160 px WebP files served as
+   plain static assets — no hydration (next/image is a client component) and no on-demand
+   optimizer queue (see scripts/gen-catalog-thumbs.mjs). */
 function HeroPhoto({ src }: { src: string }) {
-  const { props } = getImageProps({
-    src,
-    alt: "",
-    fill: true,
-    sizes: "(min-width: 1024px) 5rem, (min-width: 768px) 9vw, 20vw",
-    quality: 75,
-  });
   // eslint-disable-next-line @next/next/no-img-element
-  return <img {...props} alt="" className="object-cover" />;
+  return <img src={thumb(src, "s")} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover" />;
 }
 
 export default function CatalogHero() {
