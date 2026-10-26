@@ -79,7 +79,7 @@ export default function Hero() {
        positions stay identical to the Figma frame. */
     <section
       ref={sectionRef}
-      className="relative flex min-h-0 flex-col items-start justify-center overflow-hidden bg-white px-0 pb-0 pt-16 md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:bg-black md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:aspect-video lg:justify-end lg:px-section-x-lg lg:pb-hero-pb-lg lg:pt-[10rem]"
+      className="relative flex min-h-0 flex-col items-start justify-center overflow-hidden bg-white px-0 pb-0 pt-16 md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:bg-black md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:min-h-svh lg:justify-end lg:px-section-x-lg lg:pb-hero-pb-lg lg:pt-[10rem]"
     >
       {/* full-bleed rotating video background (poster = the hero photo, so no
           black flash before/without playback), with the same contrast scrims
