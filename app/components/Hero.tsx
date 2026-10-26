@@ -79,7 +79,7 @@ export default function Hero() {
        positions stay identical to the Figma frame. */
     <section
       ref={sectionRef}
-      className="relative flex min-h-[calc(var(--spacing-hero-sm)+4rem)] flex-col items-start justify-center overflow-hidden px-section-x-sm pb-12 pt-[7rem] md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:min-h-[calc(var(--spacing-hero-lg)+4rem)] lg:px-section-x-lg lg:pb-section-y-lg lg:pt-[10rem] bg-black"
+      className="relative flex min-h-[calc(var(--spacing-hero-sm)+4rem)] flex-col items-start justify-center overflow-hidden px-section-x-sm pb-12 pt-[7rem] md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:aspect-video lg:justify-end lg:px-section-x-lg lg:pb-hero-pb-lg lg:pt-[10rem] bg-black"
     >
       {/* full-bleed rotating video background (poster = the hero photo, so no
           black flash before/without playback), with the same contrast scrims
@@ -92,7 +92,9 @@ export default function Hero() {
           reduce={reduce}
         />
         <div className="absolute inset-0 bg-[image:var(--gradient-hero-base-scrim)]" />
-        <div className="absolute inset-0 bg-[image:var(--gradient-hero-scrim)]" />
+        {/* a11y scrim only below lg — at lg the Figma gradient (base scrim
+            above) is used as-is (frame 6525:11943) */}
+        <div className="absolute inset-0 bg-[image:var(--gradient-hero-scrim)] lg:hidden" />
         {/* contrast scrim for the transparent fixed nav — the photo's sky
             and clouds are near-white at the top, where the nav's white
             links would otherwise fail WCAG contrast */}
@@ -125,10 +127,10 @@ export default function Hero() {
         </h1>
         <p
           data-animation="reveal"
-          className="font-sans text-body-sm text-hero-body md:max-w-[24rem] md:text-body-md lg:max-w-[32rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
+          className="font-sans text-body-sm text-hero-body md:max-w-[24rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
         >
-          Recognition, swag, gifting, snacks, and hosted experiences—all from
-          one global platform.
+          The platform behind recognition, swag, snacks, gifting, and hosted
+          experiences.
         </p>
 
         {/* CTAs — system pills (h-button-h = 40px since the 2026-06-12

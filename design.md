@@ -2033,3 +2033,89 @@ Hero wall and mosaic tiles use pre-sized static WebP thumbnails (`public/catalog
 
 ### /catalog — all photos are static (2026-10-20)
 Hero, mosaic and product-modal photos now come from `public/catalog-page/thumbs/<section>/<n>-{s,m,l}.webp` (160 / 400 / 1200 px) — no on-demand optimizer, so a replaced source photo can never be served from a stale optimizer cache (that caused wrong/blank modal photos). After adding or replacing any catalog photo run `node scripts/gen-catalog-thumbs.mjs`.
+
+### Homepage hero — Figma `6525:11943` (2026-10-26)
+
+- Desktop (`lg`) hero is **16:9** (`lg:aspect-video`, 1440×810; clips are 16:9
+  so `object-cover` no longer crops) with content **bottom-aligned**
+  (`lg:justify-end`): pt 160 (`pt-[10rem]`), pb **96** (`--spacing-hero-pb-lg`).
+  Below lg the min-height tokens still apply. Text stays on the site's 90px
+  gutter (Figma shows 120; nav + all sections use 90).
+- Scrims at lg match Figma exactly: one 90° gradient
+  `.65/.45/.2/.05 @ 0/30/60/100` (`--gradient-hero-base-scrim`) + the top nav
+  scrim (160px: .7 → .62 @ 64px → 0). The stricter a11y 90° scrim
+  (`--gradient-hero-scrim`) and `bg-ink/60` floor now apply **below lg only**.
+- Type unchanged (already matched): eyebrow 16/24/+1, headline 72/82/−3,
+  body 18/28/+0.25 `#ccc`; body copy width 680 (`lg:max-w-[42.5rem]`); copy
+  "The platform behind recognition, swag, snacks, gifting, and hosted
+  experiences."
+
+## /new-home — infra pyramid scroll section (2026-10-26)
+
+Replaces "The Stadium Infrastructure" on `/new-home` (a noindex copy of the home
+page). Source of truth: Figma `n9SjmDjzB1PeZAYJ5w43fr` → scenes board `6749:9694`
+(intro · Physical · Digital · People, 1440×1024). Code: `app/components/pyramid/`.
+
+**Stack:** three + `@react-three/fiber` / `drei` / `postprocessing`, GSAP ticker,
+Lenis (page smooth-scroll, `/new-home` only). Grain = `<EffectComposer
+multisampling={8} autoClear><Noise opacity={0.2} /></EffectComposer>` (user's
+snippet; MSAA drops to 4 below 768px).
+
+**Tokens (globals.css `@theme`):** `--color-pyramid-night #060709` (stage + WebGL
+clear colour), `--color-pyramid-ice #a4cefe`, `--color-pyramid-tab #1a1a1a`,
+`--spacing-pyramid-card 53.25rem` (852), type `text-pyramid-display` 72/76 −2.4,
+`-heading` 40/46 −0.8, `-lede` 18/28 +0.25, `-tab` 18/28, `-meta` 15/22.
+Collapsed accordion tab width is `4.75rem` (76). Glass card = black/90 +
+`#4d4d4d` top hairline + 30px blur, r24, p10 (same as the old block).
+
+**Scroll model (`scroll.ts`):** sticky 100svh stage inside a `100svh × 5.9` section.
+`u` = scroll inside the pin in viewport-heights. Stops: intro 0 · Physical 1.5 ·
+Digital 3.0 · People 4.5; ±0.25 hold at each, 1.0 transition between. Panels rise
+from below / leave upward through their own springs (k120 c17). When scroll goes
+quiet (160ms) Lenis glides to the nearest stop on a damped-oscillation ease
+(`springEase`, 1.25s) — a soft magnet, only between stop 0 and 3; free above and
+below. Pill nav glides (1.6s). Reduced motion / "Pause animations": static stacked
+version, no WebGL, no Lenis.
+
+**Pyramid (`geometry.ts`, `PyramidCanvas.tsx`):** one square pyramid, height =
+base side, sliced at apex-fractions top 0–0.24 · middle 0.345–0.62 · bottom
+0.727–1 (read off the 01a vectors); slices are beveled convex hulls (r 0.045), the
+ledge is the dark cap. Camera: straight down −z, 12° lens, group pitched 35.264°.
+Poses in Figma px at 1440 (scaled by k = min(W/1440, H/1024), right-anchored):
+
+| stop | apex (x from right, y) | scale | lit |
+|---|---|---|---|
+| intro | 330, 189 | 1× | all |
+| Physical | 225, 85 (Figma 27, dropped to clear the header) | 1.454× | bottom |
+| Digital | 225 from **left**, 85 | 1.454× | middle |
+| People | 230, 79 | 1× | top |
+
+Each hop spins the pyramid 180° (symmetry hides it at rest); lit slice lifts 0.1;
+unlit slices fade to 40% opacity glass with a contour line. Every channel is a
+damped spring (k 40–84, ζ ≈ 0.6–0.85) so arrival overshoots and settles. Below
+1024px the pyramid sits above a bottom-sheet content panel (apex y 84, width ≈ 0.34W).
+Stage scales to `min(1, H/1024)` (floor 0.62) on desktop so the 1024-tall layout fits.
+
+**Content gaps (placeholders):** tab descriptions beyond each chapter's first tab,
+Digital screen recordings, Physical "Customs" clip and specialist portraits were
+not provided. Physical tabs 1–3 use `public/videos/infrastructure/*`; others run an
+8s timer. Tabs auto-advance on `ended`.
+
+**Revision (2026-10-26, round 2):** removed the dot grid, hairline frame, FIG tags,
+contour/dashed lines, ledge caps and the top pill nav (each chapter now opens with a
+"PHYSICAL / DIGITAL / PEOPLE INFRASTRUCTURE" eyebrow). Slices are hollow open shells;
+faded slices are opaque pure grey (lights are white, so no blue cast). Lenis smooth
+scroll and the spring snap were removed — page scroll is native; panels use a
+critically damped spring, the pyramid keeps its springs. Intro pose moved toward
+centre (apex 470 from right, 0.85×) with the copy indented 80px. Tab/video switches
+cross-fade (0.7s); the outgoing tab holds its poster while the new one fades in.
+
+**Revision (2026-10-26, round 3):** scroll-driven motion is bound 1:1 to scroll (no
+springs on pose or panels). Unlit slices = `#111111` @ 50% glass; slices are sharp
+(no bevel), glassy (roughness .05, clearcoat 1, env reflections). Chapter panels are
+vertically centred on desktop; "Scroll" cue removed. Intro slices are interactive:
+hover lights the slice and a glass pill (PHYSICAL/DIGITAL/PEOPLE) rests on it and
+follows the cursor; click glides (1.7s ease-in-out rAF tween — the only smooth scroll
+on the page) to that chapter and locks hover/click until the reader is back at the
+intro. Media tabs keep every clip mounted and cross-fade opacity (0.9s); accordion
+content has a fixed width so resizing never reflows text.

@@ -253,6 +253,7 @@
   --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */
   --spacing-hero-md: 24.875rem; /* hero fixed frame height, tablet (398px) */
   --spacing-hero-lg: 42.25rem; /* hero fixed frame height, desktop (676px) */
+  --spacing-hero-pb-lg: 6rem; /* 96 — desktop hero bottom padding, content bottom-aligned (Figma n9SjmDjzB1PeZAYJ5w43fr 6525:11943) */
   --spacing-hero-nav: 5.25rem; /* 84 — header band above the /impact canvas hero (visual starts under it) */
   --spacing-scale-map-sm: 20rem; /* ScaleMap particle canvas height, mobile — no Figma frame */
   --spacing-scale-map-md: 26rem; /* ScaleMap particle canvas height, tablet */
@@ -1025,3 +1026,37 @@ body {
   --shadow-cf-card: 0 0.25rem 1rem -0.25rem rgb(18 14 20 / 0.16); /* 0 4 16 −4 ink@16% */
   --shadow-cf-frame: 0 1.5rem 3rem -0.75rem rgb(0 0 0 / 0.35); /* 0 24 48 −12 @35% */
 }
+
+/* ===== /new-home · infra pyramid scroll section (Figma n9SjmDjzB1PeZAYJ5w43fr 6749:9694) ===== */
+@theme {
+  --color-pyramid-night: #060709; /* stage backdrop (matches the WebGL clear colour) */
+  --color-pyramid-ice: #a4cefe; /* eyebrow, progress fill */
+  --color-pyramid-tab: #1a1a1a; /* collapsed accordion tab */
+
+  --spacing-pyramid-card: 53.25rem; /* 852 — Physical / Digital glass card */
+
+  --text-pyramid-display: 4.5rem; /* 72/76 −2.4px Satoshi Bold — "One system. Three layers." */
+  --text-pyramid-display--line-height: 4.75rem;
+  --text-pyramid-display--letter-spacing: -0.15rem;
+  --text-pyramid-display--font-weight: 700;
+  --text-pyramid-heading: 2.5rem; /* 40/46 −0.8px — chapter heading */
+  --text-pyramid-heading--line-height: 2.875rem;
+  --text-pyramid-heading--letter-spacing: -0.05rem;
+  --text-pyramid-heading--font-weight: 700;
+  --text-pyramid-lede: 1.125rem; /* 18/28 +0.25px — chapter + intro body */
+  --text-pyramid-lede--line-height: 1.75rem;
+  --text-pyramid-lede--letter-spacing: 0.0156rem;
+  --text-pyramid-tab: 1.125rem; /* 18/28 — tab title */
+  --text-pyramid-tab--line-height: 1.75rem;
+  --text-pyramid-tab--letter-spacing: 0.0156rem;
+  --text-pyramid-meta: 0.9375rem; /* 15/22 — tab description, specialist copy */
+  --text-pyramid-meta--line-height: 1.375rem;
+}
+
+@keyframes pyramid-cue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(2.75rem); }
+}
+
+@keyframes pyramid-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pyramid-fade-out { from { opacity: 1; } to { opacity: 0; } }
