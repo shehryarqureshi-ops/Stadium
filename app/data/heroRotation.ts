@@ -17,8 +17,10 @@ export type HeroSlide = { word: string; video: string; poster: string };
 
 export const HERO_SLIDES: HeroSlide[] = [
   { word: "people", video: "/videos/hero/people-10s.mp4", poster: "/videos/hero/people-10s.webp" },
+  { word: "partners", video: "/videos/hero/partners-10s.mp4", poster: "/videos/hero/partners-10s.webp" },
   { word: "customers", video: "/videos/hero/customers-10s.mp4", poster: "/videos/hero/customers-10s.webp" },
   { word: "employees", video: "/videos/hero/employees-10s.mp4", poster: "/videos/hero/employees-10s.webp" },
+  { word: "community", video: "/videos/hero/community-10s.mp4", poster: "/videos/hero/community-10s.webp" },
 ];
 
 /* How long each word/video holds before advancing (matches the ~10s clips). */
