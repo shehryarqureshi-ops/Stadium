@@ -23,5 +23,6 @@ export const HERO_SLIDES: HeroSlide[] = [
   { word: "community", video: "/videos/hero/community-10s.mp4", poster: "/videos/hero/community-10s.webp" },
 ];
 
-/* How long each word/video holds before advancing (matches the ~10s clips). */
-export const HERO_SLIDE_INTERVAL_MS = 10000;
+/* How long each word/video holds before advancing. Clips are ~10s; the swap
+   happens at 9s so every clip changes mid-playback, never on its last frame. */
+export const HERO_SLIDE_INTERVAL_MS = 9000;

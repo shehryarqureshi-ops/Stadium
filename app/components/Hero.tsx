@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { HERO_SLIDES, HERO_SLIDE_INTERVAL_MS } from "../data/heroRotation";
 import HeroBackgroundVideo from "./HeroBackgroundVideo";
 import WordShuffle from "./WordShuffle";
@@ -15,6 +15,10 @@ const HERO_WORDS = HERO_SLIDES.map((s) => s.word);
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  /* Slide that is actually on screen (its clip is playing / poster-only). The
+     shared clock below only runs while readyIndex === index. */
+  const [readyIndex, setReadyIndex] = useState<number | null>(null);
+  const elapsedRef = useRef(0);
   const [reduce, setReduce] = useState(false);
   const [playing, setPlaying] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
@@ -51,25 +55,38 @@ export default function Hero() {
     };
   }, []);
 
-  /* `playing` is read through a ref so pausing/resuming (scroll, tab
-     visibility) never tears down and restarts the timer below — that restart
-     was what let the video loop extra times before the word caught up. */
-  const playingRef = useRef(playing);
-  useEffect(() => {
-    playingRef.current = playing;
-  }, [playing]);
+  const handleReady = useCallback((i: number) => setReadyIndex(i), []);
 
-  /* One stable ticker owns the shared index, so the word and the video advance
-     together on an exact 10s cadence. Ticks that land while paused (off-screen /
-     tab hidden) are skipped instead of resetting the clock. */
+  /* Safety net: if a clip never reports playback (autoplay blocked, stalled
+     network) don't freeze the rotation on it. */
   useEffect(() => {
     if (reduce || HERO_SLIDES.length <= 1) return;
-    const id = setInterval(() => {
-      if (!playingRef.current) return;
-      setIndex((i) => (i + 1) % HERO_SLIDES.length);
-    }, HERO_SLIDE_INTERVAL_MS);
-    return () => clearInterval(id);
-  }, [reduce]);
+    const t = setTimeout(() => setReadyIndex(index), 4000);
+    return () => clearTimeout(t);
+  }, [index, reduce]);
+
+  /* The word and the video share ONE clock. It starts when the new slide is
+     actually showing and flips both on the same render HERO_SLIDE_INTERVAL_MS
+     later. Pausing (off-screen / tab hidden) freezes the clock together with
+     the video and resumes with the time that remained. */
+  useEffect(() => {
+    if (reduce || HERO_SLIDES.length <= 1) return;
+    if (readyIndex !== index || !playing) return;
+    const started = performance.now();
+    let fired = false;
+    const t = setTimeout(
+      () => {
+        fired = true;
+        elapsedRef.current = 0;
+        setIndex((i) => (i + 1) % HERO_SLIDES.length);
+      },
+      Math.max(0, HERO_SLIDE_INTERVAL_MS - elapsedRef.current),
+    );
+    return () => {
+      clearTimeout(t);
+      if (!fired) elapsedRef.current += performance.now() - started;
+    };
+  }, [index, readyIndex, playing, reduce]);
 
   return (
     /* Fixed-height frame (min-h tokens), content vertically CENTERED
@@ -90,6 +107,7 @@ export default function Hero() {
           index={index}
           playing={playing}
           reduce={reduce}
+          onReady={handleReady}
         />
         <div className="absolute inset-0 bg-[image:var(--gradient-hero-base-scrim)]" />
         {/* a11y scrim only below lg — at lg the Figma gradient (base scrim
@@ -116,6 +134,7 @@ export default function Hero() {
           playing={playing}
           reduce={reduce}
           allowOnPhone
+          onReady={handleReady}
         />
       </div>
 

@@ -2136,3 +2136,9 @@ between stops — only the lit slice changes and the copy/card slide up and fade
 scrubbed). Intro labels follow `6765:13588`: outlined pill ("01 PHYSICAL") + 1px
 leader (36px horizontal, then to the dot) + white dot on the slice. WebGL canvas uses
 `flat` (no ACES) — ACES shifted the blue toward purple; lit colour is Morocco `#0b78ff`.
+- **Hero rotation clock (2026-10-26):** word + video share one 9s clock
+  (`HERO_SLIDE_INTERVAL_MS`) that starts when the new clip actually begins
+  playing (`onReady` from `HeroBackgroundVideo`), so they flip on the same
+  render. Transition is a 1s true crossfade (incoming on top, outgoing stays
+  opaque beneath); the next clip is pre-buffered hidden. Pausing off-screen
+  freezes the clock with the video.
