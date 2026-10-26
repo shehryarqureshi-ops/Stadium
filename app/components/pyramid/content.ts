@@ -19,7 +19,8 @@ export const INTRO = {
 export const LAYERS = ["Physical", "Digital", "People"] as const;
 
 export const PHYSICAL = {
-  heading: "Local, everywhere.",
+  title: "Physical Infrastructure",
+  heading: "Local, everywhere",
   body: "Decorated, stored and delivered in-country by 1,000+ vetted partners, with free domestic shipping in 170+ countries.",
   tabs: [
     {
@@ -43,6 +44,7 @@ export const PHYSICAL = {
 };
 
 export const DIGITAL = {
+  title: "Digital Infrastructure",
   heading: "Centralized control. Decentralized execution.",
   body: "Set the rules once. Let every team move. Recognition, storefronts and automations run on one platform, governed for every team and region.",
   tabs: [
@@ -59,9 +61,9 @@ export const DIGITAL = {
 };
 
 export const PEOPLE = {
+  title: "People Infrastructure",
   heading: "The team you’d never get to hire. Included.",
   body: "A dedicated success lead, backed by experts in strategy, creative, merchandising, logistics and data. For less than the cost of one hire.",
-  cta: { label: "Talk to sales", href: "/book-a-call" },
   specialists: [
     { name: "Success lead", desc: "Your one point of contact, from kickoff to QBR." },
     { name: "Program strategy", desc: "Plans your program around the moments that matter." },

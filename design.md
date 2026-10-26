@@ -2119,3 +2119,22 @@ follows the cursor; click glides (1.7s ease-in-out rAF tween — the only smooth
 on the page) to that chapter and locks hover/click until the reader is back at the
 intro. Media tabs keep every clip mounted and cross-fade opacity (0.9s); accordion
 content has a fixed width so resizing never reflows text.
+
+**Revision (2026-10-26, round 4):** scene content now follows Figma `6765:2845`
+(Physical), `6765:3040` (Digital), `6765:3104` (People): centred 48px title + 27px
+subheading + 18px body; Physical = tab list left / clip right, Digital = clip right…
+browser-chrome clip left / tab list right, People = plain card carousel (no CTA,
+arrows or pills; native horizontal scroll). Noise/EffectComposer removed. Intro: no hover;
+each slice carries a floating white label (click glides to that chapter); pyramid is
+1.25× larger. After the intro the pyramid only zooms (1.6× → 1.7× → 1.8×, centred, no
+spin) at 50% overall opacity (lit slice 50%, unlit 25%). `@react-three/postprocessing`
+/ `postprocessing` are still installed but unused.
+
+**Revision (2026-10-26, round 5):** layout now follows Figma `6509:12005`: intro
+(pyramid right, labels), then the pyramid shrinks to a 160px marker parked top-left
+(x = container left, y ≈ 114) beside each chapter's eyebrow ("01 Physical
+infrastructure") + 40px heading + body, with the card below; the marker never moves
+between stops — only the lit slice changes and the copy/card slide up and fade (scroll-
+scrubbed). Intro labels follow `6765:13588`: outlined pill ("01 PHYSICAL") + 1px
+leader (36px horizontal, then to the dot) + white dot on the slice. WebGL canvas uses
+`flat` (no ACES) — ACES shifted the blue toward purple; lit colour is Morocco `#0b78ff`.

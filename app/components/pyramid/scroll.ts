@@ -26,20 +26,16 @@ export const easeIn = (t: number) => t * t * t;
  *  InfraPyramid's ticker, read inside the R3F frame loop — no React re-renders. */
 export const pyramidStore = {
   u: 0,
-  /** hovered slice (0 bottom … 2 top) on the intro, -1 = none */
-  hover: -1,
-  /** set once a slice is clicked — hover/click stay off until the reader is back at the intro */
-  locked: false,
-  /** cursor (px, relative to the stage) while over a slice */
-  pointer: { x: 0, y: 0 },
   /** screen-space centre of each slice (px, relative to the stage) */
   anchors: [
     { x: 0, y: 0 },
     { x: 0, y: 0 },
     { x: 0, y: 0 },
   ],
-  onHover: undefined as ((i: number) => void) | undefined,
-  onSelect: undefined as ((i: number) => void) | undefined,
+  /** phones/tablet intro: apex y that vertically centres graphic + copy (set by InfraPyramid.measure) */
+  introAy: 0,
+  /** half-diagonal of the pyramid in px (for label offsets) */
+  halfDiag: 300,
 };
 
 /** Continuous stop index 0..3 (eased across each transition, flat in holds). */

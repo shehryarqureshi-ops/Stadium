@@ -29,11 +29,14 @@ export default function HeroBackgroundVideo({
   index,
   playing,
   reduce,
+  allowOnPhone = false,
 }: {
   slides: HeroSlide[];
   index: number;
   playing: boolean;
   reduce: boolean;
+  /** phones normally get the poster only; the 16:10 phone media block opts in */
+  allowOnPhone?: boolean;
 }) {
   const [allowVideo, setAllowVideo] = useState(false);
   const [outgoing, setOutgoing] = useState<number | null>(null);
@@ -54,7 +57,7 @@ export default function HeroBackgroundVideo({
       if (idle !== undefined && "cancelIdleCallback" in window) {
         window.cancelIdleCallback(idle);
       }
-      if (!mq.matches || saveData) {
+      if ((!mq.matches && !allowOnPhone) || saveData) {
         setAllowVideo(false);
         return;
       }
@@ -76,7 +79,7 @@ export default function HeroBackgroundVideo({
       mq.removeEventListener("change", evaluate);
       window.clearTimeout(timer);
     };
-  }, []);
+  }, [allowOnPhone]);
 
   const videoOn = allowVideo && !reduce;
 

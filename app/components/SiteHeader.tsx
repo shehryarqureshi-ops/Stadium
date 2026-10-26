@@ -133,7 +133,8 @@ function AuthLink({
 export default function SiteHeader({
   banner,
   lightHero = false,
-}: { banner?: string; lightHero?: boolean } = {}) {
+  solidOnMobile = false,
+}: { banner?: string; lightHero?: boolean; solidOnMobile?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   /* which accordion section is expanded in the mobile panel (Shopify
      mobile-nav pattern, 2026-06-12 — the mega-menu content was previously
@@ -318,8 +319,19 @@ export default function SiteHeader({
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
+  /* `solidOnMobile`: pages whose phone hero starts with media under the nav (the
+     nav stays white on phones, < md) */
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    if (!solidOnMobile) return;
+    const mq = window.matchMedia("(max-width: 47.9375rem)");
+    const sync = () => setPhone(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [solidOnMobile]);
   const solid =
-    scrolled || menuOpen || engageOpen || drawerSettling || lightHero;
+    scrolled || menuOpen || engageOpen || drawerSettling || lightHero || (solidOnMobile && phone);
   /* hover dims in both states (Shopify: every nav item responds); the
      transparent state swaps the global ink focus ring for white */
   const baseLink = solid

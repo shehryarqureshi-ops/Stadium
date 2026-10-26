@@ -79,12 +79,12 @@ export default function Hero() {
        positions stay identical to the Figma frame. */
     <section
       ref={sectionRef}
-      className="relative flex min-h-[calc(var(--spacing-hero-sm)+4rem)] flex-col items-start justify-center overflow-hidden px-section-x-sm pb-12 pt-[7rem] md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:aspect-video lg:justify-end lg:px-section-x-lg lg:pb-hero-pb-lg lg:pt-[10rem] bg-black"
+      className="relative flex min-h-0 flex-col items-start justify-center overflow-hidden bg-white px-0 pb-0 pt-16 md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:bg-black md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:aspect-video lg:justify-end lg:px-section-x-lg lg:pb-hero-pb-lg lg:pt-[10rem]"
     >
       {/* full-bleed rotating video background (poster = the hero photo, so no
           black flash before/without playback), with the same contrast scrims
           layered over it that the still photo used. */}
-      <div aria-hidden className="absolute inset-0 pointer-events-none">
+      <div aria-hidden className="pointer-events-none absolute inset-0 max-md:hidden">
         <HeroBackgroundVideo
           slides={HERO_SLIDES}
           index={index}
@@ -107,27 +107,43 @@ export default function Hero() {
         <div className="absolute inset-0 bg-ink/60 lg:hidden" />
       </div>
 
+      {/* PHONE (< md): the clip sits right under the white nav at 16:10 (cover); the copy
+          follows on white. md+ keeps the full-bleed background above. */}
+      <div aria-hidden className="relative aspect-[16/10] w-full overflow-hidden bg-black md:hidden">
+        <HeroBackgroundVideo
+          slides={HERO_SLIDES}
+          index={index}
+          playing={playing}
+          reduce={reduce}
+          allowOnPhone
+        />
+      </div>
+
       {/* content row caps at 1200 and centers above 1380 (background stays full-bleed) */}
-      <div className="relative mx-auto flex w-full max-w-content flex-col items-start gap-5 md:gap-9 lg:gap-0">
+      <div className="relative mx-auto flex w-full max-w-content flex-col items-start gap-5 px-section-x-sm py-8 md:gap-9 md:px-0 md:py-0 lg:gap-0">
         {/* Header: title (eyebrow + headline) + supporting copy */}
         <p
-          className="font-sans text-eyebrow-sm uppercase md:text-eyebrow-md lg:text-eyebrow-lg lg:leading-6 text-white lg:mb-2"
+          className="font-sans text-eyebrow-sm uppercase text-grey-500 md:text-eyebrow-md md:text-white lg:text-eyebrow-lg lg:leading-6 lg:mb-2"
           data-animation="reveal"
         >
           Global engagement infrastructure
         </p>
         <h1
           data-animation="reveal"
-          className="w-full font-display text-ds-h4 md:text-ds-h2 lg:text-ds-hero text-white lg:mb-6"
+          className="w-full font-display text-[clamp(1.25rem,6.4vw,2rem)] leading-[1.25] text-ink md:text-ds-h2 md:text-white lg:text-ds-hero lg:mb-6"
         >
-          Show up for your <WordShuffle words={HERO_WORDS} index={index} />{" "}
-          {/* hard line break on desktop only (per Figma) */}
-          <br aria-hidden className="hidden lg:block" />
+          {/* "Show up for your <word>" never wraps; the size above scales with the viewport so
+              the longest word still fits one line on phones */}
+          <span className="max-md:whitespace-nowrap">
+            Show up for your <WordShuffle words={HERO_WORDS} index={index} />
+          </span>{" "}
+          {/* hard line break on phones + desktop (per Figma) */}
+          <br aria-hidden className="md:hidden lg:block" />
           Everywhere, every time.
         </h1>
         <p
           data-animation="reveal"
-          className="font-sans text-body-sm text-hero-body md:max-w-[24rem] md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
+          className="font-sans text-body-sm text-grey-600 md:max-w-[24rem] md:text-hero-body md:text-body-md lg:max-w-[42.5rem] lg:text-body-lg lg:tracking-[0.0156rem] lg:mb-8"
         >
           The platform behind recognition, swag, snacks, gifting, and hosted
           experiences.
@@ -142,7 +158,7 @@ export default function Hero() {
         >
           <a
             href="/book-a-call"
-            className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-white px-button-x font-sans text-button-primary uppercase text-brand-hero shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-100 active:scale-[0.98] focus-visible:outline-white md:w-auto"
+            className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-ink px-button-x font-sans text-button-primary uppercase text-white shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-ink md:w-auto md:bg-white md:text-brand-hero md:hover:bg-grey-100 md:focus-visible:outline-white"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
               Talk to sales
@@ -150,7 +166,7 @@ export default function Hero() {
           </a>
           <a
             href="/catalog"
-            className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-white px-button-x font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-white md:w-auto"
+            className="inline-flex h-button-h w-full items-center justify-center rounded-button border border-ink px-button-x font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:bg-ink/5 active:scale-[0.98] focus-visible:outline-ink md:w-auto md:border-white md:text-white md:hover:bg-white/10 md:focus-visible:outline-white"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
               Browse the catalog

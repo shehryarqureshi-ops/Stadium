@@ -1060,3 +1060,13 @@ body {
 
 @keyframes pyramid-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pyramid-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+@theme {
+  --text-pyramid-title: 3rem; /* 48/52 Satoshi Bold — chapter title (Figma 6765:2845) */
+  --text-pyramid-title--line-height: 3.25rem;
+  --text-pyramid-title--letter-spacing: -0.06rem;
+  --text-pyramid-title--font-weight: 700;
+  --text-pyramid-sub: 1.6875rem; /* 27/32 Satoshi Bold — chapter subheading */
+  --text-pyramid-sub--line-height: 2rem;
+  --text-pyramid-sub--font-weight: 700;
+}

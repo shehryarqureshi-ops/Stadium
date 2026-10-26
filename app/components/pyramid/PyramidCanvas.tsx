@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, Sparkles } from "@react-three/drei";
-import { EffectComposer, Noise } from "@react-three/postprocessing";
 import {
   PYR_A,
   PYR_H,
@@ -32,10 +31,12 @@ const PITCH = Math.atan(1 / Math.SQRT2); // true isometric, 35.264°
 const FOV = 12;
 const CAM_Z = 24;
 const DESIGN_HALF_DIAG = 387; // px — base half-diagonal of the 1× pyramid in Figma
+/* the rendered base corner reaches ~0.86 of the nominal half-diagonal (rounded hull + perspective) */
+const VISIBLE_HALF = 0.86;
 
-const BLUE = new THREE.Color("#3a7bff");
-const BLUE_EMISSIVE = new THREE.Color("#0a3fb8");
-const FADE = new THREE.Color("#0a0a0a"); // unlit slices: near-black metal
+const BLUE = new THREE.Color("#0b50a2"); // lit slice — deep Stadium blue
+const BLUE_EMISSIVE = new THREE.Color("#0b64d8");
+const FADE = new THREE.Color("#222222"); // unlit slices: dark metal (still readable at marker size)
 const FADE_EMISSIVE = new THREE.Color("#000000");
 
 type Pose = { ax: number; ay: number; sc: number; w: [number, number, number] };
@@ -45,21 +46,32 @@ function layoutPoses(W: number, H: number): Pose[] {
   if (W >= 1024) {
     const k = Math.min(1.3, Math.max(0.55, Math.min(W / 1440, H / 1024)));
     const yo = (H - 1024 * k) / 2;
+    // stops: a 160px "marker" pyramid parked top-left beside the chapter heading
+    // (Figma 6509:12005). Panels are scaled about the stage centre by `fit`, so the
+    // marker is positioned through the same transform to stay glued to the copy.
+    const fit = Math.min(1, Math.max(0.62, H / 1024));
+    const left = (W - Math.min(W, 1440)) / 2 + 120;
+    const markerX = W / 2 + (left - W / 2) * fit + 80 * fit;
+    const markerY = H / 2 + (114 - H / 2) * fit;
+    const markerSc = (80 / DESIGN_HALF_DIAG) * fit;
+    const introInset = ((W - Math.min(W, 1440)) / 2 + 200) * fit; // headline left edge (120 gutter + 80 indent)
     return [
-      { ax: W - 470 * k, ay: yo + 215 * k, sc: 0.85 * k, w: [1, 1, 1] },
-      { ax: W - 225 * k, ay: yo + 85 * k, sc: 1.454 * k, w: [1, 0, 0] }, // apex dropped from the Figma 27 so it clears the fixed header
-      { ax: 225 * k, ay: yo + 85 * k, sc: 1.454 * k, w: [0, 1, 0] },
-      { ax: W - 230 * k, ay: yo + 79 * k, sc: k, w: [0, 0, 1] },
+      // intro: the pyramid's right corner sits as far from the right edge as the headline
+      // is from the left (the intro panel is scaled about its left edge by `fit`)
+      { ax: W - introInset - VISIBLE_HALF * DESIGN_HALF_DIAG * 1.0625 * k, ay: yo + 190 * k, sc: 1.0625 * k, w: [1, 1, 1] },
+      { ax: markerX, ay: markerY, sc: markerSc, w: [1, 0, 0] },
+      { ax: markerX, ay: markerY, sc: markerSc, w: [0, 1, 0] },
+      { ax: markerX, ay: markerY, sc: markerSc, w: [0, 0, 1] },
     ];
   }
-  // tablet / phone: pyramid sits above the content sheet
-  const s0 = Math.min(0.68, Math.max(0.3, (W * 0.34) / DESIGN_HALF_DIAG));
-  const s = s0 * 0.7;
-  const top = 84; // clears the 64px fixed header
+  // tablet / phone: a small pyramid sits above the content sheet and stays put
+  const s0 = Math.min(0.85, Math.max(0.37, (W * 0.34 * 1.25) / DESIGN_HALF_DIAG));
+  const top = 108; // clears the 64px fixed header with breathing room
+  const s = s0 * 0.5;
   return [
-    { ax: W * 0.5, ay: Math.max(top, H * 0.12), sc: s0, w: [1, 1, 1] },
-    { ax: W * 0.66, ay: top, sc: s, w: [1, 0, 0] },
-    { ax: W * 0.34, ay: top, sc: s, w: [0, 1, 0] },
+    { ax: W * 0.5, ay: pyramidStore.introAy || Math.max(top, H * 0.12), sc: s0, w: [1, 1, 1] },
+    { ax: W * 0.5, ay: top, sc: s, w: [1, 0, 0] },
+    { ax: W * 0.5, ay: top, sc: s, w: [0, 1, 0] },
     { ax: W * 0.5, ay: top, sc: s, w: [0, 0, 1] },
   ];
 }
@@ -84,12 +96,6 @@ const tmp = new THREE.Vector3();
 function Pyramid({ onReady }: { onReady?: () => void }) {
   const { size, invalidate } = useThree();
 
-  const setHover = (i: number) => {
-    if (pyramidStore.hover === i) return;
-    pyramidStore.hover = i;
-    pyramidStore.onHover?.(i);
-  };
-  const canAct = () => pyramidStore.u < 0.15 && !pyramidStore.locked;
   const frames = useRef(0);
 
   const root = useRef<THREE.Group>(null);
@@ -100,8 +106,9 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
   const glowBack = useRef<THREE.ShaderMaterial>(null);
   const glowFloor = useRef<THREE.ShaderMaterial>(null);
   const uBack = useMemo(() => glowUniforms("#0b7afc", 2.2), []);
-  const uFloor = useMemo(() => glowUniforms("#2e78ff", 1.8), []);
+  const uFloor = useMemo(() => glowUniforms("#0b78ff", 1.8), []);
   const segGroups = useRef<(THREE.Group | null)[]>([]);
+  const edgeMats = useRef<(THREE.LineBasicMaterial | null)[]>([]);
   const sideMats = useRef<(THREE.MeshPhysicalMaterial | null)[]>([]);
 
   const geo = useMemo(
@@ -111,6 +118,7 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
         const sides = roundedThickShell(s.t1, s.t2, 0.11, 0.04, tone);
         return {
           sides,
+          edges: new THREE.EdgesGeometry(sides, 35),
         };
       }),
     [],
@@ -148,16 +156,13 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
     const e = f >= 3 ? 1 : f - k;
     const a = poses[k];
     const b = poses[k + 1];
-    const interactive = pyramidStore.u < 0.15 && !pyramidStore.locked;
-    if (!interactive && pyramidStore.hover !== -1) setHover(-1);
-    const hoverW = interactive && pyramidStore.hover >= 0 ? pyramidStore.hover : -1;
     const target = {
       ax: lerp(a.ax, b.ax, e),
       ay: lerp(a.ay, b.ay, e),
       sc: lerp(a.sc, b.sc, e),
-      w: a.w.map((v, i) => (hoverW >= 0 ? (i === hoverW ? 1 : 0) : lerp(v, b.w[i], e))) as number[],
+      w: a.w.map((v, i) => lerp(v, b.w[i], e)) as number[],
     };
-    const yawTarget = Math.PI / 4 + f * Math.PI; // 180° per hop — the slice symmetry hides it at rest
+    const yawTarget = Math.PI / 4; // no spin between scenes — it only zooms
 
     const s = sp.current;
     if (!s.ready) {
@@ -177,18 +182,20 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
     const py = s.py.step(state.pointer.y, dt);
     const t = state.clock.elapsedTime;
 
+    pyramidStore.halfDiag = DESIGN_HALF_DIAG * sc;
     const S = (DESIGN_HALF_DIAG * sc) / (Math.SQRT2 * PYR_A * ppu);
     if (root.current) {
       root.current.position.set(
         (ax - W / 2) / ppu,
-        -(ay - H / 2) / ppu + Math.sin(t * 0.9) * 0.03,
+        -(ay - H / 2) / ppu + Math.sin(t * 0.9) * 0.015,
         0,
       );
       root.current.scale.setScalar(S);
     }
-    if (tilt.current) tilt.current.rotation.x = PITCH - py * 0.07;
-    if (spin.current) spin.current.rotation.y = yaw + px * 0.14 + Math.sin(t * 0.35) * 0.025;
+    if (tilt.current) tilt.current.rotation.x = PITCH - py * 0.03;
+    if (spin.current) spin.current.rotation.y = yaw + px * 0.05 + Math.sin(t * 0.35) * 0.012;
 
+    const gOp = lerp(1, 0.8, clamp01(f)); // after the intro the whole pyramid eases back to 80%
     let lit = 0;
     for (let i = 0; i < 3; i++) {
       const w = s.w[i].step(target.w[i], dt);
@@ -200,38 +207,41 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
       if (m) {
         m.color.lerpColors(FADE, BLUE, wc);
         m.emissive.lerpColors(FADE_EMISSIVE, BLUE_EMISSIVE, wc);
-        m.emissiveIntensity = 0.05 * wc;
-        m.envMapIntensity = 0.1 + 0.9 * wc;
-        m.opacity = 0.5 + 0.5 * wc; // unlit = 50%
+        m.emissiveIntensity = 0.18 * wc; // inner glow
+        m.envMapIntensity = 0.4 + 1.0 * wc;
+        m.opacity = (0.65 + 0.35 * wc) * gOp; // unlit 65%, lit 100%; ×0.8 after the intro
       }
     }
     if (spin.current) {
       spin.current.updateWorldMatrix(true, false);
       for (let i = 0; i < 3; i++) {
         const seg = SEGMENTS[i];
-        tmp.set(0, yAt((seg.t1 + seg.t2) / 2), 0);
+        // dot sits on the outer wall: Digital on the left-front face, the others on the right-front face
+        const tm = (seg.t1 + seg.t2) / 2;
+        if (i === 1) tmp.set(-PYR_A * tm, yAt(tm), 0);
+        else tmp.set(0, yAt(tm), PYR_A * tm);
         spin.current.localToWorld(tmp);
         tmp.project(state.camera);
         pyramidStore.anchors[i] = { x: (tmp.x * 0.5 + 0.5) * W, y: (-tmp.y * 0.5 + 0.5) * H };
       }
     }
-    if (glowBack.current) glowBack.current.uniforms.uOpacity.value = 0.17 + 0.08 * (lit / 3) + Math.sin(t * 1.2) * 0.015;
-    if (glowFloor.current) glowFloor.current.uniforms.uOpacity.value = 0.18 + 0.3 * (lit / 3);
+    if (glowBack.current) glowBack.current.uniforms.uOpacity.value = (0.34 + 0.16 * (lit / 3) + Math.sin(t * 1.2) * 0.03) * gOp;
+    if (glowFloor.current) glowFloor.current.uniforms.uOpacity.value = (0.3 + 0.5 * (lit / 3)) * gOp;
   });
 
   return (
     <group ref={root}>
       {/* lights live inside the root so their shadow frustum travels with the pyramid */}
-      <ambientLight intensity={0.05} color="#0b7afc" />
+      <ambientLight intensity={0.25} color="#2b7cff" />
       <directionalLight
         ref={keyLight}
         position={[5.2, 4.2, 3]}
-        intensity={4.5}
-        color="#5a9bff"
+        intensity={1.8}
+        color="#4d92ff"
       />
       <object3D ref={keyTarget} position={[0, -1.2, 0]} />
-      <pointLight position={[-4.5, 0.2, 2.2]} intensity={3} color="#0b7afc" distance={14} />
-      <pointLight position={[1.5, -3.2, 4]} intensity={5} color="#0b7afc" distance={12} />
+      <pointLight position={[-4.5, 0.2, 2.2]} intensity={10} color="#0b7afc" distance={14} />
+      <pointLight position={[1.5, -3.2, 4]} intensity={6} color="#2b7cff" distance={12} />
 
       {/* soft screen-space bloom behind the pyramid */}
       <mesh position={[0, -PYR_H * 0.5, -2.4]} renderOrder={-10}>
@@ -269,29 +279,28 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
             <group key={seg.id} ref={(el) => void (segGroups.current[i] = el)}>
               <mesh
                 geometry={geo[i].sides}
-                onPointerMove={(e) => {
-                  if (!canAct()) return;
-                  e.stopPropagation();
-                  setHover(i);
-                  pyramidStore.pointer = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
-                }}
-                onPointerOut={() => setHover(-1)}
-                onClick={(e) => {
-                  if (!canAct()) return;
-                  e.stopPropagation();
-                  pyramidStore.onSelect?.(i);
-                }}
               >
                 <meshPhysicalMaterial
                   ref={(el) => void (sideMats.current[i] = el)}
                   transparent
                   color={BLUE}
-                  roughness={0.42}
-                  metalness={0.55}
-                  clearcoat={0}
+                  roughness={0.32}
+                  metalness={0.6}
+                  clearcoat={0.6}
+                  clearcoatRoughness={0.2}
                   flatShading
                 />
               </mesh>
+              <lineSegments geometry={geo[i].edges}>
+                <lineBasicMaterial
+                  ref={(el) => void (edgeMats.current[i] = el)}
+                  transparent
+                  color="#a4cefe"
+                  opacity={0.4}
+                  depthWrite={false}
+                  toneMapped={false}
+                />
+              </lineSegments>
             </group>
           ))}
 
@@ -315,13 +324,13 @@ function Pyramid({ onReady }: { onReady?: () => void }) {
 type Props = { active: boolean; onReady?: () => void };
 
 export default function PyramidCanvas({ active, onReady }: Props) {
-  const small = typeof window !== "undefined" && window.innerWidth < 768;
   return (
     <Canvas
+      flat /* no ACES tone mapping — it hue-shifts saturated blue toward purple */
       className="!absolute inset-0"
       dpr={[1, 1.5]}
       camera={{ fov: FOV, position: [0, 0, CAM_Z], near: 1, far: 80 }}
-      gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       frameloop={active ? "always" : "never"}
     >
             <Environment resolution={256} frames={1}>
@@ -332,9 +341,6 @@ export default function PyramidCanvas({ active, onReady }: Props) {
         <Lightformer form="rect" intensity={3} position={[0, -5, 2]} rotation-x={Math.PI / 2} scale={[8, 3, 1]} color="#2b7cff" />
       </Environment>
       <Pyramid onReady={onReady} />
-      <EffectComposer multisampling={small ? 4 : 8} autoClear={true}>
-        <Noise opacity={0.2} />
-      </EffectComposer>
     </Canvas>
   );
 }

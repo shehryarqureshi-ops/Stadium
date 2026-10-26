@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <JsonLd path="/" />
-      <SiteHeader />
+      <SiteHeader solidOnMobile />
       <main id="main" tabIndex={-1} className="overflow-x-clip">
         <Hero />
         <TrustBand />
