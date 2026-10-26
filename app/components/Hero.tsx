@@ -60,7 +60,7 @@ export default function Hero() {
   }, [playing]);
 
   /* One stable ticker owns the shared index, so the word and the video advance
-     together on an exact 5s cadence. Ticks that land while paused (off-screen /
+     together on an exact 10s cadence. Ticks that land while paused (off-screen /
      tab hidden) are skipped instead of resetting the clock. */
   useEffect(() => {
     if (reduce || HERO_SLIDES.length <= 1) return;

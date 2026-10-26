@@ -4,6 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
+import { useHashTabs } from "@/hooks/useHashTabs";
 import { CardActiveContext } from "@/app/components/common/cardActive";
 
 export type StepCardsCarouselCard = {
@@ -17,6 +18,8 @@ export type StepCardsCarouselCard = {
 };
 
 export type StepCardsCarouselStep = {
+  /** url-hash slug (e.g. "team-building" → /events#team-building) */
+  id?: string;
   title: string;
   description: string;
   cards: StepCardsCarouselCard[];
@@ -29,6 +32,8 @@ type StepCardsCarouselProps = {
   description: string;
   steps: StepCardsCarouselStep[];
   showNumberInHeading?: boolean;
+  /** id of the <section> when any step has an `id` */
+  sectionId?: string;
 };
 
 const PHASE_FADE_OUT_MS = 180;
@@ -162,6 +167,7 @@ export default function StepCardsCarousel({
   description,
   steps,
   showNumberInHeading = true,
+  sectionId = "categories",
 }: StepCardsCarouselProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
@@ -225,9 +231,17 @@ export default function StepCardsCarousel({
   // Must always be called before any conditional return.
   const { sectionRef, takeOver } = useAutoAdvance(advance);
 
+  const { enabled: hashEnabled, writeHash } = useHashTabs({
+    ids: steps.map((st) => st.id),
+    select: switchStep,
+    takeOver,
+    sectionRef,
+  });
+
   const selectStep = (index: number) => {
     takeOver();
     switchStep(index);
+    writeHash(index);
   };
 
   const selectCard = (index: number) => {
@@ -241,7 +255,11 @@ export default function StepCardsCarousel({
   if (!steps.length) return null;
 
   return (
-    <section ref={sectionRef} className="rounded-t-[2.5rem] bg-white">
+    <section
+      ref={sectionRef}
+      id={hashEnabled ? sectionId : undefined}
+      className="scroll-mt-[11.5rem] rounded-t-[2.5rem] bg-white"
+    >
       <div className="mx-auto w-full max-w-section px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
         <div className="flex flex-col gap-12">
           {/* Header */}

@@ -2,8 +2,9 @@
 
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
+import { useHashTabs } from "@/hooks/useHashTabs";
 
 export type TabsShowcaseItem = {
   /** url-hash slug (e.g. "onboarding" → /impact/hr#onboarding). When any item
@@ -82,63 +83,19 @@ export default function PillTabs({
     setActive((i) => (i + 1) % items.length);
   });
 
-  /* set once a pill is clicked: pills never scroll, and must cancel the
-     late re-scroll of a deep link */
-  const clicked = useRef(false);
-  const hashEnabled = items.some((i) => i.id);
-
-  /* Deep links: `#<item.id>` selects that tab and scrolls the block into
-     view — on load, and on later hash changes (header menu, back/forward).
-     Mount-only on purpose: takeOver/items change identity across renders, and
-     re-running this after a pill click would re-scroll to the section. */
-  const latest = useRef({ items, takeOver, sectionRef });
-  useEffect(() => {
-    latest.current = { items, takeOver, sectionRef };
+  const { enabled: hashEnabled, writeHash } = useHashTabs({
+    ids: items.map((i) => i.id),
+    select: setActive,
+    takeOver,
+    sectionRef,
   });
-
-  useEffect(() => {
-    if (!hashEnabled) return;
-    const apply = (scroll: boolean) => {
-      const { items: list, sectionRef: ref } = latest.current;
-      const hash = decodeURIComponent(window.location.hash.slice(1));
-      const index = hash ? list.findIndex((i) => i.id === hash) : -1;
-      if (index < 0) return;
-      setActive(index);
-      if (scroll) {
-        /* wait a frame so layout (and the tab swap) has settled */
-        requestAnimationFrame(() =>
-          ref.current?.scrollIntoView({ behavior: "auto", block: "start" }),
-        );
-      }
-    };
-    const onHash = () => {
-      latest.current.takeOver();
-      apply(true);
-    };
-    /* initial load: images above may still shift layout, so re-scroll once */
-    const t0 = window.setTimeout(() => apply(true), 0);
-    const t1 = window.setTimeout(() => {
-      if (!clicked.current) apply(true);
-    }, 400);
-    window.addEventListener("hashchange", onHash);
-    return () => {
-      window.clearTimeout(t0);
-      window.clearTimeout(t1);
-      window.removeEventListener("hashchange", onHash);
-    };
-  }, [hashEnabled]);
 
   const select = (index: number) => {
     if (index === active) return;
 
     takeOver();
-    clicked.current = true;
     setActive(index);
-    const id = items[index]?.id;
-    /* Bypass Next's patched history.replaceState: its router treats a hash
-       change as a navigation and scrolls (to top when no element has that id). */
-    if (id)
-      History.prototype.replaceState.call(window.history, window.history.state, "", `#${id}`);
+    writeHash(index);
   };
 
   if (!items.length) return null;

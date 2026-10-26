@@ -60,6 +60,7 @@ export default function SwagmagicSolution() {
       description="Send a curated box or let every recipient build their own. They choose their snacks, share their address, and set their dietary needs–you don’t collect any of it."
       cards={[
         {
+          id: "build-your-own-boxes",
           title: "Build your own boxes",
           image: solutionOne,
           imageAlt: "Build-your-own Snackmagic box with a selection of snacks.",
@@ -81,6 +82,7 @@ export default function SwagmagicSolution() {
           ctaLink: "/catalog#snacks",
         },
         {
+          id: "curated-boxes",
           title: "Curated boxes",
           image: solutionTwo,
           imageAlt: "Curated Snackmagic boxes ready to send.",

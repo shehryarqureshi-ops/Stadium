@@ -11,7 +11,7 @@ import type { HeroSlide } from "../data/heroRotation";
      or under reduced motion. No video bytes are requested in those cases.
    - On larger screens ONE clip is mounted at a time (plus the outgoing clip
      for the 700ms crossfade). The next clip is fetched only when its slide
-     becomes active, instead of preloading all five up front. Each <video>
+     becomes active, instead of preloading every clip up front. Each <video>
      carries its own poster, so a clip that is still buffering shows its photo
      rather than black.
    - Video mounting waits until the page has finished loading (idle) so it

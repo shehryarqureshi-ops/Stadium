@@ -9,6 +9,7 @@ import PillTabs, {
 
 const items: TabsShowcaseItem[] = [
   {
+    id: "kudos",
     name: "Kudos Programs",
     tab: "Kudos Programs",
     title: "Recognition that doesn’t have to come from the top",
@@ -24,6 +25,7 @@ const items: TabsShowcaseItem[] = [
     cta: "Explore Kudos",
   },
   {
+    id: "milestones",
     name: "Milestone Programs",
     tab: "Milestone Programs",
     title: "Milestones that never slip",
@@ -38,6 +40,7 @@ const items: TabsShowcaseItem[] = [
     href: "/catalog#gifts",
   },
   {
+    id: "incentives",
     name: "Incentives",
     tab: "Incentives",
     title: "Incentives that move the needle",
@@ -52,6 +55,7 @@ const items: TabsShowcaseItem[] = [
     href: "/catalog#gifts",
   },
   {
+    id: "service-awards",
     name: "Service Awards",
     tab: "Service Awards",
     title: "Service awards worth the wait",

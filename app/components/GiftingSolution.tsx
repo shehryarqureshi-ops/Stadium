@@ -13,6 +13,7 @@ import automated from "@/public/gift2/gf-solution-automated.png";
 
 const items: TabsShowcaseItem[] = [
   {
+    id: "holiday-gifting",
     name: "Holiday Gifting",
     tab: "holiday gifting",
     title: "Holiday Gifting",
@@ -30,6 +31,7 @@ const items: TabsShowcaseItem[] = [
     href: "/catalog#gifts",
   },
   {
+    id: "employee-gifting",
     name: "Employee Gifting",
     tab: "employee gifting",
     title: "Employee Gifting",
@@ -46,6 +48,7 @@ const items: TabsShowcaseItem[] = [
     href: "/catalog#gifts",
   },
   {
+    id: "client-prospect-gifting",
     name: "Client & Prospect Gifting",
     tab: "client & prospect gifting",
     title: "Client & Prospect Gifting",
@@ -63,6 +66,7 @@ const items: TabsShowcaseItem[] = [
     href: "/catalog#gifts",
   },
   {
+    id: "partner-gifting",
     name: "Partner Gifting",
     tab: "partner gifting",
     title: "Partner Gifting",
@@ -80,6 +84,7 @@ const items: TabsShowcaseItem[] = [
     href: "/catalog#gifts",
   },
   {
+    id: "automated-gifting",
     name: "Automated Gifting",
     tab: "automated gifting",
     title: "Automated Gifting",
@@ -96,6 +101,7 @@ const items: TabsShowcaseItem[] = [
     href: "/book-a-call",
   },
   {
+    id: "gift-stores",
     name: "Gift Stores",
     tab: "gift storeS",
     title: "Gift Stores",

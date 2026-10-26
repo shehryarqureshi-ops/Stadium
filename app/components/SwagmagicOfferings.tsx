@@ -11,6 +11,7 @@ import PillTabs from "./common/PillTabs";
 
 const items = [
   {
+    id: "swag-kits",
     name: "Swag Kits",
     tab: "Swag Kits",
     title: "Swag Kits",
@@ -26,6 +27,7 @@ const items = [
     href: "/catalog#swag",
   },
   {
+    id: "branded-stores",
     name: "Branded Stores",
     tab: "Branded Stores",
     title: "Branded Stores",
@@ -41,6 +43,7 @@ const items = [
     href: "/book-a-call",
   },
   {
+    id: "on-demand-swag",
     name: "On-Demand Swag",
     tab: "On-Demand Swag",
     title: "On-Demand Swag",
@@ -56,6 +59,7 @@ const items = [
     href: "/catalog#swag",
   },
   {
+    id: "bulk-swag",
     name: "Bulk Swag",
     tab: "Bulk Swag",
     title: "Bulk Swag",
@@ -71,6 +75,7 @@ const items = [
     href: "/book-a-call",
   },
   {
+    id: "self-serve-swag",
     name: "Self-Serve Swag",
     tab: "Self-Serve Swag",
     title: "Self-serve Swag",
@@ -86,6 +91,7 @@ const items = [
     href: "/catalog#swag",
   },
   {
+    id: "swag-storage",
     name: "Swag Storage",
     tab: "Swag Storage",
     title: "Swag Storage",

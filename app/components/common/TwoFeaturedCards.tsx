@@ -1,7 +1,11 @@
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
+import HashAnchors from "@/app/components/common/HashAnchors";
 
 export type TwoFeaturedCardsItem = {
+  /** url-hash slug (e.g. "curated-boxes" → /snacks#curated-boxes). Lands on the
+   *  section top, like the PillTabs deep links, not on the card itself. */
+  id?: string;
   title: string;
   subtitle?: string;
 
@@ -46,7 +50,9 @@ export default function TwoFeaturedCards({
   cards,
 }: TwoFeaturedCardsProps) {
   return (
-    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section className="relative bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+      {/* hash anchors, parked at the section top (PillTabs offset) */}
+      <HashAnchors ids={cards.flatMap((c) => (c.id ? [c.id] : []))} />
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         {/* Section header */}
         <div className="flex w-full flex-col items-center gap-5 text-center">

@@ -170,7 +170,10 @@ const I = {
 type Item = { label: string; Icon: (p: IconProps) => React.ReactNode; href?: string };
 type Group = { label: string; accent?: boolean; href?: string; items: Item[] };
 
-/* From the new Figma (5589:23499). Exported for the mobile-nav accordion. */
+/* From the new Figma (5589:23499). Exported for the mobile-nav accordion.
+   Item hrefs deep-link to the matching PillTabs tab on the vertical's page
+   (`#<id>`; ids live in RecogOfferings / SwagmagicOfferings / GiftingSolution).
+   /events → ExpCategories steps, /snacks → SnackSolution cards (same `#<id>` scheme). */
 export const COLUMNS: Group[][] = [
   [
     {
@@ -178,21 +181,21 @@ export const COLUMNS: Group[][] = [
       accent: true,
       href: "/recognition",
       items: [
-        { label: "Kudos Programs", Icon: I.heart, href: "/recognition" },
-        { label: "Milestone Programs", Icon: I.award, href: "/recognition" },
-        { label: "Rewards & Incentives", Icon: I.star, href: "/recognition" },
+        { label: "Kudos Programs", Icon: I.heart, href: "/recognition#kudos" },
+        { label: "Milestone Programs", Icon: I.award, href: "/recognition#milestones" },
+        { label: "Rewards & Incentives", Icon: I.star, href: "/recognition#incentives" },
       ],
     },
     {
       label: "Swag",
       href: "/swag",
       items: [
-        { label: "Swag Kits", Icon: I.package, href: "/swag" },
-        { label: "Branded Shops", Icon: I.bag, href: "/swag" },
-        { label: "On-Demand Swag", Icon: I.zap, href: "/swag" },
-        { label: "Bulk Swag", Icon: I.layers, href: "/swag" },
-        { label: "Self-Serve Swag", Icon: I.monitor, href: "/swag" },
-        { label: "Swag Storage", Icon: I.archive, href: "/swag" },
+        { label: "Swag Kits", Icon: I.package, href: "/swag#swag-kits" },
+        { label: "Branded Shops", Icon: I.bag, href: "/swag#branded-stores" },
+        { label: "On-Demand Swag", Icon: I.zap, href: "/swag#on-demand-swag" },
+        { label: "Bulk Swag", Icon: I.layers, href: "/swag#bulk-swag" },
+        { label: "Self-Serve Swag", Icon: I.monitor, href: "/swag#self-serve-swag" },
+        { label: "Swag Storage", Icon: I.archive, href: "/swag#swag-storage" },
       ],
     },
   ],
@@ -201,20 +204,20 @@ export const COLUMNS: Group[][] = [
       label: "Snacks",
       href: "/snacks",
       items: [
-        { label: "Build-Your-Own Boxes", Icon: I.coffee, href: "/snacks" },
-        { label: "Curated Boxes", Icon: I.sparkles, href: "/snacks" },
+        { label: "Build-Your-Own Boxes", Icon: I.coffee, href: "/snacks#build-your-own-boxes" },
+        { label: "Curated Boxes", Icon: I.sparkles, href: "/snacks#curated-boxes" },
       ],
     },
     {
       label: "Gifting",
       href: "/gifting",
       items: [
-        { label: "Holiday Gifting", Icon: I.gift, href: "/gifting" },
-        { label: "Employee Gifting", Icon: I.users, href: "/gifting" },
-        { label: "Client & Prospect Gifting", Icon: I.send, href: "/gifting" },
-        { label: "Partner Gifting", Icon: I.globe, href: "/gifting" },
-        { label: "Automated Gifting", Icon: I.repeat, href: "/gifting" },
-        { label: "Gift Shops", Icon: I.store, href: "/gifting" },
+        { label: "Holiday Gifting", Icon: I.gift, href: "/gifting#holiday-gifting" },
+        { label: "Employee Gifting", Icon: I.users, href: "/gifting#employee-gifting" },
+        { label: "Client & Prospect Gifting", Icon: I.send, href: "/gifting#client-prospect-gifting" },
+        { label: "Partner Gifting", Icon: I.globe, href: "/gifting#partner-gifting" },
+        { label: "Automated Gifting", Icon: I.repeat, href: "/gifting#automated-gifting" },
+        { label: "Gift Shops", Icon: I.store, href: "/gifting#gift-stores" },
       ],
     },
   ],
@@ -223,12 +226,12 @@ export const COLUMNS: Group[][] = [
       label: "Events",
       href: "/events",
       items: [
-        { label: "Team Building", Icon: I.users, href: "/events" },
-        { label: "Health & Wellness", Icon: I.heart, href: "/events" },
-        { label: "Seasonal Moments", Icon: I.sparkles, href: "/events" },
-        { label: "Employee Onboarding", Icon: I.globe, href: "/events" },
-        { label: "Learning & Development", Icon: I.calendar, href: "/events" },
-        { label: "Diversity, Equity, & Inclusion", Icon: I.smile, href: "/events" },
+        { label: "Team Building", Icon: I.users, href: "/events#team-building" },
+        { label: "Health & Wellness", Icon: I.heart, href: "/events#health-wellness" },
+        { label: "Seasonal Moments", Icon: I.sparkles, href: "/events#seasonal-moments" },
+        { label: "Employee Onboarding", Icon: I.globe, href: "/events#employee-onboarding" },
+        { label: "Learning & Development", Icon: I.calendar, href: "/events#learning-development" },
+        { label: "Diversity, Equity, & Inclusion", Icon: I.smile, href: "/events#diversity-equity-inclusion" },
       ],
     },
   ],

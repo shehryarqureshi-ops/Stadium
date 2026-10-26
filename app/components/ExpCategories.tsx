@@ -6,6 +6,7 @@ import StepCardsCarousel, {
 
 const steps: StepCardsCarouselStep[] = [
   {
+    id: "team-building",
     title: "Team Building",
     description:
       "Strengthen team connections by laughing and collaborating together.",
@@ -61,6 +62,7 @@ const steps: StepCardsCarouselStep[] = [
     ],
   },
   {
+    id: "learning-development",
     title: "Learning & Development",
     description:
       "Identify goals and learn soft skills that will empower your team to grow.",
@@ -116,6 +118,7 @@ const steps: StepCardsCarouselStep[] = [
     ],
   },
   {
+    id: "health-wellness",
     title: "Health & Wellness",
     description: "Encourage physical and mental wellness in the workplace.",
     cards: [
@@ -170,6 +173,7 @@ const steps: StepCardsCarouselStep[] = [
     ],
   },
   {
+    id: "seasonal-moments",
     title: "Seasonal Celebrations",
     description:
       "Find memorable moments to celebrate your employees throughout the year.",
@@ -225,6 +229,7 @@ const steps: StepCardsCarouselStep[] = [
     ],
   },
   {
+    id: "employee-onboarding",
     title: "Employee Onboarding",
     description: "Introduce new hires to your amazing culture from the get-go.",
     cards: [
@@ -279,6 +284,7 @@ const steps: StepCardsCarouselStep[] = [
     ],
   },
   {
+    id: "diversity-equity-inclusion",
     title: "Diversity, Equity, & Inclusion",
     description:
       "Promote DEI and create a better sense of belonging within teams.",
