@@ -253,7 +253,6 @@
   --spacing-hero-sm: 26.375rem; /* hero fixed frame height, mobile (422px, 2026-06-11 rev) */
   --spacing-hero-md: 24.875rem; /* hero fixed frame height, tablet (398px) */
   --spacing-hero-lg: 42.25rem; /* hero fixed frame height, desktop (676px) */
-  --spacing-hero-pb-lg: 6rem; /* 96 — desktop hero bottom padding, content bottom-aligned (Figma n9SjmDjzB1PeZAYJ5w43fr 6525:11943) */
   --spacing-hero-nav: 5.25rem; /* 84 — header band above the /impact canvas hero (visual starts under it) */
   --spacing-scale-map-sm: 20rem; /* ScaleMap particle canvas height, mobile — no Figma frame */
   --spacing-scale-map-md: 26rem; /* ScaleMap particle canvas height, tablet */

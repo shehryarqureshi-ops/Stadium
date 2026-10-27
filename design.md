@@ -2036,7 +2036,7 @@ Hero, mosaic and product-modal photos now come from `public/catalog-page/thumbs/
 
 ### Homepage hero — Figma `6525:11943` (2026-10-26)
 
-- Desktop (`lg`) hero is **exactly one screen tall** (`lg:min-h-svh`; 810 at 1440×810, the Figma 16:9 frame) — the 16:9 clip `object-cover`-fills it, cropping sides on wider-than-16:9 screens, with content **bottom-aligned** (`lg:justify-end`): pt 160 (`pt-[10rem]`), pb **96** (`--spacing-hero-pb-lg`).
+- Desktop (`lg`) hero is **exactly one screen tall** (`lg:min-h-svh`; 810 at 1440×810, the Figma 16:9 frame) — the 16:9 clip `object-cover`-fills it, cropping sides on wider-than-16:9 screens, with content **vertically centered** (`lg:justify-center`, user request 2026-10-27; was bottom-aligned per Figma): symmetric pt/pb 160 (`10rem`) so the copy block sits at the true center of the hero.
   Below lg the min-height tokens still apply. Text stays on the site's 90px
   gutter (Figma shows 120; nav + all sections use 90).
 - Scrims at lg match Figma exactly: one 90° gradient

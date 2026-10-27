@@ -19,6 +19,8 @@ export default function Hero() {
      shared clock below only runs while readyIndex === index. */
   const [readyIndex, setReadyIndex] = useState<number | null>(null);
   const elapsedRef = useRef(0);
+  /* clips are unmounted once the hero has been off-screen for a while */
+  const [released, setReleased] = useState(false);
   const [reduce, setReduce] = useState(false);
   const [playing, setPlaying] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,6 +56,24 @@ export default function Hero() {
       document.removeEventListener("visibilitychange", update);
     };
   }, []);
+
+  /* Off-screen for 4s+ → release the clips (the page below runs WebGL, videos
+     and blurs; keeping 3 decoded 1080p clips alive caused compositor glitches).
+     On return the clips remount from 0 and the clock restarts with them. */
+  useEffect(() => {
+    if (playing) {
+      setReleased((r) => {
+        if (r) {
+          elapsedRef.current = 0;
+          setReadyIndex(null);
+        }
+        return false;
+      });
+      return;
+    }
+    const t = setTimeout(() => setReleased(true), 4000);
+    return () => clearTimeout(t);
+  }, [playing]);
 
   const handleReady = useCallback((i: number) => setReadyIndex(i), []);
 
@@ -96,7 +116,7 @@ export default function Hero() {
        positions stay identical to the Figma frame. */
     <section
       ref={sectionRef}
-      className="relative flex min-h-0 flex-col items-start justify-center overflow-hidden bg-white px-0 pb-0 pt-16 md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:bg-black md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:min-h-svh lg:justify-end lg:px-section-x-lg lg:pb-hero-pb-lg lg:pt-[10rem]"
+      className="relative flex min-h-0 flex-col items-start justify-center overflow-hidden bg-white px-0 pb-0 pt-16 md:min-h-[calc(var(--spacing-hero-md)+4rem)] md:bg-black md:px-section-x-md md:pb-section-y-md md:pt-[8rem] lg:min-h-svh lg:justify-center lg:px-section-x-lg lg:pb-[10rem] lg:pt-[10rem]"
     >
       {/* full-bleed rotating video background (poster = the hero photo, so no
           black flash before/without playback), with the same contrast scrims
@@ -106,6 +126,7 @@ export default function Hero() {
           slides={HERO_SLIDES}
           index={index}
           playing={playing}
+          released={released}
           reduce={reduce}
           onReady={handleReady}
         />
@@ -132,6 +153,7 @@ export default function Hero() {
           slides={HERO_SLIDES}
           index={index}
           playing={playing}
+          released={released}
           reduce={reduce}
           allowOnPhone
           onReady={handleReady}

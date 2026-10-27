@@ -34,6 +34,7 @@ export default function HeroBackgroundVideo({
   slides,
   index,
   playing,
+  released = false,
   reduce,
   allowOnPhone = false,
   onReady,
@@ -41,6 +42,8 @@ export default function HeroBackgroundVideo({
   slides: HeroSlide[];
   index: number;
   playing: boolean;
+  /** hero scrolled far away: unmount the clips (frees decoders / GPU memory) */
+  released?: boolean;
   reduce: boolean;
   /** phones normally get the poster only; the 16:10 phone media block opts in */
   allowOnPhone?: boolean;
@@ -53,7 +56,7 @@ export default function HeroBackgroundVideo({
   );
   const [outgoing, setOutgoing] = useState<number | null>(null);
   const refs = useRef<Map<number, HTMLVideoElement>>(new Map());
-  const prevIndex = useRef(index);
+  const [tracked, setTracked] = useState(index);
 
   /* Decide once, after load: phones (< md), Save-Data and reduced motion get
      the poster only. Re-checked live if the viewport crosses the breakpoint. */
@@ -101,7 +104,7 @@ export default function HeroBackgroundVideo({
     };
   }, [allowOnPhone]);
 
-  const videoOn = allowVideo && !reduce;
+  const videoOn = allowVideo && !reduce && !released;
   const posterOnly = mode === "poster" || (reduce && mode !== "off");
 
   /* No video to wait for (Save-Data / reduced motion): the slide is "ready"
@@ -110,15 +113,19 @@ export default function HeroBackgroundVideo({
     if (posterOnly) onReady(index);
   }, [posterOnly, index, onReady]);
 
-  /* Track the outgoing clip for the crossfade, then unmount it. */
+  /* Track the outgoing clip for the crossfade. This is derived DURING render
+     (not in an effect) so the old <video> is never unmounted for even one
+     render — remounting it was what made it jump to its first frame and replay
+     under the fade. It is unmounted only after the fade has finished. */
+  if (tracked !== index) {
+    setTracked(index);
+    setOutgoing(tracked);
+  }
   useEffect(() => {
-    const prev = prevIndex.current;
-    prevIndex.current = index;
-    if (prev === index) return;
-    setOutgoing(prev);
+    if (outgoing === null) return;
     const t = setTimeout(() => setOutgoing(null), CROSSFADE_MS + 50);
     return () => clearTimeout(t);
-  }, [index]);
+  }, [outgoing, index]);
 
   const next = (index + 1) % slides.length;
 

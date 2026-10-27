@@ -56,7 +56,7 @@ export function IntroCopy() {
 }
 
 const glass =
-  "pointer-events-auto relative rounded-[1.5rem] border-t border-[#4d4d4d] bg-black/90 p-2.5 lg:backdrop-blur-[30px]";
+  "pointer-events-auto relative rounded-[1.5rem] border-t border-[#4d4d4d] bg-black/90 p-2.5";
 
 /* the #0b7afc bloom that sits behind each glass card (Figma Ellipse 22) */
 function Bloom() {
