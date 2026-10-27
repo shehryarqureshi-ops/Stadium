@@ -20,11 +20,11 @@ import { CUSTOMER_RESULTS, LINKS, PLATFORM_ROUTES } from "@/app/components/impac
 
 export const metadata: Metadata = seoMetadata("/the-proof");
 
-import caseTime from "@/public/the-proof/case-time.png";
-import caseMoney from "@/public/the-proof/case-money.png";
-import casePeace from "@/public/the-proof/case-peace.png";
-import caseControl from "@/public/the-proof/case-control.png";
-import swagProject from "@/public/the-proof/swag-project.jpg";
+import caseTime from "@/public/the-proof/case-time.jpg";
+import caseMoney from "@/public/the-proof/case-money.jpg";
+import casePeace from "@/public/the-proof/case-peace.jpg";
+import caseControl from "@/public/the-proof/case-control.jpg";
+import swagProject from "@/public/the-proof/swag-project.png";
 import michellePhoto from "@/public/the-proof/customers/michelle-workato.jpg";
 import feliciaPhoto from "@/public/the-proof/customers/felicia-kentro.jpg";
 import nataliePhoto from "@/public/testimonials/natalie.png";
@@ -109,11 +109,12 @@ export default function TheProofPage() {
           gridColumns={2}
           narrow
           imageStyle="panel"
+          imageFit="cover"
           items={[
-            { image: caseTime, imageAlt: "Saved this month: 14 hours, with vendor quotes, shipping labels and inventory checks automated", title: "Save Time", description: "Reduce manual work across vendors, tools, and logistics." },
-            { image: caseMoney, imageAlt: "Annual vendor spend down from $61,200 to $46,200 with one partner", title: "Save Money", description: "Lower costs by consolidating vendors, contracts, and invoices into one partner." },
-            { image: casePeace, imageAlt: "Holiday gifting on track: sourcing, fulfillment, logistics and execution handled by Stadium", title: "Peace of Mind", description: "Rely on Stadium to handle sourcing, fulfillment, logistics, and execution." },
-            { image: caseControl, imageAlt: "Company controls set centrally by Admin: team budget, approved brand assets, 3 teams sending", title: "Stay in Control", description: "Centralized control. Decentralized execution." },
+            { image: caseTime, imageAlt: "A teammate scanning a package with a handheld scanner beside a laptop, checking inventory in a warehouse", title: "Save Time", description: "Reduce manual work across vendors, tools, and logistics." },
+            { image: caseMoney, imageAlt: "A person reviewing vendor contracts and invoices at a table", title: "Save Money", description: "Lower costs by consolidating vendors, contracts, and invoices into one partner." },
+            { image: casePeace, imageAlt: "Two teammates packing and sorting boxes in a warehouse", title: "Peace of Mind", description: "Rely on Stadium to handle sourcing, fulfillment, logistics, and execution." },
+            { image: caseControl, imageAlt: "A manager reviewing a budget dashboard on a laptop while colleagues work behind", title: "Stay in Control", description: "Centralized control. Decentralized execution." },
           ]}
         />
 
@@ -143,10 +144,10 @@ export default function TheProofPage() {
 
         <SplitFeature
           caption="Real results"
-          title="2—4 hours saved per project"
+          title="2–4 hours saved per project"
           description="ConstructConnect reduced the time spent manually coordinating pricing and vendors for customer swag projects."
           image={swagProject}
-          imageAlt="Customer swag project: instant quote, one partner and live order status, 3.5 hours saved"
+          imageAlt="A ConstructConnect teammate at her desk with a laptop, a water bottle and branded swag"
         />
 
         <StatsGrid
