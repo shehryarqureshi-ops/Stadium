@@ -118,6 +118,24 @@ if (imgCount === 0) {
 // Figma SVG export drops BACKGROUND_BLUR (frosted glass). Per-graphic patches
 // re-create it: a blurred <use> copy of what sits behind, clipped to the glass.
 const PATCHES = {
+  // Figma GLASS effect (refraction + rim light) is not exported: the dashed connector
+  // showed through the three glass circles. Cut it out under them and add the rim light.
+  "recognition/PlatformBudgets": (x) => {
+    const p = prefix;
+    const circles = [[66, 173], [188.5, 173], [311, 173]];
+    // the exported dashes are a jagged outlined path; redraw the 2px dotted line cleanly
+    x = x.replace(
+      new RegExp(`<path [^>]*id="${p}-connector"[^>]*/>`),
+      `<line x1="48" y1="174" x2="329" y2="174" stroke="#777777" stroke-width="2" stroke-dasharray="2 4" mask="url(#${p}-noglass)"/>`,
+    );
+    x = x.replace(/(<path d="M[^"]*" fill="#A8A8A8" fill-opacity="0\.2")/g, `$1 stroke="url(#${p}-rim)" stroke-width="1"`);
+    x = x.replace(/(<rect x="33\.5" y="29" width="309" height="93" rx="8" fill="black" fill-opacity="0\.3")/, `$1 stroke="url(#${p}-rim)" stroke-opacity="0.5" stroke-width="1"`);
+    const holes = circles.map(([cx, cy]) => `<circle cx="${cx}" cy="${cy}" r="31.5" fill="black"/>`).join("");
+    return x.replace(
+      "<defs>",
+      `<defs><mask id="${p}-noglass" maskUnits="userSpaceOnUse" x="0" y="0" width="376" height="260"><rect width="376" height="260" fill="white"/>${holes}</mask><linearGradient id="${p}-rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="white" stop-opacity="0.55"/><stop offset="0.5" stop-color="white" stop-opacity="0.06"/><stop offset="1" stop-color="white" stop-opacity="0.3"/></linearGradient>`,
+    );
+  },
   "recognition/PlatformIntegrations": (x) => {
     const p = prefix;
     const m = x.match(/<g mask="url\(#[^)]+\)">/);
@@ -139,8 +157,6 @@ const PATCHES = {
     );
   },
 };
-if (PATCHES[target]) svg = PATCHES[target](svg);
-
 if (PATCHES[target]) svg = PATCHES[target](svg);
 
 // root <svg>: intrinsic size from the (cropped) viewBox, plain SVG2 href
