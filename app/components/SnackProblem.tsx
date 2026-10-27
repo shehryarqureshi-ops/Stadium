@@ -1,6 +1,6 @@
-import prob1 from "@/public/snacks/problem/collecting.png";
+import prob1 from "@/public/snacks/problem/asking.png";
 import prob2 from "@/public/snacks/problem/one-person.png";
-import prob3 from "@/public/snacks/problem/gift-cards.png";
+import prob3 from "@/public/snacks/problem/calendar.png";
 
 import ProblemSection, {
   type ProblemSectionItem,
@@ -9,21 +9,21 @@ import ProblemSection, {
 const items: ProblemSectionItem[] = [
   {
     image: prob1,
-    title: "Collecting details ruins the surprise",
+    title: "Asking ruins the surprise",
     description:
-      "You shouldn't have to chase addresses, preferences, and dietary needs before sending a gift.",
+      "You can't send something unexpected to someone you just emailed for their address. The moment you start collecting details, the gift announces itself.",
   },
   {
     image: prob2,
     title: "One person ends up running it",
     description:
-      "One person manages recipient lists, follow-ups, orders, and delivery.",
+      "Someone chases every address, every diet and every \"mine never arrived\"—then hopes the picks landed.",
   },
   {
     image: prob3,
-    title: "Gift cards are easy–but forgettable",
+    title: "Nothing happens unless someone remembers",
     description:
-      "They're easy to send, but lack the personal touch and impact of a physical gift.",
+      "There's no trigger, no schedule, nothing running in the background. Every anniversary and every new hire gets marked only if a human catches it in time.",
   },
 ];
 
@@ -31,8 +31,9 @@ export default function SnackProblem() {
   return (
     <ProblemSection
       caption="The problem"
-      title="Corporate gifting gets complicated fast"
-      description="Sending to a large or global group means addresses, preferences, dietary needs, and fulfillment — before you’ve even picked the gift."
+      captionColor="#2178f5"
+      title="Nice gestures don’t scale"
+      description="The best sends feel personal—something they'd never have picked up for themselves and show up out of nowhere. But then you realize you need forty addresses, and you're emailing people to ask."
       items={items}
     />
   );

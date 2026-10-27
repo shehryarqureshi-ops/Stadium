@@ -2,9 +2,9 @@
 
 import StepCards, { StepCardItem } from "./common/StepCards";
 
-import pickBox from "@/public/gifting/how-it-works/send.png";
-import recipients from "@/public/gifting/how-it-works/pick.png";
-import send from "@/public/gifting/how-it-works/gift.png";
+import HowSend from "@/app/components/cards/gifting/HowSend";
+import HowPick from "@/app/components/cards/gifting/HowPick";
+import HowGift from "@/app/components/cards/gifting/HowGift";
 
 const desktopVisualWidth = 360;
 
@@ -19,9 +19,7 @@ const items: StepCardItem[] = [
     ),
     description:
       "Choose your audience, budget, gift options, and timing—or automate it.",
-    image: pickBox,
-    imageAlt:
-      "Choose your audience, budget, gift options, and timing—or automate it.",
+    content: <HowSend />,
     desktopVisualWidth,
   },
   {
@@ -34,9 +32,7 @@ const items: StepCardItem[] = [
     ),
     description:
       "Recipients select what they want and provide their own shipping details.",
-    image: recipients,
-    imageAlt:
-      "Recipients select what they want and provide their own shipping details.",
+    content: <HowPick />,
     desktopVisualWidth,
   },
   {
@@ -49,9 +45,7 @@ const items: StepCardItem[] = [
     ),
     description:
       "Stadium manages fulfillment, tracking, customs, duties, and delivery.",
-    image: send,
-    imageAlt:
-      "Stadium manages fulfillment, tracking, customs, duties, and delivery.",
+    content: <HowGift />,
     desktopVisualWidth,
   },
 ];

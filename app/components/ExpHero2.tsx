@@ -74,9 +74,8 @@ export default function ExpHeroTwo() {
                 data-reveal-delay="120"
                 className="font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem] max-w-176 mx-auto"
               >
-                Discover and book hundreds of virtual, live-hosted activities
-                for teams anywhere, right alongside everything else you run on
-                Stadium.
+                Book real hosts for virtual, in-person, or hybrid events in
+                minutes, right alongside your recognition and gifting programs.
               </p>
             </div>
 
@@ -86,19 +85,19 @@ export default function ExpHeroTwo() {
               className="flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center"
             >
               <a
-                href="/book-a-call"
+                href="/catalog#experiences"
                 className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#ff5b77] px-[1.375rem] font-sans text-button-primary uppercase text-ink transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white pb-0.75"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                  Talk to sales
+                  Browse experiences
                 </span>
               </a>
               <a
-                href="/catalog#gifts"
+                href="/book-a-call"
                 className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white pb-0.75"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                  Browse gifts
+                  Talk to sales
                 </span>
               </a>
             </div>

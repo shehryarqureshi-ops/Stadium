@@ -12,25 +12,25 @@ const ITEMS: VariableCardGridItem[] = [
     image: hr,
     title: "HR & People Ops",
     description:
-      "Build recognition around your values and see who’s participating, recognized, and engaged.",
+      "Kudos tied to company values, with visibility into who’s recognized.",
   },
   {
     image: leadership,
     title: "Leadership",
     description:
-      "Reinforce company values and make great work visible across the organization.",
+      "Recognition that reinforces your values and helps build culture.",
   },
   {
     image: it,
     title: "IT & Security",
     description:
-      "Deploy securely with SSO, SCIM, HRIS integrations, and enterprise controls.",
+      "Enterprise-ready with SSO, SCIM, SOC 2, and HRIS integrations.",
   },
   {
     image: finance,
     title: "Finance",
     description:
-      "Set budgets, control spend, and see where recognition dollars go.",
+      "Predictable budgets, controlled spend, and clear reporting.",
   },
 ];
 
@@ -39,9 +39,10 @@ export default function RecogCommittee() {
     <VariableCardGrid
       caption="Built for sign-off"
       captionColor="#8d12e7"
-      title="A recognition program every stakeholder can get behind"
-      description="Give HR the program they want, IT the infrastructure they require, Finance the control they need, and leadership the visibility they expect."
+      title="Win over every stakeholder"
+      description="Recognition touches every team. Here’s what each stakeholder wants to know."
       gridColumns={2}
+      narrow
       items={ITEMS}
     />
   );

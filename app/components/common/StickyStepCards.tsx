@@ -4,7 +4,10 @@ import type { ReactNode } from "react";
 export type StickyStep = {
   /* omit on every step for a plain sticky feature stack (no pill timeline) */
   stepLabel?: string;
-  image: StaticImageData | string;
+  image?: StaticImageData | string;
+  /* inline vector card graphic (app/components/cards/*) or a plain <img> — used
+     instead of `image` so it stays crisp at any size */
+  graphic?: ReactNode;
   /* optional small label above the card title (e.g. /impact/sales "CRM integrations") */
   eyebrow?: string;
   title: string;
@@ -14,6 +17,8 @@ export type StickyStep = {
 };
 
 export type StickyStepCardsProps = {
+  /* optional anchor id — deep-linkable (e.g. /impact/hr#recognition from the header menu) */
+  id?: string;
   caption: string;
   captionColor?: string;
   title: ReactNode;
@@ -46,6 +51,7 @@ function StepPill({
 }
 
 export default function StickyStepCards({
+  id,
   caption,
   captionColor = "#218554",
   title,
@@ -57,7 +63,7 @@ export default function StickyStepCards({
 }: StickyStepCardsProps) {
   const showSteps = steps.some((s) => s.stepLabel);
   return (
-    <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section id={id} className="scroll-mt-20 bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-10 lg:grid-cols-[minmax(0,30.75rem)_1fr] lg:gap-20">
         {/* Left: intro + pull quote */}
         <div className="flex flex-col gap-16 lg:sticky lg:top-26 lg:gap-[6rem] lg:self-start">
@@ -190,13 +196,16 @@ export default function StickyStepCards({
                   className="flex flex-col gap-2.5 rounded-[1.5rem] bg-[#f2f2f2] p-2.5"
                 >
                   <div className="overflow-hidden rounded-[1.25rem]">
-                    <Image
-                      src={step.image}
-                      alt={step.imageAlt ?? ""}
-                      quality={90}
-                      className="w-full"
-                      sizes="(min-width:1024px) 33rem, (min-width:768px) 78vw, 92vw"
-                    />
+                    {step.graphic ??
+                      (step.image && (
+                        <Image
+                          src={step.image}
+                          alt={step.imageAlt ?? ""}
+                          quality={90}
+                          className="w-full"
+                          sizes="(min-width:1024px) 33rem, (min-width:768px) 78vw, 92vw"
+                        />
+                      ))}
                   </div>
 
                   <div className="flex flex-col gap-6 rounded-[1rem] bg-white px-6 pt-6 pb-7 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] md:px-7 md:pt-7 md:pb-[1.875rem]">

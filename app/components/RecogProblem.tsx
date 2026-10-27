@@ -9,24 +9,24 @@ import unclearImpactImage from "@/public/recognition/probThree.png";
 const ITEMS: ProblemSectionItem[] = [
   {
     image: pointsUnredeemedImage,
-    imageAlt: "Recognition Gets Lost",
-    title: "Recognition Gets Lost",
+    imageAlt: "An employee scrolling a rewards app on her phone",
+    title: "Points Go Unredeemed",
     description:
-      "A thank-you gets posted, read, and quickly disappears into the workday.",
+      "Points accumulate in dashboards, and expire before they’re ever used.",
   },
   {
     image: genericRewardsImage,
-    imageAlt: "Rewards Feel Forgettable",
-    title: "Rewards Feel Forgettable",
+    imageAlt: "An employee looking through a drawer of generic gifts",
+    title: "Rewards Feel Generic",
     description:
-      "Generic rewards and limited choices make recognition feel less personal.",
+      "Gift cards and points get forgotten fast, buried in an inbox or drawer.",
   },
   {
     image: unclearImpactImage,
-    imageAlt: "Impact Isn't Measurable ",
-    title: "Impact Isn't Measurable ",
+    imageAlt: "A manager reviewing recognition results on a laptop",
+    title: "Impact Stays Unclear",
     description:
-      "Without clear participation and redemption data, HR can’t tell what’s working.",
+      "Without measurable impact, recognition becomes easy to cut.",
   },
 ];
 
@@ -35,8 +35,8 @@ export default function RecogProblem() {
     <ProblemSection
       caption="THE PROBLEM"
       captionColor="#8d12e7"
-      title="Recognition is easy to send. Harder to make meaningful."
-      description="Programs fall flat when recognition gets buried, rewards feel generic, and HR can’t see what’s working."
+      title="Employee recognition fades faster than it should"
+      description="You send recognition in seconds. People read it, react, and move on. Without a tangible follow-up, the moment rarely lasts."
       items={ITEMS}
     />
   );

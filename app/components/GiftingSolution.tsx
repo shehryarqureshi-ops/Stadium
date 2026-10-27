@@ -7,7 +7,6 @@ import employee from "@/public/gift2/gf-solution-employee.jpg";
 import client from "@/public/gift2/gf-solution-client.jpg";
 import partner from "@/public/gift2/gf-solution-partner.jpg";
 import stores from "@/public/gift2/gf-solution-stores.jpg";
-import automated from "@/public/gift2/gf-solution-automated.png";
 
 /* vector artwork — a string src renders as a plain <img> and stays crisp */
 
@@ -94,7 +93,7 @@ const items: TabsShowcaseItem[] = [
       "Onboarding, anniversaries, and birthdays",
       "Set once, runs all year",
     ],
-    image: automated,
+    image: "/cards/gifting/Automated.svg",
     imageAlt:
       "The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations",
     cta: "Explore AUTOMATED gifting",

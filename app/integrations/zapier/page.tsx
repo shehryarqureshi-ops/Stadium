@@ -11,14 +11,8 @@ import StepListMedia from "@/app/components/common/StepListMedia";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ZapStack from "@/app/components/impact/batch3/ZapStack";
 import { HR_TOOLS, LINKS } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
 
-import admin from "@/public/integrations/zapier/admin.png";
-import airtable from "@/public/integrations/zapier/zap-airtable.png";
-import calendly from "@/public/integrations/zapier/zap-calendly.png";
-import cvent from "@/public/integrations/zapier/zap-cvent.png";
-import patreon from "@/public/integrations/zapier/zap-patreon.png";
-import typeform from "@/public/integrations/zapier/zap-typeform.png";
-import zendesk from "@/public/integrations/zapier/zap-zendesk.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/zapier");
 
@@ -79,12 +73,12 @@ export default function ZapierPage() {
           description="Start with popular triggers, then tailor what happens next."
           gridColumns={3}
           items={[
-            { image: zendesk, imageAlt: "Zendesk to Stadium Zap", title: "Zendesk + Stadium", description: "New ticket or tag added" },
-            { image: typeform, imageAlt: "Typeform to Stadium Zap", title: "Typeform + Stadium", description: "New Typeform response" },
-            { image: airtable, imageAlt: "Airtable to Stadium Zap", title: "Airtable + Stadium", description: "New updates to Airtable records" },
-            { image: calendly, imageAlt: "Calendly to Stadium Zap", title: "Calendly + Stadium", description: "New Calendly invites" },
-            { image: patreon, imageAlt: "Patreon to Stadium Zap", title: "Patreon + Stadium", description: "New member pledges" },
-            { image: cvent, imageAlt: "Cvent to Stadium Zap", title: "Cvent + Stadium", description: "New or updated Cvent attendees" },
+            { graphic: <VectorCard src="/cards/integrations-zapier/ZapZendesk.svg" alt="Zendesk to Stadium Zap" width={389} height={250} />, title: "Zendesk + Stadium", description: "New ticket or tag added" },
+            { graphic: <VectorCard src="/cards/integrations-zapier/ZapTypeform.svg" alt="Typeform to Stadium Zap" width={389} height={250} />, title: "Typeform + Stadium", description: "New Typeform response" },
+            { graphic: <VectorCard src="/cards/integrations-zapier/ZapAirtable.svg" alt="Airtable to Stadium Zap" width={389} height={250} />, title: "Airtable + Stadium", description: "New updates to Airtable records" },
+            { graphic: <VectorCard src="/cards/integrations-zapier/ZapCalendly.svg" alt="Calendly to Stadium Zap" width={389} height={250} />, title: "Calendly + Stadium", description: "New Calendly invites" },
+            { graphic: <VectorCard src="/cards/integrations-zapier/ZapPatreon.svg" alt="Patreon to Stadium Zap" width={389} height={250} />, title: "Patreon + Stadium", description: "New member pledges" },
+            { graphic: <VectorCard src="/cards/integrations-zapier/ZapCvent.svg" alt="Cvent to Stadium Zap" width={389} height={250} />, title: "Cvent + Stadium", description: "New or updated Cvent attendees" },
           ]}
         />
 
@@ -111,8 +105,7 @@ export default function ZapierPage() {
           caption="Build your Zap"
           title="Set the trigger. Stadium handles the reward."
           description="Choose your app, trigger, and conditions with no custom development required."
-          image={admin}
-          imageAlt="Stadium workspace integrations page showing active Zaps and their triggers"
+          graphic={<VectorCard src="/cards/integrations-zapier/Admin.svg" alt="Stadium workspace integrations page showing active Zaps and their triggers" width={1276} height={805} />}
           framed={false}
         />
       </IntegrationDetail>

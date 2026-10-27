@@ -1,8 +1,8 @@
 "use client";
 
-import one from "@/public/swag/steps/01.png";
-import two from "@/public/swag/steps/02.png";
-import three from "@/public/swag/steps/03.png";
+import Step01 from "@/app/components/cards/swag/Step01";
+import Step02 from "@/app/components/cards/swag/Step02";
+import Step03 from "@/app/components/cards/swag/Step03";
 
 import StepCards from "./common/StepCards";
 
@@ -11,21 +11,21 @@ const items = [
     title: <>Design & Approve</>,
     description:
       "Choose products, add your artwork or logo, and approve a free mockup within 48 hours.",
-    image: one,
+    content: <Step01 />,
     desktopVisualWidth: 320,
   },
   {
     title: <>Store & Track</>,
     description:
       "They open your branded store, choose what they actually want, and add their own size and address.",
-    image: two,
+    content: <Step02 />,
     desktopVisualWidth: 320,
   },
   {
     title: <>Send Anywhere</>,
     description:
       "Tracked from order to doorstep in 170+ countries. Customs, duties and returns are handled by us.",
-    image: three,
+    content: <Step03 />,
     desktopVisualWidth: 320,
   },
 ];

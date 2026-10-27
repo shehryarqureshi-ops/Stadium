@@ -8,6 +8,9 @@ export type VariableCardGridItem = {
   /* omit for a grey placeholder slot (Figma placeholder cards) */
   image?: StaticImageData;
   imageAlt?: string;
+  /* inline vector card graphic (app/components/cards/*) — used instead of `image`
+     so it stays crisp at any size */
+  graphic?: ReactNode;
   /* omit for text-only cards (e.g. /impact/hr problem cards) — the
      description then renders at the larger 18px problem-card size */
   title?: string;
@@ -23,6 +26,8 @@ export type VariableCardGridItem = {
 };
 
 type VariableCardGridProps = {
+  /* optional anchor id — deep-linkable from the header menu (e.g. /impact/finance#budget) */
+  id?: string;
   caption?: string;
   captionColor?: string;
   /* omit caption/title/description for a header-less tray */
@@ -64,6 +69,7 @@ const PANEL_SHADOW =
   "shadow-[0px_20px_10px_0px_rgba(0,0,0,0.15),0px_6.383px_3.191px_0px_rgba(0,0,0,0.12),0px_2.415px_1.207px_0px_rgba(0,0,0,0.11),0px_0.796px_0.398px_0px_rgba(0,0,0,0.1)]";
 
 export default function VariableCardGrid({
+  id,
   caption,
   captionColor = "#0e8850",
   title,
@@ -88,10 +94,11 @@ export default function VariableCardGrid({
 
   return (
     <section
+      id={id}
       className={
         bare
-          ? "w-full"
-          : `px-section-x-sm md:px-section-x-md lg:px-section-x-lg ${
+          ? "w-full scroll-mt-20"
+          : `scroll-mt-20 px-section-x-sm md:px-section-x-md lg:px-section-x-lg ${
               background === "white" ? "bg-white" : ""
             }`
       }
@@ -145,7 +152,7 @@ export default function VariableCardGrid({
                 data-animation="reveal"
                 className={`relative flex flex-col overflow-hidden rounded-[1.5rem] bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] ${item.href ? "group" : ""}`}
               >
-                {!media ? null : item.image ? (
+                {!media ? null : item.image || item.graphic ? (
                   <div
                     className={
                       imageStyle === "panel"
@@ -153,7 +160,9 @@ export default function VariableCardGrid({
                         : "overflow-hidden rounded-[1.25rem]"
                     }
                   >
-                    {imageFit === "cover" ? (
+                    {item.graphic ? (
+                      item.graphic
+                    ) : !item.image ? null : imageFit === "cover" ? (
                       <div className="relative h-[15.625rem]">
                         <Image
                           src={item.image}

@@ -18,15 +18,17 @@ export type ChecklistCard = {
 };
 
 export type ChecklistCardsProps = {
+  /* optional anchor id — deep-linkable from the header menu (e.g. /impact/finance#budget) */
+  id?: string;
   caption?: string;
   title: string;
   description?: string;
   cards: ChecklistCard[];
 };
 
-export default function ChecklistCards({ caption, title, description, cards }: ChecklistCardsProps) {
+export default function ChecklistCards({ id, caption, title, description, cards }: ChecklistCardsProps) {
   return (
-    <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section id={id} className="scroll-mt-20 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <SectionIntro caption={caption} title={title} description={description} />
 

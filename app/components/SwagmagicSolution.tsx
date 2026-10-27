@@ -53,13 +53,14 @@ export default function SwagmagicSolution() {
   return (
     <TwoFeaturedCards
       caption="The solution"
-      captionColor="#0e8850"
-      title="One platform handles your vendors, inventory, and shipping"
-      description="Choose guided ordering with our team or self-serve through Swagmagic. Either way, you get the same catalog and fulfillment infrastructure."
+      captionColor="#10995a"
+      title="Guided ordering or self-serve"
+      description="Both options pull from the same catalog."
+      panelCards
       cards={[
         {
           title: "Run a swag program",
-          subtitle: "Stadium Platform • Sales-Assisted",
+          subtitle: "Stadium Platform · Sales-Assisted",
           isFeatured: true,
           isFeaturedLabel: "Popular",
           isFeaturedPillColor: "#1b1b1b",
@@ -80,7 +81,7 @@ export default function SwagmagicSolution() {
 
         {
           title: "Order Swag Yourself",
-          subtitle: "SwagMagic • Self-Serve",
+          subtitle: "Swagmagic · Self-Serve",
           isFeatured: false,
           content: (
             <CardContent
@@ -92,7 +93,7 @@ export default function SwagmagicSolution() {
               ]}
             />
           ),
-          ctaLabel: "Shop SwagMagic",
+          ctaLabel: "Shop Swagmagic",
           ctaVariant: "light",
           ctaLink: "/catalog#swag",
         },

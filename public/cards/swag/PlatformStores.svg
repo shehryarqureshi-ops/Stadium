@@ -1,0 +1,280 @@
+<svg width="376" height="260" viewBox="0 0 376 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="376" height="267" fill="#CCCCCC"/>
+<g id="swagplatformstores-Frame 2131328080">
+<g id="swagplatformstores-/swag">
+<rect width="1440" height="15541.1" transform="translate(-124 -6753)" fill="white"/>
+<g id="swagplatformstores-Group 2087326377">
+<g id="swagplatformstores-Platform">
+<rect x="-124" y="-211" width="1440" height="1251" rx="60" fill="white"/>
+<g id="swagplatformstores-container">
+<rect x="-104" y="-211" width="1400" height="1251" rx="60" fill="white"/>
+<g id="swagplatformstores-grid">
+<rect x="-24" y="-24" width="1240" height="904" rx="32" fill="#F2F2F2"/>
+<g id="swagplatformstores-card" filter="url(#swagplatformstores-filter0_d_0_1)">
+<rect x="-8" y="-8" width="392" height="428" rx="24" fill="white"/>
+<rect x="-4" y="-4" width="384" height="420" rx="20" stroke="white" stroke-width="8"/>
+<g id="swagplatformstores-graphic">
+<rect width="376" height="260" rx="20" fill="url(#swagplatformstores-pattern0_0_1)"/>
+<g id="swagplatformstores-graphic wrapper">
+<g id="swagplatformstores-card_2" filter="url(#swagplatformstores-filter1_d_0_1)">
+<g id="swagplatformstores-card content" filter="url(#swagplatformstores-filter2_d_0_1)">
+<g clip-path="url(#swagplatformstores-clip0_0_1)">
+<rect x="73.334" y="32" width="229" height="196" rx="8" fill="#FFFCF0" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<g id="swagplatformstores-window top">
+<g id="swagplatformstores-Frame 2087330087">
+<circle id="swagplatformstores-Ellipse 31" cx="85.334" cy="50.5" r="4" fill="#ABABAB" fill-opacity="0.2"/>
+<circle id="swagplatformstores-Ellipse 32" cx="99.334" cy="50.5" r="4" fill="#ABABAB" fill-opacity="0.2"/>
+<circle id="swagplatformstores-Ellipse 33" cx="113.334" cy="50.5" r="4" fill="#ABABAB" fill-opacity="0.2"/>
+</g>
+<g id="swagplatformstores-Frame" filter="url(#swagplatformstores-filter3_d_0_1)">
+<rect x="127.334" y="40" width="167" height="21" rx="4" fill="#ABABAB" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<g id="swagplatformstores-lucide/lock" clip-path="url(#swagplatformstores-clip1_0_1)">
+<path id="swagplatformstores-Vector" d="M138.251 50.082V48.4154C138.251 47.8628 138.47 47.3329 138.861 46.9422C139.252 46.5515 139.781 46.332 140.334 46.332C140.887 46.332 141.416 46.5515 141.807 46.9422C142.198 47.3329 142.417 47.8628 142.417 48.4154V50.082M137.417 50.082H143.251C143.711 50.082 144.084 50.4551 144.084 50.9154V53.832C144.084 54.2923 143.711 54.6654 143.251 54.6654H137.417C136.957 54.6654 136.584 54.2923 136.584 53.832V50.9154C136.584 50.4551 136.957 50.082 137.417 50.082Z" stroke="#00C036" stroke-width="0.833333" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path id="swagplatformstores-yourbrand.com" d="M150.769 55.44L151.549 53.37L149.659 48.39H150.529L151.799 51.87C151.836 51.96 151.866 52.0417 151.889 52.115C151.912 52.1883 151.936 52.27 151.959 52.36C151.986 52.27 152.011 52.1883 152.034 52.115C152.057 52.0417 152.086 51.96 152.119 51.87L153.409 48.39H154.299L151.649 55.44H150.769ZM157.368 53.62C156.668 53.62 156.116 53.3817 155.713 52.905C155.31 52.425 155.108 51.7733 155.108 50.95C155.108 50.4 155.2 49.925 155.383 49.525C155.566 49.125 155.826 48.8167 156.163 48.6C156.503 48.38 156.905 48.27 157.368 48.27C157.835 48.27 158.236 48.3783 158.573 48.595C158.913 48.8083 159.173 49.115 159.353 49.515C159.536 49.915 159.628 50.39 159.628 50.94C159.628 51.49 159.536 51.9667 159.353 52.37C159.17 52.77 158.908 53.0783 158.568 53.295C158.231 53.5117 157.831 53.62 157.368 53.62ZM157.368 52.81C157.798 52.81 158.135 52.645 158.378 52.315C158.625 51.9817 158.748 51.5233 158.748 50.94C158.748 50.3533 158.625 49.895 158.378 49.565C158.135 49.235 157.798 49.07 157.368 49.07C156.935 49.07 156.596 49.235 156.353 49.565C156.11 49.8917 155.988 50.3533 155.988 50.95C155.988 51.5333 156.11 51.99 156.353 52.32C156.596 52.6467 156.935 52.81 157.368 52.81ZM162.794 53.62C162.164 53.62 161.696 53.4333 161.389 53.06C161.086 52.6867 160.934 52.1133 160.934 51.34V48.39H161.804V51.47C161.804 51.9033 161.899 52.235 162.089 52.465C162.279 52.695 162.551 52.81 162.904 52.81C163.294 52.81 163.588 52.6983 163.784 52.475C163.984 52.2517 164.084 51.9233 164.084 51.49V48.39H164.954V53.5H164.084V53.01C163.921 53.22 163.736 53.375 163.529 53.475C163.326 53.5717 163.081 53.62 162.794 53.62ZM166.687 53.5V48.39H167.557V49.06C167.674 48.8 167.834 48.6033 168.037 48.47C168.244 48.3367 168.487 48.27 168.767 48.27C169.077 48.27 169.341 48.3567 169.557 48.53L169.427 49.35C169.317 49.2733 169.202 49.2183 169.082 49.185C168.966 49.1483 168.837 49.13 168.697 49.13C168.467 49.13 168.267 49.1917 168.097 49.315C167.927 49.4383 167.794 49.6117 167.697 49.835C167.604 50.0583 167.557 50.32 167.557 50.62V53.5H166.687ZM172.705 53.62C172.452 53.62 172.222 53.575 172.015 53.485C171.809 53.395 171.602 53.2533 171.395 53.06V53.5H170.525V46.69L171.395 46.28V48.83C171.555 48.6533 171.747 48.5167 171.97 48.42C172.197 48.32 172.432 48.27 172.675 48.27C173.109 48.27 173.484 48.3783 173.8 48.595C174.117 48.8117 174.362 49.12 174.535 49.52C174.709 49.92 174.795 50.3933 174.795 50.94C174.795 51.79 174.612 52.45 174.245 52.92C173.879 53.3867 173.365 53.62 172.705 53.62ZM172.585 52.81C173.012 52.81 173.339 52.6483 173.565 52.325C173.792 52.0017 173.905 51.54 173.905 50.94C173.905 50.33 173.792 49.8667 173.565 49.55C173.342 49.23 173.015 49.07 172.585 49.07C172.355 49.07 172.129 49.135 171.905 49.265C171.682 49.3917 171.512 49.5533 171.395 49.75V52.12C171.522 52.33 171.69 52.4983 171.9 52.625C172.114 52.7483 172.342 52.81 172.585 52.81ZM176.092 53.5V48.39H176.962V49.06C177.078 48.8 177.238 48.6033 177.442 48.47C177.648 48.3367 177.892 48.27 178.172 48.27C178.482 48.27 178.745 48.3567 178.962 48.53L178.832 49.35C178.722 49.2733 178.607 49.2183 178.487 49.185C178.37 49.1483 178.242 49.13 178.102 49.13C177.872 49.13 177.672 49.1917 177.502 49.315C177.332 49.4383 177.198 49.6117 177.102 49.835C177.008 50.0583 176.962 50.32 176.962 50.62V53.5H176.092ZM181.263 53.62C180.71 53.62 180.275 53.4667 179.958 53.16C179.641 52.8533 179.483 52.4333 179.483 51.9C179.483 51.5567 179.561 51.2583 179.718 51.005C179.875 50.7517 180.096 50.5567 180.383 50.42C180.67 50.28 181.006 50.21 181.393 50.21C181.643 50.21 181.876 50.2383 182.093 50.295C182.313 50.3483 182.52 50.43 182.713 50.54V50.18C182.713 49.7833 182.623 49.4933 182.443 49.31C182.263 49.1233 181.983 49.03 181.603 49.03C181.36 49.03 181.106 49.075 180.843 49.165C180.583 49.255 180.34 49.38 180.113 49.54L179.863 48.81C180.12 48.64 180.411 48.5083 180.738 48.415C181.068 48.3183 181.393 48.27 181.713 48.27C182.32 48.27 182.775 48.425 183.078 48.735C183.381 49.0417 183.533 49.5 183.533 50.11V53.5H182.713V53.03C182.513 53.22 182.288 53.3667 182.038 53.47C181.788 53.57 181.53 53.62 181.263 53.62ZM181.393 52.86C181.63 52.86 181.863 52.8017 182.093 52.685C182.326 52.5683 182.533 52.4033 182.713 52.19V51.31C182.543 51.2033 182.35 51.12 182.133 51.06C181.916 51 181.71 50.97 181.513 50.97C181.14 50.97 180.845 51.055 180.628 51.225C180.411 51.3917 180.303 51.62 180.303 51.91C180.303 52.2033 180.4 52.435 180.593 52.605C180.786 52.775 181.053 52.86 181.393 52.86ZM185.174 53.5V48.39H186.044V48.91C186.2 48.6933 186.389 48.5333 186.609 48.43C186.829 48.3233 187.08 48.27 187.364 48.27C187.984 48.27 188.444 48.4583 188.744 48.835C189.044 49.2083 189.194 49.7833 189.194 50.56V53.5H188.324V50.41C188.324 49.98 188.227 49.65 188.034 49.42C187.844 49.1867 187.574 49.07 187.224 49.07C186.834 49.07 186.539 49.1817 186.339 49.405C186.142 49.625 186.044 49.9533 186.044 50.39V53.5H185.174ZM192.765 53.62C192.115 53.62 191.6 53.38 191.22 52.9C190.843 52.4167 190.655 51.7633 190.655 50.94C190.655 50.3933 190.74 49.92 190.91 49.52C191.083 49.12 191.327 48.8117 191.64 48.595C191.957 48.3783 192.332 48.27 192.765 48.27C193.265 48.27 193.695 48.43 194.055 48.75V46.69L194.925 46.28V53.5H194.055V53.1C193.718 53.4467 193.288 53.62 192.765 53.62ZM192.885 52.81C193.125 52.81 193.347 52.75 193.55 52.63C193.757 52.51 193.925 52.34 194.055 52.12V49.72C193.925 49.52 193.757 49.3617 193.55 49.245C193.343 49.1283 193.122 49.07 192.885 49.07C192.455 49.07 192.122 49.2317 191.885 49.555C191.652 49.8783 191.535 50.34 191.535 50.94C191.535 51.31 191.592 51.635 191.705 51.915C191.818 52.195 191.977 52.415 192.18 52.575C192.383 52.7317 192.618 52.81 192.885 52.81ZM196.86 53.63C196.667 53.63 196.504 53.5617 196.37 53.425C196.237 53.2883 196.17 53.13 196.17 52.95C196.17 52.77 196.237 52.61 196.37 52.47C196.504 52.33 196.667 52.26 196.86 52.26C197.057 52.26 197.222 52.33 197.355 52.47C197.492 52.61 197.56 52.77 197.56 52.95C197.56 53.13 197.492 53.2883 197.355 53.425C197.222 53.5617 197.057 53.63 196.86 53.63ZM200.285 53.62C199.845 53.62 199.466 53.5133 199.15 53.3C198.833 53.0833 198.59 52.7767 198.42 52.38C198.25 51.98 198.165 51.5033 198.165 50.95C198.165 50.3933 198.251 49.915 198.425 49.515C198.598 49.115 198.845 48.8083 199.165 48.595C199.488 48.3783 199.875 48.27 200.325 48.27C200.765 48.27 201.138 48.3717 201.445 48.575C201.751 48.7783 201.975 49.0733 202.115 49.46L201.295 49.76C201.211 49.54 201.086 49.3717 200.92 49.255C200.756 49.1383 200.561 49.08 200.335 49.08C199.921 49.08 199.605 49.24 199.385 49.56C199.165 49.88 199.055 50.3433 199.055 50.95C199.055 51.5433 199.163 52 199.38 52.32C199.596 52.64 199.905 52.8 200.305 52.8C200.561 52.8 200.78 52.7333 200.96 52.6C201.143 52.4667 201.271 52.28 201.345 52.04L202.155 52.31C202.031 52.73 201.806 53.0533 201.48 53.28C201.153 53.5067 200.755 53.62 200.285 53.62ZM205.503 53.62C204.803 53.62 204.251 53.3817 203.848 52.905C203.445 52.425 203.243 51.7733 203.243 50.95C203.243 50.4 203.335 49.925 203.518 49.525C203.701 49.125 203.961 48.8167 204.298 48.6C204.638 48.38 205.04 48.27 205.503 48.27C205.97 48.27 206.371 48.3783 206.708 48.595C207.048 48.8083 207.308 49.115 207.488 49.515C207.671 49.915 207.763 50.39 207.763 50.94C207.763 51.49 207.671 51.9667 207.488 52.37C207.305 52.77 207.043 53.0783 206.703 53.295C206.366 53.5117 205.966 53.62 205.503 53.62ZM205.503 52.81C205.933 52.81 206.27 52.645 206.513 52.315C206.76 51.9817 206.883 51.5233 206.883 50.94C206.883 50.3533 206.76 49.895 206.513 49.565C206.27 49.235 205.933 49.07 205.503 49.07C205.07 49.07 204.731 49.235 204.488 49.565C204.245 49.8917 204.123 50.3533 204.123 50.95C204.123 51.5333 204.245 51.99 204.488 52.32C204.731 52.6467 205.07 52.81 205.503 52.81ZM209.07 53.5V48.39H209.94V48.87C210.087 48.6733 210.275 48.525 210.505 48.425C210.739 48.3217 210.997 48.27 211.28 48.27C211.577 48.27 211.845 48.3367 212.085 48.47C212.329 48.6 212.517 48.7833 212.65 49.02C212.807 48.78 213.014 48.595 213.27 48.465C213.53 48.335 213.817 48.27 214.13 48.27C214.68 48.27 215.117 48.44 215.44 48.78C215.767 49.1167 215.93 49.5733 215.93 50.15V53.5H215.06V50.4C215.06 49.9733 214.97 49.645 214.79 49.415C214.614 49.185 214.36 49.07 214.03 49.07C213.81 49.07 213.617 49.1267 213.45 49.24C213.287 49.3533 213.159 49.5133 213.065 49.72C212.975 49.9233 212.93 50.16 212.93 50.43V53.5H212.06V50.4C212.06 49.9633 211.974 49.6333 211.8 49.41C211.63 49.1833 211.377 49.07 211.04 49.07C210.7 49.07 210.432 49.1883 210.235 49.425C210.039 49.6617 209.94 49.9833 209.94 50.39V53.5H209.07Z" fill="white"/>
+</g>
+</g>
+<g id="swagplatformstores-content-wrapper">
+<g id="swagplatformstores-card_3" filter="url(#swagplatformstores-filter4_d_0_1)">
+<path d="M81.334 79C81.334 74.5817 84.9157 71 89.334 71H286.334C290.752 71 294.334 74.5817 294.334 79V212C294.334 216.418 290.752 220 286.334 220H89.334C84.9157 220 81.334 216.418 81.334 212V79Z" fill="#1F1F1F" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<g id="swagplatformstores-Frame 2087330183">
+<path id="swagplatformstores-Shop Collection" d="M100.354 96.12C99.9473 96.12 99.579 96.0533 99.249 95.92C98.919 95.7833 98.639 95.5983 98.409 95.365C98.1823 95.1283 98.0173 94.86 97.914 94.56L98.734 94.26C98.874 94.57 99.0857 94.8217 99.369 95.015C99.6557 95.205 99.9907 95.3 100.374 95.3C100.794 95.3 101.129 95.2 101.379 95C101.629 94.7967 101.754 94.5033 101.754 94.12C101.754 93.85 101.679 93.6233 101.529 93.44C101.379 93.2567 101.184 93.1033 100.944 92.98C100.704 92.8533 100.447 92.74 100.174 92.64C99.9307 92.55 99.6873 92.45 99.444 92.34C99.2007 92.23 98.979 92.1 98.779 91.95C98.5823 91.7967 98.424 91.6117 98.304 91.395C98.184 91.175 98.124 90.9133 98.124 90.61C98.124 90.2967 98.209 90.01 98.379 89.75C98.549 89.4867 98.794 89.2767 99.114 89.12C99.434 88.96 99.8207 88.88 100.274 88.88C100.644 88.88 100.969 88.935 101.249 89.045C101.532 89.1517 101.764 89.3 101.944 89.49C102.127 89.6767 102.254 89.89 102.324 90.13L101.524 90.4C101.441 90.2033 101.287 90.0367 101.064 89.9C100.844 89.76 100.561 89.69 100.214 89.69C99.844 89.69 99.5523 89.7717 99.339 89.935C99.129 90.0983 99.024 90.3233 99.024 90.61C99.024 90.8267 99.094 91.0083 99.234 91.155C99.3773 91.2983 99.564 91.4233 99.794 91.53C100.024 91.6367 100.271 91.74 100.534 91.84C100.781 91.9333 101.027 92.04 101.274 92.16C101.524 92.2767 101.752 92.42 101.959 92.59C102.169 92.76 102.337 92.9683 102.464 93.215C102.591 93.4583 102.654 93.7533 102.654 94.1C102.654 94.53 102.554 94.895 102.354 95.195C102.154 95.495 101.881 95.725 101.534 95.885C101.187 96.0417 100.794 96.12 100.354 96.12ZM104.15 96V89.18L105.02 88.78V91.42C105.177 91.2033 105.365 91.0417 105.585 90.935C105.809 90.825 106.06 90.77 106.34 90.77C106.784 90.77 107.139 90.8617 107.405 91.045C107.675 91.2283 107.87 91.4917 107.99 91.835C108.11 92.175 108.17 92.5833 108.17 93.06V96H107.3V92.91C107.3 92.51 107.21 92.1867 107.03 91.94C106.854 91.6933 106.577 91.57 106.2 91.57C105.81 91.57 105.515 91.6817 105.315 91.905C105.119 92.125 105.02 92.4533 105.02 92.89V96H104.15ZM111.892 96.12C111.192 96.12 110.64 95.8817 110.237 95.405C109.833 94.925 109.632 94.2733 109.632 93.45C109.632 92.9 109.723 92.425 109.907 92.025C110.09 91.625 110.35 91.3167 110.687 91.1C111.027 90.88 111.428 90.77 111.892 90.77C112.358 90.77 112.76 90.8783 113.097 91.095C113.437 91.3083 113.697 91.615 113.877 92.015C114.06 92.415 114.152 92.89 114.152 93.44C114.152 93.99 114.06 94.4667 113.877 94.87C113.693 95.27 113.432 95.5783 113.092 95.795C112.755 96.0117 112.355 96.12 111.892 96.12ZM111.892 95.31C112.322 95.31 112.658 95.145 112.902 94.815C113.148 94.4817 113.272 94.0233 113.272 93.44C113.272 92.8533 113.148 92.395 112.902 92.065C112.658 91.735 112.322 91.57 111.892 91.57C111.458 91.57 111.12 91.735 110.877 92.065C110.633 92.3917 110.512 92.8533 110.512 93.45C110.512 94.0333 110.633 94.49 110.877 94.82C111.12 95.1467 111.458 95.31 111.892 95.31ZM115.459 98.03V90.89H116.329V91.32C116.696 90.9533 117.132 90.77 117.639 90.77C118.072 90.77 118.446 90.8783 118.759 91.095C119.076 91.3117 119.319 91.62 119.489 92.02C119.662 92.42 119.749 92.8933 119.749 93.44C119.749 93.9867 119.662 94.4617 119.489 94.865C119.316 95.265 119.071 95.575 118.754 95.795C118.441 96.0117 118.069 96.12 117.639 96.12C117.369 96.12 117.126 96.0717 116.909 95.975C116.692 95.875 116.499 95.7233 116.329 95.52V97.62L115.459 98.03ZM117.529 95.31C117.959 95.31 118.287 95.1483 118.514 94.825C118.744 94.5017 118.859 94.04 118.859 93.44C118.859 92.8633 118.739 92.4083 118.499 92.075C118.259 91.7383 117.936 91.57 117.529 91.57C117.269 91.57 117.036 91.63 116.829 91.75C116.622 91.87 116.456 92.04 116.329 92.26V94.62C116.506 94.85 116.694 95.0233 116.894 95.14C117.094 95.2533 117.306 95.31 117.529 95.31ZM126.217 96.12C125.687 96.12 125.237 96.0167 124.867 95.81C124.497 95.6033 124.198 95.3267 123.972 94.98C123.745 94.63 123.578 94.24 123.472 93.81C123.368 93.38 123.317 92.9433 123.317 92.5C123.317 92.06 123.37 91.6267 123.477 91.2C123.587 90.77 123.757 90.38 123.987 90.03C124.217 89.68 124.515 89.4017 124.882 89.195C125.252 88.985 125.697 88.88 126.217 88.88C126.647 88.88 127.01 88.9417 127.307 89.065C127.607 89.1883 127.85 89.3467 128.037 89.54C128.227 89.73 128.373 89.93 128.477 90.14L127.697 90.54C127.587 90.3767 127.467 90.2317 127.337 90.105C127.207 89.975 127.052 89.8733 126.872 89.8C126.692 89.7267 126.473 89.69 126.217 89.69C125.843 89.69 125.528 89.775 125.272 89.945C125.015 90.115 124.808 90.3383 124.652 90.615C124.498 90.8917 124.387 91.195 124.317 91.525C124.25 91.855 124.217 92.18 124.217 92.5C124.217 92.8467 124.255 93.1867 124.332 93.52C124.408 93.8533 124.528 94.155 124.692 94.425C124.855 94.6917 125.062 94.905 125.312 95.065C125.565 95.2217 125.867 95.3 126.217 95.3C126.603 95.3 126.913 95.2183 127.147 95.055C127.38 94.8883 127.577 94.6733 127.737 94.41L128.537 94.71C128.417 94.97 128.253 95.2067 128.047 95.42C127.84 95.6333 127.585 95.8033 127.282 95.93C126.982 96.0567 126.627 96.12 126.217 96.12ZM131.95 96.12C131.25 96.12 130.698 95.8817 130.295 95.405C129.892 94.925 129.69 94.2733 129.69 93.45C129.69 92.9 129.782 92.425 129.965 92.025C130.148 91.625 130.408 91.3167 130.745 91.1C131.085 90.88 131.487 90.77 131.95 90.77C132.417 90.77 132.818 90.8783 133.155 91.095C133.495 91.3083 133.755 91.615 133.935 92.015C134.118 92.415 134.21 92.89 134.21 93.44C134.21 93.99 134.118 94.4667 133.935 94.87C133.752 95.27 133.49 95.5783 133.15 95.795C132.813 96.0117 132.413 96.12 131.95 96.12ZM131.95 95.31C132.38 95.31 132.717 95.145 132.96 94.815C133.207 94.4817 133.33 94.0233 133.33 93.44C133.33 92.8533 133.207 92.395 132.96 92.065C132.717 91.735 132.38 91.57 131.95 91.57C131.517 91.57 131.178 91.735 130.935 92.065C130.692 92.3917 130.57 92.8533 130.57 93.45C130.57 94.0333 130.692 94.49 130.935 94.82C131.178 95.1467 131.517 95.31 131.95 95.31ZM135.616 96V89.19L136.486 88.78V96H135.616ZM138.234 96V89.19L139.104 88.78V96H138.234ZM142.771 96.12C142.304 96.12 141.901 96.005 141.561 95.775C141.221 95.545 140.959 95.2283 140.776 94.825C140.592 94.4217 140.501 93.96 140.501 93.44C140.501 92.8767 140.596 92.3967 140.786 92C140.976 91.6 141.241 91.295 141.581 91.085C141.921 90.875 142.317 90.77 142.771 90.77C143.154 90.77 143.506 90.8567 143.826 91.03C144.146 91.2 144.401 91.465 144.591 91.825C144.784 92.1817 144.881 92.64 144.881 93.2C144.881 93.28 144.877 93.3733 144.871 93.48C144.867 93.5833 144.861 93.69 144.851 93.8H141.391C141.424 94.11 141.501 94.3817 141.621 94.615C141.741 94.8483 141.899 95.0317 142.096 95.165C142.292 95.295 142.524 95.36 142.791 95.36C143.007 95.36 143.207 95.3217 143.391 95.245C143.577 95.1683 143.751 95.05 143.911 94.89L144.421 95.46C144.231 95.65 143.994 95.8083 143.711 95.935C143.431 96.0583 143.117 96.12 142.771 96.12ZM141.381 93.04H144.001C144.001 92.75 143.952 92.4917 143.856 92.265C143.762 92.035 143.624 91.855 143.441 91.725C143.257 91.595 143.034 91.53 142.771 91.53C142.401 91.53 142.082 91.65 141.816 91.89C141.552 92.13 141.407 92.5133 141.381 93.04ZM148.177 96.12C147.737 96.12 147.359 96.0133 147.042 95.8C146.726 95.5833 146.482 95.2767 146.312 94.88C146.142 94.48 146.057 94.0033 146.057 93.45C146.057 92.8933 146.144 92.415 146.317 92.015C146.491 91.615 146.737 91.3083 147.057 91.095C147.381 90.8783 147.767 90.77 148.217 90.77C148.657 90.77 149.031 90.8717 149.337 91.075C149.644 91.2783 149.867 91.5733 150.007 91.96L149.187 92.26C149.104 92.04 148.979 91.8717 148.812 91.755C148.649 91.6383 148.454 91.58 148.227 91.58C147.814 91.58 147.497 91.74 147.277 92.06C147.057 92.38 146.947 92.8433 146.947 93.45C146.947 94.0433 147.056 94.5 147.272 94.82C147.489 95.14 147.797 95.3 148.197 95.3C148.454 95.3 148.672 95.2333 148.852 95.1C149.036 94.9667 149.164 94.78 149.237 94.54L150.047 94.81C149.924 95.23 149.699 95.5533 149.372 95.78C149.046 96.0067 148.647 96.12 148.177 96.12ZM152.68 96.12C152.33 96.12 152.061 96.015 151.875 95.805C151.691 95.595 151.6 95.2933 151.6 94.9V91.65H150.77V90.89H151.6V89.2L152.47 88.78V90.89H153.73V91.65H152.47V94.61C152.47 94.8533 152.511 95.0317 152.595 95.145C152.681 95.255 152.816 95.31 153 95.31C153.233 95.31 153.486 95.22 153.76 95.04L153.66 95.89C153.51 95.97 153.353 96.0283 153.19 96.065C153.03 96.1017 152.86 96.12 152.68 96.12ZM154.854 96V90.89H155.724V96H154.854ZM155.284 89.96C155.134 89.96 155.005 89.9083 154.899 89.805C154.795 89.6983 154.744 89.57 154.744 89.42C154.744 89.2633 154.795 89.1317 154.899 89.025C155.005 88.915 155.134 88.86 155.284 88.86C155.44 88.86 155.57 88.915 155.674 89.025C155.78 89.1317 155.834 89.2633 155.834 89.42C155.834 89.57 155.78 89.6983 155.674 89.805C155.57 89.9083 155.44 89.96 155.284 89.96ZM159.343 96.12C158.643 96.12 158.091 95.8817 157.688 95.405C157.284 94.925 157.083 94.2733 157.083 93.45C157.083 92.9 157.174 92.425 157.358 92.025C157.541 91.625 157.801 91.3167 158.138 91.1C158.478 90.88 158.879 90.77 159.343 90.77C159.809 90.77 160.211 90.8783 160.548 91.095C160.888 91.3083 161.148 91.615 161.328 92.015C161.511 92.415 161.603 92.89 161.603 93.44C161.603 93.99 161.511 94.4667 161.328 94.87C161.144 95.27 160.883 95.5783 160.543 95.795C160.206 96.0117 159.806 96.12 159.343 96.12ZM159.343 95.31C159.773 95.31 160.109 95.145 160.353 94.815C160.599 94.4817 160.723 94.0233 160.723 93.44C160.723 92.8533 160.599 92.395 160.353 92.065C160.109 91.735 159.773 91.57 159.343 91.57C158.909 91.57 158.571 91.735 158.328 92.065C158.084 92.3917 157.963 92.8533 157.963 93.45C157.963 94.0333 158.084 94.49 158.328 94.82C158.571 95.1467 158.909 95.31 159.343 95.31ZM162.91 96V90.89H163.78V91.41C163.937 91.1933 164.125 91.0333 164.345 90.93C164.565 90.8233 164.817 90.77 165.1 90.77C165.72 90.77 166.18 90.9583 166.48 91.335C166.78 91.7083 166.93 92.2833 166.93 93.06V96H166.06V92.91C166.06 92.48 165.963 92.15 165.77 91.92C165.58 91.6867 165.31 91.57 164.96 91.57C164.57 91.57 164.275 91.6817 164.075 91.905C163.878 92.125 163.78 92.4533 163.78 92.89V96H162.91Z" fill="white"/>
+</g>
+<g id="swagplatformstores-content">
+<g id="swagplatformstores-Frame 2087330326" filter="url(#swagplatformstores-filter5_d_0_1)">
+<path d="M97.334 126C97.334 121.582 100.916 118 105.334 118H130.334C134.752 118 138.334 121.582 138.334 126V151C138.334 155.418 134.752 159 130.334 159H105.334C100.916 159 97.334 155.418 97.334 151V126Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625766" x="97.334" y="118" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern1_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330327" filter="url(#swagplatformstores-filter6_d_0_1)">
+<path d="M146.334 126C146.334 121.582 149.916 118 154.334 118H179.334C183.752 118 187.334 121.582 187.334 126V151C187.334 155.418 183.752 159 179.334 159H154.334C149.916 159 146.334 155.418 146.334 151V126Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625767" x="146.334" y="118" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern2_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330328" filter="url(#swagplatformstores-filter7_d_0_1)">
+<path d="M195.334 126C195.334 121.582 198.916 118 203.334 118H228.334C232.752 118 236.334 121.582 236.334 126V151C236.334 155.418 232.752 159 228.334 159H203.334C198.916 159 195.334 155.418 195.334 151V126Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625768" x="195.334" y="118" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern3_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330329" filter="url(#swagplatformstores-filter8_d_0_1)">
+<path d="M244.334 126C244.334 121.582 247.916 118 252.334 118H277.334C281.752 118 285.334 121.582 285.334 126V151C285.334 155.418 281.752 159 277.334 159H252.334C247.916 159 244.334 155.418 244.334 151V126Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625769" x="244.334" y="118" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern4_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330330" filter="url(#swagplatformstores-filter9_d_0_1)">
+<path d="M97.334 173C97.334 168.582 100.916 165 105.334 165H130.334C134.752 165 138.334 168.582 138.334 173V198C138.334 202.418 134.752 206 130.334 206H105.334C100.916 206 97.334 202.418 97.334 198V173Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625770" x="97.334" y="165" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern5_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330331" filter="url(#swagplatformstores-filter10_d_0_1)">
+<path d="M146.334 173C146.334 168.582 149.916 165 154.334 165H179.334C183.752 165 187.334 168.582 187.334 173V198C187.334 202.418 183.752 206 179.334 206H154.334C149.916 206 146.334 202.418 146.334 198V173Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625771" x="146.334" y="165" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern6_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330332" filter="url(#swagplatformstores-filter11_d_0_1)">
+<path d="M195.334 173C195.334 168.582 198.916 165 203.334 165H228.334C232.752 165 236.334 168.582 236.334 173V198C236.334 202.418 232.752 206 228.334 206H203.334C198.916 206 195.334 202.418 195.334 198V173Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625772" x="195.334" y="165" width="41" height="41" rx="6" fill="url(#swagplatformstores-pattern7_0_1)"/>
+</g>
+<g id="swagplatformstores-Frame 2087330333" filter="url(#swagplatformstores-filter12_d_0_1)">
+<path d="M244.334 173C244.334 168.582 247.916 165 252.334 165H277.334C281.752 165 285.334 168.582 285.334 173V198C285.334 202.418 281.752 206 277.334 206H252.334C247.916 206 244.334 202.418 244.334 198V173Z" fill="#9A9A9A" fill-opacity="0.2" shape-rendering="crispEdges"/>
+<rect id="swagplatformstores-Rectangle 34625773" x="244.834" y="165.5" width="40" height="40" rx="5.5" fill="url(#swagplatformstores-pattern8_0_1)" stroke="white"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="swagplatformstores-cursor" filter="url(#swagplatformstores-filter13_d_0_1)">
+<path d="M275.343 196.139C274.389 195.411 272.998 196.078 272.998 197.263V213.409C272.998 214.759 274.736 215.351 275.591 214.292L279.651 209.261C279.954 208.885 280.416 208.666 280.904 208.666H287.542C288.926 208.666 289.526 206.95 288.434 206.118L275.343 196.139Z" fill="#1B1B1B"/>
+<path d="M273.498 197.263C273.498 196.511 274.399 196.048 275.04 196.536L288.131 206.516C288.824 207.044 288.47 208.166 287.542 208.166H280.904C280.267 208.166 279.661 208.452 279.262 208.946V208.947L275.202 213.979C274.63 214.688 273.498 214.265 273.498 213.409V197.263Z" stroke="white"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="swagplatformstores-filter0_d_0_1" x="-14" y="-11" width="404" height="440" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="3"/>
+<feGaussianBlur stdDeviation="3"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern0_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image0_0_1" transform="matrix(0.000892851 0 0 0.000712668 -0.000687391 -0.00108535)"/>
+</pattern>
+<filter id="swagplatformstores-filter1_d_0_1" x="65.334" y="26" width="245" height="212" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="4"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<filter id="swagplatformstores-filter2_d_0_1" x="43.334" y="5" width="295" height="262" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="BackgroundImageFix" in2="effect1_dropShadow_0_1" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+</filter>
+<filter id="swagplatformstores-filter3_d_0_1" x="97.334" y="13" width="233" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<filter id="swagplatformstores-filter4_d_0_1" x="51.334" y="44" width="286" height="215" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="BackgroundImageFix" in2="effect1_dropShadow_0_1" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+</filter>
+<filter id="swagplatformstores-filter5_d_0_1" x="67.334" y="91" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern1_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image1_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter6_d_0_1" x="116.334" y="91" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern2_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image2_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter7_d_0_1" x="165.334" y="91" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern3_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image3_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter8_d_0_1" x="214.334" y="91" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern4_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image4_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter9_d_0_1" x="67.334" y="138" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern5_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image5_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter10_d_0_1" x="116.334" y="138" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern6_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image6_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter11_d_0_1" x="165.334" y="138" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern7_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image7_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter12_d_0_1" x="214.334" y="138" width="107" height="107" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="3" dy="6"/>
+<feGaussianBlur stdDeviation="16.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="swagplatformstores-pattern8_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#swagplatformstores-image8_0_1" transform="scale(0.000976563)"/>
+</pattern>
+<filter id="swagplatformstores-filter13_d_0_1" x="269.998" y="194.836" width="24" height="27" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="1" dy="3"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<clipPath id="swagplatformstores-clip0_0_1">
+<rect x="73.334" y="32" width="229" height="196" rx="8" fill="white"/>
+</clipPath>
+<clipPath id="swagplatformstores-clip1_0_1">
+<rect width="10" height="10" fill="white" transform="translate(135.334 45.5)"/>
+</clipPath>
+<image id="swagplatformstores-image0_0_1" width="2880" height="3438" preserveAspectRatio="none" href="/cards/img-e95a2ca5.webp"/>
+<image id="swagplatformstores-image1_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-1a73853e.webp"/>
+<image id="swagplatformstores-image2_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-21c0ecb1.webp"/>
+<image id="swagplatformstores-image3_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-b4426c62.webp"/>
+<image id="swagplatformstores-image4_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-3dccd91c.webp"/>
+<image id="swagplatformstores-image5_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-820b32be.webp"/>
+<image id="swagplatformstores-image6_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-df252e2e.webp"/>
+<image id="swagplatformstores-image7_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-622bf0b9.webp"/>
+<image id="swagplatformstores-image8_0_1" width="1024" height="1024" preserveAspectRatio="none" href="/cards/img-78676330.webp"/>
+</defs>
+</svg>

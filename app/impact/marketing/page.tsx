@@ -16,8 +16,8 @@ import { ConnectedToolsGraphic, RecipientActivityGraphic, TriggerSendsGraphic } 
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
-import campaignActivity from "@/public/impact/marketing/campaign-activity.png";
-import campaignWorkspace from "@/public/impact/marketing/campaign-workspace.png";
+import CampaignActivity from "@/app/components/cards/impact-marketing/CampaignActivity";
+import CampaignWorkspace from "@/app/components/cards/impact-marketing/CampaignWorkspace";
 import problemData from "@/public/impact/marketing/v2/problem-data.jpg";
 import problemInventory from "@/public/impact/marketing/v2/problem-inventory.jpg";
 import problemShipping from "@/public/impact/marketing/v2/problem-shipping.jpg";
@@ -96,15 +96,17 @@ export default function MarketingPage() {
       <TeamDivider />
 
       <ImageShowcase
+        id="campaign-experiences"
         caption="One marketing platform"
         title="Bring your campaign experiences together"
         description="Manage swag, gifting, event sends, and other branded experiences through one platform instead of separate vendors and workflows."
-        image={campaignWorkspace}
+        graphic={<CampaignWorkspace />}
         imageAlt="Stadium campaign workspace for a Q4 product launch with recipients, sends, budget, and experiences including a swag store, event kits, direct mail gift, and branded shop"
         framed={false}
       />
 
       <ChecklistCards
+        id="brand-control"
         caption="Brand control"
         title="Keep your brand consistent at scale"
         description="Set the foundation once, then let teams create with confidence."
@@ -222,7 +224,7 @@ export default function MarketingPage() {
         caption="Campaign visibility"
         title="See every send in one place"
         description="Track recipients, sends, and campaign activity without piecing together updates across vendors."
-        image={campaignActivity}
+        graphic={<CampaignActivity />}
         imageAlt="Campaign activity dashboard showing sent, opened, redeemed, and delivered counts with a recipient status table"
         framed={false}
       />

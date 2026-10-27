@@ -74,6 +74,7 @@ import heroBg from "@/public/gift2/gf-hero-bg.jpg";
 import gridGiftBox from "@/public/gift2/gf-hero-grid-gift-box.jpg";
 import gridBoxLineup from "@/public/gift2/gf-hero-grid-box-lineup.jpg";
 import gridBoxInLight from "@/public/gift2/gf-hero-grid-box-in-light.jpg";
+import gridBoxInLight2 from "@/public/gift2/gf-hero-grid-box-in-light-2.jpg";
 import gridOpenBox from "@/public/gift2/gf-hero-grid-open-box.jpg";
 import gridCandleSet from "@/public/gift2/gf-hero-grid-candle-set.jpg";
 import gridSilkScarf from "@/public/gift2/gf-hero-grid-silk-scarf.jpg";
@@ -92,32 +93,33 @@ import { HeroLogoWall } from "./common/HeroLogoWall";
 /* Hero photo grid (1261:5189). Slot order = Figma top-to-bottom; the layer
    names are the designer's, kept verbatim as the keys. */
 const GRID_LEFT: StaticImageData[] = [
-  gridGiftBox, // 1261:5148
-  gridBoxLineup, // 1261:5149
-  gridBoxInLight, // 1261:5151
-  gridOpenBox, // 1261:5153
-  gridCandleSet, // 1261:5155
-  gridSilkScarf, // 1261:5156
-  gridWatchBox, // 1261:5157
-  gridTeaSet, // 1261:5158
+  gridGiftBox,
+  gridBoxLineup,
+  gridBoxInLight,
+  gridCandleSet,
+  gridBoxInLight2,
+  gridOpenBox,
+  gridSilkScarf,
+  gridWatchBox,
+  gridTeaSet,
 ];
 
 const GRID_RIGHT: StaticImageData[] = [
-  gridKnitwear, // 1261:5171
-  gridCoffeeSet, // 1261:5173
-  gridNotecards, // 1261:5174
-  gridNotebooks, // 1261:5175
-  gridSunglasses, // 1261:5176
-  gridJewelryBox, // 1261:5177
-  gridFlowers, // 1261:5178
-  gridLeatherWallet, // 1261:5179
+  gridKnitwear,
+  gridFlowers,
+  gridCoffeeSet,
+  gridNotecards,
+  gridNotebooks,
+  gridSunglasses,
+  gridJewelryBox,
+  gridLeatherWallet,
 ];
 
-/* One vertical track: its 8 photos rendered twice so the -50% translate in
+/* One vertical track: its photos rendered twice so the -50% translate in
    `gift-photo-track` (globals.css) wraps seamlessly. `mb-[7.109%]` is the
    Figma 15px gap expressed against the track width (15/211) — including on
    the last photo, which is what makes one group exactly one loop pitch
-   (8 × 167 = 1336) tall and the two groups exactly 2672. The track is a flex
+   (N × 167) tall. The track is a flex
    column purely so that trailing margin is guaranteed to count toward the
    auto height (flex items never margin-collapse), which is what -50% measures. */
 function PhotoTrack({

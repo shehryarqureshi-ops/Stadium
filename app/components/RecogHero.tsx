@@ -24,12 +24,12 @@ export default function RecogHero() {
             <div className="flex flex-col gap-5">
               <div data-animation="reveal" className="flex flex-col gap-2">
                 <p className="whitespace-pre font-sans text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.1rem] text-[#edd9fc]">
-                  {"EMPLOYEE RECOGNITION"}
+                  {"RECOGNITION"}
                 </p>
                 <h1 className="font-[family-name:var(--font-satoshi)] text-[2.5rem] font-black leading-[1.02] tracking-[-0.0625rem] text-white md:text-[3rem] lg:text-[3.625rem] lg:tracking-[-0.09375rem]">
                   Recognition that
                   <br className="hidden min-[84rem]:inline" />
-                  {" shows up at the door"}
+                  {" shows up at the door."}
                 </h1>
               </div>
               <p
@@ -37,9 +37,8 @@ export default function RecogHero() {
                 data-reveal-delay="120"
                 className="w-full font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
               >
-                Run employee recognition, rewards, milestones, and incentives in
-                one platform. Your team recognizes great work. Employees choose
-                their reward. Stadium delivers it worldwide.
+                Recognition starts in Slack. Stadium turns it into a real
+                reward, chosen by them and shipped by us.
               </p>
             </div>
 
@@ -50,24 +49,24 @@ export default function RecogHero() {
             >
               <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center">
                 <a
-                  href="/book-a-call"
+                  href="#how-it-works"
                   className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#8d12e7] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
+                    See how it works
+                  </span>
+                </a>
+                <a
+                  href="/book-a-call"
+                  className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
                     Talk to sales
                   </span>
                 </a>
-                <a
-                  href="/catalog#gifts"
-                  className="inline-flex h-button-h items-center justify-center rounded-[100px] border border-white bg-transparent px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                    Explore rewards
-                  </span>
-                </a>
               </div>
               <p className="font-sans text-[0.8125rem] font-semibold leading-[1.4] text-[#fbfeff]">
-                5,000+ teams ship gifts this way. In 170+ countries.
+                Trusted by 5,000+ teams across 170+ countries.
               </p>
             </div>
           </div>

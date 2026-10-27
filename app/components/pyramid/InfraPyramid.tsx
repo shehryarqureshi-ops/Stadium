@@ -10,8 +10,8 @@ import {
   ChapterHeader,
   IntroCopy,
   MediaTabs,
-  PeopleCarousel,
 } from "./Panels";
+import { PeopleDiagram } from "./PeopleDiagram";
 import {
   PIN_UNITS,
   clamp01,
@@ -299,7 +299,7 @@ function PinnedInfra() {
           <Container fill>
             <ChapterHeader index="03" eyebrowText="People infrastructure" heading={PEOPLE.heading} body={PEOPLE.body} />
             <div className="mt-6 max-lg:min-h-0 max-lg:flex-1 lg:mt-14">
-              <PeopleCarousel />
+              <PeopleDiagram />
             </div>
           </Container>
         </div>
@@ -359,7 +359,7 @@ function StaticInfra() {
       <Container>
         <ChapterHeader index="03" eyebrowText="People infrastructure" heading={PEOPLE.heading} body={PEOPLE.body} />
         <div className="mt-8">
-          <PeopleCarousel />
+          <PeopleDiagram />
         </div>
       </Container>
     </section>

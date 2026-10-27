@@ -15,8 +15,8 @@ export default function SnackHeroTwo() {
                 SNACKS • SNACKMAGIC
               </p>
               <h1 className="font-[family-name:var(--font-satoshi)] text-[2.75rem] font-black leading-[1.02] tracking-[-0.09375rem] text-white md:text-[3.25rem] lg:text-[3.375rem]">
-                Treat 1 people or 1,000+,
-                <br className="hidden lg:block" /> anywhere in the world
+                Snacks people
+                <br className="hidden lg:block" /> can’t wait to open
               </h1>
             </div>
 
@@ -25,8 +25,9 @@ export default function SnackHeroTwo() {
               data-reveal-delay="120"
               className="max-w-[32.25rem] font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
             >
-              Set the budget. Let recipients choose what they want. Snackmagic
-              handles fulfillment worldwide.
+              Choose from curated snack boxes or let recipients build their own
+              from 2,000+ snacks, with dietary filters and delivery to 170+
+              countries.
             </p>
           </div>
 

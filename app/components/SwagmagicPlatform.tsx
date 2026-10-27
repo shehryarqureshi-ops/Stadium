@@ -2,43 +2,43 @@ import VariableCardGrid, {
   type VariableCardGridItem,
 } from "@/app/components/common/VariableCardGrid";
 
-import mockStores from "@/public/swag2/sw2-platform-stores.png";
-import mockInventory from "@/public/swag2/sw2-platform-inventory.png";
-import mockFulfillment from "@/public/swag2/sw2-platform-fulfillment.png";
-import mockGifting from "@/public/swag2/sw2-platform-gifting.png";
-import mockIntegrations from "@/public/swag2/sw2-platform-integrations.png";
-import mockBudgets from "@/public/swag2/sw2-platform-budgets.png";
+import PlatformStores from "@/app/components/cards/swag/PlatformStores";
+import PlatformInventory from "@/app/components/cards/swag/PlatformInventory";
+import PlatformFulfillment from "@/app/components/cards/swag/PlatformFulfillment";
+import PlatformGifting from "@/app/components/cards/swag/PlatformGifting";
+import PlatformIntegrations from "@/app/components/cards/swag/PlatformIntegrations";
+import PlatformBudgets from "@/app/components/cards/swag/PlatformBudgets";
 
 const ITEMS: VariableCardGridItem[] = [
   {
-    image: mockStores,
+    graphic: <PlatformStores />,
     title: "Branded Stores",
     description: "Branded storefronts with budgets, approvals, and SSO.",
   },
   {
-    image: mockInventory,
+    graphic: <PlatformInventory />,
     title: "Inventory & Storage",
     description: "Live inventory, warehouse storage, and kitting in one place.",
   },
   {
-    image: mockFulfillment,
+    graphic: <PlatformFulfillment />,
     title: "Global Fulfillment",
     description: "Ship to 170+ countries, with customs and duties handled.",
   },
   {
-    image: mockGifting,
+    graphic: <PlatformGifting />,
     title: "Automated Gifting",
     description:
       "Automatically send swag for new hires, milestones, or API-triggered events.",
   },
   {
-    image: mockIntegrations,
+    graphic: <PlatformIntegrations />,
     title: "Integrations",
     description:
       "Integrate with 100+ tools, including your HRIS, Slack, and CRM, to automate sends.",
   },
   {
-    image: mockBudgets,
+    graphic: <PlatformBudgets />,
     title: "Budgets & Reporting",
     description: "Get a complete view of spend, inventory, and redemption.",
   },

@@ -269,15 +269,13 @@ export default function RecogImpact() {
             data-animation="reveal"
             className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
           >
-            See the impact of recognition
+            Recognition that pays for itself
           </h2>
           <p
             data-animation="reveal"
             className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem] max-w-[44rem] mx-auto"
           >
-            Track participation, redemption, budgets, and engagement so you can
-            see what employees value–and show leadership where the program is
-            working.
+            What teams using Stadium see.
           </p>
         </div>
 
@@ -438,11 +436,11 @@ export default function RecogImpact() {
             <div className="relative flex flex-col gap-5">
               <ChartSpline />
               <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.04] tracking-[-0.0375rem] text-[#2a0845]">
-                Build the business case
+                See your potential ROI
               </h3>
               <p className="max-w-[30.875rem] font-sans text-[0.875rem] leading-[1.48] text-[#6b6c71]">
-                See how your team size, current reward spend, and admin time
-                could translate into program savings.
+                Global rollouts, adoption lifts, and rewards leadership trusts,
+                set up by the teams who own engagement.
               </p>
             </div>
             <dl className="relative grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -476,12 +474,12 @@ export default function RecogImpact() {
           <div className={`${CARD} min-h-[26.625rem]`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/recog2/rc-impact-gradient.svg"
+              src="/recog2/rc-impact-roi.jpg"
               alt=""
               aria-hidden
-              width={1140}
-              height={1140}
-              className="pointer-events-none absolute left-[-61.644%] top-[-96.596%] h-[267.606%] w-[195.206%] max-w-none select-none"
+              width={1168}
+              height={1394}
+              className="pointer-events-none absolute left-0 top-0 h-[163.6%] w-full max-w-none select-none object-cover"
             />
 
             {/* platform spend pill — sits behind the savings card */}

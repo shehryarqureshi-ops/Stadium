@@ -37,6 +37,9 @@ type TwoFeaturedCardsProps = {
   title: string;
   description: string;
   cards: [TwoFeaturedCardsItem, TwoFeaturedCardsItem];
+  /** Title + subtitle sit in a grey panel above a white body panel, and the
+   *  tray is narrower (Swagmagic "Guided ordering" design). */
+  panelCards?: boolean;
 };
 
 const HEAVY_SHADOW =
@@ -48,6 +51,7 @@ export default function TwoFeaturedCards({
   title,
   description,
   cards,
+  panelCards = false,
 }: TwoFeaturedCardsProps) {
   return (
     <section className="relative bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -86,7 +90,9 @@ export default function TwoFeaturedCards({
         <div
           data-animation="reveal"
           data-reveal-stagger="90"
-          className="flex w-full max-w-5xl flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:flex-row md:items-stretch"
+          className={`flex w-full flex-col gap-4 rounded-[2rem] bg-[#f2f2f2] p-4 md:flex-row md:items-stretch ${
+            panelCards ? "max-w-[54.625rem]" : "max-w-5xl"
+          }`}
         >
           {cards.map((card) => (
             <article
@@ -130,37 +136,67 @@ export default function TwoFeaturedCards({
               )}
 
               {/* Card content */}
-              <div className="flex flex-1 flex-col px-6 pb-6 pt-8 md:px-7 md:pb-7">
-                <div className="flex flex-1 flex-col">
-                  <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.15] tracking-[-0.025rem] text-[#16171b] lg:text-[2rem]">
-                    {card.title}
-                  </h3>
-
-                  {card.subtitle && (
-                    <p className="my-3 font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#757575]">
-                      {card.subtitle}
-                    </p>
-                  )}
-
-                  <div className="mt-4 flex flex-1 flex-col">
-                    {card.content}
+              {panelCards ? (
+                <div className="flex flex-1 flex-col gap-2.5">
+                  <div className="flex flex-col gap-4 rounded-2xl bg-[#f7f7f7] p-6">
+                    <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.25] text-[#16171b] lg:text-[2rem] lg:leading-[2.5rem]">
+                      {card.title}
+                    </h3>
+                    {card.subtitle && (
+                      <p className="font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#828282]">
+                        {card.subtitle}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col rounded-2xl bg-white p-6">
+                    <div className="flex flex-1 flex-col">{card.content}</div>
+                    <a
+                      href={card.ctaLink}
+                      className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-[1.375rem] py-[1.125rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+                        card.ctaVariant === "dark"
+                          ? "bg-[#111111] text-white hover:bg-[#2b2b2b]"
+                          : "bg-[#f2f2f2] text-ink hover:bg-[#e6e6e6]"
+                      }`}
+                    >
+                      <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
+                        {card.ctaLabel}
+                      </span>
+                    </a>
                   </div>
                 </div>
+              ) : (
+                <div className="flex flex-1 flex-col px-6 pb-6 pt-8 md:px-7 md:pb-7">
+                  <div className="flex flex-1 flex-col">
+                    <h3 className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.15] tracking-[-0.025rem] text-[#16171b] lg:text-[2rem]">
+                      {card.title}
+                    </h3>
 
-                {/* CTA */}
-                <a
-                  href={card.ctaLink}
-                  className={`mt-8 inline-flex h-[2.75rem] w-full items-center justify-center rounded-full px-[1.375rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
-                    card.ctaVariant === "dark"
-                      ? "bg-[#111111] text-white hover:bg-[#2b2b2b]"
-                      : "bg-[#f2f2f2] text-ink hover:bg-[#e6e6e6]"
-                  }`}
-                >
-                  <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-                    {card.ctaLabel}
-                  </span>
-                </a>
-              </div>
+                    {card.subtitle && (
+                      <p className="my-3 font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#757575]">
+                        {card.subtitle}
+                      </p>
+                    )}
+
+                    <div className="mt-4 flex flex-1 flex-col">
+                      {card.content}
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <a
+                    href={card.ctaLink}
+                    className={`mt-8 inline-flex h-[2.75rem] w-full items-center justify-center rounded-full px-[1.375rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+                      card.ctaVariant === "dark"
+                        ? "bg-[#111111] text-white hover:bg-[#2b2b2b]"
+                        : "bg-[#f2f2f2] text-ink hover:bg-[#e6e6e6]"
+                    }`}
+                  >
+                    <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
+                      {card.ctaLabel}
+                    </span>
+                  </a>
+                </div>
+              )}
             </article>
           ))}
         </div>

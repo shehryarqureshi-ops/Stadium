@@ -14,8 +14,8 @@ import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPage
 import OfficeNeedsBoard from "@/app/components/impact/OfficeNeedsBoard";
 import { LINKS } from "@/app/components/impact/shared";
 
-import operationsOverview from "@/public/impact/office-admins/operations-overview.png";
-import operationsWorkspace from "@/public/impact/office-admins/operations-workspace.png";
+import OperationsOverview from "@/app/components/cards/impact-office-admins/OperationsOverview";
+import OperationsWorkspace from "@/app/components/cards/impact-office-admins/OperationsWorkspace";
 import recurringDeliveries from "@/public/impact/office-admins/recurring-scheduled-deliveries.png";
 import recurringPrograms from "@/public/impact/office-admins/recurring-employee-programs.png";
 import recurringSnacks from "@/public/impact/office-admins/recurring-office-snacks.png";
@@ -104,7 +104,7 @@ export default function OfficeAdminsPage() {
         caption="One workplace infrastructure"
         title="Bring everyday operations together"
         description="Manage snacks, swag, gifting, events, and more through one partner, with fewer vendors, orders, and workflows to coordinate."
-        image={operationsWorkspace}
+        graphic={<OperationsWorkspace />}
         imageAlt="Stadium operations workspace with upcoming snacks, swag, gifting, and events orders across Austin HQ, Berlin, and London, and a single monthly invoice"
         framed={false}
       />
@@ -197,7 +197,7 @@ export default function OfficeAdminsPage() {
         caption="Centralized visibility"
         title="Keep operations in view"
         description="See orders, deliveries, inventory, and spend from one place."
-        image={operationsOverview}
+        graphic={<OperationsOverview />}
         imageAlt="Operations overview dashboard with orders, deliveries, low inventory, and spend, upcoming deliveries by location, and items running low"
         framed={false}
         footnote="Manage Orders. Track Deliveries. Monitor Inventory. See Spend."

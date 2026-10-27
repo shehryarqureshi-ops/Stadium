@@ -24,13 +24,12 @@ import caseTime from "@/public/the-proof/case-time.png";
 import caseMoney from "@/public/the-proof/case-money.png";
 import casePeace from "@/public/the-proof/case-peace.png";
 import caseControl from "@/public/the-proof/case-control.png";
-import savingsReport from "@/public/the-proof/savings-report.jpg";
-import companyOverview from "@/public/the-proof/company-overview.jpg";
 import swagProject from "@/public/the-proof/swag-project.jpg";
 import michellePhoto from "@/public/the-proof/customers/michelle-workato.jpg";
 import feliciaPhoto from "@/public/the-proof/customers/felicia-kentro.jpg";
 import nataliePhoto from "@/public/testimonials/natalie.png";
-import yourTeam from "@/public/the-proof/your-stadium-team.jpg";
+import YourStadiumTeam from "@/app/components/cards/the-proof/YourStadiumTeam";
+import VectorCard from "@/app/components/cards/VectorCard";
 
 /* /the-proof — Figma n9SjmDjzB1PeZAYJ5w43fr → 3815:4571. Mockups are 2×
    exports of the Figma frames (public/the-proof/). Customer-result image
@@ -83,8 +82,8 @@ export default function TheProofPage() {
               description="Program strategy, merchandising, global logistics, and live support all come standard, so your team coordinates less and ships more."
               quote="“I didn’t realize how much mental load came with managing two vendors until it was gone. Now I just go to Stadium.”"
               attribution="Philo-Marie W., Sr. Specialist of Events & Experience"
-              image={yourTeam}
-              imageAlt="Your Stadium team: a program strategist, merchandiser, global logistics lead and live support, with a delivery update"
+              graphic={<YourStadiumTeam alt="Your Stadium team: a program strategist, merchandiser, global logistics lead and live support, with a delivery update" />}
+              graphicRatio="570 / 586"
             />
             <VerticalTestimonials
               flush
@@ -124,8 +123,7 @@ export default function TheProofPage() {
           caption="Measurable impact"
           title="$15K Average Customer Savings"
           description="*based on vendor consolidation"
-          image={savingsReport}
-          imageAlt="Stadium savings report: $15,240 saved, 6 vendors consolidated into 1 partner"
+          graphic={<VectorCard src="/cards/the-proof/SavingsReport.svg" alt="Stadium savings report: $15,240 saved, 6 vendors consolidated into 1 partner" width={1276} height={805} />}
         />
 
         <VariableCardGrid
@@ -140,8 +138,7 @@ export default function TheProofPage() {
           caption="Built for complex organizations"
           title="Centralized control. Decentralized execution."
           description="Manage budgets, permissions, and activity centrally while giving teams flexibility to execute."
-          image={companyOverview}
-          imageAlt="Stadium company overview: budgets, permissions and brand set centrally, with teams executing within budget"
+          graphic={<VectorCard src="/cards/the-proof/CompanyOverview.svg" alt="Stadium company overview: budgets, permissions and brand set centrally, with teams executing within budget" width={1276} height={805} />}
         />
 
         <SplitFeature

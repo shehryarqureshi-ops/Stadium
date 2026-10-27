@@ -136,7 +136,9 @@ export default function StepCards({
 
           <div
             aria-hidden="true"
-            className="pointer-events-none invisible grid gap-4"
+            /* opacity-0 (not invisible): inline SVG graphics inside reference clipPath/filter ids
+                 declared in this first copy, and visibility:hidden would empty those clips */
+            className="pointer-events-none grid gap-4 opacity-0"
             style={{
               gridTemplateColumns: sizingGridTemplateColumns,
             }}

@@ -11,11 +11,8 @@ import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import SecurityTrack from "@/app/components/impact/batch3/SecurityTrack";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
 
-import encryption from "@/public/integrations/security/encryption.png";
-import pentest from "@/public/integrations/security/pentest.png";
-import soc2 from "@/public/integrations/security/soc2.png";
-import ssoAdmin from "@/public/integrations/security/sso-admin.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/security");
 
@@ -53,14 +50,12 @@ export default function SecurityPage() {
               cta={{ label: "Explore trust center", href: TRUST_CENTER }}
               items={[
                 {
-                  image: soc2,
-                  imageAlt: "SOC 2 Type 2 report cover",
+                  graphic: <VectorCard src="/cards/integrations-security/Soc2.svg" alt="SOC 2 Type 2 report cover" width={400} height={250} />,
                   title: "SOC 2 Type 2 Report",
                   description: "Review the independent assessment of Stadium’s security controls.",
                 },
                 {
-                  image: pentest,
-                  imageAlt: "Penetration test summary",
+                  graphic: <VectorCard src="/cards/integrations-security/Pentest.svg" alt="Penetration test summary" width={400} height={250} />,
                   title: "Penetration Test Report",
                   description: "Understand how independent testing identifies potential vulnerabilities.",
                 },
@@ -114,8 +109,7 @@ export default function SecurityPage() {
           <ImageShowcase
             caption="Data protection"
             title="Encryption and access controls for sensitive data"
-            image={encryption}
-            imageAlt="Stadium data protection settings showing TLS 1.2/1.3 and AES-256 enabled, and who can view sensitive data"
+            graphic={<VectorCard src="/cards/integrations-security/Encryption.svg" alt="Stadium data protection settings showing TLS 1.2/1.3 and AES-256 enabled, and who can view sensitive data" width={1212} height={805} />}
             framed={false}
           />
           <VariableCardGrid
@@ -180,8 +174,7 @@ export default function SecurityPage() {
           title="Control how your organization signs in"
           description="Use SAML 2.0 SSO to connect access to your existing identity provider."
           cta={{ label: "Explore SSO", href: PLATFORM_ROUTES.sso }}
-          image={ssoAdmin}
-          imageAlt="Stadium security settings with require SSO turned on and the supported sign-in methods"
+          graphic={<VectorCard src="/cards/integrations-security/SsoAdmin.svg" alt="Stadium security settings with require SSO turned on and the supported sign-in methods" width={1276} height={805} />}
           framed={false}
         />
       </IntegrationDetail>

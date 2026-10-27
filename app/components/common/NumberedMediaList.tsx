@@ -19,6 +19,8 @@ export type NumberedMediaItem = {
   /* omit for the grey #f8f8f8 placeholder panel */
   image?: StaticImageData;
   imageAlt?: string;
+  /* inline vector card graphic (app/components/cards/*) — used instead of `image` */
+  graphic?: ReactNode;
 };
 
 export type NumberedMediaListProps = {
@@ -68,7 +70,8 @@ export default function NumberedMediaList({
               className="flex flex-col overflow-hidden rounded-3xl border-8 border-white bg-white p-2 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)] sm:flex-row"
             >
               <div className="relative flex min-h-[10.75rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] bg-[#f8f8f8] sm:w-[16.25rem]">
-                {item.image && (
+                {item.graphic ? <div className="w-full">{item.graphic}</div> : null}
+                {!item.graphic && item.image && (
                   <Image
                     src={item.image}
                     alt={item.imageAlt ?? ""}

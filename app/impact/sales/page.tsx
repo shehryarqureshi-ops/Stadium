@@ -17,11 +17,6 @@ import { ChooseGiftGraphic, EnterAddressGraphic, FollowUpGraphic } from "@/app/c
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
-import dashboard from "@/public/impact/sales/dashboard.png";
-import stackApi from "@/public/impact/sales/stack-api.png";
-import stackChrome from "@/public/impact/sales/stack-chrome-extension.png";
-import stackCrm from "@/public/impact/sales/stack-crm.png";
-import stackWebhooks from "@/public/impact/sales/stack-webhooks.png";
 import problemSpend from "@/public/impact/sales/v2/problem-spend.jpg";
 import problemAddresses from "@/public/impact/sales/v2/problem-addresses.jpg";
 import problemStages from "@/public/impact/sales/v2/problem-stages.jpg";
@@ -32,14 +27,15 @@ import journeyDeal from "@/public/impact/sales/v2/journey-deal-progression.jpg";
 import journeyClosedWon from "@/public/impact/sales/v2/journey-closed-won.jpg";
 import journeyRenewal from "@/public/impact/sales/v2/journey-renewal.jpg";
 import journeyWinBack from "@/public/impact/sales/v2/journey-win-back.jpg";
-import visDelivery from "@/public/impact/sales/visibility-delivery.png";
-import visRedemptions from "@/public/impact/sales/visibility-redemptions.png";
-import visSalesActivity from "@/public/impact/sales/visibility-sales-activity.png";
-import visTrackSends from "@/public/impact/sales/visibility-track-sends.png";
 import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
 import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
 import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
 import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import Dashboard from "@/app/components/cards/impact-sales/Dashboard";
+import StackApi from "@/app/components/cards/impact-sales/StackApi";
+import StackChrome from "@/app/components/cards/impact-sales/StackChrome";
+import VectorCard from "@/app/components/cards/VectorCard";
+import VisRedemptions from "@/app/components/cards/impact-sales/VisRedemptions";
 
 export const metadata: Metadata = seoMetadata("/impact/sales");
 
@@ -115,8 +111,7 @@ export default function SalesPage() {
         caption="One gifting platform"
         title="Two ways to gift. One platform."
         description="Automate gifts around key sales moments or let reps send directly when a personal touch makes sense."
-        image={dashboard}
-        imageAlt="Stadium Gifting workspace showing automated sends around sales moments, rep sends, and all gifting activity"
+        graphic={<Dashboard />}
         framed={false}
       />
 
@@ -223,8 +218,7 @@ export default function SalesPage() {
         description="Automate gifting from your CRM and other sales workflows, or give reps tools to send without slowing down."
         steps={[
           {
-            image: stackCrm,
-            imageAlt: "Closed-won thank-you automation: when an opportunity is Closed Won over $25,000, send a welcome box",
+            graphic: <VectorCard src="/cards/impact-sales/StackCrm.svg" alt="Closed-won thank-you automation: when an opportunity is Closed Won over $25,000, send a welcome box" width={648} height={364} />,
             eyebrow: "CRM integrations",
             title: "Trigger gifts from Salesforce and HubSpot",
             content: (
@@ -235,8 +229,7 @@ export default function SalesPage() {
             ),
           },
           {
-            image: stackWebhooks,
-            imageAlt: "Incoming webhook events triggering a gift 1.2 seconds after a deal closed",
+            graphic: <VectorCard src="/cards/impact-sales/StackWebhooks.svg" alt="Incoming webhook events triggering a gift 1.2 seconds after a deal closed" width={648} height={364} />,
             eyebrow: "Webhooks",
             title: "Turn sales events into real-time gifts",
             content: (
@@ -247,8 +240,7 @@ export default function SalesPage() {
             ),
           },
           {
-            image: stackChrome,
-            imageAlt: "Chrome extension sending a gift before a renewal call, from the calendar invite",
+            graphic: <StackChrome />,
             eyebrow: "Chrome extension",
             title: "Let reps gift without leaving their workflow",
             content: (
@@ -259,8 +251,7 @@ export default function SalesPage() {
             ),
           },
           {
-            image: stackApi,
-            imageAlt: "Stadium API request creating a send and the recipient’s gift choice screen",
+            graphic: <StackApi />,
             eyebrow: "Stadium API",
             title: "Build gifting into your own workflows",
             content: (
@@ -282,10 +273,10 @@ export default function SalesPage() {
         narrow
         imageStyle="panel"
         items={[
-          { image: visTrackSends, imageAlt: "Recent sends this week with recipients, gifts, and dates", title: "Track Sends", description: "See what was sent and when." },
-          { image: visRedemptions, imageAlt: "A recipient redeemed her gift within two hours of the send", title: "See Redemptions", description: "Know when recipients engage with their gift." },
-          { image: visDelivery, imageAlt: "Gift box delivery tracker from packed to delivered", title: "Monitor Delivery", description: "Follow gifts through fulfillment and delivery." },
-          { image: visSalesActivity, imageAlt: "Renewal opportunity timeline: gift delivered, meeting booked, stage advanced", title: "Connect to Sales Activity", description: "Keep gifting activity tied to the sales moments and workflows behind it." },
+          { graphic: <VectorCard src="/cards/impact-sales/VisTrackSends.svg" alt="Recent sends this week with recipients, gifts, and dates" width={400} height={250} />, title: "Track Sends", description: "See what was sent and when." },
+          { graphic: <VisRedemptions />, title: "See Redemptions", description: "Know when recipients engage with their gift." },
+          { graphic: <VectorCard src="/cards/impact-sales/VisDelivery.svg" alt="Gift box delivery tracker from packed to delivered" width={400} height={250} />, title: "Monitor Delivery", description: "Follow gifts through fulfillment and delivery." },
+          { graphic: <VectorCard src="/cards/impact-sales/VisSalesActivity.svg" alt="Renewal opportunity timeline: gift delivered, meeting booked, stage advanced" width={400} height={250} />, title: "Connect to Sales Activity", description: "Keep gifting activity tied to the sales moments and workflows behind it." },
         ]}
         footnote={FOOTNOTE}
       />

@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
+import TeamsOnStadium from "@/app/components/cards/enterprise/TeamsOnStadium";
+import VectorCard from "@/app/components/cards/VectorCard";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import LogoBridge from "@/app/components/common/LogoBridge";
@@ -16,21 +18,12 @@ import WhiteBox from "@/app/components/common/WhiteBox";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
-import budgetAllocate from "@/public/enterprise/budget/allocate.png";
-import budgetBilling from "@/public/enterprise/budget/billing.png";
-import budgetOrganize from "@/public/enterprise/budget/organize.png";
 import laurenBerry from "@/public/enterprise/lauren.jpg";
-import savingsReport from "@/public/enterprise/savings-report.png";
-import secEncryption from "@/public/enterprise/security/encryption.png";
-import secGdpr from "@/public/enterprise/security/gdpr.png";
 import secMonitoring from "@/public/enterprise/security/monitoring.png";
-import secSoc2 from "@/public/enterprise/security/soc2.png";
-import secSso from "@/public/enterprise/security/sso.png";
 import supportFulfillment from "@/public/enterprise/support/fulfillment.png";
 import supportLogistics from "@/public/enterprise/support/logistics.png";
 import supportOnboarding from "@/public/enterprise/support/onboarding.png";
 import supportSourcing from "@/public/enterprise/support/sourcing.png";
-import teamsOnStadium from "@/public/enterprise/teams-on-stadium.png";
 import wsBrand from "@/public/enterprise/workspaces/brand.png";
 import wsRoles from "@/public/enterprise/workspaces/roles.png";
 import wsVisibility from "@/public/enterprise/workspaces/visibility.png";
@@ -74,8 +67,7 @@ export default function EnterprisePage() {
                 caption="Measurable impact"
                 title="$15K Average Customer Savings"
                 description="One partner for recognition, swag, gifting, and more. Lower costs, less administrative work."
-                image={savingsReport}
-                imageAlt="Stadium billing: one October invoice of $18,420 across four programs, with 24 hours of admin time saved each month"
+                graphic={<VectorCard src="/cards/enterprise/SavingsReport.svg" alt="Stadium billing: one October invoice of $18,420 across four programs, with 24 hours of admin time saved each month" width={1276} height={805} />}
                 footnote="*Based on vendor consolidation"
               />
               <QuoteSplit
@@ -84,8 +76,8 @@ export default function EnterprisePage() {
                 title="Bring more teams onto one platform"
                 quote="“Stadium is all-encompassing. It’s allowed our team to collaborate. Not just for our internal HR to use, but now we have marketing and sales coming and asking for things to be in our store…”"
                 attribution="Natalie A., Senior Enablement & Engagement Specialist"
-                image={teamsOnStadium}
-                imageAlt="Teams on Stadium: People, Marketing, Sales and Customer Success in one Workspace"
+                graphic={<TeamsOnStadium />}
+                graphicRatio="570 / 547"
               />
             </WhiteBox>
           </ImpactClosing>
@@ -111,9 +103,9 @@ export default function EnterprisePage() {
           title="Control budgets across your organization"
           description="Give teams access to funds while keeping company spend visible and organized."
           items={[
-            { title: "Allocate Funds", description: "Distribute funds across teams and initiatives.", image: budgetAllocate, imageAlt: "Allocating a $120,000 Q4 budget across Sales, Marketing and People", desktopVisualWidth: 265 },
-            { title: "Organize Budgets", description: "Create separate Wallets and reallocate funds as needs change.", image: budgetOrganize, imageAlt: "Three team Wallets, with $2,000 moved from Events to Onboarding", desktopVisualWidth: 265 },
-            { title: "Corporate Billing", description: "Simplify purchasing with a single, centralized invoice.", image: budgetBilling, imageAlt: "A consolidated October invoice of $48,250 across four teams", desktopVisualWidth: 265 },
+            { title: "Allocate Funds", description: "Distribute funds across teams and initiatives.", content: <VectorCard src="/cards/enterprise/BudgetAllocate.svg" alt="Allocating a $120,000 Q4 budget across Sales, Marketing and People" width={265} height={332} />, desktopVisualWidth: 265 },
+            { title: "Organize Budgets", description: "Create separate Wallets and reallocate funds as needs change.", content: <VectorCard src="/cards/enterprise/BudgetOrganize.svg" alt="Three team Wallets, with $2,000 moved from Events to Onboarding" width={265} height={332} />, desktopVisualWidth: 265 },
+            { title: "Corporate Billing", description: "Simplify purchasing with a single, centralized invoice.", content: <VectorCard src="/cards/enterprise/BudgetBilling.svg" alt="A consolidated October invoice of $48,250 across four teams" width={265} height={332} />, desktopVisualWidth: 265 },
           ]}
         />
 
@@ -132,11 +124,11 @@ export default function EnterprisePage() {
           description="Identity, security, privacy, and compliance safeguards protect your data and control access."
           gridColumns={3}
           items={[
-            { image: secSso, imageAlt: "Sign in to a Stadium Workspace with SSO", title: "SSO", description: "Support centralized identity and secure access." },
-            { image: secSoc2, imageAlt: "SOC 2 Type II audit report: security, confidentiality and availability passed", title: "SOC 2 Type 2", description: "Controls for security, confidentiality, and availability." },
-            { image: secEncryption, imageAlt: "A secure connection using TLS 1.2 / 1.3 in transit and AES-256 at rest", title: "Encryption", description: "TLS 1.2/1.3 in transit and AES-256 at rest." },
+            { graphic: <VectorCard src="/cards/enterprise/SecSso.svg" alt="Sign in to a Stadium Workspace with SSO" width={376} height={260} />, title: "SSO", description: "Support centralized identity and secure access." },
+            { graphic: <VectorCard src="/cards/enterprise/SecSoc2.svg" alt="SOC 2 Type II audit report: security, confidentiality and availability passed" width={376} height={260} />, title: "SOC 2 Type 2", description: "Controls for security, confidentiality, and availability." },
+            { graphic: <VectorCard src="/cards/enterprise/SecEncryption.svg" alt="A secure connection using TLS 1.2 / 1.3 in transit and AES-256 at rest" width={376} height={260} />, title: "Encryption", description: "TLS 1.2/1.3 in transit and AES-256 at rest." },
             { image: secMonitoring, imageAlt: "All systems operational with 99.99% uptime and 24/7 monitoring", title: "24/7 Monitoring", description: "Continuous monitoring and incident response." },
-            { image: secGdpr, imageAlt: "A completed privacy request to delete personal data", title: "GDPR", description: "Privacy controls designed to support global requirements." },
+            { graphic: <VectorCard src="/cards/enterprise/SecGdpr.svg" alt="A completed privacy request to delete personal data" width={376} height={260} />, title: "GDPR", description: "Privacy controls designed to support global requirements." },
           ]}
         />
 

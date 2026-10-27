@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 import EveryWay from "../components/EveryWay";
+import FourJobs from "../components/FourJobs";
 import Hero from "../components/Hero";
 import InfraPyramid from "../components/pyramid/InfraPyramid";
 import Occasions from "../components/Occasions";
 import PageClose from "../components/PageClose";
 import ScaleMap from "../components/ScaleMap";
+import SystemRail from "../components/SystemRail";
 import SiteHeader from "../components/SiteHeader";
 import StadiumWay from "../components/StadiumWay";
 import StickyVideo from "../components/StickyVideo";
@@ -33,6 +35,10 @@ export default function NewHome() {
         <Hero />
         <TrustBand />
         <EveryWay />
+        <div className="grid gap-16 py-16 md:gap-24 md:py-24 lg:gap-40 lg:py-40">
+          <FourJobs />
+          <SystemRail />
+        </div>
         <InfraPyramid />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <StadiumWay />

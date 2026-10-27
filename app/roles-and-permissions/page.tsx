@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import PeopleAdmin from "@/app/components/cards/roles-and-permissions/PeopleAdmin";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import LogoBridge from "@/app/components/common/LogoBridge";
@@ -14,7 +15,6 @@ import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared
 import adjust from "@/public/roles-and-permissions/granular-adjust.png";
 import bottlenecks from "@/public/roles-and-permissions/granular-bottlenecks.png";
 import precise from "@/public/roles-and-permissions/granular-access.png";
-import people from "@/public/roles-and-permissions/people-admin.png";
 import walletAccess from "@/public/roles-and-permissions/wallet-access.png";
 
 export const metadata: Metadata = {
@@ -113,8 +113,7 @@ export default function RolesAndPermissionsPage() {
         caption="Members + guests"
         title="Participation stays simple. Access stays limited."
         description="Members participate in the Workspace. Guests receive gifts, with no visibility into company information."
-        image={people}
-        imageAlt="Stadium People page comparing what members and guests can access"
+        graphic={<PeopleAdmin />}
       />
     </ImpactPageShell>
   );

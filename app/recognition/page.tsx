@@ -30,7 +30,9 @@ export default function RecognitionPage() {
         <RecogHero />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <RecogProblem />
-          <RecogSolution />
+          <div id="how-it-works" className="scroll-mt-24">
+            <RecogSolution />
+          </div>
           <RecogOfferings />
           <RecogPlatform />
           <RecogImpact />

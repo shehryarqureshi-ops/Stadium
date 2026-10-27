@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
+import Ownership from "@/app/components/cards/workspaces/Ownership";
+import Personal from "@/app/components/cards/workspaces/Personal";
+import VectorCard from "@/app/components/cards/VectorCard";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
 import TeamHero from "@/app/components/common/TeamHero";
@@ -11,14 +14,9 @@ import WorkspaceTree from "@/app/components/impact/batch3/WorkspaceTree";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
-import brand from "@/public/workspaces-page/brand.png";
 import fragmentation from "@/public/workspaces-page/fragmentation.png";
-import ownership from "@/public/workspaces-page/ownership.png";
-import personal from "@/public/workspaces-page/personal.png";
-import roles from "@/public/workspaces-page/roles.png";
 import together from "@/public/workspaces-page/together.png";
 import visibility from "@/public/workspaces-page/visibility.png";
-import wallets from "@/public/workspaces-page/wallets.png";
 
 export const metadata: Metadata = seoMetadata("/workspaces");
 
@@ -56,8 +54,7 @@ export default function WorkspacesPage() {
               caption="Built for change"
               title="Ownership stays clear through every team change"
               description="When people leave or responsibilities shift, company access and resources stay with your organization instead of one individual account."
-              image={ownership}
-              imageAlt="Workspace ownership transferred from a departed owner to the Head of People, with wallets, shops and the asset library staying company-owned"
+              graphic={<Ownership />}
             />
           </ImpactClosing>
         }
@@ -80,8 +77,7 @@ export default function WorkspacesPage() {
           caption="Personal Workspace"
           title="Your own Workspace for individual work"
           description="Switch to your personal Workspace at any time."
-          image={personal}
-          imageAlt="Switching from the Acme Corp company Workspace to a personal Workspace with Stadium Points and recent orders"
+          graphic={<Personal />}
         />
 
         <VariableCardGrid
@@ -91,9 +87,9 @@ export default function WorkspacesPage() {
           description="Access, budgets, and brand standards stay set by the company. Teams get what they need to execute."
           gridColumns={3}
           items={[
-            { image: roles, imageAlt: "A Manager role with toggles for sending gifts, approving team spend and managing billing", title: "Roles & Permissions", description: "Each person gets precise access, based on their responsibilities." },
-            { image: wallets, imageAlt: "Company spend of $82,500 split across Sales Kickoff, Onboarding and Brand Events Wallets", title: "Wallets", description: "Funds separate by team or initiative, with full visibility into company spend." },
-            { image: brand, imageAlt: "An approved Asset Library with primary, reversed and mono logos", title: "Brand Control", description: "Teams pull approved assets directly from your Asset Library." },
+            { graphic: <VectorCard src="/cards/workspaces/Roles.svg" alt="A Manager role with toggles for sending gifts, approving team spend and managing billing" width={389.333} height={250} />, title: "Roles & Permissions", description: "Each person gets precise access, based on their responsibilities." },
+            { graphic: <VectorCard src="/cards/workspaces/Wallets.svg" alt="Company spend of $82,500 split across Sales Kickoff, Onboarding and Brand Events Wallets" width={389.333} height={250} />, title: "Wallets", description: "Funds separate by team or initiative, with full visibility into company spend." },
+            { graphic: <VectorCard src="/cards/workspaces/Brand.svg" alt="An approved Asset Library with primary, reversed and mono logos" width={389.333} height={250} />, title: "Brand Control", description: "Teams pull approved assets directly from your Asset Library." },
           ]}
         />
       </ImpactPageShell>

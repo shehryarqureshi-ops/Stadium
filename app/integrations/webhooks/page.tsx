@@ -9,9 +9,8 @@ import PillTabs from "@/app/components/common/PillTabs";
 import StepCards from "@/app/components/common/StepCards";
 import WebhookSequence from "@/app/components/impact/batch3/WebhookSequence";
 import { LINKS } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
 
-import admin from "@/public/integrations/webhooks/admin.png";
-import stepCreate from "@/public/integrations/webhooks/step-create.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/webhooks");
 
@@ -45,8 +44,7 @@ export default function WebhooksPage() {
               {
                 title: "Create an Automation",
                 description: "Select ‘Webhook’ as your automation type.",
-                image: stepCreate,
-                imageAlt: "New automation dialog with Webhook selected as the automation type",
+                content: <VectorCard src="/cards/integrations-webhooks/StepCreate.svg" alt="New automation dialog with Webhook selected as the automation type" width={265} height={332} />,
                 desktopVisualWidth: 265,
               },
               { title: "Configure Your Gift" },
@@ -69,8 +67,7 @@ export default function WebhooksPage() {
           caption="Custom workflows"
           title="Go beyond pre-built integrations"
           description="Use webhooks to automate sends from your existing systems."
-          image={admin}
-          imageAlt="Webhook automation with an endpoint URL, a secret, and a list of recent deliveries from an ATS"
+          graphic={<VectorCard src="/cards/integrations-webhooks/Admin.svg" alt="Webhook automation with an endpoint URL, a secret, and a list of recent deliveries from an ATS" width={1276} height={805} />}
           framed={false}
         />
 

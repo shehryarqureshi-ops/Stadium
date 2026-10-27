@@ -15,12 +15,6 @@ import OpenSpatialCanvas from "@/app/components/impact/OpenSpatialCanvas";
 import { LINKS, TEAM_ROUTES } from "@/app/components/impact/shared";
 
 import problemTeams from "@/public/impact/overview/problem-teams.jpg";
-import workspace from "@/public/impact/overview/workspace.png";
-import budgets from "@/public/impact/overview/budgets.png";
-import saveTime from "@/public/impact/overview/scale-save-time.png";
-import connect from "@/public/impact/overview/scale-connect.png";
-import global from "@/public/impact/overview/scale-global.png";
-import vendors from "@/public/impact/overview/scale-vendors.png";
 import tabHr from "@/public/impact/overview/tab-hr.jpg";
 import tabMarketing from "@/public/impact/overview/tab-marketing.jpg";
 import tabSales from "@/public/impact/overview/tab-sales.jpg";
@@ -28,6 +22,9 @@ import tabCx from "@/public/impact/overview/tab-cx.jpg";
 import tabLeadership from "@/public/impact/overview/tab-leadership.jpg";
 import tabOffice from "@/public/impact/overview/tab-office-admin.jpg";
 import tabFinance from "@/public/impact/overview/tab-finance.jpg";
+import Workspace from "@/app/components/cards/impact-overview/Workspace";
+import VectorCard from "@/app/components/cards/VectorCard";
+import ScaleGlobal from "@/app/components/cards/impact-overview/ScaleGlobal";
 
 export const metadata: Metadata = seoMetadata("/impact");
 
@@ -97,8 +94,7 @@ export default function ImpactPage() {
           caption="One company workspace"
           title="One place to run it all"
           description="Give every team the space to run its own programs, while keeping company-wide visibility and control in one place."
-          image={workspace}
-          imageAlt="Acme Corp company workspace with People, Marketing, Sales, and Customer Success team spaces"
+          graphic={<Workspace />}
         />
 
         <SplitFeature
@@ -106,8 +102,7 @@ export default function ImpactPage() {
           caption="Centralized budgets"
           title="Fund every team from one place"
           description="Allocate budgets to team Wallets, set permissions, and track spend across the organization—all from one place."
-          image={budgets}
-          imageAlt="Allocating $20,000 from a $250,000 company wallet to the Sales wallet for sales managers"
+          graphic={<VectorCard src="/cards/impact-overview/Budgets.svg" alt="Allocating $20,000 from a $250,000 company wallet to the Sales wallet for sales managers" width={612} height={482} />}
         />
 
         <VariableCardGrid
@@ -118,10 +113,10 @@ export default function ImpactPage() {
           gridColumns={2}
           narrow
           items={[
-            { image: saveTime, imageAlt: "A monthly snack box set to repeat automatically", title: "Save Time", description: "Automate recurring sends and programs." },
-            { image: connect, imageAlt: "12 systems synced, including Workday, Salesforce, HubSpot, and Greenhouse", title: "Connect Your Systems", description: "Connect Stadium with your HRIS, CRM, and other business systems." },
-            { image: global, imageAlt: "World map with deliveries in 38 countries", title: "Reach People Globally", description: "Fulfill and deliver across 170+ countries." },
-            { image: vendors, imageAlt: "Separate swag, 3PL, and courier vendors replaced by one Stadium partner", title: "Consolidate Vendors", description: "Reduce the cost and complexity of separate vendors, shipping, fulfillment, and storage." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleSaveTime.svg" alt="A monthly snack box set to repeat automatically" width={400} height={250} />, title: "Save Time", description: "Automate recurring sends and programs." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleConnect.svg" alt="12 systems synced, including Workday, Salesforce, HubSpot, and Greenhouse" width={400} height={250} />, title: "Connect Your Systems", description: "Connect Stadium with your HRIS, CRM, and other business systems." },
+            { graphic: <ScaleGlobal />, title: "Reach People Globally", description: "Fulfill and deliver across 170+ countries." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleVendors.svg" alt="Separate swag, 3PL, and courier vendors replaced by one Stadium partner" width={400} height={250} />, title: "Consolidate Vendors", description: "Reduce the cost and complexity of separate vendors, shipping, fulfillment, and storage." },
           ]}
           footnote="Less admin. Lower costs. Fewer things to worry about."
         />

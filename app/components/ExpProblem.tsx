@@ -9,19 +9,19 @@ const items = [
     image: prob1,
     title: "One person does all the work",
     description:
-      "Managers and executive assistants become accidental event planners, on top of their packed schedules.",
+      "Managers and EAs become accidental event planners, on top of their packed schedules.",
   },
   {
     image: prob2,
-    title: "Generic events don't stick",
+    title: "Generic events fade fast",
     description:
-      "Nobody remembers the icebreaker they shared, but a well-run event still comes up months later. ",
+      "Icebreakers are forgotten fast, but a well-planned event still comes up weeks later.",
   },
   {
     image: prob3,
-    title: "Remote teams miss out on connection",
+    title: "Remote teams drift apart",
     description:
-      "Meetings are just status updates, with no room left for bonding.",
+      "Status calls squeezed between agenda items don't leave room for real conversation.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function ExpProblem() {
     <ProblemSection
       caption="The problem"
       captionColor="#CB495F"
-      title="Planning a team event takes hours you don't have"
+      title="Team building takes work"
       description="No agenda, no structure, and no way to know who'll stick around."
       items={items}
     />

@@ -20,6 +20,8 @@ export type NumberedOffering = {
 };
 
 export type NumberedOfferingsProps = {
+  /* optional anchor id — deep-linkable from the header menu (e.g. /impact/finance#budget) */
+  id?: string;
   caption?: string;
   title: string;
   description?: string;
@@ -30,13 +32,14 @@ const ACTIVE_SHADOW =
   "shadow-[0px_20px_20px_-2px_rgba(0,0,0,0.15),0px_6.383px_6.383px_-1.5px_rgba(0,0,0,0.12),0px_2.415px_2.415px_-1px_rgba(0,0,0,0.11),0px_0.796px_0.796px_-0.5px_rgba(0,0,0,0.1)]";
 
 export default function NumberedOfferings({
+  id,
   caption,
   title,
   description,
   items,
 }: NumberedOfferingsProps) {
   return (
-    <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
+    <section id={id} className="scroll-mt-20 px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto grid w-full max-w-content grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_41.5625rem] lg:gap-[3.75rem]">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionIntro caption={caption} title={title} description={description} align="left" />

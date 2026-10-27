@@ -14,11 +14,9 @@ import GuardrailsTray from "@/app/components/impact/GuardrailsTray";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
-import companyOverview from "@/public/impact/leadership/company-overview.png";
-import scaleCountries from "@/public/impact/leadership/scale-countries.png";
-import scaleInfrastructure from "@/public/impact/leadership/scale-infrastructure.png";
-import scaleIntegrations from "@/public/impact/leadership/scale-integrations.png";
-import teamsWorkspace from "@/public/impact/leadership/teams-workspace.png";
+import VectorCard from "@/app/components/cards/VectorCard";
+import CompanyOverview from "@/app/components/cards/impact-leadership/CompanyOverview";
+import TeamsWorkspace from "@/app/components/cards/impact-leadership/TeamsWorkspace";
 
 import problemTools from "@/public/impact/leadership/v2/problem-tools.jpg";
 import problemBudgets from "@/public/impact/leadership/v2/problem-budgets.jpg";
@@ -105,15 +103,17 @@ export default function LeadershipPage() {
       <TeamDivider />
 
       <ImageShowcase
+        id="one-platform"
         caption="One infrastructure"
         title="Bring every team onto one platform"
-        description="Bring programs across HR, Marketing, Sales, and CX onto one platform, with Finance and leadership getting the visibility and control they need."
-        image={teamsWorkspace}
+        description="Bring programs across HR, Marketing, Sales, and CX onto one platform, with Finance and leadership getting the visibility and control they need. Stadium’s SOC 2 compliance provides a foundation for security and governance across teams."
+        graphic={<TeamsWorkspace />}
         imageAlt="Stadium Teams workspace showing HR & People, Marketing, Sales, and Customer Experience on one platform with programs and spend per team"
         framed={false}
       />
 
       <ChecklistCards
+        id="governance"
         caption="Centralized governance"
         title="Give teams autonomy. Keep company-wide control."
         description="Set budgets, permissions, and brand standards centrally while teams manage their own programs."
@@ -203,6 +203,7 @@ export default function LeadershipPage() {
       />
 
       <VariableCardGrid
+        id="scale"
         caption="Built to scale"
         captionColor="#16171b"
         title="Grow programs without increasing complexity"
@@ -210,9 +211,9 @@ export default function LeadershipPage() {
         gridColumns={3}
         imageStyle="panel"
         items={[
-          { image: scaleIntegrations, imageAlt: "Integrations grid with Workday, Salesforce, HubSpot, BambooHR, Greenhouse, and SAP", title: "100+ Integrations", description: "Connect Stadium to the systems and workflows your teams already use." },
-          { image: scaleCountries, imageAlt: "Ship-to country picker searching 170+ countries", title: "170+ Countries", description: "Support employees, customers, partners, and prospects around the world." },
-          { image: scaleInfrastructure, imageAlt: "New locations, programs, and teams added on Stadium with zero new vendors needed", title: "One Global Infrastructure", description: "Add teams, programs, audiences, and locations without adding disconnected vendors and workflows." },
+          { graphic: <VectorCard src="/cards/impact-leadership/ScaleIntegrations.svg" alt="Integrations grid with Workday, Salesforce, HubSpot, BambooHR, Greenhouse, and SAP" width={389} height={250} />, title: "100+ Integrations", description: "Connect Stadium to the systems and workflows your teams already use." },
+          { graphic: <VectorCard src="/cards/impact-leadership/ScaleCountries.svg" alt="Ship-to country picker searching 170+ countries" width={390} height={250} />, title: "170+ Countries", description: "Support employees, customers, partners, and prospects around the world." },
+          { graphic: <VectorCard src="/cards/impact-leadership/ScaleInfrastructure.svg" alt="New locations, programs, and teams added on Stadium with zero new vendors needed" width={390} height={250} />, title: "One Global Infrastructure", description: "Add teams, programs, audiences, and locations without adding disconnected vendors and workflows." },
         ]}
       />
 
@@ -220,7 +221,7 @@ export default function LeadershipPage() {
         caption="Company-wide visibility"
         title="See engagement across every team"
         description="Get one view of programs, activity, budgets, and spend."
-        image={companyOverview}
+        graphic={<CompanyOverview />}
         imageAlt="Stadium Company overview showing live programs, sends, spend against funding, and spend by team"
         framed={false}
         footnote="Manage Budgets. Monitor Activity. See Spend Across Teams. See Programs Across Teams."

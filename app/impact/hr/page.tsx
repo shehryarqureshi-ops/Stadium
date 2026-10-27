@@ -21,9 +21,6 @@ import problem1 from "@/public/impact/hr/v2/problem-recognition.jpg";
 import problem2 from "@/public/impact/hr/v2/problem-fragmented.jpg";
 import problem3 from "@/public/impact/hr/v2/problem-manual.jpg";
 import problem4 from "@/public/impact/hr/v2/problem-scale.jpg";
-import recogSlack from "@/public/impact/hr/recognition-slack.png";
-import recogFeed from "@/public/impact/hr/recognition-feed.png";
-import recogPoints from "@/public/impact/hr/recognition-points.png";
 import tabOnboarding from "@/public/impact/hr/v2/journey-onboarding.jpg";
 import tabMilestone from "@/public/impact/hr/v2/journey-milestone.jpg";
 import tabCare from "@/public/impact/hr/v2/journey-care.jpg";
@@ -36,7 +33,10 @@ import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
 import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
 import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
 import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
-import workspace from "@/public/impact/hr/workspace.png";
+import RecognitionSlack from "@/app/components/cards/impact-hr/RecognitionSlack";
+import RecognitionFeed from "@/app/components/cards/impact-hr/RecognitionFeed";
+import RecognitionPoints from "@/app/components/cards/impact-hr/RecognitionPoints";
+import Workspace from "@/app/components/cards/impact-hr/Workspace";
 
 export const metadata: Metadata = seoMetadata("/impact/hr");
 
@@ -139,14 +139,14 @@ export default function HrPage() {
       />
 
       <StickyStepCards
+        id="recognition"
         caption="Everyday recognition"
         captionColor="#16171b"
         title="Make recognition part of your culture"
         description="Give people an easy way to celebrate great work, reinforce company values, and build morale through everyday recognition."
         steps={[
           {
-            image: recogSlack,
-            imageAlt: "Giving kudos with the Stadium command in a Slack channel",
+            graphic: <RecognitionSlack />,
             title: "Where your team already talks",
             content: (
               <FeatureDetails
@@ -157,8 +157,7 @@ export default function HrPage() {
             ),
           },
           {
-            image: recogFeed,
-            imageAlt: "Recognition insights: 1,284 kudos this month and top company values",
+            graphic: <RecognitionFeed />,
             title: "See recognition in real time",
             content: (
               <FeatureDetails
@@ -169,8 +168,7 @@ export default function HrPage() {
             ),
           },
           {
-            image: recogPoints,
-            imageAlt: "Kudos turning into 3,250 points redeemed for tech accessories",
+            graphic: <RecognitionPoints />,
             title: "Make recognition more rewarding",
             content: (
               <FeatureDetails
@@ -278,13 +276,13 @@ export default function HrPage() {
         caption="Company workspace"
         title="See your employee programs in one place"
         description="Manage programs, activity, and spending from one Workspace, with visibility across the employee experience."
-        image={workspace}
-        imageAlt="Stadium People programs workspace showing onboarding kits, recognition, work anniversaries, wellness boxes, and recent activity"
+        graphic={<Workspace />}
         framed={false}
         footnote="See Team Activity. Track Company Spending. Keep Programs Visible."
       />
 
       <NumberedOfferings
+        id="engagement"
         caption="Employee engagement"
         title="One platform. More ways to engage your people."
         description="Use Stadium across recognition, swag, snacks, and gifting as your employee programs evolve."

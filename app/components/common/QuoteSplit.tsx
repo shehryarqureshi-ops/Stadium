@@ -8,6 +8,7 @@
    `reverse` swaps the columns. */
 
 import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 
 import PillLink from "./PillLink";
 import SectionIntro from "./SectionIntro";
@@ -21,6 +22,9 @@ export type QuoteSplitProps = {
   logo?: { src: string; alt: string; width: number; height: number };
   cta?: { label: string; href: string };
   image?: StaticImageData;
+  /* inline vector card graphic (app/components/cards/*) — used instead of `image`; `graphicRatio` sets the box ("w / h") */
+  graphic?: ReactNode;
+  graphicRatio?: string;
   imageAlt?: string;
   reverse?: boolean;
   /* no section gutters — the parent (e.g. WhiteBox) supplies them */
@@ -36,6 +40,8 @@ export default function QuoteSplit({
   logo,
   cta,
   image,
+  graphic,
+  graphicRatio = "570 / 739",
   imageAlt = "",
   reverse = false,
   flush = false,
@@ -92,10 +98,11 @@ export default function QuoteSplit({
 
         <div
           data-animation="reveal"
-          style={{ aspectRatio: image ? `${image.width} / ${image.height}` : "570 / 739" }}
+          style={{ aspectRatio: graphic ? graphicRatio : image ? `${image.width} / ${image.height}` : "570 / 739" }}
           className="relative w-full overflow-hidden rounded-3xl bg-pricing-cell lg:aspect-auto! lg:w-[35.625rem] lg:shrink-0"
         >
-          {image && (
+          {graphic ? <div className="absolute inset-0">{graphic}</div> : null}
+          {!graphic && image && (
             <Image
               src={image}
               alt={imageAlt}

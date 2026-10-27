@@ -39,7 +39,10 @@ type Team = {
 const TAB_IDS: Record<string, Record<string, string>> = {
   "Human Resources": {
     "New Hire Onboarding": "onboarding",
+    "Employee-to-Employee Recognition": "recognition", // "Everyday recognition" section (StickyStepCards id)
+    "All-Hands & Team Events": "engagement", // "One platform. More ways to engage your people." (NumberedOfferings id)
     "Work Anniversaries": "anniversaries",
+    "Company Milestones": "anniversaries",
     "Wellness Programs": "wellness",
     "Offboarding & Farewells": "offboarding",
     "Birthdays & Life Moments": "birthdays",
@@ -50,21 +53,44 @@ const TAB_IDS: Record<string, Record<string, string>> = {
     "Account-Based Marketing": "abm-gifts",
     "Webinar Gifts": "webinar-gifts",
     "Product Launches": "product-launches",
+    "Influencer Campaigns": "campaign-experiences", // ImageShowcase "Bring your campaign experiences together"
+    Rebrands: "brand-control", // ChecklistCards "Keep your brand consistent at scale"
   },
   Sales: {
     "Deal Acceleration": "deal-progression",
+    "Account-Based Engagement": "prospecting",
     "Closed-Won Gifting": "closed-won",
+    "Account Manager Incentives": "renewal",
   },
   "Customer Experience": {
     "Welcome Gifts": "onboarding",
     "Loyalty Programs": "renewal-loyalty",
     "Renewal Gifting": "renewal-loyalty",
-    "Surprise & Delight Gifting": "appreciation",
+    "Referral Programs": "appreciation",
+    "Product Launches": "customer-events",
+    "Re-Engagement Campaigns": "renewal-loyalty",
+    "Surprise & Delight Gifting": "resolution",
+  },
+  Leadership: {
+    "Employee Morale": "recognition",
+    "Lower Voluntary Turnover": "recognition",
+    "Brand Reputation": "governance",
+    "Approval Workflows & Governance": "governance",
+    "Security & Compliance": "one-platform", // ImageShowcase "Bring every team onto one platform"
+    "Global Equity": "scale",
+    "Simplified Procurement": "scale",
+  },
+  Finance: {
+    "Vendor Consolidation": "vendors",
+    "Budget Control & Allocation": "budget",
+    "Spend Visibility": "budget", // ChecklistCards "Give teams funds. Keep Finance in control." (See spend as it happens)
+    "Security & Compliance": "reporting", // ImageShowcase "The records you need, when you need them"
   },
   "Office Admins": {
     "Meeting Snack Trays": "company-events",
     "Offsite Room Drops": "company-events",
     "Executive Gifting": "executive-requests",
+    "Client & Partner Gifting": "executive-requests",
   },
 };
 

@@ -25,22 +25,22 @@ const ITEMS: VariableCardGridItem[] = [
   {
     image: allHands,
     title: "All-Hands & Kickoffs",
-    description: "An all-hands the whole company actually pays attention to.",
+    description: "Real activities, structured time, and a clear agenda open the quarter with energy.",
   },
   {
     image: offsites,
     title: "Offsites & Retreats",
-    description: "Fill the trip with activities worth leaving the office for.",
-  },
-  {
-    image: socials,
-    title: "Quarterly Socials",
-    description: "Keep the team connected with a hosted event each quarter.",
+    description: "A real host leads the activities that make the trip worth leaving the office for.",
   },
   {
     image: justBecause,
     title: "Just Because",
     description: "No milestone required to get the team together.",
+  },
+  {
+    image: socials,
+    title: "Quarterly Socials",
+    description: "Keep the team connected with a hosted event each quarter.",
   },
 ];
 

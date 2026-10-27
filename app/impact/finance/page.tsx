@@ -17,7 +17,8 @@ import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
 
-import financeRecords from "@/public/impact/finance/finance-records.png";
+import VectorCard from "@/app/components/cards/VectorCard";
+import Reporting from "@/app/components/cards/impact-finance/Reporting";
 import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
 import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
 import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
@@ -27,9 +28,6 @@ import problemBudgets from "@/public/impact/finance/v2/problem-budgets.jpg";
 import problemInvoices from "@/public/impact/finance/v2/problem-invoices.jpg";
 import problemReconciling from "@/public/impact/finance/v2/problem-reconciling.jpg";
 import problemVendors from "@/public/impact/finance/v2/problem-vendors.jpg";
-import reporting from "@/public/impact/finance/reporting.png";
-import simplifiedBilling from "@/public/impact/finance/simplified-billing.png";
-import vendorConsolidation from "@/public/impact/finance/vendor-consolidation.png";
 
 export const metadata: Metadata = seoMetadata("/impact/finance");
 
@@ -99,6 +97,7 @@ export default function FinancePage() {
       <TeamDivider />
 
       <ChecklistCards
+        id="budget"
         caption="Budget control"
         title="Give teams funds. Keep Finance in control."
         description="Set budgets and guardrails upfront, then give teams the freedom to spend within them."
@@ -117,14 +116,14 @@ export default function FinancePage() {
       />
 
       <StickyStepCards
+        id="vendors"
         caption="Less to manage"
         captionColor="#16171b"
         title="Consolidate the work behind engagement spend"
         description="Bring vendors, billing, and financial records together so there’s less for Finance to manage across teams and programs."
         steps={[
           {
-            image: vendorConsolidation,
-            imageAlt: "Four separate vendor contracts replaced by one Stadium master services agreement",
+            graphic: <VectorCard src="/cards/impact-finance/VendorConsolidation.svg" alt="Four separate vendor contracts replaced by one Stadium master services agreement" width={648} height={364} />,
             eyebrow: "Vendor consolidation",
             title: "Turn multiple vendors into one",
             content: (
@@ -135,8 +134,7 @@ export default function FinancePage() {
             ),
           },
           {
-            image: financeRecords,
-            imageAlt: "Transaction list with an order record showing cost center, GL code, invoice, and attached receipt",
+            graphic: <VectorCard src="/cards/impact-finance/FinanceRecords.svg" alt="Transaction list with an order record showing cost center, GL code, invoice, and attached receipt" width={648} height={364} />,
             eyebrow: "Finance records",
             title: "Keep the details within reach",
             content: (
@@ -147,8 +145,7 @@ export default function FinancePage() {
             ),
           },
           {
-            image: simplifiedBilling,
-            imageAlt: "Zero invoices to chase: one monthly invoice paid automatically",
+            graphic: <VectorCard src="/cards/impact-finance/SimplifiedBilling.svg" alt="Zero invoices to chase: one monthly invoice paid automatically" width={648} height={364} />,
             eyebrow: "Simplified billing",
             title: "Spend less time chasing invoices",
             content: (
@@ -169,10 +166,11 @@ export default function FinancePage() {
       />
 
       <ImageShowcase
+        id="reporting"
         caption="Finance-ready reporting"
         title="The records you need, when you need them"
-        description="Keep transactions, invoices, and spend records accessible for reconciliation, reporting, and audits."
-        image={reporting}
+        description="Keep transactions, invoices, and spend records accessible for reconciliation, reporting, and audits. Stadium’s SOC 2 compliance provides added assurance around the security controls behind your financial records."
+        graphic={<Reporting />}
         imageAlt="Stadium Reporting view listing transactions across teams, with an invoice detail panel and a spend-records export confirmation"
         framed={false}
         footnote="View transactions across teams. Access invoices in one place. Export records for reporting. Track spend across programs."

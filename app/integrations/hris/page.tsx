@@ -13,12 +13,9 @@ import TeamHero from "@/app/components/common/TeamHero";
 import HrisMoments from "@/app/components/impact/batch3/HrisMoments";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
+import DataSync from "@/app/components/cards/integrations-hris/DataSync";
 
-import automated from "@/public/integrations/hris/automated-programs.png";
-import caseStudy from "@/public/integrations/hris/case-study.png";
-import dataSync from "@/public/integrations/hris/data-sync.png";
-import hrAdmin from "@/public/integrations/hris/hr-admin.png";
-import stepConnect from "@/public/integrations/hris/step-connect.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/hris");
 
@@ -57,8 +54,8 @@ export default function HrisPage() {
               quote="“It’s been super seamless and hands-off. All I have to do is go in and create a new automation. I don’t have to ask for a distribution list or ask for sizes.”"
               attribution="Communications Manager, Kentro"
               cta={{ label: "Read case study", href: PLATFORM_ROUTES.proof }}
-              image={caseStudy}
-              imageAlt="A November calendar and a Work anniversaries automation synced from the HRIS"
+              graphicRatio="570 / 617"
+              graphic={<VectorCard src="/cards/integrations-hris/CaseStudy.svg" alt="A November calendar and a Work anniversaries automation synced from the HRIS" width={570} height={617} />}
             />
             <LogoBridge
               caption="More ways to connect"
@@ -73,8 +70,7 @@ export default function HrisPage() {
           caption="Supported platforms"
           title="Connect the HR systems you already use"
           description="Bring employee and candidate data directly into Stadium."
-          image={hrAdmin}
-          imageAlt="Stadium Integrations page showing synced employees and candidates and connectable HR platforms"
+          graphic={<VectorCard src="/cards/integrations-hris/HrAdmin.svg" alt="Stadium Integrations page showing synced employees and candidates and connectable HR platforms" width={1240} height={767} />}
         />
 
         <SplitFeature
@@ -82,16 +78,14 @@ export default function HrisPage() {
           caption="Automated programs"
           title="Spend less time tracking candidate and employee milestones"
           description="Automatically send gifts for interviews, onboarding, birthdays, and work anniversaries, so you never miss a moment."
-          image={automated}
-          imageAlt="An October calendar with welcome kits, birthdays, and anniversaries sent automatically"
+          graphic={<VectorCard src="/cards/integrations-hris/AutomatedPrograms.svg" alt="An October calendar with welcome kits, birthdays, and anniversaries sent automatically" width={580} height={450} />}
         />
 
         <SplitFeature
           caption="Data sync"
           title="Stop maintaining employee lists by hand"
           description="Employee data automatically stays current as details change in your HR system."
-          image={dataSync}
-          imageAlt="An employee record with job title updated from the HRIS"
+          graphic={<DataSync alt="An employee record with job title updated from the HRIS" />}
         />
 
         <StepCards
@@ -103,8 +97,7 @@ export default function HrisPage() {
             {
               title: <>Connect your<br />HRIS or ATS</>,
               description: "Select your HR platform and link it to Stadium.",
-              image: stepConnect,
-              imageAlt: "Selecting an HR platform to connect",
+              content: <VectorCard src="/cards/integrations-hris/StepConnect.svg" alt="Selecting an HR platform to connect" width={265} height={332} />,
               desktopVisualWidth: 265,
             },
             { title: <>Set Up<br />Automation</> },

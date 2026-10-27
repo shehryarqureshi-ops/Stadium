@@ -2142,3 +2142,33 @@ leader (36px horizontal, then to the dot) + white dot on the slice. WebGL canvas
   render. Transition is a 1s true crossfade (incoming on top, outgoing stays
   opaque beneath); the next clip is pre-buffered hidden. Pausing off-screen
   freezes the clock with the video.
+
+## /new-home — "4 jobs" tray, system rail, People team diagram (2026-10-27)
+
+Source: Figma `n9SjmDjzB1PeZAYJ5w43fr` — `6912:12299` (4 jobs · A1 tray of four cards),
+`6912:12325` (HRIS/GEI/CRM · B2 system rail), `6765:3104` → `6912:12450` (People scene
+"who works for you"). Only desktop frames exist; tablet / mobile are derived.
+Code: `FourJobs.tsx`, `SystemRail.tsx`, `pyramid/PeopleDiagram.tsx` (replaces the old
+People card carousel). Page order: Hero · TrustBand · EveryWay · **FourJobs · SystemRail** ·
+InfraPyramid · …. Exports in `public/new-home/{system,people}/`.
+
+**Tokens (`globals.css` `@theme`):** colors `tray #f2f2f2`, `node #fefefe`, `node-hairline`,
+`people-night #0b0e14`, `people-avatar #232833` (+ `-a #2a2e36`, `-b #353a44`), `people-lead
+#1d4fa0`, `people-edge`; `shadow-node` 0 3 6 .06; radii `tray 32`, `job-card 24`, `node 16`,
+`core 28`; `container-rail-tray 1240`; type `section-title` 55/60 −1.2, `job-num` 56/56 −1.6,
+`job-title` 25/30 −0.3, `node-title` 22/28, `core-title` 24/30, `rail-label` 12/17.
+
+**4 jobs:** header (12px eyebrow + 55px headline) over a tray (p16, r32) of four white r24
+cards (inner pad 32/36, numeral `#cdced0`, title `#16171b`, body `#6b6c71` 15/22).
+1 col mobile · 2×2 tablet · 4-up desktop. Headline steps `display-sm` → `heading-xl` → `section-title`.
+
+**System rail:** tray 1240 (bleeds 20px past the 1200 content), p60. Row = HRIS node 240 ·
+arrow col 140 · Stadium core (flex, h246) · arrow col 140 · CRM node 240, gap 14; down arrow +
+five program chips below. HRIS logo strip is clipped + edge-faded (Workday cut on the left,
+Rippling on the right) exactly as drawn. From `wide` (1300) it's the horizontal grid; below, the
+parts stack and the sideways arrows rotate to point down.
+
+**People diagram:** 1200×388 stage, drawn 1:1 from `lg` and scaled fluidly (`u()` = Figma px
+→ `calc(n * 100cqw / 1200)`); below `lg` a compact flow (team → lead on one row, 2-col
+specialist grid; 4-col on tablet) sized to fit the ~400px the pinned panel leaves on a phone.
+Portraits are the board's placeholders. Specialist role badges are the Figma exports.

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import CalloutCard from "@/app/components/common/CalloutCard";
 import HorizontalCarousel from "@/app/components/common/HorizontalCarousel";
+import Footprint from "@/app/components/cards/csr/Footprint";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import IntegrationDetail from "@/app/components/common/IntegrationDetail";
 import SplitFeature from "@/app/components/common/SplitFeature";
@@ -9,7 +10,6 @@ import CsrImpact from "@/app/components/impact/batch3/CsrImpact";
 import { LINKS } from "@/app/components/impact/shared";
 
 import catalogFilters from "@/public/csr/catalog-filters.png";
-import footprint from "@/public/csr/footprint.png";
 import giveBack from "@/public/csr/give-back.png";
 import madeToOrder from "@/public/csr/made-to-order.png";
 import statement from "@/public/csr/statement.png";
@@ -87,8 +87,7 @@ export default function CsrPage() {
         caption="Global fulfillment"
         title="Reduce the footprint of global programs"
         description="Local fulfillment across 170+ countries means fewer miles in transit and lower emissions."
-        image={footprint}
-        imageAlt="Fulfillment footprint map of local hubs: 92% shipped locally, 340 km average distance, 170+ countries"
+        graphic={<Footprint />}
         framed={false}
         footnote="Our packaging uses recycled materials and non-toxic colors."
       />

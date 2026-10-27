@@ -10,11 +10,15 @@ import PillLink from "./PillLink";
 import SectionIntro from "./SectionIntro";
 
 export type ImageShowcaseProps = {
+  /* optional anchor id — deep-linkable from the header menu (e.g. /impact/finance#budget) */
+  id?: string;
   caption?: string;
   title: string;
   description?: string;
-  image: StaticImageData;
-  imageAlt: string;
+  image?: StaticImageData;
+  /* inline vector card graphic (app/components/cards/*) — used instead of `image` */
+  graphic?: ReactNode;
+  imageAlt?: string;
   footnote?: ReactNode;
   /* dark pill between the intro and the image (e.g. /integrations/security "Explore SSO") */
   cta?: { label: string; href: string };
@@ -25,18 +29,20 @@ export type ImageShowcaseProps = {
 };
 
 export default function ImageShowcase({
+  id,
   caption,
   title,
   description,
   image,
-  imageAlt,
+  graphic,
+  imageAlt = "",
   footnote,
   framed = true,
   cta,
   flush = false,
 }: ImageShowcaseProps) {
   return (
-    <section className={flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg"}>
+    <section id={id} className={`scroll-mt-20 ${flush ? "" : "px-section-x-sm md:px-section-x-md lg:px-section-x-lg"}`}>
       <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10">
         <div className="flex flex-col items-center gap-5">
           <SectionIntro caption={caption} title={title} description={description} />
@@ -55,13 +61,16 @@ export default function ImageShowcase({
               : ""
           }`}
         >
-          <Image
-            src={image}
-            alt={imageAlt}
-            quality={100}
-            sizes="(min-width: 1440px) 1260px, 92vw"
-            className="h-auto w-full"
-          />
+          {graphic ??
+            (image && (
+            <Image
+              src={image}
+              alt={imageAlt}
+              quality={100}
+              sizes="(min-width: 1440px) 1260px, 92vw"
+              className="h-auto w-full"
+            />
+            ))}
         </div>
 
         {footnote && (

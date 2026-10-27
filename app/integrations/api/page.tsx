@@ -9,11 +9,9 @@ import NumberedMediaList from "@/app/components/common/NumberedMediaList";
 import PillTabs from "@/app/components/common/PillTabs";
 import ApiOverCode from "@/app/components/impact/batch3/ApiOverCode";
 import { LINKS } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
+import ContactUs from "@/app/components/cards/integrations-api/ContactUs";
 
-import contactUs from "@/public/integrations/api/contact-us.png";
-import endpoints from "@/public/integrations/api/endpoints.png";
-import experiences from "@/public/integrations/api/experiences.png";
-import technicalSetup from "@/public/integrations/api/technical-setup.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/api");
 
@@ -46,14 +44,12 @@ export default function ApiPage() {
               {
                 title: "Contact Us",
                 description: "Talk to your Customer Success Manager or our Sales team about your goals and what you want to build.",
-                image: contactUs,
-                imageAlt: "A message to a Customer Success Manager about what you want to build, with a Book a call button",
+                graphic: <ContactUs alt="A message to a Customer Success Manager about what you want to build, with a Book a call button" />,
               },
               {
                 title: "Technical Setup",
                 description: "Work with our engineering team to set up the API for your needs.",
-                image: technicalSetup,
-                imageAlt: "A POST /v1/orders API request returning 200 OK, order created",
+                graphic: <VectorCard src="/cards/integrations-api/TechnicalSetup.svg" alt="A POST /v1/orders API request returning 200 OK, order created" width={260} height={172} />,
               },
             ]}
           />
@@ -74,8 +70,7 @@ export default function ApiPage() {
           caption="Stadium infrastructure"
           title="Leave the backend to Stadium"
           description="Access Stadium’s catalog, ordering, recipient experience, and fulfillment through a single API."
-          image={endpoints}
-          imageAlt="Stadium workspace API page listing endpoints for catalog, orders, and recipients"
+          graphic={<VectorCard src="/cards/integrations-api/Endpoints.svg" alt="Stadium workspace API page listing endpoints for catalog, orders, and recipients" width={1276} height={805} />}
           framed={false}
         />
 
@@ -104,8 +99,7 @@ export default function ApiPage() {
           caption="Built to scale"
           title="Connect once. Build from there."
           description="Add new gifting and reward experiences as your needs evolve."
-          image={experiences}
-          imageAlt="Stadium workspace API page listing the gifting and reward experiences built on one connection"
+          graphic={<VectorCard src="/cards/integrations-api/Experiences.svg" alt="Stadium workspace API page listing the gifting and reward experiences built on one connection" width={1276} height={805} />}
           framed={false}
         />
       </IntegrationDetail>

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import StepLimits from "@/app/components/cards/wallets-and-budgets/StepLimits";
+import UnusedReclaim from "@/app/components/cards/wallets-and-budgets/UnusedReclaim";
+import VectorCard from "@/app/components/cards/VectorCard";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import WalletLimits from "@/app/components/impact/batch3/WalletLimits";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
@@ -9,20 +12,13 @@ import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
-import autoRefill from "@/public/wallets-and-budgets/auto-refill.png";
 import budgetCentral from "@/public/wallets-and-budgets/budget-central.png";
 import budgetPoints from "@/public/wallets-and-budgets/budget-points.png";
 import budgetShared from "@/public/wallets-and-budgets/budget-shared.png";
-import lowFunds from "@/public/wallets-and-budgets/low-funds.png";
-import stepLimits from "@/public/wallets-and-budgets/step-limits.png";
-import unusedExpiration from "@/public/wallets-and-budgets/unused-expiration.png";
-import unusedReclaim from "@/public/wallets-and-budgets/unused-reclaim.png";
-import unusedTransfer from "@/public/wallets-and-budgets/unused-transfer.png";
 import visBalances from "@/public/wallets-and-budgets/visibility-balances.png";
 import visBonus from "@/public/wallets-and-budgets/visibility-bonus.png";
 import visFunding from "@/public/wallets-and-budgets/visibility-funding.png";
 import visTransactions from "@/public/wallets-and-budgets/visibility-transactions.png";
-import workspaceWallet from "@/public/wallets-and-budgets/workspace-wallet.png";
 
 export const metadata: Metadata = {
   title: "Wallets & Budgets — Give teams a budget, not the company card | Stadium",
@@ -64,9 +60,9 @@ export default function WalletsAndBudgetsPage() {
             description="Available funds stay useful as people, budgets, and priorities change."
             gridColumns={3}
             items={[
-              { image: unusedExpiration, imageAlt: "Stadium Points that never expire", title: "No Expiration", description: "Funds and Stadium Points don’t expire." },
-              { image: unusedTransfer, imageAlt: "Transferring a balance between two Wallets", title: "Transfer Balances", description: "Balances move between eligible Wallets when needs change." },
-              { image: unusedReclaim, imageAlt: "Unspent allocation returning to the available pool", title: "Reclaim Allocations", description: "Remaining allocations return to the available pool when someone leaves." },
+              { graphic: <VectorCard src="/cards/wallets-and-budgets/UnusedExpiration.svg" alt="Stadium Points that never expire" width={390} height={250} />, title: "No Expiration", description: "Funds and Stadium Points don’t expire." },
+              { graphic: <VectorCard src="/cards/wallets-and-budgets/UnusedTransfer.svg" alt="Transferring a balance between two Wallets" width={390} height={250} />, title: "Transfer Balances", description: "Balances move between eligible Wallets when needs change." },
+              { graphic: <UnusedReclaim />, title: "Reclaim Allocations", description: "Remaining allocations return to the available pool when someone leaves." },
             ]}
           />
           <VariableCardGrid
@@ -110,8 +106,7 @@ export default function WalletsAndBudgetsPage() {
           {
             title: <>Set Clear<br />Limits</>,
             description: "Set how much each person has available to spend.",
-            image: stepLimits,
-            imageAlt: "Setting a monthly spending limit for a team member",
+            content: <StepLimits />,
             desktopVisualWidth: 265,
           },
           { title: <>Protect Unallocated<br />Funds</> },
@@ -123,8 +118,7 @@ export default function WalletsAndBudgetsPage() {
         caption="Centralized funding"
         title="Fund more from one place"
         description="Use Wallet funds wherever they’re needed across Stadium."
-        image={workspaceWallet}
-        imageAlt="Workspace Wallet with one balance and a breakdown of where funds are used"
+        graphic={<VectorCard src="/cards/wallets-and-budgets/WorkspaceWallet.svg" alt="Workspace Wallet with one balance and a breakdown of where funds are used" width={1240} height={767} />}
       />
 
       <VariableCardGrid
@@ -135,8 +129,8 @@ export default function WalletsAndBudgetsPage() {
         gridColumns={2}
         narrow
         items={[
-          { image: autoRefill, imageAlt: "Auto-refill settings that add funds when a balance drops", title: "Auto-Refill", description: "Automatically replenishes funds based on your configured settings." },
-          { image: lowFunds, imageAlt: "A low funds alert for a nearly spent budget", title: "Low Funds Alerts", description: "A notification when a balance is running low, before funds run out." },
+          { graphic: <VectorCard src="/cards/wallets-and-budgets/AutoRefill.svg" alt="Auto-refill settings that add funds when a balance drops" width={400} height={250} />, title: "Auto-Refill", description: "Automatically replenishes funds based on your configured settings." },
+          { graphic: <VectorCard src="/cards/wallets-and-budgets/LowFunds.svg" alt="A low funds alert for a nearly spent budget" width={400} height={250} />, title: "Low Funds Alerts", description: "A notification when a balance is running low, before funds run out." },
         ]}
       />
     </ImpactPageShell>

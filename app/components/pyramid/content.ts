@@ -64,12 +64,4 @@ export const PEOPLE = {
   title: "People Infrastructure",
   heading: "The team you’d never get to hire. Included.",
   body: "A dedicated success lead, backed by experts in strategy, creative, merchandising, logistics and data. For less than the cost of one hire.",
-  specialists: [
-    { name: "Success lead", desc: "Your one point of contact, from kickoff to QBR." },
-    { name: "Program strategy", desc: "Plans your program around the moments that matter." },
-    { name: "Creative & brand", desc: "Designs on-brand kits, packaging and stores." },
-    { name: "Merchandising", desc: "Picks the right items from 30,000+ options." },
-    { name: "Global logistics", desc: "Runs production, storage and delivery in 170+ countries." },
-    { name: "Data & insights", desc: "Reporting on every program, team and region." },
-  ],
 };

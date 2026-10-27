@@ -2,32 +2,36 @@ import VariableCardGrid, {
   VariableCardGridItem,
 } from "./common/VariableCardGrid";
 
-import mockStores from "@/public/gifting/control/approvals.png";
-import mockInventory from "@/public/gifting/control/budgets.png";
-import mockFulfillment from "@/public/gifting/control/reporting.png";
-import mockGifting from "@/public/gifting/control/stack.png";
+import Approvals from "@/app/components/cards/gifting/Approvals";
+import VectorCard from "@/app/components/cards/VectorCard";
 
 const ITEMS: VariableCardGridItem[] = [
   {
-    image: mockStores,
+    graphic: <Approvals />,
     title: "Approvals & Permissions",
     description:
       "Route what needs sign-off, control who can send, and keep a record of every decision.",
   },
   {
-    image: mockInventory,
+    graphic: (
+      <VectorCard src="/cards/gifting/Budgets.svg" alt="Budgets by Team" width={578} height={268} />
+    ),
     title: "Budgets by Team",
     description:
       "Allocate budgets by team, set limits, and track spend in real time.",
   },
   {
-    image: mockFulfillment,
+    graphic: (
+      <VectorCard src="/cards/gifting/Reporting.svg" alt="Reporting" width={578} height={268} />
+    ),
     title: "Reporting",
     description:
       "See what shipped, what it cost, and which programs people engaged with.",
   },
   {
-    image: mockGifting,
+    graphic: (
+      <VectorCard src="/cards/gifting/Stack.svg" alt="Connected to Your Stack" width={578} height={268} />
+    ),
     title: "Connected to Your Stack",
     description:
       "Connect with your HRIS, CRM, Slack, and other tools so gifts can trigger from systems you already use.",

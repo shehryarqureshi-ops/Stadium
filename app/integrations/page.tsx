@@ -13,10 +13,10 @@ import IntegrationsWays from "@/app/components/impact/batch3/IntegrationsWays";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 import { FEATURED_INTEGRATIONS } from "@/app/data/integrationsDirectory";
+import Workflow from "@/app/components/cards/integrations/Workflow";
+import WorkSlack from "@/app/components/cards/integrations/WorkSlack";
+import WorkExtension from "@/app/components/cards/integrations/WorkExtension";
 
-import workExtension from "@/public/integrations/work-extension.png";
-import workSlack from "@/public/integrations/work-slack.png";
-import workflow from "@/public/integrations/workflow.png";
 
 export const metadata: Metadata = seoMetadata("/integrations");
 
@@ -95,8 +95,7 @@ export default function IntegrationsPage() {
           quote="“Integrating our HRIS has been a huge help–all of the addresses are already loaded there. As soon as employees are added to UKG, they get an email to redeem their new hire kit. Automating onboarding gifting has been a huge win.”"
           attribution="Communications Manager, Keyfactor"
           cta={{ label: "Read case study", href: PLATFORM_ROUTES.proof }}
-          image={workflow}
-          imageAlt="Automation flow: a new hire is added in UKG, a welcome kit is sent, and it is delivered before day one"
+          graphic={<Workflow alt="Automation flow: a new hire is added in UKG, a welcome kit is sent, and it is delivered before day one" />}
         />
 
         <VariableCardGrid
@@ -107,8 +106,8 @@ export default function IntegrationsPage() {
           gridColumns={2}
           narrow
           items={[
-            { image: workSlack, imageAlt: "A Stadium kudos message in a Slack channel", title: "Kudos in Slack & Microsoft Teams", description: "Great work gets recognized the moment it happens." },
-            { image: workExtension, imageAlt: "The Stadium browser extension sending a gift from a meeting page", title: "Stadium Browser Extension", description: "Gifts go out from any webpage, no need to open Stadium.", link: { label: "Learn more", href: PLATFORM_ROUTES.browserExtension } },
+            { graphic: <WorkSlack alt="A Stadium kudos message in a Slack channel" />, title: "Kudos in Slack & Microsoft Teams", description: "Great work gets recognized the moment it happens." },
+            { graphic: <WorkExtension alt="The Stadium browser extension sending a gift from a meeting page" />, title: "Stadium Browser Extension", description: "Gifts go out from any webpage, no need to open Stadium.", link: { label: "Learn more", href: PLATFORM_ROUTES.browserExtension } },
           ]}
         />
       </ImpactPageShell>

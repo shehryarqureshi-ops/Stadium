@@ -10,10 +10,9 @@ import SplitFeature from "@/app/components/common/SplitFeature";
 import StepCards from "@/app/components/common/StepCards";
 import ExtensionPopup from "@/app/components/impact/batch3/ExtensionPopup";
 import { LINKS } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
+import Points from "@/app/components/cards/integrations-browser-extension/Points";
 
-import admin from "@/public/integrations/browser-extension/admin.png";
-import points from "@/public/integrations/browser-extension/points.png";
-import stepOpen from "@/public/integrations/browser-extension/step-open.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/browser-extension");
 
@@ -40,8 +39,7 @@ export default function BrowserExtensionPage() {
             caption="Stadium Points"
             title="Take the guesswork out of gifting"
             description="Recipients around the world can use Stadium Points to choose what they want from our catalog of 25,000+ products."
-            image={points}
-            imageAlt="Stadium Points redemption showing a 2,500 point balance and drinkware, bags, and tech to choose from"
+            graphic={<Points alt="Stadium Points redemption showing a 2,500 point balance and drinkware, bags, and tech to choose from" />}
           />
         }
         moreWays={{
@@ -59,8 +57,7 @@ export default function BrowserExtensionPage() {
           caption="Recipient details"
           title="Skip the copy and paste"
           description="Surface available email addresses from the page and select who you want to gift."
-          image={admin}
-          imageAlt="The Stadium extension open on a CRM account page, listing four emails found on the page to choose recipients from"
+          graphic={<VectorCard src="/cards/integrations-browser-extension/Admin.svg" alt="The Stadium extension open on a CRM account page, listing four emails found on the page to choose recipients from" width={1276} height={805} />}
           framed={false}
         />
 
@@ -92,8 +89,7 @@ export default function BrowserExtensionPage() {
             {
               title: "Open The Extension",
               description: "Open Stadium from your browser.",
-              image: stepOpen,
-              imageAlt: "Browser toolbar with the Stadium extension open to Send a gift and Send Stadium Points",
+              content: <VectorCard src="/cards/integrations-browser-extension/StepOpen.svg" alt="Browser toolbar with the Stadium extension open to Send a gift and Send Stadium Points" width={265} height={332} />,
               desktopVisualWidth: 265,
             },
             { title: "Choose Your Recipient" },

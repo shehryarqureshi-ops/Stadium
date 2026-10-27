@@ -16,8 +16,10 @@ export type SplitFeatureProps = {
   title: string;
   /* ReactNode so copy can carry an inline link (e.g. /csr "Snack & Give Back") */
   description: ReactNode;
-  image: StaticImageData;
-  imageAlt: string;
+  image?: StaticImageData;
+  imageAlt?: string;
+  /* inline vector card graphic (app/components/cards/*) — used instead of `image` */
+  graphic?: ReactNode;
   reverse?: boolean;
   /* dark pill under the intro (e.g. /roles-and-permissions "Explore Wallets") */
   cta?: { label: string; href: string };
@@ -28,7 +30,8 @@ export default function SplitFeature({
   title,
   description,
   image,
-  imageAlt,
+  imageAlt = "",
+  graphic,
   reverse = false,
   cta,
 }: SplitFeatureProps) {
@@ -48,6 +51,8 @@ export default function SplitFeature({
           )}
         </div>
         <div data-animation="reveal" className="w-full max-w-[38.25rem] shrink-0 lg:w-[38.25rem]">
+          {graphic ??
+            (image && (
           <Image
             src={image}
             alt={imageAlt}
@@ -55,6 +60,7 @@ export default function SplitFeature({
             sizes="(min-width: 1024px) 38.25rem, 92vw"
             className="h-auto w-full"
           />
+            ))}
         </div>
       </div>
     </section>

@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { INTRO, PEOPLE, type InfraTab } from "./content";
+import { INTRO, type InfraTab } from "./content";
 
 /* DOM halves of the infra pyramid scenes, matching the Figma scene frames
    (Stadium-Enterprise 6765:2845 Physical · 6765:3040 Digital · 6765:3104 People):
    a centred title + subheading + body, then a glass card (video beside a stacked
-   tab list) or a plain card carousel. Motion in/out is owned by InfraPyramid. */
+   tab list); the People diagram lives in PeopleDiagram.tsx. Motion in/out is owned by InfraPyramid. */
 
 const FALLBACK_SECONDS = 8; // tabs without a clip advance on this clock
 
@@ -383,42 +383,6 @@ export function MediaTabs({
           );
         })}
       </div>
-    </div>
-  );
-}
-
-/* ---------- People carousel ---------- */
-
-export function PeopleCarousel() {
-  const [index, setIndex] = useState(0);
-  const { rail, onScroll, goTo } = useRail(PEOPLE.specialists.length, setIndex);
-  const go = (i: number) => {
-    setIndex(Math.min(PEOPLE.specialists.length - 1, Math.max(0, i)));
-    goTo(i);
-  };
-  return (
-    <div className="pointer-events-auto flex flex-col gap-3 max-lg:h-full">
-      <div
-        ref={rail}
-        onScroll={onScroll}
-        className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] max-lg:min-h-0 max-lg:flex-1 lg:snap-none [&::-webkit-scrollbar]:hidden"
-      >
-        <div className="flex w-full gap-4 lg:w-max">
-          {PEOPLE.specialists.map((s) => (
-            <article
-              key={s.name}
-              className="flex w-full shrink-0 snap-center flex-col gap-4 lg:w-[16.875rem] lg:snap-start"
-            >
-              <div className="rounded-2xl border border-white/[0.06] bg-[#1a1a1c] max-lg:min-h-[14rem] max-lg:flex-1 lg:aspect-[3/4]" />
-              <div className="flex flex-col gap-1.5">
-                <h3 className="font-display text-[1.25rem] leading-6 text-white">{s.name}</h3>
-                <p className="font-sans text-pyramid-meta text-white/60">{s.desc}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-      <CarouselControls count={PEOPLE.specialists.length} index={index} onGo={go} label="Specialists" />
     </div>
   );
 }

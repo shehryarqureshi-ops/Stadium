@@ -10,11 +10,8 @@ import NumberedCardGrid from "@/app/components/common/NumberedCardGrid";
 import NumberedMediaList from "@/app/components/common/NumberedMediaList";
 import SsoSignIn from "@/app/components/impact/batch3/SsoSignIn";
 import { LINKS } from "@/app/components/impact/shared";
+import VectorCard from "@/app/components/cards/VectorCard";
 
-import admin from "@/public/integrations/sso/admin.png";
-import stepEmail from "@/public/integrations/sso/step-email.png";
-import stepIdp from "@/public/integrations/sso/step-idp.png";
-import stepTest from "@/public/integrations/sso/step-test.png";
 
 export const metadata: Metadata = seoMetadata("/integrations/sso");
 
@@ -53,8 +50,7 @@ export default function SsoPage() {
                 {
                   title: "Configure Your IdP",
                   description: "Create Stadium as an application in your identity provider using the provided metadata.",
-                  image: stepIdp,
-                  imageAlt: "Okta add-app setup for Stadium with the ACS URL, entity ID, and a Download metadata button",
+                  graphic: <VectorCard src="/cards/integrations-sso/StepIdp.svg" alt="Okta add-app setup for Stadium with the ACS URL, entity ID, and a Download metadata button" width={260} height={172} />,
                 },
                 {
                   title: "Email SSO Details",
@@ -64,14 +60,12 @@ export default function SsoPage() {
                       certificate, and optional Single Logout URL.
                     </>
                   ),
-                  image: stepEmail,
-                  imageAlt: "An email with the SSO URL, Entity ID, and certificate attached",
+                  graphic: <VectorCard src="/cards/integrations-sso/StepEmail.svg" alt="An email with the SSO URL, Entity ID, and certificate attached" width={260} height={195} />,
                 },
                 {
                   title: "Configure and Test",
                   description: "Stadium configures and tests SSO with your team, typically within 4–6 business days.",
-                  image: stepTest,
-                  imageAlt: "SSO test passed, live in 4–6 business days",
+                  graphic: <VectorCard src="/cards/integrations-sso/StepTest.svg" alt="SSO test passed, live in 4–6 business days" width={260} height={172} />,
                 },
               ]}
             />
@@ -94,8 +88,7 @@ export default function SsoPage() {
           caption="SAML 2.0"
           title="Keep your existing identity provider"
           description="Stadium supports SAML 2.0-compatible identity providers, including Okta, Microsoft Azure, and CyberArk."
-          image={admin}
-          imageAlt="Stadium single sign-on settings showing Okta connected, supported identity providers, and SSO URL, entity ID, and certificate status"
+          graphic={<VectorCard src="/cards/integrations-sso/Admin.svg" alt="Stadium single sign-on settings showing Okta connected, supported identity providers, and SSO URL, entity ID, and certificate status" width={1276} height={805} />}
           framed={false}
           footnote={
             <>

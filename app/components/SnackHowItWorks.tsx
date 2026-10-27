@@ -1,7 +1,7 @@
-import pickBox from "@/public/snacks/sn2-step-pickbox.png";
-import recipients from "@/public/snacks/sn2-step-recipients.png";
-import send from "@/public/snacks/sn2-step-send.png";
-import redeem from "@/public/snacks/sn2-step-redeem.png";
+import StepPickBox from "@/app/components/cards/snacks/StepPickBox";
+import StepRecipients from "@/app/components/cards/snacks/StepRecipients";
+import StepSend from "@/app/components/cards/snacks/StepSend";
+import StepRedeem from "@/app/components/cards/snacks/StepRedeem";
 
 import StepCards, {
   type StepCardItem,
@@ -19,8 +19,7 @@ const items: StepCardItem[] = [
     ),
     description:
       "Set the amount, add your recipients, and send the invitation.",
-    image: pickBox,
-    imageAlt: "Set the amount, add your recipients, and send the invitation.",
+    content: <StepPickBox />,
     desktopVisualWidth,
   },
   {
@@ -32,8 +31,7 @@ const items: StepCardItem[] = [
       </>
     ),
     description: "Recipients choose the snacks and treats they actually want.",
-    image: recipients,
-    imageAlt: "Recipients choose the snacks and treats they actually want.",
+    content: <StepRecipients />,
     desktopVisualWidth,
   },
   {
@@ -45,8 +43,7 @@ const items: StepCardItem[] = [
       </>
     ),
     description: "Their picks are packed into a box made just for them.",
-    image: send,
-    imageAlt: "Their picks are packed into a box made just for them.",
+    content: <StepSend />,
     desktopVisualWidth,
   },
   {
@@ -58,8 +55,7 @@ const items: StepCardItem[] = [
       </>
     ),
     description: "Stadium handles fulfillment and delivery to their door.",
-    image: redeem,
-    imageAlt: "Stadium handles fulfillment and delivery to their door.",
+    content: <StepRedeem />,
     desktopVisualWidth,
   },
 ];

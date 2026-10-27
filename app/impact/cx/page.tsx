@@ -16,14 +16,6 @@ import GrowthSteps from "@/app/components/impact/GrowthSteps";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS } from "@/app/components/impact/shared";
 
-import automationApi from "@/public/impact/cx/automation-api.png";
-import automationCrm from "@/public/impact/cx/automation-crm.png";
-import automationWebhooks from "@/public/impact/cx/automation-webhooks.png";
-import dashboard from "@/public/impact/cx/dashboard.png";
-import visActivity from "@/public/impact/cx/visibility-activity.png";
-import visBudgets from "@/public/impact/cx/visibility-budgets.png";
-import visRedemptions from "@/public/impact/cx/visibility-redemptions.png";
-import visSends from "@/public/impact/cx/visibility-sends.png";
 
 import problemVendors from "@/public/impact/cx/v2/problem-vendors.jpg";
 import problemAddresses from "@/public/impact/cx/v2/problem-addresses.jpg";
@@ -40,6 +32,10 @@ import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
 import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
 import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
 import KudosToast from "@/app/components/impact/KudosToast";
+import AutomationApi from "@/app/components/cards/impact-cx/AutomationApi";
+import VectorCard from "@/app/components/cards/VectorCard";
+import Dashboard from "@/app/components/cards/impact-cx/Dashboard";
+import VisRedemptions from "@/app/components/cards/impact-cx/VisRedemptions";
 
 export const metadata: Metadata = seoMetadata("/impact/cx");
 
@@ -110,8 +106,7 @@ export default function CxPage() {
         caption="One platform"
         title="One infrastructure for the customer relationship"
         description="Bring customer engagement programs, sends, budgets, and fulfillment together instead of managing separate vendors and workflows."
-        image={dashboard}
-        imageAlt="Stadium Customer engagement workspace showing live programs, sends, budget, fulfillment, and program owners"
+        graphic={<Dashboard />}
         framed={false}
       />
 
@@ -210,8 +205,7 @@ export default function CxPage() {
         description="Trigger sends from the systems and customer activity your team already uses."
         steps={[
           {
-            image: automationCrm,
-            imageAlt: "Automated customer moments in Salesforce: onboarding kickoff, 1-year anniversary, and renewal",
+            graphic: <VectorCard src="/cards/impact-cx/AutomationCrm.svg" alt="Automated customer moments in Salesforce: onboarding kickoff, 1-year anniversary, and renewal" width={648} height={364} />,
             eyebrow: "CRM integrations",
             title: "Automate key customer moments",
             content: (
@@ -219,8 +213,7 @@ export default function CxPage() {
             ),
           },
           {
-            image: automationWebhooks,
-            imageAlt: "Promoter thank-you automation sending a $25 gift card when an NPS response is a 9 or 10",
+            graphic: <VectorCard src="/cards/impact-cx/AutomationWebhooks.svg" alt="Promoter thank-you automation sending a $25 gift card when an NPS response is a 9 or 10" width={648} height={364} />,
             eyebrow: "Webhooks",
             title: "Turn customer events into automatic sends",
             content: (
@@ -228,8 +221,7 @@ export default function CxPage() {
             ),
           },
           {
-            image: automationApi,
-            imageAlt: "A customer portal with Stadium rewards built in through the Stadium API",
+            graphic: <AutomationApi />,
             eyebrow: "Stadium API",
             title: "Build engagement into your own workflows",
             content: (
@@ -248,10 +240,10 @@ export default function CxPage() {
         narrow
         imageStyle="panel"
         items={[
-          { image: visBudgets, imageAlt: "Customer success wallet with $21,775 left and spend by program", title: "Manage Budgets", description: "Keep customer engagement spend organized across teams and programs." },
-          { image: visSends, imageAlt: "42 sends to customers this week, by day", title: "Track Sends", description: "See what was sent, to whom, and when." },
-          { image: visRedemptions, imageAlt: "68% of customers redeemed their gift", title: "See Redemptions", description: "Know when customers engage with their experience." },
-          { image: visActivity, imageAlt: "Customer timeline: onboarding box delivered, QBR thank-you gift, renewed +12%", title: "Connect Customer Activity", description: "Keep engagement visible alongside the customer relationship." },
+          { graphic: <VectorCard src="/cards/impact-cx/VisBudgets.svg" alt="Customer success wallet with $21,775 left and spend by program" width={400} height={250} />, title: "Manage Budgets", description: "Keep customer engagement spend organized across teams and programs." },
+          { graphic: <VectorCard src="/cards/impact-cx/VisSends.svg" alt="42 sends to customers this week, by day" width={400} height={250} />, title: "Track Sends", description: "See what was sent, to whom, and when." },
+          { graphic: <VisRedemptions />, title: "See Redemptions", description: "Know when customers engage with their experience." },
+          { graphic: <VectorCard src="/cards/impact-cx/VisActivity.svg" alt="Customer timeline: onboarding box delivered, QBR thank-you gift, renewed +12%" width={400} height={250} />, title: "Connect Customer Activity", description: "Keep engagement visible alongside the customer relationship." },
         ]}
         footnote="Manage Budgets. Track Sends. See Redemptions."
       />
