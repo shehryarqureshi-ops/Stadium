@@ -1,28 +1,31 @@
 import type { Metadata } from "next";
-import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
-import EveryWay from "./components/EveryWay";
-import Hero from "./components/Hero";
-import Infrastructure from "./components/Infrastructure";
-import Occasions from "./components/Occasions";
-import PageClose from "./components/PageClose";
-import RedactedPoster from "./components/RedactedPoster";
-import ScaleMap from "./components/ScaleMap";
-import SiteHeader from "./components/SiteHeader";
-import StadiumWay from "./components/StadiumWay";
-import StickyVideo from "./components/StickyVideo";
-import TeamsTabs from "./components/TeamsTabs";
-import Testimonials from "./components/Testimonials";
-import TrustBand from "./components/TrustBand";
-import Catalog from "./components/Catalog";
-import ClosingCTA from "./components/common/ClosingCTA";
+import EveryWay from "../components/EveryWay";
+import Hero from "../components/Hero";
+import Infrastructure from "../components/Infrastructure";
+import Occasions from "../components/Occasions";
+import PageClose from "../components/PageClose";
+import RedactedPoster from "../components/RedactedPoster";
+import ScaleMap from "../components/ScaleMap";
+import SiteHeader from "../components/SiteHeader";
+import StadiumWay from "../components/StadiumWay";
+import StickyVideo from "../components/StickyVideo";
+import TeamsTabs from "../components/TeamsTabs";
+import Testimonials from "../components/Testimonials";
+import TrustBand from "../components/TrustBand";
+import Catalog from "../components/Catalog";
+import ClosingCTA from "../components/common/ClosingCTA";
 
-export const metadata: Metadata = seoMetadata("/");
+/* /old-home — the previous home page, kept for reference. Not indexed; canonical
+   points at the live home page so it never competes with it. */
+export const metadata: Metadata = {
+  ...seoMetadata("/"),
+  robots: { index: false, follow: false },
+};
 
-export default function Home() {
+export default function OldHome() {
   return (
     <>
-      <JsonLd path="/" />
       <SiteHeader solidOnMobile />
       <main id="main" tabIndex={-1} className="overflow-x-clip">
         <Hero />

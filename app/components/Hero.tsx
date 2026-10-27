@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { HERO_SLIDES, HERO_SLIDE_INTERVAL_MS } from "../data/heroRotation";
+import { HERO_SLIDES, HERO_SLIDE_INTERVAL_MS, type HeroSlide } from "../data/heroRotation";
 import HeroBackgroundVideo from "./HeroBackgroundVideo";
 import WordShuffle from "./WordShuffle";
 
@@ -11,9 +11,8 @@ import WordShuffle from "./WordShuffle";
    entirely under reduced motion (the video component then shows its poster —
    the original static hero photo). */
 
-const HERO_WORDS = HERO_SLIDES.map((s) => s.word);
-
-export default function Hero() {
+export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } = {}) {
+  const words = slides.map((s) => s.word);
   const [index, setIndex] = useState(0);
   /* Slide that is actually on screen (its clip is playing / poster-only). The
      shared clock below only runs while readyIndex === index. */
@@ -80,17 +79,17 @@ export default function Hero() {
   /* Safety net: if a clip never reports playback (autoplay blocked, stalled
      network) don't freeze the rotation on it. */
   useEffect(() => {
-    if (reduce || HERO_SLIDES.length <= 1) return;
+    if (reduce || slides.length <= 1) return;
     const t = setTimeout(() => setReadyIndex(index), 4000);
     return () => clearTimeout(t);
-  }, [index, reduce]);
+  }, [index, reduce, slides.length]);
 
   /* The word and the video share ONE clock. It starts when the new slide is
      actually showing and flips both on the same render HERO_SLIDE_INTERVAL_MS
      later. Pausing (off-screen / tab hidden) freezes the clock together with
      the video and resumes with the time that remained. */
   useEffect(() => {
-    if (reduce || HERO_SLIDES.length <= 1) return;
+    if (reduce || slides.length <= 1) return;
     if (readyIndex !== index || !playing) return;
     const started = performance.now();
     let fired = false;
@@ -98,7 +97,7 @@ export default function Hero() {
       () => {
         fired = true;
         elapsedRef.current = 0;
-        setIndex((i) => (i + 1) % HERO_SLIDES.length);
+        setIndex((i) => (i + 1) % slides.length);
       },
       Math.max(0, HERO_SLIDE_INTERVAL_MS - elapsedRef.current),
     );
@@ -106,7 +105,7 @@ export default function Hero() {
       clearTimeout(t);
       if (!fired) elapsedRef.current += performance.now() - started;
     };
-  }, [index, readyIndex, playing, reduce]);
+  }, [index, readyIndex, playing, reduce, slides.length]);
 
   return (
     /* Fixed-height frame (min-h tokens), content vertically CENTERED
@@ -123,7 +122,7 @@ export default function Hero() {
           layered over it that the still photo used. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 max-md:hidden">
         <HeroBackgroundVideo
-          slides={HERO_SLIDES}
+          slides={slides}
           index={index}
           playing={playing}
           released={released}
@@ -150,7 +149,7 @@ export default function Hero() {
           follows on white. md+ keeps the full-bleed background above. */}
       <div aria-hidden className="relative aspect-[16/10] w-full overflow-hidden bg-black md:hidden">
         <HeroBackgroundVideo
-          slides={HERO_SLIDES}
+          slides={slides}
           index={index}
           playing={playing}
           released={released}
@@ -176,7 +175,7 @@ export default function Hero() {
           {/* "Show up for your <word>" never wraps; the size above scales with the viewport so
               the longest word still fits one line on phones */}
           <span className="max-md:whitespace-nowrap">
-            Show up for your <WordShuffle words={HERO_WORDS} index={index} />
+            Show up for your <WordShuffle words={words} index={index} />
           </span>{" "}
           {/* hard line break on phones + desktop (per Figma) */}
           <br aria-hidden className="md:hidden lg:block" />

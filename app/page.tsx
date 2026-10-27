@@ -1,51 +1,50 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
-import EveryWay from "../components/EveryWay";
-import FourJobs from "../components/FourJobs";
-import Hero from "../components/Hero";
-import InfraPyramid from "../components/pyramid/InfraPyramid";
-import Occasions from "../components/Occasions";
-import PageClose from "../components/PageClose";
-import ScaleMap from "../components/ScaleMap";
-import SystemRail from "../components/SystemRail";
-import SiteHeader from "../components/SiteHeader";
-import StadiumWay from "../components/StadiumWay";
-import StickyVideo from "../components/StickyVideo";
-import TeamsTabs from "../components/TeamsTabs";
-import Testimonials from "../components/Testimonials";
-import TrustBand from "../components/TrustBand";
-import Catalog from "../components/Catalog";
-import ClosingCTA from "../components/common/ClosingCTA";
+import EveryWay from "./components/EveryWay";
+import FourJobs from "./components/FourJobs";
+import Hero from "./components/Hero";
+import { HERO_SLIDES_NEW_HOME } from "./data/heroRotation";
+import InfraPyramid from "./components/pyramid/InfraPyramid";
+import UseCases from "./components/UseCases";
+import PageClose from "./components/PageClose";
+import SystemRail from "./components/SystemRail";
+import SiteHeader from "./components/SiteHeader";
+import StickyVideo from "./components/StickyVideo";
+import TeamsTabs from "./components/TeamsTabs";
+import Testimonials from "./components/Testimonials";
+import TrustBand from "./components/TrustBand";
+import CatalogTeaser from "./components/CatalogTeaser";
+import ClosingCTA from "./components/common/ClosingCTA";
 
-/* /new-home — a working copy of the home page where "The Stadium Infrastructure"
-   is replaced by the scroll-driven 3D pyramid, and the globe section ("We simplify
-   global shipping") is hidden — the pyramid section takes over its rounded top edge
-   and dark-blue sky (Figma 6525:12159). Not indexed; canonical points at
-   the live home page so it never competes with it. */
-export const metadata: Metadata = {
-  ...seoMetadata("/"),
-  robots: { index: false, follow: false },
-};
+/* Home — "The Stadium Infrastructure" is the scroll-driven 3D pyramid (Figma
+   6525:12159), the globe section ("We simplify global shipping") is hidden, and
+   "The Stadium way" / "Scale to wherever your people are" are not rendered
+   (components untouched). The catalog teaser is the colour-wall version
+   (Figma 6525:12451) and the use cases are the chip lanes (6525:12557). The
+   previous home page lives at /old-home. */
+export const metadata: Metadata = seoMetadata("/");
 
-export default function NewHome() {
+export default function Home() {
   return (
     <>
+      <JsonLd path="/" />
       <SiteHeader solidOnMobile />
       <main id="main" tabIndex={-1} className="overflow-x-clip">
-        <Hero />
+        <Hero slides={HERO_SLIDES_NEW_HOME} />
         <TrustBand />
-        <EveryWay />
-        <div className="grid gap-16 py-16 md:gap-24 md:py-24 lg:gap-40 lg:py-40">
+        <EveryWay updated />
+        {/* lg: EveryWay already ends with 168px of its own padding, so the wrapper pulls up 8px to
+            leave exactly 160px between its last label and "Why teams choose Stadium". */}
+        <div className="grid gap-16 py-16 md:gap-24 md:py-24 lg:-mt-2 lg:gap-40 lg:pb-40 lg:pt-0">
           <FourJobs />
           <SystemRail />
         </div>
         <InfraPyramid />
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
-          <StadiumWay />
-          <Catalog />
-          <ScaleMap />
-          <TeamsTabs />
-          <Occasions />
+          <CatalogTeaser />
+          <TeamsTabs updatedImages />
+          <UseCases />
         </div>
         <Testimonials />
       </main>

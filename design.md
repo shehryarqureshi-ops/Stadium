@@ -2172,3 +2172,13 @@ parts stack and the sideways arrows rotate to point down.
 → `calc(n * 100cqw / 1200)`); below `lg` a compact flow (team → lead on one row, 2-col
 specialist grid; 4-col on tablet) sized to fit the ~400px the pinned panel leaves on a phone.
 Portraits are the board's placeholders. Specialist role badges are the Figma exports.
+
+**Revision (2026-10-27) — /new-home mid-page:** "The Stadium way" and "Scale to wherever
+your people are" (ScaleMap) are no longer rendered on `/new-home` (components untouched,
+still used by `/`). Catalog → `CatalogTeaser.tsx` (Figma `6525:12451`, colour wall): pill
+filter (ALL / SWAG / GIFTS / SNACKS / EXPERIENCES) over a 5-col masonry (3 on tablet, 2 on
+mobile) that fades to white, top-brands row, "Explore the catalog" → `/catalog`. Reuses the
+catalog page's `products.ts`, `thumb.ts`, `brandLogos.ts`, `logoSize.ts` (white marks inked via
+`brightness-0`); "All" = the board's 15 tiles, categories fill the same slots with their first 15
+products. Use cases → `UseCases.tsx` (Figma `6525:12557`): 3 lanes of `#f2f2f2` chips drifting
+in alternating directions, 28rem edge fades at lg, "Explore use cases" → `/impact`.

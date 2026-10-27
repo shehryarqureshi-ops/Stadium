@@ -7,9 +7,30 @@ import mayaImg from "@/public/oneplatform/kudos-maya.jpg";
 import recognitionImg from "@/public/oneplatform/recognition.jpg";
 import snacksImg from "@/public/oneplatform/snacks.jpg";
 import swagImg from "@/public/oneplatform/swag.jpg";
+import v2Recognition from "@/public/oneplatform/v2/recognition.jpg";
+import v2Swag from "@/public/oneplatform/v2/swag.jpg";
+import v2Gifting from "@/public/oneplatform/v2/gifting.jpg";
+import v2Snacks from "@/public/oneplatform/v2/snacks.jpg";
+import v2Hosted from "@/public/oneplatform/v2/hosted.jpg";
+import v2Stores from "@/public/oneplatform/v2/company-stores.jpg";
+import v2Kits from "@/public/oneplatform/v2/bundled-kits.jpg";
+import v2Automations from "@/public/oneplatform/v2/automations.jpg";
+import v2Sender from "@/public/oneplatform/v2/sender-choice.jpg";
+import v2Recipient from "@/public/oneplatform/v2/recipient-choice.jpg";
+import v2Employees from "@/public/oneplatform/v2/employees.jpg";
+import v2Partners from "@/public/oneplatform/v2/partners.jpg";
+import v2Prospects from "@/public/oneplatform/v2/prospects.jpg";
+import v2Customers from "@/public/oneplatform/v2/customers.jpg";
+import v2Attendees from "@/public/oneplatform/v2/event-attendees.jpg";
+import v2Onboarding from "@/public/oneplatform/v2/onboarding.jpg";
+import v2Milestones from "@/public/oneplatform/v2/milestones.jpg";
+import v2Events from "@/public/oneplatform/v2/events.jpg";
+import v2Holidays from "@/public/oneplatform/v2/holidays.jpg";
+import v2Thanks from "@/public/oneplatform/v2/thank-yous.jpg";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/app/lib/motion";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 
 /* "One platform." — synced to the behavior spec (Figma 50:725). The headline is
@@ -29,7 +50,7 @@ type Quote = {
 type Card = { label: string; image?: StaticImageData; quote?: Quote };
 type Segment = { label: string; cards: Card[] };
 
-const SEGMENTS: Segment[] = [
+const SEGMENTS_V1: Segment[] = [
   {
     label: "One platform.",
     cards: [
@@ -79,6 +100,40 @@ const SEGMENTS: Segment[] = [
     ],
   },
 ];
+
+/* Updated photos + card order (Figma 6924:9749, /new-home), all four lines. Recognition's new photo
+   carries its own emoji bubble, so the kudos note is dropped there. */
+const V2_CARDS: Card[][] = [
+  [
+    { label: "Recognition", image: v2Recognition },
+    { label: "Swag", image: v2Swag },
+    { label: "Gifting", image: v2Gifting },
+    { label: "Snack Boxes", image: v2Snacks },
+    { label: "Hosted Experience", image: v2Hosted },
+  ],
+  [
+    { label: "Company Stores", image: v2Stores },
+    { label: "Bundled Kits", image: v2Kits },
+    { label: "Automations", image: v2Automations },
+    { label: "Sender Choice", image: v2Sender },
+    { label: "Recipient Choice", image: v2Recipient },
+  ],
+  [
+    { label: "Employees", image: v2Employees },
+    { label: "Partners", image: v2Partners },
+    { label: "Prospects", image: v2Prospects },
+    { label: "Customers", image: v2Customers },
+    { label: "Event Attendees", image: v2Attendees },
+  ],
+  [
+    { label: "Onboarding", image: v2Onboarding },
+    { label: "Milestones", image: v2Milestones },
+    { label: "Events", image: v2Events },
+    { label: "Holidays", image: v2Holidays },
+    { label: "Thank Yous", image: v2Thanks },
+  ],
+];
+const SEGMENTS_V2: Segment[] = SEGMENTS_V1.map((seg, i) => ({ ...seg, cards: V2_CARDS[i] }));
 
 /* The quote note is drawn to the board's own numbers, which are set against a
    221x320 photo. The card is fluid, so `u()` turns one of those design pixels
@@ -339,16 +394,40 @@ function PhoneDeck({ cards }: { cards: Card[] }) {
   );
 }
 
-export default function EveryWay() {
+export default function EveryWay({ updated = false }: { updated?: boolean } = {}) {
+  const SEGMENTS = updated ? SEGMENTS_V2 : SEGMENTS_V1;
   const [active, setActive] = useState(0);
+  /* bumped on every click so the 5s timer starts over, even when the same line is clicked again */
+  const [timerKey, setTimerKey] = useState(0);
+  const reduced = usePrefersReducedMotion();
   const { sectionRef, takeOver } = useAutoAdvance<HTMLDivElement>(
-    () => setActive((i) => (i + 1) % SEGMENTS.length),
+    // the original section's behaviour (hover pause, first click stops it for good); `updated`
+    // runs its own timer below
+    () => !updated && setActive((i) => (i + 1) % SEGMENTS.length),
     4000,
   );
+
+  /* updated: every 5s the next line, while the section is on screen; clicking a line restarts the
+     5s from that click and rotation carries on from there (it is never switched off) */
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!updated || reduced || !node) return;
+    let visible = false;
+    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.4 });
+    io.observe(node);
+    const timer = setInterval(() => {
+      if (visible) setActive((i) => (i + 1) % SEGMENTS.length);
+    }, 5000);
+    return () => {
+      clearInterval(timer);
+      io.disconnect();
+    };
+  }, [updated, reduced, timerKey, sectionRef, SEGMENTS.length]);
 
   const select = (i: number) => {
     takeOver();
     setActive(i);
+    setTimerKey((k) => k + 1);
   };
 
   return (

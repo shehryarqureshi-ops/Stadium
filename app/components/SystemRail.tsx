@@ -130,7 +130,7 @@ export default function SystemRail() {
 
         {/* customer data synced */}
         <div className="flex flex-col items-center gap-[0.4375rem] wide:col-start-4 wide:row-start-1">
-          <p className="max-w-[8.75rem] text-center font-sans text-rail-label text-swag-grey">Customer data synced</p>
+          <p className="font-sans text-rail-label font-bold tracking-[0.0625rem] text-swag-grey">CUSTOMER DATA</p>
           <Arrow src="/new-home/system/arrow-both.svg" />
         </div>
 

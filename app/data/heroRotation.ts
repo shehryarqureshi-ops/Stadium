@@ -26,3 +26,7 @@ export const HERO_SLIDES: HeroSlide[] = [
 /* How long each word/video holds before advancing. Clips are ~10s; the swap
    happens at 9s so every clip changes mid-playback, never on its last frame. */
 export const HERO_SLIDE_INTERVAL_MS = 9000;
+
+/* /new-home order (2026-10-27): People → Employees → Customers → Partners → Community. */
+const bySlideWord = (word: string) => HERO_SLIDES.find((s) => s.word === word)!;
+export const HERO_SLIDES_NEW_HOME: HeroSlide[] = ["people", "employees", "customers", "partners", "community"].map(bySlideWord);

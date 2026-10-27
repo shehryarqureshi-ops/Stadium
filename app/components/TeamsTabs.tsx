@@ -6,6 +6,14 @@ import marketingImg from "@/public/impact/marketing.png";
 import adminsImg from "@/public/impact/operation.png";
 import salesImg from "@/public/impact/sales.png";
 
+import newCsuite from "@/public/impact/teams/c-suite.jpg";
+import newFinance from "@/public/impact/teams/finance.jpg";
+import newHr from "@/public/impact/teams/hr.jpg";
+import newMarketing from "@/public/impact/teams/marketing.jpg";
+import newOperations from "@/public/impact/teams/operations.jpg";
+import newSales from "@/public/impact/teams/sales.jpg";
+import newLeaders from "@/public/impact/teams/team-leaders.jpg";
+
 import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
@@ -118,13 +126,24 @@ const items: TabsShowcaseItem[] = [
   },
 ];
 
-export default function TeamsTabs() {
+/* Updated photos (Figma 3050:3542, /new-home), keyed by tab name. */
+const NEW_IMAGES: Record<string, TabsShowcaseItem["image"]> = {
+  Marketing: newMarketing,
+  HR: newHr,
+  Sales: newSales,
+  Operations: newOperations,
+  "Team Leaders": newLeaders,
+  Finance: newFinance,
+  "C-Suite": newCsuite,
+};
+
+export default function TeamsTabs({ updatedImages = false }: { updatedImages?: boolean } = {}) {
   return (
     <PillTabs
       caption="Impact by Team"
       title="Built for every role"
       description="Everything your teams need to create meaningful engagement at scale."
-      items={items}
+      items={updatedImages ? items.map((i) => ({ ...i, image: NEW_IMAGES[i.name] ?? i.image })) : items}
     />
   );
 }
