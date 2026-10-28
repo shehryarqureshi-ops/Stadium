@@ -50,7 +50,7 @@ export default function ExpPlatform() {
       caption="Any moment"
       captionColor="#CB495F"
       title={<>The calendar is full of reasons to gather</>}
-      description="From onboarding to holidays and the dozens of occasions between, regular events keep teams close."
+      description="From onboarding to holidays and the dozens of occasions between, recurring events keep teams close."
       gridColumns={3}
       items={ITEMS}
     />

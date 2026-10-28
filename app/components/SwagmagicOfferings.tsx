@@ -66,9 +66,9 @@ const items = [
     description:
       "Order swag in bulk–the more you order, the less each piece costs. We'll store your swag until you’re ready.",
     bullets: [
-      "Volume discounts based on quantities ordered",
-      "Storage for events, gifting, and more",
-      "Ship to one or multiple locations",
+      "Volume discounts based on quantities ordered.",
+      "Storage for events, gifting, and more.",
+      "Ship to one or multiple locations.",
     ],
     cta: "Get bulk pricing",
     image: bulkSwag,

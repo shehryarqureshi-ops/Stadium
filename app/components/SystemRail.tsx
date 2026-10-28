@@ -1,67 +1,91 @@
+import { ArrowLeftRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-/* "The system between your people and your customers." — Figma 6912:12325
-   (B2 · system rail). HRIS → Stadium core ↔ CRM across the tray, programs out
-   below. From `wide` (1300) it's the drawn horizontal rail; below that the same
-   pieces stack and the sideways arrows turn to point down. Tablet / mobile
-   frames weren't drawn. Arrows + logos are Figma exports in
-   public/new-home/system/. */
+/* GEI ledger — Figma 7058:27528 ("GEI · Ledger (final, auto-layout)"). It announces the term:
+   a GEI badge + the "every core function got its own system" line, then people (HRIS) → GEI ↔
+   customers (CRM) as three cards, each system row naming the data it contributes, the five
+   programs on the GEI card, and a closing line — HRIS runs your people · GEI runs engagement ·
+   CRM runs your customers. From xl (1280) it's the drawn row; below that the cards stack and the Lucide
+   arrows turn to point down. Content edge = the site header's own side padding.
+   Logos + the Stadium mark are Figma exports in public/new-home/system/. */
 
 const PROGRAMS = ["Recognition", "Swag", "Gifting", "Snack Boxes", "Hosted Experiences"];
 
-/** 46px lucide arrow; sideways on the wide rail, pointing down when stacked
-    (`down` forces down at every width — the core → programs arrow). */
-function Arrow({ src, down = false }: { src: string; down?: boolean }) {
+type Source = { logo: string; alt: string; w: number; h: number; tag: string };
+const PEOPLE: Source[] = [
+  { logo: "workday", alt: "Workday", w: 47, h: 22, tag: "Hires" },
+  { logo: "bamboohr", alt: "BambooHR", w: 100, h: 14, tag: "Birthdays" },
+  { logo: "rippling", alt: "Rippling", w: 100, h: 14, tag: "Anniversaries" },
+];
+const CUSTOMERS: Source[] = [
+  { logo: "salesforce", alt: "Salesforce", w: 31, h: 22, tag: "Deals closed" },
+  { logo: "hubspot", alt: "HubSpot", w: 76, h: 22, tag: "New contacts" },
+];
+
+const card = "flex min-w-0 flex-col rounded-core bg-white p-6 shadow-ledger";
+const label = "font-sans text-ledger-label font-bold uppercase tracking-[0.0625rem] text-swag-grey";
+
+function Row({ s }: { s: Source }) {
   return (
-    <Image
-      src={src}
-      alt=""
-      width={46}
-      height={46}
-      className={`h-[2.875rem] w-[2.875rem] ${down ? "rotate-90" : "max-wide:rotate-90"}`}
-    />
+    <li className="flex h-16 items-center justify-between rounded-[1.125rem] bg-ledger-soft pl-[1.125rem] pr-3.5">
+      <Image
+        src={`/new-home/system/${s.logo}.svg`}
+        alt={s.alt}
+        width={s.w}
+        height={s.h}
+        className="w-auto max-w-none"
+        style={{ height: `${s.h / 16}rem` }}
+      />
+      <span className="rounded-full border border-ledger-line bg-white px-3 py-1.5 font-sans text-[0.75rem] font-semibold leading-4 text-swag-ink">
+        {s.tag}
+      </span>
+    </li>
   );
 }
 
-function Node({
-  className = "",
-  eyebrow,
-  title,
-  children,
-}: {
-  className?: string;
-  eyebrow: string;
-  title: string;
-  children: ReactNode;
-}) {
+/* the small round link between cards; turns to point down when the cards stack */
+function Link({ children, name }: { children: ReactNode; name: string }) {
+  return (
+    <span
+      role="img"
+      aria-label={name}
+      className="flex size-10 shrink-0 items-center justify-center self-center rounded-full bg-white text-swag-ink shadow-ledger max-xl:rotate-90"
+    >
+      {children}
+    </span>
+  );
+}
+
+function Cell({ tag, say, hero = false }: { tag: string; say: string; hero?: boolean }) {
   return (
     <div
-      className={`flex w-full max-w-72 flex-col items-center justify-center gap-9 overflow-hidden rounded-node bg-node py-6 shadow-node wide:max-w-none ${className}`}
+      className={`flex h-[4.75rem] items-center gap-3.5 rounded-job-card px-6 ${
+        hero ? "bg-swag-ink text-white" : "bg-white text-swag-ink shadow-ledger"
+      }`}
     >
-      <div className="flex flex-col items-center gap-1 whitespace-nowrap">
-        <p className="font-sans text-rail-label font-bold tracking-[0.0625rem] text-swag-grey">{eyebrow}</p>
-        <p className="font-display text-node-title text-swag-ink">{title}</p>
-      </div>
-      {children}
+      <span className="rounded-full bg-ledger-soft px-3 py-2.5 font-sans text-[0.75rem] font-bold leading-4 tracking-[0.0625rem] text-swag-ink">
+        {tag}
+      </span>
+      <span className="font-display text-ledger-cell">{say}</span>
     </div>
   );
-}
-
-/** a logo at its Figma height; `w-auto` keeps the SVG's own aspect */
-function Logo({ src, alt, w, h, size }: { src: string; alt: string; w: number; h: number; size: string }) {
-  return <Image src={src} alt={alt} width={w} height={h} className={`${size} w-auto max-w-none shrink-0`} />;
 }
 
 export default function SystemRail() {
   return (
     <section
       aria-labelledby="system-rail-title"
-      className="mx-auto flex w-full max-w-section flex-col items-center gap-10 px-section-x-sm md:gap-12 md:px-section-x-md lg:gap-14 lg:px-section-x-lg"
+      className="mx-auto flex w-full min-w-0 flex-col items-center gap-10 px-4 md:gap-12 md:px-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))] lg:gap-14"
     >
       <header className="flex flex-col items-center gap-5 text-center text-swag-ink">
-        <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem]">
-          Global engagement infrastructure
+        <p className="flex items-center gap-2.5 rounded-full bg-ledger-soft py-1.5 pl-1.5 pr-4">
+          <span className="rounded-full bg-swag-ink px-3 py-1 font-sans text-[0.75rem] font-bold leading-4 tracking-[0.0625rem] text-white">
+            GEI
+          </span>
+          <span className="font-sans text-[0.6875rem] font-bold uppercase leading-4 tracking-[0.03125rem] sm:text-[0.75rem] sm:tracking-[0.0625rem]">
+            Global Engagement Infrastructure
+          </span>
         </p>
         <h2
           id="system-rail-title"
@@ -70,57 +94,44 @@ export default function SystemRail() {
           The system between your
           <br className="hidden sm:block" /> people and your customers.
         </h2>
+        <p className="max-w-[51.25rem] font-sans text-body-md text-swag-grey lg:text-[1.25rem] lg:leading-[1.875rem]">
+          Every core function got its own system. Engagement never did, until now.
+        </p>
       </header>
 
-      <div className="flex w-full max-w-rail-tray flex-col items-center gap-6 rounded-tray bg-tray px-4 py-8 md:p-10 wide:-mx-5 wide:grid wide:w-[calc(100%+2.5rem)] wide:grid-cols-[15rem_8.75rem_minmax(0,1fr)_8.75rem_15rem] wide:items-center wide:gap-x-3.5 wide:gap-y-10 min-[90rem]:p-15">
-        {/* HRIS */}
-        <Node eyebrow="HRIS" title="Your people" className="wide:col-start-1 wide:row-start-1">
-          <div className="relative flex w-full items-center justify-center gap-6 overflow-hidden">
-            <Logo src="/new-home/system/workday.svg" alt="Workday" w={47} h={22} size="h-[1.375rem]" />
-            <Logo src="/new-home/system/bamboohr.svg" alt="BambooHR" w={99} h={14} size="h-3.5" />
-            <Logo src="/new-home/system/rippling.svg" alt="Rippling" w={99} h={14} size="h-3.5" />
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 w-[4.75rem] bg-gradient-to-r from-node to-transparent"
-            />
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 w-[4.75rem] bg-gradient-to-l from-node to-transparent"
-            />
-          </div>
-        </Node>
-
-        {/* people data in */}
-        <div className="flex flex-col items-center gap-[0.4375rem] wide:col-start-2 wide:row-start-1">
-          <p className="font-sans text-rail-label font-bold tracking-[0.0625rem] text-swag-grey">PEOPLE DATA IN</p>
-          <Arrow src="/new-home/system/arrow-right.svg" />
+      <div className="flex w-full flex-col gap-5 xl:flex-row xl:items-stretch">
+        <div className={`${card} gap-3 xl:flex-1`}>
+          <p className={label}>Your people · HRIS</p>
+          <ul className="flex flex-col gap-3">
+            {PEOPLE.map((s) => (
+              <Row key={s.logo} s={s} />
+            ))}
+          </ul>
         </div>
 
-        {/* Stadium core */}
-        <div className="flex w-full max-w-72 flex-col items-center justify-center gap-3 rounded-core border border-node-hairline bg-white px-10 py-7 shadow-node wide:col-start-3 wide:row-start-1 wide:h-[15.375rem] wide:max-w-none">
-          <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center rounded-[1.6667rem] bg-white pr-[0.5625rem]">
+        <Link name="People data flows in">
+          <ArrowRight aria-hidden className="size-[1.125rem]" strokeWidth={2} />
+        </Link>
+
+        <div className={`${card} items-center justify-between gap-6 xl:flex-1`}>
+          <p className={label}>Your engagement · GEI</p>
+          <div className="flex flex-col items-center gap-1.5">
+            <span className="flex pr-2">
               <Image
                 src="/new-home/system/stadium-mark.svg"
                 alt=""
-                width={33}
-                height={59}
-                className="h-[3.6667rem] w-auto"
+                width={37}
+                height={66}
+                className="h-[4.125rem] w-auto"
               />
-            </div>
-            <p className="font-sans text-rail-label font-bold tracking-[0.0625rem] text-swag-grey">STADIUM</p>
+            </span>
+            <p className="font-display text-core-title text-swag-ink">Stadium</p>
           </div>
-          <p className="whitespace-nowrap font-display text-core-title text-swag-ink">Your engagement</p>
-        </div>
-
-        {/* programs out: arrow + chips (a full-width row under the rail on wide) */}
-        <div className="flex flex-col items-center gap-10 wide:col-span-5 wide:row-start-2">
-          <Arrow src="/new-home/system/arrow-right.svg" down />
-          <ul className="flex flex-wrap justify-center gap-2">
+          <ul className="flex flex-wrap justify-center gap-2 pt-2.5">
             {PROGRAMS.map((p) => (
               <li
                 key={p}
-                className="rounded-full bg-white px-4 py-[0.5625rem] font-sans text-[0.875rem] font-semibold leading-5 text-swag-ink"
+                className="rounded-full bg-ledger-soft px-3.5 py-[0.4375rem] font-sans text-[0.8125rem] font-semibold leading-[1.125rem] text-swag-ink"
               >
                 {p}
               </li>
@@ -128,19 +139,27 @@ export default function SystemRail() {
           </ul>
         </div>
 
-        {/* customer data synced */}
-        <div className="flex flex-col items-center gap-[0.4375rem] wide:col-start-4 wide:row-start-1">
-          <p className="font-sans text-rail-label font-bold tracking-[0.0625rem] text-swag-grey">CUSTOMER DATA</p>
-          <Arrow src="/new-home/system/arrow-both.svg" />
-        </div>
+        <Link name="Customer data syncs both ways">
+          <ArrowLeftRight aria-hidden className="size-[1.125rem]" strokeWidth={2} />
+        </Link>
 
-        {/* CRM */}
-        <Node eyebrow="CRM" title="Your customers" className="wide:col-start-5 wide:row-start-1">
-          <div className="flex items-center justify-center gap-3.5">
-            <Logo src="/new-home/system/salesforce.svg" alt="Salesforce" w={29} h={20} size="h-[1.2759rem]" />
-            <Logo src="/new-home/system/hubspot.svg" alt="HubSpot" w={69} h={20} size="h-5" />
-          </div>
-        </Node>
+        <div className={`${card} gap-3 xl:flex-1`}>
+          <p className={label}>Your customers · CRM</p>
+          <ul className="flex flex-col gap-3">
+            {CUSTOMERS.map((s) => (
+              <Row key={s.logo} s={s} />
+            ))}
+            <li className="flex h-16 items-center justify-center rounded-[1.125rem] border border-dashed border-ledger-line font-sans text-[0.8125rem] leading-5 text-swag-grey">
+              + your CRM or HRIS
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="grid w-full gap-4 lg:grid-cols-3">
+        <Cell tag="HRIS" say="runs your people" />
+        <Cell tag="GEI" say="runs engagement" hero />
+        <Cell tag="CRM" say="runs your customers" />
       </div>
     </section>
   );

@@ -2247,3 +2247,21 @@ white page. The stage is now opaque black (`bg-black`), so a lagging tile shows 
 (was the section's `background-image`) moved into the stage as its own layer and is translated up by
 `scrollY − sectionTop` in the scroll engine, so it scrolls away exactly as before. Not reproducible in the
 in-app browser (no GPU compositor pressure), so confirm on the machine that showed it.
+
+## Home — GEI ledger (replaces the system rail, 2026-10-28)
+
+Source: Figma `7058:27528` ("GEI · Ledger (final, auto-layout)"; a rebuild of exploration I-G3 · Ledger).
+Code: `app/components/SystemRail.tsx` (the old rail is gone). Announces the term **GEI — Global Engagement
+Infrastructure**: badge (dark GEI chip + full name) → H2 "The system between your people and your customers." →
+"Every core function got its own system. Engagement never did, until now." Then three cards joined by
+Lucide arrows (`ArrowRight` data in, `ArrowLeftRight` customer data, from `lucide-react`): **Your people · HRIS**
+(Workday/Hires, BambooHR/Birthdays, Rippling/Anniversaries), **Your engagement · GEI** (Stadium mark, "Stadium",
+the five programs as chips), **Your customers · CRM** (Salesforce/Deals closed, HubSpot/New contacts, dashed
+"+ your CRM or HRIS"). Closing row: HRIS runs your people · **GEI runs engagement** (solid ink) · CRM runs your customers.
+
+**Tokens:** `ledger-soft #f4f4f6`, `ledger-line #dbdbdf`, `shadow-ledger` (0 16 18 .05 + 0 3 3 .06),
+`text-ledger-label` 11/15, `text-ledger-cell` 22/28; reuses `rounded-core` (28), `rounded-job-card` (24),
+`text-section-title`, `text-core-title`. Content edge = the site header's padding (aligned with logo + Talk to sales).
+**Responsive:** side-by-side from `xl` (1280); below that the cards stack and the arrows rotate to point down;
+the closing row is 3-up from `lg`, stacked below. Photo tiles for the programs were explored in the Figma
+(7052:9749) but this version uses the chips from the finalized frame.

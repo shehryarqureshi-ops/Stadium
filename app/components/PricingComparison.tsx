@@ -133,7 +133,7 @@ export default function PricingComparison() {
                   role="columnheader"
                   className={`flex items-center rounded-3xl bg-white px-4 py-4 font-sans text-table font-semibold text-pricing-ink md:px-6 ${STICKY}`}
                 >
-                  Compare all features
+                  Compare All Features
                 </div>
                 {PASSES.map((p) => (
                   <div
