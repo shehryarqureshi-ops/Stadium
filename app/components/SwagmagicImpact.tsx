@@ -1,6 +1,6 @@
 import StatsGrid from "@/app/components/common/StatsGrid";
 import statsPhoto from "@/public/swag/statCardBg.png";
-import avatar from "@/public/snacks/sn2-avatar.jpg";
+import avatar from "@/public/the-proof/customers/felicia-kentro.jpg";
 
 export default function SwagmagicImpact() {
   return (
@@ -16,10 +16,11 @@ export default function SwagmagicImpact() {
         caption: "Avg Reorder Rate",
         title: "38%",
         backgroundColor: "#F0FEF8",
-        text: "“Stadium isn’t just a swag platform. It’s a scalable engagement tool that grows with you.”",
+        text: "“On-demand is the best feature. It doesn’t lock us into inventory we don’t need or can’t use. It gives people the freedom to pick what they want and how they want it.”",
         authorImage: avatar,
-        authorName: "Felicia W.",
-        authorTitle: "Kentro",
+        authorName: "Felicia Weigel",
+        authorTitle: "Communications Manager, Kentro",
+        link: "https://www.bystadium.com/case-overview/kentro",
       }}
       rightTopStat={{
         title: "48 hrs",

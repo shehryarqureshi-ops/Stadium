@@ -1,4 +1,3 @@
-import MotionToggle from "./MotionToggle";
 import Link from "next/link";
 
 const LINK_COLUMNS: {
@@ -231,28 +230,9 @@ export default function PageClose() {
             <div aria-hidden className="h-px w-full bg-white/10" />
 
             <div className="flex w-full flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4">
-              <p className="whitespace-pre text-center font-sans text-[0.75rem] uppercase leading-none tracking-[0.015rem] text-grey-400">
-                {"© Powered by Stadium   |   Accessibility Support"}
+              <p className="text-center font-sans text-[0.75rem] uppercase leading-none tracking-[0.015rem] text-grey-400">
+                {"© Powered by Stadium"}
               </p>
-
-              <MotionToggle variant="footer" />
-
-              <button
-                type="button"
-                className="flex items-center gap-1.5 rounded-[0.375rem] border border-white/20 px-3 py-1.5 transition-colors hover:border-white/40 hover:bg-white/5"
-              >
-                <span className="font-sans text-[0.75rem] leading-none text-white">
-                  English
-                </span>
-
-                <img loading="lazy" decoding="async"
-                  src="/footer-chevron-down.svg"
-                  alt=""
-                  width={11.5}
-                  height={6.5}
-                  className="h-[0.40625rem] w-[0.71875rem]"
-                />
-              </button>
             </div>
           </div>
         </div>

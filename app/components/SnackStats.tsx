@@ -1,7 +1,7 @@
 import GradientBand from "@/app/components/common/GradientBand";
 import StatsGrid from "@/app/components/common/StatsGrid";
+import avatar from "@/public/snacks/sn2-avatar-amazon.jpg";
 import statsPhoto from "@/public/snacks/sn2-stats-photo.jpg";
-import avatar from "@/public/snacks/sn2-avatar.jpg";
 
 export default function SnackStats() {
   return (
@@ -22,10 +22,16 @@ export default function SnackStats() {
             caption: "Snacks Sent",
             title: "1.7M+",
             backgroundColor: "#eaf1fd",
-            text: "“The team loved it! Thought it was really cool to choose different items that they normally wouldn’t try or buy in a grocery store.”",
+            text: "“It was so easy. All I had to do was add the email addresses, and pick my budget. The group put their own shipping addresses in & chose the snacks that they liked. I think they were all appreciative of the variety of snacks, and the fact that it was different.”",
             authorImage: avatar,
-            authorName: "Lauren Berry",
-            authorTitle: "Trane Technologies",
+            authorName: "Jennifer R.",
+            authorTitle: "Executive Administrative Assistant",
+            authorLogo: {
+              src: "/impact/overview/logos/amazon.svg",
+              alt: "Amazon",
+              width: 80,
+              height: 24,
+            },
             link: "https://www.snackmagic.com/",
           }}
           rightTopStat={{

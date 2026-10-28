@@ -3,34 +3,42 @@ import Resources, {
   type ResourcesItem,
 } from "@/app/components/common/Resources";
 
-import guideImage from "@/public/recog2/rc-solution-catalog.png";
-import reportImage from "@/public/recog2/rc-solution-insights.png";
-import templateImage from "@/public/recog2/rc-solution-logistics.png";
+import everflowImage from "@/public/recognition/resources/everflow.jpg";
+import businessCaseImage from "@/public/recognition/resources/business-case.jpg";
+import completeGuideImage from "@/public/recognition/resources/complete-guide.jpg";
 
 const ITEMS: ResourcesItem[] = [
   {
-    caption: "GUIDE",
+    caption: "CASE STUDY",
     captionColor: "#6b33db",
-    title: "Build your recognition playbook",
-    description: "A step-by-step guide to launch successfully.",
+    title: "How Everflow scaled recognition",
+    description:
+      "See how they cut admin time 80% while making recognition visible company-wide.",
     url: "https://www.bystadium.com/case-overview/everflow",
-    image: guideImage,
+    image: everflowImage,
+    imageAlt:
+      "Everflow’s Stadium kudos program: a recognition post with hashtags and a points summary",
   },
   {
-    caption: "REPORT",
+    caption: "ARTICLE",
     captionColor: "#6b33db",
     title: "The business case for recognition",
-    description: "See why recognized employees are more likely to stay.",
-    url: "https://www.bystadium.com/blog/employee-recognition",
-    image: reportImage,
+    description:
+      "See why recognized employees are 56% less likely to look for a new job.",
+    url: "https://www.bystadium.com/blog/benefits-of-employee-recognition",
+    image: businessCaseImage,
+    imageAlt:
+      "Illustration of an employee holding a phone showing a 10 kudos message, with a heart, star and thumbs-up",
   },
   {
-    caption: "TEMPLATE",
+    caption: "ARTICLE",
     captionColor: "#6b33db",
-    title: "Turn company values into tags",
-    description: "Make every kudos reflect your company values.",
-    url: "https://www.bystadium.com/blog/rewards-and-recognition",
-    image: templateImage,
+    title: "The complete guide to employee recognition",
+    description: "Best practices, real examples, and tools to get it right.",
+    url: "https://www.bystadium.com/blog/employee-recognition",
+    image: completeGuideImage,
+    imageAlt:
+      "Illustration of three teammates exchanging kudos, gifts and reactions on their phones and laptops",
   },
 ];
 

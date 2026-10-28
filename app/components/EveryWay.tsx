@@ -434,7 +434,12 @@ export default function EveryWay({ updated = false }: { updated?: boolean } = {}
     <section className="bg-surface-base">
       <div
         ref={sectionRef}
-        className="mx-auto flex w-full max-w-section flex-col gap-10 bg-surface-base px-section-x-sm pt-16 pb-20 md:px-section-x-md md:pt-20 md:pb-28 lg:gap-14 lg:px-section-x-lg lg:pt-[7.5rem] lg:pb-[11.25rem]"
+        className={`flex w-full flex-col gap-10 bg-surface-base pt-16 pb-20 md:pt-20 md:pb-28 lg:gap-14 lg:pt-[7.5rem] lg:pb-[11.25rem] ${
+          updated
+            ? /* the site header's own side padding, so the cards line up with the logo + Talk to sales */
+              "px-4 md:px-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))]"
+            : "mx-auto max-w-section px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
+        }`}
       >
         {/* Four cycling lines — every line is clickable and owns its own deck */}
         <h2

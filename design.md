@@ -2182,3 +2182,68 @@ catalog page's `products.ts`, `thumb.ts`, `brandLogos.ts`, `logoSize.ts` (white 
 `brightness-0`); "All" = the board's 15 tiles, categories fill the same slots with their first 15
 products. Use cases → `UseCases.tsx` (Figma `6525:12557`): 3 lanes of `#f2f2f2` chips drifting
 in alternating directions, 28rem edge fades at lg, "Explore use cases" → `/impact`.
+
+## Home — "Why teams choose Stadium" stacked cards (2026-10-28)
+
+Content: Figma `7017:11976` (tray of four cards, now number discs) · layout: `7018:23261`
+(S1-B · number circle — heading left, cards right) + an added subheading. Code: `FourJobs.tsx`
+(rewritten; the old 4-up tray is gone) + `Stack.tsx`, the **React Bits Stack** vendored verbatim
+(`motion` added as a dependency; lint rules `react-hooks/refs` + `no-img-element` are off for that file only).
+
+**Stack props (from the shared component URL):** `spread 0.95 · radius 20 · depth 0.35 · tilt 42 ·
+threshold 120 · sendToBackOnClick`; layout `fan`, `visible 4`, shadow on, no frame — all defaults.
+The stack fills a `job-card-w × job-card-h` (280 × 299) box; click or flick the top card to send it back.
+
+**Tokens:** `job-time-tint #d8eaff` (ink accent-water) · `job-money-tint #d6f5df` / `job-money-ink #0a9a2d`
+· `job-mind-tint #ffe5e9` (ink accent-punch) · `job-control-tint #edd9fb` (ink accent-lilac) ·
+`text-job-badge` 44/48 · `spacing job-card-w 17.5rem / job-card-h 18.6875rem`. Card: p24, gap24, 80px
+number disc, title `text-job-title` (25/30), body `text-pyramid-meta` (15/22).
+Below `lg` the stack sits under the copy, centred.
+
+**Revision (2026-10-28):** the section sits in a `#f2f2f2` tray (`bg-tray`), edge-aligned to the site
+header (header's own side padding, so it lines up with the logo + Talk to sales); Stack shadow off;
+**layout `pile`** with card design from Figma `7018:23295` — huge pale numeral clipped top-right
+(`text-job-numeral` 190 → 237.5px, tokens `job-numeral-{time,money,mind,control}` #e7f2ff / #e6f9eb /
+#ffeff1 / #f4e7fd), copy bottom-left (`job-card-title`, `job-card-body` #55565b). Cards are the board's
+280×299 ×1.25 = 350×373.75 (`job-card-w/h`, all type + padding scaled the same). The tilted pile
+overshoots its box by ~45px, so the tray has `py-28` at lg and the stack is lifted 2.5px: measured gap
+from the tray's top and bottom edges to the cards is 66.6 / 66.4px. Phones render the stack at
+`zoom: 0.62` so the pile stays inside the tray. The older number-disc tokens were removed.
+
+**Revision (2026-10-28, settings):** Stack props now follow the newer shared URL — `layout pile ·
+spread 1 · radius 20 · depth 0 · frame 8 · tilt 7 · threshold 120 · shadow false · sendToBackOnClick`
+(rest default). Re-measured gap from the tray's top/bottom edges to the pile: 64.9 / 64.5px at 1440.
+
+**Revision (2026-10-28, depth):** Stack `depth` raised from 0 to 0.3 (the other props are unchanged).
+
+**Revision (2026-10-28, no tray):** the grey tray is removed (its side padding is kept, so the copy and
+pile stay inset); `frame` is off; cards now use the Figma `7017:11976` design (number disc + title + body)
+at ×1.25 — disc 100px (`job-disc`), number `text-job-badge` 55/60 in the board's tints (`job-*-tint`,
+ink accent-water / `job-money-ink` / accent-punch / accent-lilac), title `job-card-title`, body
+`job-card-body` in `swag-grey`. White cards on the white page get a 1px `modal-border` (#e0e0e0) hairline
+instead of a shadow (Stack shadow stays off). The big-numeral tokens from the previous card were removed.
+
+**Revision (2026-10-28, autoplay):** Stack props now follow the latest shared URL — `spread 0.4 · radius 20 ·
+depth 0.2 · tilt 7 · threshold 120 · shadow false · autoplay · autoplayDelay 5000 · pauseOnHover ·
+sendToBackOnClick`, layout = default `fan`, no frame. The fan stays inside its box, so the pile-era
+lift and the extra vertical padding are gone (`py-16` at lg); measured gap to the cards is 64 / 64px at 1440.
+Autoplay verified: the top card changes about every 5.5s.
+
+**Revision (2026-10-28, image cards):** the Stack cards are now Figma **S1-H · Image stack** (`7032:9778`):
+photo card (350×374, r20 via Stack, p24, gap16) = photo + flat 30% black + black gradient (0 → .2 @35% → .92)
+with the copy bottom-left, no numbers. The updated S1-H sizes apply to every card: title Satoshi Bold
+`text-job-photo-title` 32/30, body Overpass `text-job-photo-body` 16/22 at white/86%. Photos are matched to each card's message: Save time `impact/teams/operations.jpg` (someone else
+scanning + packing parcels), Save money `impact/teams/finance.jpg` (spreadsheet + pencil), Peace of mind
+`videos/infrastructure/shipping.webp` (a delivery handed over from the van), Centralize control
+`impact/teams/team-leaders.jpg` (the admin dashboard). Stack props unchanged (fan · spread 0.4 · depth 0.2 · tilt 7 · autoplay
+5s · pause on hover · send to back on click); gap above/below the cards stays 64 / 64px. The number-disc and
+hairline-border tokens were removed.
+
+**Fix (2026-10-28, white flicker lines on the pyramid section):** the pinned stage was a transparent
+compositor layer over the section's own background. When Chrome couldn't rasterise the stage's tiles fast
+enough while scrolling (WebGL canvas + starfield + four full-screen panels), the unpainted strip along the
+bottom edge fell back to the page's white — visible only here because this is the one dark section on a
+white page. The stage is now opaque black (`bg-black`), so a lagging tile shows black. The dark-blue sky
+(was the section's `background-image`) moved into the stage as its own layer and is translated up by
+`scrollY − sectionTop` in the scroll engine, so it scrolls away exactly as before. Not reproducible in the
+in-app browser (no GPU compositor pressure), so confirm on the machine that showed it.

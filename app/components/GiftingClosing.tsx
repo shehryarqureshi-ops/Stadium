@@ -1,6 +1,6 @@
 
 import statsPhoto from "@/public/gifting/stats/statLeftBg.png";
-import avatar from "@/public/gift2/gf-closing-avatar-charlene.png";
+import avatar from "@/public/gifting/stats/quote-avatar.jpg";
 import ClosingCTA from "./common/ClosingCTA";
 import StatsGrid from "./common/StatsGrid";
 

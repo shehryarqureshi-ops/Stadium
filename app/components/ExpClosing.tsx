@@ -1,6 +1,6 @@
-import guideImage from "@/public/recog2/rc-solution-catalog.png";
-import reportImage from "@/public/recog2/rc-solution-insights.png";
-import templateImage from "@/public/recog2/rc-solution-logistics.png";
+import toolkitsImage from "@/public/events/resources/toolkits.jpg";
+import calendarsImage from "@/public/events/resources/calendars.jpg";
+import knowledgeHubImage from "@/public/events/resources/knowledge-hub.jpg";
 
 import ClosingCTA from "./common/ClosingCTA";
 import GradientBand from "./common/GradientBand";
@@ -14,7 +14,8 @@ const ITEMS = [
     description:
       "Access practical resources and insights to help you build a stronger workplace culture.",
     url: "https://toolkits.withconfetti.com/",
-    image: guideImage,
+    image: toolkitsImage,
+    imageAlt: "Confetti Toolkits for engaged, high-performing teams",
   },
   {
     caption: "Playbook",
@@ -23,7 +24,8 @@ const ITEMS = [
     description:
       "Plan ahead with key dates and ideas to engage employees throughout the year.",
     url: "https://www.withconfetti.com/employee-engagement-calendar",
-    image: reportImage,
+    image: calendarsImage,
+    imageAlt: "Confetti team building experiences: a host on a virtual game-show screen",
   },
   {
     caption: "Checklist",
@@ -32,7 +34,8 @@ const ITEMS = [
     description:
       "Get step-by-step guidance to plan and run employee programs on your own.",
     url: "https://www.withconfetti.com/resources/knowledge-hub",
-    image: templateImage,
+    image: knowledgeHubImage,
+    imageAlt: "Confetti #unforgettable team building experiences",
   },
 ];
 

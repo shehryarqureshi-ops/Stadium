@@ -19,6 +19,8 @@ type StatCenter = {
   authorImage?: StaticImageData;
   authorName: string;
   authorTitle: string;
+  /* optional company logo under the author's title */
+  authorLogo?: { src: string; alt: string; width: number; height: number };
   link?: string;
 };
 
@@ -137,7 +139,9 @@ export default function StatsGrid({
                 {statCenter.text}
               </p>
 
-              <div className="flex items-center gap-3">
+              <div
+                className={`flex gap-3 ${statCenter.authorLogo ? "items-start" : "items-center"}`}
+              >
                 {statCenter.authorImage ? (
                   <Image
                     src={statCenter.authorImage}
@@ -145,7 +149,7 @@ export default function StatsGrid({
                     width={54}
                     height={54}
                     quality={90}
-                    className="size-[2.7rem] rounded-full object-cover"
+                    className={`rounded-full object-cover ${statCenter.authorLogo ? "size-[3.5rem] shrink-0" : "size-[2.7rem]"}`}
                   />
                 ) : (
                   <span
@@ -161,6 +165,15 @@ export default function StatsGrid({
                   <p className="font-sans text-[0.9375rem] text-[#5b6470]">
                     {statCenter.authorTitle}
                   </p>
+                  {statCenter.authorLogo && (
+                    <Image
+                      src={statCenter.authorLogo.src}
+                      alt={statCenter.authorLogo.alt}
+                      width={statCenter.authorLogo.width}
+                      height={statCenter.authorLogo.height}
+                      className="mt-2 h-5 w-auto brightness-0"
+                    />
+                  )}
                 </div>
               </div>
             </div>

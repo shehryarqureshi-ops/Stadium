@@ -52,6 +52,7 @@ export default function InfraPyramid() {
 function PinnedInfra() {
   const outer = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
+  const sky = useRef<HTMLDivElement>(null);
   const panelEls = useRef<(HTMLDivElement | null)[]>([]);
   const [visible, setVisible] = useState(false);
   const [mountCanvas, setMountCanvas] = useState(false);
@@ -133,6 +134,8 @@ function PinnedInfra() {
       const { top, vh, vw } = metrics.current;
       const u = Math.min(PIN_UNITS, Math.max(0, (window.scrollY - top) / vh));
       pyramidStore.u = u;
+      /* scroll the sky away exactly as the old section background did once the stage pins */
+      if (sky.current) sky.current.style.transform = `translate3d(0, ${-Math.max(0, window.scrollY - top).toFixed(2)}px, 0)`;
 
       const desktop = vw >= 1024;
       const fit = desktop ? Math.min(1, Math.max(0.62, vh / 1024)) : 1;
@@ -205,16 +208,26 @@ function PinnedInfra() {
       ref={outer}
       aria-label="The Stadium infrastructure"
       className="relative overflow-clip rounded-t-[2.5rem] bg-black text-white"
-      style={{
-        height: `calc(100svh * ${1 + PIN_UNITS})`,
-        /* the globe section's dark-blue sky, over the first screen (Figma 6525:12159) */
-        backgroundImage:
-          "radial-gradient(115% 105% at 74% 16%, #011c3d 0%, #020a14 45%, #000000 78%)",
-        backgroundSize: "100% 100svh",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={{ height: `calc(100svh * ${1 + PIN_UNITS})` }}
     >
-      <div ref={stage} className="sticky top-0 h-svh w-full overflow-hidden">
+      {/* The stage is an OPAQUE black layer. It used to be transparent over the section's own
+          background, so when Chrome couldn't rasterise the stage's tiles fast enough during a scroll
+          (WebGL canvas + starfield + four full-screen panels) the unpainted strip at the bottom edge
+          fell back to the page's white — the flickering white lines. An opaque layer makes any lagging
+          tile show black instead. */}
+      <div ref={stage} className="sticky top-0 h-svh w-full overflow-hidden bg-black">
+        {/* the globe section's dark-blue sky over the first screen (Figma 6525:12159). It used to be the
+            section's background and scrolled away as the pin began; it now rides inside the stage and
+            is lifted by the same amount (see the scroll engine), so it looks identical. */}
+        <div
+          ref={sky}
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(115% 105% at 74% 16%, #011c3d 0%, #020a14 45%, #000000 78%)",
+          }}
+        />
         {/* the same twinkling starfield as the globe section above, so the two read as one sky */}
         <Starfield className="absolute inset-0 h-full w-full" />
 

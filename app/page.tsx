@@ -10,7 +10,7 @@ import UseCases from "./components/UseCases";
 import PageClose from "./components/PageClose";
 import SystemRail from "./components/SystemRail";
 import SiteHeader from "./components/SiteHeader";
-import StickyVideo from "./components/StickyVideo";
+// import StickyVideo from "./components/StickyVideo"; // floating "Watch the film" player — hidden for now
 import TeamsTabs from "./components/TeamsTabs";
 import Testimonials from "./components/Testimonials";
 import TrustBand from "./components/TrustBand";
@@ -48,7 +48,7 @@ export default function Home() {
         </div>
         <Testimonials />
       </main>
-      <StickyVideo />
+      {/* <StickyVideo /> — hidden for now; restore this line and the import above to enable */}
       <ClosingCTA
         caption="Get started"
         title="Ready to build your program?"
