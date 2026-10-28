@@ -275,7 +275,7 @@ export function MediaTabs({
               poster={t.poster}
               muted
               playsInline
-              preload="auto"
+              preload="metadata" /* below the fold — buffer when played, not at page load */
               onEnded={i === active ? advance : undefined}
               onError={() => setFailed((f) => ({ ...f, [i]: true }))}
               aria-label={`${t.title} — ${label}`}

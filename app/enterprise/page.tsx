@@ -18,7 +18,7 @@ import WhiteBox from "@/app/components/common/WhiteBox";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
-import laurenBerry from "@/public/enterprise/lauren.jpg";
+import shairaJavier from "@/public/enterprise/shaira-javier.jpg";
 import secMonitoring from "@/public/enterprise/security/monitoring.png";
 import supportFulfillment from "@/public/enterprise/support/fulfillment.png";
 import supportLogistics from "@/public/enterprise/support/logistics.png";
@@ -142,8 +142,8 @@ export default function EnterprisePage() {
             caption: "Global Warehousing Network",
             title: "500+",
             text: "“Typically, gifting globally would take a day. Now I can do it in 15 minutes, even for 500+ people.”",
-            authorImage: laurenBerry,
-            authorName: "Lauren Berry",
+            authorImage: shairaJavier,
+            authorName: "Shaira Javier",
             authorTitle: "Apollo",
           }}
           rightTopStat={{ title: "100+", text: "Integrations" }}

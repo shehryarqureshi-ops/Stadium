@@ -11,10 +11,11 @@
    defined in SiteHeader. */
 
 import Image, { type StaticImageData } from "next/image";
-import latestCover from "@/public/engage-latest-cover.png";
-import store1 from "@/public/engage-store-1.png";
-import store2 from "@/public/engage-store-2.png";
-import store3 from "@/public/engage-store-3.png";
+import { externalLinkProps } from "@/app/lib/links";
+import holidayGuide from "@/public/menu/holiday-gift-guide.jpg";
+import anniversaryImg from "@/public/menu/blog-work-anniversary-messages.jpg";
+import internImg from "@/public/menu/blog-intern-gifts.jpg";
+import recognitionImg from "@/public/menu/blog-employee-recognition.jpg";
 
 type IconProps = { className?: string };
 
@@ -301,9 +302,19 @@ function GroupBlock({ group, minRow = false }: { group: Group; minRow?: boolean 
 
 /* Right rail — 300px #f2f2f2 panel: a "Latest" white card (232×104 cover, r8;
    title over #6f7072 desc) + a "Popular" list of white cards (45×35 thumb r6 +
-   14px Medium label). Cover + thumbs use spectrum gradients until the real
-   report cover / branded-store images are dropped in public/. */
-const POPULAR: StaticImageData[] = [store1, store2, store3];
+   14px Medium label). Content from the "Dropdown" Google Sheet (2026-10-28);
+   images are each page's own social image, saved to public/menu/. */
+const LATEST = {
+  title: "Holiday Gift Guide",
+  desc: "Everything you need to build your holiday program.",
+  href: "https://www.bystadium.com/holiday-gifting?utm_campaign=Holiday-Gifting-2026&utm_content=387817643&utm_medium=social&utm_source=linkedin&hss_channel=lcp-3589246#download-holiday-gifting-guide-2026",
+  image: holidayGuide,
+};
+const POPULAR: { title: string; href: string; image: StaticImageData }[] = [
+  { title: "Work Anniversary Messages", href: "https://www.bystadium.com/blog/work-anniversary-messages", image: anniversaryImg },
+  { title: "Intern Gifts", href: "https://www.bystadium.com/blog/gifts-for-interns", image: internImg },
+  { title: "Employee Recognition", href: "https://www.bystadium.com/blog/kudos-employee-recognition", image: recognitionImg },
+];
 
 function RailEyebrow({ children }: { children: string }) {
   return (
@@ -320,18 +331,19 @@ function RightRail() {
       <div className="flex flex-col gap-5">
         <RailEyebrow>Latest at Stadium</RailEyebrow>
         <a
-          href="/the-proof"
+          href={LATEST.href}
+          {...externalLinkProps(LATEST.href)}
           className="group flex flex-col gap-3 rounded-xl bg-white p-2.5 shadow-[0_3px_6px_rgba(0,0,0,0.06)]"
         >
-          <span className="relative h-[6.5rem] w-full overflow-hidden rounded-lg">
-            <Image src={latestCover} alt="" fill sizes="232px" className="object-cover" />
+          <span className="relative isolate h-[6.5rem] w-full transform-gpu overflow-hidden rounded-lg">
+            <Image src={LATEST.image} alt="" fill unoptimized loading="eager" className="object-cover" />
           </span>
           <span className="flex flex-col gap-1">
             <span className="font-sans text-[0.875rem] font-semibold leading-5 text-[#181818]">
-              The Global Engagement Report 2026
+              {LATEST.title}
             </span>
             <span className="font-sans text-[0.75rem] font-normal leading-[1.125rem] text-[#6f7072]">
-              How 10,000+ companies show up for their people.
+              {LATEST.desc}
             </span>
           </span>
         </a>
@@ -341,17 +353,18 @@ function RightRail() {
       <div className="flex flex-col gap-5">
         <RailEyebrow>Popular</RailEyebrow>
         <div className="flex flex-col gap-1">
-          {POPULAR.map((img, i) => (
+          {POPULAR.map(({ title, href, image }) => (
             <a
-              key={i}
-              href="/swag"
+              key={title}
+              href={href}
+              {...externalLinkProps(href)}
               className="flex items-center gap-2.5 rounded-xl bg-white p-2 shadow-[0_3px_6px_rgba(0,0,0,0.06)] transition-shadow duration-200 hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
             >
               <span className="relative h-[2.1875rem] w-[2.8125rem] shrink-0 overflow-hidden rounded-md">
-                <Image src={img} alt="" fill sizes="45px" className="object-cover" />
+                <Image src={image} alt="" fill unoptimized loading="eager" className="object-cover" />
               </span>
               <span className="font-sans text-[0.875rem] font-medium leading-5 text-[#181818]">
-                Branded Stores
+                {title}
               </span>
             </a>
           ))}

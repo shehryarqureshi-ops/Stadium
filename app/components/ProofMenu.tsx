@@ -6,7 +6,7 @@
 import { externalLinkProps } from "@/app/lib/links";
 import { MenuShell, MenuRow, MenuContent, MenuFeaturePanel } from "@/app/components/MegaMenu";
 import { PLATFORM_ROUTES } from "@/app/components/impact/shared";
-import whyImg from "@/public/map-faces.jpg";
+import workatoImg from "@/public/menu/customer-workato.jpg";
 
 type Item = { title: string; desc: string; href?: string };
 type Column = { label: string; href?: string; items: Item[] };
@@ -112,13 +112,15 @@ export default function ProofMenu() {
         </MenuContent>
 
         {/* Light editorial feature panel (Figma 2:75960) */}
+        {/* Customer story (Google Sheet "Dropdown", 2026-10-28) */}
         <MenuFeaturePanel
-          eyebrow="Global Engagement Infrastructure"
-          image={whyImg}
+          eyebrow="Customer Story"
+          image={workatoImg}
           aspect="384 / 456"
-          title="Why teams choose Stadium"
-          cta="Learn more"
-          href={PLATFORM_ROUTES.proof}
+          title="See how Workato brought employee milestones and customer appreciation together with Stadium Shops."
+          cta="Read the story"
+          href="https://www.bystadium.com/case-overview/workato"
+          external
         />
       </MenuRow>
     </MenuShell>

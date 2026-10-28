@@ -2273,3 +2273,23 @@ rgba(11,122,252,.14), `people-glow-line` rgba(11,122,252,.6), `shadow-people-glo
 success lead's Stadium badge is a 32px circle (was a rounded square) and the diagram coordinates moved (team 0/118,
 connector 164/150, lead 294/128, branch 504/95, specialists 604–994 × 77/227, "Backed by specialists" 700/45).
 Phones: compact flow + the pill (short copy below 640px); the stack scrolls inside the pinned panel if it can't fit.
+
+## Header dropdown rails — 2026-10-28
+
+Content comes from the "Dropdown" Google Sheet; images are each linked page's own
+social/hero image, saved to `public/menu/`.
+
+- **Ways to Engage** rail (`EngageMenu.tsx` `LATEST` / `POPULAR`): Latest = Holiday
+  Gift Guide; Popular = Work Anniversary Messages, Intern Gifts, Employee
+  Recognition (blog posts). All open in a new tab.
+- **Impact by Team** (`ImpactMenu.tsx`) and **The Proof** (`ProofMenu.tsx`): one
+  "Customer Story" feature panel each — isolved ("One swag shop. More teams on
+  board.") and Workato. The panel CTA label ("Read the story") is not in the sheet.
+  Impact's panel is identical for every team (the per-team photos are no longer
+  shown; `Team.photo` is kept for restoring).
+- **Rail art loading**: rail images (`MenuFeaturePanel`, Engage rail) are `unoptimized` +
+  `loading="eager"` — the art is pre-sized in `public/menu/`, and drawers start
+  collapsed so lazy / optimizer-served images never rendered there. Card text gap is
+  `gap-3`; the image wrapper is `isolate transform-gpu` so the hover zoom keeps its
+  rounded corners. `customer-isolved.jpg` is cropped inside the source's transparent
+  edge (the original had a transparent bottom band that flattened to a white strip).

@@ -134,7 +134,7 @@ export function MenuFeaturePanel({
         className="group flex flex-col gap-3 rounded-[0.75rem] bg-white p-2.5 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.06)]"
       >
         <span
-          className="relative block w-full overflow-hidden rounded-[0.5rem] bg-grey-100"
+          className="relative isolate block w-full transform-gpu overflow-hidden rounded-[0.5rem] bg-grey-100"
           style={{ aspectRatio: aspect }}
         >
           <Image
@@ -142,10 +142,12 @@ export function MenuFeaturePanel({
             alt=""
             fill
             sizes="16rem"
+            unoptimized /* rail art is pre-sized in public/menu; served as-is, loaded eagerly (drawers start collapsed) */
+            loading="eager"
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </span>
-        <span className="flex flex-col gap-1 px-1 pb-1">
+        <span className="flex flex-col gap-3 px-1 pb-1">
           <span className="font-sans text-[0.875rem] font-semibold leading-5 text-[#181818]">{title}</span>
           <span className="flex items-center gap-1 font-sans text-[0.75rem] font-normal leading-[1.125rem] text-[#6f7072]">
             {cta}

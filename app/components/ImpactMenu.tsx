@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MenuShell, MenuRow, MenuSwitcher, MenuFeaturePanel } from "@/app/components/MegaMenu";
 import { TEAM_ROUTES } from "@/app/components/impact/shared";
 import type { StaticImageData } from "next/image";
+import customerStoryImg from "@/public/menu/customer-isolved.jpg";
 import hrImg from "@/public/menu-team-hr.png";
 import marketingImg from "@/public/menu-team-marketing.png";
 import salesImg from "@/public/menu-team-sales.png";
@@ -91,6 +92,7 @@ const TAB_IDS: Record<string, Record<string, string>> = {
     "Offsite Room Drops": "company-events",
     "Executive Gifting": "executive-requests",
     "Client & Partner Gifting": "executive-requests",
+    "Inventory Management": "operations", // ImageShowcase "Bring everyday operations together"
   },
 };
 
@@ -294,13 +296,15 @@ export default function ImpactMenu() {
               </div>
 
               {/* Light editorial feature panel (Figma 2:75850) */}
+              {/* Customer story — same for every team (Google Sheet "Dropdown", 2026-10-28) */}
               <MenuFeaturePanel
-                eyebrow="Impact by Team"
-                image={t.photo}
+                eyebrow="Customer Story"
+                image={customerStoryImg}
                 aspect="384 / 336"
-                title="One platform for every role"
-                cta="Get bulk pricing"
-                href={TEAM_ROUTES.overview}
+                title="One swag shop. More teams on board."
+                cta="Read the story"
+                href="https://www.bystadium.com/case-overview/isolved"
+                external
               />
             </div>
           ))}

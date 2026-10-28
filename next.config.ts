@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
        design.md "Image quality". */
     qualities: [75, 90, 100],
   },
+  /* Hero / infrastructure clips are 4–7 MB each and the hero rotates through
+     all five forever. public/ files default to `max-age=0`, so every rotation
+     re-requested (or revalidated) them — a media request was in flight at
+     almost every moment. Let the browser keep them. */
+  async headers() {
+    return [
+      {
+        source: "/videos/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({

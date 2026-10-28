@@ -101,6 +101,7 @@ export default function OfficeAdminsPage() {
       <TeamDivider />
 
       <ImageShowcase
+        id="operations"
         caption="One workplace infrastructure"
         title="Bring everyday operations together"
         description="Manage snacks, swag, gifting, events, and more through one partner, with fewer vendors, orders, and workflows to coordinate."
