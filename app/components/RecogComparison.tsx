@@ -91,7 +91,8 @@ export default function RecogComparison() {
               data-animation="reveal"
               className="font-[family-name:var(--font-satoshi)] text-[1.75rem] font-bold leading-[1.08] tracking-[-0.03125rem] text-[#16171b] md:text-[2.25rem] lg:text-[2.75rem]"
             >
-              Recognition software is only part of the program
+              Recognition software
+              <br className="hidden md:block" /> is only part of the program
             </h2>
           </div>
           <p

@@ -290,9 +290,7 @@ export default function RecogImpact() {
             <div className="flex shrink-0 flex-col gap-2 p-8">
               <p className={STAT}>2.7x</p>
               <p className={STAT_LABEL}>
-                More employee-to-employee
-                <br />
-                recognition
+                Peer-to-peer recognition
               </p>
             </div>
             <div className="relative h-[29.75rem] w-full shrink-0 overflow-hidden rounded-t-[2rem]">

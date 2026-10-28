@@ -4,6 +4,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
+    /* Vercel's image optimizer is over its plan quota, so every /_next/image
+       request on the deployed site returns 402 OPTIMIZED_IMAGE_REQUEST_PAYMENT_REQUIRED
+       and images render blank. Serve the files from public/ as-is instead.
+       Remove this line (or raise the Vercel image-optimization limit) to go
+       back to resized WebP/AVIF. */
+    unoptimized: true,
     /* Next 16 allow-lists image qualities (default [75] only). Photos use 90,
        UI mockups with fine text use 100 (near-lossless WebP) — see
        design.md "Image quality". */

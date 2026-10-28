@@ -38,7 +38,7 @@ export default function RecogHero() {
                 className="w-full font-sans text-[1.0625rem] leading-[1.52] text-[#fbfeff] lg:text-[1.1875rem]"
               >
                 Recognition starts in Slack. Stadium turns it into a real
-                reward, chosen by them and shipped by us.
+                reward, chosen by your people and shipped by us.
               </p>
             </div>
 

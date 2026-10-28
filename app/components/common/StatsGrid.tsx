@@ -27,6 +27,9 @@ type StatCenter = {
 type RightStat = {
   title: string;
   text: string;
+  /* optional art pinned to the top of the card (e.g. integration logos) */
+  image?: StaticImageData;
+  backgroundColor?: string;
 };
 
 type StatsGridProps = {
@@ -191,7 +194,19 @@ export default function StatsGrid({
 
           {/* Right stacked stats */}
           <div className="flex min-h-[22.25rem] flex-col gap-4">
-            <div className="flex flex-1 flex-col justify-end gap-2.5 rounded-[1.5rem] bg-[#f2f2f2] p-6 text-[#1b1b1b]">
+            <div
+              style={{ backgroundColor: rightTopStat.backgroundColor ?? "#f2f2f2" }}
+              className="relative flex flex-1 flex-col justify-end gap-2.5 overflow-hidden rounded-[1.5rem] p-6 text-[#1b1b1b]"
+            >
+              {rightTopStat.image && (
+                <Image
+                  src={rightTopStat.image}
+                  alt=""
+                  quality={100}
+                  sizes="(min-width:1024px) 25rem, (min-width:768px) 45vw, 92vw"
+                  className="absolute inset-x-0 top-8 h-auto w-full"
+                />
+              )}
               <p className={`${NUM} text-[3rem]`}>{rightTopStat.title}</p>
 
               <p className="font-sans text-[1rem] leading-[1.4]">

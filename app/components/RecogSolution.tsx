@@ -29,7 +29,7 @@ const ROWS: Row[] = [
     n: "02",
     id: "catalog",
     title: "Recipients choose what they love",
-    desc: "Recipients redeem points from a catalog of 25,000+ items, from branded swag to premium gifts.",
+    desc: "Recipients redeem points from a catalog of 30,000+ items, from branded swag to premium gifts.",
     graphic: (alt) => <SolutionCatalog alt={alt} />,
     alt: "A rewards catalog with a 2,500 points balance: an Explorer Backpack at 800 points, selected headphones at 1,500 points and a Matcha Tea Set at 950 points, above a REDEEM button.",
   },

@@ -372,15 +372,15 @@ export function MediaTabs({
               aria-selected={on}
               aria-label={t.title}
               onClick={() => setActive(i)}
-              style={{ flexGrow: on ? 2.1 : 1 }}
+              style={{ flexGrow: on ? 3 : 1 }}
               className={`relative cursor-pointer overflow-hidden rounded-xl text-left transition-[background-color,flex-grow] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-0 lg:flex-1 ${
                 on ? "bg-white/10" : "bg-pyramid-tab hover:bg-[#232323]"
               }`}
             >
-              {/* stacked list item: the title glides between centred and top-left */}
+              {/* the title glides between its collapsed (62px tab → 17px) and open (24px) top — fixed offsets, so it never follows the growing tab's centre */}
               <span
-                className={`absolute left-6 hidden font-sans text-pyramid-tab transition-[top,transform,color] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] lg:block ${
-                  on ? "top-6 translate-y-0 text-white" : "top-1/2 -translate-y-1/2 text-white/55"
+                className={`absolute left-6 hidden font-sans text-pyramid-tab transition-[top,color] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] lg:block ${
+                  on ? "top-6 text-white" : "top-[1.0625rem] text-white/55"
                 }`}
               >
                 {t.title}

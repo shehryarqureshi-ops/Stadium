@@ -1,4 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 
 export type ProblemSectionItem = {
   image: StaticImageData;
@@ -11,7 +12,7 @@ type ProblemSectionProps = {
   /* caption + description are optional — /book-a-call shows the title only */
   caption?: string;
   captionColor?: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   items: ProblemSectionItem[];
   showDivider?: boolean;

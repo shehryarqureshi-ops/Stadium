@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import globalMap from "@/public/the-proof/global/map.jpg";
+import integrationLogos from "@/public/the-proof/global/integrations.png";
+import shairaJavier from "@/public/enterprise/shaira-javier.jpg";
 import JsonLd from "@/app/components/seo/JsonLd";
 import { seoMetadata } from "@/app/lib/seo/metadata";
 
@@ -155,15 +158,22 @@ export default function TheProofPage() {
           captionColor="#16171b"
           title="Reach people around the world with less complexity"
           description="Fulfill closer to recipients with less shipping, customs, and logistics to manage."
-          statLeft={{}}
+          statLeft={{ image: globalMap, text: "Global warehousing network map with program deliveries" }}
           statCenter={{
             caption: "Global Warehousing Network",
             title: "500+",
             text: "“Typically, gifting globally would take a day. Now I can do it in 15 minutes, even for 500+ people.”",
+            authorImage: shairaJavier,
             authorName: "Shaira J.",
             authorTitle: "Apollo",
+            link: "https://www.bystadium.com/case-overview/apollo",
           }}
-          rightTopStat={{ title: "100+", text: "Integrations" }}
+          rightTopStat={{
+            title: "100+",
+            text: "Integrations",
+            image: integrationLogos,
+            backgroundColor: "#fcfcfc",
+          }}
           rightBottomStat={{ title: "170+", text: "Countries" }}
         />
 

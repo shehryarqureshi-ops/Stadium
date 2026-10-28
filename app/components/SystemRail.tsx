@@ -2,7 +2,7 @@ import { ArrowLeftRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-/* GEI ledger — Figma 7075:29712 (was 7058:27528). It announces the term:
+/* GEI ledger — Figma 7075:29712 (HRIS/CRM cards 7075:29721 / 7075:29802: row→chips gap 55, tag pill 29 tall) (was 7058:27528). It announces the term:
    a GEI badge + the "every core function got its own system" line, then people (HRIS) → GEI ↔
    customers (CRM) as three cards, each system row naming the data it contributes, the five
    programs on the GEI card, and a closing line — HRIS runs your people · GEI runs engagement ·
@@ -30,7 +30,7 @@ const CRM = {
   tags: ["Deals closed", "New contacts", "Renewals", "Referrals", "Customer milestones"],
 };
 
-const card = "flex min-w-0 flex-col items-center rounded-core bg-white p-6 shadow-ledger";
+const card = "flex min-w-0 flex-col items-center rounded-core bg-white p-6 shadow-[0_0.1875rem_0.375rem_0_rgba(0,0,0,0.06),0_1rem_2.25rem_-0.625rem_rgba(0,0,0,0.05)]";
 const label = "font-sans text-ledger-label font-bold uppercase tracking-[0.0625rem] text-swag-grey";
 
 /* one source system: its logos beside a dashed "your …" pill, then the events it feeds in */
@@ -38,7 +38,7 @@ function Source({ title, data }: { title: string; data: typeof HRIS }) {
   return (
     <div className={`${card} gap-[2.8125rem] xl:min-h-[16.25rem] xl:flex-1 xl:self-center`}>
       <p className={label}>{title}</p>
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-[3.4375rem]">
         <ul className="flex flex-wrap items-center justify-center gap-6">
           {data.logos.map((l) => (
             <li key={l.logo} className="flex items-center">
@@ -52,7 +52,7 @@ function Source({ title, data }: { title: string; data: typeof HRIS }) {
               />
             </li>
           ))}
-          <li className="rounded-full border border-dashed border-ledger-line px-4 py-2.5 font-sans text-[0.625rem] font-bold uppercase leading-3 tracking-[0.0625rem] text-swag-grey">
+          <li className="flex h-[1.8125rem] items-center rounded-full border border-dashed border-ledger-line px-4 font-sans text-[0.625rem] font-bold uppercase leading-3 tracking-[0.0625rem] text-swag-grey">
             {data.pill}
           </li>
         </ul>
