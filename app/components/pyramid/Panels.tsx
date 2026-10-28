@@ -263,6 +263,7 @@ export function MediaTabs({
           className="absolute inset-0 transition-opacity duration-[900ms] ease-in-out will-change-[opacity]"
           style={{ opacity: i === active ? 1 : 0 }}
         >
+          {variant === "screen" && <ScreenPlaceholder tab={t} />}
           {t.video && !failed[i] ? (
             <video
               ref={(el) => void (videos.current[i] = el)}
@@ -274,11 +275,9 @@ export function MediaTabs({
               onEnded={i === active ? advance : undefined}
               onError={() => setFailed((f) => ({ ...f, [i]: true }))}
               aria-label={`${t.title} — ${label}`}
-              className="absolute inset-0 size-full object-cover"
+              className={`absolute size-full object-cover ${variant === "screen" ? "inset-x-0 bottom-0 top-9 h-[calc(100%-2.25rem)] md:top-11 md:h-[calc(100%-2.75rem)]" : "inset-0"}`}
             />
-          ) : variant === "screen" ? (
-            <ScreenPlaceholder tab={t} />
-          ) : (
+          ) : variant === "screen" ? null : (
             <ClipPlaceholder />
           )}
         </div>
@@ -301,7 +300,7 @@ export function MediaTabs({
     return (
       <div className="flex flex-col items-center gap-6 md:gap-8">
         {media}
-        <p className="min-h-[1.375rem] max-w-[32.25rem] text-center font-sans text-pyramid-meta text-[#cccccc]">
+        <p className="min-h-[2.75rem] max-w-[32.25rem] text-center font-sans text-pyramid-meta text-[#cccccc]">
           {tab.desc}
         </p>
         <div
@@ -347,7 +346,7 @@ export function MediaTabs({
         >
           {tabs.map((t, i) => (
             <div key={t.title} className="w-full shrink-0 snap-center">
-              <div className={`flex h-[6.25rem] flex-col rounded-xl p-4 ${i === active ? "bg-white/10" : "bg-pyramid-tab"}`}>
+              <div className={`flex h-full min-h-[6.25rem] flex-col rounded-xl p-4 ${i === active ? "bg-white/10" : "bg-pyramid-tab"}`}>
                 <span className="font-sans text-pyramid-tab text-white">{t.title}</span>
                 {t.desc && <span className="mt-1.5 font-sans text-pyramid-meta text-white/60">{t.desc}</span>}
               </div>
