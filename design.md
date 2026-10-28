@@ -2293,3 +2293,30 @@ social/hero image, saved to `public/menu/`.
   `gap-3`; the image wrapper is `isolate transform-gpu` so the hover zoom keeps its
   rounded corners. `customer-isolved.jpg` is cropped inside the source's transparent
   edge (the original had a transparent bottom band that flattened to a white strip).
+
+## Home · GEI ledger update (Figma 7075:29712)
+
+HRIS / CRM cards now show the system logos beside a dashed "Your HRIS" / "Your CRM" pill
+(`border-ledger-line`, 10px bold +1px tracking, `px-4 py-2.5`), then wrapped event chips
+(white, 1px `ledger-line`, 12px semibold, `px-3 py-1.5`). Card inner gap 45px (`2.8125rem`),
+logo row gap 24px. HRIS: Hires, Birthdays, Anniversaries, Promotions, Retirements. CRM: Deals
+closed, New contacts, Renewals, Referrals, Customer milestones. GEI card and category line unchanged.
+
+## Home · static infra pyramid (Figma 7075:30202 Physical · 6765:3040 Digital · 6765:3104 People)
+
+No scroll-driven motion: no pin, no scroll engine, no panel transforms. `pyramidStore.u` stays 0.
+- Intro: `h-svh` (min 40rem) block — sky gradient, starfield, interactive WebGL pyramid (pointer
+  parallax only), slice labels that follow the 3D anchors, intro copy. Same composition as before.
+- Chapters stack as normal sections on black: frame `pt-16`, sides 120px at lg, copy→media gap 56px
+  (`gap-14`), 160px between chapters at lg (96 md, 64 mobile).
+- Chapter header (centred): eyebrow 12 bold +1px `pyramid-ice`; title `text-section-title` (55/60);
+  body `text-pyramid-lede` white/65, max 516px (Digital 590px). People: title `text-pyramid-title`
+  48/52, subheading `text-pyramid-sub` 27/32, body `hero-body` 520px.
+- Physical: media `aspect-[1200/675] rounded-[2rem]`, caption 15/22 `#ccc`, pill tab bar
+  (`bg-pyramid-tab`, p10, `rounded-full`, `shadow-pill-bar` = 0 3 6 rgba(0,0,0,.06)); active tab white pill
+  `px-6 py-4` black text, inactive `px-5 py-[0.8125rem]` white; 12 bold +1px uppercase.
+  Below lg the bar scrolls horizontally.
+- Digital: glass card 570px tall (lg) — browser-chrome placeholder left, 420px step list right.
+- Tabs keep click + autoplay (video end / 8s); playback no longer depends on scroll position.
+- Open: the Physical "Customs, Tax, & Compliance" tab has no clip (placeholder); Figma's still photo
+  was not exported.

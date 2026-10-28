@@ -408,10 +408,25 @@ export default function EveryWay({ updated = false }: { updated?: boolean } = {}
   );
 
   /* updated: every 5s the next line, while the section is on screen; clicking a line restarts the
-     5s from that click and rotation carries on from there (it is never switched off) */
+     5s from that click and rotation carries on from there (it is never switched off). Hovering the
+     section (mouse only) pauses it; on leave a fresh 5s starts. */
+  const [hovered, setHovered] = useState(false);
   useEffect(() => {
     const node = sectionRef.current;
-    if (!updated || reduced || !node) return;
+    if (!updated || !node) return;
+    const enter = (e: PointerEvent) => e.pointerType === "mouse" && setHovered(true);
+    const leave = () => setHovered(false);
+    node.addEventListener("pointerenter", enter);
+    node.addEventListener("pointerleave", leave);
+    return () => {
+      node.removeEventListener("pointerenter", enter);
+      node.removeEventListener("pointerleave", leave);
+    };
+  }, [updated, sectionRef]);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!updated || reduced || hovered || !node) return;
     let visible = false;
     const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.4 });
     io.observe(node);
@@ -422,7 +437,7 @@ export default function EveryWay({ updated = false }: { updated?: boolean } = {}
       clearInterval(timer);
       io.disconnect();
     };
-  }, [updated, reduced, timerKey, sectionRef, SEGMENTS.length]);
+  }, [updated, reduced, hovered, timerKey, sectionRef, SEGMENTS.length]);
 
   const select = (i: number) => {
     takeOver();

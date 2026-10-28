@@ -13,35 +13,30 @@ const FALLBACK_SECONDS = 8; // tabs without a clip advance on this clock
 const eyebrow =
   "font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-pyramid-ice";
 
+/* centred chapter copy (Figma 7075:30202 · 6765:3040 · 6765:3104): eyebrow, title, body */
 export function ChapterHeader({
-  index,
   eyebrowText,
-  heading,
+  title,
   body,
+  bodyWidth = "max-w-[32.25rem]",
 }: {
-  index: string;
   eyebrowText: string;
-  heading: string;
+  title: string;
   body: string;
+  bodyWidth?: string;
 }) {
-  /* lg: the parked pyramid (160px wide) sits to the left; the copy starts 196px in */
   return (
-    <header className="pointer-events-auto flex flex-col items-center text-center lg:min-h-[8.875rem] lg:items-start lg:pl-[12.25rem] lg:text-left">
-      <p className={eyebrow}>
-        <span className="mr-3">{index}</span>
-        {eyebrowText}
-      </p>
-      <h2 className="mt-3 font-display text-heading-md text-white md:text-[2.5rem] md:leading-[2.875rem] md:tracking-[-0.05rem]">
-        {heading}
-      </h2>
-      <p className="mt-3 hidden max-w-[42.5rem] font-sans text-pyramid-lede text-hero-body md:block">{body}</p>
+    <header className="flex flex-col items-center gap-4 text-center md:gap-6">
+      <p className={eyebrow}>{eyebrowText}</p>
+      <h2 className="font-display text-display-sm text-white md:text-heading-xl lg:text-section-title">{title}</h2>
+      <p className={`font-sans text-pyramid-lede text-white/65 ${bodyWidth}`}>{body}</p>
     </header>
   );
 }
 
 export function IntroCopy() {
   return (
-    <div data-intro-copy className="pointer-events-auto mx-auto flex max-w-[27.5rem] flex-col items-center gap-2 text-center lg:mx-0 lg:max-w-[25rem] lg:items-start lg:text-left">
+    <div data-intro-copy className="mx-auto flex max-w-[27.5rem] flex-col items-center gap-2 text-center lg:mx-0 lg:max-w-[25rem] lg:items-start lg:text-left">
       <p className={eyebrow}>{INTRO.eyebrow}</p>
       <h2 className="mt-3 font-display text-display-md text-white lg:text-pyramid-display">
         {INTRO.title.map((line) => (
@@ -56,7 +51,7 @@ export function IntroCopy() {
 }
 
 const glass =
-  "pointer-events-auto relative rounded-[1.5rem] border-t border-[#4d4d4d] bg-black/90 p-2.5";
+  "relative rounded-[1.5rem] border-t border-[#4d4d4d] bg-black/90 p-2.5";
 
 /* the #0b7afc bloom that sits behind each glass card (Figma Ellipse 22) */
 function Bloom() {
@@ -174,7 +169,7 @@ export function MediaTabs({
   label,
 }: {
   tabs: InfraTab[];
-  variant: "clip" | "screen";
+  variant: "pill" | "screen";
   playing: boolean;
   label: string;
 }) {
@@ -186,7 +181,7 @@ export function MediaTabs({
   const prevActive = useRef(0);
   const tab = tabs[active];
   const hasVideo = !!tab.video && !failed[active];
-  const tabsFirst = variant === "clip";
+  const pill = variant === "pill";
 
   const advance = useCallback(() => setActive((a) => (a + 1) % tabs.length), [tabs.length]);
   const { rail, onScroll, goTo } = useRail(tabs.length, setActive);
@@ -257,8 +252,8 @@ export function MediaTabs({
 
   const media = (
     <div
-      className={`relative min-h-0 overflow-hidden rounded-lg bg-[#0e0f11] max-lg:min-h-[10rem] max-lg:flex-1 ${
-        tabsFirst ? "lg:order-2" : "lg:order-1"
+      className={`relative overflow-hidden bg-[#0e0f11] ${
+        pill ? "aspect-[1200/675] w-full rounded-[2rem]" : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
       }`}
     >
       {tabs.map((t, i) => (
@@ -288,9 +283,11 @@ export function MediaTabs({
           )}
         </div>
       ))}
-      <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
+      {!pill && (
+        <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
+      )}
       {/* progress — phones/tablet (desktop shows it inside the open tab) */}
-      <span aria-hidden className="absolute inset-x-0 bottom-0 h-0.5 bg-white/15 lg:hidden">
+      <span aria-hidden className={`absolute inset-x-0 bottom-0 h-0.5 bg-white/15 lg:hidden ${pill ? "hidden" : ""}`}>
         <span
           ref={(el) => void (bars.current[0] = el)}
           className="block h-full origin-left bg-pyramid-ice"
@@ -300,11 +297,43 @@ export function MediaTabs({
     </div>
   );
 
+  if (pill) {
+    return (
+      <div className="flex flex-col items-center gap-6 md:gap-8">
+        {media}
+        <p className="min-h-[1.375rem] max-w-[32.25rem] text-center font-sans text-pyramid-meta text-[#cccccc]">
+          {tab.desc}
+        </p>
+        <div
+          role="tablist"
+          aria-label={label}
+          className="flex max-w-full gap-1 overflow-x-auto rounded-full bg-pyramid-tab p-2.5 shadow-pill-bar [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {tabs.map((t, i) => {
+            const on = i === active;
+            return (
+              <button
+                key={t.title}
+                type="button"
+                role="tab"
+                aria-selected={on}
+                onClick={() => setActive(i)}
+                className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                  on ? "bg-white px-6 py-4 text-black" : "px-5 py-[0.8125rem] text-white hover:bg-white/10"
+                }`}
+              >
+                {t.title}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`${glass} flex flex-col gap-2.5 max-lg:h-full lg:h-[35.625rem] lg:grid ${
-        tabsFirst ? "lg:grid-cols-[26.25rem_minmax(0,1fr)]" : "lg:grid-cols-[minmax(0,1fr)_26.25rem]"
-      }`}
+      className={`${glass} flex flex-col gap-2.5 lg:h-[35.625rem] lg:grid lg:grid-cols-[minmax(0,1fr)_26.25rem]`}
     >
       <Bloom />
       {media}
@@ -332,9 +361,7 @@ export function MediaTabs({
       <div
         role="tablist"
         aria-label={label}
-        className={`hidden lg:flex lg:min-h-0 lg:flex-col lg:gap-2.5 ${
-          tabsFirst ? "lg:order-1" : "lg:order-2"
-        }`}
+        className="hidden lg:order-2 lg:flex lg:min-h-0 lg:flex-col lg:gap-2.5"
       >
         {tabs.map((t, i) => {
           const on = i === active;
@@ -346,7 +373,7 @@ export function MediaTabs({
               aria-selected={on}
               aria-label={t.title}
               onClick={() => setActive(i)}
-              style={{ flexGrow: on ? (variant === "clip" ? 1.18 : 2.1) : 1 }}
+              style={{ flexGrow: on ? 2.1 : 1 }}
               className={`relative cursor-pointer overflow-hidden rounded-xl text-left transition-[background-color,flex-grow] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-0 lg:flex-1 ${
                 on ? "bg-white/10" : "bg-pyramid-tab hover:bg-[#232323]"
               }`}

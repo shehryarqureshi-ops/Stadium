@@ -42,6 +42,9 @@ const FADE_EMISSIVE = new THREE.Color("#000000");
 type Pose = { ax: number; ay: number; sc: number; w: [number, number, number] };
 
 /** Apex position (px), size (× design) and layer weights [bottom, middle, top]. */
+/** desktop intro pyramid scale: 1.0625 × 0.968 */
+const INTRO_SCALE = 1.0285;
+
 function layoutPoses(W: number, H: number): Pose[] {
   if (W >= 1024) {
     const k = Math.min(1.3, Math.max(0.55, Math.min(W / 1440, H / 1024)));
@@ -54,11 +57,11 @@ function layoutPoses(W: number, H: number): Pose[] {
     const markerX = W / 2 + (left - W / 2) * fit + 80 * fit;
     const markerY = H / 2 + (114 - H / 2) * fit;
     const markerSc = (80 / DESIGN_HALF_DIAG) * fit;
-    const introInset = ((W - Math.min(W, 1440)) / 2 + 200) * fit; // headline left edge (120 gutter + 80 indent)
+    const introInset = Math.max(30, (W - 1200) / 2); // the site header's side padding: right edge lines up with Talk to sales
     return [
       // intro: the pyramid's right corner sits as far from the right edge as the headline
       // is from the left (the intro panel is scaled about its left edge by `fit`)
-      { ax: W - introInset - VISIBLE_HALF * DESIGN_HALF_DIAG * 1.0625 * k, ay: yo + 190 * k, sc: 1.0625 * k, w: [1, 1, 1] },
+      { ax: W - introInset + 42.35 * INTRO_SCALE * k - VISIBLE_HALF * DESIGN_HALF_DIAG * INTRO_SCALE * k, ay: yo + 201 * k, sc: INTRO_SCALE * k, w: [1, 1, 1] },
       { ax: markerX, ay: markerY, sc: markerSc, w: [1, 0, 0] },
       { ax: markerX, ay: markerY, sc: markerSc, w: [0, 1, 0] },
       { ax: markerX, ay: markerY, sc: markerSc, w: [0, 0, 1] },

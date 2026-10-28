@@ -20,7 +20,7 @@ type Star = {
 const STAR_COUNT = 220;
 const MAX_SPEED = 0.4;
 
-export default function Starfield({ className = "" }: { className?: string }) {
+export default function Starfield({ className = "", count = STAR_COUNT }: { className?: string; count?: number }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   const reduced = usePrefersReducedMotion();
@@ -48,7 +48,7 @@ export default function Starfield({ className = "" }: { className?: string }) {
     const resize = () => {
       w = canvas.width = parent.offsetWidth;
       h = canvas.height = parent.offsetHeight;
-      stars = Array.from({ length: STAR_COUNT }, makeStar);
+      stars = Array.from({ length: count }, makeStar);
     };
     resize();
 

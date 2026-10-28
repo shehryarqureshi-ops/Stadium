@@ -6,31 +6,15 @@ import gsap from "gsap";
 import Starfield from "../Starfield";
 import { usePrefersReducedMotion } from "@/app/lib/motion";
 import { DIGITAL, LAYERS, PEOPLE, PHYSICAL } from "./content";
-import {
-  ChapterHeader,
-  IntroCopy,
-  MediaTabs,
-} from "./Panels";
+import { ChapterHeader, IntroCopy, MediaTabs } from "./Panels";
 import { PeopleDiagram } from "./PeopleDiagram";
-import {
-  PIN_UNITS,
-  clamp01,
-  panelTarget,
-  pyramidStore,
-} from "./scroll";
+import { pyramidStore } from "./scroll";
 
-/* "One system. Three layers." — the pinned, scroll-driven pyramid section that
-   replaces "The Stadium Infrastructure" on /new-home.
-
-   A sticky 100svh stage holds a WebGL pyramid (PyramidCanvas) behind four DOM
-   panels (intro · Physical · Digital · People). This component is the scroll
-   engine:
-     • reads the (native) page scroll into `u`, the
-       position inside the pin in viewport-heights, and publishes it for WebGL;
-     • drives each panel's rise/exit through its own damped spring so panels
-       settle with a hint of overshoot instead of stopping dead;
-   Reduced motion / the site's "Pause animations" switch gets a static, stacked
-   version with no WebGL. */
+/* "One system. Three layers." — a static section, no scroll-driven motion. The first screen is the
+   interactive WebGL pyramid (it only reacts to the pointer) with its intro copy and slice labels;
+   below it Physical, Digital and People are ordinary stacked sections that scroll like any other.
+   `pyramidStore.u` stays 0, so the canvas holds its intro pose. Reduced motion / the site's
+   "Pause animations" switch drops the WebGL canvas and keeps the copy. */
 
 const PyramidCanvas = dynamic(() => import("./PyramidCanvas"), { ssr: false });
 
@@ -38,55 +22,95 @@ const PyramidCanvas = dynamic(() => import("./PyramidCanvas"), { ssr: false });
  *  Physical → lower right · Digital → upper left · People → upper right (as in Figma). */
 const LABEL_OFFSET: [number, number][] = [
   [0.5, 0.05],
-  [-0.92, -0.3],
+  [-0.8, -0.34],
   [0.6, -0.12],
 ];
 
 export default function InfraPyramid() {
-  const reduced = usePrefersReducedMotion();
-  return reduced ? <StaticInfra /> : <PinnedInfra />;
+  return (
+    <section aria-label="The Stadium infrastructure" className="relative overflow-clip rounded-t-[2.5rem] bg-black text-white">
+      <Intro />
+
+      <div className="relative flex flex-col pb-16 md:pb-24 lg:pb-40">
+        {/* the intro's sky carries on behind the chapters: same starfield, plus a soft blue glow per chapter */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(55% 22% at 80% 18%, rgba(1,28,61,0.9) 0%, transparent 100%), radial-gradient(55% 22% at 20% 52%, rgba(1,28,61,0.9) 0%, transparent 100%), radial-gradient(55% 22% at 80% 86%, rgba(1,28,61,0.9) 0%, transparent 100%)",
+            }}
+          />
+          <Starfield className="absolute inset-0 h-full w-full" count={700} />
+        </div>
+        <Chapter>
+          <ChapterHeader eyebrowText={PHYSICAL.heading} title={PHYSICAL.title} body={PHYSICAL.body} />
+          <MediaTabs tabs={PHYSICAL.tabs} variant="pill" playing label="Printing, warehousing, shipping and customs" />
+        </Chapter>
+
+        <Chapter>
+          <ChapterHeader
+            eyebrowText={DIGITAL.heading}
+            title={DIGITAL.title}
+            body={DIGITAL.body}
+            bodyWidth="max-w-[36.875rem]"
+          />
+          <MediaTabs tabs={DIGITAL.tabs} variant="screen" playing label="Recognition, storefronts, integrations and controls" />
+        </Chapter>
+
+        <Chapter>
+          <ChapterHeader
+            eyebrowText={PEOPLE.heading}
+            title={PEOPLE.title}
+            body={PEOPLE.body}
+            bodyWidth="max-w-[36.5rem]"
+          />
+          <PeopleDiagram />
+        </Chapter>
+      </div>
+    </section>
+  );
+}
+
+/* one stacked chapter: Figma frame = 64 top · 120 sides · 56 between copy and media */
+function Chapter({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative mx-auto flex w-full max-w-[90rem] flex-col gap-10 px-section-x-sm pt-16 md:gap-14 md:px-section-x-md lg:px-[7.5rem] [&:nth-child(n+3)]:mt-16 md:[&:nth-child(n+3)]:mt-24 lg:[&:nth-child(n+3)]:mt-40">
+      {children}
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
 
-function PinnedInfra() {
-  const outer = useRef<HTMLElement>(null);
-  const stage = useRef<HTMLDivElement>(null);
-  const sky = useRef<HTMLDivElement>(null);
-  const panelEls = useRef<(HTMLDivElement | null)[]>([]);
+function Intro() {
+  const reduced = usePrefersReducedMotion();
+  const root = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [mountCanvas, setMountCanvas] = useState(false);
   const [canvasReady, setCanvasReady] = useState(false);
-  const [stop, setStop] = useState(0);
-  const stopRef = useRef(0);
   const labelEls = useRef<(HTMLDivElement | null)[]>([]);
   const leaderEls = useRef<(SVGPathElement | null)[]>([]);
   const dotEls = useRef<(SVGCircleElement | null)[]>([]);
   const visibleRef = useRef(false);
-  const metrics = useRef({ top: 0, vh: 1, vw: 1 });
 
-  /* document-space top of the section + viewport size (re-measured on layout shifts) */
+  /* phones/tablet intro: centre [pyramid + gap + copy] vertically under the header */
   const measure = useCallback(() => {
-    const o = outer.current;
-    const s = stage.current;
-    if (!o || !s) return;
-    metrics.current = {
-      top: o.getBoundingClientRect().top + window.scrollY,
-      vh: s.clientHeight || window.innerHeight,
-      vw: s.clientWidth || window.innerWidth,
-    };
-    /* below lg the parked pyramid sits above the copy: start the copy just under it
-       (mirrors layoutPoses: apex y 108, stop scale = 0.5 × s0, height = 668 × scale) */
+    const s = root.current;
+    if (!s) return;
     const vw = s.clientWidth || window.innerWidth;
-    const s0 = Math.min(0.85, Math.max(0.37, (vw * 0.34 * 1.25) / 387));
-    /* phones/tablet intro: centre [pyramid + gap + copy] vertically under the header */
-    const textH = s.querySelector<HTMLElement>("[data-intro-copy]")?.offsetHeight || 240;
     const sh = s.clientHeight || window.innerHeight;
+    const s0 = Math.min(0.85, Math.max(0.37, (vw * 0.34 * 1.25) / 387));
+    const textH = s.querySelector<HTMLElement>("[data-intro-copy]")?.offsetHeight || 240;
     const pyrH = 668 * s0;
     const introAy = 64 + Math.max(24, (sh - 64 - (pyrH + 40 + textH)) / 2);
     pyramidStore.introAy = vw < 1024 ? introAy : 0;
     s.style.setProperty("--intro-top", `${Math.round(introAy + pyrH + 40)}px`);
-    s.style.setProperty("--pyr-bottom", `${Math.round(108 + 668 * s0 * 0.5 + 16)}px`);
+    /* desktop: pull Physical up so the pyramid's base sits 160px above its eyebrow
+       (mirrors layoutPoses: k, yo, base ≈ yo + 950k; the chapter adds its own 64px) */
+    const k = Math.min(1.3, Math.max(0.55, Math.min(vw / 1440, sh / 1024)));
+    const base = (sh - 1024 * k) / 2 + 950 * k;
+    s.style.setProperty("--intro-trim", `${vw >= 1024 ? Math.round(sh - base - 96) : 0}px`);
   }, []);
 
   useEffect(() => {
@@ -104,12 +128,10 @@ function PinnedInfra() {
 
   /* mount WebGL a screen before it's needed; render only while on screen */
   useEffect(() => {
-    const o = outer.current;
+    const o = root.current;
     if (!o) return;
-    const near = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setMountCanvas(true),
-      { rootMargin: "150% 0px" },
-    );
+    pyramidStore.u = 0;
+    const near = new IntersectionObserver(([e]) => e.isIntersecting && setMountCanvas(true), { rootMargin: "150% 0px" });
     const live = new IntersectionObserver(
       ([e]) => {
         visibleRef.current = e.isIntersecting;
@@ -125,257 +147,95 @@ function PinnedInfra() {
     };
   }, []);
 
-  /* the scroll engine */
+  /* labels follow their slice anchors (the pyramid breathes with the pointer) — not scroll */
   useEffect(() => {
-    const origins = ["left center", "center center", "center center", "center center"];
-
+    if (reduced) return;
     const tick = () => {
-      if (!visibleRef.current) return;
-      const { top, vh, vw } = metrics.current;
-      const u = Math.min(PIN_UNITS, Math.max(0, (window.scrollY - top) / vh));
-      pyramidStore.u = u;
-      /* scroll the sky away exactly as the old section background did once the stage pins */
-      if (sky.current) sky.current.style.transform = `translate3d(0, ${-Math.max(0, window.scrollY - top).toFixed(2)}px, 0)`;
-
-      const desktop = vw >= 1024;
-      const fit = desktop ? Math.min(1, Math.max(0.62, vh / 1024)) : 1;
-
-      let best = 0;
-      let bestAbs = Infinity;
-      for (let k = 0; k < 4; k++) {
-        const s = panelTarget(k, u); // 1:1 with scroll — no smoothing
-        const abs = Math.abs(s);
-        if (abs < bestAbs) {
-          bestAbs = abs;
-          best = k;
-        }
-        const el = panelEls.current[k];
-        if (!el) continue;
-        const rise = s < 0 ? -s * vh * 0.55 : -s * vh * 0.28;
-        const opacity = clamp01(1 - abs * 1.25);
-        el.style.transform = `translate3d(0, ${rise.toFixed(2)}px, 0) scale(${(fit * (1 - Math.min(abs, 1) * 0.04)).toFixed(4)})`;
-        el.style.transformOrigin = desktop ? origins[k] : "center bottom";
-        el.style.opacity = opacity.toFixed(3);
-        el.style.visibility = opacity < 0.01 ? "hidden" : "visible";
-      }
-
-
-      /* intro labels (Figma 6765:13588): outlined pill + leader line + dot on its slice.
-         Fade out the moment the pyramid starts to move. */
-      const labelOpacity = clamp01(1 - u * 8);
+      const s = root.current;
+      if (!visibleRef.current || !s) return;
+      const vw = s.clientWidth;
+      const vh = s.clientHeight;
       const hd = pyramidStore.halfDiag;
       labelEls.current.forEach((el, i) => {
         if (!el) return;
         const anchor = pyramidStore.anchors[i];
-        const ready = (anchor.x !== 0 || anchor.y !== 0) && labelOpacity > 0;
+        const ready = anchor.x !== 0 || anchor.y !== 0;
         const [ox, oy] = LABEL_OFFSET[i];
         const w = el.offsetWidth;
         const h = el.offsetHeight;
-        const { vw, vh } = metrics.current;
         // keep the pill fully on screen
         const px = Math.min(vw - 24 - w / 2, Math.max(24 + w / 2, anchor.x + ox * hd));
         const py = Math.min(vh - 24 - h / 2, Math.max(80 + h / 2, anchor.y + oy * hd));
+        const o = ready ? "1" : "0";
         el.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0) translate(-50%, -50%)`;
-        el.style.opacity = (ready ? labelOpacity : 0).toFixed(3);
+        el.style.opacity = o;
         const dir = anchor.x < px ? -1 : 1; // leader leaves the pill on the side facing its dot
         const x0 = px + dir * (w / 2);
         const path = leaderEls.current[i];
         const dot = dotEls.current[i];
         if (path) {
           path.setAttribute("d", `M${x0.toFixed(1)} ${py.toFixed(1)} L${(x0 + dir * 36).toFixed(1)} ${py.toFixed(1)} L${anchor.x.toFixed(1)} ${anchor.y.toFixed(1)}`);
-          path.style.opacity = (ready ? labelOpacity : 0).toFixed(3);
+          path.style.opacity = o;
         }
         if (dot) {
           dot.setAttribute("cx", anchor.x.toFixed(1));
           dot.setAttribute("cy", anchor.y.toFixed(1));
-          dot.style.opacity = (ready ? labelOpacity : 0).toFixed(3);
+          dot.style.opacity = o;
         }
       });
-      if (bestAbs < 0.5 && best !== stopRef.current) {
-        stopRef.current = best;
-        setStop(best);
-      }
     };
     gsap.ticker.add(tick);
     return () => gsap.ticker.remove(tick);
-  }, []);
-
-  /* chapters 1–3 start hidden so SSR / first paint never stacks them on the intro */
-  const hidden = { opacity: 0, visibility: "hidden" } as const;
+  }, [reduced]);
 
   return (
-    <section
-      ref={outer}
-      aria-label="The Stadium infrastructure"
-      className="relative overflow-clip rounded-t-[2.5rem] bg-black text-white"
-      style={{ height: `calc(100svh * ${1 + PIN_UNITS})` }}
-    >
-      {/* The stage is an OPAQUE black layer. It used to be transparent over the section's own
-          background, so when Chrome couldn't rasterise the stage's tiles fast enough during a scroll
-          (WebGL canvas + starfield + four full-screen panels) the unpainted strip at the bottom edge
-          fell back to the page's white — the flickering white lines. An opaque layer makes any lagging
-          tile show black instead. */}
-      <div ref={stage} className="sticky top-0 h-svh w-full overflow-hidden bg-black">
-        {/* the globe section's dark-blue sky over the first screen (Figma 6525:12159). It used to be the
-            section's background and scrolled away as the pin began; it now rides inside the stage and
-            is lifted by the same amount (see the scroll engine), so it looks identical. */}
-        <div
-          ref={sky}
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(115% 105% at 74% 16%, #011c3d 0%, #020a14 45%, #000000 78%)",
-          }}
-        />
-        {/* the same twinkling starfield as the globe section above, so the two read as one sky */}
-        <Starfield className="absolute inset-0 h-full w-full" />
+    <div ref={root} className="relative mb-[calc(var(--intro-trim,0px)*-1)] h-svh min-h-[40rem] w-full overflow-hidden bg-black">
+      {/* the globe section's dark-blue sky (Figma 6525:12159) */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundImage: "radial-gradient(115% 105% at 74% 16%, #011c3d 0%, #020a14 45%, #000000 78%)" }}
+      />
+      {/* the same twinkling starfield as the globe section above, so the two read as one sky */}
+      <Starfield className="absolute inset-0 h-full w-full" />
 
-        {/* the first frames compile shaders — fade the canvas in once it is actually drawing */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${canvasReady ? "opacity-100" : "opacity-0"}`}
-        >
+      {/* the first frames compile shaders — fade the canvas in once it is actually drawing */}
+      {!reduced && (
+        <div className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${canvasReady ? "opacity-100" : "opacity-0"}`}>
           {mountCanvas && <PyramidCanvas active={visible} onReady={() => setCanvasReady(true)} />}
         </div>
+      )}
 
-        {/* intro labels — a connected pill per slice (decorative — no interaction) */}
-        <svg aria-hidden className="pointer-events-none absolute inset-0 size-full">
+      {/* slice labels — a connected pill per slice (decorative — no interaction) */}
+      {!reduced && (
+        <>
+          <svg aria-hidden className="pointer-events-none absolute inset-0 size-full">
+            {LAYERS.map((label, i) => (
+              <g key={label}>
+                <path ref={(el) => void (leaderEls.current[i] = el)} fill="none" stroke="white" strokeWidth="1" style={{ opacity: 0 }} />
+                <circle ref={(el) => void (dotEls.current[i] = el)} r="5" fill="white" style={{ opacity: 0 }} />
+              </g>
+            ))}
+          </svg>
           {LAYERS.map((label, i) => (
-            <g key={label}>
-              <path
-                ref={(el) => void (leaderEls.current[i] = el)}
-                fill="none"
-                stroke="white"
-                strokeWidth="1"
-                style={{ opacity: 0 }}
-              />
-              <circle ref={(el) => void (dotEls.current[i] = el)} r="5" fill="white" style={{ opacity: 0 }} />
-            </g>
+            <div
+              key={label}
+              ref={(el) => void (labelEls.current[i] = el)}
+              style={{ opacity: 0 }}
+              className="pointer-events-none absolute left-0 top-0 z-10 flex items-center gap-2 rounded-full border border-white/[0.28] bg-black/[0.42] px-3 py-[0.4375rem] font-sans text-[0.6875rem] uppercase text-white backdrop-blur-[0.5rem]"
+            >
+              <span className="font-bold tracking-[0.075rem]">0{i + 1}</span>
+              <span className="font-medium tracking-[0.0875rem]">{label}</span>
+            </div>
           ))}
-        </svg>
-        {LAYERS.map((label, i) => (
-          <div
-            key={label}
-            ref={(el) => void (labelEls.current[i] = el)}
-            style={{ opacity: 0 }}
-            className="pointer-events-none absolute left-0 top-0 z-10 flex items-center gap-2 rounded-full border border-white/[0.28] bg-black/[0.42] px-3 py-[0.4375rem] font-sans text-[0.6875rem] uppercase text-white backdrop-blur-[0.5rem]"
-          >
-            <span className="font-bold tracking-[0.075rem]">0{i + 1}</span>
-            <span className="font-medium tracking-[0.0875rem]">{label}</span>
-          </div>
-        ))}
+        </>
+      )}
 
-        {/* 00 — intro */}
-        <div
-          ref={(el) => void (panelEls.current[0] = el)}
-          className="pointer-events-none absolute inset-0 flex items-start pt-[var(--intro-top,22rem)] will-change-transform lg:items-center lg:pt-0"
-        >
-          <Container>
-            <div className="lg:pl-20">
-              <IntroCopy />
-            </div>
-          </Container>
-        </div>
-
-        {/* 01 — Physical */}
-        <div ref={(el) => void (panelEls.current[1] = el)} style={hidden} className="pointer-events-none absolute inset-0 flex items-start pb-10 pt-[var(--pyr-bottom,14rem)] will-change-transform max-lg:[&>*]:self-stretch lg:pb-0 lg:pt-28">
-          <Container fill>
-            <ChapterHeader index="01" eyebrowText="Physical infrastructure" heading={PHYSICAL.heading} body={PHYSICAL.body} />
-            <div className="mt-6 max-lg:min-h-0 max-lg:flex-1 lg:mt-14">
-              <MediaTabs
-                tabs={PHYSICAL.tabs}
-                variant="clip"
-                playing={stop === 1 && visible}
-                label="Printing, warehousing, shipping and customs"
-              />
-            </div>
-          </Container>
-        </div>
-
-        {/* 02 — Digital */}
-        <div ref={(el) => void (panelEls.current[2] = el)} style={hidden} className="pointer-events-none absolute inset-0 flex items-start pb-10 pt-[var(--pyr-bottom,14rem)] will-change-transform max-lg:[&>*]:self-stretch lg:pb-0 lg:pt-28">
-          <Container fill>
-            <ChapterHeader index="02" eyebrowText="Digital infrastructure" heading={DIGITAL.heading} body={DIGITAL.body} />
-            <div className="mt-6 max-lg:min-h-0 max-lg:flex-1 lg:mt-14">
-              <MediaTabs
-                tabs={DIGITAL.tabs}
-                variant="screen"
-                playing={stop === 2 && visible}
-                label="Recognition, storefronts, integrations and controls"
-              />
-            </div>
-          </Container>
-        </div>
-
-        {/* 03 — People */}
-        <div ref={(el) => void (panelEls.current[3] = el)} style={hidden} className="pointer-events-none absolute inset-0 flex items-start pb-10 pt-[var(--pyr-bottom,14rem)] will-change-transform max-lg:[&>*]:self-stretch lg:pb-0 lg:pt-28">
-          <Container fill>
-            <ChapterHeader index="03" eyebrowText="People infrastructure" heading={PEOPLE.heading} body={PEOPLE.body} />
-            <div className="mt-6 max-lg:min-h-0 max-lg:flex-1 lg:mt-14">
-              <PeopleDiagram />
-            </div>
-          </Container>
+      <div className="pointer-events-none absolute inset-0 flex items-start pt-[var(--intro-top,22rem)] lg:items-center lg:pt-0">
+        <div className="w-full px-4 md:px-[max(var(--spacing-section-x-md),calc((100%_-_var(--container-content))/2))]">
+          <IntroCopy />
         </div>
       </div>
-    </section>
-  );
-}
-
-function Container({ children, fill = false }: { children: React.ReactNode; fill?: boolean }) {
-  return (
-    <div
-      className={`mx-auto w-full max-w-[90rem] px-section-x-sm md:px-section-x-md lg:px-[7.5rem] ${
-        fill ? "max-lg:flex max-lg:h-full max-lg:flex-col" : ""
-      }`}
-    >
-      {children}
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-
-/** Reduced-motion / paused: the same content, stacked, no pin and no WebGL. */
-function StaticInfra() {
-  return (
-    <section
-      aria-label="The Stadium infrastructure"
-      className="relative flex flex-col gap-24 bg-black py-16 text-white md:py-24"
-    >
-      <Container>
-        <IntroCopy />
-      </Container>
-      <Container>
-        <ChapterHeader index="01" eyebrowText="Physical infrastructure" heading={PHYSICAL.heading} body={PHYSICAL.body} />
-        <div className="mt-8">
-          <MediaTabs
-            tabs={PHYSICAL.tabs}
-            variant="clip"
-            playing={false}
-            label="Printing, warehousing, shipping and customs"
-          />
-        </div>
-      </Container>
-      <Container>
-        <div>
-          <ChapterHeader index="02" eyebrowText="Digital infrastructure" heading={DIGITAL.heading} body={DIGITAL.body} />
-          <div className="mt-8">
-            <MediaTabs
-              tabs={DIGITAL.tabs}
-              variant="screen"
-              playing={false}
-              label="Recognition, storefronts, integrations and controls"
-            />
-          </div>
-        </div>
-      </Container>
-      <Container>
-        <ChapterHeader index="03" eyebrowText="People infrastructure" heading={PEOPLE.heading} body={PEOPLE.body} />
-        <div className="mt-8">
-          <PeopleDiagram />
-        </div>
-      </Container>
-    </section>
-  );
-}
-

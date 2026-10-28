@@ -2,7 +2,7 @@ import { ArrowLeftRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-/* GEI ledger — Figma 7058:27528 ("GEI · Ledger (final, auto-layout)"). It announces the term:
+/* GEI ledger — Figma 7075:29712 (was 7058:27528). It announces the term:
    a GEI badge + the "every core function got its own system" line, then people (HRIS) → GEI ↔
    customers (CRM) as three cards, each system row naming the data it contributes, the five
    programs on the GEI card, and a closing line — HRIS runs your people · GEI runs engagement ·
@@ -12,35 +12,62 @@ import type { ReactNode } from "react";
 
 const PROGRAMS = ["Recognition", "Swag", "Gifting", "Snack Boxes", "Hosted Experiences"];
 
-type Source = { logo: string; alt: string; w: number; h: number; tag: string };
-const PEOPLE: Source[] = [
-  { logo: "workday", alt: "Workday", w: 47, h: 22, tag: "Hires" },
-  { logo: "bamboohr", alt: "BambooHR", w: 100, h: 14, tag: "Birthdays" },
-  { logo: "rippling", alt: "Rippling", w: 100, h: 14, tag: "Anniversaries" },
-];
-const CUSTOMERS: Source[] = [
-  { logo: "salesforce", alt: "Salesforce", w: 31, h: 22, tag: "Deals closed" },
-  { logo: "hubspot", alt: "HubSpot", w: 76, h: 22, tag: "New contacts" },
-];
+type Logo = { logo: string; alt: string; w: number; h: number };
+const HRIS = {
+  logos: [
+    { logo: "workday", alt: "Workday", w: 47, h: 22 },
+    { logo: "bamboohr", alt: "BambooHR", w: 100, h: 14 },
+  ] satisfies Logo[],
+  pill: "Your HRIS",
+  tags: ["Hires", "Birthdays", "Anniversaries", "Promotions", "Retirements"],
+};
+const CRM = {
+  logos: [
+    { logo: "salesforce", alt: "Salesforce", w: 31, h: 22 },
+    { logo: "hubspot", alt: "HubSpot", w: 76, h: 22 },
+  ] satisfies Logo[],
+  pill: "Your CRM",
+  tags: ["Deals closed", "New contacts", "Renewals", "Referrals", "Customer milestones"],
+};
 
-const card = "flex min-w-0 flex-col rounded-core bg-white p-6 shadow-ledger";
+const card = "flex min-w-0 flex-col items-center rounded-core bg-white p-6 shadow-ledger";
 const label = "font-sans text-ledger-label font-bold uppercase tracking-[0.0625rem] text-swag-grey";
 
-function Row({ s }: { s: Source }) {
+/* one source system: its logos beside a dashed "your …" pill, then the events it feeds in */
+function Source({ title, data }: { title: string; data: typeof HRIS }) {
   return (
-    <li className="flex h-16 items-center justify-between rounded-[1.125rem] bg-ledger-soft pl-[1.125rem] pr-3.5">
-      <Image
-        src={`/new-home/system/${s.logo}.svg`}
-        alt={s.alt}
-        width={s.w}
-        height={s.h}
-        className="w-auto max-w-none"
-        style={{ height: `${s.h / 16}rem` }}
-      />
-      <span className="rounded-full border border-ledger-line bg-white px-3 py-1.5 font-sans text-[0.75rem] font-semibold leading-4 text-swag-ink">
-        {s.tag}
-      </span>
-    </li>
+    <div className={`${card} gap-[2.8125rem] xl:min-h-[16.25rem] xl:flex-1 xl:self-center`}>
+      <p className={label}>{title}</p>
+      <div className="flex flex-col items-center gap-6">
+        <ul className="flex flex-wrap items-center justify-center gap-6">
+          {data.logos.map((l) => (
+            <li key={l.logo} className="flex items-center">
+              <Image
+                src={`/new-home/system/${l.logo}.svg`}
+                alt={l.alt}
+                width={l.w}
+                height={l.h}
+                className="w-auto max-w-none"
+                style={{ height: `${l.h / 16}rem` }}
+              />
+            </li>
+          ))}
+          <li className="rounded-full border border-dashed border-ledger-line px-4 py-2.5 font-sans text-[0.625rem] font-bold uppercase leading-3 tracking-[0.0625rem] text-swag-grey">
+            {data.pill}
+          </li>
+        </ul>
+        <ul className="flex flex-wrap justify-center gap-2">
+          {data.tags.map((t) => (
+            <li
+              key={t}
+              className="rounded-full border border-ledger-line bg-white px-3 py-1.5 font-sans text-[0.75rem] font-semibold leading-4 text-swag-ink"
+            >
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
 
@@ -100,20 +127,13 @@ export default function SystemRail() {
       </header>
 
       <div className="flex w-full flex-col gap-5 xl:flex-row xl:items-stretch">
-        <div className={`${card} gap-3 xl:flex-1`}>
-          <p className={label}>Your people · HRIS</p>
-          <ul className="flex flex-col gap-3">
-            {PEOPLE.map((s) => (
-              <Row key={s.logo} s={s} />
-            ))}
-          </ul>
-        </div>
+        <Source title="Your people · HRIS" data={HRIS} />
 
         <Link name="People data flows in">
           <ArrowRight aria-hidden className="size-[1.125rem]" strokeWidth={2} />
         </Link>
 
-        <div className={`${card} items-center justify-between gap-6 xl:flex-1`}>
+        <div className={`${card} justify-center gap-[2.8125rem] xl:min-h-[21.1875rem] xl:flex-1`}>
           <p className={label}>Your engagement · GEI</p>
           <div className="flex flex-col items-center gap-1.5">
             <span className="flex pr-2">
@@ -127,7 +147,7 @@ export default function SystemRail() {
             </span>
             <p className="font-display text-core-title text-swag-ink">Stadium</p>
           </div>
-          <ul className="flex flex-wrap justify-center gap-2 pt-2.5">
+          <ul className="flex flex-wrap justify-center gap-2">
             {PROGRAMS.map((p) => (
               <li
                 key={p}
@@ -143,17 +163,7 @@ export default function SystemRail() {
           <ArrowLeftRight aria-hidden className="size-[1.125rem]" strokeWidth={2} />
         </Link>
 
-        <div className={`${card} gap-3 xl:flex-1`}>
-          <p className={label}>Your customers · CRM</p>
-          <ul className="flex flex-col gap-3">
-            {CUSTOMERS.map((s) => (
-              <Row key={s.logo} s={s} />
-            ))}
-            <li className="flex h-16 items-center justify-center rounded-[1.125rem] border border-dashed border-ledger-line font-sans text-[0.8125rem] leading-5 text-swag-grey">
-              + your CRM or HRIS
-            </li>
-          </ul>
-        </div>
+        <Source title="Your customers · CRM" data={CRM} />
       </div>
 
       <div className="grid w-full gap-4 lg:grid-cols-3">
