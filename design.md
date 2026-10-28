@@ -2320,3 +2320,20 @@ No scroll-driven motion: no pin, no scroll engine, no panel transforms. `pyramid
 - Tabs keep click + autoplay (video end / 8s); playback no longer depends on scroll position.
 - Open: the Physical "Customs, Tax, & Compliance" tab has no clip (placeholder); Figma's still photo
   was not exported.
+
+## Home · 4 jobs + GEI ledger, simplified (Figma 7120:10058 · 7120:10112)
+
+**4 jobs:** left-aligned header — eyebrow 12 bold +1px, H2 `text-section-title` (55/60), 18/28 `swag-grey`
+sub (max 620px: "Recognition, swag, gifting and events, run end to end by one team, so yours can get back to the
+work only it can do."). Gap 56 to a row of four `bg-job-tile` (#f5f5f7) cards: gap 20, radius 24, 278 tall
+(`h-job-tile-h`), padding 36/32/32/32, 56px white icon tile (r16, Lucide clock / tag / shield-check /
+sliders-horizontal at 28px), 40 space, title `text-job-tile-title` (24/30 −0.3) + 12 gap + 16/24 `job-body`.
+Copy: Save time. · Save money. · Peace of mind. · Centralize control. (new body lines per Figma).
+Below lg: 2 columns (md), 1 column (mobile), height auto.
+
+**GEI ledger:** no cards, badge or chips. Centered header (eyebrow, H2 700px, sub 620px); then three
+columns (HRIS logos · GEI mark · CRM logos, each over a 24/30 label "HRIS runs your people" / "GEI runs
+engagement" / "CRM runs your customers") joined by 160×10 gradient connector SVGs (`ledger-link-left/right`,
+purple→ and pink→). Columns are 130 tall (logos top, label bottom). Logos: Workday 71.91×34, BambooHR
+183.24×26 (gap 29); Salesforce 62.86×44, HubSpot 103.09×30 (gap 28); mark 47.48×84 + 10.18 right pad.
+Below xl the columns stack and the connectors are hidden. Assets: `public/new-home/system/ledger-*.svg`.

@@ -68,6 +68,8 @@ export default function IntegrationsPage() {
               title="Need help getting connected?"
               description="Our team can help you choose and set up the right integration for your needs."
               cta={{ label: "Contact us", href: LINKS.sales }}
+              videoId="vpRcWE1CX7w"
+              videoTitle="Supercharge your workflow with Stadium integrations"
             />
           </ImpactClosing>
         }
@@ -93,8 +95,9 @@ export default function IntegrationsPage() {
           title="Turn everyday triggers into action"
           description="Connected triggers keep programs moving on their own."
           quote="“Integrating our HRIS has been a huge help–all of the addresses are already loaded there. As soon as employees are added to UKG, they get an email to redeem their new hire kit. Automating onboarding gifting has been a huge win.”"
-          attribution="Communications Manager, Keyfactor"
-          cta={{ label: "Read case study", href: PLATFORM_ROUTES.proof }}
+          attribution="Megan C., Global Employee Experience Specialist"
+          logo={{ src: "/impact/overview/logos/keyfactor.svg", alt: "Keyfactor", width: 168, height: 24 }}
+          cta={{ label: "Read case study", href: "https://www.bystadium.com/case-overview/keyfactor" }}
           graphic={<Workflow alt="Automation flow: a new hire is added in UKG, a welcome kit is sent, and it is delivered before day one" />}
         />
 

@@ -1,6 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import HashAnchors from "@/app/components/common/HashAnchors";
+import { externalLinkProps } from "@/app/lib/links";
 import { spaceDots } from "@/app/lib/text";
 
 export type TwoFeaturedCardsItem = {
@@ -153,6 +154,7 @@ export default function TwoFeaturedCards({
                     <div className="flex flex-1 flex-col">{card.content}</div>
                     <a
                       href={card.ctaLink}
+                      {...externalLinkProps(card.ctaLink)}
                       className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-[1.375rem] py-[1.125rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
                         card.ctaVariant === "dark"
                           ? "bg-[#111111] text-white hover:bg-[#2b2b2b]"
@@ -186,6 +188,7 @@ export default function TwoFeaturedCards({
                   {/* CTA */}
                   <a
                     href={card.ctaLink}
+                      {...externalLinkProps(card.ctaLink)}
                     className={`mt-8 inline-flex h-[2.75rem] w-full items-center justify-center rounded-full px-[1.375rem] font-sans text-button-primary uppercase transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
                       card.ctaVariant === "dark"
                         ? "bg-[#111111] text-white hover:bg-[#2b2b2b]"

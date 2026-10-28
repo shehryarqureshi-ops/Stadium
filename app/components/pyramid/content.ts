@@ -74,7 +74,7 @@ export const DIGITAL = {
       video: "/videos/infra/Video%2004.webm", // placeholder clip
     },
     {
-      title: "Brand Controls",
+      title: "Asset Library",
       desc: "One asset library and storefront branding keep every team on-brand.",
       video: "/videos/infra/Video%2005.webm", // placeholder clip
     },

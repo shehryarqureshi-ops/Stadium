@@ -1146,3 +1146,14 @@ body {
 @theme {
   --shadow-pill-bar: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.06); /* Physical tab pill bar */
 }
+
+/* ===== /new-home · 4 jobs + GEI ledger rows (Figma 7120:10058 · 7120:10112) ===== */
+@theme {
+  --color-job-tile: #f5f5f7; /* job card fill */
+  --color-job-body: #37383d; /* job card copy */
+  --spacing-job-tile-h: 17.375rem; /* 278 — job card height (lg) */
+  --text-job-tile-title: 1.5rem; /* 24/30 −0.3px Satoshi Bold */
+  --text-job-tile-title--line-height: 1.875rem;
+  --text-job-tile-title--letter-spacing: -0.01875rem;
+  --text-job-tile-title--font-weight: 700;
+}

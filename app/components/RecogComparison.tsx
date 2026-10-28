@@ -9,7 +9,7 @@ const COLS: { name: string; sub?: string; hi?: boolean }[] = [
 
 const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
   {
-    label: "Peer-to-peer recognition",
+    label: "Employee-to-Employee Recognition",
     vals: ["check", "check", "check", "Add-On"],
   },
   {

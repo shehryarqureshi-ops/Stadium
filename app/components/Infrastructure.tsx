@@ -38,7 +38,7 @@ const steps: Step[] = [
   { num: "04", label: "Customs, Tax, & Compliance" },
   { num: "05", label: "Integrations & Automated Gifting" },
   { num: "06", label: "Platform Controls" },
-  { num: "07", label: "Brand Controls" },
+  { num: "07", label: "Asset Library" },
   { num: "08", label: "Security & Reliability" },
 ];
 

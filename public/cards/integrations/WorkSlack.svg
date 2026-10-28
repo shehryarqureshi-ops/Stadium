@@ -1,14 +1,10 @@
 <svg width="400" height="250" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="250" fill="#CCCCCC"/>
 <g id="integrationsworkslack-Batch 3">
-<path d="M-13583 -8658C-13583 -8659.1 -13582.1 -8660 -13581 -8660H25005C25006.1 -8660 25007 -8659.1 25007 -8658V7212C25007 7213.1 25006.1 7214 25005 7214H-13581C-13582.1 7214 -13583 7213.1 -13583 7212V-8658Z" fill="#EEEEEE"/>
-<path d="M-13581 -8660V-8659H25005V-8660V-8661H-13581V-8660ZM25007 -8658H25006V7212H25007H25008V-8658H25007ZM25005 7214V7213H-13581V7214V7215H25005V7214ZM-13583 7212H-13582V-8658H-13583H-13584V7212H-13583ZM-13581 7214V7213C-13581.6 7213 -13582 7212.55 -13582 7212H-13583H-13584C-13584 7213.66 -13582.7 7215 -13581 7215V7214ZM25007 7212H25006C25006 7212.55 25005.6 7213 25005 7213V7214V7215C25006.7 7215 25008 7213.66 25008 7212H25007ZM25005 -8660V-8659C25005.6 -8659 25006 -8658.55 25006 -8658H25007H25008C25008 -8659.66 25006.7 -8661 25005 -8661V-8660ZM-13581 -8660V-8661C-13582.7 -8661 -13584 -8659.66 -13584 -8658H-13583H-13582C-13582 -8658.55 -13581.6 -8659 -13581 -8659V-8660Z" fill="black" fill-opacity="0.1"/>
 <g id="integrationsworkslack-grid">
-<rect x="-24" y="-24" width="880" height="500" rx="32" fill="#F2F2F2"/>
-<g id="integrationsworkslack-card" filter="url(#integrationsworkslack-filter0_d_0_1)">
+<g id="integrationsworkslack-card">
 <g clip-path="url(#integrationsworkslack-clip0_0_1)">
 <rect x="-8" y="-8" width="416" height="468" rx="24" fill="white"/>
-<g id="integrationsworkslack-Frame 2087330179" filter="url(#integrationsworkslack-filter1_dddd_0_1)">
+<g id="integrationsworkslack-Frame 2087330179">
 <g clip-path="url(#integrationsworkslack-clip1_0_1)">
 <g id="integrationsworkslack-graphic &#194;&#183; default &#194;&#183; Kudos in Slack &#38; Microsoft Teams">
 <rect width="400" height="250" rx="20" fill="#F8F8F8"/>

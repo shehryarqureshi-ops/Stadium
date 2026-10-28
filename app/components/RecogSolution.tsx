@@ -21,7 +21,7 @@ const ROWS: Row[] = [
     n: "01",
     id: "recognize",
     title: "Recognize, where work happens",
-    desc: "A teammate gives kudos in Slack or the Stadium app, without breaking their workflow.",
+    desc: "A teammate gives kudos on Stadium or in Slack, without breaking their workflow.",
     graphic: (alt) => <SolutionSlack alt={alt} />,
     alt: "A Slack-style workspace with a Dash Kudos Program channel: Maya posts “Huge kudos to Daniel for shipping the client launch two days early.” with +150 points, a #teamwork tag and emoji reactions, and a “Points sent” confirmation.",
   },

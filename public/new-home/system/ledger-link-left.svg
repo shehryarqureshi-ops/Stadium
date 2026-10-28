@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="160" height="10" viewBox="0 0 160 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2087330587">
+<circle id="connector dot" cx="155.5" cy="5" r="4.5" fill="#6B61FF"/>
+<rect id="connector" y="4" width="160" height="2" fill="url(#paint0_linear_0_11)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_11" x1="0" y1="5" x2="160" y2="5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D9D9DE"/>
+<stop offset="1" stop-color="#6B61FF"/>
+</linearGradient>
+</defs>
+</svg>

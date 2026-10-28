@@ -1,14 +1,10 @@
 <svg width="400" height="250" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="250" fill="#CCCCCC"/>
 <g id="integrationsworkextension-Batch 3">
-<path d="M-14015 -8658C-14015 -8659.1 -14014.1 -8660 -14013 -8660H24573C24574.1 -8660 24575 -8659.1 24575 -8658V7212C24575 7213.1 24574.1 7214 24573 7214H-14013C-14014.1 7214 -14015 7213.1 -14015 7212V-8658Z" fill="#EEEEEE"/>
-<path d="M-14013 -8660V-8659H24573V-8660V-8661H-14013V-8660ZM24575 -8658H24574V7212H24575H24576V-8658H24575ZM24573 7214V7213H-14013V7214V7215H24573V7214ZM-14015 7212H-14014V-8658H-14015H-14016V7212H-14015ZM-14013 7214V7213C-14013.6 7213 -14014 7212.55 -14014 7212H-14015H-14016C-14016 7213.66 -14014.7 7215 -14013 7215V7214ZM24575 7212H24574C24574 7212.55 24573.6 7213 24573 7213V7214V7215C24574.7 7215 24576 7213.66 24576 7212H24575ZM24573 -8660V-8659C24573.6 -8659 24574 -8658.55 24574 -8658H24575H24576C24576 -8659.66 24574.7 -8661 24573 -8661V-8660ZM-14013 -8660V-8661C-14014.7 -8661 -14016 -8659.66 -14016 -8658H-14015H-14014C-14014 -8658.55 -14013.6 -8659 -14013 -8659V-8660Z" fill="black" fill-opacity="0.1"/>
 <g id="integrationsworkextension-grid">
-<rect x="-456" y="-24" width="880" height="500" rx="32" fill="#F2F2F2"/>
-<g id="integrationsworkextension-card" filter="url(#integrationsworkextension-filter0_d_0_1)">
+<g id="integrationsworkextension-card">
 <g clip-path="url(#integrationsworkextension-clip0_0_1)">
 <rect x="-8" y="-8" width="416" height="468" rx="24" fill="white"/>
-<g id="integrationsworkextension-Frame 2087330179" filter="url(#integrationsworkextension-filter1_dddd_0_1)">
+<g id="integrationsworkextension-Frame 2087330179">
 <g clip-path="url(#integrationsworkextension-clip1_0_1)">
 <g id="integrationsworkextension-graphic &#194;&#183; default &#194;&#183; Stadium Browser Extension">
 <g clip-path="url(#integrationsworkextension-clip2_0_1)">

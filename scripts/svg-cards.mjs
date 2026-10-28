@@ -115,9 +115,22 @@ if (imgCount === 0) {
   process.exit(0);
 }
 
+const stripStageBackdrop = (x) =>
+  x
+    .replace(/<rect width="\d+" height="\d+" fill="#CCCCCC"\/>\n/, "")
+    .replace(/<path d="M-\d{4,}[^"]*"[^>]*\/>\n/g, "")
+    .replace(/<rect x="-\d+" y="-24" width="880" height="500" rx="32" fill="#F2F2F2"\/>\n/, "")
+    .replace(/(<g id="[^"]*-card") filter="url\(#[^)]+-filter0_d_0_1\)">/, "$1>")
+    .replace(/(<g id="[^"]*-Frame 2087330179") filter="url\(#[^)]+-filter1_dddd_0_1\)">/, "$1>");
+
 // Figma SVG export drops BACKGROUND_BLUR (frosted glass). Per-graphic patches
 // re-create it: a blurred <use> copy of what sits behind, clipped to the glass.
 const PATCHES = {
+  // Figma exports the surrounding page (grey backdrop, tray, 1-card drop shadow) around the
+  // rounded stage, and the stage frame's 4-layer drop shadow painted a dark arc in its bottom
+  // corners. Keep the stage only.
+  "integrations/WorkSlack": (x) => stripStageBackdrop(x),
+  "integrations/WorkExtension": (x) => stripStageBackdrop(x),
   // Figma GLASS effect (refraction + rim light) is not exported: the dashed connector
   // showed through the three glass circles. Cut it out under them and add the rim light.
   "recognition/PlatformBudgets": (x) => {

@@ -1,6 +1,7 @@
 /* "Need help" band — Figma /integrations "See integrations in action"
    (4293:31957). White r32 card (px100 py100) on the closing gradient: left
-   intro + dark pill, right 480×324 #f2f2f2 r24 video placeholder. */
+   intro + dark pill, right 480×324 #f2f2f2 r24 video placeholder — swapped for a YouTube
+   embed when `videoId` is given. */
 
 import PillLink from "./PillLink";
 import SectionIntro from "./SectionIntro";
@@ -10,11 +11,16 @@ export default function HelpCard({
   title,
   description,
   cta,
+  videoId,
+  videoTitle = "Video",
 }: {
   caption?: string;
   title: string;
   description: string;
   cta: { label: string; href: string };
+  /* YouTube video id; omit for the grey placeholder */
+  videoId?: string;
+  videoTitle?: string;
 }) {
   return (
     <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
@@ -25,7 +31,19 @@ export default function HelpCard({
             <PillLink {...cta} />
           </div>
         </div>
-        <div aria-hidden className="aspect-[480/324] w-full rounded-3xl bg-[#f2f2f2]" />
+        {videoId ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+            title={videoTitle}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="aspect-[480/324] w-full rounded-3xl bg-[#f2f2f2]"
+          />
+        ) : (
+          <div aria-hidden className="aspect-[480/324] w-full rounded-3xl bg-[#f2f2f2]" />
+        )}
       </div>
     </section>
   );
