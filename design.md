@@ -2265,3 +2265,11 @@ the five programs as chips), **Your customers · CRM** (Salesforce/Deals closed,
 **Responsive:** side-by-side from `xl` (1280); below that the cards stack and the arrows rotate to point down;
 the closing row is 3-up from `lg`, stacked below. Photo tiles for the programs were explored in the Figma
 (7052:9749) but this version uses the chips from the finalized frame.
+
+**Revision (2026-10-28, People scene · Figma 6765:3104):** the diagram now sits in a 1200×495 near-black tray (r32,
+hairline `people-edge`): a 1114×360 diagram inset 43px / 10px, then the glowing **cost-line pill** — Stadium mark disc +
+"A full team of specialists backing you up. **For less than the cost of one hire.**" (tokens `people-glow-fill`
+rgba(11,122,252,.14), `people-glow-line` rgba(11,122,252,.6), `shadow-people-glow` 0 0 40 rgba(11,122,252,.35)). The
+success lead's Stadium badge is a 32px circle (was a rounded square) and the diagram coordinates moved (team 0/118,
+connector 164/150, lead 294/128, branch 504/95, specialists 604–994 × 77/227, "Backed by specialists" 700/45).
+Phones: compact flow + the pill (short copy below 640px); the stack scrolls inside the pinned panel if it can't fit.

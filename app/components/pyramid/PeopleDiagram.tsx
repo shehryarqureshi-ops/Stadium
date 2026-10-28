@@ -159,7 +159,7 @@ function Avatar({ className = "", size = "h-10 w-10", icon = "person" }: { class
 
 function Stack() {
   return (
-    <div className="flex flex-col gap-4 rounded-tray border border-people-edge bg-people-night p-4 md:p-6 lg:hidden">
+    <div className="flex flex-col gap-3 rounded-tray border border-people-edge bg-people-night p-3 md:gap-4 md:p-6 lg:hidden">
       <div className="flex items-center gap-2">
         {/* your team */}
         <div className="flex shrink-0 flex-col items-center gap-1.5 text-center">
@@ -181,7 +181,7 @@ function Stack() {
         <div className="flex shrink-0 flex-col items-center gap-1.5 text-center">
           <span className="relative">
             <Avatar
-              size="h-16 w-16"
+              size="h-14 w-14"
               icon="person-lead"
               className="border-2 border-accent-water bg-people-lead drop-shadow-[0_0_1.125rem_rgba(11,122,252,0.5)]"
             />
@@ -194,17 +194,17 @@ function Stack() {
             />
           </span>
           <p className="font-sans text-[0.8125rem] font-semibold leading-[1.125rem] text-white">Your success lead</p>
-          <p className="max-w-28 font-sans text-[0.75rem] leading-4 text-white/55">One point of contact, kickoff to QBR.</p>
+          <p className="max-w-40 font-sans text-[0.75rem] leading-4 text-white/55">One point of contact, kickoff to QBR.</p>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col gap-2">
         <p className={`text-center text-[0.6875rem] leading-[0.9375rem] ${eyebrow}`}>Backed by specialists</p>
-        <ul className="grid grid-cols-2 gap-2 md:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-1.5 md:grid-cols-4 md:gap-2">
           {SPECIALISTS.map((s) => (
-            <li key={s.label} className="flex items-center gap-2 rounded-xl bg-white/[0.04] p-1.5">
+            <li key={s.label} className="flex items-center gap-2 rounded-xl bg-white/[0.04] p-1">
               <span className="relative shrink-0">
-                <Avatar className="bg-people-avatar" size="h-8 w-8" />
+                <Avatar className="bg-people-avatar" size="h-7 w-7" />
                 <span className="absolute -bottom-0.5 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white">
                   <Image src={img(`badge-${s.badge}`)} alt="" width={13} height={13} className="h-2.5 w-2.5" />
                 </span>
@@ -214,12 +214,12 @@ function Stack() {
           ))}
         </ul>
       </div>
-      <p className="flex items-center gap-3 rounded-3xl border border-people-glow-line bg-people-glow-fill px-4 py-3 font-sans text-[0.875rem] leading-5 shadow-people-glow">
+      <p className="flex items-center gap-3 rounded-3xl border border-people-glow-line bg-people-glow-fill px-3 py-1.5 font-sans text-[0.8125rem] leading-[1.125rem] shadow-people-glow sm:px-4 sm:py-3 sm:text-[0.875rem] sm:leading-5">
         <span className="relative flex size-[1.875rem] shrink-0 items-center justify-center rounded-full bg-white">
           <Image src={img("stadium-mark")} alt="" width={11} height={19} className="h-[1.1456rem] w-auto" />
         </span>
         <span>
-          <span className="text-white/75">A full team of specialists backing you up. </span>
+          <span className="hidden text-white/75 sm:inline">A full team of specialists backing you up. </span>
           <span className="font-bold text-white">For less than the cost of one hire.</span>
         </span>
       </p>
@@ -229,7 +229,7 @@ function Stack() {
 
 export function PeopleDiagram() {
   return (
-    <div className="pointer-events-auto max-lg:min-h-0 max-lg:overflow-y-auto">
+    <div className="pointer-events-auto max-lg:h-full max-lg:min-h-0 max-lg:overflow-y-auto">
       <Stage />
       <Stack />
     </div>
