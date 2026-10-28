@@ -8,11 +8,14 @@ type StatLeft = {
   text?: string;
   /* number above the label (/enterprise, /the-proof) instead of below */
   numberFirst?: boolean;
+  /* extra pill stacked above the main one (its own stat, not tied to the quote) */
+  above?: { title: string; text: string };
 };
 
 type StatCenter = {
-  caption: string;
-  title: string;
+  /* caption + title are optional — omit both for a quote-only card */
+  caption?: string;
+  title?: string;
   backgroundColor?: string;
   text: string;
   /* omit for the grey radial placeholder avatar */
@@ -106,16 +109,24 @@ export default function StatsGrid({
             )}
 
             {statLeft.title && (
-              <div
-                className={`absolute inset-x-4 bottom-4 flex gap-1.5 rounded-2xl bg-white p-6 text-black shadow-lg ${
-                  statLeft.numberFirst ? "flex-col-reverse gap-3" : "flex-col"
-                }`}
-              >
-                <p className="font-sans text-[1rem] leading-[1.4]">
-                  {statLeft.text}
-                </p>
+              <div className="absolute inset-x-4 bottom-4 flex gap-3">
+                {[statLeft.above, statLeft].map(
+                  (stat) =>
+                    stat?.title && (
+                      <div
+                        key={stat.title}
+                        className={`flex min-w-0 flex-1 gap-1.5 rounded-2xl bg-white text-black shadow-lg ${
+                          statLeft.above ? "p-5" : "p-6"
+                        } ${statLeft.numberFirst ? "flex-col-reverse gap-3" : "flex-col"}`}
+                      >
+                        <p className="font-sans text-[1rem] leading-[1.4]">
+                          {stat.text}
+                        </p>
 
-                <p className={`${NUM} text-[3rem]`}>{statLeft.title}</p>
+                        <p className={`${NUM} ${statLeft.above ? "text-[2.5rem]" : "text-[3rem]"}`}>{stat.title}</p>
+                      </div>
+                    ),
+                )}
               </div>
             )}
           </div>
@@ -129,16 +140,20 @@ export default function StatsGrid({
               statCenter.link ? "transition-shadow hover:shadow-2xl" : ""
             }`}
           >
-            <div className="flex flex-col gap-1.5">
-              <p className="font-sans text-[1rem] leading-[1.4] text-[#5b6470]">
-                {statCenter.caption}
-              </p>
+            {statCenter.title ? (
+              <div className="flex flex-col gap-1.5">
+                <p className="font-sans text-[1rem] leading-[1.4] text-[#5b6470]">
+                  {statCenter.caption}
+                </p>
 
-              <p className={`${NUM} text-[3rem]`}>{statCenter.title}</p>
-            </div>
+                <p className={`${NUM} text-[3rem]`}>{statCenter.title}</p>
+              </div>
+            ) : (
+              <span aria-hidden />
+            )}
 
             <div className="flex flex-col gap-5">
-              <p className="max-w-[19rem] font-sans text-[1rem] leading-[1.45] text-[#33404f]">
+              <p className="max-w-[19rem] font-sans text-[0.875rem] leading-[1.45] text-[#33404f]">
                 {statCenter.text}
               </p>
 
@@ -152,20 +167,20 @@ export default function StatsGrid({
                     width={54}
                     height={54}
                     quality={90}
-                    className={`rounded-full object-cover ${statCenter.authorLogo ? "size-[3.5rem] shrink-0" : "size-[2.7rem]"}`}
+                    className={`rounded-full object-cover size-[2.5rem] ${statCenter.authorLogo ? "shrink-0" : ""}`}
                   />
                 ) : (
                   <span
                     aria-hidden
-                    className="size-[2.7rem] shrink-0 rounded-full bg-[radial-gradient(circle,#ffffff,#e5e5e5)]"
+                    className="size-[2.5rem] shrink-0 rounded-full bg-[radial-gradient(circle,#ffffff,#e5e5e5)]"
                   />
                 )}
 
                 <div className="leading-normal">
-                  <p className="font-sans text-[0.9375rem] font-semibold text-[#16171b]">
+                  <p className="font-sans text-[0.75rem] font-semibold text-[#16171b]">
                     {statCenter.authorName}
                   </p>
-                  <p className="font-sans text-[0.9375rem] text-[#5b6470]">
+                  <p className="font-sans text-[0.75rem] text-[#5b6470]">
                     {statCenter.authorTitle}
                   </p>
                   {statCenter.authorLogo && (
@@ -186,7 +201,7 @@ export default function StatsGrid({
                 target="_blank"
                 rel="noopener noreferrer"
                 href={statCenter.link}
-                aria-label={`${statCenter.caption ? `${statCenter.caption}: ` : ""}${statCenter.title} — read the story from ${statCenter.authorName} (opens in a new tab)`}
+                aria-label={`${statCenter.caption ? `${statCenter.caption}: ` : ""}${statCenter.title ? `${statCenter.title} — ` : ""}read the story from ${statCenter.authorName} (opens in a new tab)`}
                 className="absolute inset-0 rounded-[inherit]"
               />
             )}

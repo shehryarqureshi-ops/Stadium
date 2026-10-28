@@ -61,7 +61,7 @@ export default function SwagmagicSolution() {
       cards={[
         {
           id: "build-your-own-boxes",
-          title: "Build your own boxes",
+          title: "Build-Your-Own Boxes",
           image: solutionOne,
           imageAlt: "Build-your-own Snackmagic box with a selection of snacks.",
           isFeatured: true,
@@ -83,7 +83,7 @@ export default function SwagmagicSolution() {
         },
         {
           id: "curated-boxes",
-          title: "Curated boxes",
+          title: "Curated Themed Boxes",
           image: solutionTwo,
           imageAlt: "Curated Snackmagic boxes ready to send.",
           isFeatured: false,

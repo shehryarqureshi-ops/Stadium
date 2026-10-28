@@ -269,7 +269,7 @@ function PhoneDeck({ cards }: { cards: Card[] }) {
   return (
     <div className="flex flex-col gap-6 md:hidden">
       <div
-        className="overflow-hidden [touch-action:pan-y]"
+        className="-mb-4 overflow-hidden pb-4 [touch-action:pan-y]"
         onTouchStart={(e) => {
           touchX.current = e.touches[0].clientX;
         }}
@@ -483,7 +483,7 @@ export default function EveryWay({ updated = false }: { updated?: boolean } = {}
         <PhoneDeck key={active} cards={SEGMENTS[active].cards} />
 
         {/* Card row — slides to the active line's deck */}
-        <div className="overflow-hidden max-md:hidden">
+        <div className="-mb-4 overflow-hidden pb-4 max-md:hidden">
           <div
             className="flex transition-transform duration-1000 ease"
             style={{ transform: `translateX(-${active * 100}%)` }}

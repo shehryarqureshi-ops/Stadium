@@ -59,7 +59,7 @@ export default function SwagmagicSolution() {
       panelCards
       cards={[
         {
-          title: "Run a swag program",
+          title: "Run a Swag Program",
           subtitle: "Stadium Platform · Sales-Assisted",
           isFeatured: true,
           isFeaturedLabel: "Popular",

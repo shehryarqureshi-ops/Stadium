@@ -13,7 +13,7 @@ type ProblemSectionProps = {
   caption?: string;
   captionColor?: string;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   items: ProblemSectionItem[];
   showDivider?: boolean;
   /* "dark": drops the white header backdrop and flips the title to white for
@@ -85,7 +85,7 @@ export default function ProblemSection({
                       src={item.image}
                       alt={item.imageAlt ?? item.title}
                       quality={90}
-                      className="aspect-[376/250] w-full object-cover lg:aspect-auto lg:h-[15.625rem]"
+                      className="aspect-[323/250] w-full object-cover"
                       sizes="(min-width:1024px) 24rem, (min-width:768px) 31vw, 92vw"
                     />
                   </div>

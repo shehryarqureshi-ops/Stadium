@@ -272,19 +272,19 @@ const decorationSteps: StepCardsCarouselStep[] = [
     ],
   },
   {
-    title: "Full colour artwork",
+    title: "Full color artwork",
     description:
-      "Gradients, photographs and unlimited colours, with no per-colour cost.",
+      "Gradients, photographs and unlimited colors, with no per-color cost.",
     cards: [
       {
         title: "DTG",
-        description: "Full colour · 1 pc · 5 day",
+        description: "Full color · 1 pc · 5 day",
         image: `${DECO}/dtg.jpg`,
         imageAlt: "",
       },
       {
         title: "DTF",
-        description: "Full colour · 12 pc · 5 day",
+        description: "Full color · 12 pc · 5 day",
         image: `${DECO}/dtf.jpg`,
         imageAlt: "",
       },
@@ -296,7 +296,7 @@ const decorationSteps: StepCardsCarouselStep[] = [
       },
       {
         title: "Rotary Printing",
-        description: "Full colour · 12 pc · 8 day",
+        description: "Full color · 12 pc · 8 day",
         image: `${DECO}/rotary-printing.jpg`,
         imageAlt: "",
       },
@@ -308,13 +308,13 @@ const decorationSteps: StepCardsCarouselStep[] = [
     cards: [
       {
         title: "DTG",
-        description: "Full colour · 1 pc · 5 day",
+        description: "Full color · 1 pc · 5 day",
         image: `${DECO}/dtg.jpg`,
         imageAlt: "",
       },
       {
         title: "Vinyl Cut",
-        description: "1-3 colours · 1 pc · 4 day",
+        description: "1-3 colors · 1 pc · 4 day",
         image: `${DECO}/vinyl-cut.jpg`,
         imageAlt: "",
       },
@@ -332,7 +332,7 @@ const decorationSteps: StepCardsCarouselStep[] = [
     cards: [
       {
         title: "Screen Print",
-        description: "6 colours · 24 pc · 7 day",
+        description: "6 colors · 24 pc · 7 day",
         image: `${DECO}/screen-print.jpg`,
         imageAlt: "",
       },
@@ -369,19 +369,19 @@ const decorationSteps: StepCardsCarouselStep[] = [
       },
       {
         title: "DTF",
-        description: "Full colour · 12 pc · 5 day",
+        description: "Full color · 12 pc · 5 day",
         image: `${DECO}/dtf-b.jpg`,
         imageAlt: "",
       },
       {
         title: "Rotary Printing",
-        description: "Full colour · 12 pc · 8 day",
+        description: "Full color · 12 pc · 8 day",
         image: `${DECO}/rotary-printing.jpg`,
         imageAlt: "",
       },
       {
         title: "Vinyl Cut",
-        description: "1-3 colours · 1 pc · 4 day",
+        description: "1-3 colors · 1 pc · 4 day",
         image: `${DECO}/vinyl-cut.jpg`,
         imageAlt: "",
       },

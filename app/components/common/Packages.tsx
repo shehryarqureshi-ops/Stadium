@@ -12,6 +12,9 @@ type PackagesProps = {
   title: string;
   description: string;
   showCta?: boolean;
+  /* true: CTA sits right under the description instead of pinned to the
+     bottom of the intro column */
+  ctaBelowText?: boolean;
   ctaLabel?: string;
   ctaLink?: string;
   items: PackageItem[];
@@ -29,6 +32,7 @@ export default function Packages({
   title,
   description,
   showCta = true,
+  ctaBelowText = false,
   ctaLabel = "See full pricing",
   ctaLink = "/pricing",
   items,
@@ -37,7 +41,9 @@ export default function Packages({
     <section className="bg-white px-section-x-sm md:px-section-x-md lg:px-section-x-lg">
       <div className="mx-auto w-full max-w-content">
         <div className="flex flex-col gap-10 xl:flex-row xl:items-stretch xl:gap-10 xl:px-20">
-          <div className="flex flex-col gap-8 xl:w-[25.3125rem] xl:shrink-0 xl:justify-between xl:gap-0">
+          <div
+            className={`flex flex-col gap-8 xl:w-[25.3125rem] xl:shrink-0 ${ctaBelowText ? "" : "xl:justify-between xl:gap-0"}`}
+          >
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <p
@@ -98,7 +104,7 @@ export default function Packages({
                     {item.title}
                   </h3>
 
-                  <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71]">
+                  <p className="font-sans text-[0.9375rem] leading-[1.5] text-[#6b6c71] sm:min-h-[3em]">
                     {item.description}
                   </p>
                 </div>

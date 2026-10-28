@@ -15,8 +15,8 @@ export default function SnackStats() {
           description="Real numbers from teams sending snacks on Snackmagic."
           statLeft={{
             image: statsPhoto,
-            title: "19.7M+",
-            text: "Snacks Delivered",
+            title: "10M+",
+            text: "Snacks Delivered Globally",
           }}
           statCenter={{
             caption: "Snacks Sent",
@@ -26,12 +26,6 @@ export default function SnackStats() {
             authorImage: avatar,
             authorName: "Jennifer R.",
             authorTitle: "Executive Administrative Assistant",
-            authorLogo: {
-              src: "/impact/overview/logos/amazon.svg",
-              alt: "Amazon",
-              width: 80,
-              height: 24,
-            },
             link: "https://www.snackmagic.com/",
           }}
           rightTopStat={{

@@ -78,7 +78,7 @@ const items = [
     id: "self-serve-swag",
     name: "Self-Serve Swag",
     tab: "Self-Serve Swag",
-    title: "Self-serve Swag",
+    title: "Self-Serve Swag",
     description:
       "Design it, order it, send it — yourself. Everything you need in one simple flow.",
     bullets: [

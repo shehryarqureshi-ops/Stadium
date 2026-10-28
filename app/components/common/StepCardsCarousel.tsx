@@ -3,6 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
+import { spaceDots } from "@/app/lib/text";
 import { useAutoAdvance } from "@/hooks/useAutoAdvance";
 import { useHashTabs } from "@/hooks/useHashTabs";
 import { CardActiveContext } from "@/app/components/common/cardActive";
@@ -153,7 +154,7 @@ function CarouselCard({
         </h3>
 
         <p className="font-sans text-[1rem] leading-6 tracking-[0.015em] text-[#1b1b1b]/60">
-          {card.description}
+          {spaceDots(card.description)}
         </p>
       </div>
     </div>
@@ -348,7 +349,7 @@ export default function StepCardsCarousel({
                             active ? "opacity-100 delay-150" : "opacity-0"
                           }`}
                         >
-                          {step.description}
+                          {spaceDots(step.description)}
                         </span>
                       </span>
                     </span>

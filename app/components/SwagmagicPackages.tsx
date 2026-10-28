@@ -32,6 +32,7 @@ export default function SwagmagicPackages() {
       title={"Start with swag and expand when ready"}
       description="Add new capabilities over time without changing platforms."
       showCta
+      ctaBelowText
       ctaLabel="Explore pricing"
       ctaLink="/pricing"
       items={ITEMS}

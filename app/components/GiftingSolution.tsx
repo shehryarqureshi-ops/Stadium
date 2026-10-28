@@ -38,7 +38,7 @@ const items: TabsShowcaseItem[] = [
     bullets: [
       "Individual or team-wide sends",
       "Project wrap-ups, team wins, or just because",
-      "25K+ gifts",
+      "30K+ gifts",
     ],
     image: employee,
     imageAlt:
@@ -106,7 +106,7 @@ const items: TabsShowcaseItem[] = [
     title: "Gift Stores",
     description:
       "Bring all your gifting into one branded store. You set the budget and branding; they pick a gift they’ll love.",
-    bullets: ["25K+ gifts", "No address chasing", "Unredeemed points refunded"],
+    bullets: ["30K+ gifts", "No address chasing", "Unredeemed points refunded"],
     image: stores,
     imageAlt:
       "A branded Halden gift shop page with a Featured Picks grid of wine glasses, a leather backpack, a brass tumbler and a steel tumbler, each priced in points",

@@ -1,6 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import HashAnchors from "@/app/components/common/HashAnchors";
+import { spaceDots } from "@/app/lib/text";
 
 export type TwoFeaturedCardsItem = {
   /** url-hash slug (e.g. "curated-boxes" → /snacks#curated-boxes). Lands on the
@@ -144,7 +145,7 @@ export default function TwoFeaturedCards({
                     </h3>
                     {card.subtitle && (
                       <p className="font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#828282]">
-                        {card.subtitle}
+                        {spaceDots(card.subtitle)}
                       </p>
                     )}
                   </div>
@@ -173,7 +174,7 @@ export default function TwoFeaturedCards({
 
                     {card.subtitle && (
                       <p className="my-3 font-sans text-[0.6875rem] font-bold uppercase leading-[1.4] tracking-[0.025rem] text-[#757575]">
-                        {card.subtitle}
+                        {spaceDots(card.subtitle)}
                       </p>
                     )}
 
