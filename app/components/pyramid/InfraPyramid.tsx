@@ -31,44 +31,55 @@ export default function InfraPyramid() {
     <section aria-label="The Stadium infrastructure" className="relative overflow-clip rounded-t-[2.5rem] bg-black text-white">
       <Intro />
 
-      <div className="relative flex flex-col pb-16 md:pb-24 lg:pb-40">
-        {/* the intro's sky carries on behind the chapters: same starfield, plus a soft blue glow per chapter */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(55% 22% at 80% 18%, rgba(1,28,61,0.9) 0%, transparent 100%), radial-gradient(55% 22% at 20% 52%, rgba(1,28,61,0.9) 0%, transparent 100%), radial-gradient(55% 22% at 80% 86%, rgba(1,28,61,0.9) 0%, transparent 100%)",
-            }}
-          />
-          <Starfield className="absolute inset-0 h-full w-full" count={700} />
-        </div>
-        <Chapter>
-          <ChapterHeader eyebrowText={PHYSICAL.heading} title={PHYSICAL.title} body={PHYSICAL.body} />
-          <MediaTabs tabs={PHYSICAL.tabs} variant="pill" playing label="Printing, warehousing, shipping and customs" />
-        </Chapter>
-
-        <Chapter>
-          <ChapterHeader
-            eyebrowText={DIGITAL.heading}
-            title={DIGITAL.title}
-            body={DIGITAL.body}
-            bodyWidth="max-w-[36.875rem]"
-          />
-          <MediaTabs tabs={DIGITAL.tabs} variant="screen" playing label="Recognition, storefronts, integrations and controls" />
-        </Chapter>
-
-        <Chapter>
-          <ChapterHeader
-            eyebrowText={PEOPLE.heading}
-            title={PEOPLE.title}
-            body={PEOPLE.body}
-            bodyWidth="max-w-[36.5rem]"
-          />
-          <PeopleDiagram />
-        </Chapter>
-      </div>
+      <InfraChapters />
     </section>
+  );
+}
+
+/* Physical · Digital · People — the stacked chapters under the intro. Shared by the pyramid intro
+   and the earth section (app/components/earth), so both sit on the same carried-on sky. */
+export function InfraChapters() {
+  return (
+  <div className="relative flex flex-col pb-16 md:pb-24 lg:pb-40">
+    {/* the intro's sky carries on behind the chapters: same starfield, plus a soft blue glow per chapter */}
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          /* fade the glows in from the top edge so the join with the intro above has no seam */
+          maskImage: "linear-gradient(to bottom, transparent 0, #000 40rem)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0, #000 40rem)",
+          backgroundImage:
+            "radial-gradient(55% 22% at 80% 18%, rgba(1,28,61,0.9) 0%, transparent 100%), radial-gradient(55% 22% at 20% 52%, rgba(1,28,61,0.9) 0%, transparent 100%), radial-gradient(55% 22% at 80% 86%, rgba(1,28,61,0.9) 0%, transparent 100%)",
+        }}
+      />
+      <Starfield className="absolute inset-0 h-full w-full" count={700} />
+    </div>
+    <Chapter>
+      <ChapterHeader eyebrowText={PHYSICAL.heading} title={PHYSICAL.title} body={PHYSICAL.body} />
+      <MediaTabs tabs={PHYSICAL.tabs} variant="pill" playing label="Printing, warehousing, shipping and customs" />
+    </Chapter>
+
+    <Chapter>
+      <ChapterHeader
+        eyebrowText={DIGITAL.heading}
+        title={DIGITAL.title}
+        body={DIGITAL.body}
+        bodyWidth="max-w-[36.875rem]"
+      />
+      <MediaTabs tabs={DIGITAL.tabs} variant="screen" playing label="Recognition, storefronts, integrations and controls" />
+    </Chapter>
+
+    <Chapter>
+      <ChapterHeader
+        eyebrowText={PEOPLE.heading}
+        title={PEOPLE.title}
+        body={PEOPLE.body}
+        bodyWidth="max-w-[36.5rem]"
+      />
+      <PeopleDiagram />
+    </Chapter>
+  </div>
   );
 }
 

@@ -2337,3 +2337,45 @@ engagement" / "CRM runs your customers") joined by 160×10 gradient connector SV
 purple→ and pink→). Columns are 130 tall (logos top, label bottom). Logos: Workday 71.91×34, BambooHR
 183.24×26 (gap 29); Salesforce 62.86×44, HubSpot 103.09×30 (gap 28); mark 47.48×84 + 10.18 right pad.
 Below xl the columns stack and the connectors are hidden. Assets: `public/new-home/system/ledger-*.svg`.
+
+## Home · earth section (Figma 7133:9894) — 2026-10-28
+
+Replaces only the pyramid *intro* (the first screen) of "The Stadium Infrastructure". The Physical ·
+Digital · People chapters stay: they are now `InfraChapters` (exported from
+`app/components/pyramid/InfraPyramid.tsx`) and render under either intro, on the same navy sky +
+starfield. Flip `INFRA_SECTION` in `app/page.tsx` between `"earth"` and `"pyramid"` to swap intros. `/old-home` still uses the original `RedactedPoster` + `Globe`.
+
+Files: `app/components/earth/{EarthSection,EarthGlobe,ResponsiveEarthGlobe}.tsx`.
+
+- Frame 1440×960, same navy sky (`radial-gradient(115% 105% at 74% 16%, #011c3d → #020a14 45% → #000 78%)`),
+  `rounded-t-[2.5rem]`, `Starfield` as the pyramid section.
+- Copy block at y238 / w440, left edge on the site header's content edge (Figma x120 → 90 at 1440): eyebrow 12 Overpass Bold +1px `pyramid-ice` · title 72/76 −2.4px
+  Satoshi Bold (`text-earth-title`; below xl `display-md` → `heading-xl` → `display-sm`) · lede 18/28 white 65% ·
+  3-row layer list (57px rows, 1px `white/15` hairlines): num 12 Bold ice, name 18/24 Satoshi Bold
+  (`text-earth-layer`, 90px col), note 15/22 white 62% (`text-earth-note`).
+- Globe: cobe dotted earth (same config as the earlier home: grey base under `mix-blend-luminosity`),
+  1097² box at left 37.71% / top −11.46% of the 1440×960 canvas, `phi 3.61 / theta .2`. Calibrated so the
+  dotted continents sit where the Figma capture has them, nudged ~110px down so Europe stays in frame.
+  Idle motion is a ±0.2 rad sway (44s period) instead of an endless spin, so pills stay on the visible face.
+- Event pills (`.earth-marker*` in globals.css): glowing 8px `#4da3ff` dot + glass pill (32px tall,
+  `rgba(12,28,54,.72)`, 1px `white/14`, blur 8px, 13/18 SemiBold) with an 18px circle flag. Pill sits
+  14px up-right of the dot (`--below` = down-left). Cities: Rome "New hire kit delivered", London
+  "Kudos sent", Dubai "Client gift received", Bengaluru "Offsite booked", Singapore "Snack box arrived".
+  Needs CSS anchor positioning (cobe anchors); browsers without it simply skip the pills.
+- "Live order" card (static, decorative): white r16, 16 padding, `shadow-earth-card`, title 14/19 SemiBold,
+  3 steps 13/18 (water-blue, water-blue, lime dots). xl+: x1073 / y520; lg: tucked at 62% / 68%.
+- Responsive: < lg stacks copy → globe (max 26rem, blue bloom behind) → card. Tablet gets the live globe
+  without pills; phones and reduced-motion get a static frame (`/globe-static.webp`) / a single still frame.
+- Tokens: `--text-earth-title`, `--text-earth-layer`, `--text-earth-note`, `--spacing-earth-row-h` (57px),
+  `--shadow-earth-card`.
+
+## Home · GEI ledger, photo system (Figma 7120:10112 → "art · ledger (photo system)", 2026-10-28)
+
+Replaces the logo-only ledger in `SystemRail.tsx`; header copy unchanged. xl+ is the drawn 1200×320 stage
+(Figma px → rem, absolute): HRIS logos + label (x0, logos y120, label y290) · 72×2 wire (x268, y133;
+`#d9d9de → #6b61ff`, 9px dot at its right end) · GEI column x360 w480: mark 22.6×40 (y0), strip of five
+112×140 photos (y64; r16, 4px white border, 20px overlap, later on top), caption 16/24 `#6b6c71` (y228),
+label (y290) · 72×2 wire (x860; `#fa6b80 → #d9d9de`, dot at its left end) · CRM logos + label (x877 w282).
+Below xl the three groups stack (HRIS → GEI with the photo strip, fluid-scaled → CRM) and the wires drop.
+Photos: `public/new-home/system/ledger-photo-*.webp` (340px wide, from the Figma exports).
+Tokens: `--color-ledger-wire-hris`, `-wire-crm`, `-wire-fade`, `--color-ledger-caption`.

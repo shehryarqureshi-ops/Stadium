@@ -5,6 +5,7 @@ import EveryWay from "./components/EveryWay";
 import FourJobs from "./components/FourJobs";
 import Hero from "./components/Hero";
 import { HERO_SLIDES_NEW_HOME } from "./data/heroRotation";
+import EarthSection from "./components/earth/EarthSection";
 import InfraPyramid from "./components/pyramid/InfraPyramid";
 import UseCases from "./components/UseCases";
 import PageClose from "./components/PageClose";
@@ -17,12 +18,14 @@ import TrustBand from "./components/TrustBand";
 import CatalogTeaser from "./components/CatalogTeaser";
 import ClosingCTA from "./components/common/ClosingCTA";
 
-/* Home — "The Stadium Infrastructure" is the scroll-driven 3D pyramid (Figma
-   6525:12159), the globe section ("We simplify global shipping") is hidden, and
-   "The Stadium way" / "Scale to wherever your people are" are not rendered
-   (components untouched). The catalog teaser is the colour-wall version
+/* Home — "The Stadium Infrastructure" is the dotted-earth section (Figma 7133:9894).
+   The 3D pyramid (Figma 6525:12159) is kept intact: flip INFRA_SECTION to "pyramid" to
+   swap it back in. "The Stadium way" / "Scale to wherever your people are" are not
+   rendered (components untouched). The catalog teaser is the colour-wall version
    (Figma 6525:12451) and the use cases are the chip lanes (6525:12557). The
    previous home page lives at /old-home. */
+const INFRA_SECTION: "earth" | "pyramid" = "earth";
+
 export const metadata: Metadata = seoMetadata("/");
 
 export default function Home() {
@@ -40,7 +43,7 @@ export default function Home() {
           <FourJobs />
           <SystemRail />
         </div>
-        <InfraPyramid />
+        {INFRA_SECTION === "earth" ? <EarthSection /> : <InfraPyramid />}
         <div className="grid gap-16 md:gap-24 lg:gap-40 py-16 md:py-24 lg:py-40">
           <CatalogTeaser />
           <TeamsTabs updatedImages />

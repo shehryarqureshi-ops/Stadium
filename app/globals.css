@@ -1157,3 +1157,75 @@ body {
   --text-job-tile-title--letter-spacing: -0.01875rem;
   --text-job-tile-title--font-weight: 700;
 }
+
+/* ===== /new-home · earth section (Figma 7133:9894) ===== */
+@theme {
+  --text-earth-title: 4.5rem; /* 72/76 −2.4px Satoshi Bold — "One system. Three layers." (xl) */
+  --text-earth-title--line-height: 4.75rem;
+  --text-earth-title--letter-spacing: -0.15rem;
+  --text-earth-title--font-weight: 700;
+  --text-earth-layer: 1.125rem; /* 18/24 Satoshi Bold — layer name */
+  --text-earth-layer--line-height: 1.5rem;
+  --text-earth-layer--font-weight: 700;
+  --text-earth-note: 0.9375rem; /* 15/22 — layer one-liner */
+  --text-earth-note--line-height: 1.375rem;
+  --spacing-earth-row-h: 3.5625rem; /* 57 — layer row incl. 1px hairline */
+  --shadow-earth-card: 0 0.75rem 2rem rgba(0, 0, 0, 0.35); /* live-order card */
+}
+
+/* Earth globe event markers — a glowing dot at the city + a glass pill with a circle flag.
+   Same cobe anchor trick as .cobe-marker: the wrapper is a 0×0 box pinned to the marker's
+   anchor (left/top set via JS — Lightning CSS drops anchor() values from stylesheets), and
+   fades with the globe's own front/back visibility var. Pill sits up-right of the dot
+   (14px gap), or down-left for --below. */
+.earth-marker {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.earth-marker__dot {
+  position: absolute;
+  left: -0.25rem;
+  top: -0.25rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #4da3ff;
+  box-shadow: 0 0 0.5rem 0.125rem rgba(11, 122, 252, 0.9), 0 0 1.5rem 0.5rem rgba(11, 122, 252, 0.45);
+}
+.earth-marker__pill {
+  position: absolute;
+  left: -0.875rem;
+  bottom: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  padding: 0.4375rem 0.875rem 0.4375rem 0.5625rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(12, 28, 54, 0.72);
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  color: #fff;
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 600;
+}
+.earth-marker__pill--below {
+  left: auto;
+  right: -0.875rem;
+  bottom: auto;
+  top: 0.9375rem;
+}
+
+/* ===== /new-home · GEI ledger, photo system (Figma 7120:10112 → art · ledger (photo system)) ===== */
+@theme {
+  --color-ledger-wire-hris: #6b61ff; /* HRIS connector dot / gradient end */
+  --color-ledger-wire-crm: #fa6b80; /* CRM connector dot / gradient start */
+  --color-ledger-wire-fade: #d9d9de; /* connector fade colour */
+  --color-ledger-caption: #6b6c71; /* photo strip caption */
+}
