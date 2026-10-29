@@ -19,12 +19,12 @@ const JOBS = [
   {
     Icon: ShieldCheck,
     title: "Peace of mind.",
-    body: "On time, in full, in 170+ countries.",
+    body: "We deliver on time and in full, across 170+ countries, so there’s nothing left to chase.",
   },
   {
     Icon: SlidersHorizontal,
     title: "Centralize control.",
-    body: "Set the rules once. Let every team move.",
+    body: "Set the rules once, and let every team move without you in the loop.",
   },
 ];
 
@@ -42,11 +42,11 @@ export default function FourJobs() {
           id="four-jobs-title"
           className="max-w-[68.75rem] font-display text-display-sm md:text-heading-xl lg:text-section-title"
         >
-          Companies hire Stadium to do 4 jobs.
+          Companies hire Stadium to do 4 jobs
         </h2>
         <p className="max-w-[38.75rem] font-sans text-body-lg text-swag-grey">
-          Recognition, swag, gifting and events, run end to end by one team, so yours can get back to the
-          work only it can do.
+          We run recognition, swag, gifting and events end to end. Your team gets back to the work only
+          they can do.
         </p>
       </header>
 

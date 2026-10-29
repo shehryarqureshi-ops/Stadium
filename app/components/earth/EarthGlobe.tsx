@@ -19,6 +19,8 @@ type EarthEvent = {
   flag: FlagCode;
   /** pill hangs below-left of the dot instead of above-right */
   below?: boolean;
+  /** pin shares another marker's dot */
+  noDot?: boolean;
 };
 
 const EVENTS: EarthEvent[] = [
@@ -27,6 +29,14 @@ const EVENTS: EarthEvent[] = [
   { id: "dubai", location: [25.2, 55.27], label: "Client gift received", flag: "ae" },
   { id: "bengaluru", location: [12.97, 77.59], label: "Offsite booked", flag: "in" },
   { id: "singapore", location: [1.35, 103.82], label: "Snack box arrived", flag: "sg", below: true },
+  /* the Americas and Sydney sit on the far side of the composed pose: they fade in as the idle sway
+     (or a drag) turns them toward the viewer */
+  { id: "austin", location: [30.27, -97.74], label: "Hybrid event in session", flag: "us" },
+  { id: "los-angeles", location: [34.05, -118.24], label: "Swag kit in design", flag: "us", below: true },
+  { id: "mexico-city", location: [19.43, -99.13], label: "Team merch shop launched", flag: "mx" },
+  { id: "sydney", location: [-33.87, 151.21], label: "Recipient picked a favorite", flag: "au" },
+  /* shares Singapore's point (and dot) with "Snack box arrived"; its pill hangs on the other side */
+  { id: "singapore-onboarding", location: [1.35, 103.82], label: "Onboarding gift triggered", flag: "sg", noDot: true },
 ];
 
 /** composed pose: Europe/Africa/Asia face the viewer */
@@ -165,7 +175,7 @@ export default function EarthGlobe({ still = false, markers = true }: { still?: 
                 el.style.setProperty("opacity", `var(--cobe-visible-${markerId}, 0)`);
               }}
             >
-              <span className="earth-marker__dot" />
+              {!e.noDot && <span className="earth-marker__dot" />}
               <span className={`earth-marker__pill ${e.below ? "earth-marker__pill--below" : ""}`}>
                 <CircleFlag code={e.flag} size="1.125rem" borderWidth="0.0625rem" borderColor="rgba(255,255,255,0.6)" />
                 {e.label}

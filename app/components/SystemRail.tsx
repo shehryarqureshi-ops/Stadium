@@ -33,11 +33,24 @@ const CRM = {
 const card = "flex min-w-0 flex-col items-center rounded-core bg-white p-6 shadow-[0_0.1875rem_0.375rem_0_rgba(0,0,0,0.06),0_1rem_2.25rem_-0.625rem_rgba(0,0,0,0.05)]";
 const label = "font-sans text-ledger-label font-bold uppercase tracking-[0.0625rem] text-swag-grey";
 
+/* card eyebrow — "Name · SYSTEM", with room after the separator dot */
+function Eyebrow({ text }: { text: string }) {
+  const [name, system] = text.split(" · ");
+  return (
+    <>
+      {name} <span aria-hidden>·</span>
+      <span className="ml-1.5">{system}</span>
+    </>
+  );
+}
+
 /* one source system: its logos beside a dashed "your …" pill, then the events it feeds in */
 function Source({ title, data }: { title: string; data: typeof HRIS }) {
   return (
     <div className={`${card} gap-[2.8125rem] xl:min-h-[16.25rem] xl:flex-1 xl:self-center`}>
-      <p className={label}>{title}</p>
+      <p className={label}>
+        <Eyebrow text={title} />
+      </p>
       <div className="flex flex-col items-center gap-[3.4375rem]">
         <ul className="flex flex-wrap items-center justify-center gap-6">
           {data.logos.map((l) => (
@@ -119,7 +132,7 @@ export default function SystemRail() {
           className="font-display text-display-sm md:text-heading-xl lg:text-section-title"
         >
           The system between your
-          <br className="hidden sm:block" /> people and your customers.
+          <br className="hidden sm:block" /> people and your customers
         </h2>
         <p className="max-w-[51.25rem] font-sans text-body-md text-swag-grey lg:text-[1.25rem] lg:leading-[1.875rem]">
           Every core function got its own system. Engagement never did, until now.
@@ -134,7 +147,9 @@ export default function SystemRail() {
         </Link>
 
         <div className={`${card} justify-center gap-[2.8125rem] xl:min-h-[21.1875rem] xl:flex-1`}>
-          <p className={label}>Your engagement · GEI</p>
+          <p className={label}>
+            <Eyebrow text="Your engagement · GEI" />
+          </p>
           <div className="flex flex-col items-center gap-1.5">
             <span className="flex pr-2">
               <Image
