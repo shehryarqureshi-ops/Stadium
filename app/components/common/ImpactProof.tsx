@@ -16,7 +16,8 @@ export type ImpactProofProps = {
   caption: string;
   title: string;
   rating: { score: string; label: string };
-  logos: HeroLogo[];
+  /* omit for the shared home-page logo set (HeroLogoWall default) */
+  logos?: HeroLogo[];
   cards: VariableCardGridItem[];
 };
 

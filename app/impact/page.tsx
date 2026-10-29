@@ -33,16 +33,6 @@ export const metadata: Metadata = seoMetadata("/impact");
    Impact by Team menu headline (ImpactMenu.tsx), a placeholder image, and
    link through to their team page. */
 
-const PROOF_LOGOS = [
-  { src: "/impact/overview/logos/google.svg", alt: "Google", width: 74, height: 24 },
-  { src: "/impact/overview/logos/amazon.svg", alt: "Amazon", width: 80, height: 24 },
-  { src: "/impact/overview/logos/pinterest.svg", alt: "Pinterest", width: 87, height: 22 },
-  { src: "/impact/overview/logos/accenture.svg", alt: "Accenture", width: 84, height: 24 },
-  { src: "/impact/overview/logos/bloomberg.svg", alt: "Bloomberg", width: 90, height: 16 },
-  { src: "/impact/overview/logos/salesforce.svg", alt: "Salesforce", width: 37, height: 26 },
-  { src: "/impact/overview/logos/netflix.svg", alt: "Netflix", width: 75, height: 20 },
-];
-
 export default function ImpactPage() {
   return (
     <>
@@ -74,7 +64,6 @@ export default function ImpactPage() {
               caption="The proof"
               title="What teams are accomplishing with Stadium"
               rating={{ score: "4.8", label: "on G2 from 1,515 reviews" }}
-              logos={PROOF_LOGOS}
               cards={CASE_STUDIES.hub}
             />
           </ImpactClosing>
