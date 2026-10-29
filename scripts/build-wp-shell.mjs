@@ -106,7 +106,9 @@ function installHelpers() {
         const m = src.match(/[?&]url=([^&]+)/);
         if (m) src = decodeURIComponent(m[1]);
         if (src.startsWith("/")) { imgs.push(src); img.setAttribute("src", `{{IMG:${src}}}`); }
-        for (const a of ["srcset", "sizes", "data-nimg", "fetchpriority", "style"]) img.removeAttribute(a);
+        // next/image `fill` sizes the image through its inline style (absolute, 100% x 100%): keep that one
+        if (!/position:\s*absolute/.test(img.getAttribute("style") || "")) img.removeAttribute("style");
+        for (const a of ["srcset", "sizes", "data-nimg", "fetchpriority"]) img.removeAttribute(a);
       }
       for (const a of c.querySelectorAll("a[href]")) {
         const h = a.getAttribute("href");
