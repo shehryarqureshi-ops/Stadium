@@ -44,6 +44,7 @@ export const PHYSICAL = {
     {
       title: "Customs, Tax & Compliance",
       desc: "Customs, duties, and local requirements are cleared before a single package ships, so your team never has to navigate them, anywhere in the world.",
+      video: "/videos/CustomsAndTax.webm",
     },
   ] satisfies InfraTab[],
 };

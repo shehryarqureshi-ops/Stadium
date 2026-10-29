@@ -175,6 +175,9 @@ export function MediaTabs({
 }) {
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState<Record<number, boolean>>({});
+  /* clips and the auto-advance only run while the card is on screen, so a first visit starts on tab 1 */
+  const [inView, setInView] = useState(false);
+  const mediaEl = useRef<HTMLDivElement>(null);
   const bars = useRef<(HTMLElement | null)[]>([]); // [0] = phone bar, [1 + i] = tab i's bar
   const videos = useRef<(HTMLVideoElement | null)[]>([]);
   const elapsed = useRef(0);
@@ -215,10 +218,18 @@ export function MediaTabs({
     prevActive.current = active;
   }, [active]);
 
+  useEffect(() => {
+    const el = mediaEl.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.3 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   /* play + progress, only while this chapter is the one on screen */
   useEffect(() => {
     const v = videos.current[active];
-    if (!playing) {
+    if (!playing || !inView) {
       v?.pause();
       return;
     }
@@ -248,10 +259,11 @@ export function MediaTabs({
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playing, active, hasVideo, advance]);
+  }, [playing, inView, active, hasVideo, advance]);
 
   const media = (
     <div
+      ref={mediaEl}
       className={`relative overflow-hidden bg-[#0e0f11] ${
         pill ? "aspect-[1200/675] w-full rounded-[2rem]" : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
       }`}
