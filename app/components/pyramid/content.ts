@@ -56,32 +56,32 @@ export const DIGITAL = {
     {
       title: "Recognition",
       desc: "Kudos, milestones, and company values live in one place, synced with Slack and Teams.",
-      video: "/videos/infra/Video%2001%20Final.webm", // placeholder clip
+      video: "/videos/digital/D01_Recognition.webm",
     },
     {
       title: "Global Storefronts",
       desc: "Branded storefronts give every recipient a regional catalog, on one platform, in one dashboard.",
-      video: "/videos/infra/Video%2002%20Final.webm", // placeholder clip
+      video: "/videos/digital/D02_Global_Storefronts.webm",
     },
     {
       title: "Integrations & Automated Gifting",
       desc: "100+ integrations turn moments in your HRIS, ATS, or CRM into scheduled or triggered sends, automatically.",
-      video: "/videos/infra/Video%2003%20Final.webm", // placeholder clip
+      video: "/videos/digital/D03_Integrations_and_Automated_Gifting.webm",
     },
     {
       title: "Platform Controls",
       desc: "Permissions, budgets, and fund allocation are set centrally and enforced across every workspace and shop.",
-      video: "/videos/infra/Video%2004.webm", // placeholder clip
+      video: "/videos/digital/D04_Platform_Controls.webm",
     },
     {
       title: "Asset Library",
       desc: "One asset library and storefront branding keep every team on-brand.",
-      video: "/videos/infra/Video%2005.webm", // placeholder clip
+      video: "/videos/digital/D05_Brand_Controls.webm",
     },
     {
       title: "Security & Reliability",
       desc: "Security and data protection are built into every layer of the platform, not bolted on after.",
-      video: "/videos/infra/Video%2006.webm", // placeholder clip
+      video: "/videos/digital/D06_Security_and_Reliability.webm",
     },
   ] satisfies InfraTab[],
 };
