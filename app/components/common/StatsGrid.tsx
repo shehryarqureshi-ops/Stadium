@@ -22,6 +22,8 @@ type StatCenter = {
   authorImage?: StaticImageData;
   authorName: string;
   authorTitle: string;
+  /* optional company name line under the author's title */
+  authorCompany?: string;
   /* optional company logo under the author's title */
   authorLogo?: { src: string; alt: string; width: number; height: number };
   link?: string;
@@ -183,6 +185,11 @@ export default function StatsGrid({
                   <p className="font-sans text-[0.75rem] text-[#5b6470]">
                     {statCenter.authorTitle}
                   </p>
+                  {statCenter.authorCompany && (
+                    <p className="font-sans text-[0.75rem] text-[#5b6470]">
+                      {statCenter.authorCompany}
+                    </p>
+                  )}
                   {statCenter.authorLogo && (
                     <Image
                       src={statCenter.authorLogo.src}
