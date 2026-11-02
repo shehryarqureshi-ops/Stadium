@@ -45,9 +45,10 @@ export default function NumberedOfferings({
           <SectionIntro caption={caption} title={title} description={description} align="left" />
         </div>
 
-        <ol data-animation="reveal" className="flex flex-col gap-4 rounded-[2rem] bg-pricing-cell p-4">
+        <ol className="flex flex-col gap-4 rounded-[2rem] bg-pricing-cell p-4">
           {items.map((item, i) => (
             <li
+              data-animation="reveal"
               key={item.title}
               className={`flex flex-col-reverse gap-2.5 overflow-hidden rounded-3xl bg-white p-2.5 sm:flex-row sm:items-stretch ${ACTIVE_SHADOW}`}
             >

@@ -211,6 +211,29 @@
   --color-pricing-cell: #f2f2f2; /* comparison cell + secondary pass button fill */
   --color-pricing-ink: #16171b; /* pass/table text, Explore cell */
   --color-pricing-cta: #111111; /* featured pass "Talk to sales" fill */
+  /* /pricing restyle — mirrors bystadium.com/go/pricing: light #eff0f2 page, white r16 cards,
+     one accent family per pass (Stadium accents: vivid / extra-light surface / dark ink) */
+  --color-pricing-page: #eff0f2; /* page ground (Universal 200) */
+  --color-pricing-text: #2c2d2e; /* headings + body (Universal 700) */
+  --color-pricing-muted: #4f5052; /* subheads, section labels (Universal 600) */
+  --color-pricing-faint: #9fa0a2; /* eyebrow, "not included" dash (Universal 400) */
+  --color-pricing-line: #eff0f2; /* hairlines inside white panels */
+  --color-pricing-cream: #fbf5e0; /* "included with every pass" strip (Champagne) */
+  --color-pricing-amber: #9a6b00; /* icons on the cream strip */
+  --color-tier-payg: #2c2d2e;
+  --color-tier-payg-tint: #eff0f2;
+  --color-tier-shops: #ff5b77; /* Punch */
+  --color-tier-shops-tint: #feebf0; /* Amour */
+  --color-tier-shops-ink: #7d102e; /* Plum */
+  --color-tier-swag: #00c036; /* Lime */
+  --color-tier-swag-tint: #eff9eb; /* Feta */
+  --color-tier-swag-ink: #226104; /* Parsley */
+  --color-tier-engagement: #0b7afc; /* Water */
+  --color-tier-engagement-tint: #ebf4ff;
+  --color-tier-engagement-ink: #083467; /* Sapphire */
+  --color-tier-enterprise: #8d12e7; /* Lilac */
+  --color-tier-enterprise-tint: #f6ecfd; /* Ttitan */
+  --color-tier-enterprise-ink: #4c0e7a; /* Indigo */
   /* "Explore our packages" modal (Figma 3401:2352) */
   --color-modal-scrim: rgba(0, 0, 0, 0.5); /* overlay behind the modal */
   --color-modal-border: #e0e0e0; /* tab bar + sidebar hairline */
@@ -350,6 +373,14 @@
   --text-table-label--line-height: 1.4;
   --text-table-label--letter-spacing: 0.045rem;
   --text-table-label--font-weight: 600;
+  --text-table-section: 0.625rem; /* 10 / 1.2 +1px Bold caps — comparison section label (go/pricing) */
+  --text-table-section--line-height: 1.2;
+  --text-table-section--letter-spacing: 0.0625rem;
+  --text-table-section--font-weight: 700;
+  --text-pass-pill: 0.625rem; /* 10 / 1.2 +1px Bold caps — pass lead-in pill (go/pricing) */
+  --text-pass-pill--line-height: 1.2;
+  --text-pass-pill--letter-spacing: 0.0625rem;
+  --text-pass-pill--font-weight: 700;
   --text-table: 0.90625rem; /* 14.5 / 1.4 — comparison cells */
   --text-table--line-height: 1.4;
   --text-pill: 0.6875rem; /* 11 / 1.4 +0.4px Bold — "Most Popular" pill */

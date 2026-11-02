@@ -1,0 +1,92 @@
+<svg width="390" height="250" viewBox="0 0 390 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="390" height="250" fill="#CCCCCC"/>
+<g id="rolesandpermissionsgranularaccess-Batch 3">
+<path d="M-9244 -6898C-9244 -6899.1 -9243.1 -6900 -9242 -6900H29344C29345.1 -6900 29346 -6899.1 29346 -6898V8972C29346 8973.1 29345.1 8974 29344 8974H-9242C-9243.1 8974 -9244 8973.1 -9244 8972V-6898Z" fill="#EEEEEE"/>
+<path d="M-9242 -6900V-6899H29344V-6900V-6901H-9242V-6900ZM29346 -6898H29345V8972H29346H29347V-6898H29346ZM29344 8974V8973H-9242V8974V8975H29344V8974ZM-9244 8972H-9243V-6898H-9244H-9245V8972H-9244ZM-9242 8974V8973C-9242.55 8973 -9243 8972.55 -9243 8972H-9244H-9245C-9245 8973.66 -9243.65 8975 -9242 8975V8974ZM29346 8972H29345C29345 8972.55 29344.6 8973 29344 8973V8974V8975C29345.7 8975 29347 8973.66 29347 8972H29346ZM29344 -6900V-6899C29344.6 -6899 29345 -6898.55 29345 -6898H29346H29347C29347 -6899.66 29345.7 -6901 29344 -6901V-6900ZM-9242 -6900V-6901C-9243.66 -6901 -9245 -6899.66 -9245 -6898H-9244H-9243C-9243 -6898.55 -9242.55 -6899 -9242 -6899V-6900Z" fill="black" fill-opacity="0.1"/>
+<g id="rolesandpermissionsgranularaccess-/roles-and-permissions">
+<rect width="1440" height="6418" transform="translate(-104 -1801)" fill="white"/>
+<g id="rolesandpermissionsgranularaccess-problem">
+<g id="rolesandpermissionsgranularaccess-card">
+<g id="rolesandpermissionsgranularaccess-Problem">
+<g id="rolesandpermissionsgranularaccess-grid">
+<rect x="-24" y="-24" width="1280" height="470" rx="32" fill="#F2F2F2"/>
+<g id="rolesandpermissionsgranularaccess-card_2" filter="url(#rolesandpermissionsgranularaccess-filter0_d_0_1)">
+<g clip-path="url(#rolesandpermissionsgranularaccess-clip0_0_1)">
+<rect x="-8" y="-8" width="405.333" height="438" rx="24" fill="white"/>
+<g id="rolesandpermissionsgranularaccess-Frame 2087330180" filter="url(#rolesandpermissionsgranularaccess-filter1_dddd_0_1)">
+<g clip-path="url(#rolesandpermissionsgranularaccess-clip1_0_1)">
+<g id="rolesandpermissionsgranularaccess-graphic &#194;&#183; default &#194;&#183; Adjust As Needed">
+<g clip-path="url(#rolesandpermissionsgranularaccess-clip2_0_1)">
+<rect width="389.333" height="250" rx="20" fill="#F8F8F8"/>
+<rect id="rolesandpermissionsgranularaccess-image 14058" x="-15.333" y="-31" width="419" height="313" fill="url(#rolesandpermissionsgranularaccess-pattern0_0_1)"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<rect x="-4" y="-4" width="397.333" height="430" rx="20" stroke="white" stroke-width="8"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="rolesandpermissionsgranularaccess-filter0_d_0_1" x="-14" y="-11" width="417.333" height="450" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="3"/>
+<feGaussianBlur stdDeviation="3"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<filter id="rolesandpermissionsgranularaccess-filter1_dddd_0_1" x="-18" y="0" width="425.333" height="288" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="effect1_dropShadow_0_1"/>
+<feOffset dy="0.796192"/>
+<feGaussianBlur stdDeviation="0.398096"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect2_dropShadow_0_1"/>
+<feOffset dy="2.41451"/>
+<feGaussianBlur stdDeviation="1.20726"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.11 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_0_1" result="effect2_dropShadow_0_1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1.5" operator="erode" in="SourceAlpha" result="effect3_dropShadow_0_1"/>
+<feOffset dy="6.38265"/>
+<feGaussianBlur stdDeviation="3.19132"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
+<feBlend mode="normal" in2="effect2_dropShadow_0_1" result="effect3_dropShadow_0_1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2" operator="erode" in="SourceAlpha" result="effect4_dropShadow_0_1"/>
+<feOffset dy="20"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="effect3_dropShadow_0_1" result="effect4_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_0_1" result="shape"/>
+</filter>
+<pattern id="rolesandpermissionsgranularaccess-pattern0_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use href="#rolesandpermissionsgranularaccess-image0_0_1" transform="matrix(0.000690608 0 0 0.000924488 0 -0.00199681)"/>
+</pattern>
+<clipPath id="rolesandpermissionsgranularaccess-clip0_0_1">
+<rect x="-8" y="-8" width="405.333" height="438" rx="24" fill="white"/>
+</clipPath>
+<clipPath id="rolesandpermissionsgranularaccess-clip1_0_1">
+<path d="M0 8C0 3.58172 3.58172 0 8 0H381.333C385.752 0 389.333 3.58172 389.333 8V226C389.333 239.255 378.588 250 365.333 250H24C10.7452 250 0 239.255 0 226V8Z" fill="white"/>
+</clipPath>
+<clipPath id="rolesandpermissionsgranularaccess-clip2_0_1">
+<rect width="389.333" height="250" rx="20" fill="white"/>
+</clipPath>
+<image id="rolesandpermissionsgranularaccess-image0_0_1" width="1448" height="1086" preserveAspectRatio="none" href="/cards/img-3be1d98a.webp"/>
+</defs>
+</svg>

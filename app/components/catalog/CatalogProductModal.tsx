@@ -141,7 +141,10 @@ export default function CatalogProductModal({
               <div className="flex flex-col gap-3">
                 <p className="font-sans text-[0.6875rem] font-bold uppercase leading-4 tracking-[0.1rem] text-black/50">Dietary</p>
                 <ul className="flex flex-wrap gap-2">
-                  {product.dietary.map((m) => (
+                  {/* Vegan implies Vegetarian, so don't show both (the data keeps both for filtering) */}
+                  {product.dietary
+                    .filter((m) => !(m === "Vegetarian" && product.dietary?.includes("Vegan")))
+                    .map((m) => (
                     <li
                       key={m}
                       className="inline-flex items-center rounded-full bg-catalog-ink px-3.5 py-2 font-sans text-[0.8125rem] font-semibold leading-none text-white"

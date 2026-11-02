@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import GranularAccess from "@/app/components/cards/roles-and-permissions/GranularAccess";
+import GranularAdjust from "@/app/components/cards/roles-and-permissions/GranularAdjust";
+import GranularBottlenecks from "@/app/components/cards/roles-and-permissions/GranularBottlenecks";
 import PeopleAdmin from "@/app/components/cards/roles-and-permissions/PeopleAdmin";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
@@ -12,10 +15,7 @@ import AccessSheet from "@/app/components/impact/batch3/AccessSheet";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { HR_TOOLS, LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
-import adjust from "@/public/roles-and-permissions/granular-adjust.png";
-import bottlenecks from "@/public/roles-and-permissions/granular-bottlenecks.png";
-import precise from "@/public/roles-and-permissions/granular-access.png";
-import walletAccess from "@/public/roles-and-permissions/wallet-access.png";
+import walletAccess from "@/public/roles-and-permissions/wallet-access.webp";
 
 export const metadata: Metadata = {
   title: "Roles & Permissions — Everyone gets the access they need | Stadium",
@@ -93,9 +93,9 @@ export default function RolesAndPermissionsPage() {
         description="Each collaborator gets defined access to what they can use, create, and manage."
         gridColumns={3}
         items={[
-          { image: precise, imageAlt: "A member's access list with Billing & invoices locked", title: "Give Precise Access", description: "Each person accesses exactly what their role requires." },
-          { image: adjust, imageAlt: "A role change from Member to Manager adding approval and Wallet access", title: "Adjust As Needed", description: "Permissions update as responsibilities change." },
-          { image: bottlenecks, imageAlt: "An order placed within a Wallet limit with no approval needed", title: "Fewer Bottlenecks", description: "Each collaborator acts within their own access. No waiting on approval." },
+          { graphic: <GranularAccess />, title: "Give Precise Access", description: "Each person accesses exactly what their role requires." },
+          { graphic: <GranularAdjust />, title: "Adjust As Needed", description: "Permissions update as responsibilities change." },
+          { graphic: <GranularBottlenecks />, title: "Fewer Bottlenecks", description: "Each collaborator acts within their own access. No waiting on approval." },
         ]}
       />
 

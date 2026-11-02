@@ -49,218 +49,216 @@ export default function CxPage() {
   return (
     <>
       <JsonLd path="/impact/cx" />
-    <ImpactPageShell
-      hero={
-        <TeamHero
-          eyebrow="Stadium for Customer Experience"
-          title="Build stronger customer relationships at every stage"
-          description="Connect with customers from onboarding through renewal with thoughtful touchpoints that strengthen relationships and support retention."
-          primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
-          secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
-          background="canvas"
-          visual={<GrowthSteps />}
-          visualLayout="aligned"
-          visualMaxWidth="37rem"
-        />
-      }
-      closing={
-        <ImpactClosing
-          cta={{
-            caption: "Get started",
-            title: "Build relationships that last",
-            description:
-              "Give CX teams one scalable way to strengthen customer relationships from onboarding through renewal.",
-            primary: { label: "Talk to sales", href: LINKS.sales },
-            secondary: { label: "Explore the platform", href: LINKS.platform },
-          }}
-        >
-          <VariableCardGrid
-            background="transparent"
-            caption="Customer results"
-            captionColor="#16171b"
-            title="See how teams scale customer engagement with Stadium"
-            imageFit="cover"
-            items={CASE_STUDIES.cx}
+      <ImpactPageShell
+        hero={
+          <TeamHero
+            eyebrow="Stadium for Customer Experience"
+            title="Build stronger customer relationships at every stage"
+            description="Connect with customers from onboarding through renewal with thoughtful touchpoints that strengthen relationships and support retention."
+            primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
+            secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
+            background="canvas"
+            visual={<GrowthSteps />}
+            visualLayout="aligned"
+            visualMaxWidth="37rem"
           />
-        </ImpactClosing>
-      }
-    >
-      <VariableCardGrid
-        caption="The problem"
-        captionColor="#16171b"
-        title="Customer relationships are hard to scale"
-        description="As your customer base grows, staying personal and consistent gets harder."
-        gridColumns={3}
-        imageStyle="panel"
-        items={[
-          { image: problemVendors, imageAlt: "A customer success manager sorting gifts and paperwork from different vendors", description: "Gifting happens across different vendors." },
-          { image: problemAddresses, imageAlt: "A customer success manager collecting addresses and preferences by email", description: "Teams spend time collecting addresses and preferences." },
-          { image: problemRecurring, imageAlt: "A customer success manager setting up recurring sends by hand", description: "Recurring sends require manual setup." },
-        ]}
-        footnote="Your team should focus on customers–not coordinating every send."
-      />
+        }
+        closing={
+          <ImpactClosing
+            cta={{
+              caption: "Get started",
+              title: "Build relationships that last",
+              description:
+                "Give CX teams one scalable way to strengthen customer relationships from onboarding through renewal.",
+              primary: { label: "Talk to sales", href: LINKS.sales },
+              secondary: { label: "Explore the platform", href: LINKS.platform },
+            }}
+          >
+            <VariableCardGrid
+              background="transparent"
+              caption="Customer results"
+              captionColor="#16171b"
+              title="See how teams scale customer engagement with Stadium"
+              imageFit="cover"
+              items={CASE_STUDIES.cx}
+            />
+          </ImpactClosing>
+        }
+      >
+        <VariableCardGrid
+          caption="The problem"
+          captionColor="#16171b"
+          title="Customer relationships are hard to scale"
+          description="As your customer base grows, staying personal and consistent gets harder."
+          gridColumns={3}
+          imageStyle="panel"
+          items={[
+            { image: problemVendors, imageAlt: "A customer success manager sorting gifts and paperwork from different vendors", description: "Gifting happens across different vendors." },
+            { image: problemAddresses, imageAlt: "A customer success manager collecting addresses and preferences by email", description: "Teams spend time collecting addresses and preferences." },
+            { image: problemRecurring, imageAlt: "A customer success manager setting up recurring sends by hand", description: "Recurring sends require manual setup." },
+          ]}
+          footnote="Your team should focus on customers–not coordinating every send."
+        />
 
-      <TeamDivider />
+        <ImageShowcase
+          caption="One platform"
+          title="One infrastructure for the customer relationship"
+          description="Bring customer engagement programs, sends, budgets, and fulfillment together instead of managing separate vendors and workflows."
+          graphic={<Dashboard />}
+          framed={false}
+        />
 
-      <ImageShowcase
-        caption="One platform"
-        title="One infrastructure for the customer relationship"
-        description="Bring customer engagement programs, sends, budgets, and fulfillment together instead of managing separate vendors and workflows."
-        graphic={<Dashboard />}
-        framed={false}
-      />
+        <ChecklistCards
+          caption="Flexible engagement"
+          title="Show up differently for every customer moment"
+          description="Give CX teams the flexibility to send directly or automate key points in the customer journey."
+          cards={[
+            {
+              title: "Gift when the occasion calls",
+              description: "Send for customer wins, thank-yous, follow-ups, and other occasions that call for a personal touch.",
+              bullets: ["Personalized sends", "Recipient gift choice", "No address needed upfront"],
+            },
+            {
+              title: "Automate key customer milestones",
+              description: "Set up sends around recurring lifecycle moments without starting from scratch.",
+              bullets: ["Lifecycle-based sends", "Less manual coordination", "Consistent customer experience"],
+            },
+          ]}
+        />
 
-      <ChecklistCards
-        caption="Flexible engagement"
-        title="Show up differently for every customer moment"
-        description="Give CX teams the flexibility to send directly or automate key points in the customer journey."
-        cards={[
-          {
-            title: "Gift when the occasion calls",
-            description: "Send for customer wins, thank-yous, follow-ups, and other occasions that call for a personal touch.",
-            bullets: ["Personalized sends", "Recipient gift choice", "No address needed upfront"],
-          },
-          {
-            title: "Automate key customer milestones",
-            description: "Set up sends around recurring lifecycle moments without starting from scratch.",
-            bullets: ["Lifecycle-based sends", "Less manual coordination", "Consistent customer experience"],
-          },
-        ]}
-      />
+        <PillTabs
+          caption="Across the customer journey"
+          captionColor="#16171b"
+          title="Show up throughout the customer relationship"
+          description="From welcoming a new customer to recognizing a renewal, give CX teams more ways to connect beyond calls and emails."
+          autoAdvance={false}
+          items={[
+            {
+              id: "onboarding",
+              name: "Onboarding",
+              tab: "Onboarding",
+              title: "Start with a memorable welcome",
+              description: "Make new customers feel valued from the moment they come on board.",
+              bullets: ["Welcome kits", "Branded swag kits", "Recipient gift choice"],
+              image: journeyOnboarding,
+              imageAlt: "A welcome kit prepared for a new customer",
+            },
+            {
+              id: "milestones",
+              name: "Milestones",
+              tab: "Milestones",
+              title: "Celebrate the wins along the way",
+              description: "Mark launches, anniversaries, and standout customer achievements.",
+              bullets: ["Personalized sends", "Flexible gift options", "Custom notes"],
+              image: journeyMilestones,
+              imageAlt: "A customer celebrating a milestone with a gift",
+            },
+            {
+              id: "appreciation",
+              name: "Appreciation",
+              tab: "Appreciation",
+              title: "Make thank-yous stand out",
+              description: "Go beyond another email when a customer deserves extra appreciation.",
+              bullets: ["Send on demand", "Recipient gift choice", "Premium options"],
+              image: journeyAppreciation,
+              imageAlt: "A customer receiving a thank-you gift",
+            },
+            {
+              id: "customer-events",
+              name: "Customer events",
+              tab: "Customer events",
+              title: "Bring the event to them",
+              description: "Give customers something to enjoy before, during, or after a virtual or in-person event.",
+              bullets: ["Event kits", "Individual or bulk sends", "Branded options"],
+              image: journeyEvents,
+              imageAlt: "A customer enjoying an event kit",
+            },
+            {
+              id: "resolution",
+              name: "Resolution",
+              tab: "Resolution",
+              title: "Follow up beyond the fix",
+              description: "Show customers you care after an issue is resolved.",
+              bullets: ["Rep-led sends", "Flexible gift options", "Personalized notes"],
+              image: journeyResolution,
+              imageAlt: "A customer opening a follow-up gift",
+            },
+            {
+              id: "renewal-loyalty",
+              name: "Renewal & loyalty",
+              tab: "Renewal & loyalty",
+              title: "Make long-term customers feel valued",
+              description: "Strengthen the relationship around renewals, anniversaries, and other moments that build long-term loyalty.",
+              bullets: ["Premium gift options", "Personalized sends", "Recipient gift choice"],
+              image: journeyRenewal,
+              imageAlt: "A long-term customer opening a premium gift",
+            },
+          ]}
+        />
 
-      <PillTabs
-        caption="Across the customer journey"
-        captionColor="#16171b"
-        title="Show up throughout the customer relationship"
-        description="From welcoming a new customer to recognizing a renewal, give CX teams more ways to connect beyond calls and emails."
-        autoAdvance={false}
-        items={[
-          {
-            id: "onboarding",
-            name: "Onboarding",
-            tab: "Onboarding",
-            title: "Start with a memorable welcome",
-            description: "Make new customers feel valued from the moment they come on board.",
-            bullets: ["Welcome kits", "Branded swag kits", "Recipient gift choice"],
-            image: journeyOnboarding,
-            imageAlt: "A welcome kit prepared for a new customer",
-          },
-          {
-            id: "milestones",
-            name: "Milestones",
-            tab: "Milestones",
-            title: "Celebrate the wins along the way",
-            description: "Mark launches, anniversaries, and standout customer achievements.",
-            bullets: ["Personalized sends", "Flexible gift options", "Custom notes"],
-            image: journeyMilestones,
-            imageAlt: "A customer celebrating a milestone with a gift",
-          },
-          {
-            id: "appreciation",
-            name: "Appreciation",
-            tab: "Appreciation",
-            title: "Make thank-yous stand out",
-            description: "Go beyond another email when a customer deserves extra appreciation.",
-            bullets: ["Send on demand", "Recipient gift choice", "Premium options"],
-            image: journeyAppreciation,
-            imageAlt: "A customer receiving a thank-you gift",
-          },
-          {
-            id: "customer-events",
-            name: "Customer events",
-            tab: "Customer events",
-            title: "Bring the event to them",
-            description: "Give customers something to enjoy before, during, or after a virtual or in-person event.",
-            bullets: ["Event kits", "Individual or bulk sends", "Branded options"],
-            image: journeyEvents,
-            imageAlt: "A customer enjoying an event kit",
-          },
-          {
-            id: "resolution",
-            name: "Resolution",
-            tab: "Resolution",
-            title: "Follow up beyond the fix",
-            description: "Show customers you care after an issue is resolved.",
-            bullets: ["Rep-led sends", "Flexible gift options", "Personalized notes"],
-            image: journeyResolution,
-            imageAlt: "A customer opening a follow-up gift",
-          },
-          {
-            id: "renewal-loyalty",
-            name: "Renewal & loyalty",
-            tab: "Renewal & loyalty",
-            title: "Make long-term customers feel valued",
-            description: "Strengthen the relationship around renewals, anniversaries, and other moments that build long-term loyalty.",
-            bullets: ["Premium gift options", "Personalized sends", "Recipient gift choice"],
-            image: journeyRenewal,
-            imageAlt: "A long-term customer opening a premium gift",
-          },
-        ]}
-      />
+        <StickyStepCards
+          caption="Customer automations"
+          captionColor="#16171b"
+          title="Connect gifting to your customer workflows"
+          description="Trigger sends from the systems and customer activity your team already uses."
+          steps={[
+            {
+              graphic: <VectorCard src="/cards/impact-cx/AutomationCrm.svg" alt="Automated customer moments in Salesforce: onboarding kickoff, 1-year anniversary, and renewal" width={648} height={364} />,
+              eyebrow: "CRM integrations",
+              title: "Automate key customer moments",
+              content: (
+                <FeatureDetails description="Use Salesforce and HubSpot activity to trigger sends around customer milestones and lifecycle stages." />
+              ),
+            },
+            {
+              graphic: <VectorCard src="/cards/impact-cx/AutomationWebhooks.svg" alt="Promoter thank-you automation sending a $25 gift card when an NPS response is a 9 or 10" width={648} height={364} />,
+              eyebrow: "Webhooks",
+              title: "Turn customer events into automatic sends",
+              content: (
+                <FeatureDetails description="Use Webhooks to trigger Stadium when a customer milestone or event happens in another system." />
+              ),
+            },
+            {
+              graphic: <AutomationApi />,
+              eyebrow: "Stadium API",
+              title: "Build engagement into your own workflows",
+              content: (
+                <FeatureDetails description="Use the Stadium API to connect gifting and rewards to custom customer experiences." />
+              ),
+            },
+          ]}
+        />
 
-      <StickyStepCards
-        caption="Customer automations"
-        captionColor="#16171b"
-        title="Connect gifting to your customer workflows"
-        description="Trigger sends from the systems and customer activity your team already uses."
-        steps={[
-          {
-            graphic: <VectorCard src="/cards/impact-cx/AutomationCrm.svg" alt="Automated customer moments in Salesforce: onboarding kickoff, 1-year anniversary, and renewal" width={648} height={364} />,
-            eyebrow: "CRM integrations",
-            title: "Automate key customer moments",
-            content: (
-              <FeatureDetails description="Use Salesforce and HubSpot activity to trigger sends around customer milestones and lifecycle stages." />
-            ),
-          },
-          {
-            graphic: <VectorCard src="/cards/impact-cx/AutomationWebhooks.svg" alt="Promoter thank-you automation sending a $25 gift card when an NPS response is a 9 or 10" width={648} height={364} />,
-            eyebrow: "Webhooks",
-            title: "Turn customer events into automatic sends",
-            content: (
-              <FeatureDetails description="Use Webhooks to trigger Stadium when a customer milestone or event happens in another system." />
-            ),
-          },
-          {
-            graphic: <AutomationApi />,
-            eyebrow: "Stadium API",
-            title: "Build engagement into your own workflows",
-            content: (
-              <FeatureDetails description="Use the Stadium API to connect gifting and rewards to custom customer experiences." />
-            ),
-          },
-        ]}
-      />
+        <VariableCardGrid
+          caption="Program visibility"
+          captionColor="#16171b"
+          title="See how customer engagement is working"
+          description="Manage budgets and track sends, redemptions, and customer activity as your programs grow."
+          gridColumns={2}
+          narrow
+          imageStyle="panel"
+          items={[
+            { graphic: <VectorCard src="/cards/impact-cx/VisBudgets.svg" alt="Customer success wallet with $21,775 left and spend by program" width={400} height={250} />, title: "Manage Budgets", description: "Keep customer engagement spend organized across teams and programs." },
+            { graphic: <VectorCard src="/cards/impact-cx/VisSends.svg" alt="42 sends to customers this week, by day" width={400} height={250} />, title: "Track Sends", description: "See what was sent, to whom, and when." },
+            { graphic: <VisRedemptions />, title: "See Redemptions", description: "Know when customers engage with their experience." },
+            { graphic: <VectorCard src="/cards/impact-cx/VisActivity.svg" alt="Customer timeline: onboarding box delivered, QBR thank-you gift, renewed +12%" width={400} height={250} />, title: "Connect Customer Activity", description: "Keep engagement visible alongside the customer relationship." },
+          ]}
+          footnote="Manage Budgets. Track Sends. See Redemptions."
+        />
 
-      <VariableCardGrid
-        caption="Program visibility"
-        captionColor="#16171b"
-        title="See how customer engagement is working"
-        description="Manage budgets and track sends, redemptions, and customer activity as your programs grow."
-        gridColumns={2}
-        narrow
-        imageStyle="panel"
-        items={[
-          { graphic: <VectorCard src="/cards/impact-cx/VisBudgets.svg" alt="Customer success wallet with $21,775 left and spend by program" width={400} height={250} />, title: "Manage Budgets", description: "Keep customer engagement spend organized across teams and programs." },
-          { graphic: <VectorCard src="/cards/impact-cx/VisSends.svg" alt="42 sends to customers this week, by day" width={400} height={250} />, title: "Track Sends", description: "See what was sent, to whom, and when." },
-          { graphic: <VisRedemptions />, title: "See Redemptions", description: "Know when customers engage with their experience." },
-          { graphic: <VectorCard src="/cards/impact-cx/VisActivity.svg" alt="Customer timeline: onboarding box delivered, QBR thank-you gift, renewed +12%" width={400} height={250} />, title: "Connect Customer Activity", description: "Keep engagement visible alongside the customer relationship." },
-        ]}
-        footnote="Manage Budgets. Track Sends. See Redemptions."
-      />
-
-      <NumberedOfferings
-        caption="One platform"
-        title="More ways to engage customers"
-        description="Choose the experience that fits the customer, the relationship, and the occasion."
-        items={[
-          { title: "Swag", description: "Branded merchandise and kits for customers.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
-          { title: "Gifting", description: "Personalized gifts for meaningful customer moments.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
-          { title: "Snacks", description: "Personalized snack experiences for meetings and events.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
-          { title: "Hosted Experiences", description: "Live-hosted events for customers and groups.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
-          { title: "Recognition", description: "Points and rewards customers can redeem.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
-        ]}
-      />
-    </ImpactPageShell>
+        <NumberedOfferings
+          caption="One platform"
+          title="More ways to engage customers"
+          description="Choose the experience that fits the customer, the relationship, and the occasion."
+          items={[
+            { title: "Swag", description: "Branded merchandise and kits for customers.", image: engageSwag, imageAlt: "Branded hoodie, cap, and bottle" },
+            { title: "Gifting", description: "Personalized gifts for meaningful customer moments.", image: engageGifting, imageAlt: "Unwrapping a gift box with a perfume bottle" },
+            { title: "Snacks", description: "Personalized snack experiences for meetings and events.", image: engageSnacks, imageAlt: "A Snackmagic box filled with snacks" },
+            { title: "Hosted Experiences", description: "Live-hosted events for customers and groups.", image: engageExperiences, imageAlt: "A person painting during a hosted remote experience" },
+            { title: "Recognition", description: "Points and rewards customers can redeem.", image: engageRecognition, imageAlt: "Handing over a wrapped reward package", overlay: <KudosToast /> },
+          ]}
+        />
+      </ImpactPageShell>
     </>
   );
 }

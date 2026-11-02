@@ -304,7 +304,7 @@ const decorationSteps: StepCardsCarouselStep[] = [
   },
   {
     title: "Small runs, no setup",
-    description: "No screens, no dies. Sensible from a single piece.",
+    description: "No screens, no dyes. Sensible from a single piece.",
     cards: [
       {
         title: "DTG",

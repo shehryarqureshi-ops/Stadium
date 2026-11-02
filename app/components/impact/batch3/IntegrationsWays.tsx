@@ -5,7 +5,7 @@
    v2.5, animated mode).
    Three tabs (Native selected / Automate / Build) sit over a "Native integrations"
    card listing connected systems — UKG, ADP, Gusto, Paylocity — each with its category,
-   employee count and a "Synced … ago" status dot, plus a "40+ more integrations" row.
+   employee count and a "Synced … ago" status dot, plus a "100+ more integrations" row.
 
    STAGE UNITS. Fixed 580 × 377 stage the Player scales to its container. Bare numbers
    are stage units, NOT CSS px. Colours and fonts come from tokens.
@@ -315,7 +315,7 @@ export function IntegrationsWaysScene() {
         >
           <Icon d={PLUS} size={12} className="stroke-grey-800" />
           <p className="text-grey-800" style={{ flex: 1, fontSize: 11, lineHeight: "14px", fontWeight: 600, whiteSpace: "nowrap" }}>
-            40+ more integrations
+            100+ more integrations
           </p>
           <Icon d={ARROW} size={12} className="stroke-grey-600" />
         </div>

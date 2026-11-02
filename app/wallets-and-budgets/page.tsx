@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
+import StepBudget from "@/app/components/cards/wallets-and-budgets/StepBudget";
 import StepLimits from "@/app/components/cards/wallets-and-budgets/StepLimits";
+import StepProtect from "@/app/components/cards/wallets-and-budgets/StepProtect";
 import UnusedReclaim from "@/app/components/cards/wallets-and-budgets/UnusedReclaim";
 import VectorCard from "@/app/components/cards/VectorCard";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
@@ -12,13 +14,13 @@ import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
 
-import budgetCentral from "@/public/wallets-and-budgets/budget-central.png";
-import budgetPoints from "@/public/wallets-and-budgets/budget-points.png";
-import budgetShared from "@/public/wallets-and-budgets/budget-shared.png";
-import visBalances from "@/public/wallets-and-budgets/visibility-balances.png";
-import visBonus from "@/public/wallets-and-budgets/visibility-bonus.png";
-import visFunding from "@/public/wallets-and-budgets/visibility-funding.png";
-import visTransactions from "@/public/wallets-and-budgets/visibility-transactions.png";
+import budgetCentral from "@/public/wallets-and-budgets/budget-central.webp";
+import budgetPoints from "@/public/wallets-and-budgets/budget-points.webp";
+import budgetShared from "@/public/wallets-and-budgets/budget-shared.webp";
+import visBalances from "@/public/wallets-and-budgets/visibility-balances.webp";
+import visBonus from "@/public/wallets-and-budgets/visibility-bonus.webp";
+import visFunding from "@/public/wallets-and-budgets/visibility-funding.webp";
+import visTransactions from "@/public/wallets-and-budgets/visibility-transactions.webp";
 
 export const metadata: Metadata = {
   title: "Wallets & Budgets — Give teams a budget, not the company card | Stadium",
@@ -109,8 +111,18 @@ export default function WalletsAndBudgetsPage() {
             content: <StepLimits />,
             desktopVisualWidth: 265,
           },
-          { title: <>Protect Unallocated<br />Funds</> },
-          { title: <>Work Within<br />Budget</> },
+          {
+            title: <>Protect Unallocated<br />Funds</>,
+            description: "Keep funds unavailable to spend until they’re deliberately allocated.",
+            content: <StepProtect />,
+            desktopVisualWidth: 265,
+          },
+          {
+            title: <>Work Within<br />Budget</>,
+            description: "People spend independently within the amount allocated to them.",
+            content: <StepBudget />,
+            desktopVisualWidth: 265,
+          },
         ]}
       />
 

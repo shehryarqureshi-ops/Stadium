@@ -82,7 +82,7 @@ const STATS: Record<SectionId, Stat[]> = {
   swag: [
     { value: "26,000+", label: "styles to choose from" },
     { value: "760", label: "brands, 93,000+ colorways" },
-    { value: "100+", label: "decoration methods in ~12 families" },
+    { value: "15", label: "decoration methods, from embroidery to engraving" },
     { value: "11", label: "categories, from apparel to baby" },
     { value: "170+", label: "countries delivered, duties handled" },
   ],
@@ -159,7 +159,7 @@ export const SECTIONS: SectionData[] = [
     id: "snacks",
     tab: "Snacks",
     tabShort: "Snacks",
-    title: "Snacks",
+    title: "Snacks & Sips",
     noun: "snacks",
     blurb: "Snacks, drinks, pantry staples and work-and-play finds — curated boxes your team will fight over, delivered across 170+ countries.",
     catalogHref: "https://www.snackmagic.com/our-snacks",

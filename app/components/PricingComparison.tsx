@@ -1,6 +1,8 @@
-/* /pricing · THE COMPARISON — "Our platform covers every category" (Figma
-   n9SjmDjzB1PeZAYJ5w43fr → 3998:4666 "Comparison · 3 wedges"). A full-bleed
-   white panel (r60 all corners) floating on the page gradient, holding a
+/* /pricing · THE COMPARISON — "Our platform covers every category". Restyled to match
+   bystadium.com/go/pricing (content + structure unchanged): the header sits on the
+   light page ground and the table is one white r16 panel — hairline rows, caps grey
+   section bands, a coloured dot per pass column, tier-tinted check discs and grey
+   dashes. Earlier (Figma 3998:4666) this was a full-bleed white r60 panel holding a
    5-pass feature table (Figma 3442:16733): label column + Pay-as-you-go /
    Shops / Swag / Engagement / Enterprise, rows grouped under section labels. Same table system as SwagmagicComparison.tsx — gap 4, cells
    py16 px24, #f2f2f2 body cells r8 with r24 on the outer corners, white r24
@@ -26,27 +28,45 @@ import StickyHeadRow from "./pricing/StickyHeadRow";
 import { PackagesModalProvider, PackagesModalTrigger } from "./pricing/PackagesModal";
 import { FEATURES as ROWS, PASSES, type Cell, type Feature } from "./pricing/passes";
 
-/* label column pins below lg; the white ring hides cells scrolling beneath */
-const STICKY = "sticky left-0 z-10 shadow-[0.25rem_0_0_0_white] lg:static lg:shadow-none";
+/* label column pins below lg; it is opaque so cells scrolling beneath are hidden */
+const STICKY = "sticky left-0 z-10 lg:static";
 
-function Value({ v }: { v: Cell }) {
+/* one accent family per pass column (order = PASSES) — full class strings for Tailwind */
+const TIERS = [
+  { dot: "bg-tier-payg", disc: "bg-tier-payg-tint", glyph: "text-tier-payg" },
+  { dot: "bg-tier-shops", disc: "bg-tier-shops-tint", glyph: "text-tier-shops" },
+  { dot: "bg-tier-swag", disc: "bg-tier-swag-tint", glyph: "text-tier-swag" },
+  { dot: "bg-tier-engagement", disc: "bg-tier-engagement-tint", glyph: "text-tier-engagement" },
+  { dot: "bg-tier-enterprise", disc: "bg-tier-enterprise-tint", glyph: "text-tier-enterprise" },
+] as const;
+
+function Tick({ col }: { col: number }) {
+  const t = TIERS[col];
+  return (
+    <span className={`inline-flex size-5 shrink-0 items-center justify-center rounded-full ${t.disc}`}>
+      <Check aria-hidden className={`size-3 ${t.glyph}`} strokeWidth={3} />
+    </span>
+  );
+}
+
+function Value({ v, col }: { v: Cell; col: number }) {
   if (v === "check")
     return (
       <>
-        <Check aria-hidden className="size-6 shrink-0 text-black" strokeWidth={2} />
+        <Tick col={col} />
         <span className="sr-only">Included</span>
       </>
     );
   if (v === "minus")
     return (
       <>
-        <Minus aria-hidden className="size-4 shrink-0 text-black" strokeWidth={2} />
+        <Minus aria-hidden className="size-3.5 shrink-0 text-pricing-faint" strokeWidth={2} />
         <span className="sr-only">Not included</span>
       </>
     );
   return (
-    <span className="inline-flex items-center whitespace-nowrap font-sans text-table font-semibold text-pricing-ink">
-      {v.check && <Check aria-hidden className="size-6 shrink-0 text-black" strokeWidth={2} />}
+    <span className="inline-flex items-center gap-2 whitespace-nowrap font-sans text-table font-semibold text-pricing-text">
+      {v.check && <Tick col={col} />}
       {v.text}
     </span>
   );
@@ -89,7 +109,7 @@ export default function PricingComparison() {
       <section
         id="compare"
         aria-labelledby="pricing-compare-title"
-        className="scroll-mt-16 rounded-[2.5rem] bg-white px-section-x-sm py-16 md:rounded-panel md:px-section-x-md md:py-24 lg:px-section-x-lg lg:py-40"
+        className="scroll-mt-16 px-section-x-sm md:px-section-x-md lg:px-section-x-lg"
       >
         <div className="mx-auto flex w-full max-w-content flex-col items-center gap-10 lg:gap-[3.75rem]">
           {/* header — eyebrow → 8 → title → 20 → subhead */}
@@ -97,21 +117,21 @@ export default function PricingComparison() {
             <div className="flex flex-col items-center gap-2">
               <p
                 data-animation="reveal"
-                className="font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-pricing-ink"
+                className="font-sans text-eyebrow-sm uppercase tracking-[0.1rem] text-pricing-faint"
               >
                 The comparison
               </p>
               <h2
                 id="pricing-compare-title"
                 data-animation="reveal"
-                className="text-balance font-display text-display-sm text-pricing-ink md:text-heading-xl"
+                className="text-balance font-display text-display-sm text-pricing-text md:text-heading-xl"
               >
                 Our platform covers every category
               </h2>
             </div>
             <p
               data-animation="reveal"
-              className="max-w-[30rem] font-sans text-body-md text-swag-grey md:text-body-lg"
+              className="max-w-[30rem] font-sans text-body-md text-pricing-muted md:text-body-lg"
             >
               Most tools specialize in sales gifting, recognition, or swag. Stadium runs all three,
               plus fulfillment in 170+ countries.
@@ -120,27 +140,28 @@ export default function PricingComparison() {
 
           <div
             data-animation="reveal"
-            tabIndex={0} role="region" aria-label="Plan comparison table (scrollable)" className="w-full overflow-x-auto overscroll-x-contain [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+            tabIndex={0} role="region" aria-label="Plan comparison table (scrollable)" className="w-full overflow-x-auto overscroll-x-contain rounded-2xl bg-white shadow-pass [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
           >
             <div
               role="table"
               aria-label="Features included in each Stadium pass"
-              className="grid min-w-[52rem] grid-cols-[11rem_repeat(5,minmax(0,1fr))] gap-1 md:grid-cols-[15rem_repeat(5,minmax(0,1fr))] lg:min-w-0 lg:grid-cols-[minmax(0,2.31fr)_repeat(5,minmax(0,1fr))]"
+              className="grid min-w-[52rem] grid-cols-[11rem_repeat(5,minmax(0,1fr))] md:grid-cols-[15rem_repeat(5,minmax(0,1fr))] lg:min-w-0 lg:grid-cols-[minmax(0,2.31fr)_repeat(5,minmax(0,1fr))]"
             >
               {/* header row */}
               <StickyHeadRow>
                 <div
                   role="columnheader"
-                  className={`flex items-center rounded-3xl bg-white px-4 py-4 font-sans text-table font-semibold text-pricing-ink md:px-6 ${STICKY}`}
+                  className={`flex items-center rounded-tl-2xl border-b border-pricing-line bg-white px-4 py-4 font-sans text-table-section uppercase text-pricing-faint md:px-6 ${STICKY}`}
                 >
                   Compare All Features
                 </div>
-                {PASSES.map((p) => (
+                {PASSES.map((p, ci) => (
                   <div
                     key={p}
                     role="columnheader"
-                    className="flex items-center justify-center rounded-3xl bg-white px-2 py-4 text-center font-sans text-table font-semibold text-pricing-ink md:px-4 lg:px-6"
+                    className={`flex items-center justify-center gap-1.5 border-b border-pricing-line bg-white px-1 py-4 text-center font-display text-[0.875rem] md:gap-2 md:text-[0.9375rem] font-bold text-pricing-text md:px-3 lg:px-3 ${ci === PASSES.length - 1 ? "rounded-tr-2xl" : ""}`}
                   >
+                    <span aria-hidden className={`size-1.5 shrink-0 rounded-full ${TIERS[ci].dot}`} />
                     {p}
                   </div>
                 ))}
@@ -152,17 +173,17 @@ export default function PricingComparison() {
                     <div role="row" className="contents">
                       <div
                         role="rowheader"
-                        className={`flex h-10 items-center rounded-l-3xl px-4 font-sans text-table-label uppercase text-pricing-ink/55 md:px-6 ${STICKY}`}
+                        className={`flex h-10 items-center border-b border-pricing-line bg-pricing-tray px-4 font-sans text-table-section uppercase text-pricing-muted md:px-6 ${STICKY}`}
                       >
                         {r.section}
                       </div>
-                      <div role="presentation" className="col-span-5" />
+                      <div role="presentation" className="col-span-5 border-b border-pricing-line bg-pricing-tray" />
                     </div>
                   )}
                   <div role="row" className="contents">
                     <div
                       role="rowheader"
-                      className={`relative flex items-center rounded-lg bg-pricing-cell px-4 py-4 font-sans text-table text-pricing-ink md:px-6 ${STICKY}`}
+                      className={`relative flex items-center border-b border-pricing-line bg-white px-4 py-4 font-sans text-table text-pricing-text md:px-6 ${STICKY}`}
                     >
                       {r.hint ? <Hint id={`pricing-hint-${ri}`} label={r.label} hint={r.hint} /> : r.label}
                     </div>
@@ -170,9 +191,9 @@ export default function PricingComparison() {
                       <div
                         key={ci}
                         role="cell"
-                        className="flex min-h-14 items-center justify-center rounded-lg bg-pricing-cell px-2 py-4 md:px-4 lg:px-6"
+                        className="flex min-h-14 items-center justify-center border-b border-pricing-line bg-white px-2 py-4 md:px-4 lg:px-6"
                       >
-                        <Value v={v} />
+                        <Value v={v} col={ci} />
                       </div>
                     ))}
                   </div>

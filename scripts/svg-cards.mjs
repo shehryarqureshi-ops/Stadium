@@ -120,8 +120,8 @@ const stripStageBackdrop = (x) =>
     .replace(/<rect width="\d+" height="\d+" fill="#CCCCCC"\/>\n/, "")
     .replace(/<path d="M-\d{4,}[^"]*"[^>]*\/>\n/g, "")
     .replace(/<rect x="-\d+" y="-24" width="880" height="500" rx="32" fill="#F2F2F2"\/>\n/, "")
-    .replace(/(<g id="[^"]*-card") filter="url\(#[^)]+-filter0_d_0_1\)">/, "$1>")
-    .replace(/(<g id="[^"]*-Frame 2087330179") filter="url\(#[^)]+-filter1_dddd_0_1\)">/, "$1>");
+    .replace(/(<g id="[^"]*card(?:_2)?") filter="url\(#[^)]*filter0_d_0_1\)">/, "$1>")
+    .replace(/(<g id="[^"]*Frame 2087330179") filter="url\(#[^)]*filter1_dddd_0_1\)">/, "$1>");
 
 // Figma SVG export drops BACKGROUND_BLUR (frosted glass). Per-graphic patches
 // re-create it: a blurred <use> copy of what sits behind, clipped to the glass.
@@ -131,6 +131,12 @@ const PATCHES = {
   // corners. Keep the stage only.
   "integrations/WorkSlack": (x) => stripStageBackdrop(x),
   "integrations/WorkExtension": (x) => stripStageBackdrop(x),
+  // same stage-frame drop shadow dark-arc fix for the /wallets-and-budgets card graphics
+  "wallets-and-budgets/AutoRefill": (x) => stripStageBackdrop(x),
+  "wallets-and-budgets/LowFunds": (x) => stripStageBackdrop(x),
+  "wallets-and-budgets/UnusedExpiration": (x) => stripStageBackdrop(x),
+  "wallets-and-budgets/UnusedTransfer": (x) => stripStageBackdrop(x),
+  "wallets-and-budgets/UnusedReclaim": (x) => stripStageBackdrop(x),
   // Figma GLASS effect (refraction + rim light) is not exported: the dashed connector
   // showed through the three glass circles. Cut it out under them and add the rim light.
   "recognition/PlatformBudgets": (x) => {

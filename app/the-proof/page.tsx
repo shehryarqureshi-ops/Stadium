@@ -135,6 +135,7 @@ export default function TheProofPage() {
           captionColor="#16171b"
           title="See what companies accomplish with Stadium"
           gridColumns={3}
+          imageFit="cover"
           items={CUSTOMER_RESULTS}
         />
 

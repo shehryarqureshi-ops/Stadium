@@ -80,7 +80,7 @@ export default function PageClose() {
                 </Link>
 
                 <p className="font-sans text-[0.75rem] font-bold uppercase leading-5 tracking-[0.045rem] text-white md:text-[1rem] md:tracking-[0.06rem]">
-                  Limitless engagement. One platform.
+                  Where unstoppable teams are built.
                 </p>
 
                 <div className="flex items-center gap-2 lg:gap-2.5">

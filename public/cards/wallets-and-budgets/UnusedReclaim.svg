@@ -1,8 +1,5 @@
 <svg width="390" height="250" viewBox="0 0 390 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="390" height="250" fill="#CCCCCC"/>
 <g id="walletsandbudgetsunusedreclaim-Batch 3">
-<path d="M-12766.7 -9779C-12766.7 -9780.1 -12765.8 -9781 -12764.7 -9781H25821.3C25822.4 -9781 25823.3 -9780.1 25823.3 -9779V6091C25823.3 6092.1 25822.4 6093 25821.3 6093H-12764.7C-12765.8 6093 -12766.7 6092.1 -12766.7 6091V-9779Z" fill="#EEEEEE"/>
-<path d="M-12764.7 -9781V-9780H25821.3V-9781V-9782H-12764.7V-9781ZM25823.3 -9779H25822.3V6091H25823.3H25824.3V-9779H25823.3ZM25821.3 6093V6092H-12764.7V6093V6094H25821.3V6093ZM-12766.7 6091H-12765.7V-9779H-12766.7H-12767.7V6091H-12766.7ZM-12764.7 6093V6092C-12765.2 6092 -12765.7 6091.55 -12765.7 6091H-12766.7H-12767.7C-12767.7 6092.66 -12766.3 6094 -12764.7 6094V6093ZM25823.3 6091H25822.3C25822.3 6091.55 25821.9 6092 25821.3 6092V6093V6094C25823 6094 25824.3 6092.66 25824.3 6091H25823.3ZM25821.3 -9781V-9780C25821.9 -9780 25822.3 -9779.55 25822.3 -9779H25823.3H25824.3C25824.3 -9780.66 25823 -9782 25821.3 -9782V-9781ZM-12764.7 -9781V-9782C-12766.3 -9782 -12767.7 -9780.66 -12767.7 -9779H-12766.7H-12765.7C-12765.7 -9779.55 -12765.2 -9780 -12764.7 -9780V-9781Z" fill="black" fill-opacity="0.1"/>
 <g id="walletsandbudgetsunusedreclaim-/wallets-and-budgets">
 <rect width="1440" height="7878" transform="translate(-946.667 -4682)" fill="white"/>
 <g id="walletsandbudgetsunusedreclaim-closing">
@@ -12,10 +9,10 @@
 <g id="walletsandbudgetsunusedreclaim-Problem">
 <g id="walletsandbudgetsunusedreclaim-grid">
 <rect x="-866.667" y="-24" width="1280" height="470" rx="32" fill="#F2F2F2"/>
-<g id="walletsandbudgetsunusedreclaim-card_2" filter="url(#walletsandbudgetsunusedreclaim-filter0_d_0_1)">
+<g id="walletsandbudgetsunusedreclaim-card_2">
 <g clip-path="url(#walletsandbudgetsunusedreclaim-clip0_0_1)">
 <rect x="-8" y="-8" width="405.333" height="438" rx="24" fill="white"/>
-<g id="walletsandbudgetsunusedreclaim-Frame 2087330179" filter="url(#walletsandbudgetsunusedreclaim-filter1_dddd_0_1)">
+<g id="walletsandbudgetsunusedreclaim-Frame 2087330179">
 <g clip-path="url(#walletsandbudgetsunusedreclaim-clip1_0_1)">
 <g id="walletsandbudgetsunusedreclaim-graphic &#194;&#183; default &#194;&#183; Reclaim Allocations">
 <rect width="389.333" height="250" rx="20" fill="#F8F8F8"/>

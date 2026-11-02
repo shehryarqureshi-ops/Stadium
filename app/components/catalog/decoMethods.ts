@@ -1,8 +1,11 @@
 /* Decoration methods shown in the Swag section (Figma "deco methods" frames: 6031:15507
    cards, final modal 6059:9608). Each one is a grid card (image + black fade + name) and
    a row in the DecoMethodsModal. Specs (finish · minimum order · lead time) come from the
-   Figma "v2 · all rows · cards" frame; the three methods without a deco photo yet reuse a
-   swag product photo as a placeholder. Info only — nothing here filters the grid. */
+   Figma "v2 · all rows · cards" frame. List + order updated Nov 2026 to the 15 methods the
+   team supplied. FIVE of them have no deco photo or approved copy yet (UV digital/sticker/DTF,
+   Heat Seal Patch, Sewn On Patch, Single Color Print, Liquid 3D): they use a DISTINCT, unused deco photo as a stand-in (so no two
+   deco cards share an image) and carry DRAFT descriptions — replace both (see PLACEHOLDER below).
+   Info only — nothing here filters the grid. */
 
 export type DecoMethod = {
   id: string;
@@ -14,30 +17,23 @@ export type DecoMethod = {
   image: string;
   best?: string[];
   spec?: { finish: string; minOrder: string; leadTime: string };
+  /** false: keep it in the modal list but don't put a card on the Swag wall — its only photo
+   *  is one a swag product already uses, so the wall would show the same picture twice */
+  wall?: boolean;
 };
 
 const img = (id: string) => `/catalog-page/deco/${id}.jpg`;
 
 export const DECO_METHODS: DecoMethod[] = [
   {
-    id: "embroidery",
-    name: "Embroidery",
-    title: "Embroidery",
+    id: "dtf",
+    name: "DTF",
+    title: "Direct-to-Film (DTF)",
     description:
-      "From classic flat embroidery to 3D puff designs, stitched details add a premium, textured finish. Perfect for hats, polos, jackets, and bags with a high-end touch.",
-    image: img("embroidery"),
-    best: ["Hats", "Polos", "Jackets", "Bags"],
-    spec: { finish: "12 threads", minOrder: "24 pc", leadTime: "10 days" },
-  },
-  {
-    id: "screen-printing",
-    name: "Screen Printing",
-    title: "Screen Printing",
-    description:
-      "Choose from standard, puff, metallic, or glow-in-the-dark inks for bold, long-lasting prints. Ideal for bulk apparel like t-shirts, tote bags, and hoodies.",
-    image: img("screen-printing"),
-    best: ["T-shirts", "Tote bags", "Hoodies"],
-    spec: { finish: "6 colours", minOrder: "24 pc", leadTime: "7 days" },
+      "Transfers bold, durable prints onto a wide range of fabrics, including cotton, polyester, and blends. A flexible alternative to DTG with enhanced appearance.",
+    image: img("dtf"),
+    best: ["Cotton", "Polyester", "Blends"],
+    spec: { finish: "Full colour", minOrder: "12 pc", leadTime: "5 days" },
   },
   {
     id: "dtg",
@@ -50,19 +46,9 @@ export const DECO_METHODS: DecoMethod[] = [
     spec: { finish: "Full colour", minOrder: "1 pc", leadTime: "5 days" },
   },
   {
-    id: "dtf",
-    name: "DTF",
-    title: "Direct-to-Film (DTF)",
-    description:
-      "Transfers bold, durable prints onto a wide range of fabrics, including cotton, polyester, and blends. A flexible alternative to DTG with enhanced appearance.",
-    image: img("dtf"),
-    best: ["Cotton", "Polyester", "Blends"],
-    spec: { finish: "Full colour", minOrder: "12 pc", leadTime: "5 days" },
-  },
-  {
     id: "sublimation",
-    name: "Sublimation",
-    title: "Sublimation",
+    name: "Dye Sublimation",
+    title: "Dye Sublimation",
     description:
       "Achieve vibrant, all-over prints with dye-infused designs that won't fade or peel. Works best on polyester apparel, mugs, and hard surfaces.",
     image: img("sublimation"),
@@ -70,72 +56,46 @@ export const DECO_METHODS: DecoMethod[] = [
     spec: { finish: "All-over", minOrder: "24 pc", leadTime: "12 days" },
   },
   {
-    id: "cut-and-sew-sublimation",
-    name: "Cut & Sew Sublimation",
-    title: "Cut & Sew Sublimation",
-    description:
-      "Full-coverage, edge-to-edge printing on fabric panels before stitching. Perfect for custom jerseys, leggings, and high-fashion apparel.",
-    image: img("cut-and-sew-sublimation"),
-    best: ["Jerseys", "Leggings", "Fashion apparel"],
-  },
-  {
-    id: "rotary-printing",
-    name: "Rotary Printing",
-    title: "Rotary Printing",
-    description:
-      "Continuous rotary printing for full-colour artwork at volume, with a consistent finish from the first piece to the last.",
-    image: img("rotary-printing"),
-    spec: { finish: "Full colour", minOrder: "12 pc", leadTime: "8 days" },
-  },
-  {
-    id: "vinyl-cut",
-    name: "Vinyl Cut",
-    title: "Vinyl Cut",
-    description:
-      "Artwork is cut from coloured vinyl and heat-applied — no screens or dies, so it suits small runs of one to three colours.",
-    image: img("vinyl-cut"),
-    spec: { finish: "1-3 colours", minOrder: "1 pc", leadTime: "4 days" },
-  },
-  {
     id: "uv-printing",
-    name: "UV Printing",
-    title: "UV Printing",
+    name: "UV Print",
+    title: "UV Print",
     description:
       "Uses ultraviolet light to instantly cure ink, creating crisp, high-contrast designs. Works on hard surfaces like drinkware, phone cases, and tech accessories.",
     image: img("uv-printing"),
     best: ["Drinkware", "Phone cases", "Tech accessories"],
   },
   {
-    id: "digital-printing",
-    name: "Digital Printing",
-    title: "Digital Printing",
+    /* PLACEHOLDER photo + DRAFT copy */
+    id: "uv-digital",
+    name: "UV (Digital, Sticker, DTF)",
+    title: "UV (Digital UV, UV Sticker, UV DTF)",
     description:
-      "Delivers sharp, high-resolution graphics with smooth color gradients. Ideal for posters, business cards, and paper-based marketing materials.",
+      "UV-cured digital printing in three formats: direct Digital UV, UV Stickers applied to the product, and UV DTF transfers for hard or curved surfaces.",
     image: img("digital-printing"),
-    best: ["Posters", "Business cards", "Print collateral"],
+    wall: false,
   },
   {
-    id: "laser-engraving",
-    name: "Laser Engraving",
-    title: "Laser Engraving",
+    id: "vinyl-cut",
+    name: "HTV (Vinyl)",
+    title: "Heat Transfer Vinyl (HTV)",
     description:
-      "Precision laser or rotary engraving creates sleek, permanent designs. Best for metal, glass, wood, and premium corporate gifts.",
-    image: img("laser-engraving"),
-    best: ["Metal", "Glass", "Wood", "Corporate gifts"],
-    spec: { finish: "Permanent", minOrder: "24 pc", leadTime: "10 days" },
+      "Artwork is cut from coloured vinyl and heat-applied — no screens or dies, so it suits small runs of one to three colours.",
+    image: img("vinyl-cut"),
+    spec: { finish: "1-3 colours", minOrder: "1 pc", leadTime: "4 days" },
   },
   {
-    id: "laser-etching",
-    name: "Laser Etching",
-    title: "Laser Etching",
+    id: "embroidery",
+    name: "Embroidery",
+    title: "Embroidery",
     description:
-      "A laser removes the surface layer to reveal the finish beneath — a clean, permanent mark on metal.",
-    image: img("laser-etching"),
-    spec: { finish: "Metal finish", minOrder: "24 pc", leadTime: "10 days" },
+      "From classic flat embroidery to 3D puff designs, stitched details add a premium, textured finish. Perfect for hats, polos, jackets, and bags with a high-end touch.",
+    image: img("embroidery"),
+    best: ["Hats", "Polos", "Jackets", "Bags"],
+    spec: { finish: "12 threads", minOrder: "24 pc", leadTime: "10 days" },
   },
   {
     id: "debossing",
-    name: "Debossing",
+    name: "Deboss",
     title: "Debossing",
     description:
       "Artwork is pressed into the surface for a tone-on-tone, blind mark with a refined feel.",
@@ -144,7 +104,7 @@ export const DECO_METHODS: DecoMethod[] = [
   },
   {
     id: "embossing",
-    name: "Embossing",
+    name: "Emboss",
     title: "Embossing",
     description:
       "The surface is raised into relief, giving the logo a tactile, three-dimensional finish.",
@@ -152,43 +112,92 @@ export const DECO_METHODS: DecoMethod[] = [
     spec: { finish: "Raised", minOrder: "50 pc", leadTime: "12 days" },
   },
   {
-    id: "foil-printing",
-    name: "Foil Printing",
-    title: "Foil Printing",
+    id: "laser-engraving",
+    name: "Engraving (Laser Engraved)",
+    title: "Engraving (Laser Engraved)",
     description:
-      "Metallic foil is pressed onto the surface with heat and pressure for a bright, reflective finish.",
+      "Precision laser or rotary engraving creates sleek, permanent designs. Best for metal, glass, wood, and premium corporate gifts.",
+    image: img("laser-engraving"),
+    best: ["Metal", "Glass", "Wood", "Corporate gifts"],
+    spec: { finish: "Permanent", minOrder: "24 pc", leadTime: "10 days" },
+  },
+  {
+    /* PLACEHOLDER photo + DRAFT copy */
+    id: "heat-seal-patch",
+    name: "Heat Seal Patch",
+    title: "Heat Seal Patch",
+    description:
+      "A pre-made patch with a heat-activated backing that bonds to the garment under heat and pressure — no stitching, with a clean, durable finish.",
+    image: img("cut-and-sew-sublimation"),
+    wall: false,
+  },
+  {
+    /* PLACEHOLDER photo + DRAFT copy */
+    id: "sewn-on-patch",
+    name: "Sewn On Patch",
+    title: "Sewn On Patch",
+    description:
+      "A woven or embroidered patch stitched onto the garment for a bold, long-lasting, textured logo. Popular on hats, jackets, and bags.",
+    image: img("laser-etching"),
+    best: ["Hats", "Jackets", "Bags"],
+  },
+  {
+    /* PLACEHOLDER photo + DRAFT copy */
+    id: "single-color-print",
+    name: "Single Color Print",
+    title: "Single Color Print",
+    description:
+      "A one-colour logo or mark printed in a single ink — simple, cost-effective, and ideal for larger runs.",
+    image: img("rotary-printing"),
+  },
+  {
+    /* PLACEHOLDER photo + DRAFT copy */
+    id: "liquid-3d",
+    name: "Liquid 3D",
+    title: "Liquid 3D",
+    description:
+      "A glossy, domed resin finish that adds a raised, liquid-like dimension to the logo.",
     image: img("foil-printing"),
-    spec: { finish: "Metallic", minOrder: "50 pc", leadTime: "10 days" },
+  },
+  {
+    id: "screen-printing",
+    name: "Screen Printing",
+    title: "Screen Printing",
+    description:
+      "Choose from standard, puff, metallic, or glow-in-the-dark inks for bold, long-lasting prints. Ideal for bulk apparel like t-shirts, tote bags, and hoodies.",
+    image: img("screen-printing"),
+    best: ["T-shirts", "Tote bags", "Hoodies"],
+    spec: { finish: "6 colours", minOrder: "24 pc", leadTime: "7 days" },
   },
 ];
 
 /* Modal list (Figma 6078:9607, S1-style two lists with D1 thumbnails): one-to-two-line
    description per method and the two column groups. */
 export const DECO_SHORT: Record<string, string> = {
-  embroidery: "Classic flat to 3D puff — stitched details with a premium, textured finish.",
-  "screen-printing": "Standard, puff, metallic or glow inks for bold, long-lasting prints.",
-  dtg: "High-resolution, full-color prints that blend into the fabric.",
   dtf: "Durable, bold transfers for cotton, polyester and blends.",
+  dtg: "High-resolution, full-color prints that blend into the fabric.",
   sublimation: "Vibrant all-over prints with dye-infused designs that won’t fade or peel.",
-  "cut-and-sew-sublimation": "Edge-to-edge printing on fabric panels before they’re stitched.",
-  "rotary-printing": "Continuous full-color printing at volume, consistent from first piece to last.",
-  "vinyl-cut": "Heat-applied cut vinyl — no screens or dies, ideal for small one-to-three-color runs.",
   "uv-printing": "Ink cured instantly by ultraviolet light for crisp, high-contrast designs.",
-  "digital-printing": "Sharp, high-resolution graphics with smooth color gradients.",
-  "laser-engraving": "Precision laser or rotary engraving for sleek, permanent designs.",
-  "laser-etching": "A laser removes the surface layer — a clean, permanent mark on metal.",
+  "uv-digital": "UV-cured digital, sticker and DTF transfers for hard and curved surfaces.",
+  "vinyl-cut": "Heat-applied cut vinyl — no screens or dies, ideal for small one-to-three-color runs.",
+  embroidery: "Classic flat to 3D puff — stitched details with a premium, textured finish.",
   debossing: "Artwork pressed into the surface for a refined tone-on-tone mark.",
   embossing: "The surface raised into relief for a tactile, three-dimensional logo.",
-  "foil-printing": "Metallic foil pressed on with heat for a bright, reflective finish.",
+  "laser-engraving": "Precision laser or rotary engraving for sleek, permanent designs.",
+  "heat-seal-patch": "Pre-made patches bonded on with heat — no stitching needed.",
+  "sewn-on-patch": "Woven or embroidered patches stitched on for a bold, textured logo.",
+  "single-color-print": "A one-ink logo print — simple, cost-effective, great for volume.",
+  "liquid-3d": "A glossy, domed resin finish that gives the logo raised dimension.",
+  "screen-printing": "Standard, puff, metallic or glow inks for bold, long-lasting prints.",
 };
 
 export const DECO_GROUPS: { title: string; ids: string[] }[] = [
   {
     title: "Applied & printed",
-    ids: ["embroidery", "screen-printing", "dtg", "dtf", "sublimation", "cut-and-sew-sublimation", "rotary-printing", "vinyl-cut"],
+    ids: ["dtf", "dtg", "sublimation", "uv-printing", "uv-digital", "vinyl-cut", "single-color-print", "screen-printing"],
   },
   {
-    title: "Digital, laser & finishes",
-    ids: ["uv-printing", "digital-printing", "laser-engraving", "laser-etching", "debossing", "embossing", "foil-printing"],
+    title: "Stitched, patches & finishes",
+    ids: ["embroidery", "heat-seal-patch", "sewn-on-patch", "liquid-3d", "debossing", "embossing", "laser-engraving"],
   },
 ];

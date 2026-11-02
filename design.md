@@ -1397,6 +1397,13 @@ tablet/mobile derived with the standard breakpoint mapping).
 - Popovers (3998:4917): 280w, `rounded-lg p-3 shadow-popover text-popover` (12px — Figma specs 10, bumped for legibility), above the label, open on hover/focus-within. "Read more" opens the packages modal on that feature.
 - Row data lives in `components/pricing/passes.ts` (shared with the modal).
 
+**Restyle to match bystadium.com/go/pricing (2026-11-02, content + structure unchanged)** — supersedes the navy/white styling above for the page, hero, and comparison (the modal and Book-a-Demo form keep their own styling):
+- Page ground `bg-pricing-page` (#eff0f2) instead of the navy→night gradient; header is `<SiteHeader lightHero />`; headline/body text `pricing-text` (#2c2d2e), subheads `pricing-muted` (#4f5052), eyebrows `pricing-faint` (#9fa0a2).
+- Free-delivery list → cream strip (`pricing-cream` #fbf5e0, `rounded-2xl`, amber icons, hairline divider ≥ md).
+- Pass cards: white `rounded-2xl p-6 shadow-pass`; solid 40px `rounded-lg` icon tile in the pass accent (lucide ShoppingBag / Gift / Shirt / Handshake / Building2), title `text-pass-title`, tagline `text-feature-sm`; lead-in pill `text-pass-pill` (10 Bold caps +1px) on the tint with the dark ink; checks = 16px tinted disc + 10px check; add-on box = tint with white "+" discs; CTA = white outline pill (`border-pricing-line`). Engagement (Most Popular) lifts (`shadow-card`, −4px at `wide`) and carries a solid Water pill.
+- Pass accents (`--color-tier-*`): Pay-as-you-go #2c2d2e · Shops Punch #ff5b77 (tint #feebf0, ink Plum) · Swag Lime #00c036 (Feta, Parsley) · Engagement Water #0b7afc (#ebf4ff, Sapphire) · Enterprise Lilac #8d12e7 (Ttitan, Indigo).
+- Comparison: no full-bleed r60 panel — header on the page ground, then one white `rounded-2xl shadow-pass` table. No cell gaps: hairline rows (`border-pricing-line`), `text-table-section` (10 Bold caps +1px) section bands on `pricing-tray`, column headers = 6px tier dot + Satoshi 15 Bold, "Compare all features" label in `pricing-faint` caps; check = 20px tier-tinted disc with a 12px check, minus = 14px `pricing-faint` dash, text cells keep `font-semibold` (check disc + text).
+
 **Packages modal (`pricing/PackagesModal.tsx`, 3401:2352)** — opened by popover "Read more" (on that feature, first pass that includes it) and by the "Explore all features" cell (first pass + feature)
 
 - Native `<dialog>` + `showModal()` (focus trap, Escape, inert page); scrim `backdrop:bg-modal-scrim` (black 50%) closes on click; page scroll locked while open. `.modal-in` = fade + 1rem rise, 0.32s ease-out-expo.

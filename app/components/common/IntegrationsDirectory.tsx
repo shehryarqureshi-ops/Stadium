@@ -30,6 +30,10 @@ export type IntegrationsDirectoryProps = {
   /* first filter is the "all" tab (value "all") */
   filters: { label: string; value: string }[];
   items: Integration[];
+  /* the full catalogue: when set, typing in the search box looks through ALL of
+     these (still honouring the category tab) while the idle grid shows `items`
+     — so a curated teaser (e.g. /integrations) never hides an integration from search */
+  searchItems?: Integration[];
   cta?: { label: string; href: string };
 };
 
@@ -39,6 +43,7 @@ export default function IntegrationsDirectory({
   description,
   filters,
   items,
+  searchItems,
   cta,
 }: IntegrationsDirectoryProps) {
   const [filter, setFilter] = useState(filters[0]?.value ?? "all");
@@ -47,12 +52,13 @@ export default function IntegrationsDirectory({
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return items.filter(
+    const pool = q && searchItems ? searchItems : items;
+    return pool.filter(
       (item) =>
         (filter === "all" || item.categories.includes(filter)) &&
         (!q || item.name.toLowerCase().includes(q)),
     );
-  }, [items, filter, query]);
+  }, [items, searchItems, filter, query]);
 
   return (
     <section className="px-section-x-sm md:px-section-x-md lg:px-section-x-lg">

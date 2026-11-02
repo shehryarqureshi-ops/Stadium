@@ -22,10 +22,10 @@ export default function StickyHeadRow({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <div ref={sentinel} aria-hidden className="col-span-full -mb-1 h-px" />
+      <div ref={sentinel} aria-hidden className="col-span-full h-px" />
       <div
         role="row"
-        className={`col-span-full grid grid-cols-subgrid gap-1 lg:sticky lg:top-16 lg:z-20 lg:bg-white lg:transition-shadow lg:duration-200 ${
+        className={`col-span-full grid grid-cols-subgrid lg:sticky lg:top-16 lg:z-20 lg:rounded-t-2xl lg:bg-white lg:transition-shadow lg:duration-200 ${
           stuck ? "lg:shadow-header-stuck" : ""
         }`}
       >

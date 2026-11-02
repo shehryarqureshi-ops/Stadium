@@ -2,6 +2,11 @@
 
 import type { LogoBridgeLogo } from "../common/LogoBridge";
 import type { NumberedOffering } from "../common/NumberedOfferings";
+import type { VariableCardGridItem } from "../common/VariableCardGrid";
+
+import everflow from "@/public/impact/case-studies/everflow.png";
+import keyfactor from "@/public/impact/case-studies/keyfactor.png";
+import octus from "@/public/impact/case-studies/octus.png";
 
 export const LINKS = {
   sales: "/book-a-call",
@@ -26,10 +31,10 @@ export const TEAM_ROUTES = {
 } as const;
 
 /* "Customer results" cards — /the-proof and /reviews */
-export const CUSTOMER_RESULTS = [
-  { eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8—10 hours to 1—2 hours", description: "Expanded recognition without adding administrative overhead." },
-  { eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
-  { eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
+export const CUSTOMER_RESULTS: VariableCardGridItem[] = [
+  { image: everflow, imageAlt: "Everflow case study", eyebrow: "EVERFLOW", title: "Reduced monthly swag administration from 8—10 hours to 1—2 hours", description: "Expanded recognition without adding administrative overhead." },
+  { image: keyfactor, imageAlt: "Keyfactor case study", eyebrow: "KEYFACTOR", title: "Reached 1,000 recognition posts in one month", description: "Recognition scaled globally while automations reduced manual work around onboarding, anniversaries, and other employee moments." },
+  { image: octus, imageAlt: "Octus case study", eyebrow: "OCTUS", title: "Turned leadership hesitation into company-wide adoption", description: "Employee swag expanded into onboarding, recognition, learning, customer engagement, VIP gifting, and events." },
 ];
 
 export const CASE_STUDY_CAPTION = "Case studies";

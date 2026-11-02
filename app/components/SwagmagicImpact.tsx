@@ -14,7 +14,7 @@ export default function SwagmagicImpact() {
       }}
       statCenter={{
         caption: "Avg Reorder Rate",
-        title: "38%",
+        title: "90%",
         backgroundColor: "#F0FEF8",
         text: "“On-demand is the best feature. It doesn’t lock us into inventory we don’t need or can’t use. It gives people the freedom to pick what they want and how they want it.”",
         authorImage: avatar,
@@ -23,8 +23,8 @@ export default function SwagmagicImpact() {
         link: "https://www.bystadium.com/case-overview/kentro",
       }}
       rightTopStat={{
-        title: "48 hrs",
-        text: "To first mockup",
+        title: "26,000+",
+        text: "Customizable products",
       }}
       rightBottomStat={{
         title: "170+",

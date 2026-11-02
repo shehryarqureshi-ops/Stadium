@@ -112,7 +112,7 @@ export default function StepCards({
           {description && (
             <p
               data-animation="reveal"
-              className="mt-3 max-w-[42rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+              className="mt-3 max-w-full font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
             >
               {description}
             </p>
@@ -229,10 +229,9 @@ export default function StepCards({
                     focus-visible:ring-2
                     focus-visible:ring-[#16171b]
                     focus-visible:ring-offset-2
-                    ${
-                      isActive
-                        ? "shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
-                        : "shadow-[0_1px_2px_rgba(0,0,0,0.025)]"
+                    ${isActive
+                      ? "shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+                      : "shadow-[0_1px_2px_rgba(0,0,0,0.025)]"
                     }
                   `}
                   style={{
@@ -290,10 +289,9 @@ export default function StepCards({
                                 overflow-hidden
                                 transition-[max-height,opacity,transform,margin]
                                 duration-500
-                                ${
-                                  isActive
-                                    ? "mt-4 max-h-40 translate-y-0 opacity-100"
-                                    : "mt-0 max-h-0 translate-y-2 opacity-0"
+                                ${isActive
+                                  ? "mt-4 max-h-40 translate-y-0 opacity-100"
+                                  : "mt-0 max-h-0 translate-y-2 opacity-0"
                                 }
                               `}
                               style={{

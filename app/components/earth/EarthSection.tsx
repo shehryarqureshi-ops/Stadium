@@ -25,7 +25,7 @@ const STEPS = [
 function Copy() {
   return (
     <>
-      <div className="flex flex-col gap-3 lg:gap-6">
+      <div className="flex flex-col gap-3 max-md:items-center max-md:text-center lg:gap-6">
         <p className="font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-pyramid-ice">
           Global Engagement Infrastructure
         </p>
@@ -35,14 +35,14 @@ function Copy() {
           Three layers.
         </h2>
       </div>
-      <p className="mt-6 max-w-[27.5rem] font-sans text-body-lg text-white/65">
+      <p className="mt-6 max-w-[27.5rem] font-sans max-md:mx-auto max-md:text-center text-body-lg text-white/65">
         Everything it takes to show up for anyone, anywhere, in 170+ countries.
       </p>
       <ol className="mt-10 border-t border-white/15">
         {LAYERS.map((l) => (
           <li
             key={l.num}
-            className="grid min-h-earth-row-h grid-cols-[1.75rem_1fr] items-center gap-x-4 gap-y-1 border-b border-white/15 py-3 md:flex md:py-0"
+            className="flex min-h-earth-row-h flex-col items-center gap-1 border-b border-white/15 py-4 text-center md:flex-row md:gap-x-4 md:py-0 md:text-left"
           >
             <span className="font-sans text-[0.75rem] font-bold leading-4 tracking-[0.0625rem] text-pyramid-ice">
               {l.num}
@@ -50,7 +50,7 @@ function Copy() {
             <span className="shrink-0 font-display text-earth-layer text-white md:w-[5.625rem]">
               {l.name}
             </span>
-            <span className="col-start-2 font-sans text-earth-note text-white/[0.62] md:col-auto">
+            <span className="font-sans text-earth-note text-white/[0.62]">
               {l.note}
             </span>
           </li>
@@ -111,10 +111,11 @@ export default function EarthSection() {
 
         {/* TABLET + PHONE — stacked */}
         <div className="relative z-10 flex flex-col gap-10 px-section-x-sm py-section-y-md md:px-section-x-md lg:hidden">
-          <div className="flex flex-col">
+          <div className="relative z-10 flex flex-col">
             <Copy />
           </div>
-          <div className="relative aspect-square w-full max-w-[26rem] self-center">
+          {/* phones: the globe leads, then the copy and layers */}
+          <div className="relative aspect-square w-full max-w-[26rem] self-center max-md:order-first max-md:-mb-28 max-md:-mt-14 max-md:w-[150%] max-md:max-w-none">
             {/* blue bloom so the luminosity-blended globe reads navy-blue, not grey */}
             <div
               aria-hidden

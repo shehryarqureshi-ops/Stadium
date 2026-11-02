@@ -69,7 +69,7 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
           &ldquo;{item.text}&rdquo;
         </blockquote>
 
-        <figcaption className="flex flex-col">
+        <figcaption className="mt-4 flex flex-col">
           <span className="font-sans text-[0.875rem] font-bold text-ink">
             {item.title}
           </span>

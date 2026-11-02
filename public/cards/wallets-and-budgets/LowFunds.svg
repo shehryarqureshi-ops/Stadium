@@ -1,17 +1,14 @@
 <svg width="400" height="250" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="250" fill="#CCCCCC"/>
 <g id="Batch 3">
-<path d="M-12556 -8989C-12556 -8990.1 -12555.1 -8991 -12554 -8991H26032C26033.1 -8991 26034 -8990.1 26034 -8989V6881C26034 6882.1 26033.1 6883 26032 6883H-12554C-12555.1 6883 -12556 6882.1 -12556 6881V-8989Z" fill="#EEEEEE"/>
-<path d="M-12554 -8991V-8990H26032V-8991V-8992H-12554V-8991ZM26034 -8989H26033V6881H26034H26035V-8989H26034ZM26032 6883V6882H-12554V6883V6884H26032V6883ZM-12556 6881H-12555V-8989H-12556H-12557V6881H-12556ZM-12554 6883V6882C-12554.6 6882 -12555 6881.55 -12555 6881H-12556H-12557C-12557 6882.66 -12555.7 6884 -12554 6884V6883ZM26034 6881H26033C26033 6881.55 26032.6 6882 26032 6882V6883V6884C26033.7 6884 26035 6882.66 26035 6881H26034ZM26032 -8991V-8990C26032.6 -8990 26033 -8989.55 26033 -8989H26034H26035C26035 -8990.66 26033.7 -8992 26032 -8992V-8991ZM-12554 -8991V-8992C-12555.7 -8992 -12557 -8990.66 -12557 -8989H-12556H-12555C-12555 -8989.55 -12554.6 -8990 -12554 -8990V-8991Z" fill="black" fill-opacity="0.1"/>
 <g id="/wallets-and-budgets">
 <rect width="1440" height="7878" transform="translate(-736 -3892)" fill="white"/>
 <g id="Problem">
 <g id="grid">
 <rect x="-456" y="-24" width="880" height="470" rx="32" fill="#F2F2F2"/>
-<g id="card" filter="url(#filter0_d_0_1)">
+<g id="card">
 <g clip-path="url(#clip0_0_1)">
 <rect x="-8" y="-8" width="416" height="438" rx="24" fill="white"/>
-<g id="Frame 2087330179" filter="url(#filter1_dddd_0_1)">
+<g id="Frame 2087330179">
 <g clip-path="url(#clip1_0_1)">
 <g id="graphic &#194;&#183; default &#194;&#183; Low Funds Alerts">
 <rect width="400" height="250" rx="20" fill="#F8F8F8"/>

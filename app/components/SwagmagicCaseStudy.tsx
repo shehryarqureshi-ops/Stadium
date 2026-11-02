@@ -60,7 +60,7 @@ export default function SwagmagicCaseStudy() {
           image: during,
           imageAlt:
             "A Stadium teammate walking a customer through the migration on a laptop",
-          title: "Migrated in 67 days",
+          title: "Migrated in 7 days",
           content: (
             <ul className="flex flex-col gap-3">
               <li className="flex items-center gap-2.5">

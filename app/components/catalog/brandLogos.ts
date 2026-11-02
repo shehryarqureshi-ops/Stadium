@@ -74,7 +74,6 @@ export const BRAND_LOGOS: Record<"swag" | "gifts" | "snacks", BrandLogo[]> = {
     {"name":"Ostrichpillow","logo":"/catalog-page/logos/ostrichpillow.svg","ratio":6.18},
     {"name":"Logitech","logo":"/catalog-page/logos/logitech.svg","ratio":3.29},
     {"name":"Crayola","logo":"/catalog-page/logos/crayola.svg","ratio":1.64},
-    {"name":"Wild One","logo":"/catalog-page/logos/wildone.svg","ratio":5.55},
     {"name":"Vivitar","logo":"/catalog-page/logos/vivitar.svg","ratio":5.68},
     {"name":"Grooming Lounge","logo":"/catalog-page/logos/groominglounge.svg","ratio":3.2},
     {"name":"Fujifilm","logo":"/catalog-page/logos/fujifilm.svg","ratio":5.97},

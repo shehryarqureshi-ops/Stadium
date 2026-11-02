@@ -12,7 +12,7 @@ import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import IntegrationsWays from "@/app/components/impact/batch3/IntegrationsWays";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import { LINKS, PLATFORM_ROUTES } from "@/app/components/impact/shared";
-import { FEATURED_INTEGRATIONS } from "@/app/data/integrationsDirectory";
+import { FEATURED_INTEGRATIONS, INTEGRATIONS } from "@/app/data/integrationsDirectory";
 import Workflow from "@/app/components/cards/integrations/Workflow";
 import WorkSlack from "@/app/components/cards/integrations/WorkSlack";
 import WorkExtension from "@/app/components/cards/integrations/WorkExtension";
@@ -86,6 +86,7 @@ export default function IntegrationsPage() {
               { label: "CRM", value: "crm" },
             ]}
             items={FEATURED_INTEGRATIONS}
+            searchItems={INTEGRATIONS}
             cta={{ label: "Explore all integrations", href: "/integrations-listing" }}
           />
         </div>

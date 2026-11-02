@@ -21,8 +21,6 @@ const items: TabsShowcaseItem[] = [
       "Recognition in real time",
     ],
     image: kudos,
-    href: "/pricing",
-    cta: "Explore Kudos Programs",
   },
   {
     id: "milestones",
@@ -37,7 +35,6 @@ const items: TabsShowcaseItem[] = [
       "Tangible gifts, not just an email",
     ],
     image: milestone,
-    href: "/catalog#gifts",
   },
   {
     id: "incentives",
@@ -52,7 +49,6 @@ const items: TabsShowcaseItem[] = [
       "Kits, shipped automatically when a rep hits a tier",
     ],
     image: incentives,
-    href: "/catalog#gifts",
   },
   {
     id: "service-awards",
@@ -67,7 +63,6 @@ const items: TabsShowcaseItem[] = [
       "Sent on the employee’s service anniversary",
     ],
     image: service,
-    href: "/catalog#gifts",
   },
 ];
 

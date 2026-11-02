@@ -16,7 +16,7 @@ const plain = (labels: string[]): HeaderChip[] => labels.map((label) => ({ label
 
 export const SECTION_HEADERS: Record<SectionId, SectionHeader> = {
   swag: {
-    stat: "26,000 styles. 760 brands. 100+ decoration methods.",
+    stat: "26,000 styles. 760 brands. 170+ countries.",
     tabs: [
       {
         id: "categories",
@@ -39,18 +39,23 @@ export const SECTION_HEADERS: Record<SectionId, SectionHeader> = {
       {
         id: "methods",
         label: "Decoration Methods",
+        /* the 15 methods the team supplied (Nov 2026) — same list, in order, as the Swag deco cards */
         chips: plain([
+          "DTF",
+          "DTG",
+          "Dye Sublimation",
+          "UV Print",
+          "UV (Digital UV, UV Sticker, UV DTF)",
+          "HTV (Vinyl)",
           "Embroidery",
-          "Screen printing",
-          "DTF / heat transfer",
-          "Patches",
-          "Digital full-color",
-          "Laser engraving",
-          "Pad printing",
           "Deboss",
-          "Sublimation",
-          "Foil",
-          "Epoxy dome",
+          "Emboss",
+          "Engraving (Laser Engraved)",
+          "Heat Seal Patch",
+          "Sewn On Patch",
+          "Single Color Print",
+          "Liquid 3D",
+          "Screen Printing",
         ]),
       },
       { id: "brands", label: "Brands", logos: true, chips: logoChips("swag") },
