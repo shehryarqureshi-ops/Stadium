@@ -1324,37 +1324,37 @@
 <path d="M51.0532 173C51.0826 173 51.1064 172.976 51.1064 172.947C51.1064 172.918 51.0826 172.894 51.0532 172.894C51.0238 172.894 51 172.918 51 172.947C51 172.976 51.0238 173 51.0532 173Z" fill="#4C0E7A"/>
 </g>
 <g id="glass pin" filter="url(#filter0_d_0_1)">
-<rect x="124" y="118" width="40" height="40" rx="20" fill="white" fill-opacity="0.75"/>
+<rect x="124" y="118" width="40" height="40" rx="20" fill="white"/>
 <g id="lucide/check">
 <path id="Vector_2" d="M152 132L141 143L136 138" stroke="#4C0E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <g id="glass pin_2" filter="url(#filter1_d_0_1)">
-<rect x="124" y="118" width="40" height="40" rx="20" fill="white" fill-opacity="0.75"/>
+<rect x="124" y="118" width="40" height="40" rx="20" fill="white"/>
 <g id="lucide/send">
 <path id="Vector_3" d="M142.913 139.086C142.722 138.895 142.494 138.745 142.244 138.645L134.314 135.465C134.219 135.427 134.138 135.361 134.082 135.275C134.026 135.19 133.998 135.09 134 134.988C134.003 134.886 134.037 134.787 134.097 134.705C134.157 134.622 134.241 134.561 134.338 134.528L153.338 128.028C153.426 127.996 153.522 127.989 153.614 128.01C153.706 128.03 153.79 128.077 153.857 128.143C153.924 128.21 153.97 128.294 153.99 128.386C154.011 128.478 154.005 128.574 153.973 128.663L147.473 147.663C147.44 147.759 147.378 147.843 147.296 147.903C147.213 147.964 147.115 147.998 147.013 148C146.911 148.003 146.81 147.974 146.725 147.918C146.64 147.862 146.574 147.781 146.536 147.687L143.356 139.755C143.255 139.504 143.104 139.277 142.913 139.086ZM142.913 139.086L153.854 128.148" stroke="#4C0E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <g id="glass pin_3" filter="url(#filter2_d_0_1)">
-<rect x="343" y="173" width="40" height="40" rx="20" fill="white" fill-opacity="0.75"/>
+<rect x="343" y="173" width="40" height="40" rx="20" fill="white"/>
 <g id="lucide/gift">
 <path id="Vector_4" d="M363 188V202M363 188C362.638 186.51 362.015 185.235 361.213 184.344C360.41 183.452 359.465 182.984 358.5 183C357.837 183 357.201 183.264 356.732 183.733C356.263 184.202 356 184.837 356 185.5C356 186.163 356.263 186.799 356.732 187.268C357.201 187.737 357.837 188 358.5 188M363 188C363.362 186.51 363.985 185.235 364.787 184.344C365.59 183.452 366.535 182.984 367.5 183C368.163 183 368.799 183.264 369.268 183.733C369.737 184.202 370 184.837 370 185.5C370 186.163 369.737 186.799 369.268 187.268C368.799 187.737 368.163 188 367.5 188M371 192V200C371 200.531 370.789 201.04 370.414 201.415C370.039 201.79 369.53 202 369 202H357C356.47 202 355.961 201.79 355.586 201.415C355.211 201.04 355 200.531 355 200V192M371 192C371.552 192 372 191.553 372 191V189C372 188.448 371.552 188 371 188H355C354.448 188 354 188.448 354 189V191C354 191.553 354.448 192 355 192M371 192H355" stroke="#4C0E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <g id="glass pin_4" filter="url(#filter3_d_0_1)">
-<rect x="171" y="235" width="40" height="40" rx="20" fill="white" fill-opacity="0.75"/>
+<rect x="171" y="235" width="40" height="40" rx="20" fill="white"/>
 <g id="lucide/check_2">
 <path id="Vector_5" d="M199 249L188 260L183 255" stroke="#4C0E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <g id="glass pin_5" filter="url(#filter4_d_0_1)">
-<rect x="218" y="76" width="40" height="40" rx="20" fill="white" fill-opacity="0.75"/>
+<rect x="218" y="76" width="40" height="40" rx="20" fill="white"/>
 <g id="lucide/check_3">
 <path id="Vector_6" d="M246 90L235 101L230 96" stroke="#4C0E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <g id="glass pin_6" filter="url(#filter5_d_0_1)">
-<rect x="479.727" y="96.6836" width="40" height="40" rx="20" fill="white" fill-opacity="0.75"/>
+<rect x="479.727" y="96.6836" width="40" height="40" rx="20" fill="white"/>
 <g id="lucide/check_4">
 <path id="Vector_7" d="M507.727 110.684L496.727 121.684L491.727 116.684" stroke="#4C0E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>

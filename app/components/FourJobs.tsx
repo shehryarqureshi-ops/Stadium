@@ -60,7 +60,7 @@ export default function FourJobs() {
               <Icon aria-hidden className="size-7" strokeWidth={1.5} />
             </span>
             <h3 className="mt-10 font-display text-job-tile-title text-swag-ink">{title}</h3>
-            <p className="mt-3 font-sans text-body-md text-job-body">{body}</p>
+            <p className="mt-3 font-sans text-body-md text-job-body text-pretty">{body}</p>
           </li>
         ))}
       </ol>

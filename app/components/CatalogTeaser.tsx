@@ -106,7 +106,7 @@ export default function CatalogTeaser() {
           id="catalog-teaser-title"
           className="font-display text-display-sm text-ink md:text-heading-xl lg:text-section-title"
         >
-          Things people actually keep.
+          Things people actually keep
         </h2>
         <p className="max-w-[38.75rem] font-sans text-body-md text-grey-600 lg:text-[1.125rem] lg:leading-7">
           Swag, gifts, snacks and experiences from the brands your people already love, delivered in 170+ countries.
@@ -131,9 +131,8 @@ export default function CatalogTeaser() {
               tabIndex={on ? 0 : -1}
               onClick={() => setTab(t.id)}
               onKeyDown={(e) => onKey(e, i)}
-              className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full px-5 py-3 font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-water md:px-6 ${
-                on ? "bg-swag-ink text-white" : "text-swag-ink hover:bg-tray"
-              }`}
+              className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full px-5 py-3 font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-water md:px-6 ${on ? "bg-swag-ink text-white" : "text-swag-ink hover:bg-tray"
+                }`}
             >
               {t.label}
             </button>

@@ -21,7 +21,7 @@ const ROWS: { label: string; vals: [Cell, Cell, Cell, Cell] }[] = [
     vals: ["check", "Cards Only", "minus", "Limited"],
   },
   {
-    label: "Global + Local Fulfillment",
+    label: "Local Fulfillment, Globally",
     vals: ["check", "Limited", "minus", "Gifts Only"],
   },
   {
@@ -97,10 +97,9 @@ export default function RecogComparison() {
           </div>
           <p
             data-animation="reveal"
-            className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem]"
+            className="font-sans text-[1.0625rem] leading-[1.48] text-[#6b6c71] lg:text-[1.125rem] max-w-3xl text-pretty"
           >
-            Stadium combines recognition, rewards, global fulfillment, and
-            program infrastructure in one platform.
+            Stadium combines recognition, rewards, local fulfillment in 170+ countries, and program infrastructure in one platform.
           </p>
         </div>
 
@@ -125,16 +124,14 @@ export default function RecogComparison() {
                 <div
                   key={c.name}
                   role="columnheader"
-                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${
-                    c.hi
-                      ? "rounded-b-[0.5rem] rounded-t-[1rem] bg-[#f8f1fe]"
-                      : "rounded-[1.5rem]"
-                  }`}
+                  className={`flex flex-col items-center justify-center px-6 py-4 text-center ${c.hi
+                    ? "rounded-b-[0.5rem] rounded-t-[1rem] bg-[#f8f1fe]"
+                    : "rounded-[1.5rem]"
+                    }`}
                 >
                   <span
-                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${
-                      c.hi ? "font-semibold" : "font-normal"
-                    }`}
+                    className={`whitespace-nowrap font-sans text-[0.90625rem] leading-[1.4] text-[#16171b] ${c.hi ? "font-semibold" : "font-normal"
+                      }`}
                   >
                     {c.name}
                   </span>
@@ -152,9 +149,8 @@ export default function RecogComparison() {
               <div key={r.label} role="row" className="contents">
                 <div
                   role="rowheader"
-                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${
-                    ri === 0 ? "rounded-tl-[1rem]" : ""
-                  } ${ri === LAST_ROW ? "rounded-bl-[1rem]" : ""}`}
+                  className={`flex items-center rounded-[0.5rem] bg-[#f2f2f2] p-6 ${ri === 0 ? "rounded-tl-[1rem]" : ""
+                    } ${ri === LAST_ROW ? "rounded-bl-[1rem]" : ""}`}
                 >
                   <span className="whitespace-nowrap font-sans text-[0.90625rem] font-semibold leading-[1.4] text-[#16171b]">
                     {r.label}
@@ -164,13 +160,11 @@ export default function RecogComparison() {
                   <div
                     key={ci}
                     role="cell"
-                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${
-                      COLS[ci].hi ? "bg-[#f8f1fe]" : "bg-[#f2f2f2]"
-                    } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1rem]" : ""} ${
-                      ri === LAST_ROW && ci === LAST_COL
+                    className={`flex items-center justify-center rounded-[0.5rem] p-6 ${COLS[ci].hi ? "bg-[#f8f1fe]" : "bg-[#f2f2f2]"
+                      } ${ri === 0 && ci === LAST_COL ? "rounded-tr-[1rem]" : ""} ${ri === LAST_ROW && ci === LAST_COL
                         ? "rounded-br-[1rem]"
                         : ""
-                    }`}
+                      }`}
                   >
                     <Value v={v} />
                   </div>

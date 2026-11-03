@@ -19,6 +19,8 @@ export type TwoFeaturedCardsItem = {
   imageAlt?: string;
 
   isFeatured?: boolean;
+  /** featured cards lift their image with the heavy shadow; false for art that already sits flat in its tile */
+  imageShadow?: boolean;
   isFeaturedLabel?: string;
   isFeaturedPillColor?: string;
 
@@ -122,7 +124,7 @@ export default function TwoFeaturedCards({
               {card.image && (
                 <div
                   className={`overflow-hidden rounded-2xl ${
-                    card.isFeatured ? HEAVY_SHADOW : ""
+                    card.isFeatured && card.imageShadow !== false ? HEAVY_SHADOW : ""
                   }`}
                 >
                   <Image

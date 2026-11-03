@@ -41,7 +41,12 @@ export default function RecogProblem() {
           <br className="hidden md:block" /> fades faster than it should
         </>
       }
-      description="You send recognition in seconds. People read it, react, and move on. Without a tangible follow-up, the moment rarely lasts."
+      description={
+        <>
+          You send recognition in seconds. People read it, react, and move on.
+          <br className="hidden md:block" /> Without a tangible follow-up, the moment rarely lasts.
+        </>
+      }
       items={ITEMS}
     />
   );

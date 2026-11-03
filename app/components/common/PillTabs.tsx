@@ -17,6 +17,8 @@ export type TabsShowcaseItem = {
   bullets?: string[];
   /** a string src is used for vector artwork; omit for a grey placeholder */
   image?: StaticImageData | string;
+  /** coded visual (role="img" itself) — replaces `image` */
+  graphic?: ReactNode;
   /** overrides `image` for alt text; falls back to `name` */
   imageAlt?: string;
   /** floating UI pinned over the image (e.g. a notification toast) */
@@ -145,7 +147,7 @@ export default function PillTabs({
           {description && (
             <p
               data-animation="reveal"
-              className="mt-3 max-w-[44rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71]"
+              className="mt-3 max-w-[44rem] font-sans text-[1.125rem] leading-[1.48] text-[#6b6c71] text-pretty"
             >
               {description}
             </p>
@@ -162,11 +164,10 @@ export default function PillTabs({
                   onClick={() => select(index)}
                   id={item.id ? `tab-${item.id}` : undefined}
                   aria-pressed={index === active}
-                  className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${
-                    index === active
-                      ? "bg-[#16171b] text-white"
-                      : "text-[#16171b] hover:bg-grey-100"
-                  }`}
+                  className={`cursor-pointer whitespace-nowrap rounded-full px-5 py-[0.8125rem] font-sans text-[0.75rem] font-bold uppercase tracking-[0.0625rem] transition-colors duration-200 ${index === active
+                    ? "bg-[#16171b] text-white"
+                    : "text-[#16171b] hover:bg-grey-100"
+                    }`}
                 >
                   {item.tab}
                 </button>
@@ -190,16 +191,18 @@ export default function PillTabs({
                   : undefined
               }
             >
-              {item.image ? (
-              <Image
-                src={item.image}
-                alt={item.imageAlt ?? item.name}
-                quality={100}
-                width={0}
-                height={0}
-                className="h-auto w-full rounded-3xl object-top-left"
-                sizes="(min-width: 1024px) 50vw, 92vw"
-              />
+              {item.graphic ? (
+                item.graphic
+              ) : item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt ?? item.name}
+                  quality={100}
+                  width={0}
+                  height={0}
+                  className="h-auto w-full rounded-3xl object-top-left"
+                  sizes="(min-width: 1024px) 50vw, 92vw"
+                />
               ) : (
                 <div aria-hidden className="aspect-[580/394] w-full rounded-3xl bg-[#e0e0e0]" />
               )}
@@ -213,11 +216,11 @@ export default function PillTabs({
             className="teams-panel-in flex flex-1 flex-col justify-center gap-8 px-6 pb-6 lg:pr-10"
           >
             <div className="flex flex-col gap-5">
-              <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b]">
+              <h3 className="whitespace-pre-line font-display text-[2rem] font-bold leading-[2.375rem] text-[#16171b] text-pretty">
                 {item.title}
               </h3>
 
-              <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#757575]">
+              <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#757575] text-pretty">
                 {item.description}
               </p>
             </div>

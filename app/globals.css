@@ -892,20 +892,6 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .girlBg {
-    object-position: right -200px top 0;
-    object-fit: cover;
-  }
-  .recogHeroTextBg {
-    background-image: linear-gradient(
-      to bottom,
-      hsla(275, 10, 10, 1),
-      hsla(275, 10, 0, 0)
-    );
-  }
-}
-
 /* ===== /catalog (Figma n9SjmDjzB1PeZAYJ5w43fr → 5291:18726) — all values rem ===== */
 @theme {
   --color-catalog-tile: #202020; /* brand / country / coverage card surface */

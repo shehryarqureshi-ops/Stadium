@@ -1,3 +1,4 @@
+import Automated from "@/app/components/cards/gifting/Automated";
 import PillTabs, {
   type TabsShowcaseItem,
 } from "@/app/components/common/PillTabs";
@@ -93,9 +94,7 @@ const items: TabsShowcaseItem[] = [
       "Onboarding, anniversaries, and birthdays",
       "Set once, runs all year",
     ],
-    image: "/cards/gifting/Automated.svg",
-    imageAlt:
-      "The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations",
+    graphic: <Automated alt="The Stadium automations screen: a New hire welcome rule wired from a Workday trigger to a Welcome Kit on day one, above a table of active birthday, anniversary, onboarding and renewal automations" />,
     cta: "Explore AUTOMATED gifting",
     href: "/book-a-call",
   },

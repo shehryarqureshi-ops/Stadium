@@ -51,9 +51,8 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
   return (
     <figure className="flex flex-col lg:flex-row items-start gap-4 rounded-3xl bg-[#f2f2f2] p-6">
       <div
-        className={`flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] lg:order-1 ${
-          item.href ? "relative transition-shadow duration-200 hover:shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.12)]" : ""
-        }`}
+        className={`flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] lg:order-1 ${item.href ? "relative transition-shadow duration-200 hover:shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.12)]" : ""
+          }`}
       >
         {(item.eyebrow || item.logo) && (
           <div className="mb-4 flex items-center justify-between gap-4">
@@ -183,7 +182,7 @@ export default function Testimonials({
               <span
                 data-animation="reveal"
                 aria-hidden
-                className="mb-10 font-display text-[4rem] leading-none text-grey-300"
+                className="mb-1 font-display text-[4rem] leading-none text-grey-300"
               >
                 <svg
                   width="109"

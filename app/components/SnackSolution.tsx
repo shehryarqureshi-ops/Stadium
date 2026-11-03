@@ -65,6 +65,7 @@ export default function SwagmagicSolution() {
           image: solutionOne,
           imageAlt: "Build-your-own Snackmagic box with a selection of snacks.",
           isFeatured: true,
+          imageShadow: false,
           isFeaturedLabel: "Popular",
           isFeaturedPillColor: "#1b1b1b",
           content: (

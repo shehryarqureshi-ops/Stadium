@@ -82,7 +82,7 @@ const items: TabsShowcaseItem[] = [
   {
     name: "Team Leaders",
     tab: "Team Leaders",
-    title: "Celebrate your team,\nno admin",
+    title: "Celebrate your team,\nwithout the extra admin",
     description:
       "Budgets, approvals, and sends scoped to your team — no procurement queue in the way.",
     bullets: [

@@ -39,7 +39,7 @@ export default function SnackHeroTwo() {
             <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center">
               <a
                 href="/catalog#snacks"
-                className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-[#1f71e7] px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-white"
+                className="inline-flex h-button-h items-center justify-center rounded-[100px] bg-white px-[1.375rem] font-sans text-button-primary uppercase text-[#1f71e7] transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-white"
               >
                 <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
                   Browse the catalog

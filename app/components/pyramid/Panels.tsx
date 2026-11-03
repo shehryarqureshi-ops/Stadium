@@ -103,9 +103,8 @@ function CarouselControls({
             aria-label={`Go to ${i + 1} of ${count}`}
             aria-current={i === index}
             onClick={() => onGo(i)}
-            className={`h-2 cursor-pointer rounded-full transition-[width,background-color] duration-300 ${
-              i === index ? "w-6 bg-white" : "w-2 bg-white/30"
-            }`}
+            className={`h-2 cursor-pointer rounded-full transition-[width,background-color] duration-300 ${i === index ? "w-6 bg-white" : "w-2 bg-white/30"
+              }`}
           />
         ))}
       </div>
@@ -235,7 +234,7 @@ export function MediaTabs({
     }
     if (hasVideo && v) {
       v.muted = true;
-      void v.play().catch(() => {});
+      void v.play().catch(() => { });
     }
     let raf = 0;
     let last = performance.now();
@@ -264,9 +263,8 @@ export function MediaTabs({
   const media = (
     <div
       ref={mediaEl}
-      className={`relative overflow-hidden bg-[#0e0f11] ${
-        pill ? "aspect-[1200/675] w-full rounded-[2rem]" : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
-      }`}
+      className={`relative overflow-hidden bg-[#0e0f11] ${pill ? "aspect-[1200/675] w-full rounded-[2rem]" : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
+        }`}
     >
       {tabs.map((t, i) => (
         <div
@@ -329,9 +327,8 @@ export function MediaTabs({
                 role="tab"
                 aria-selected={on}
                 onClick={() => setActive(i)}
-                className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-                  on ? "bg-white px-6 py-4 text-black" : "px-5 py-[0.8125rem] text-white hover:bg-white/10"
-                }`}
+                className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${on ? "bg-white px-6 py-4 text-black" : "px-5 py-[0.8125rem] text-white hover:bg-white/10"
+                  }`}
               >
                 {t.title}
               </button>
@@ -385,31 +382,27 @@ export function MediaTabs({
               aria-label={t.title}
               onClick={() => setActive(i)}
               style={{ flexGrow: on ? 3 : 1 }}
-              className={`relative cursor-pointer overflow-hidden rounded-xl text-left transition-[background-color,flex-grow] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-0 lg:flex-1 ${
-                on ? "bg-white/10" : "bg-pyramid-tab hover:bg-[#232323]"
-              }`}
+              className={`relative cursor-pointer overflow-hidden rounded-xl text-left transition-[background-color,flex-grow] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-0 lg:flex-1 ${on ? "bg-white/10" : "bg-pyramid-tab hover:bg-[#232323]"
+                }`}
             >
               {/* the title glides between its collapsed (62px tab → 17px) and open (24px) top — fixed offsets, so it never follows the growing tab's centre */}
               <span
-                className={`absolute left-6 hidden font-sans text-pyramid-tab transition-[top,color] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] lg:block ${
-                  on ? "top-6 text-white" : "top-[1.0625rem] text-white/55"
-                }`}
+                className={`absolute left-6 hidden font-sans text-pyramid-tab transition-[top,color] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] lg:block ${on ? "top-6 text-white" : "top-[1.0625rem] text-white/55"
+                  }`}
               >
                 {t.title}
               </span>
               <span
                 aria-hidden={!on}
-                className={`absolute inset-x-6 top-[3.75rem] hidden font-sans text-pyramid-meta text-white/60 transition-opacity lg:block ${
-                  on ? "opacity-100 delay-300 duration-700" : "opacity-0 duration-200"
-                }`}
+                className={`absolute inset-x-6 top-[3.75rem] hidden font-sans text-pyramid-meta text-white/60 transition-opacity lg:block ${on ? "opacity-100 delay-300 duration-700" : "opacity-0 duration-200"
+                  }`}
               >
                 {t.desc}
               </span>
               <span
                 aria-hidden
-                className={`absolute inset-x-6 bottom-6 hidden h-0.5 rounded-full bg-white/15 transition-opacity lg:block ${
-                  on ? "opacity-100 delay-300 duration-700" : "opacity-0 duration-200"
-                }`}
+                className={`absolute inset-x-6 bottom-6 hidden h-0.5 rounded-full bg-white/15 transition-opacity lg:block ${on ? "opacity-100 delay-300 duration-700" : "opacity-0 duration-200"
+                  }`}
               >
                 <span
                   ref={(el) => void (bars.current[1 + i] = el)}
