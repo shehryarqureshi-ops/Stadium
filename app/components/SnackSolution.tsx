@@ -80,7 +80,7 @@ export default function SwagmagicSolution() {
           ),
           ctaLabel: "Start Your Order",
           ctaVariant: "dark",
-          ctaLink: "https://www.snackmagic.com/send-a-treat?origin=/dashboard/treats",
+          ctaLink: "https://www.snackmagic.com/pricing",
         },
         {
           id: "curated-boxes",
@@ -100,7 +100,7 @@ export default function SwagmagicSolution() {
           ),
           ctaLabel: "Browse boxes",
           ctaVariant: "light",
-          ctaLink: "https://www.snackmagic.com/themed-boxes",
+          ctaLink: "https://www.snackmagic.com/menu/curated-boxes",
         },
       ]}
     />

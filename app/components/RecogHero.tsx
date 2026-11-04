@@ -5,7 +5,7 @@ import { HeroLogoWall } from "./common/HeroLogoWall";
 export default function RecogHero() {
   return (
     <section className="relative bg-[#29024e]">
-      <div className="absolute inset-x-0 bottom-0 z-0 h-[33rem] w-full overflow-hidden bg-[#29024e] md:h-[45rem] [mask-image:linear-gradient(to_bottom,transparent,#000_18%)] lg:inset-0 lg:h-full lg:[mask-image:none]">
+      <div className="absolute inset-x-0 bottom-0 z-0 h-[33rem] w-full overflow-hidden bg-[#29024e] md:h-[45rem] [mask-image:linear-gradient(to_bottom,transparent,#000_18%)] lg:inset-x-0 lg:bottom-0 lg:top-[5.25rem] lg:h-auto lg:[mask-image:linear-gradient(to_bottom,transparent,#000_10rem)]">
         <Image
           src={heroBg}
           alt=""
@@ -17,7 +17,7 @@ export default function RecogHero() {
         />
       </div>
 
-      <div className="relative z-20 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem] lg:aspect-[16/8]">
+      <div className="relative z-20 px-section-x-sm pt-[6rem] md:px-section-x-md md:pt-[7rem] lg:px-section-x-lg lg:pt-[5.25rem] lg:min-h-[50rem]">
         <div className="mx-auto flex w-full max-w-content flex-col gap-12 lg:flex-row lg:justify-between lg:gap-24">
           {/* left */}
           <div className="flex w-full flex-col gap-8 lg:max-w-[35.3125rem] lg:pt-[7.5rem] flex-[1]">
@@ -78,7 +78,7 @@ export default function RecogHero() {
         aria-hidden="true"
         data-animation="reveal"
         data-reveal-delay="240"
-        className="absolute bottom-[22rem] left-section-x-sm z-20 flex w-[12.75rem] items-start gap-2 rounded-[0.8rem] bg-white p-3 shadow-[0_0.3rem_1.2rem_0_rgba(27,15,38,0.15)] md:bottom-[13rem] md:left-auto md:right-section-x-md md:w-[18.3rem] md:gap-3 lg:bottom-auto lg:right-auto lg:left-[52.19%] lg:top-[32%]"
+        className="absolute bottom-[22rem] left-section-x-sm z-20 flex w-[12.75rem] items-start gap-2 rounded-[0.8rem] bg-white p-3 shadow-[0_0.3rem_1.2rem_0_rgba(27,15,38,0.15)] md:bottom-[13rem] md:left-auto md:right-section-x-md md:w-[18.3rem] md:gap-3 lg:bottom-auto lg:right-auto lg:left-[52.19%] lg:top-[calc(32%+3.1rem)]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/recog2/rc-hero-slack-mark.svg" alt="" className="size-[1.4rem] shrink-0 select-none" />

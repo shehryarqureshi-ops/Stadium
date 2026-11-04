@@ -93,7 +93,7 @@ export default function SwagmagicSolution() {
               ]}
             />
           ),
-          ctaLabel: "Shop Swagmagic",
+          ctaLabel: "Shop Swag",
           ctaVariant: "light",
           ctaLink: "/catalog#swag",
         },
