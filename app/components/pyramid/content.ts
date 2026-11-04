@@ -26,20 +26,22 @@ export const PHYSICAL = {
     {
       title: "Printing & Production",
       desc: "1,000+ vetted partners print and decorate your merchandise, locally, every time.",
-      video: "/videos/infrastructure/printing.mp4",
-      poster: "/videos/infrastructure/printing.webp",
+      video: "/videos/physical/P01_Printing_and_Production.webm",
     },
     {
       title: "Warehousing & Storage",
       desc: "Your swag is stored, tracked, and kitted across our warehouse network, ready the moment you need it.",
-      video: "/videos/infrastructure/warehousing.mp4",
-      poster: "/videos/infrastructure/warehousing.webp",
+      video: "/videos/physical/P02_Warehousing_and_Storage.webm",
+    },
+    {
+      title: "Kitting & Packaging",
+      desc: "Every item is picked, kitted and packed to your spec, so each recipient opens something that looks the way you designed it.",
+      video: "/videos/physical/P03_Kitting_and_Packaging.webm",
     },
     {
       title: "Shipping & Delivery",
       desc: "Fulfillment partners and carriers deliver to recipients in 170+ countries.",
-      video: "/videos/infrastructure/shipping.mp4",
-      poster: "/videos/infrastructure/shipping.webp",
+      video: "/videos/physical/P04_Global_Fulfillment.webm",
     },
     {
       title: "Customs, Tax & Compliance",
