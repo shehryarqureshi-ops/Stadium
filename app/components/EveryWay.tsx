@@ -300,7 +300,6 @@ function PhoneDeck({ cards }: { cards: Card[] }) {
                     fill
                     sizes="100vw"
                     quality={90}
-                    loading="eager"
                     className="object-cover"
                   />
                 ) : (

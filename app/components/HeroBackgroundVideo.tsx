@@ -55,6 +55,8 @@ export default function HeroBackgroundVideo({
     "pending",
   );
   const [outgoing, setOutgoing] = useState<number | null>(null);
+  /* slide whose clip has started playing — the next clip only buffers after that */
+  const [started, setStarted] = useState<number | null>(null);
   const refs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const [tracked, setTracked] = useState(index);
 
@@ -85,12 +87,16 @@ export default function HeroBackgroundVideo({
       }
       setMode("video");
       const start = () => setAllowVideo(true);
+      /* the poster is the LCP: give it (and the rest of the first screen) a clear runway before the
+         ~1 MB clips start pulling bandwidth */
       const arm = () => {
-        if ("requestIdleCallback" in window) {
-          idle = window.requestIdleCallback(start, { timeout: 2500 });
-        } else {
-          timer = setTimeout(start, 1500);
-        }
+        timer = setTimeout(() => {
+          if ("requestIdleCallback" in window) {
+            idle = window.requestIdleCallback(start, { timeout: 1500 });
+          } else {
+            start();
+          }
+        }, 3500);
       };
       if (document.readyState === "complete") arm();
       else window.addEventListener("load", arm, { once: true });
@@ -151,7 +157,7 @@ export default function HeroBackgroundVideo({
         ...new Set([
           index,
           ...(outgoing !== null ? [outgoing] : []),
-          ...(slides.length > 1 ? [next] : []),
+          ...(slides.length > 1 && started === index ? [next] : []),
         ]),
       ]
     : [];
@@ -164,6 +170,7 @@ export default function HeroBackgroundVideo({
         alt=""
         fill
         priority
+        fetchPriority="high"
         sizes="100vw"
         quality={75}
         className="object-cover"
@@ -185,7 +192,10 @@ export default function HeroBackgroundVideo({
             preload="auto"
             aria-hidden
             onPlaying={() => {
-              if (i === index) onReady(i);
+              if (i === index) {
+                onReady(i);
+                setStarted(i);
+              }
             }}
             className="absolute inset-0 h-full w-full object-cover transition-opacity ease-in-out"
             style={{

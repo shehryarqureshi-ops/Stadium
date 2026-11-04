@@ -10,7 +10,8 @@
    Shares the hover choreography (.engage-row/.engage-group/.engage-arrow)
    defined in SiteHeader. */
 
-import Image, { type StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
+import MenuImage from "./MenuImage";
 import { externalLinkProps } from "@/app/lib/links";
 import holidayGuide from "@/public/menu/holiday-gift-guide.jpg";
 import anniversaryImg from "@/public/menu/blog-work-anniversary-messages.jpg";
@@ -336,7 +337,7 @@ function RightRail() {
           className="group flex flex-col gap-3 rounded-xl bg-white p-2.5 shadow-[0_3px_6px_rgba(0,0,0,0.06)]"
         >
           <span className="relative isolate h-[6.5rem] w-full transform-gpu overflow-hidden rounded-lg">
-            <Image src={LATEST.image} alt="" fill unoptimized loading="eager" className="object-cover" />
+            <MenuImage src={LATEST.image} alt="" fill unoptimized loading="eager" className="object-cover" />
           </span>
           <span className="flex flex-col gap-1">
             <span className="font-sans text-[0.875rem] font-semibold leading-5 text-[#181818]">
@@ -361,7 +362,7 @@ function RightRail() {
               className="flex items-center gap-2.5 rounded-xl bg-white p-2 shadow-[0_3px_6px_rgba(0,0,0,0.06)] transition-shadow duration-200 hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
             >
               <span className="relative h-[2.1875rem] w-[2.8125rem] shrink-0 overflow-hidden rounded-md">
-                <Image src={image} alt="" fill unoptimized loading="eager" className="object-cover" />
+                <MenuImage src={image} alt="" fill unoptimized loading="eager" className="object-cover" />
               </span>
               <span className="font-sans text-[0.875rem] font-medium leading-5 text-[#181818]">
                 {title}

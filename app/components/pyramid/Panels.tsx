@@ -176,6 +176,8 @@ export function MediaTabs({
   const [failed, setFailed] = useState<Record<number, boolean>>({});
   /* clips and the auto-advance only run while the card is on screen, so a first visit starts on tab 1 */
   const [inView, setInView] = useState(false);
+  /* clips (and their posters) are only requested once the card has been on screen */
+  const [seen, setSeen] = useState(false);
   const mediaEl = useRef<HTMLDivElement>(null);
   const bars = useRef<(HTMLElement | null)[]>([]); // [0] = phone bar, [1 + i] = tab i's bar
   const videos = useRef<(HTMLVideoElement | null)[]>([]);
@@ -220,7 +222,13 @@ export function MediaTabs({
   useEffect(() => {
     const el = mediaEl.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.3 });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        setInView(e.isIntersecting);
+        if (e.isIntersecting) setSeen(true);
+      },
+      { threshold: 0.3 },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -277,8 +285,8 @@ export function MediaTabs({
           {t.video && !failed[i] ? (
             <video
               ref={(el) => void (videos.current[i] = el)}
-              src={t.video}
-              poster={t.poster}
+              src={seen ? t.video : undefined}
+              poster={seen ? t.poster : undefined}
               muted
               playsInline
               preload="metadata" /* below the fold — buffer when played, not at page load */

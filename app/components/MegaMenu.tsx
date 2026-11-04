@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { externalLinkProps } from "@/app/lib/links";
-import Image from "next/image";
+import MenuImage from "./MenuImage";
 import type { StaticImageData } from "next/image";
 
 /* Shared mega-menu shell — the one skeleton every nav dropdown uses, so the
@@ -74,7 +74,7 @@ export function MenuCard({
       {...externalLinkProps(href)}
       className="group relative flex min-h-[20rem] w-[24rem] shrink-0 flex-col justify-end overflow-hidden rounded-card bg-grey-800"
     >
-      <Image
+      <MenuImage
         src={image}
         alt=""
         fill
@@ -137,7 +137,7 @@ export function MenuFeaturePanel({
           className="relative isolate block w-full transform-gpu overflow-hidden rounded-[0.5rem] bg-grey-100"
           style={{ aspectRatio: aspect }}
         >
-          <Image
+          <MenuImage
             src={image}
             alt=""
             fill
