@@ -5,6 +5,7 @@ const LINK_COLUMNS: {
   links: {
     label: string;
     href: string;
+    newTab?: boolean;
   }[];
 }[] = [
     {
@@ -23,7 +24,7 @@ const LINK_COLUMNS: {
       heading: "Resources",
       links: [
         { label: "Learning Center", href: "https://stadiumhq.notion.site/Stadium-Learning-Resource-Center-2b75247529b5837ebc4181e139d5b6b5" },
-        { label: "Partnerships", href: "https://www.bystadium.com/partnerships" },
+        { label: "Partnerships", href: "https://www.bystadium.com/partnerships", newTab: true },
         { label: "RFP / RFI", href: "https://by-stadium.typeform.com/to/iSahZGN8" },
         { label: "Help Center", href: "https://help.bystadium.com/hc/en-us" },
         { label: "Videos", href: "https://www.youtube.com/@bystadium/playlists" },
@@ -210,10 +211,11 @@ export default function PageClose() {
                   </p>
 
                   <ul className="flex flex-col gap-4">
-                    {column.links.map(({ label, href }) => (
+                    {column.links.map(({ label, href, newTab }) => (
                       <li key={href}>
                         <a
                           href={href}
+                          {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                           className="whitespace-nowrap font-sans text-body-md text-grey-400 transition-colors hover:text-white"
                         >
                           {label}

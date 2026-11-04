@@ -103,9 +103,9 @@ export default function EnterprisePage() {
           title="Control budgets across your organization"
           description="Give teams access to funds while keeping company spend visible and organized."
           items={[
-            { title: "Allocate Funds", description: "Distribute funds across teams and initiatives.", content: <VectorCard src="/cards/enterprise/BudgetAllocate.svg" alt="Allocating a $120,000 Q4 budget across Sales, Marketing and People" width={265} height={332} />, desktopVisualWidth: 265 },
-            { title: "Organize Budgets", description: "Create separate Wallets and reallocate funds as needs change.", content: <VectorCard src="/cards/enterprise/BudgetOrganize.svg" alt="Three team Wallets, with $2,000 moved from Events to Onboarding" width={265} height={332} />, desktopVisualWidth: 265 },
-            { title: "Corporate Billing", description: "Simplify purchasing with a single, centralized invoice.", content: <VectorCard src="/cards/enterprise/BudgetBilling.svg" alt="A consolidated October invoice of $48,250 across four teams" width={265} height={332} />, desktopVisualWidth: 265 },
+            { title: "Allocate Funds", description: "Distribute funds across teams and initiatives.", content: <VectorCard src="/cards/enterprise/BudgetAllocate.svg" alt="Allocating a $120,000 Q4 budget across Sales, Marketing and People" width={265} height={332} />, desktopVisualWidth: 300 },
+            { title: "Organize Budgets", description: "Group every dollar by team, program, or location. One view, no spreadsheets.", content: <VectorCard src="/cards/enterprise/BudgetOrganize.svg" alt="Three team Wallets, with $2,000 moved from Events to Onboarding" width={265} height={332} />, desktopVisualWidth: 300 },
+            { title: "Corporate Billing", description: "One invoice covers every team and program. No separate bills to track down.", content: <VectorCard src="/cards/enterprise/BudgetBilling.svg" alt="A consolidated October invoice of $48,250 across four teams" width={265} height={332} />, desktopVisualWidth: 300 },
           ]}
         />
 

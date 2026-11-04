@@ -23,7 +23,7 @@ const ITEMS: VariableCardGridItem[] = [
   {
     graphic: <PlatformFulfillment />,
     title: "Global Fulfillment",
-    description: "Ship to 170+ countries, with customs and duties handled.",
+    description: "Ship to 170+ countries from local fulfillment centers. No customs, duties, or delays.",
   },
   {
     graphic: <PlatformGifting />,

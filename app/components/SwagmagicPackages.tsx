@@ -30,7 +30,7 @@ export default function SwagmagicPackages() {
       caption="STADIUM PASSES"
       captionColor="#0e8850"
       title={"Start with swag and expand when ready"}
-      description="Add new capabilities over time without changing platforms."
+      description="Add new capabilities over time without changing platforms. Free domestic shipping comes standard on every pass."
       showCta
       ctaBelowText
       ctaLabel="Explore pricing"

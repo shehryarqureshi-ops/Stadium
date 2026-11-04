@@ -11,7 +11,7 @@ import SplitFeature from "@/app/components/common/SplitFeature";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
-import OpenSpatialCanvas from "@/app/components/impact/OpenSpatialCanvas";
+import FunnelFlow from "@/app/components/impact/FunnelFlow";
 import { LINKS, TEAM_ROUTES } from "@/app/components/impact/shared";
 
 import problemTeams from "@/public/impact/overview/problem-teams.jpg";
@@ -46,7 +46,7 @@ export default function ImpactPage() {
             primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
             secondaryCta={{ label: "Explore by team", href: "#explore-by-team" }}
             background="canvas"
-            visual={<OpenSpatialCanvas />}
+            visual={<FunnelFlow />}
           />
         }
         closing={
