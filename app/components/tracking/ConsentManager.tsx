@@ -43,6 +43,7 @@ function appendScript(id: string, src: string, onload?: () => void) {
 
 /* ---- Microsoft Clarity (analytics category) ---------------------------- */
 function loadClarity() {
+  if (!TRACKING.clarityId) return; // not configured for this deployment (e.g. staging)
   // Another loader (e.g. a tag inside GTM) already provided Clarity: don't double-load.
   if (window.clarity && !document.getElementById("clarity-js")) return;
   if (!window.clarity) {
@@ -69,6 +70,7 @@ function identifyHubSpot() {
 }
 
 function loadHubSpot() {
+  if (!TRACKING.hubspotPortalId) return; // not configured for this deployment (e.g. staging)
   window._hsp = window._hsp || [];
   window._hsp.push(["setAccount", TRACKING.hubspotPortalId]);
   window._hsp.push(["setAllowLinker", true]);
@@ -81,8 +83,8 @@ function loadHubSpot() {
 
 /* ---- Apply a consent snapshot ------------------------------------------ */
 function applyConsent(consent: Consent) {
-  // Development / staging / non-production host: never touch gtag, the
-  // dataLayer or any tracking script. (Footer links below still work.)
+  // Development, or a host outside NEXT_PUBLIC_ANALYTICS_HOSTS: never touch gtag,
+  // the dataLayer or any tracking script. (Footer links below still work.)
   if (!isTrackingActive()) return;
 
   const grant = (category: OsanoCategory) =>

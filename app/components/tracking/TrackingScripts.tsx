@@ -7,15 +7,16 @@ import { TRACKING } from "../../lib/tracking/config";
    Only the pieces that must exist before hydration live here:
      1. consent-defaults — dataLayer + gtag stub with Google Consent Mode v2 set
                            to DENIED, before anything can read cookies.
-                           Production builds only.
-     2. osano            — the CMP. Loads in staging and production so the
-                           consent flow can be tested; in development only
-                           with NEXT_PUBLIC_WIDGETS_PREVIEW=true.
+                           Staging and production builds.
+     2. osano            — the CMP. Loads in staging and production; in
+                           development only with NEXT_PUBLIC_WIDGETS_PREVIEW=true.
+                           Staging may point at its own Osano config via
+                           NEXT_PUBLIC_OSANO_SRC.
 
    GTM and Zendesk are injected on the client by TrackingLoader, and Clarity /
    HubSpot by ConsentManager, because those also check the runtime hostname.
-   In development and staging NO analytics tag loads and NO event is sent
-   (see app/lib/tracking/config.ts). */
+   In development NO analytics tag loads and NO event is sent; staging uses
+   only its own ids/hosts (see app/lib/tracking/config.ts). */
 
 const CONSENT_DEFAULTS = `
 window.dataLayer = window.dataLayer || [];
@@ -39,7 +40,7 @@ export default function TrackingScripts() {
   return (
     <>
       {/* GTM noscript fallback (Google's snippet, kept for no-JS visitors) */}
-      {TRACKING.enabled && (
+      {TRACKING.enabled && TRACKING.gtmId && (
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${TRACKING.gtmId}`}

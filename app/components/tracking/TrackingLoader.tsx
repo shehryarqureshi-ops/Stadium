@@ -4,12 +4,14 @@ import { useEffect } from "react";
 
 import { TRACKING, isTrackingActive } from "../../lib/tracking/config";
 
-/* Injects Google Tag Manager (production only) and the Zendesk widget
-   (production, or anywhere with NEXT_PUBLIC_WIDGETS_PREVIEW=true).
+/* Injects Google Tag Manager (staging / production, when a GTM id is configured) and
+   the Zendesk widget (staging / production on an allowed host, or anywhere with
+   NEXT_PUBLIC_WIDGETS_PREVIEW=true).
 
    Runs on the client so it can check the real hostname (see isTrackingActive):
-   on localhost, on staging, or on a build that was given production env vars
-   by mistake but is served from a non-production host, nothing is injected.
+   on localhost, or on a build served from a host that is not in
+   NEXT_PUBLIC_ANALYTICS_HOSTS (e.g. production env vars on the staging domain, or
+   the reverse), nothing is injected.
 
    GA4, Google Ads, LinkedIn, Reddit and Microsoft Ads tags all live inside the
    GTM container and obey Consent Mode, so none of them fire before the visitor
@@ -29,8 +31,8 @@ export default function TrackingLoader() {
     const active = isTrackingActive();
     if (!active && !TRACKING.widgetsPreview) return;
 
-    // Google Tag Manager (same bootstrap as Google's snippet) — production only
-    if (active) {
+    // Google Tag Manager (same bootstrap as Google's snippet) — needs this deployment's own container id
+    if (active && TRACKING.gtmId) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
       injectScript(

@@ -2,12 +2,14 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
-// import { TRACKING } from "../../lib/tracking/config";
+import { TRACKING } from "../../lib/tracking/config";
 
 /* Marker.io visual-feedback widget (QA / design review).
-   Loads in development and staging ONLY — never on the live production site,
-   so customers don't see the feedback button. Project ID is a public
-   identifier; override with NEXT_PUBLIC_MARKER_PROJECT_ID if needed. */
+   Loads in development ONLY — it is off on staging and on the live site, so
+   neither stakeholders testing staging nor customers see the feedback button.
+   Set NEXT_PUBLIC_MARKER_ENABLED=true to force it on for a review build
+   (see TRACKING.markerEnabled). Project ID is a public identifier; override
+   with NEXT_PUBLIC_MARKER_PROJECT_ID if needed. */
 const MARKER_PROJECT_ID =
   process.env.NEXT_PUBLIC_MARKER_PROJECT_ID ?? "6ad1a477d58ca9070ea3b560";
 
@@ -27,9 +29,7 @@ export default function MarkerFeedback() {
     return () => WAKE_EVENTS.forEach((e) => window.removeEventListener(e, wake));
   }, []);
 
-  if (!awake) return null;
-
-  // if (TRACKING.env === "production") return null; // ENABLE THIS LINE TO STOP THIS IN PRODUCTION
+  if (!TRACKING.markerEnabled || !awake) return null;
 
   return (
     <>

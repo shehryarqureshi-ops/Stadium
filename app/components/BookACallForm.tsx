@@ -27,10 +27,22 @@ import {
 /* ==========================================================================
    1. ENVIRONMENT CONFIGURATION & MODE SWITCHER
    ========================================================================== */
-// ⚡️ SWITCH MODES HERE: 'mock' | 'staging' | 'production'
-// Or set NEXT_PUBLIC_APP_MODE in your .env.local
+// Which backend the form talks to: 'mock' | 'staging' | 'production'.
+// Explicit NEXT_PUBLIC_APP_MODE wins (e.g. "mock" for offline work). Otherwise it
+// follows the deployment: NEXT_PUBLIC_APP_ENV=production → production backend
+// (api.snackmagic.com, live HubSpot form, stadium_router); anything else
+// (staging, development) → the STAGING backend (test-api.snackmagic.com, staging
+// HubSpot form GUIDs, test-inbound-router), so a staging deploy can never submit
+// to production.
+const REQUESTED_MODE =
+  (process.env.NEXT_PUBLIC_APP_MODE as "mock" | "staging" | "production" | undefined) ||
+  (process.env.NEXT_PUBLIC_APP_ENV === "production" ? "production" : "staging");
+// Hard stop: a staging deployment can never use the production profile, even if
+// NEXT_PUBLIC_APP_MODE=production was copied over from the live environment.
 const CURRENT_MODE: "mock" | "staging" | "production" =
-  (process.env.NEXT_PUBLIC_APP_MODE as "mock" | "staging" | "production" | undefined) || "staging";
+  process.env.NEXT_PUBLIC_APP_ENV === "staging" && REQUESTED_MODE === "production"
+    ? "staging"
+    : REQUESTED_MODE;
 
 const ENVIRONMENT_PROFILES = {
   // 🟢 MOCK MODE: Simulates 100% of network calls with realistic delays & console logs
@@ -472,10 +484,13 @@ const OPTION_ACTIVE = "bg-pricing-cell font-semibold hover:bg-pricing-cell";
 const APPLY =
   "inline-flex h-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-grey-800 px-4 font-sans text-button-primary uppercase text-white transition-colors duration-200 hover:bg-black";
 
+/* Overpass sits ~1.5px above its line box centre (ascent 11 / descent 5 at 13px), so the
+   text of a select looks high against a geometrically centred icon: the chevron and the
+   country flag are nudged up 1.5px to share the text's optical centre. */
 const Chevron: FC<{ open: boolean }> = ({ open }) => (
   <ChevronDown
     aria-hidden
-    className={`ml-auto size-3.5 shrink-0 text-grey-500 transition-transform duration-200 ${open ? "rotate-180" : ""
+    className={`ml-auto size-3.5 shrink-0 -translate-y-[0.09375rem] text-grey-500 transition-transform duration-200 ${open ? "rotate-180" : ""
       }`}
     strokeWidth={2}
   />
@@ -1124,7 +1139,7 @@ export const BookACallForm: FC<BookACallFormProps> = ({
                     alt=""
                     width={18}
                     height={14}
-                    className="h-3.5 w-[1.125rem] rounded-[0.125rem] object-cover"
+                    className="h-3.5 w-[1.125rem] -translate-y-[0.09375rem] rounded-[0.125rem] object-cover"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = "none";
                     }}
