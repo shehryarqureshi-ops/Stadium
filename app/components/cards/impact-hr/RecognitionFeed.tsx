@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-hr/RecognitionFeed.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function RecognitionFeed({ alt = "Recognition insights: 1,284 kudos this month and top company values" }: { alt?: string }) {
+export default function RecognitionFeed({ alt = "A live recognition feed showing kudos this month, top company values, and a new recognition" }: { alt?: string }) {
   return <CardObject src="/cards/impact-hr/RecognitionFeed.svg" alt={alt} width={648} height={364} />;
 }

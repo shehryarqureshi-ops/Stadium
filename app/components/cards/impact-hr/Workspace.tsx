@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-hr/Workspace.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function Workspace({ alt = "Stadium People programs workspace showing onboarding kits, recognition, work anniversaries, wellness boxes, and recent activity" }: { alt?: string }) {
+export default function Workspace({ alt = "The Stadium workspace Automated Gifting page listing the New Hire Welcome Kit, Birthday Gift, Work Anniversary, and Q4 Client Thank You automations" }: { alt?: string }) {
   return <CardObject src="/cards/impact-hr/Workspace.svg" alt={alt} width={1316} height={805} />;
 }

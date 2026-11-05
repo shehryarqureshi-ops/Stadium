@@ -6,6 +6,7 @@ import ChecklistCards from "@/app/components/common/ChecklistCards";
 import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
@@ -14,7 +15,7 @@ import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import GrowthSteps from "@/app/components/impact/GrowthSteps";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { LINKS } from "@/app/components/impact/shared";
+import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
 
 import problemVendors from "@/public/impact/cx/v2/problem-vendors.jpg";
@@ -74,13 +75,11 @@ export default function CxPage() {
               secondary: { label: "Explore the platform", href: LINKS.platform },
             }}
           >
-            <VariableCardGrid
-              background="transparent"
+            <ImpactProof
               caption="Customer results"
-              captionColor="#16171b"
               title="See how teams scale customer engagement with Stadium"
-              imageFit="cover"
-              items={CASE_STUDIES.cx}
+              rating={G2_RATING}
+              cards={CASE_STUDIES.cx}
             />
           </ImpactClosing>
         }

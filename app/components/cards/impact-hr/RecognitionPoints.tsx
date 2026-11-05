@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-hr/RecognitionPoints.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function RecognitionPoints({ alt = "Kudos turning into 3,250 points redeemed for tech accessories" }: { alt?: string }) {
+export default function RecognitionPoints({ alt = "Kudos from Priya to Maya turning into points that can be redeemed for rewards" }: { alt?: string }) {
   return <CardObject src="/cards/impact-hr/RecognitionPoints.svg" alt={alt} width={648} height={364} />;
 }

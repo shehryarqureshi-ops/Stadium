@@ -5,6 +5,7 @@ import { seoMetadata } from "@/app/lib/seo/metadata";
 import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import StepCards from "@/app/components/common/StepCards";
@@ -15,7 +16,7 @@ import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import DealRail from "@/app/components/impact/DealRail";
 import { ChooseGiftGraphic, EnterAddressGraphic, FollowUpGraphic } from "@/app/components/impact/SalesGraphics";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { LINKS } from "@/app/components/impact/shared";
+import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
 import problemSpend from "@/public/impact/sales/v2/problem-spend.jpg";
 import problemAddresses from "@/public/impact/sales/v2/problem-addresses.jpg";
@@ -77,14 +78,11 @@ export default function SalesPage() {
               secondary: { label: "Explore the platform", href: LINKS.platform },
             }}
           >
-            <VariableCardGrid
-              background="transparent"
+            <ImpactProof
               caption="Customer results"
-              captionColor="#16171b"
               title="See how teams scale sales gifting with Stadium"
-              description="Give reps more ways to connect with prospects and customers throughout the relationship."
-              imageFit="cover"
-              items={CASE_STUDIES.sales}
+              rating={G2_RATING}
+              cards={CASE_STUDIES.sales}
             />
           </ImpactClosing>
         }

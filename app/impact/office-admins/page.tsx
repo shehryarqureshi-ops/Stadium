@@ -5,6 +5,7 @@ import { seoMetadata } from "@/app/lib/seo/metadata";
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import TeamHero from "@/app/components/common/TeamHero";
@@ -12,7 +13,7 @@ import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import OfficeNeedsBoard from "@/app/components/impact/OfficeNeedsBoard";
-import { LINKS } from "@/app/components/impact/shared";
+import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
 import OperationsOverview from "@/app/components/cards/impact-office-admins/OperationsOverview";
 import OperationsWorkspace from "@/app/components/cards/impact-office-admins/OperationsWorkspace";
@@ -70,13 +71,11 @@ export default function OfficeAdminsPage() {
             secondary: { label: "Explore the platform", href: LINKS.platform },
           }}
         >
-          <VariableCardGrid
-            background="transparent"
+          <ImpactProof
             caption="Customer results"
-            captionColor="#16171b"
             title="See how teams simplify the work"
-            imageFit="cover"
-            items={CASE_STUDIES.officeAdmins}
+            rating={G2_RATING}
+            cards={CASE_STUDIES.officeAdmins}
           />
         </ImpactClosing>
       }

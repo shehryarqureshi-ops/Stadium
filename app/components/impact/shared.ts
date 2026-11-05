@@ -39,6 +39,9 @@ export const CUSTOMER_RESULTS: VariableCardGridItem[] = [
 
 export const CASE_STUDY_CAPTION = "Case studies";
 
+/** G2 rating line shown above the closing case studies (same figure as /impact "The proof"). */
+export const G2_RATING = { score: "4.8", label: "on G2 from 1,515 reviews" } as const;
+
 /* Workplace tools strip (Figma 3998:9351) — mid-grey marks at 33% */
 export const HR_TOOLS: LogoBridgeLogo[] = [
   { src: "/impact/hr/logos/zoom.svg", alt: "Zoom", width: 132, height: 30 },

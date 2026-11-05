@@ -6,6 +6,7 @@ import ChecklistCards from "@/app/components/common/ChecklistCards";
 import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import LogoBridge from "@/app/components/common/LogoBridge";
 import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import StickyStepCards from "@/app/components/common/StickyStepCards";
@@ -15,7 +16,7 @@ import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import FinanceBudgetBar from "@/app/components/impact/FinanceBudgetBar";
 import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
+import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS, G2_RATING } from "@/app/components/impact/shared";
 
 import VectorCard from "@/app/components/cards/VectorCard";
 import Reporting from "@/app/components/cards/impact-finance/Reporting";
@@ -61,13 +62,11 @@ export default function FinancePage() {
             secondary: { label: "Explore the platform", href: LINKS.platform },
           }}
         >
-          <VariableCardGrid
-            background="transparent"
+          <ImpactProof
             caption={CASE_STUDY_CAPTION}
-            captionColor="#16171b"
             title="See the time Stadium gives back"
-            imageFit="cover"
-            items={CASE_STUDIES.finance}
+            rating={G2_RATING}
+            cards={CASE_STUDIES.finance}
           />
         </ImpactClosing>
       }

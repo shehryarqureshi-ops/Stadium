@@ -29,8 +29,8 @@ import { Easing, interpolate, spring, useCurrentFrame } from "remotion";
 
 import avatarArun from "@/public/impact/hr/hero/avatar-arun.png";
 import avatarJordan from "@/public/impact/hr/hero/avatar-jordan.png";
-import photoAnniversary from "@/public/impact/hr/hero/photo-anniversary-gift.jpg";
-import photoWelcomeKit from "@/public/impact/hr/hero/photo-welcome-kit.jpg";
+import photoAnniversary from "@/public/impact/hr/hero/photo-anniversary-gift.webp";
+import photoWelcomeKit from "@/public/impact/hr/hero/photo-welcome-kit.webp";
 import ukgLogo from "@/public/impact/hr/hero/logo-ukg.svg";
 
 export const STAGE_W = 560;
@@ -244,19 +244,18 @@ export function MomentsBentoScene() {
         >
           <div
             style={{
-              width: 230,
-              height: 230,
-              mixBlendMode: "multiply",
-              transform: `scale(${0.9 + 0.1 * Math.min(1, photoIn) + 0.012 * kitLift}) translateY(${(1 - photoIn) * 10}px)`,
+              width: "100%",
+              height: "100%",
+              transform: `scale(${1.08 - 0.08 * Math.min(1, photoIn) + 0.012 * kitLift})`,
               opacity: seg(f, 6, 16, (x) => x),
             }}
           >
             <Image
               src={photoWelcomeKit}
               alt=""
-              sizes="15rem"
+              sizes="18rem"
               quality={90}
-              style={{ width: 230, height: 230, objectFit: "contain", display: "block", maxWidth: "none" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", maxWidth: "none" }}
             />
           </div>
         </div>

@@ -5,6 +5,7 @@ import { seoMetadata } from "@/app/lib/seo/metadata";
 import ChecklistCards from "@/app/components/common/ChecklistCards";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import NumberedOfferings from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
 import StepCards from "@/app/components/common/StepCards";
@@ -14,7 +15,7 @@ import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import BrandKitApplied from "@/app/components/impact/BrandKitApplied";
 import { ConnectedToolsGraphic, RecipientActivityGraphic, TriggerSendsGraphic } from "@/app/components/impact/IntegrationGraphics";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { LINKS } from "@/app/components/impact/shared";
+import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
 import CampaignActivity from "@/app/components/cards/impact-marketing/CampaignActivity";
 import CampaignWorkspace from "@/app/components/cards/impact-marketing/CampaignWorkspace";
@@ -65,13 +66,11 @@ export default function MarketingPage() {
             secondary: { label: "Explore the platform", href: LINKS.platform },
           }}
         >
-          <VariableCardGrid
-            background="transparent"
+          <ImpactProof
             caption="Customer results"
-            captionColor="#16171b"
             title="See how Marketing teams scale with Stadium"
-            imageFit="cover"
-            items={CASE_STUDIES.marketing}
+            rating={G2_RATING}
+            cards={CASE_STUDIES.marketing}
           />
         </ImpactClosing>
       }

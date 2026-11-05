@@ -14,8 +14,7 @@ import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import ArcadeFlow from "@/app/components/impact/ArcadeFlow";
 import { LINKS, TEAM_ROUTES } from "@/app/components/impact/shared";
 
-import problemTeams from "@/public/impact/overview/problem-teams.jpg";
-import tabHr from "@/public/impact/overview/tab-hr.webp";
+import problemTeams from "@/public/impact/overview/problem-teams.webp";
 import tabMarketing from "@/public/impact/overview/tab-marketing.webp";
 import tabSales from "@/public/impact/overview/tab-sales.webp";
 import tabCx from "@/public/impact/overview/tab-cx.webp";
@@ -23,6 +22,8 @@ import tabLeadership from "@/public/impact/overview/tab-leadership.webp";
 import tabOffice from "@/public/impact/overview/tab-office-admin.webp";
 import tabFinance from "@/public/impact/overview/tab-finance.webp";
 import Workspace from "@/app/components/cards/impact-overview/Workspace";
+import Budgets from "@/app/components/cards/impact-overview/Budgets";
+import TabHr from "@/app/components/cards/impact-overview/TabHr";
 import VectorCard from "@/app/components/cards/VectorCard";
 import ScaleGlobal from "@/app/components/cards/impact-overview/ScaleGlobal";
 
@@ -76,7 +77,7 @@ export default function ImpactPage() {
           title="Every team engages people. Most do it separately."
           description="HR runs recognition. Marketing manages swag. Sales sends gifts. Customer teams celebrate milestones. Soon, every team has its own tools, vendors, budgets, and workflows."
           image={problemTeams}
-          imageAlt="A man crouched in a cluttered storage room, holding a parcel and a delivery slip while on a phone call, surrounded by boxes"
+          imageAlt="A man crouched in a storage room with a phone to his ear, checking a parcel and its delivery slip among stacked boxes"
           framed
           footnote="More vendors. More admin. Less visibility."
         />
@@ -93,7 +94,7 @@ export default function ImpactPage() {
           caption="Centralized budgets"
           title="Fund every team from one place"
           description="Allocate budgets to team Wallets, set permissions, and track spend across the organization—all from one place."
-          graphic={<VectorCard src="/cards/impact-overview/Budgets.webp" alt="Sales Wallet showing $47,000, funded with $20,000 from the ARCADE company wallet and open to sales managers" width={612} height={482} />}
+          graphic={<Budgets />}
         />
 
         <VariableCardGrid
@@ -104,10 +105,10 @@ export default function ImpactPage() {
           gridColumns={2}
           narrow
           items={[
-            { graphic: <VectorCard src="/cards/impact-overview/ScaleSaveTime.webp" alt="A monthly snack box set to repeat automatically" width={400} height={250} />, title: "Save Time", description: "Automate recurring sends and programs." },
-            { graphic: <VectorCard src="/cards/impact-overview/ScaleConnect.webp" alt="12 systems synced, including Workday, Salesforce, HubSpot, BambooHR, Rippling, and Greenhouse" width={400} height={250} />, title: "Connect Your Systems", description: "Connect Stadium with your HRIS, CRM, and other business systems." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleSaveTime.svg" alt="A monthly snack box set to repeat automatically" width={400} height={250} />, title: "Save Time", description: "Automate recurring sends and programs." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleConnect.svg" alt="12 systems synced, including Workday, Salesforce, HubSpot, BambooHR, Rippling, and Greenhouse" width={400} height={250} />, title: "Connect Your Systems", description: "Connect Stadium with your HRIS, CRM, and other business systems." },
             { graphic: <ScaleGlobal />, title: "Reach People Globally", description: "Fulfill and deliver across 170+ countries." },
-            { graphic: <VectorCard src="/cards/impact-overview/ScaleVendors.webp" alt="Separate swag, 3PL, and courier vendors replaced by one Stadium partner" width={400} height={250} />, title: "Consolidate Vendors", description: "Reduce the cost and complexity of separate vendors, shipping, fulfillment, and storage." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleVendors.svg" alt="Separate swag, 3PL, and courier vendors replaced by one Stadium partner" width={400} height={250} />, title: "Consolidate Vendors", description: "Reduce the cost and complexity of separate vendors, shipping, fulfillment, and storage." },
           ]}
           footnote="Less admin. Lower costs. Fewer things to worry about."
         />
@@ -120,7 +121,7 @@ export default function ImpactPage() {
             description="Each team can run the programs they own while staying connected to the same company infrastructure."
             autoAdvance={false}
             items={[
-              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", image: tabHr, imageAlt: "A new hire's welcome kit on her desk, with a delivery timeline showing the kit delivered and a welcome post sent", href: TEAM_ROUTES.hr, cta: "Explore Stadium for HR" },
+              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", graphic: <TabHr />, href: TEAM_ROUTES.hr, cta: "Explore Stadium for HR" },
               { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "A shopper carrying an ARCADE gift bag past a branded booth in a busy event hall", href: TEAM_ROUTES.marketing, cta: "Explore Stadium for Marketing" },
               { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A man watching a video call on his monitor while the prospect shows an open DevNest gift box", href: TEAM_ROUTES.sales, cta: "Explore Stadium for Sales" },
               { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling on her sofa as she unboxes a Tap + Cork tumbler gift", href: TEAM_ROUTES.cx, cta: "Explore Stadium for CX" },

@@ -93,11 +93,20 @@ const VIEWBOX_CROP = {
   // swag platform graphics: sibling 376x260 frames whose shadows/overflow widen the export
   "swag/PlatformStores": [0, 0, 376, 260],
   "swag/PlatformInventory": [8, 0, 376, 260],
-  "swag/PlatformFulfillment": [8, 8, 376, 260],
   "swag/PlatformGifting": [0, 8, 376, 260],
-  "swag/PlatformIntegrations": [0, 8, 376, 260],
   "swag/PlatformBudgets": [8, 8, 376, 260],
 };
+
+// Generic backdrop strip for exports taken from a node that sits inside a big page frame
+// (2026-11 /impact work): drops the root #2C2D2E canvas rect, the page-frame paths, the huge
+// white page rect and any white "card" slab that extends beyond the export box, then removes the
+// stage frame's own drop-shadow filter (it painted a dark arc in the rounded bottom corners).
+const stripPageBackdrop = (x) =>
+  x
+    .replace(/<rect width="\d+" height="\d+" fill="#2C2D2E"\/>\n?/, "")
+    .replace(/<path d="M-\d+ -\d{3,}[^"]*"[^>]*\/>\n?/g, "")
+    .replace(/<rect width="\d{4,}" height="\d{4,}" transform="translate\(-?\d+ -?\d+\)" fill="white"\/>\n?/g, "")
+    .replace(/<path d="M-\d+ -\d+C[^"]*" fill="white"\/>\n?/g, "");
 
 if (imgCount === 0) {
   const dir = join(ROOT, "public/cards", group);
@@ -107,6 +116,7 @@ if (imgCount === 0) {
     .replace(/<\?xml[^>]*\?>\s*/, "")
     .replace(/\sdata-name="[^"]*"/g, "");
   let out = plain;
+  if (/<rect width="\d+" height="\d+" fill="#2C2D2E"\/>/.test(plain)) out = stripPageBackdrop(plain);
   const crop = VIEWBOX_CROP[target];
   if (crop)
     out = out.replace(/(<svg\b[^>]*?)\swidth="[^"]*"\sheight="[^"]*"\sviewBox="[^"]*"/, `$1 width="${crop[2]}" height="${crop[3]}" viewBox="${crop.join(" ")}"`);
@@ -126,6 +136,7 @@ const stripStageBackdrop = (x) =>
 // Figma SVG export drops BACKGROUND_BLUR (frosted glass). Per-graphic patches
 // re-create it: a blurred <use> copy of what sits behind, clipped to the glass.
 const PATCHES = {
+  "impact-hr/Workspace": (x) => stripPageBackdrop(x),
   // Figma exports the surrounding page (grey backdrop, tray, 1-card drop shadow) around the
   // rounded stage, and the stage frame's 4-layer drop shadow painted a dark arc in its bottom
   // corners. Keep the stage only.
@@ -176,7 +187,10 @@ const PATCHES = {
     );
   },
 };
+// 2026-11 exports are taken from the card graphic node itself but still carry the page
+// backdrop behind it — strip it for every target not handled by a bespoke patch.
 if (PATCHES[target]) svg = PATCHES[target](svg);
+else svg = stripPageBackdrop(svg);
 
 // root <svg>: intrinsic size from the (cropped) viewBox, plain SVG2 href
 const vb = VIEWBOX_CROP[target]?.join(" ") ?? svg.match(/viewBox="([^"]+)"/)[1];

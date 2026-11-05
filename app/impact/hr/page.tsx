@@ -5,6 +5,7 @@ import { seoMetadata } from "@/app/lib/seo/metadata";
 import FeatureDetails from "@/app/components/common/FeatureDetails";
 import ImageShowcase from "@/app/components/common/ImageShowcase";
 import ImpactClosing from "@/app/components/common/ImpactClosing";
+import ImpactProof from "@/app/components/common/ImpactProof";
 import LogoBridge from "@/app/components/common/LogoBridge";
 import NumberedOfferings, { type NumberedOffering } from "@/app/components/common/NumberedOfferings";
 import PillTabs from "@/app/components/common/PillTabs";
@@ -15,24 +16,24 @@ import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import MomentsBento from "@/app/components/impact/MomentsBento";
 import KudosToast from "@/app/components/impact/KudosToast";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
-import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS } from "@/app/components/impact/shared";
+import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS, G2_RATING } from "@/app/components/impact/shared";
 
-import problem1 from "@/public/impact/hr/v2/problem-recognition.jpg";
-import problem2 from "@/public/impact/hr/v2/problem-fragmented.jpg";
-import problem3 from "@/public/impact/hr/v2/problem-manual.jpg";
-import problem4 from "@/public/impact/hr/v2/problem-scale.jpg";
-import tabOnboarding from "@/public/impact/hr/v2/journey-onboarding.jpg";
-import tabMilestone from "@/public/impact/hr/v2/journey-milestone.jpg";
-import tabCare from "@/public/impact/hr/v2/journey-care.jpg";
-import tabBirthday from "@/public/impact/hr/v2/journey-birthday.jpg";
-import tabYearEndCollage from "@/public/impact/hr/v2/journey-year-end-collage.jpg";
-import tabYearEnd from "@/public/impact/hr/v2/journey-year-end.jpg";
-import tabOffboarding from "@/public/impact/hr/v2/journey-offboarding.jpg";
-import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
-import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
-import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
-import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
-import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import problem1 from "@/public/impact/hr/v2/problem-recognition.webp";
+import problem2 from "@/public/impact/hr/v2/problem-fragmented.webp";
+import problem3 from "@/public/impact/hr/v2/problem-manual.webp";
+import problem4 from "@/public/impact/hr/v2/problem-scale.webp";
+import tabOnboarding from "@/public/impact/hr/v2/journey-onboarding.webp";
+import tabAnniversaries from "@/public/impact/hr/v2/journey-anniversaries.webp";
+import tabWellness from "@/public/impact/hr/v2/journey-wellness.webp";
+import tabBirthdays from "@/public/impact/hr/v2/journey-birthdays.webp";
+import tabHolidays from "@/public/impact/hr/v2/journey-holidays.webp";
+import tabAllHands from "@/public/impact/hr/v2/journey-all-hands.webp";
+import tabOffboarding from "@/public/impact/hr/v2/journey-offboarding.webp";
+import engageRecognition from "@/public/impact/hr/v2/hr-engage-recognition.webp";
+import engageSwag from "@/public/impact/hr/v2/hr-engage-swag.webp";
+import engageSnacks from "@/public/impact/hr/v2/hr-engage-snacks.webp";
+import engageGifting from "@/public/impact/hr/v2/hr-engage-gifting.webp";
+import engageExperiences from "@/public/impact/hr/v2/hr-engage-experiences.webp";
 import RecognitionSlack from "@/app/components/cards/impact-hr/RecognitionSlack";
 import RecognitionFeed from "@/app/components/cards/impact-hr/RecognitionFeed";
 import RecognitionPoints from "@/app/components/cards/impact-hr/RecognitionPoints";
@@ -96,13 +97,11 @@ export default function HrPage() {
             secondary: { label: "See the platform", href: LINKS.platform },
           }}
         >
-          <VariableCardGrid
-            background="transparent"
+          <ImpactProof
             caption={CASE_STUDY_CAPTION}
-            captionColor="#16171b"
             title="See how HR teams use Stadium"
-            imageFit="cover"
-            items={CASE_STUDIES.hr}
+            rating={G2_RATING}
+            cards={CASE_STUDIES.hr}
           />
         </ImpactClosing>
       }
@@ -196,7 +195,7 @@ export default function HrPage() {
             description: "Set up the experience once, and Stadium handles each new hire from there.",
             bullets: ["Triggered from your HRIS", "Branded welcome kits", "Ships to 170+ countries"],
             image: tabOnboarding,
-            imageAlt: "An HR manager reviewing the onboarding dashboard on a desktop monitor",
+            imageAlt: "A new hire laughing with a colleague as he sets an ARCADE welcome kit box on her desk",
           },
           {
             id: "anniversaries",
@@ -205,8 +204,22 @@ export default function HrPage() {
             title: "Celebrate every work milestone",
             description: "Anniversaries trigger automatically from employee start dates, with rewards employees can choose themselves.",
             bullets: ["Triggered from your HRIS", "Can be tiered by milestone", "No manual reminders needed"],
-            image: tabMilestone,
-            imageAlt: "A team member reviewing work anniversaries on a desktop monitor",
+            href: LINKS.swag,
+            cta: "Powered by Swag",
+            image: tabAnniversaries,
+            imageAlt: "A smiling team member opening a box of chocolates at a work-anniversary celebration",
+          },
+          {
+            id: "birthdays",
+            name: "Birthdays",
+            tab: "Birthdays",
+            title: "Never miss a birthday",
+            description: "Give every employee a birthday moment that feels thoughtful, without another reminder on your calendar.",
+            bullets: ["Triggered from your HRIS", "Gifts go out automatically", "Ships to 170+ countries"],
+            href: LINKS.swag,
+            cta: "Powered by Swag",
+            image: tabBirthdays,
+            imageAlt: "A hand placing a birthday note on a wrapped gift box beside a coffee cup",
           },
           {
             id: "wellness",
@@ -217,18 +230,8 @@ export default function HrPage() {
             bullets: ["Dietary preferences supported", "No addresses to collect", "Ships to 170+ countries"],
             href: LINKS.snacks,
             cta: "Powered by Snackmagic",
-            image: tabCare,
-            imageAlt: "An employee browsing the Snackmagic catalog on a laptop",
-          },
-          {
-            id: "birthdays",
-            name: "Birthdays",
-            tab: "Birthdays",
-            title: "Never miss a birthday",
-            description: "Give every employee a birthday moment that feels thoughtful, without another reminder on your calendar.",
-            bullets: ["Triggered from your HRIS", "Gifts go out automatically", "Ships to 170+ countries"],
-            image: tabBirthday,
-            imageAlt: "An employee opening a birthday gift box full of snacks",
+            image: tabWellness,
+            imageAlt: "An employee at her desk reading a note beside an open Snackmagic box of snacks",
           },
           {
             id: "holidays",
@@ -237,18 +240,24 @@ export default function HrPage() {
             title: "Close out the year with ease",
             description: "Give employees their choice of gift or send one branded option to everyone.",
             bullets: ["One program to manage", "No guesswork", "Ships to 170+ countries"],
-            image: tabYearEndCollage,
-            imageAlt: "A collage of employees unwrapping holiday gifts",
+            href: LINKS.swag,
+            cta: "Powered by Swag",
+            image: tabHolidays,
+            imageAlt: "Two coworkers chatting in an open office, one with a red gift bag on her desk",
           },
           {
-            id: "year-end",
-            name: "Year-end",
-            tab: "Year-end",
-            title: "Close out the year with ease",
-            description: "Give employees their choice of gift or send one branded option to everyone.",
+            id: "all-hands",
+            name: "All-hands",
+            tab: "All-hands",
+            /* Figma repeats the Holidays copy for this state ("Needs copy"); placeholder
+               wording below is awaiting final copy. */
+            title: "Make every company moment count",
+            description: "Give everyone a branded gift for all-hands and company events, with one program to manage.",
             bullets: ["One program to manage", "No guesswork", "Ships to 170+ countries"],
-            image: tabYearEnd,
-            imageAlt: "An employee relaxing on a sofa with a Snackmagic gift box",
+            href: LINKS.swag,
+            cta: "Powered by Swag",
+            image: tabAllHands,
+            imageAlt: "Employees seated at an all-hands meeting, one taking notes beside an ARCADE cap",
           },
           {
             id: "offboarding",
@@ -257,8 +266,10 @@ export default function HrPage() {
             title: "Leave a lasting impression",
             description: "Give departing employees a thoughtful sendoff that shows their time with your company mattered.",
             bullets: ["Personalized farewell", "Employee gift choice", "Easy to send anywhere"],
+            href: LINKS.swag,
+            cta: "Powered by Swag",
             image: tabOffboarding,
-            imageAlt: "A manager handing a farewell gift to a departing employee",
+            imageAlt: "A manager handing a departing employee a farewell box with a plant and framed photo",
           },
         ]}
       />
