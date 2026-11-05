@@ -11,17 +11,17 @@ import SplitFeature from "@/app/components/common/SplitFeature";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
-import FunnelFlow from "@/app/components/impact/FunnelFlow";
+import ArcadeFlow from "@/app/components/impact/ArcadeFlow";
 import { LINKS, TEAM_ROUTES } from "@/app/components/impact/shared";
 
 import problemTeams from "@/public/impact/overview/problem-teams.jpg";
-import tabHr from "@/public/impact/overview/tab-hr.jpg";
-import tabMarketing from "@/public/impact/overview/tab-marketing.jpg";
-import tabSales from "@/public/impact/overview/tab-sales.jpg";
-import tabCx from "@/public/impact/overview/tab-cx.jpg";
-import tabLeadership from "@/public/impact/overview/tab-leadership.jpg";
-import tabOffice from "@/public/impact/overview/tab-office-admin.jpg";
-import tabFinance from "@/public/impact/overview/tab-finance.jpg";
+import tabHr from "@/public/impact/overview/tab-hr.webp";
+import tabMarketing from "@/public/impact/overview/tab-marketing.webp";
+import tabSales from "@/public/impact/overview/tab-sales.webp";
+import tabCx from "@/public/impact/overview/tab-cx.webp";
+import tabLeadership from "@/public/impact/overview/tab-leadership.webp";
+import tabOffice from "@/public/impact/overview/tab-office-admin.webp";
+import tabFinance from "@/public/impact/overview/tab-finance.webp";
 import Workspace from "@/app/components/cards/impact-overview/Workspace";
 import VectorCard from "@/app/components/cards/VectorCard";
 import ScaleGlobal from "@/app/components/cards/impact-overview/ScaleGlobal";
@@ -46,7 +46,9 @@ export default function ImpactPage() {
             primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
             secondaryCta={{ label: "Explore by team", href: "#explore-by-team" }}
             background="canvas"
-            visual={<FunnelFlow />}
+            visualLayout="aligned"
+            visualMaxWidth="38.3125rem"
+            visual={<ArcadeFlow />}
           />
         }
         closing={
@@ -74,7 +76,7 @@ export default function ImpactPage() {
           title="Every team engages people. Most do it separately."
           description="HR runs recognition. Marketing manages swag. Sales sends gifts. Customer teams celebrate milestones. Soon, every team has its own tools, vendors, budgets, and workflows."
           image={problemTeams}
-          imageAlt="Employees in a bright open office, one packing a hoodie into a box beside a laptop while colleagues work separately at nearby desks"
+          imageAlt="A man crouched in a cluttered storage room, holding a parcel and a delivery slip while on a phone call, surrounded by boxes"
           framed
           footnote="More vendors. More admin. Less visibility."
         />
@@ -91,7 +93,7 @@ export default function ImpactPage() {
           caption="Centralized budgets"
           title="Fund every team from one place"
           description="Allocate budgets to team Wallets, set permissions, and track spend across the organization—all from one place."
-          graphic={<VectorCard src="/cards/impact-overview/Budgets.svg" alt="Allocating $20,000 from a $250,000 company wallet to the Sales wallet for sales managers" width={612} height={482} />}
+          graphic={<VectorCard src="/cards/impact-overview/Budgets.webp" alt="Sales Wallet showing $47,000, funded with $20,000 from the ARCADE company wallet and open to sales managers" width={612} height={482} />}
         />
 
         <VariableCardGrid
@@ -102,10 +104,10 @@ export default function ImpactPage() {
           gridColumns={2}
           narrow
           items={[
-            { graphic: <VectorCard src="/cards/impact-overview/ScaleSaveTime.svg" alt="A monthly snack box set to repeat automatically" width={400} height={250} />, title: "Save Time", description: "Automate recurring sends and programs." },
-            { graphic: <VectorCard src="/cards/impact-overview/ScaleConnect.svg" alt="12 systems synced, including Workday, Salesforce, HubSpot, and Greenhouse" width={400} height={250} />, title: "Connect Your Systems", description: "Connect Stadium with your HRIS, CRM, and other business systems." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleSaveTime.webp" alt="A monthly snack box set to repeat automatically" width={400} height={250} />, title: "Save Time", description: "Automate recurring sends and programs." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleConnect.webp" alt="12 systems synced, including Workday, Salesforce, HubSpot, BambooHR, Rippling, and Greenhouse" width={400} height={250} />, title: "Connect Your Systems", description: "Connect Stadium with your HRIS, CRM, and other business systems." },
             { graphic: <ScaleGlobal />, title: "Reach People Globally", description: "Fulfill and deliver across 170+ countries." },
-            { graphic: <VectorCard src="/cards/impact-overview/ScaleVendors.svg" alt="Separate swag, 3PL, and courier vendors replaced by one Stadium partner" width={400} height={250} />, title: "Consolidate Vendors", description: "Reduce the cost and complexity of separate vendors, shipping, fulfillment, and storage." },
+            { graphic: <VectorCard src="/cards/impact-overview/ScaleVendors.webp" alt="Separate swag, 3PL, and courier vendors replaced by one Stadium partner" width={400} height={250} />, title: "Consolidate Vendors", description: "Reduce the cost and complexity of separate vendors, shipping, fulfillment, and storage." },
           ]}
           footnote="Less admin. Lower costs. Fewer things to worry about."
         />
@@ -119,12 +121,12 @@ export default function ImpactPage() {
             autoAdvance={false}
             items={[
               { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", image: tabHr, imageAlt: "A new hire's welcome kit on her desk, with a delivery timeline showing the kit delivered and a welcome post sent", href: TEAM_ROUTES.hr, cta: "Explore Stadium for HR" },
-              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "Two colleagues handing over a branded gift bag at an event", href: TEAM_ROUTES.marketing, cta: "Explore Stadium for Marketing" },
-              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A seller on a video call with a prospect, a premium gift box open on the desk", href: TEAM_ROUTES.sales, cta: "Explore Stadium for Sales" },
-              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling as she unboxes a branded tumbler gift", href: TEAM_ROUTES.cx, cta: "Explore Stadium for CX" },
-              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", image: tabLeadership, imageAlt: "A leader reviewing recognition and budget dashboards on a desktop", href: TEAM_ROUTES.leadership, cta: "Explore Stadium for Leadership" },
-              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", image: tabOffice, imageAlt: "An office admin managing a new-hire journey and milestones calendar on screen, with branded swag on the desk", href: TEAM_ROUTES.officeAdmins, cta: "Explore Stadium for Office Admins" },
-              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", image: tabFinance, imageAlt: "A finance lead reviewing the team budget and approvals on a desktop", href: TEAM_ROUTES.finance, cta: "Explore Stadium for Finance" },
+              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "A shopper carrying an ARCADE gift bag past a branded booth in a busy event hall", href: TEAM_ROUTES.marketing, cta: "Explore Stadium for Marketing" },
+              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A man watching a video call on his monitor while the prospect shows an open DevNest gift box", href: TEAM_ROUTES.sales, cta: "Explore Stadium for Sales" },
+              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling on her sofa as she unboxes a Tap + Cork tumbler gift", href: TEAM_ROUTES.cx, cta: "Explore Stadium for CX" },
+              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", image: tabLeadership, imageAlt: "A leader leaning over a desk to talk with a colleague, an orange gift box beside the keyboard", href: TEAM_ROUTES.leadership, cta: "Explore Stadium for Leadership" },
+              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", image: tabOffice, imageAlt: "An office admin with a clipboard wheeling boxes through a storage room", href: TEAM_ROUTES.officeAdmins, cta: "Explore Stadium for Office Admins" },
+              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", image: tabFinance, imageAlt: "A finance lead reviewing a document with a pen at his desk, a parcel beside him", href: TEAM_ROUTES.finance, cta: "Explore Stadium for Finance" },
             ]}
           />
         </div>

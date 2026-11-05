@@ -1,6 +1,6 @@
 /* Closing band shared by /impact and every /impact/<team> page (Figma
    "proof" frames, e.g. 3998:13969): the section above the CTA (case studies
-   or "The proof") sits on white that ramps through blue into #181818
+   or "The proof") sits on white that ramps through neutral greys into #111111
    (--gradient-impact-closing), then the standard ClosingCTA card and the
    footer divider. ClosingCTA carries its own lg:pt-40 (Figma's 160). */
 
@@ -30,7 +30,7 @@ export default function ImpactClosing({ children, cta }: ImpactClosingProps) {
         descriptionClassName="max-w-[44rem] lg:max-w-[48rem]"
         ctaOneLabel={cta.primary.label}
         ctaOneLink={cta.primary.href}
-        ctaOneVariant="primary"
+        ctaOneVariant="white"
         ctaTwoLabel={cta.secondary?.label}
         ctaTwoLink={cta.secondary?.href}
         ctaTwoVariant="secondary"

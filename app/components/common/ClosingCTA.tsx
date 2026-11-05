@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 type CTAButtonVariant =
   | "primary"
+  | "white"
   | "secondary"
   | "yellow"
   | "green"
@@ -36,6 +37,8 @@ type ClosingCTAProps = {
 const CTA_VARIANTS: Record<CTAButtonVariant, string> = {
   primary:
     "bg-[#1f71e7] text-white hover:brightness-110 focus-visible:outline-white",
+  white:
+    "bg-white text-[#16171b] hover:bg-grey-100 focus-visible:outline-white",
   secondary:
     "border border-[#4d4d5c] bg-[#292933] text-white hover:bg-[#33333f] focus-visible:outline-white",
   yellow: "bg-[#FFB800] text-black focus-visible:outline-white",

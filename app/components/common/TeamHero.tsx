@@ -64,7 +64,7 @@ export default function TeamHero({
   return (
     <section
       aria-labelledby="team-hero-title"
-      className={`relative overflow-hidden bg-impact-hero-night pb-16 pt-[7.5rem] md:pb-24 md:pt-[10rem] ${
+      className={`relative overflow-hidden ${background === "canvas" ? "bg-impact-hero-black" : "bg-impact-hero-night"} pb-16 pt-[7.5rem] md:pb-24 md:pt-[10rem] ${
         visual
           ? aligned
             ? "xl:pb-0 xl:pt-hero-nav"
