@@ -11,7 +11,7 @@ import { INTRO, type InfraTab } from "./content";
 const FALLBACK_SECONDS = 8; // tabs without a clip advance on this clock
 
 const eyebrow =
-  "font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-pyramid-ice";
+  "text-balance font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-pyramid-ice";
 
 /* centred chapter copy (Figma 7075:30202 · 6765:3040 · 6765:3104): eyebrow, title, body */
 export function ChapterHeader({
@@ -28,8 +28,8 @@ export function ChapterHeader({
   return (
     <header className="flex flex-col items-center gap-4 text-center md:gap-6">
       <p className={eyebrow}>{eyebrowText}</p>
-      <h2 className="font-display text-display-sm text-white md:text-heading-xl lg:text-section-title">{title}</h2>
-      <p className={`font-sans text-pyramid-lede text-white/65 ${bodyWidth}`}>{body}</p>
+      <h2 className="text-balance font-display text-display-sm text-white md:text-heading-xl lg:text-section-title">{title}</h2>
+      <p className={`text-balance font-sans text-pyramid-lede text-white/65 ${bodyWidth}`}>{body}</p>
     </header>
   );
 }
@@ -166,11 +166,14 @@ export function MediaTabs({
   variant,
   playing,
   label,
+  mediaClass = "aspect-[1200/675] w-full",
 }: {
   tabs: InfraTab[];
   variant: "pill" | "screen";
   playing: boolean;
   label: string;
+  /** pill variant: size/aspect of the video card (default 16:9, full width) */
+  mediaClass?: string;
 }) {
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState<Record<number, boolean>>({});
@@ -271,7 +274,7 @@ export function MediaTabs({
   const media = (
     <div
       ref={mediaEl}
-      className={`relative overflow-hidden bg-[#0e0f11] ${pill ? "aspect-[1200/675] w-full rounded-[2rem]" : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
+      className={`relative overflow-hidden bg-[#0e0f11] ${pill ? `${mediaClass} rounded-[2rem]` : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
         }`}
     >
       {tabs.map((t, i) => (
@@ -318,7 +321,7 @@ export function MediaTabs({
     return (
       <div className="flex flex-col items-center gap-6 md:gap-8">
         {media}
-        <p className="min-h-[2.75rem] max-w-[32.25rem] text-center font-sans text-pyramid-meta text-[#cccccc]">
+        <p className="min-h-[2.75rem] max-w-[32.25rem] text-balance text-center font-sans text-pyramid-meta text-[#cccccc]">
           {tab.desc}
         </p>
         <div
@@ -365,7 +368,7 @@ export function MediaTabs({
             <div key={t.title} className="w-full shrink-0 snap-center">
               <div className={`flex h-full min-h-[6.25rem] flex-col rounded-xl p-4 ${i === active ? "bg-white/10" : "bg-pyramid-tab"}`}>
                 <span className="font-sans text-pyramid-tab text-white">{t.title}</span>
-                {t.desc && <span className="mt-1.5 font-sans text-pyramid-meta text-white/60">{t.desc}</span>}
+                {t.desc && <span className="mt-1.5 text-balance font-sans text-pyramid-meta text-white/60">{t.desc}</span>}
               </div>
             </div>
           ))}

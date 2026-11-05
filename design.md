@@ -2380,3 +2380,14 @@ label (y290) · 72×2 wire (x860; `#fa6b80 → #d9d9de`, dot at its left end) ·
 Below xl the three groups stack (HRIS → GEI with the photo strip, fluid-scaled → CRM) and the wires drop.
 Photos: `public/new-home/system/ledger-photo-*.webp` (340px wide, from the Figma exports).
 Tokens: `--color-ledger-wire-hris`, `-wire-crm`, `-wire-fade`, `--color-ledger-caption`.
+
+## Home · GEI diagram (Figma 7505:33056 "GEI · HRIS / GEI / CRM", 2026-11-05)
+
+Replaces the logo ledger in `SystemRail.tsx`. Header: plain 12/16 +1px uppercase eyebrow (no badge), 55/60
+headline `text-section-title`, 18/28 +0.25px `#6b6c71` one-liner, 900 wide, 20 gap, 56 to the diagram.
+xl+ diagram 1106×366, gap 20: HRIS card 270 (r16, full opacity, no shadow, p32/40, eyebrow + 24/30 name, 72 r20 icon
+tile, three 12px outlined tags) · 63 arrow (full opacity; filter drop-shadow `.gei-arrow-shadow`) · GEI card 360×366 (r20, `shadow-gei-card`, 104 r20
+mark tile with the 29×51 symbol, five `#f2f2f2` 14px chips) · arrow tile (flipped) · CRM card 270. Behind it a
+rotated, blurred Stadium symbol glow (`public/new-home/system/gei-glow.svg`, 1098×1327, 33% opacity).
+Below xl the cards stack (max 360 wide) and the arrows turn to point down. Token: `--shadow-gei-card`.
+Assets: `public/new-home/system/gei-mark.svg`, `gei-glow.svg`; icons are Lucide (User, MoveRight, Handshake).

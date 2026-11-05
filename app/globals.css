@@ -1144,6 +1144,7 @@ body {
 @theme {
   --color-ledger-soft: #f4f4f6; /* logo rows, program chips, tag chips on the GEI badge */
   --color-ledger-line: #dbdbdf; /* tag + ghost-row hairline */
+  --shadow-gei-card: 0 1rem 2.25rem -0.625rem rgba(0, 0, 0, 0.05), 0 0.1875rem 0.375rem 0 rgba(0, 0, 0, 0.06); /* 0 16 36 -10 .05 + 0 3 6 .06 — GEI diagram cards */
   --shadow-ledger: 0 1rem 1.125rem 0 rgba(0, 0, 0, 0.05), 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.06); /* 0 16 18 .05 + 0 3 3 .06 */
   --text-ledger-label: 0.6875rem; /* 11/15 +1px — card eyebrow */
   --text-ledger-label--line-height: 0.9375rem;
@@ -1245,4 +1246,9 @@ body {
   --color-ledger-wire-crm: #fa6b80; /* CRM connector dot / gradient start */
   --color-ledger-wire-fade: #d9d9de; /* connector fade colour */
   --color-ledger-caption: #6b6c71; /* photo strip caption */
+}
+
+/* GEI diagram arrows — the Figma drop-shadow is a filter (it shadows the arrow glyph, not a box) */
+.gei-arrow-shadow {
+  filter: drop-shadow(0 1rem 1.125rem rgba(0, 0, 0, 0.05)) drop-shadow(0 0.1875rem 0.1875rem rgba(0, 0, 0, 0.06));
 }

@@ -83,14 +83,14 @@ function Stage() {
         <span className="absolute rounded-full border-2 border-people-night bg-people-avatar-b" style={box(62, 34, 56, 56)}>
           <Image src={img("person")} alt="" width={28} height={28} className="absolute" style={box(12, 12, 28, 28)} />
         </span>
-        <p className="absolute w-full text-center font-sans text-white/60" style={{ top: u(104), fontSize: u(13), lineHeight: u(18) }}>
+        <p className="absolute w-full text-balance text-center font-sans text-white/60" style={{ top: u(104), fontSize: u(13), lineHeight: u(18) }}>
           You set the direction.
         </p>
       </div>
 
       {/* you talk to */}
       <div className="absolute" style={box(...d(164, 150), 120, 40)}>
-        <p className="absolute w-full text-center font-sans text-white/55" style={{ top: 0, fontSize: u(12), lineHeight: u(17) }}>
+        <p className="absolute w-full text-balance text-center font-sans text-white/55" style={{ top: 0, fontSize: u(12), lineHeight: u(17) }}>
           you talk to
         </p>
         <Image src={img("connector")} alt="" width={120} height={12} className="absolute max-w-none" style={box(0, 26, 120, 12)} />
@@ -110,7 +110,7 @@ function Stage() {
         <p className="absolute w-full text-center font-sans font-semibold text-white" style={{ top: u(118), fontSize: u(16), lineHeight: u(22) }}>
           Your success lead
         </p>
-        <p className="absolute w-full text-center font-sans text-white/55" style={{ top: u(144), fontSize: u(13), lineHeight: u(18) }}>
+        <p className="absolute w-full text-balance text-center font-sans text-white/55" style={{ top: u(144), fontSize: u(13), lineHeight: u(18) }}>
           One point of contact,
           <br />
           kickoff to QBR.
@@ -168,7 +168,7 @@ function Stack() {
             <Avatar className="border-2 border-people-night bg-people-avatar-a" />
             <Avatar className="-ml-3 border-2 border-people-night bg-people-avatar-b" />
           </div>
-          <p className="max-w-24 font-sans text-[0.75rem] leading-4 text-white/60">You set the direction.</p>
+          <p className="max-w-24 text-balance font-sans text-[0.75rem] leading-4 text-white/60">You set the direction.</p>
         </div>
 
         {/* you talk to */}
@@ -194,7 +194,7 @@ function Stack() {
             />
           </span>
           <p className="font-sans text-[0.8125rem] font-semibold leading-[1.125rem] text-white">Your success lead</p>
-          <p className="max-w-40 font-sans text-[0.75rem] leading-4 text-white/55">One point of contact, kickoff to QBR.</p>
+          <p className="max-w-40 text-balance font-sans text-[0.75rem] leading-4 text-white/55">One point of contact, kickoff to QBR.</p>
         </div>
       </div>
 
