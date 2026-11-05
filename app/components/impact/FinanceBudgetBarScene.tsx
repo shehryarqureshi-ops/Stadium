@@ -31,11 +31,11 @@
 import Image from "next/image";
 import { Easing, interpolate, spring, useCurrentFrame } from "remotion";
 
-import avatarAlex from "@/public/impact/finance/hero/avatar-alex.png";
-import avatarArun from "@/public/impact/finance/hero/avatar-arun.png";
-import avatarGrace from "@/public/impact/finance/hero/avatar-grace.png";
-import avatarJordan from "@/public/impact/finance/hero/avatar-jordan.png";
-import avatarMaya from "@/public/impact/finance/hero/avatar-maya.png";
+import avatarAlex from "@/public/impact/finance/hero/avatar-alex.webp";
+import avatarArun from "@/public/impact/finance/hero/avatar-arun.webp";
+import avatarGrace from "@/public/impact/finance/hero/avatar-grace.webp";
+import avatarJordan from "@/public/impact/finance/hero/avatar-jordan.webp";
+import avatarMaya from "@/public/impact/finance/hero/avatar-maya.webp";
 
 export const STAGE_W = 580;
 export const STAGE_H = 437;

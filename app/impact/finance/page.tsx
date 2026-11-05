@@ -20,15 +20,15 @@ import { CASE_STUDY_CAPTION, HR_TOOLS, LINKS, G2_RATING } from "@/app/components
 
 import VectorCard from "@/app/components/cards/VectorCard";
 import Reporting from "@/app/components/cards/impact-finance/Reporting";
-import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
-import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
-import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
-import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
-import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
-import problemBudgets from "@/public/impact/finance/v2/problem-budgets.jpg";
-import problemInvoices from "@/public/impact/finance/v2/problem-invoices.jpg";
-import problemReconciling from "@/public/impact/finance/v2/problem-reconciling.jpg";
-import problemVendors from "@/public/impact/finance/v2/problem-vendors.jpg";
+import engageRecognition from "@/public/impact/hr/v2/hr-engage-recognition.webp";
+import engageSwag from "@/public/impact/hr/v2/hr-engage-swag.webp";
+import engageSnacks from "@/public/impact/hr/v2/hr-engage-snacks.webp";
+import engageGifting from "@/public/impact/hr/v2/hr-engage-gifting.webp";
+import engageExperiences from "@/public/impact/hr/v2/hr-engage-experiences.webp";
+import problemBudgets from "@/public/impact/finance/v2/problem-budgets.webp";
+import problemInvoices from "@/public/impact/finance/v2/problem-invoices.webp";
+import problemReconciling from "@/public/impact/finance/v2/problem-reconciling.webp";
+import problemVendors from "@/public/impact/finance/v2/problem-vendors.webp";
 
 export const metadata: Metadata = seoMetadata("/impact/finance");
 
@@ -85,10 +85,10 @@ export default function FinancePage() {
         narrow
         imageStyle="panel"
         items={[
-          { image: problemVendors, imageAlt: "A finance manager reviewing vendor paperwork at a desk", description: "Vendors multiply across teams." },
-          { image: problemBudgets, imageAlt: "A finance manager comparing budget spreadsheets across screens", description: "Budgets live in different places." },
-          { image: problemInvoices, imageAlt: "A stack of invoices from separate vendors on a desk", description: "Invoices pile up across programs." },
-          { image: problemReconciling, imageAlt: "A finance manager reconciling records on a laptop", description: "You’re left reconciling the pieces." },
+          { image: problemVendors, imageAlt: "A finance manager holding an invoice beside stacks of delivered vendor parcels", description: "Vendors multiply across teams." },
+          { image: problemBudgets, imageAlt: "A finance manager comparing two laptop spreadsheets with a printed budget", description: "Budgets live in different places." },
+          { image: problemInvoices, imageAlt: "A hand pulling a document from a tray of stacked invoices", description: "Invoices pile up across programs." },
+          { image: problemReconciling, imageAlt: "A finance manager at a desk, hand to her face, reconciling records with a calculator", description: "You’re left reconciling the pieces." },
         ]}
         footnote="Your teams need flexibility. You need control. You shouldn’t have to choose."
       />
