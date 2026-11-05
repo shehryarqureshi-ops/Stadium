@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-sales/VisRedemptions.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function VisRedemptions({ alt = "A recipient redeemed her gift within two hours of the send" }: { alt?: string }) {
+export default function VisRedemptions({ alt = "A recipient redeeming a gift, with a redemption notification" }: { alt?: string }) {
   return <CardObject src="/cards/impact-sales/VisRedemptions.svg" alt={alt} width={400} height={250} />;
 }

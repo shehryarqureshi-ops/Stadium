@@ -1,5 +1,5 @@
 /* Stadium Static UI Card graphics for the /impact/sales "Less friction" step
-   cards — Figma 4791:16918 (graphic frames 4799:6124, 4799:6148, 4799:6165).
+   cards — Figma 4791:16918 (graphic frames 4799:6148, 4799:6165; the first step is now the FrictionChooseGift SVG card, Figma 128:22152).
    Each sits on a #f8f8f8 r16 stage, 235×283 on desktop. */
 
 import Image from "next/image";
@@ -12,12 +12,13 @@ function Svg({ name, className }: { name: string; className: string }) {
   );
 }
 
-function Stage({ top, children }: { top: string; children: React.ReactNode }) {
+function Stage({ compact = false, children }: { compact?: boolean; children: React.ReactNode }) {
   return (
     <div className="relative h-[17.6875rem] w-full overflow-hidden rounded-2xl bg-[#f8f8f8]">
       <div
-        className="absolute left-[7.66%] flex w-[84.68%] flex-col gap-2.5 overflow-hidden rounded-[0.875rem] bg-white p-3.5 shadow-[0px_8px_22px_0px_rgba(0,0,0,0.09)]"
-        style={{ top }}
+        className={`absolute left-[7.66%] top-1/2 flex w-[84.68%] -translate-y-1/2 flex-col overflow-hidden rounded-[0.875rem] bg-white shadow-[0px_8px_22px_0px_rgba(0,0,0,0.09)] ${
+          compact ? "gap-2 p-3" : "gap-2.5 p-3.5"
+        }`}
       >
         {children}
       </div>
@@ -27,51 +28,9 @@ function Stage({ top, children }: { top: string; children: React.ReactNode }) {
 
 function DarkButton({ children }: { children: string }) {
   return (
-    <div className="flex items-center justify-center rounded-full bg-[#181818] px-3 py-2">
+    <div className="flex items-center justify-center rounded-full bg-[#181818] px-3 py-1.5">
       <span className="font-sans text-[0.6875rem] font-bold leading-[0.875rem] text-white">{children}</span>
     </div>
-  );
-}
-
-const GIFTS = [
-  { name: "Drinkware", photo: "gift-drinkware", selected: false },
-  { name: "Bags", photo: "gift-bags", selected: true },
-  { name: "Tech", photo: "gift-tech", selected: false },
-  { name: "Desk", photo: "gift-desk", selected: false },
-];
-
-export function ChooseGiftGraphic() {
-  return (
-    <Stage top="0.9375rem">
-      <p className="font-sans text-[0.78125rem] font-bold leading-4 text-[#181818]">Choose your gift</p>
-      <div className="grid grid-cols-2 gap-2">
-        {GIFTS.map((gift) => (
-          <div key={gift.name} className="flex flex-col gap-1">
-            <div
-              className={`relative h-[3.625rem] overflow-hidden rounded-[0.625rem] bg-[#f8f8f8] ${
-                gift.selected ? "border-2 border-[#181818]" : ""
-              }`}
-            >
-              <Image
-                src={`${ASSETS}/${gift.photo}.jpg`}
-                alt=""
-                fill
-                sizes="6rem"
-                className="object-cover"
-              />
-            </div>
-            <span
-              className={`font-sans text-[0.65625rem] leading-[0.875rem] text-[#2c2d2e] ${
-                gift.selected ? "font-bold" : "font-semibold"
-              }`}
-            >
-              {gift.name}
-            </span>
-          </div>
-        ))}
-      </div>
-      <DarkButton>Choose Bags</DarkButton>
-    </Stage>
   );
 }
 
@@ -83,7 +42,7 @@ const FIELDS = [
 
 export function EnterAddressGraphic() {
   return (
-    <Stage top="0.9375rem">
+    <Stage compact>
       <p className="font-sans text-[0.78125rem] font-bold leading-4 text-[#181818]">Where should we ship it?</p>
       {FIELDS.map((field) => (
         <div key={field.label} className="flex flex-col gap-1">
@@ -91,7 +50,7 @@ export function EnterAddressGraphic() {
             {field.label}
           </span>
           <div
-            className={`rounded-lg bg-white px-2.5 py-[0.4375rem] ${
+            className={`rounded-lg bg-white px-2.5 py-[0.3125rem] ${
               field.active ? "border-[1.5px] border-[#181818]" : "border border-[#e3e4e6]"
             }`}
           >
@@ -106,7 +65,7 @@ export function EnterAddressGraphic() {
 
 export function FollowUpGraphic() {
   return (
-    <Stage top="3.5rem">
+    <Stage>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="flex size-7 items-center justify-center rounded-full bg-[#ddf5e3]">

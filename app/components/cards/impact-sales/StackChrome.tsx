@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-sales/StackChrome.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function StackChrome({ alt = "Chrome extension sending a gift before a renewal call, from the calendar invite" }: { alt?: string }) {
+export default function StackChrome({ alt = "A calendar invite with a Stadium gift picker offering a coffee and tumbler for a renewal call" }: { alt?: string }) {
   return <CardObject src="/cards/impact-sales/StackChrome.svg" alt={alt} width={648} height={364} />;
 }

@@ -14,25 +14,26 @@ import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
 import DealRail from "@/app/components/impact/DealRail";
-import { ChooseGiftGraphic, EnterAddressGraphic, FollowUpGraphic } from "@/app/components/impact/SalesGraphics";
+import { EnterAddressGraphic, FollowUpGraphic } from "@/app/components/impact/SalesGraphics";
+import FrictionChooseGift from "@/app/components/cards/impact-sales/FrictionChooseGift";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
-import problemSpend from "@/public/impact/sales/v2/problem-spend.jpg";
-import problemAddresses from "@/public/impact/sales/v2/problem-addresses.jpg";
-import problemStages from "@/public/impact/sales/v2/problem-stages.jpg";
-import problemResults from "@/public/impact/sales/v2/problem-results.jpg";
-import journeyProspecting from "@/public/impact/sales/v2/journey-prospecting.jpg";
-import journeyMeetings from "@/public/impact/sales/v2/journey-meetings.jpg";
-import journeyDeal from "@/public/impact/sales/v2/journey-deal-progression.jpg";
-import journeyClosedWon from "@/public/impact/sales/v2/journey-closed-won.jpg";
-import journeyRenewal from "@/public/impact/sales/v2/journey-renewal.jpg";
-import journeyWinBack from "@/public/impact/sales/v2/journey-win-back.jpg";
-import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
-import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
-import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
-import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
-import engageGiftCards from "@/public/impact/hr/v2/engage-gift-cards.jpg";
+import problemSpend from "@/public/impact/sales/v2/problem-spend.webp";
+import problemAddresses from "@/public/impact/sales/v2/problem-addresses.webp";
+import problemStages from "@/public/impact/sales/v2/problem-stages.webp";
+import problemResults from "@/public/impact/sales/v2/problem-results.webp";
+import journeyProspecting from "@/public/impact/sales/v2/journey-prospecting.webp";
+import journeyMeetings from "@/public/impact/sales/v2/journey-meetings.webp";
+import journeyDeal from "@/public/impact/sales/v2/journey-deal-progression.webp";
+import journeyClosedWon from "@/public/impact/sales/v2/journey-closed-won.webp";
+import journeyRenewal from "@/public/impact/sales/v2/journey-renewal.webp";
+import journeyWinBack from "@/public/impact/sales/v2/journey-win-back.webp";
+import engageGifting from "@/public/impact/hr/v2/hr-engage-gifting.webp";
+import engageSwag from "@/public/impact/hr/v2/hr-engage-swag.webp";
+import engageSnacks from "@/public/impact/hr/v2/hr-engage-snacks.webp";
+import engageExperiences from "@/public/impact/hr/v2/hr-engage-experiences.webp";
+import engageGiftCards from "@/public/impact/sales/v2/engage-gift-cards.webp";
 import Dashboard from "@/app/components/cards/impact-sales/Dashboard";
 import StackApi from "@/app/components/cards/impact-sales/StackApi";
 import StackChrome from "@/app/components/cards/impact-sales/StackChrome";
@@ -125,7 +126,7 @@ export default function SalesPage() {
             {
               title: <>They choose<br />the gift</>,
               description: "Give recipients something they actually want.",
-              content: <ChooseGiftGraphic />,
+              content: <FrictionChooseGift />,
             },
             {
               title: <>They enter<br />the address</>,

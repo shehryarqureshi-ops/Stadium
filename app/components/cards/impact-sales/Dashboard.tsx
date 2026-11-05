@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-sales/Dashboard.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function Dashboard({ alt = "Stadium Gifting workspace showing automated sends around sales moments, rep sends, and all gifting activity" }: { alt?: string }) {
+export default function Dashboard({ alt = "Two ways to gift: the Create Automation flow with the Gift Type step open, offering Send Budget/Points, Send Priceless Gifts, and Send Kits/Items, and the ARCADE Welcome Kit selected" }: { alt?: string }) {
   return <CardObject src="/cards/impact-sales/Dashboard.svg" alt={alt} width={1316} height={805} />;
 }

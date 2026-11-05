@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-sales/StackApi.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function StackApi({ alt = "Stadium API request creating a send and the recipient’s gift choice screen" }: { alt?: string }) {
+export default function StackApi({ alt = "A POST /v1/sends API request creating a gift and the recipient email it produces" }: { alt?: string }) {
   return <CardObject src="/cards/impact-sales/StackApi.svg" alt={alt} width={648} height={364} />;
 }

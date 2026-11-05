@@ -28,9 +28,9 @@
 import Image from "next/image";
 import { Easing, interpolate, interpolateColors, spring, useCurrentFrame } from "remotion";
 
-import avatarArun from "@/public/impact/overview/hero/avatar-arun.png";
-import avatarGrace from "@/public/impact/overview/hero/avatar-grace.png";
-import avatarJordan from "@/public/impact/sales/hero/avatar-jordan.png";
+import avatarArun from "@/public/impact/sales/hero/avatar-arun.webp";
+import avatarGrace from "@/public/impact/sales/hero/avatar-grace.webp";
+import avatarJordan from "@/public/impact/sales/hero/avatar-jordan.webp";
 import stadiumMark from "@/public/impact/sales/hero/stadium-mark.svg";
 import salesforceMark from "@/public/motion/marks/salesforce.svg";
 
