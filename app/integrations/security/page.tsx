@@ -20,7 +20,8 @@ export const metadata: Metadata = seoMetadata("/integrations/security");
    FAQ answers other than the first are collapsed in Figma; copy for them is
    derived from the rest of the page. */
 
-const TRUST_CENTER = "https://help.bystadium.com/hc/en-us";
+const TRUST_CENTER = "https://trust.bystadium.com";
+const SECURITY_DOCS = "https://help.bystadium.com/en-us/articles/17311964-how-to-access-soc-2-reports-penetration-test-reports-and-security-policies";
 
 export default function SecurityPage() {
   return (
@@ -89,7 +90,7 @@ export default function SecurityPage() {
           title: "Meet your organization’s security requirements",
           description: "Get support with security reviews and documentation.",
           primary: { label: "Talk to sales", href: LINKS.sales },
-          secondary: { label: "View SSO documentation", href: "https://help.bystadium.com/hc/en-us" },
+          secondary: { label: "View security documentation", href: SECURITY_DOCS },
         }}
       >
         <NumberedCardGrid

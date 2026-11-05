@@ -32,7 +32,7 @@ export default function CatalogPage() {
             </>
           }
           descriptionClassName="max-w-[44rem] lg:max-w-[48rem]"
-          ctaOneLabel="Book a demo"
+          ctaOneLabel="Talk to sales"
           ctaOneLink="/book-a-call"
           ctaOneVariant="primary"
           ctaTwoLabel="Browse the catalog"

@@ -111,11 +111,16 @@ export default function HrPage() {
         captionColor="#16171b"
         title={
           <>
-            You own the employee experience.
-            <br className="hidden md:block" /> The work behind it is everywhere.
+            You own the employee experience,
+            <br className="hidden md:block" /> but the work behind it is fragmented
           </>
         }
-        description="Managing programs across disconnected tools, vendors, and workflows means more manual work–and less visibility into what’s happening."
+        description={
+          <>
+            Managing programs across disconnected tools, vendors, and workflows means more manual work—
+            <br className="hidden md:block" /> and less visibility into what’s happening.
+          </>
+        }
         gridColumns={2}
         narrow
         imageStyle="panel"

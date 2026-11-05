@@ -37,9 +37,9 @@ export default function IntegrationsListingPage() {
           cta={{
             caption: "Get connected",
             title: "Have a question?",
-            description: "We’re here to help! Reach out, and we’ll help you get set up.",
+            description: "Reach out to our team for guidance on integrations and getting set up.",
             primary: { label: "Talk to sales", href: LINKS.sales },
-            secondary: { label: "Contact us", href: "https://help.bystadium.com/hc/en-us/requests/new?ticket_form_id=25244730714391" },
+            secondary: { label: "Contact us", href: "https://help.bystadium.com/en-us/articles/17311980-how-to-contact-stadium-support" },
           }}
         >
           {null}

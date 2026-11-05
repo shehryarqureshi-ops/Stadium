@@ -29,7 +29,7 @@ const LINK_COLUMNS: {
         { label: "Help Center", href: "https://help.bystadium.com/hc/en-us" },
         { label: "Videos", href: "https://www.youtube.com/@bystadium/playlists" },
         { label: "Accessibility", href: "https://help.bystadium.com/hc/en-us/articles/26547964398359-Accessibility-Tool-Overview" },
-        { label: "Contact Us", href: "https://help.bystadium.com/hc/en-us/requests/new?ticket_form_id=25244730714391" },
+        { label: "Contact Us", href: "https://help.bystadium.com/en-us/articles/17311980-how-to-contact-stadium-support" },
       ],
     },
     {

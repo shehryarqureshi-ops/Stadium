@@ -1646,7 +1646,7 @@ export const BookACallForm: FC<BookACallFormProps> = ({
           >
             {isLoading && <LoaderCircle aria-hidden className="size-3.5 animate-spin" strokeWidth={2.5} />}
             <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">
-              {isLoading ? "Submitting..." : "BOOK A DEMO"}
+              {isLoading ? "Submitting..." : "TALK TO SALES"}
             </span>
           </button>
 

@@ -30,7 +30,7 @@ export default function IntegrationsPage() {
         hero={
           <TeamHero
             eyebrow="Integrations"
-            title="Connect Stadium to your tech stack, your way"
+            title="Connect Stadium to your existing tech stack"
             description="Stadium automates programs, reduces manual work, and keeps your teams and systems in sync."
             primaryCta={{ label: "Explore integrations", href: "#directory" }}
             secondaryCta={{ label: "Talk to sales", href: LINKS.sales }}

@@ -84,7 +84,12 @@ export default function LeadershipPage() {
         <VariableCardGrid
           caption="The problem"
           captionColor="#16171b"
-          title="Growth makes engagement harder to govern"
+          title={
+            <>
+              Growth makes engagement
+              <br className="hidden md:block" /> harder to manage
+            </>
+          }
           description="As organizations expand, programs spread across teams, tools, vendors, budgets, and regions."
           gridColumns={2}
           narrow
@@ -113,16 +118,21 @@ export default function LeadershipPage() {
         <ChecklistCards
           id="governance"
           caption="Centralized governance"
-          title="Give teams autonomy. Keep company-wide control."
+          title={
+            <>
+              Give teams autonomy.
+              <br className="hidden md:block" /> Keep company-wide control.
+            </>
+          }
           description="Set budgets, permissions, and brand standards centrally while teams manage their own programs."
           cards={[
             {
-              title: "Empower Individual Teams",
+              title: "Empower individual teams",
               description: "Let teams take ownership of their programs while working within clear budgets and permissions.",
               bullets: ["Team-level permissions", "Program ownership", "Flexible budgets"],
             },
             {
-              title: "Set the Guardrails",
+              title: "Set the guardrails",
               description: "Maintain company-wide standards while keeping oversight centralized.",
               bullets: ["Budget controls", "Brand standards", "Program controls"],
             },

@@ -32,7 +32,7 @@ type VariableCardGridProps = {
   captionColor?: string;
   /* omit caption/title/description for a header-less tray */
   title?: ReactNode;
-  description?: string;
+  description?: ReactNode;
   gridColumns?: 1 | 2 | 3 | 4;
   items: VariableCardGridItem[];
   /* "photo" (default): image flush in the card. "panel": the /impact product

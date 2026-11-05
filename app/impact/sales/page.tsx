@@ -119,7 +119,7 @@ export default function SalesPage() {
           align="center"
           caption="Less friction"
           captionColor="#16171b"
-          title="Send the gift. They handle the details."
+          title="Send gifts. Skip the logistics."
           description="Recipients choose what they want and enter their own shipping information, so reps don’t have to chase addresses or guess what to send."
           defaultDesktopVisualWidth={235}
           items={[

@@ -13,7 +13,7 @@ import type { CSSProperties } from "react";
      --circle-flag-shadow         (default none; `shadow` prop applies the soft drop) */
 
 export const FLAG_CODES = [
-  "ae", "au", "br", "ca", "de", "fr", "gb", "in", "it", "jp", "mx", "nl", "se", "sg", "us",
+  "ae", "au", "br", "ca", "de", "fr", "gb", "in", "it", "jp", "mx", "ng", "nl", "se", "sg", "us", "za",
 ] as const;
 export type FlagCode = (typeof FLAG_CODES)[number];
 

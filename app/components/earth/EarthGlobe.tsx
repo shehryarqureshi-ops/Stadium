@@ -35,6 +35,10 @@ const EVENTS: EarthEvent[] = [
   { id: "los-angeles", location: [34.05, -118.24], label: "Swag kit in design", flag: "us", below: true },
   { id: "mexico-city", location: [19.43, -99.13], label: "Team merch shop launched", flag: "mx" },
   { id: "sydney", location: [-33.87, 151.21], label: "Recipient picked a favorite", flag: "au" },
+  /* Africa faces the viewer in the composed pose; South America fades in with the idle sway */
+  { id: "lagos", location: [6.52, 3.38], label: "Team gift delivered", flag: "ng" },
+  { id: "johannesburg", location: [-26.2, 28.05], label: "Work anniversary reward sent", flag: "za", below: true },
+  { id: "sao-paulo", location: [-23.55, -46.63], label: "Welcome kit delivered", flag: "br", below: true },
   /* shares Singapore's point (and dot) with "Snack box arrived"; its pill hangs on the other side */
   { id: "singapore-onboarding", location: [1.35, 103.82], label: "Onboarding gift triggered", flag: "sg", noDot: true },
 ];

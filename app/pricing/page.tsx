@@ -76,7 +76,7 @@ export default function PricingPage() {
             </>
           }
           descriptionClassName="max-w-[44rem] lg:max-w-[48rem]"
-          ctaOneLabel="Book a demo"
+          ctaOneLabel="Talk to sales"
           ctaOneLink="#book-a-demo"
           ctaOneVariant="primary"
           ctaTwoLabel="Browse the catalog"

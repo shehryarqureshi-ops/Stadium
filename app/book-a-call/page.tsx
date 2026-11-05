@@ -126,7 +126,7 @@ export default function BookACallPage() {
             </>
           }
           descriptionClassName="max-w-[44rem] lg:max-w-[48rem]"
-          ctaOneLabel="Book a demo"
+          ctaOneLabel="Talk to sales"
           ctaOneLink="#main"
           ctaOneVariant="primary"
           ctaTwoLabel="Browse the catalog"

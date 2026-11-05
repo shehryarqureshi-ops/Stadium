@@ -26,7 +26,7 @@ import { HeroLogoWall } from "./common/HeroLogoWall";
 const BENEFITS = [
   "Engage people across 170+ countries",
   "Automate programs with integrations",
-  "Manage gifting, swag, recognition, and more in one place",
+  "Manage gifting, swag, recognition, hosted experiences, and more in one place",
 ];
 
 /* review-site marks — G2 reuses the site's existing /g2-logo.svg; stars,
@@ -52,20 +52,19 @@ export default function BookACallHero() {
               data-animation="reveal"
               className="text-balance font-display text-display-sm text-white md:text-display-md lg:text-display-demo"
             >
-              See how Stadium can work for your team
+              Let’s find the right fit for your team
             </h1>
             <p
               data-animation="reveal"
               className="max-w-[27.4375rem] font-sans text-body-lg text-white md:text-body-xl"
             >
-              Tell us a little about what you’re looking for and we’ll tailor the conversation to
-              your needs.
+              Tell us about your goals and challenges. We’ll show you how Stadium can help.
             </p>
           </div>
 
           <div data-animation="reveal" className="flex flex-col gap-6 lg:gap-8">
             <p className="font-sans text-eyebrow-sm leading-4 uppercase text-white">
-              Book a demo and learn how to:
+              Talk to sales and learn how to:
             </p>
             <ul className="flex flex-col gap-3 pb-2">
               {BENEFITS.map((b) => (

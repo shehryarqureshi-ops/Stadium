@@ -52,7 +52,7 @@ export default function MarketingPage() {
           eyebrow="Stadium for Marketing"
           title="Branded experiences for every campaign"
           description="Create and send on-brand experiences across campaigns, audiences, and regions from one platform."
-          primaryCta={{ label: "Book a demo", href: LINKS.sales }}
+          primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
           secondaryCta={{ label: "See the brand store", href: LINKS.swag }}
           background="canvas"
           visual={<CampaignKit />}

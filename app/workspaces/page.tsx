@@ -33,7 +33,7 @@ export default function WorkspacesPage() {
             eyebrow="Workspaces"
             title="One place to organize how your teams use Stadium"
             description="Teams use Stadium for their own needs. You keep visibility and control as usage grows."
-            primaryCta={{ label: "Get started", href: LINKS.sales }}
+            primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
             secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
             background="canvas"
             visual={<WorkspaceTree />}
@@ -83,7 +83,12 @@ export default function WorkspacesPage() {
         <VariableCardGrid
           caption="Company-wide governance"
           captionColor="#16171b"
-          title="Teams get flexibility within company controls"
+          title={
+            <>
+              Teams get flexibility
+              <br className="hidden md:block" /> within company controls
+            </>
+          }
           description="Access, budgets, and brand standards stay set by the company. Teams get what they need to execute."
           gridColumns={3}
           items={[

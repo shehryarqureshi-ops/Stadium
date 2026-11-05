@@ -45,7 +45,7 @@ export default function RolesAndPermissionsPage() {
         <ImpactClosing
           cta={{
             caption: "Roles & Permissions",
-            title: "See how Workspaces support your access needs",
+            title: "See how Stadium can support your access needs",
             description: "Talk with our team about roles, permissions, and governance across your company.",
             primary: { label: "Talk to sales", href: LINKS.sales },
           }}

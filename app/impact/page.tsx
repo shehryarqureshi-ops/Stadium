@@ -83,7 +83,7 @@ export default function ImpactPage() {
         />
 
         <SplitFeature
-          caption="One company workspace"
+          caption="Company workspace"
           title="One place to run it all"
           description="Give every team the space to run its own programs, while keeping company-wide visibility and control in one place."
           graphic={<Workspace />}

@@ -4,6 +4,7 @@
    cards: #f7f7f7 r16 p24 title block (32/40 Satoshi Bold) over a p24 body
    (16/1.5 #828282 → 32 → check rows 15/1.4, gap 12). */
 
+import type { ReactNode } from "react";
 import { Check } from "lucide-react";
 
 import SectionIntro from "./SectionIntro";
@@ -21,7 +22,7 @@ export type ChecklistCardsProps = {
   /* optional anchor id — deep-linkable from the header menu (e.g. /impact/finance#budget) */
   id?: string;
   caption?: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   cards: ChecklistCard[];
 };

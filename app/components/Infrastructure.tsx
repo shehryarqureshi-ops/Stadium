@@ -31,15 +31,14 @@ const steps: Step[] = [
   },
   {
     num: "03",
-    label: "Shipping & Delivery",
+    label: "Global Logistics",
     video: "/videos/infrastructure/shipping.mp4",
     poster: "/videos/infrastructure/shipping.webp",
   },
-  { num: "04", label: "Customs, Tax, & Compliance" },
-  { num: "05", label: "Integrations & Automated Gifting" },
-  { num: "06", label: "Platform Controls" },
-  { num: "07", label: "Asset Library" },
-  { num: "08", label: "Security & Reliability" },
+  { num: "04", label: "Integrations & Automated Gifting" },
+  { num: "05", label: "Platform Controls" },
+  { num: "06", label: "Asset Library" },
+  { num: "07", label: "Security & Reliability" },
 ];
 
 export default function Infrastructure() {

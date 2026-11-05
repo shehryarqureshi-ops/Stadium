@@ -57,7 +57,7 @@ export function InfraChapters() {
     </div>
     <Chapter>
       <ChapterHeader eyebrowText={PHYSICAL.heading} title={PHYSICAL.title} body={PHYSICAL.body} />
-      <MediaTabs tabs={PHYSICAL.tabs} variant="pill" playing label="Printing, warehousing, shipping and customs" />
+      <MediaTabs tabs={PHYSICAL.tabs} variant="pill" playing label="Printing, warehousing, kitting and global logistics" />
     </Chapter>
 
     <Chapter>
