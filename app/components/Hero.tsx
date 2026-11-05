@@ -226,7 +226,7 @@ export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } 
             className="inline-flex h-button-h w-full items-center justify-center rounded-button bg-ink px-button-x font-sans text-button-primary uppercase text-white shadow-button inset-shadow-button transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-ink md:w-auto md:bg-white md:text-brand-hero md:hover:bg-grey-100 md:focus-visible:outline-white"
           >
             <span className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic]">
-              Talk to sales
+              Talk to Sales
             </span>
           </a>
           <a
