@@ -12,7 +12,7 @@ import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import ImpactPageShell from "@/app/components/impact/ImpactPageShell";
 import ArcadeFlow from "@/app/components/impact/ArcadeFlow";
-import { LINKS, TEAM_ROUTES } from "@/app/components/impact/shared";
+import { LINKS } from "@/app/components/impact/shared";
 
 import problemTeams from "@/public/impact/overview/problem-teams.webp";
 import tabMarketing from "@/public/impact/overview/tab-marketing.webp";
@@ -121,13 +121,13 @@ export default function ImpactPage() {
             description="Each team can run the programs they own while staying connected to the same company infrastructure."
             autoAdvance={false}
             items={[
-              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", graphic: <TabHr />, href: TEAM_ROUTES.hr, cta: "Explore Stadium for HR" },
-              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "A shopper carrying an ARCADE gift bag past a branded booth in a busy event hall", href: TEAM_ROUTES.marketing, cta: "Explore Stadium for Marketing" },
-              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A man watching a video call on his monitor while the prospect shows an open DevNest gift box", href: TEAM_ROUTES.sales, cta: "Explore Stadium for Sales" },
-              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling on her sofa as she unboxes a Tap + Cork tumbler gift", href: TEAM_ROUTES.cx, cta: "Explore Stadium for CX" },
-              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", image: tabLeadership, imageAlt: "A leader leaning over a desk to talk with a colleague, an orange gift box beside the keyboard", href: TEAM_ROUTES.leadership, cta: "Explore Stadium for Leadership" },
-              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", image: tabOffice, imageAlt: "An office admin with a clipboard wheeling boxes through a storage room", href: TEAM_ROUTES.officeAdmins, cta: "Explore Stadium for Office Admins" },
-              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", image: tabFinance, imageAlt: "A finance lead reviewing a document with a pen at his desk, a parcel beside him", href: TEAM_ROUTES.finance, cta: "Explore Stadium for Finance" },
+              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", graphic: <TabHr /> },
+              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "A shopper carrying an ARCADE gift bag past a branded booth in a busy event hall" },
+              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A man watching a video call on his monitor while the prospect shows an open DevNest gift box" },
+              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling on her sofa as she unboxes a Tap + Cork tumbler gift" },
+              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", image: tabLeadership, imageAlt: "A leader leaning over a desk to talk with a colleague, an orange gift box beside the keyboard" },
+              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", image: tabOffice, imageAlt: "An office admin with a clipboard wheeling boxes through a storage room" },
+              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", image: tabFinance, imageAlt: "A finance lead reviewing a document with a pen at his desk, a parcel beside him" },
             ]}
           />
         </div>

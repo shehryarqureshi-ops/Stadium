@@ -2437,3 +2437,7 @@ UI cards as SVG (`scripts/svg-cards.mjs`, `impact-office-admins/`): `OperationsW
 ## /impact/finance (Operation Update, 2026-11-05)
 
 Figma cGznwzQVViaYtxp3zcZk97 section **152:17611** (page 128:18935, no tab states). Copy, bullets and headings already matched Figma; hero (Budget bar, colours synced in the "Hero colour pass") kept, its five avatars re-exported as `public/impact/finance/hero/avatar-{arun,grace,maya,alex,jordan}.webp`. Photos re-exported at 3× as webp: `v2/problem-{vendors,budgets,invoices,reconciling}.webp` (1200 × 750), alt texts rewritten; the five "Across the business" rows reuse HR's `hr-engage-*.webp`. UI cards re-exported as SVG (`scripts/svg-cards.mjs`, `impact-finance/`): `VendorConsolidation` / `FinanceRecords` / `SimplifiedBilling` (step graphics 128:19204 / 19266 / 19325, 648 × 364) and `Reporting` (admin view 128:19430; Figma now shows the Company Workspace wallet roster). The page keeps its own finance case studies. Removed: old jpg/png assets and one orphaned card image.
+
+## /impact "Explore by team" tabs — end CTA removed (2026-11-05)
+
+Figma 108:17494 and the seven state frames (152:16498 … 152:17442): each tab now shows only its title and one-line description; the "Explore Stadium for …" link was removed. `app/impact/page.tsx` no longer passes `href`/`cta` to the seven `PillTabs` items (the unused `TEAM_ROUTES` import was dropped). Copy for all seven tabs already matched Figma.
