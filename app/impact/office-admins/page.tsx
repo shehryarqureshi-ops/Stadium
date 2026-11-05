@@ -15,25 +15,23 @@ import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPage
 import OfficeNeedsBoard from "@/app/components/impact/OfficeNeedsBoard";
 import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
+import VectorCard from "@/app/components/cards/VectorCard";
 import OperationsOverview from "@/app/components/cards/impact-office-admins/OperationsOverview";
 import OperationsWorkspace from "@/app/components/cards/impact-office-admins/OperationsWorkspace";
-import recurringDeliveries from "@/public/impact/office-admins/recurring-scheduled-deliveries.png";
-import recurringPrograms from "@/public/impact/office-admins/recurring-employee-programs.png";
-import recurringSnacks from "@/public/impact/office-admins/recurring-office-snacks.png";
 
-import problemVendors from "@/public/impact/office-admins/v2/problem-vendors.jpg";
-import problemDeliveries from "@/public/impact/office-admins/v2/problem-deliveries.jpg";
-import problemInventory from "@/public/impact/office-admins/v2/problem-inventory.jpg";
-import problemInvoices from "@/public/impact/office-admins/v2/problem-invoices.jpg";
-import journeyNewHires from "@/public/impact/office-admins/v2/journey-new-hires.jpg";
-import journeyEmployeeGifts from "@/public/impact/office-admins/v2/journey-employee-gifts.jpg";
-import journeyCompanyEvents from "@/public/impact/office-admins/v2/journey-company-events.jpg";
-import journeyExecutive from "@/public/impact/office-admins/v2/journey-executive.jpg";
-import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
-import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
-import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
-import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
-import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import problemVendors from "@/public/impact/office-admins/v2/problem-vendors.webp";
+import problemDeliveries from "@/public/impact/office-admins/v2/problem-deliveries.webp";
+import problemInventory from "@/public/impact/office-admins/v2/problem-inventory.webp";
+import problemInvoices from "@/public/impact/office-admins/v2/problem-invoices.webp";
+import journeyNewHires from "@/public/impact/office-admins/v2/journey-new-hires.webp";
+import journeyEmployeeGifts from "@/public/impact/office-admins/v2/journey-employee-gifts.webp";
+import journeyCompanyEvents from "@/public/impact/office-admins/v2/journey-company-events.webp";
+import journeyExecutive from "@/public/impact/office-admins/v2/journey-executive.webp";
+import engageRecognition from "@/public/impact/hr/v2/hr-engage-recognition.webp";
+import engageSwag from "@/public/impact/hr/v2/hr-engage-swag.webp";
+import engageSnacks from "@/public/impact/hr/v2/hr-engage-snacks.webp";
+import engageGifting from "@/public/impact/hr/v2/hr-engage-gifting.webp";
+import engageExperiences from "@/public/impact/hr/v2/hr-engage-experiences.webp";
 import KudosToast from "@/app/components/impact/KudosToast";
 
 export const metadata: Metadata = seoMetadata("/impact/office-admins");
@@ -89,10 +87,10 @@ export default function OfficeAdminsPage() {
         narrow
         imageStyle="panel"
         items={[
-          { image: problemVendors, imageAlt: "An office admin juggling orders from multiple vendors", description: "Programs rely on multiple vendors." },
-          { image: problemDeliveries, imageAlt: "An office admin following up on deliveries across locations", description: "Deliveries require follow-up across locations." },
-          { image: problemInventory, imageAlt: "An office admin counting inventory", description: "Inventory is difficult to keep current." },
-          { image: problemInvoices, imageAlt: "An office admin handling orders and invoices", description: "Orders and invoices create extra admin work." },
+          { image: problemVendors, imageAlt: "An office admin signing for a delivery from a vendor beside stacked parcels", description: "Programs rely on multiple vendors." },
+          { image: problemDeliveries, imageAlt: "An office admin on the phone chasing a delivery, paperwork in hand", description: "Deliveries require follow-up across locations." },
+          { image: problemInventory, imageAlt: "An office admin checking pantry shelves against a clipboard", description: "Inventory is difficult to keep current." },
+          { image: problemInvoices, imageAlt: "An office admin stamping and sorting a pile of invoices at a desk", description: "Orders and invoices create extra admin work." },
         ]}
         footnote="Your team needs one place to manage programs, orders, and deliveries."
       />
@@ -144,7 +142,7 @@ export default function OfficeAdminsPage() {
             description: "Give new hires a consistent welcome whether they start in the office or remotely.",
             bullets: ["New hire kits", "Branded swag", "Direct-to-home shipping"],
             image: journeyNewHires,
-            imageAlt: "A new hire welcome kit",
+            imageAlt: "A man checking a shelf of labelled new hire welcome kits against a clipboard",
           },
           {
             id: "employee-gifts",
@@ -154,7 +152,7 @@ export default function OfficeAdminsPage() {
             description: "Handle birthdays, anniversaries, and thank-yous that come up.",
             bullets: ["Birthdays", "Work anniversaries", "Employee thank-yous"],
             image: journeyEmployeeGifts,
-            imageAlt: "An employee opening a gift",
+            imageAlt: "Colleagues in an office kitchen as a woman unpacks a Snackmagic snack box",
           },
           {
             id: "company-events",
@@ -164,7 +162,7 @@ export default function OfficeAdminsPage() {
             description: "Coordinate what teams need before, during, and after company events.",
             bullets: ["Event swag", "Snacks and treats", "Individual or bulk sends"],
             image: journeyCompanyEvents,
-            imageAlt: "Event supplies prepared for a company event",
+            imageAlt: "A woman labelling stacks of branded hoodies by size ahead of a company event",
           },
           {
             id: "executive-requests",
@@ -174,7 +172,7 @@ export default function OfficeAdminsPage() {
             description: "Take care of one-off sends without finding another vendor.",
             bullets: ["Executive gifts", "Premium merchandise", "Personalized sends"],
             image: journeyExecutive,
-            imageAlt: "A premium gift prepared for an executive",
+            imageAlt: "A man carrying a wrapped gift box across an open-plan office",
           },
         ]}
       />
@@ -187,9 +185,9 @@ export default function OfficeAdminsPage() {
         gridColumns={3}
         imageStyle="panel"
         items={[
-          { image: recurringSnacks, imageAlt: "A recurring office snacks order for Austin HQ every Monday with auto-reorder on", title: "Office Snacks", description: "Keep recurring snack programs moving without starting a new order each time." },
-          { image: recurringPrograms, imageAlt: "Recurring programs for birthdays, work anniversaries, and new hire kits set to send automatically", title: "Employee Programs", description: "Set up repeatable sends for recurring employee moments." },
-          { image: recurringDeliveries, imageAlt: "A weekly delivery schedule across Austin, Berlin, and London", title: "Scheduled Deliveries", description: "Plan what each location needs and when it needs to arrive." },
+          { graphic: <VectorCard src="/cards/impact-office-admins/AutoSnacks.svg" alt="A recurring office snacks order for Austin HQ every Monday with auto-reorder on" width={390} height={250} />, title: "Office Snacks", description: "Keep recurring snack programs moving without starting a new order each time." },
+          { graphic: <VectorCard src="/cards/impact-office-admins/AutoPrograms.svg" alt="Recurring programs for birthdays, work anniversaries, and new hire kits set to send automatically" width={390} height={250} />, title: "Employee Programs", description: "Set up repeatable sends for recurring employee moments." },
+          { graphic: <VectorCard src="/cards/impact-office-admins/AutoDeliveries.svg" alt="A weekly delivery schedule across Austin, Berlin, and London" width={390} height={250} />, title: "Scheduled Deliveries", description: "Plan what each location needs and when it needs to arrive." },
         ]}
       />
 

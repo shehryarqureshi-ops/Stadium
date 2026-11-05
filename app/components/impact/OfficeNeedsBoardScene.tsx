@@ -31,10 +31,10 @@
 import Image from "next/image";
 import { Easing, interpolate, spring, useCurrentFrame } from "remotion";
 
-import avatarMaya from "@/public/impact/office-admins/hero/avatar-maya.png";
-import photoGifts from "@/public/impact/office-admins/hero/photo-gifts.jpg";
-import photoSnacks from "@/public/impact/office-admins/hero/photo-snacks.jpg";
-import photoSwag from "@/public/impact/office-admins/hero/photo-swag.jpg";
+import avatarMaya from "@/public/impact/office-admins/hero/avatar-maya.webp";
+import photoGifts from "@/public/impact/office-admins/hero/photo-gifts.webp";
+import photoSnacks from "@/public/impact/office-admins/hero/photo-snacks.webp";
+import photoSwag from "@/public/impact/office-admins/hero/photo-swag.webp";
 import stadiumMark from "@/public/impact/office-admins/hero/stadium-mark.svg";
 
 export const STAGE_W = 580;
@@ -95,8 +95,8 @@ type Need =
   | { name: string; kind: "cal" | "stipend"; n: number; unit: string };
 
 const NEEDS: Need[] = [
-  { name: "Snacks", kind: "photo", src: photoSnacks, fit: true, n: 128, unit: "orders" },
-  { name: "Swag", kind: "photo", src: photoSwag, fit: true, n: 46, unit: "orders" },
+  { name: "Snacks", kind: "photo", src: photoSnacks, fit: false, n: 128, unit: "orders" },
+  { name: "Swag", kind: "photo", src: photoSwag, fit: false, n: 46, unit: "orders" },
   { name: "Gifts", kind: "photo", src: photoGifts, fit: false, n: 74, unit: "orders" },
   { name: "Events", kind: "cal", n: 9, unit: "booked" },
   { name: "Employee needs", kind: "stipend", n: 31, unit: "requests" },
