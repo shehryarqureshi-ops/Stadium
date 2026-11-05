@@ -5,25 +5,27 @@ import { useCallback, useEffect, useRef, useState } from "react";
 /* "Watch the film" — floating bottom-right widget + modal player.
 
    - Loading: nothing here is requested on the initial page load. The thumbnail
-     (a ~40 KB webp) is only mounted after the window `load` event + an idle
+     (a ~0.5 MB, 3 s looping animated webp) is only mounted after the window `load` event + an idle
      tick, so it never competes with the LCP. The 1080p film itself is only
      requested once the visitor shows intent (hover / focus / tap on the widget)
      or opens the modal.
-   - Widget: shows once the hero has scrolled past, hides again at the globe
-     section (same behaviour as before); dismissable for the session.
+   - Widget: shows once the hero has scrolled past, hides (fade + slide down) when the dark
+     "three layers" section reaches it and stays hidden to the end of the page; dismissable.
    - Modal: a native <dialog> (focus trap + Esc to close for free), big 16:9
      player with native controls, a fullscreen button and a close button.
      Clicking the dim backdrop or pressing Esc closes it and pauses the film.
    Sits below the nav (z-30) so the dropdown's backdrop blur covers the widget. */
 
 const VIDEO_SRC = "/videos/film/stadium-film.mp4";
-const THUMB_SRC = "/videos/film/stadium-film-thumb-v2.webp";
+const THUMB_SRC = "/videos/film/stadium-film-thumb-v2.webp"; // static: modal poster + reduced motion
+const LOOP_SRC = "/videos/film/stadium-film-loop-3s-b.webp"; // 3 s loop (0:50–0:53), animated webp
 const EXIT_MS = 220; // keep in sync with the duration-200 transitions below
 
 export default function StickyVideo() {
   const [thumbReady, setThumbReady] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const [past, setPast] = useState(false);
-  const [pastGlobe, setPastGlobe] = useState(false);
+  const [pastDark, setPastGlobe] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [warm, setWarm] = useState(false); // start fetching the film
   const [open, setOpen] = useState(false);
@@ -33,6 +35,7 @@ export default function StickyVideo() {
   const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
 
   /* thumbnail: after load, when the browser is idle */
   useEffect(() => {
@@ -55,11 +58,23 @@ export default function StickyVideo() {
   }, []);
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       setPast(window.scrollY > window.innerHeight * 0.7);
-      const globe = document.getElementById("redacted-poster");
+      /* the dark "three layers" section: once its top edge reaches the widget, hide it — and
+         keep it hidden for the rest of the page (scrolling back above brings it back) */
+      const dark = document.querySelector('section[aria-label="The Stadium infrastructure"]');
+      const el = widgetRef.current;
+      const clearance = (el ? el.offsetHeight : 0) + 24;
       setPastGlobe(
-        globe ? globe.getBoundingClientRect().bottom <= window.innerHeight * 0.5 : false,
+        dark ? dark.getBoundingClientRect().top <= window.innerHeight - clearance : false,
       );
     };
     onScroll();
@@ -71,7 +86,7 @@ export default function StickyVideo() {
     };
   }, []);
 
-  const visible = thumbReady && past && !pastGlobe && !dismissed;
+  const visible = thumbReady && past && !pastDark && !dismissed;
 
   const openModal = useCallback(() => {
     setWarm(true);
@@ -156,6 +171,7 @@ export default function StickyVideo() {
   return (
     <>
       <div
+        ref={widgetRef}
         aria-hidden={!visible}
         inert={!visible}
         className={`fixed bottom-4 right-4 z-30 w-[14rem] transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:bottom-6 md:right-6 md:w-[17rem] ${
@@ -168,10 +184,10 @@ export default function StickyVideo() {
           {thumbReady && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={THUMB_SRC}
+              src={reduceMotion ? THUMB_SRC : LOOP_SRC}
               alt=""
-              width={960}
-              height={540}
+              width={544}
+              height={306}
               decoding="async"
               className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
