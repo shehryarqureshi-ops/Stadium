@@ -109,7 +109,7 @@ export default function SalesPage() {
 
         <ImageShowcase
           caption="One gifting platform"
-          title="Two ways to gift. One platform."
+          title="Multiple ways to gift. One platform."
           description="Automate gifts around key sales moments or let reps send directly when a personal touch makes sense."
           graphic={<Dashboard />}
           framed={false}
