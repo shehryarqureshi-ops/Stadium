@@ -205,6 +205,13 @@
   --color-arcade-pill-muted: #a7a8ac; /* /impact hero · "Shipped" / "Packing" on dark */
   --color-campaign-ok: #1b7a36; /* /impact/marketing hero · delivered bar fill + label (CampaignKitScene) */
   --color-campaign-track: #efeff1; /* /impact/marketing hero · delivery bar track */
+  --color-governance-tray: #e3e4e7; /* /impact/leadership hero · guardrails tray (GovernanceScene) */
+  --color-governance-on: #111111; /* /impact/leadership hero · toggles on (near-black, Figma 211:16578) */
+  --color-hero-muted: #919295; /* hero visuals · secondary text on white (Figma 2026-11-05 colour pass: finance, cx, office) */
+  --color-office-card: #e3e4e7; /* /impact/office-admins hero · location cards (Figma 128:25839) */
+  --color-office-divider: #d1d2d6; /* /impact/office-admins hero · hairline inside location cards */
+  --color-finance-card: #1f2021; /* /impact/finance hero · dark team cards + average strip (Figma 128:19017, 2026-11-05 colour pass) */
+  --color-finance-saved: #9ed99a; /* /impact/finance hero · "Saved $…K" + trend icon on dark */
   --color-chip-surface: #f3f3f5; /* /impact/sales hero · source chips, recipient pill (same value as arcade-well) */
   --color-signal-green: #2fa64f; /* /impact/sales hero · active-stage dot, travelling gift packet */
   --color-canvas-yellow: #fcefc2; /* /impact/leadership hero · Finance label */

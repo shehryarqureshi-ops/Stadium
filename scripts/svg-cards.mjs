@@ -85,12 +85,13 @@ const VIEWBOX_CROP = {
   "integrations-zapier/ZapCalendly": [8.5, 0, 389, 250],
   "integrations-zapier/ZapPatreon": [8.5, 0, 389, 250],
   "integrations-zapier/ZapCvent": [8.5, 0, 389, 250],
-  "impact-leadership/ScaleIntegrations": [8, 0, 389.33, 250],
   // events step cards: export includes 24/16px shadow bleed around the 279x360 frame
   "events/EventPick": [24, 16, 279, 360],
   "events/EventBook": [24, 16, 279, 360],
   "events/EventShowUp": [24, 16, 279, 360],
   // swag platform graphics: sibling 376x260 frames whose shadows/overflow widen the export
+  // 2026-11 export of the 389x250 stage sits at x 8 inside its card
+  "impact-leadership/ScaleIntegrations": [8, 0, 389.33, 250],
   "swag/PlatformStores": [0, 0, 376, 260],
   "swag/PlatformInventory": [8, 0, 376, 260],
   "swag/PlatformGifting": [0, 8, 376, 260],

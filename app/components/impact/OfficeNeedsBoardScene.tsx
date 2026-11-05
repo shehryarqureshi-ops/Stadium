@@ -332,7 +332,7 @@ function NeedTile({
         {need.kind === "cal" && (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", transform: `scale(${1 + 0.06 * lift})` }}>
             <p
-              className="text-canvas-muted"
+              className="text-hero-muted"
               style={{ fontSize: 10, lineHeight: "13px", letterSpacing: 1, fontWeight: 700, textTransform: "uppercase" }}
             >
               Fri
@@ -345,7 +345,7 @@ function NeedTile({
         {need.kind === "stipend" && (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", transform: `scale(${1 + 0.06 * lift})` }}>
             <p
-              className="text-canvas-muted"
+              className="text-hero-muted"
               style={{ fontSize: 10, lineHeight: "13px", letterSpacing: 1, fontWeight: 700, textTransform: "uppercase" }}
             >
               Stipend
@@ -360,7 +360,7 @@ function NeedTile({
         <p className="text-grey-800" style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600 }}>
           {need.name}
         </p>
-        <p className="text-canvas-muted" style={{ fontSize: 10, lineHeight: "13px", fontVariantNumeric: "tabular-nums" }}>
+        <p className="text-hero-muted" style={{ fontSize: 10, lineHeight: "13px", fontVariantNumeric: "tabular-nums" }}>
           {count} {need.unit}
         </p>
       </div>
@@ -417,7 +417,7 @@ function LocationCard({
   const p = pop(f, delay);
   return (
     <div
-      className="bg-white"
+      className="bg-office-card"
       style={{
         position: "absolute",
         left: j * LOC_PITCH,
@@ -453,12 +453,12 @@ function LocationCard({
           <p className="text-grey-800" style={{ fontSize: 12, lineHeight: "16px", fontWeight: 600 }}>
             {L.city}
           </p>
-          <p className="text-canvas-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
+          <p className="text-hero-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
             {L.people}
           </p>
         </div>
       </div>
-      <div className="bg-grey-200" style={{ height: 1, flexShrink: 0 }} />
+      <div className="bg-office-divider" style={{ height: 1, flexShrink: 0 }} />
       <div style={{ display: "flex", alignItems: "flex-start", gap: 6 }}>
         <div style={{ paddingTop: 1 }}>
           <CheckCircle draw={seg(f, delay + 8, delay + 22, LIN)} pulse={pulse} />
@@ -467,7 +467,7 @@ function LocationCard({
           <p className="text-grey-800" style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600 }}>
             {L.status}
           </p>
-          <p className="text-canvas-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
+          <p className="text-hero-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
             {L.sub}
           </p>
         </div>
@@ -669,7 +669,7 @@ export function OfficeNeedsBoardScene() {
               <p className="font-display text-grey-800" style={{ fontSize: 16, lineHeight: "20px" }}>
                 Stadium
               </p>
-              <p className="text-canvas-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
+              <p className="text-hero-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
                 Workplace needs, all locations
               </p>
             </div>

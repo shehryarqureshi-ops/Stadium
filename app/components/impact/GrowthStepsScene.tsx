@@ -122,7 +122,7 @@ function Tile({ i, f, lt }: { i: number; f: number; lt: number }) {
       </div>
       <div style={{ height: 50, display: "flex", flexDirection: "column", gap: 1 }}>
         <span
-          className="text-canvas-muted"
+          className="text-hero-muted"
           style={{ fontSize: 10, lineHeight: "14px", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", whiteSpace: "nowrap" }}
         >
           {m.when}

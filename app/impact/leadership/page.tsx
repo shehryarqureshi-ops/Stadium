@@ -11,7 +11,8 @@ import PillTabs from "@/app/components/common/PillTabs";
 import TeamHero from "@/app/components/common/TeamHero";
 import VariableCardGrid from "@/app/components/common/VariableCardGrid";
 import { CASE_STUDIES } from "@/app/components/impact/caseStudies";
-import GuardrailsTray from "@/app/components/impact/GuardrailsTray";
+import Governance from "@/app/components/impact/Governance";
+import JourneyRecognition from "@/app/components/cards/impact-leadership/JourneyRecognition";
 import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPageShell";
 import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
@@ -19,22 +20,20 @@ import VectorCard from "@/app/components/cards/VectorCard";
 import CompanyOverview from "@/app/components/cards/impact-leadership/CompanyOverview";
 import TeamsWorkspace from "@/app/components/cards/impact-leadership/TeamsWorkspace";
 
-import problemTools from "@/public/impact/leadership/v2/problem-tools.jpg";
-import problemBudgets from "@/public/impact/leadership/v2/problem-budgets.jpg";
-import problemConsistency from "@/public/impact/leadership/v2/problem-consistency.jpg";
-import problemOversight from "@/public/impact/leadership/v2/problem-oversight.jpg";
-import journeyOnboarding from "@/public/impact/leadership/v2/journey-onboarding.jpg";
-import journeyRecognition from "@/public/impact/leadership/v2/journey-recognition.jpg";
-import journeyMilestones from "@/public/impact/leadership/v2/journey-milestones.jpg";
-import journeyEvents from "@/public/impact/leadership/v2/journey-events.jpg";
-import journeyAppreciation from "@/public/impact/leadership/v2/journey-appreciation.jpg";
-import journeySales from "@/public/impact/leadership/v2/journey-sales.jpg";
-import RecognitionToast from "@/app/components/impact/RecognitionToast";
-import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
-import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
-import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
-import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
-import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import problemTools from "@/public/impact/leadership/v2/problem-tools.webp";
+import problemBudgets from "@/public/impact/leadership/v2/problem-budgets.webp";
+import problemConsistency from "@/public/impact/leadership/v2/problem-consistency.webp";
+import problemOversight from "@/public/impact/leadership/v2/problem-oversight.webp";
+import journeyOnboarding from "@/public/impact/leadership/v2/journey-onboarding.webp";
+import journeyMilestones from "@/public/impact/leadership/v2/journey-milestones.webp";
+import journeyEvents from "@/public/impact/leadership/v2/journey-events.webp";
+import journeyAppreciation from "@/public/impact/leadership/v2/journey-appreciation.webp";
+import journeySales from "@/public/impact/leadership/v2/journey-sales.webp";
+import engageRecognition from "@/public/impact/hr/v2/hr-engage-recognition.webp";
+import engageSwag from "@/public/impact/hr/v2/hr-engage-swag.webp";
+import engageSnacks from "@/public/impact/hr/v2/hr-engage-snacks.webp";
+import engageGifting from "@/public/impact/hr/v2/hr-engage-gifting.webp";
+import engageExperiences from "@/public/impact/hr/v2/hr-engage-experiences.webp";
 import KudosToast from "@/app/components/impact/KudosToast";
 
 export const metadata: Metadata = seoMetadata("/impact/leadership");
@@ -58,7 +57,7 @@ export default function LeadershipPage() {
             primaryCta={{ label: "Talk to sales", href: LINKS.sales }}
             secondaryCta={{ label: "Explore the platform", href: LINKS.platform }}
             background="canvas"
-            visual={<GuardrailsTray />}
+            visual={<Governance />}
             visualLayout="aligned"
             visualMaxWidth="36.25rem"
           />
@@ -91,10 +90,10 @@ export default function LeadershipPage() {
           narrow
           imageStyle="panel"
           items={[
-            { image: problemTools, imageAlt: "Four teams each working in a separate tool", description: "Teams use separate tools." },
-            { image: problemBudgets, imageAlt: "A leader comparing budgets that live in different places", description: "Budgets live in different places." },
-            { image: problemConsistency, imageAlt: "Programs running differently across offices", description: "Programs become harder to scale consistently." },
-            { image: problemOversight, imageAlt: "A leader without company-wide oversight of engagement spend", description: "Leadership lacks company-wide oversight." },
+            { image: problemTools, imageAlt: "Employees at their desks in an open office, each working in a separate tool", description: "Teams use separate tools." },
+            { image: problemBudgets, imageAlt: "Two colleagues comparing budget documents across a laptop and papers", description: "Budgets live in different places." },
+            { image: problemConsistency, imageAlt: "A manager on a video call with a remote office from a conference table", description: "Programs become harder to scale consistently." },
+            { image: problemOversight, imageAlt: "A leader standing in a glass-walled office looking out over several teams", description: "Leadership lacks company-wide oversight." },
           ]}
           footnote="Scaling engagement shouldn’t mean adding more tools, vendors, and workflows."
         />
@@ -145,7 +144,7 @@ export default function LeadershipPage() {
               description: "Create a consistent welcome for new hires across teams, offices, and regions.",
               bullets: ["New hire kits", "Branded swag", "Automated sends"],
               image: journeyOnboarding,
-              imageAlt: "A new hire welcome kit",
+              imageAlt: "Colleagues welcoming a new hire with a handshake as another opens a branded ARCADE welcome kit",
             },
             {
               id: "recognition",
@@ -154,9 +153,7 @@ export default function LeadershipPage() {
               title: "Recognize great work as it happens",
               description: "Help employees and managers recognize contributions, reinforce company values, and build morale across teams and locations.",
               bullets: ["Employee-to-employee recognition", "Slack + Teams recognition", "Points and rewards"],
-              image: journeyRecognition,
-              imageAlt: "A recognition moment shown on a laptop",
-              overlay: <RecognitionToast />,
+              graphic: <JourneyRecognition />,
             },
             {
               id: "milestones",
@@ -166,7 +163,7 @@ export default function LeadershipPage() {
               description: "Recognize progress at every level, from employee anniversaries to company achievements.",
               bullets: ["Work anniversaries", "Team achievements", "Company milestones"],
               image: journeyMilestones,
-              imageAlt: "A team celebrating a milestone",
+              imageAlt: "A colleague moved to tears opening a gift box while teammates applaud",
             },
             {
               id: "events",
@@ -176,7 +173,7 @@ export default function LeadershipPage() {
               description: "Support distributed teams with branded experiences before, during, and after an event.",
               bullets: ["Company kickoffs", "Team gatherings", "Event kits"],
               image: journeyEvents,
-              imageAlt: "A team gathering with branded event kits",
+              imageAlt: "Colleagues relaxing after a pickleball game at a company event",
             },
             {
               id: "customer-appreciation",
@@ -186,7 +183,7 @@ export default function LeadershipPage() {
               description: "Mark anniversaries and renewals, or send a thank-you that goes beyond the usual email.",
               bullets: ["Customer thank-yous", "Renewal gifts", "Partner appreciation"],
               image: journeyAppreciation,
-              imageAlt: "A customer receiving a thank-you gift",
+              imageAlt: "A woman hand-writing a thank-you note at her desk beside boxes of chocolates",
             },
             {
               id: "sales",
@@ -196,7 +193,7 @@ export default function LeadershipPage() {
               description: "Send gifts after meetings, as deals progress, or when a prospect becomes a customer.",
               bullets: ["Prospect gifts", "CRM-triggered sends", "Customer welcomes"],
               image: journeySales,
-              imageAlt: "A sales rep preparing a gift",
+              imageAlt: "A sales rep handing a customer a Snackmagic gift box in an office lobby",
             },
           ]}
         />

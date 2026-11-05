@@ -1,7 +1,7 @@
 "use client";
 
-/* Remotion Player host for the /impact/leadership hero visual (scene: GuardrailsTrayScene).
-   - Scales the fixed 580 × 357 stage to its container, so it keeps the Figma
+/* Remotion Player host for the /impact/leadership hero visual (scene: GovernanceScene).
+   - Scales the fixed 580 × 574 stage to its container, so it keeps the Figma
      proportions from mobile through desktop (aspect ratio reserves the space →
      no layout shift while the Player boots).
    - Plays the intro once, then loops only the idle segment (INTRO → end): the
@@ -18,10 +18,10 @@ import {
   DURATION,
   FPS,
   INTRO,
-  GuardrailsTrayScene,
+  GovernanceScene,
   STAGE_H,
   STAGE_W,
-} from "./GuardrailsTrayScene";
+} from "./GovernanceScene";
 
 const REDUCED = "(prefers-reduced-motion: reduce)";
 
@@ -37,7 +37,7 @@ function usePrefersReducedMotion() {
   );
 }
 
-export default function GuardrailsTray() {
+export default function Governance() {
   const reduced = usePrefersReducedMotion();
   const wrapRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<PlayerRef>(null);
@@ -72,7 +72,7 @@ export default function GuardrailsTray() {
       <Player
         key={reduced ? "still" : "motion"}
         ref={playerRef}
-        component={GuardrailsTrayScene}
+        component={GovernanceScene}
         durationInFrames={DURATION}
         fps={FPS}
         compositionWidth={STAGE_W}

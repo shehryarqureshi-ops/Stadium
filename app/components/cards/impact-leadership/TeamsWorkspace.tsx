@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-leadership/TeamsWorkspace.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function TeamsWorkspace({ alt = "Stadium Teams workspace showing HR & People, Marketing, Sales, and Customer Experience on one platform with programs and spend per team" }: { alt?: string }) {
+export default function TeamsWorkspace({ alt = "Stadium Contacts page with collaborator and member counts, permission requests to approve, and the contacts list with roles and permissions" }: { alt?: string }) {
   return <CardObject src="/cards/impact-leadership/TeamsWorkspace.svg" alt={alt} width={1316} height={805} />;
 }

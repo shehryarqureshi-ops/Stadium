@@ -74,19 +74,19 @@ const bob = (f: number, cycles: number, amp: number) =>
 const SLAB_H = 136;
 const COL_Y = 182;
 const COL_W = 136;
-const COL_H = 171;
+const COL_H = 173;
 const COL_PITCH = 148;
 const STRIP_Y = 367;
-const STRIP_H = 70;
+const STRIP_H = 72;
 /** Segment centres on the split bar (stage x) and the column centres they feed. */
 const FROM_X = [65.55, 216.5, 361.5, 476.75] as const;
 const TO_X = [68, 216, 364, 512] as const;
 /** Split-bar segments: left, width (Figma), shade token. */
 const SEGS = [
-  { left: 0, w: 131.1, cls: "bg-grey-800" },
-  { left: 133.1, w: 166.8, cls: "bg-grey-600" },
-  { left: 301.9, w: 119.2, cls: "bg-canvas-muted" },
-  { left: 423.1, w: 107.3, cls: "bg-grey-300" },
+  { left: 0, w: 131.1, cls: "bg-canvas-lilac" },
+  { left: 133.1, w: 166.8, cls: "bg-canvas-pink" },
+  { left: 301.9, w: 119.2, cls: "bg-canvas-blue" },
+  { left: 423.1, w: 107.3, cls: "bg-canvas-green" },
   { left: 532.3, w: 47.7, cls: "bg-grey-200" },
 ] as const;
 
@@ -96,10 +96,10 @@ const SHADOW = (lift: number) =>
 /* ───────────── content ───────────── */
 
 const TEAMS = [
-  { name: "HR", pill: "bg-canvas-lilac", swatch: "bg-grey-800", amt: 110, pct: 62, saved: 12.4, avatar: avatarGrace, lead: "Grace Adeyemi" },
-  { name: "Marketing", pill: "bg-canvas-pink", swatch: "bg-grey-600", amt: 140, pct: 78, saved: 17.8, avatar: avatarMaya, lead: "Maya Chen" },
-  { name: "Sales", pill: "bg-canvas-blue", swatch: "bg-canvas-muted", amt: 100, pct: 41, saved: 14.1, avatar: avatarAlex, lead: "Alex Morgan" },
-  { name: "CX", pill: "bg-canvas-green", swatch: "bg-grey-300", amt: 90, pct: 55, saved: 15.7, avatar: avatarJordan, lead: "Jordan Lee" },
+  { name: "HR", pill: "bg-canvas-lilac", swatch: "bg-canvas-lilac", amt: 110, pct: 62, saved: 12.4, avatar: avatarGrace, lead: "Grace Adeyemi" },
+  { name: "Marketing", pill: "bg-canvas-pink", swatch: "bg-canvas-pink", amt: 140, pct: 78, saved: 17.8, avatar: avatarMaya, lead: "Maya Chen" },
+  { name: "Sales", pill: "bg-canvas-blue", swatch: "bg-canvas-blue", amt: 100, pct: 41, saved: 14.1, avatar: avatarAlex, lead: "Alex Morgan" },
+  { name: "CX", pill: "bg-canvas-green", swatch: "bg-canvas-green", amt: 90, pct: 55, saved: 15.7, avatar: avatarJordan, lead: "Jordan Lee" },
 ] as const;
 
 /** Loop: team k starts at S[k] (loop frames). The strip takes its turn after the fourth. */
@@ -117,7 +117,7 @@ const capsText = {
 
 /* ───────────── small parts ───────────── */
 
-function TrendDown({ size, scale = 1 }: { size: number; scale?: number }) {
+function TrendDown({ size, scale = 1, stroke = "stroke-canvas-check" }: { size: number; scale?: number; stroke?: string }) {
   return (
     <svg
       width={size}
@@ -128,7 +128,7 @@ function TrendDown({ size, scale = 1 }: { size: number; scale?: number }) {
     >
       <path
         d="M23 18 13.5 8.5l-5 5L1 6M17 18h6v-6"
-        className="stroke-canvas-check"
+        className={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -171,7 +171,7 @@ function TeamColumn({
   const spent = seg(f, delay + 8, delay + 30);
   return (
     <div
-      className="bg-white"
+      className="bg-finance-card"
       style={{
         position: "absolute",
         left: i * COL_PITCH,
@@ -180,6 +180,7 @@ function TeamColumn({
         height: COL_H,
         boxSizing: "border-box",
         padding: 12,
+        border: "1px solid rgba(255, 255, 255, 0.08)",
         borderRadius: 12,
         display: "flex",
         flexDirection: "column",
@@ -190,10 +191,6 @@ function TeamColumn({
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <div
-          className={t.swatch}
-          style={{ width: 10, height: 10, borderRadius: 3, flexShrink: 0, transform: `scale(${1 + 0.5 * pulse})` }}
-        />
         <div className={t.pill} style={{ padding: "3px 8px", borderRadius: 100 }}>
           <p className="text-grey-800" style={capsText}>
             {t.name}
@@ -201,7 +198,7 @@ function TeamColumn({
         </div>
       </div>
       <p
-        className="font-display text-grey-800"
+        className="font-display text-white"
         style={{
           fontSize: 26,
           lineHeight: "30px",
@@ -214,24 +211,24 @@ function TeamColumn({
         ${amount}K
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-        <div className="bg-grey-200" style={{ height: 6, borderRadius: 3, overflow: "hidden" }}>
+        <div style={{ height: 6, borderRadius: 3, overflow: "hidden", background: "rgba(255, 255, 255, 0.12)" }}>
           <div
-            className="bg-grey-800"
+            className={t.swatch}
             style={{ width: Math.round(1.12 * t.pct * spent), height: 6, borderRadius: 3 }}
           />
         </div>
         <p
-          className="text-canvas-muted"
+          className="text-grey-400"
           style={{ fontSize: 10, lineHeight: "13px", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
         >
           {Math.round(t.pct * spent)}% spent
         </p>
       </div>
-      <div className="bg-grey-200" style={{ height: 1, flexShrink: 0 }} />
+      <div style={{ height: 1, flexShrink: 0, background: "rgba(255, 255, 255, 0.10)" }} />
       <div style={{ display: "flex", alignItems: "center", gap: 5, height: 14 }}>
-        <TrendDown size={12} scale={1 + 0.3 * pulse} />
+        <TrendDown size={12} scale={1 + 0.3 * pulse} stroke="stroke-finance-saved" />
         <p
-          className="text-canvas-check"
+          className="text-finance-saved"
           style={{
             fontSize: 11,
             lineHeight: "14px",
@@ -247,7 +244,7 @@ function TeamColumn({
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 6, height: 20 }}>
         <Avatar src={t.avatar} size={20} />
-        <p className="text-swag-grey" style={{ fontSize: 10, lineHeight: "13px", whiteSpace: "nowrap" }}>
+        <p className="text-grey-400" style={{ fontSize: 10, lineHeight: "13px", whiteSpace: "nowrap" }}>
           {t.lead}
         </p>
       </div>
@@ -452,13 +449,13 @@ export function FinanceBudgetBarScene() {
                 <p className="text-grey-600" style={{ fontSize: 11, lineHeight: "14px" }}>
                   engagement budget
                 </p>
-                <p className="text-canvas-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
+                <p className="text-hero-muted" style={{ fontSize: 10, lineHeight: "13px" }}>
                   set once, spent by every team
                 </p>
               </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", paddingBottom: 4 }}>
-              <p className="text-canvas-muted" style={capsText}>
+              <p className="text-hero-muted" style={capsText}>
                 Finance reserve
               </p>
               <p className="text-grey-800" style={{ fontSize: 12, lineHeight: "16px", fontWeight: 600 }}>
@@ -500,7 +497,7 @@ export function FinanceBudgetBarScene() {
 
       {/* strip · average saving */}
       <div
-        className="bg-white"
+        className="bg-finance-card"
         style={{
           position: "absolute",
           left: 0,
@@ -509,6 +506,7 @@ export function FinanceBudgetBarScene() {
           height: STRIP_H,
           boxSizing: "border-box",
           padding: "12px 16px",
+          border: "1px solid rgba(255, 255, 255, 0.08)",
           borderRadius: 14,
           display: "flex",
           alignItems: "center",
@@ -535,11 +533,11 @@ export function FinanceBudgetBarScene() {
             <TrendDown size={18} />
           </div>
           <div style={{ display: "flex", flexDirection: "column", whiteSpace: "nowrap" }}>
-            <p className="text-grey-600" style={{ fontSize: 11, lineHeight: "14px" }}>
+            <p className="text-grey-400" style={{ fontSize: 11, lineHeight: "14px" }}>
               Teams save on average with Stadium
             </p>
             <p
-              className="font-display text-grey-800"
+              className="font-display text-white"
               style={{
                 fontSize: 28,
                 lineHeight: "32px",
@@ -552,8 +550,8 @@ export function FinanceBudgetBarScene() {
             </p>
           </div>
         </div>
-        <div className="bg-chip-surface" style={{ padding: "6px 12px", borderRadius: 100 }}>
-          <p className="text-grey-800" style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, whiteSpace: "nowrap" }}>
+        <div style={{ padding: "6px 12px", borderRadius: 100, background: "rgba(255, 255, 255, 0.10)" }}>
+          <p className="text-white" style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, whiteSpace: "nowrap" }}>
             Average across 4 teams
           </p>
         </div>

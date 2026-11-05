@@ -2407,3 +2407,23 @@ Assets: `public/new-home/system/gei-mark.svg`, `gei-glow.svg`; icons are Lucide 
 ## /impact/cx (Operation Update, 2026-11-05)
 
 Figma cGznwzQVViaYtxp3zcZk97 section **152:18384** (page 128:23061, six tab states 152:18389 … 152:18703). Copy, tab titles/bullets and headings already matched Figma. Hero (GrowthSteps, 592 × 441) composition and animation unchanged; its five step photos were replaced (`public/impact/cx/hero/photo-{onboarding,milestone,thankyou,renewal,loyalty}.webp`, 4× of the 92-wide wells 102 / 150 / 198 / 246 / 294 high — pre-cropped, shown with `object-fit: cover`). Photos re-exported at 3× as webp: `v2/problem-{vendors,addresses,recurring}.webp` (1168 × 750) and `v2/journey-{onboarding,milestones,appreciation,events,resolution,renewal}.webp` (1740 × 1182); the five "More ways to engage customers" rows reuse HR's `hr-engage-*.webp` (identical in Figma; the recognition row keeps the code `KudosToast`). UI cards as SVG (`scripts/svg-cards.mjs`, `impact-cx/`): `Dashboard` (Workspace Contacts, 128:23207), `AutomationCrm` / `AutomationWebhooks` / `AutomationApi` (128:23578 / 23627 / 23653) and `VisBudgets` / `VisSends` / `VisRedemptions` / `VisActivity` (128:23696 / 23729 / 23759 / 23784). Added the Figma divider (`TeamDivider`) after the problem section. The page keeps its own CX case studies (Figma shows Workato, Octus, Isolved). Old jpgs and orphaned shared card images were deleted.
+
+## /impact/leadership (Operation Update, 2026-11-05)
+
+Figma cGznwzQVViaYtxp3zcZk97 section **152:18769** (page 128:24268, six tab states 152:18774 … 152:19098).
+
+**New hero — Governance** (`app/components/impact/GovernanceScene.tsx`, host `Governance.tsx`; Figma 139:19124; replaces `GuardrailsTray*`). Stage 580 × 574, `visualMaxWidth` 36.25rem. Layout: workspace card (0,0 · 580 × 145.9; counters 7 / 14 / $148,200 / $26,800 + 7-avatar stack) · connector at (289,145.9) · tray `bg-governance-tray` (y 177.9, 580 × 313: header, Arun pill, three rules at y 66 / 129 / 192, "Applies to" strip y 255, five team labels) · connector at (333,492.9) · notice pill (294,524.8 · 286 × 49, `bg-arcade-pill`) "Sales request for $1,200 needs approval". Timeline (30 fps, INTRO 96 + LOOP 300; frame 96 = Figma): workspace pops 0, tray 26, rules 34 / 42 / 50, strip 58, labels 62 + 4i, second connector 70–84, notice 76. Loop: packet A at lt 20, rules light every 28 frames from 44, approval toggle off 100–136, packet B at lt 150 lights the labels and lifts the notice; stage bobs ±2.5.
+Tokens: `--color-governance-tray` (#e3e4e7), `--color-governance-on` (#226104).
+Assets: `public/impact/leadership/hero/{workspace-avatars,avatar-arun,avatar-sales}.webp`.
+
+**Images** re-exported as webp: `v2/problem-{tools,budgets,consistency,oversight}.webp` (1200 × 750), `v2/journey-{onboarding,milestones,events,appreciation,sales}.webp`; the engagement rows reuse HR's `hr-engage-*.webp`. Alt texts rewritten.
+**SVG cards** (`scripts/svg-cards.mjs`, `impact-leadership/`): `TeamsWorkspace` (128:24411), `CompanyOverview` (128:24927), `ScaleIntegrations` (128:24785, crop 8,0,389.33,250), `ScaleCountries` (128:24848), `ScaleInfrastructure` (128:24882), `JourneyRecognition` (152:18866, tab 2 photo + recognition chip, used as the tab `graphic`).
+The page keeps its own leadership case studies (Figma shows Isolved, Workato, Octus). Removed: `GuardrailsTray*`, the old jpg/png assets, orphaned card images.
+
+## Hero colour pass (2026-11-05)
+
+Figma cGznwzQVViaYtxp3zcZk97, "★ Impact pages · FINAL". Hero visuals re-synced for colour only; geometry and motion unchanged.
+- **/impact/leadership** (139:19124): toggles on `#111111` — `--color-governance-on` changed from Parsley `#226104`.
+- **/impact/finance** (128:18979): team cards + average strip now dark `--color-finance-card` `#1f2021` with a 1px white@8% border; amounts/avg white; track white@12% filled with the team pastel (lilac / pink / blue / green); divider white@10%; "% spent", lead names and strip label `grey-400`; "Saved $…K" + trend icon `--color-finance-saved` `#9ed99a`; split bar segments are the team pastels (reserve `grey-200`); swatch dots removed; card 173, strip 72 high.
+- **/impact/office-admins** (128:25767): location cards `--color-office-card` `#e3e4e7`, divider `--color-office-divider` `#d1d2d6`.
+- **Muted text** `--color-hero-muted` `#919295` replaces `canvas-muted` (`#757679`) in the finance, cx (step day labels) and office scenes. Sales, marketing and /impact already matched.

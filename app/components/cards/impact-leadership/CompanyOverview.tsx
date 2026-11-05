@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-leadership/CompanyOverview.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function CompanyOverview({ alt = "Stadium Company overview showing live programs, sends, spend against funding, and spend by team" }: { alt?: string }) {
+export default function CompanyOverview({ alt = "ARCADE Kudos Program overview showing kudos to give and received, most recognized people, and recent recognition activity" }: { alt?: string }) {
   return <CardObject src="/cards/impact-leadership/CompanyOverview.svg" alt={alt} width={1316} height={805} />;
 }
