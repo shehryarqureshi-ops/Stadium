@@ -2445,3 +2445,26 @@ Figma 108:17494 and the seven state frames (152:16498 … 152:17442): each tab n
 ## Marker.io pass (2026-11-05, SNW-119 … SNW-147)
 
 Copy / links / CTA consistency from the Marker "Assigned to me" list (23 issues). Every CTA that opens the sales form is now **Talk to sales** (home closing, /book-a-call hero form + closing, /catalog + /pricing closing, /swag comparison + offerings tabs, /impact/marketing + /workspaces heroes); the home closing's second button is **Browse the catalog → /catalog**. /book-a-call hero: "Let’s find the right fit for your team", new intro, "Talk to sales and learn how to:", bullet "…hosted experiences, and more in one place". Headlines: /impact/hr "You own the employee experience, but the work behind it is fragmented" + description line break; /impact/sales "Send gifts. Skip the logistics."; /impact/leadership "Growth makes engagement harder to manage", "Give teams autonomy. / Keep company-wide control.", card titles in sentence case; /workspaces "Teams get flexibility / within company controls"; /roles-and-permissions closing "See how Stadium can support your access needs"; /integrations "Connect Stadium to your existing tech stack"; /integrations-listing closing description; /impact eyebrow "Company workspace". Links: Trust center → https://trust.bystadium.com; security closing CTA → "View security documentation" (help-center SOC 2 article); SSO docs → help-center SSO article; legacy Zendesk `/hc/en-us/requests/new` (404) → help-center "contact support" article (integrations-listing + footer). Globe: added Lagos, Johannesburg, São Paulo pills (`ng`/`za` circle flags added to `public/flags`). `VariableCardGrid.description` and `ChecklistCards.title` now accept ReactNode (line breaks). Infra tabs: "Global Logistics" and no customs/compliance tab (already in the pyramid; mirrored in `Infrastructure.tsx`). Header logo checked: sprinkle and S are both 22.3 high.
+
+## /catalog — JohnnieO + priority brands (2026-11-05)
+
+- Added **JohnnieO** (Swag): white logo `public/catalog-page/logos/johnnieo.svg`, fetched from johnnie-o.com
+  (`/images/icon-surfer-with-logo.svg`), cleaned to a single white `fill` on the root, viewBox 1521×969 (ratio 1.57).
+  Sized by the existing `logoSize()` constant-area rule, so it needs no new tokens.
+- **Priority brands**: Peter Millar and JohnnieO are first in the Swag Brands tab (`LISTS.swag` in
+  `scripts/gen-brand-logos.mjs`) and carry `priority: true`; `buildMosaicColumns` puts priority brands in the
+  first mosaic columns, so both show at every width (2 columns on mobile up to 9).
+
+## Marker.io pass 2 (2026-11-05, SNW-151 … SNW-167)
+
+- **/impact "Explore by team" tabs**: each tab's sentence became checked bullets (HR 4, Marketing 3, Sales 2, CX 3,
+  Leadership 3, Office & Admin 3, Finance 3) and the end CTA is back as the default "Explore <team>" link to
+  `/impact/<hr|marketing|sales|cx|leadership|office-admins|finance>` (SNW-161…167). This reverses the earlier
+  Figma-based CTA removal. `PillTabs` item `description` is now optional (bullets-only tabs).
+- **/impact "Built for scale"** description breaks after "connect your systems," (SNW-151).
+- **SNW-150 (Confetti logo with capital C) — resolved**: `public/footer-brand-confetti-mark.svg` replaced with the supplied
+  brand SVG (three dots + capital-C wordmark, 2054×350, white); `PageClose.tsx` img attrs set to the new 5.87 ratio (120.9×20.6).
+- Footer Confetti logo is rendered at ~88% of the Swagmagic/Snackmagic height (`h-[0.875rem] md:h-[1rem] lg:h-[1.15625rem]`)
+  so its x-height (64% of the viewBox vs 50% for the others) matches optically.
+
+- Home `CatalogTeaser` brand row: JohnnieO added next to Peter Millar (priority brands first) on the All and Swag tabs; Swag drops Stanley to keep six marks.

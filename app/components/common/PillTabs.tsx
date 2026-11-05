@@ -13,7 +13,8 @@ export type TabsShowcaseItem = {
   name: string;
   tab: string;
   title: string;
-  description: string;
+  /** omit when the tab is bullets-only */
+  description?: string;
   bullets?: string[];
   /** a string src is used for vector artwork; omit for a grey placeholder */
   image?: StaticImageData | string;
@@ -220,9 +221,11 @@ export default function PillTabs({
                 {item.title}
               </h3>
 
-              <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#757575] text-pretty">
-                {item.description}
-              </p>
+              {item.description && (
+                <p className="max-w-[34rem] font-sans text-[1rem] leading-6 text-[#757575] text-pretty">
+                  {item.description}
+                </p>
+              )}
             </div>
 
             {!!item.bullets?.length && (

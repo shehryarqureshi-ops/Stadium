@@ -188,9 +188,9 @@ export default function PageClose() {
                     <img loading="lazy" decoding="async"
                       src="/footer-brand-confetti-mark.svg"
                       alt="Confetti"
-                      width={112.692}
-                      height={20.614}
-                      className="h-[1rem] w-auto md:h-[1.09375rem] lg:h-[1.28125rem]"
+                      width={120.9}
+                      height={20.6}
+                      className="h-[0.875rem] w-auto md:h-[1rem] lg:h-[1.15625rem]"
                     />
                   </a>
                 </div>

@@ -101,7 +101,7 @@ export default function ImpactPage() {
           caption="Built for scale"
           captionColor="#16171b"
           title="More programs. Less operational work."
-          description="Automate recurring work, consolidate vendors, connect your systems, and let Stadium handle fulfillment as you scale."
+          description={<>Automate recurring work, consolidate vendors, connect your systems,<br />and let Stadium handle fulfillment as you scale.</>}
           gridColumns={2}
           narrow
           items={[
@@ -121,13 +121,13 @@ export default function ImpactPage() {
             description="Each team can run the programs they own while staying connected to the same company infrastructure."
             autoAdvance={false}
             items={[
-              { name: "HR & People", tab: "HR & People", title: "HR & People", description: "Automate recognition, onboarding, milestones, and employee programs across locations.", graphic: <TabHr /> },
-              { name: "Marketing", tab: "Marketing", title: "Marketing", description: "Events, ABM, and campaign gifting at scale", image: tabMarketing, imageAlt: "A shopper carrying an ARCADE gift bag past a branded booth in a busy event hall" },
-              { name: "Sales", tab: "Sales", title: "Sales", description: "Pipeline acceleration and account expansion", image: tabSales, imageAlt: "A man watching a video call on his monitor while the prospect shows an open DevNest gift box" },
-              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", description: "Loyalty, retention, and surprise & delight", image: tabCx, imageAlt: "A customer smiling on her sofa as she unboxes a Tap + Cork tumbler gift" },
-              { name: "Leadership", tab: "Leadership", title: "Leadership", description: "Reputation, retention, and governance", image: tabLeadership, imageAlt: "A leader leaning over a desk to talk with a colleague, an orange gift box beside the keyboard" },
-              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", description: "Logistics, gifting, and inventory at scale", image: tabOffice, imageAlt: "An office admin with a clipboard wheeling boxes through a storage room" },
-              { name: "Finance", tab: "Finance", title: "Finance", description: "Vendor consolidation, control, and visibility", image: tabFinance, imageAlt: "A finance lead reviewing a document with a pen at his desk, a parcel beside him" },
+              { name: "HR & People", tab: "HR & People", title: "HR & People", bullets: ["Employee recognition","Onboarding","Milestones & celebrations","Employee programs across locations"], href: "/impact/hr", graphic: <TabHr /> },
+              { name: "Marketing", tab: "Marketing", title: "Marketing", bullets: ["Events","Account-based marketing (ABM)","Campaign gifting at scale"], href: "/impact/marketing", image: tabMarketing, imageAlt: "A shopper carrying an ARCADE gift bag past a branded booth in a busy event hall" },
+              { name: "Sales", tab: "Sales", title: "Sales", bullets: ["Pipeline acceleration","Account expansion"], href: "/impact/sales", image: tabSales, imageAlt: "A man watching a video call on his monitor while the prospect shows an open DevNest gift box" },
+              { name: "Customer Experience", tab: "Customer Experience", title: "Customer Experience", bullets: ["Customer loyalty","Customer retention","Surprise & delight"], href: "/impact/cx", image: tabCx, imageAlt: "A customer smiling on her sofa as she unboxes a Tap + Cork tumbler gift" },
+              { name: "Leadership", tab: "Leadership", title: "Leadership", bullets: ["Reputation","Retention","Governance"], href: "/impact/leadership", image: tabLeadership, imageAlt: "A leader leaning over a desk to talk with a colleague, an orange gift box beside the keyboard" },
+              { name: "Office & Admin", tab: "Office & Admin", title: "Office & Admin", bullets: ["Logistics","Gifting","Inventory management at scale"], href: "/impact/office-admins", image: tabOffice, imageAlt: "An office admin with a clipboard wheeling boxes through a storage room" },
+              { name: "Finance", tab: "Finance", title: "Finance", bullets: ["Vendor consolidation","Spending control","Budget visibility"], href: "/impact/finance", image: tabFinance, imageAlt: "A finance lead reviewing a document with a pen at his desk, a parcel beside him" },
             ]}
           />
         </div>

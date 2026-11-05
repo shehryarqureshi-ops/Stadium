@@ -74,8 +74,8 @@ const logosNamed = (names: string[]) =>
   });
 
 const BRANDS_BY_TAB: Record<Tab, ReturnType<typeof logosNamed>> = {
-  all: logosNamed(["The North Face", "Carhartt", "Yeti", "Peter Millar"]),
-  swag: logosNamed(["Nike", "The North Face", "Carhartt", "Yeti", "Peter Millar", "Stanley"]),
+  all: logosNamed(["Peter Millar", "JohnnieO", "The North Face", "Carhartt", "Yeti"]),
+  swag: logosNamed(["Peter Millar", "JohnnieO", "Nike", "The North Face", "Carhartt", "Yeti"]),
   gifts: logosNamed(["Apple", "Sony", "Logitech", "Ray-Ban", "Casio", "Crayola"]),
   snacks: logosNamed(["Hippeas", "Garrett Popcorn", "Milk Bar", "Pipcorn", "Tate's Bake Shop", "Hu Chocolate"]),
   experiences: logosNamed(["The North Face", "Carhartt", "Yeti", "Peter Millar"]),

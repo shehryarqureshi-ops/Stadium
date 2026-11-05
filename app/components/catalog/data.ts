@@ -24,7 +24,7 @@ export type Product = {
 };
 
 /** A brand logo tile — or, when `logo` is omitted, a text tile (name + `stat`). */
-export type Brand = { name: string; logo?: string; /** logo viewBox width ÷ height (sizes the mark) */ ratio?: number; stat?: string };
+export type Brand = { name: string; logo?: string; /** logo viewBox width ÷ height (sizes the mark) */ ratio?: number; stat?: string; /** high-priority brand — pinned to the first columns of the mosaic */ priority?: boolean };
 
 export type Country = { code: FlagCode; name: string; stat: string };
 
@@ -354,7 +354,9 @@ export function buildMosaicColumns(section: SectionData): MosaicColumn[] {
   const extra = Math.max(0, Math.min(MOSAIC_COLUMNS * PRODUCTS_MAX, products.length) - per * MOSAIC_COLUMNS);
   let cursor = 0;
 
-  const brands = shuffled(section.brands, rand);
+  /* priority brands (Peter Millar, JohnnieO) take the first columns so they show at every width */
+  const brandsAll = shuffled(section.brands, rand);
+  const brands = [...brandsAll.filter((b) => b.priority), ...brandsAll.filter((b) => !b.priority)];
   const events = shuffled(section.events, rand);
   const countries = shuffled(section.countries, rand);
   const stats = shuffled(section.stats, rand);
