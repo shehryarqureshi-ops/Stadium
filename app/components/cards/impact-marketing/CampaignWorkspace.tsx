@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-marketing/CampaignWorkspace.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function CampaignWorkspace({ alt = "Stadium campaign workspace for a Q4 product launch with recipients, sends, budget, and experiences including a swag store, event kits, direct mail gift, and branded shop" }: { alt?: string }) {
+export default function CampaignWorkspace({ alt = "Stadium Shops page listing the ARCADE Store, Onboarding Shop, Holiday Gifts 2026, Lisbon Offsite, Client Gifts, and ARCADE Deutschland shops, all live" }: { alt?: string }) {
   return <CardObject src="/cards/impact-marketing/CampaignWorkspace.svg" alt={alt} width={1316} height={805} />;
 }

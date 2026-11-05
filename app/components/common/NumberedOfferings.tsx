@@ -15,6 +15,8 @@ export type NumberedOffering = {
   description: string;
   image?: StaticImageData;
   imageAlt?: string;
+  /* coded/SVG visual (e.g. a CardObject) shown instead of `image` */
+  graphic?: ReactNode;
   /* floating UI card pinned top-right of the image (e.g. HR Recognition kudos toast) */
   overlay?: ReactNode;
 };
@@ -66,7 +68,9 @@ export default function NumberedOfferings({
                 </div>
               </div>
               <div className="relative aspect-[243/216] w-full shrink-0 overflow-hidden rounded-[1.25rem] bg-[#e0e0e0] sm:aspect-auto sm:w-[15.1875rem]">
-                {item.image && (
+                {item.graphic ? (
+                  <div className="absolute inset-0 [&>div]:h-full">{item.graphic}</div>
+                ) : item.image && (
                   <Image
                     src={item.image}
                     alt={item.imageAlt ?? item.title}

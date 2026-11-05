@@ -203,6 +203,8 @@
   --color-arcade-pill: #2a2b2e; /* /impact hero · dark city status pills */
   --color-arcade-ok: #7fd99b; /* /impact hero · "Delivered" on dark */
   --color-arcade-pill-muted: #a7a8ac; /* /impact hero · "Shipped" / "Packing" on dark */
+  --color-campaign-ok: #1b7a36; /* /impact/marketing hero · delivered bar fill + label (CampaignKitScene) */
+  --color-campaign-track: #efeff1; /* /impact/marketing hero · delivery bar track */
   --color-chip-surface: #f3f3f5; /* /impact/sales hero · source chips, recipient pill (same value as arcade-well) */
   --color-signal-green: #2fa64f; /* /impact/sales hero · active-stage dot, travelling gift packet */
   --color-canvas-yellow: #fcefc2; /* /impact/leadership hero · Finance label */

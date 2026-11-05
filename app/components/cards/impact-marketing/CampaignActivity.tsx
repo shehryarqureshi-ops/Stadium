@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-marketing/CampaignActivity.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function CampaignActivity({ alt = "Campaign activity dashboard showing sent, opened, redeemed, and delivered counts with a recipient status table" }: { alt?: string }) {
+export default function CampaignActivity({ alt = "Stadium shop reports showing points sent and accepted, thank-you messages, redemptions by country, and top products" }: { alt?: string }) {
   return <CardObject src="/cards/impact-marketing/CampaignActivity.svg" alt={alt} width={1316} height={805} />;
 }
