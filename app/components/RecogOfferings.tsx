@@ -1,7 +1,7 @@
-import kudos from "@/public/recognition/programs/kudos.png";
-import milestone from "@/public/recognition/programs/milestone.png";
-import incentives from "@/public/recognition/programs/incentives.png";
-import service from "@/public/recognition/programs/service.png";
+import kudos from "@/public/recognition/programs/kudos.webp";
+import milestone from "@/public/recognition/programs/milestone.webp";
+import incentives from "@/public/recognition/programs/incentives.webp";
+import service from "@/public/recognition/programs/service.webp";
 
 import PillTabs, {
   type TabsShowcaseItem,

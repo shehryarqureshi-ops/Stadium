@@ -2468,3 +2468,55 @@ Copy / links / CTA consistency from the Marker "Assigned to me" list (23 issues)
   so its x-height (64% of the viewBox vs 50% for the others) matches optically.
 
 - Home `CatalogTeaser` brand row: JohnnieO added next to Peter Millar (priority brands first) on the All and Swag tabs; Swag drops Stanley to keep six marks.
+
+## /snacks problem section images (2026-11-05)
+
+Figma node 309:7275 (cards 309:7277 / 309:7282 / 309:7289): the three photos were re-exported from Figma's raw images
+(1280×960, centre-cropped by `ProblemSection` to its 323/250 frame) as webp in `public/snacks/problem/`
+(`asking`, `one-person`, `calendar`); the old PNGs were deleted. Copy was already identical to Figma.
+
+## /swag problem section images (2026-11-05)
+
+Figma node 405:532 (cards 405:533 / 405:540 / 405:547): the three photos were re-exported from Figma's raw images
+(1280×1024, centre-cropped by `ProblemSection`) as webp: `public/swag2/sw2-problem-{vendors,closet,logistics}.webp`.
+Old JPGs deleted; alt texts rewritten for the new photos. Copy already matched Figma.
+
+## Home "For the people who matter." card images (Figma 429:16491)
+
+Employees, Partners, Prospects, Customers and Event Attendees photos replaced in
+`public/oneplatform/v3/{employees,partners,prospects,customers,event-attendees}.jpg`
+(same filenames, so `EveryWay.tsx` is unchanged). Source = the frame's full-size
+raw images, centre-cropped to 221:320 and exported at 664×960 (q86 progressive jpg).
+
+## /swag "Swag options" images (Figma 309:20739)
+
+Six plate images (Swag Kits, Branded Stores, On-Demand, Bulk, Self-Serve, Storage) replaced in
+`public/swag/everything/*.webp` (1160×782, q85; old PNGs deleted, imports in
+`SwagmagicOfferings.tsx` updated). Swag Storage uses Figma's zoomed crop of the source image
+(144% wide, offset -22% / -36%), baked into the file so it renders with plain cover.
+
+## /ways-to-engage "The employee journey" images (Figma 309:5902)
+
+`public/wte/journey-1…6.jpg` replaced with the six image-node renders at 3× (1128×750, q88),
+flattened on white. The Thank-Yous / Remote Check-Ins UI overlays are baked in, as before.
+No code change (`WteOccasions.tsx`).
+
+## Marker.io image tickets — Figma tracker 432:16492 (2026-11-06)
+
+Compared each ticket's FINAL image in the tracker against the site (perceptual match on `public/`). Already
+matching (no change): SNW-122, 129, 108, 14, 52, 15, 5, 7, 10, 11, 12, 83. Updated to the Figma final
+(raw 1536×1024 sources, cover-fit to each file's existing size, webp q85):
+- SNW-152 `impact/hr/v2/problem-scale.webp` — front man sharp, background soft
+- SNW-153 `impact/hr/v2/journey-birthdays.webp` — card turned, cupcake + "Happy birthday" note
+- SNW-6 `impact/office-admins/v2/problem-invoices.webp` — paper chaos, no monitors
+- SNW-8 `impact/cx/v2/journey-resolution.webp` — rep packing a "Dept. of Superior Dishes" gift
+- SNW-9 `impact/cx/v2/problem-{vendors,addresses,recurring}.webp` — screen-free pain cards
+Alt text updated on all of them. Not touched: SNW-47/48 (dev, product UI), SNW-28 (design), SNW-56 (check),
+SNW-4 (tracker final is an ARCADE-branded kit; the /swag Swag Kits image from Figma 309:20739 is teambuilds-branded).
+SNW-4 decision (2026-11-06): keep the teambuilds-branded Swag Kits image from Figma 309:20739 (a fake brand, as the ticket comment asked); resolved in Marker.
+
+## /recognition "Recognition Programs" images (Figma 309:20569)
+
+`public/recognition/programs/{kudos,milestone,incentives,service}.webp` (1160×740, q86) replace the PNGs, rendered from the four
+image frames at 3× with their UI toasts baked in (Maya→Daniel kudos, 1 year anniversary, Tier 2 reward, 5 year service award).
+Imports updated in `RecogOfferings.tsx`; old PNGs deleted.

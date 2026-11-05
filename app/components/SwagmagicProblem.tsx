@@ -1,6 +1,6 @@
-import photoVendors from "@/public/swag2/sw2-problem-vendors.jpg";
-import photoCloset from "@/public/swag2/sw2-problem-closet.jpg";
-import photoLogistics from "@/public/swag2/sw2-problem-logistics.jpg";
+import photoVendors from "@/public/swag2/sw2-problem-vendors.webp";
+import photoCloset from "@/public/swag2/sw2-problem-closet.webp";
+import photoLogistics from "@/public/swag2/sw2-problem-logistics.webp";
 
 import ProblemSection, {
   type ProblemSectionItem,
@@ -10,7 +10,7 @@ const items: ProblemSectionItem[] = [
   {
     image: photoVendors,
     imageAlt:
-      "A stockroom manager checking paperwork over a packed swag box, apparel rail behind",
+      "A man resting his chin on his hand over a table of separate vendor boxes and invoices from four different carriers",
     title: "One vendor becomes four",
     description:
       "Swag, kits, and fulfillment each need their own vendor, login, and invoice.",
@@ -18,7 +18,7 @@ const items: ProblemSectionItem[] = [
   {
     image: photoCloset,
     imageAlt:
-      "Someone packing a box beside shelves crowded with overflowing swag cartons",
+      "A woman reaching up to restock a shelf crowded with folded apparel and swag cartons",
     title: "The swag closet keeps growing",
     description:
       "Boxes pile up, inventory becomes outdated, and reorders end up being a guess.",
@@ -26,7 +26,7 @@ const items: ProblemSectionItem[] = [
   {
     image: photoLogistics,
     imageAlt:
-      "A person on the phone sorting stacks of folded apparel across a work table",
+      "A person on the phone holding a ship-to city checklist beside size-labelled stacks of folded apparel",
     title: "Logistics adds up fast",
     description:
       "Sizes, shipments, invoices, and customs paperwork for every country your team lives in.",

@@ -274,9 +274,16 @@ export function MediaTabs({
   const media = (
     <div
       ref={mediaEl}
-      className={`relative overflow-hidden bg-[#0e0f11] ${pill ? `${mediaClass} rounded-[2rem]` : "min-h-0 rounded-lg max-lg:aspect-video lg:order-1"
+      className={`relative overflow-hidden bg-[#0e0f11] ${pill ? `${mediaClass} rounded-[2rem]` : "min-h-0 rounded-lg border border-white/[0.08] bg-[#0f0f12] lg:order-1"
         }`}
     >
+      {/* screen variant: in-flow spacers size the card to the clip's own aspect (chrome bar + full, uncropped video) */}
+      {!pill && (
+        <>
+          <div aria-hidden className="h-9 md:h-11" />
+          <div aria-hidden className={mediaClass} />
+        </>
+      )}
       {tabs.map((t, i) => (
         <div
           key={t.title}
@@ -296,16 +303,13 @@ export function MediaTabs({
               onEnded={i === active ? advance : undefined}
               onError={() => setFailed((f) => ({ ...f, [i]: true }))}
               aria-label={`${t.title} — ${label}`}
-              className={`absolute size-full object-cover ${variant === "screen" ? "inset-x-0 bottom-0 top-9 h-[calc(100%-2.25rem)] md:top-11 md:h-[calc(100%-2.75rem)]" : "inset-0"}`}
+              className={`absolute size-full ${variant === "screen" ? "object-contain" : "object-cover"} ${variant === "screen" ? "inset-x-0 bottom-0 top-9 h-[calc(100%-2.25rem)] md:top-11 md:h-[calc(100%-2.75rem)]" : "inset-0"}`}
             />
           ) : variant === "screen" ? null : (
             <ClipPlaceholder />
           )}
         </div>
       ))}
-      {!pill && (
-        <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
-      )}
       {/* progress — phones/tablet (desktop shows it inside the open tab) */}
       <span aria-hidden className={`absolute inset-x-0 bottom-0 h-0.5 bg-white/15 lg:hidden ${pill ? "hidden" : ""}`}>
         <span
@@ -319,11 +323,7 @@ export function MediaTabs({
 
   if (pill) {
     return (
-      <div className="flex flex-col items-center gap-6 md:gap-8">
-        {media}
-        <p className="min-h-[2.75rem] max-w-[32.25rem] text-balance text-center font-sans text-pyramid-meta text-[#cccccc]">
-          {tab.desc}
-        </p>
+      <div className="-mt-4 flex flex-col items-center gap-6 md:-mt-6 md:gap-8">
         <div
           role="tablist"
           aria-label={label}
@@ -346,13 +346,14 @@ export function MediaTabs({
             );
           })}
         </div>
+        {media}
       </div>
     );
   }
 
   return (
     <div
-      className={`${glass} flex flex-col gap-2.5 lg:h-[35.625rem] lg:grid lg:grid-cols-[minmax(0,1fr)_26.25rem]`}
+      className={`${glass} flex flex-col gap-2.5 lg:grid lg:grid-cols-[minmax(0,1fr)_26.25rem]`}
     >
       <Bloom />
       {media}
@@ -392,13 +393,13 @@ export function MediaTabs({
               aria-selected={on}
               aria-label={t.title}
               onClick={() => setActive(i)}
-              style={{ flexGrow: on ? 3 : 1 }}
-              className={`relative cursor-pointer overflow-hidden rounded-xl text-left transition-[background-color,flex-grow] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-0 lg:flex-1 ${on ? "bg-white/10" : "bg-pyramid-tab hover:bg-[#232323]"
+              style={{ flexGrow: on ? 1 : 0, flexBasis: on ? "0rem" : "3.5rem" }}
+              className={`relative cursor-pointer overflow-hidden rounded-xl text-left transition-[background-color,flex-grow,flex-basis] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-0 ${on ? "bg-white/10" : "bg-pyramid-tab hover:bg-[#232323]"
                 }`}
             >
               {/* the title glides between its collapsed (62px tab → 17px) and open (24px) top — fixed offsets, so it never follows the growing tab's centre */}
               <span
-                className={`absolute left-6 hidden font-sans text-pyramid-tab transition-[top,color] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] lg:block ${on ? "top-6 text-white" : "top-[1.0625rem] text-white/55"
+                className={`absolute left-6 hidden font-sans text-pyramid-tab transition-[top,color] duration-[800ms] ease-[cubic-bezier(0.65,0,0.35,1)] lg:block ${on ? "top-6 text-white" : "top-4 text-white/55"
                   }`}
               >
                 {t.title}

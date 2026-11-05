@@ -9,9 +9,9 @@ import VerticalTestimonials, {
 import PageClose from "../components/PageClose";
 import SiteHeader from "../components/SiteHeader";
 
-import fulfillmentImg from "@/public/infra-operations.jpg";
-import scaleImg from "@/public/map-faces.jpg";
-import catalogImg from "@/public/catalog-gift-cards.jpg";
+import fulfillmentImg from "@/public/book-a-call/why-local-fulfillment.jpg";
+import scaleImg from "@/public/book-a-call/why-scalable.jpg";
+import catalogImg from "@/public/book-a-call/why-robust-catalog.jpg";
 import feliciaImg from "@/public/the-proof/customers/felicia-kentro.jpg";
 import johnnyImg from "@/public/testimonials/johnny.png";
 import shairaImg from "@/public/testimonials/shaira.png";
@@ -33,25 +33,25 @@ export const metadata: Metadata = {
      160 → testimonials (stack layout) → 120        VerticalTestimonials
      160 → closing CTA                              ClosingCTA (own lg:pt-40)
      footer                                         PageClose
-   "Why Stadium?" images are placeholders in Figma — existing site photography
-   stands in (fulfillment floor, crowd, gift cards). */
+   "Why Stadium?" images: Figma 432:16497 "FINAL" set (doorstep shot with the
+   170+ countries badge baked in, the site conveyor, the catalog flat-lay). */
 
 const WHY_STADIUM: ProblemSectionItem[] = [
   {
     image: fulfillmentImg,
-    imageAlt: "Branded Stadium boxes moving along a fulfillment-center conveyor",
+    imageAlt: "A recipient smiling as she receives a Stadium box, with a 170+ countries badge",
     title: "Local Fulfillment",
     description: "We fulfill locally in 170+ countries, so everyone feels valued.",
   },
   {
     image: scaleImg,
-    imageAlt: "A large group of smiling coworkers",
+    imageAlt: "A fulfillment team packing Stadium kits along a conveyor",
     title: "Scalable",
     description: "We make gifting a breeze, whether you’re gifting to 1 or 1,000+.",
   },
   {
     image: catalogImg,
-    imageAlt: "Gift cards from popular brands",
+    imageAlt: "A Stadium kit with swag, snacks and gift cards",
     title: "Robust Catalog",
     description: "From snacks to gift cards to swag—we’ve got it all.",
   },

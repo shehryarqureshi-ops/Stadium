@@ -1,11 +1,11 @@
 "use client";
 
-import swagKits from "@/public/swag/everything/swag-kits.png";
-import brandedStores from "@/public/swag/everything/branded-stores.png";
-import onDemand from "@/public/swag/everything/on-demand.png";
-import bulkSwag from "@/public/swag/everything/bulk-swag.png";
-import selfServe from "@/public/swag/everything/self-serve.png";
-import swagStorage from "@/public/swag/everything/swag-storage.png";
+import swagKits from "@/public/swag/everything/swag-kits.webp";
+import brandedStores from "@/public/swag/everything/branded-stores.webp";
+import onDemand from "@/public/swag/everything/on-demand.webp";
+import bulkSwag from "@/public/swag/everything/bulk-swag.webp";
+import selfServe from "@/public/swag/everything/self-serve.webp";
+import swagStorage from "@/public/swag/everything/swag-storage.webp";
 
 import PillTabs from "./common/PillTabs";
 

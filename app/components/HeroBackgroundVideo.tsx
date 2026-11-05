@@ -17,14 +17,14 @@ import type { HeroSlide } from "../data/heroRotation";
      outgoing one stays fully opaque beneath it (no dip to black), then unmounts.
    - `onReady(i)` tells Hero when slide i is actually on screen (its clip
      started playing, or immediately in poster-only mode) — Hero starts its
-     shared 9s clock from that moment, which keeps word and video in lockstep.
+     slide change when the clip reaches its end (100 ms crossfade), keeping word and video in lockstep.
      Only the instance whose breakpoint is live reports (the other one is
      display:none and stays inert).
    - The first clip mounts immediately and plays asap; once it is playing the
      other clips download in the background (low priority). Pausing
      off-screen is owned by `playing`. */
 
-const CROSSFADE_MS = 1000;
+const CROSSFADE_MS = 100;
 
 type NavigatorWithConnection = Navigator & {
   connection?: { saveData?: boolean };
@@ -38,6 +38,7 @@ export default function HeroBackgroundVideo({
   reduce,
   allowOnPhone = false,
   onReady,
+  onEnd,
 }: {
   slides: HeroSlide[];
   index: number;
@@ -47,7 +48,10 @@ export default function HeroBackgroundVideo({
   reduce: boolean;
   /** phones normally get the poster only; the 16:10 phone media block opts in */
   allowOnPhone?: boolean;
-  onReady: (index: number) => void;
+  /** `driven` = a real clip is playing, so its end (not a timer) advances the slide */
+  onReady: (index: number, driven: boolean) => void;
+  /** the active clip has reached its last CROSSFADE_MS — advance word + clip together */
+  onEnd: (index: number) => void;
 }) {
   const [allowVideo, setAllowVideo] = useState(false);
   /* "pending" until decided; "off" = this instance's breakpoint is not live. */
@@ -126,7 +130,7 @@ export default function HeroBackgroundVideo({
         } else {
           /* active clip: upgrade in place, unless it is about to end anyway */
           const lo = refs.current.get(`${i}:lo`);
-          if (lo && isPlaying && lo.currentTime < 6.5) {
+          if (lo && isPlaying && lo.duration - lo.currentTime > 3) {
             nextMap[i] = { url, live: true };
             changed = true;
           }
@@ -178,7 +182,7 @@ export default function HeroBackgroundVideo({
   /* No video to wait for (Save-Data / reduced motion): the slide is "ready"
      as soon as it is active. */
   useEffect(() => {
-    if (posterOnly) onReady(index);
+    if (posterOnly) onReady(index, false);
   }, [posterOnly, index, onReady]);
 
   /* Track the outgoing clip for the crossfade. This is derived DURING render
@@ -211,7 +215,7 @@ export default function HeroBackgroundVideo({
       if (!playing || !videoOn) {
         v.pause();
       } else if (i === index) {
-        v.play().catch(() => onReady(index));
+        v.play().catch(() => onReady(index, false));
       } else if (i === next) {
         /* the buffered NEXT clip: hold on its first frame until its turn
            (the outgoing clip keeps playing under the crossfade) */
@@ -220,6 +224,30 @@ export default function HeroBackgroundVideo({
       }
     });
   }, [index, next, playing, videoOn, onReady, hd, hdStage]);
+
+  /* The clip's own end drives the rotation: when the visible active clip is within CROSSFADE_MS of
+     its last frame, hand over to the next one (word changes on the same render; the next clip fades
+     in over the last 100 ms). Frame-accurate rAF poll — timeupdate only fires ~4x/s. */
+  useEffect(() => {
+    if (!videoOn || !playing) return;
+    let raf = 0;
+    let fired = false;
+    const tick = () => {
+      const h = hd[index];
+      const el =
+        refs.current.get(h && (!h.live || hdStage[index]) ? `${index}:hd` : `${index}:lo`) ??
+        refs.current.get(`${index}:lo`);
+      if (el && !fired && el.duration > 0 && Number.isFinite(el.duration) && !el.paused) {
+        if (el.duration - el.currentTime <= CROSSFADE_MS / 1000) {
+          fired = true;
+          onEnd(index);
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [index, playing, videoOn, hd, hdStage, onEnd]);
 
   const mounted = videoOn
     ? [
@@ -271,9 +299,10 @@ export default function HeroBackgroundVideo({
                 ref={reg(`${i}:lo`)}
                 src={slides[i].video}
                 {...common}
+                onEnded={() => active && onEnd(i)}
                 onPlaying={() => {
                   if (active) {
-                    onReady(i);
+                    onReady(i, true);
                     setStarted(i);
                   }
                 }}
@@ -299,6 +328,7 @@ export default function HeroBackgroundVideo({
                   if (lo) v.currentTime = lo.currentTime + 0.12;
                   v.play().catch(() => setHdStage((p) => ({ ...p, [i]: 2 })));
                 }}
+                onEnded={() => active && onEnd(i)}
                 onPlaying={() => {
                   if (h.live && !stage) {
                     setHdStage((p) => ({ ...p, [i]: 1 }));
@@ -307,7 +337,7 @@ export default function HeroBackgroundVideo({
                       CROSSFADE_MS + 100,
                     );
                   } else if (active) {
-                    onReady(i);
+                    onReady(i, true);
                     setStarted(i);
                   }
                 }}

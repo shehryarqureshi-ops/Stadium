@@ -11,6 +11,9 @@ import WordShuffle from "./WordShuffle";
    entirely under reduced motion (the video component then shows its poster —
    the original static hero photo). */
 
+/* a playing clip advances the slide itself when it ends; this only catches a clip that stalls */
+const STALL_GUARD_MS = 30000;
+
 export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } = {}) {
   const words = slides.map((s) => s.word);
   const [index, setIndex] = useState(0);
@@ -74,13 +77,33 @@ export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } 
     return () => clearTimeout(t);
   }, [playing]);
 
-  const handleReady = useCallback((i: number) => setReadyIndex(i), []);
+  /* true while a real clip is playing: its end advances the slide, the clock is only a stall guard */
+  const drivenRef = useRef(false);
+  const handleReady = useCallback((i: number, driven: boolean) => {
+    drivenRef.current = driven;
+    setReadyIndex(i);
+  }, []);
+  const indexRef = useRef(index);
+  useEffect(() => {
+    indexRef.current = index;
+  });
+  const handleEnd = useCallback(
+    (i: number) => {
+      if (i !== indexRef.current) return;
+      elapsedRef.current = 0;
+      setIndex((cur) => (cur === i ? (i + 1) % slides.length : cur));
+    },
+    [slides.length],
+  );
 
   /* Safety net: if a clip never reports playback (autoplay blocked, stalled
      network) don't freeze the rotation on it. */
   useEffect(() => {
     if (reduce || slides.length <= 1) return;
-    const t = setTimeout(() => setReadyIndex(index), 4000);
+    const t = setTimeout(() => {
+      drivenRef.current = false;
+      setReadyIndex(index);
+    }, 4000);
     return () => clearTimeout(t);
   }, [index, reduce, slides.length]);
 
@@ -99,7 +122,7 @@ export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } 
         elapsedRef.current = 0;
         setIndex((i) => (i + 1) % slides.length);
       },
-      Math.max(0, HERO_SLIDE_INTERVAL_MS - elapsedRef.current),
+      Math.max(0, (drivenRef.current ? STALL_GUARD_MS : HERO_SLIDE_INTERVAL_MS) - elapsedRef.current),
     );
     return () => {
       clearTimeout(t);
@@ -128,6 +151,7 @@ export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } 
           released={released}
           reduce={reduce}
           onReady={handleReady}
+          onEnd={handleEnd}
         />
         <div className="absolute inset-0 bg-[image:var(--gradient-hero-base-scrim)]" />
         {/* a11y scrim only below lg — at lg the Figma gradient (base scrim
@@ -156,6 +180,7 @@ export default function Hero({ slides = HERO_SLIDES }: { slides?: HeroSlide[] } 
           reduce={reduce}
           allowOnPhone
           onReady={handleReady}
+          onEnd={handleEnd}
         />
       </div>
 

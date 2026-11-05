@@ -128,7 +128,7 @@ export default function HrPage() {
           { image: problem1, imageAlt: "An HR manager reviewing a recognition dashboard at a desk", description: "Recognition isn’t happening consistently." },
           { image: problem2, imageAlt: "An HR manager working across several program tools on a laptop", description: "Programs are fragmented." },
           { image: problem3, imageAlt: "An HR manager packing and labeling envelopes by hand", description: "Manual work eats up HR’s time." },
-          { image: problem4, imageAlt: "A manager presenting a declining employee engagement chart in a meeting room", description: "More and engagement are harder to maintain at scale." },
+          { image: problem4, imageAlt: "A focused employee at his desk in a large open-plan office while colleagues blur into the background", description: "More and engagement are harder to maintain at scale." },
         ]}
         footnote="You don’t need another point solution. You need the infrastructure to run employee engagement–and see how it’s working."
       />
@@ -224,7 +224,7 @@ export default function HrPage() {
             href: LINKS.swag,
             cta: "Powered by Swag",
             image: tabBirthdays,
-            imageAlt: "A hand placing a birthday note on a wrapped gift box beside a coffee cup",
+            imageAlt: "A hand placing a Happy birthday note on an open gift box beside a cupcake with a lit candle",
           },
           {
             id: "wellness",

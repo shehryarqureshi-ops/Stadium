@@ -92,9 +92,9 @@ export default function CxPage() {
           gridColumns={3}
           imageStyle="panel"
           items={[
-            { image: problemVendors, imageAlt: "A customer success manager sorting gifts and paperwork from different vendors", description: "Gifting happens across different vendors." },
-            { image: problemAddresses, imageAlt: "A customer success manager collecting addresses and preferences by email", description: "Teams spend time collecting addresses and preferences." },
-            { image: problemRecurring, imageAlt: "A customer success manager setting up recurring sends by hand", description: "Recurring sends require manual setup." },
+            { image: problemVendors, imageAlt: "A customer success manager comparing cards beside a plain gift box and a padded mailer from different vendors", description: "Gifting happens across different vendors." },
+            { image: problemAddresses, imageAlt: "A customer success manager on the phone writing down a customer's delivery address", description: "Teams spend time collecting addresses and preferences." },
+            { image: problemRecurring, imageAlt: "A customer success manager pinning notes on a wall calendar above a row of gift boxes", description: "Recurring sends require manual setup." },
           ]}
           footnote="Your team should focus on customers–not coordinating every send."
         />
@@ -182,7 +182,7 @@ export default function CxPage() {
               description: "Show customers you care after an issue is resolved.",
               bullets: ["Rep-led sends", "Flexible gift options", "Personalized notes"],
               image: journeyResolution,
-              imageAlt: "A customer opening a follow-up gift",
+              imageAlt: "A rep writing a personal note beside a gift box packed for a customer follow-up",
             },
             {
               id: "renewal-loyalty",

@@ -67,7 +67,7 @@ export function InfraChapters() {
         body={DIGITAL.body}
         bodyWidth="max-w-[36.875rem]"
       />
-      <MediaTabs tabs={DIGITAL.tabs} variant="pill" playing mediaClass="aspect-[1280/940] w-full max-w-[57.4375rem]" label="Recognition, storefronts, integrations and controls" />
+      <MediaTabs tabs={DIGITAL.tabs} variant="screen" playing mediaClass="aspect-[1280/940] w-full" label="Recognition, storefronts, integrations and controls" />
     </Chapter>
 
     <Chapter>

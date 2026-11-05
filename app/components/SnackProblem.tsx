@@ -1,6 +1,6 @@
-import prob1 from "@/public/snacks/problem/asking.png";
-import prob2 from "@/public/snacks/problem/one-person.png";
-import prob3 from "@/public/snacks/problem/calendar.png";
+import prob1 from "@/public/snacks/problem/asking.webp";
+import prob2 from "@/public/snacks/problem/one-person.webp";
+import prob3 from "@/public/snacks/problem/calendar.webp";
 
 import ProblemSection, {
   type ProblemSectionItem,

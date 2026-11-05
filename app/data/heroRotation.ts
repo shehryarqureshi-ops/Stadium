@@ -24,8 +24,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   { word: "community", video: "/videos/hero/community-10s.mp4", hd: "/videos/hero/community-hd.mp4", poster: "/videos/hero/community-10s.webp" },
 ];
 
-/* How long each word/video holds before advancing. Clips are ~10s; the swap
-   happens at 9s so every clip changes mid-playback, never on its last frame. */
+/* Fallback hold time, used only when no clip is playing (poster-only: Save-Data / autoplay blocked).
+   With video, the active clip's end advances word + clip (100 ms crossfade), so no moment is cut. */
 export const HERO_SLIDE_INTERVAL_MS = 9000;
 
 /* /new-home order (2026-10-27): People → Employees → Customers → Partners → Community. */

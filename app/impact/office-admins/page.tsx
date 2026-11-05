@@ -90,7 +90,7 @@ export default function OfficeAdminsPage() {
           { image: problemVendors, imageAlt: "An office admin signing for a delivery from a vendor beside stacked parcels", description: "Programs rely on multiple vendors." },
           { image: problemDeliveries, imageAlt: "An office admin on the phone chasing a delivery, paperwork in hand", description: "Deliveries require follow-up across locations." },
           { image: problemInventory, imageAlt: "An office admin checking pantry shelves against a clipboard", description: "Inventory is difficult to keep current." },
-          { image: problemInvoices, imageAlt: "An office admin stamping and sorting a pile of invoices at a desk", description: "Orders and invoices create extra admin work." },
+          { image: problemInvoices, imageAlt: "An office admin comparing two invoices at a desk piled with paperwork and parcels", description: "Orders and invoices create extra admin work." },
         ]}
         footnote="Your team needs one place to manage programs, orders, and deliveries."
       />
