@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-cx/AutomationApi.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function AutomationApi({ alt = "A customer portal with Stadium rewards built in through the Stadium API" }: { alt?: string }) {
+export default function AutomationApi({ alt = "A customer portal built with the Stadium API showing Dana's rewards and points to redeem" }: { alt?: string }) {
   return <CardObject src="/cards/impact-cx/AutomationApi.svg" alt={alt} width={648} height={364} />;
 }

@@ -26,11 +26,11 @@
 import Image from "next/image";
 import { Easing, interpolate, spring, useCurrentFrame } from "remotion";
 
-import photoLoyalty from "@/public/impact/cx/hero/photo-loyalty.jpg";
-import photoMilestone from "@/public/impact/cx/hero/photo-milestone.jpg";
-import photoOnboarding from "@/public/impact/cx/hero/photo-onboarding.jpg";
-import photoRenewal from "@/public/impact/cx/hero/photo-renewal.jpg";
-import photoThankyou from "@/public/impact/cx/hero/photo-thankyou.jpg";
+import photoLoyalty from "@/public/impact/cx/hero/photo-loyalty.webp";
+import photoMilestone from "@/public/impact/cx/hero/photo-milestone.webp";
+import photoOnboarding from "@/public/impact/cx/hero/photo-onboarding.webp";
+import photoRenewal from "@/public/impact/cx/hero/photo-renewal.webp";
+import photoThankyou from "@/public/impact/cx/hero/photo-thankyou.webp";
 import stadiumMark from "@/public/impact/cx/hero/stadium-mark.svg";
 
 export const STAGE_W = 592;

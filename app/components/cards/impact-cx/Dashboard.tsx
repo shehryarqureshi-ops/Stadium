@@ -2,6 +2,6 @@
 // The graphic is public/cards/impact-cx/Dashboard.svg; its photos are separate files in /public/cards.
 import CardObject from "@/app/components/cards/CardObject";
 
-export default function Dashboard({ alt = "Stadium Customer engagement workspace showing live programs, sends, budget, fulfillment, and program owners" }: { alt?: string }) {
+export default function Dashboard({ alt = "Workspace Contacts list showing names, roles, integrations, home addresses, departments, and birthdays for the ARCADE team" }: { alt?: string }) {
   return <CardObject src="/cards/impact-cx/Dashboard.svg" alt={alt} width={1316} height={805} />;
 }

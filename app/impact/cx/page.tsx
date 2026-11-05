@@ -18,20 +18,20 @@ import ImpactPageShell, { TeamDivider } from "@/app/components/impact/ImpactPage
 import { LINKS, G2_RATING } from "@/app/components/impact/shared";
 
 
-import problemVendors from "@/public/impact/cx/v2/problem-vendors.jpg";
-import problemAddresses from "@/public/impact/cx/v2/problem-addresses.jpg";
-import problemRecurring from "@/public/impact/cx/v2/problem-recurring.jpg";
-import journeyOnboarding from "@/public/impact/cx/v2/journey-onboarding.jpg";
-import journeyMilestones from "@/public/impact/cx/v2/journey-milestones.jpg";
-import journeyAppreciation from "@/public/impact/cx/v2/journey-appreciation.jpg";
-import journeyEvents from "@/public/impact/cx/v2/journey-events.jpg";
-import journeyResolution from "@/public/impact/cx/v2/journey-resolution.jpg";
-import journeyRenewal from "@/public/impact/cx/v2/journey-renewal.jpg";
-import engageRecognition from "@/public/impact/hr/v2/engage-recognition.jpg";
-import engageSwag from "@/public/impact/hr/v2/engage-swag.jpg";
-import engageSnacks from "@/public/impact/hr/v2/engage-snacks.jpg";
-import engageGifting from "@/public/impact/hr/v2/engage-gifting.jpg";
-import engageExperiences from "@/public/impact/hr/v2/engage-experiences.jpg";
+import problemVendors from "@/public/impact/cx/v2/problem-vendors.webp";
+import problemAddresses from "@/public/impact/cx/v2/problem-addresses.webp";
+import problemRecurring from "@/public/impact/cx/v2/problem-recurring.webp";
+import journeyOnboarding from "@/public/impact/cx/v2/journey-onboarding.webp";
+import journeyMilestones from "@/public/impact/cx/v2/journey-milestones.webp";
+import journeyAppreciation from "@/public/impact/cx/v2/journey-appreciation.webp";
+import journeyEvents from "@/public/impact/cx/v2/journey-events.webp";
+import journeyResolution from "@/public/impact/cx/v2/journey-resolution.webp";
+import journeyRenewal from "@/public/impact/cx/v2/journey-renewal.webp";
+import engageRecognition from "@/public/impact/hr/v2/hr-engage-recognition.webp";
+import engageSwag from "@/public/impact/hr/v2/hr-engage-swag.webp";
+import engageSnacks from "@/public/impact/hr/v2/hr-engage-snacks.webp";
+import engageGifting from "@/public/impact/hr/v2/hr-engage-gifting.webp";
+import engageExperiences from "@/public/impact/hr/v2/hr-engage-experiences.webp";
 import KudosToast from "@/app/components/impact/KudosToast";
 import AutomationApi from "@/app/components/cards/impact-cx/AutomationApi";
 import VectorCard from "@/app/components/cards/VectorCard";
@@ -98,6 +98,8 @@ export default function CxPage() {
           ]}
           footnote="Your team should focus on customers–not coordinating every send."
         />
+
+        <TeamDivider />
 
         <ImageShowcase
           caption="One platform"
