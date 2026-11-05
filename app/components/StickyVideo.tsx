@@ -1,29 +1,62 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import heroBg from "@/public/hero-bg.png";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-/* Drop a real hero film in /public and set this to enable playback; until then
-   the corner player shows the hero poster + an inert play affordance. */
-const VIDEO_SRC = "";
+/* "Watch the film" — floating bottom-right widget + modal player.
 
-/* Shopify-style sticky corner player: once the hero is scrolled past, a small
-   muted video follows in the bottom-right with play/pause + dismiss. Sits
-   below the nav (z-30) so the dropdown's backdrop blur covers it too. */
+   - Loading: nothing here is requested on the initial page load. The thumbnail
+     (a ~40 KB webp) is only mounted after the window `load` event + an idle
+     tick, so it never competes with the LCP. The 1080p film itself is only
+     requested once the visitor shows intent (hover / focus / tap on the widget)
+     or opens the modal.
+   - Widget: shows once the hero has scrolled past, hides again at the globe
+     section (same behaviour as before); dismissable for the session.
+   - Modal: a native <dialog> (focus trap + Esc to close for free), big 16:9
+     player with native controls, a fullscreen button and a close button.
+     Clicking the dim backdrop or pressing Esc closes it and pauses the film.
+   Sits below the nav (z-30) so the dropdown's backdrop blur covers the widget. */
+
+const VIDEO_SRC = "/videos/film/stadium-film.mp4";
+const THUMB_SRC = "/videos/film/stadium-film-thumb-v2.webp";
+const EXIT_MS = 220; // keep in sync with the duration-200 transitions below
+
 export default function StickyVideo() {
+  const [thumbReady, setThumbReady] = useState(false);
   const [past, setPast] = useState(false);
   const [pastGlobe, setPastGlobe] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const [playing, setPlaying] = useState(Boolean(VIDEO_SRC));
+  const [warm, setWarm] = useState(false); // start fetching the film
+  const [open, setOpen] = useState(false);
+  const [shown, setShown] = useState(false); // drives the fade + scale (in and out)
+  const [fullscreen, setFullscreen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const opener = useRef<HTMLButtonElement>(null);
+
+  /* thumbnail: after load, when the browser is idle */
+  useEffect(() => {
+    let idle: number | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const arm = () => {
+      if ("requestIdleCallback" in window) {
+        idle = window.requestIdleCallback(() => setThumbReady(true), { timeout: 3000 });
+      } else {
+        timer = setTimeout(() => setThumbReady(true), 1500);
+      }
+    };
+    if (document.readyState === "complete") arm();
+    else window.addEventListener("load", arm, { once: true });
+    return () => {
+      window.removeEventListener("load", arm);
+      if (idle !== undefined && "cancelIdleCallback" in window) window.cancelIdleCallback(idle);
+      clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
       setPast(window.scrollY > window.innerHeight * 0.7);
-      // Hide once the globe / redacted section has scrolled past (its end reaches
-      // the upper half of the viewport) — keeps the corner player off the
-      // Infrastructure section that follows it.
       const globe = document.getElementById("redacted-poster");
       setPastGlobe(
         globe ? globe.getBoundingClientRect().bottom <= window.innerHeight * 0.5 : false,
@@ -38,91 +71,223 @@ export default function StickyVideo() {
     };
   }, []);
 
-  const visible = past && !pastGlobe && !dismissed;
+  const visible = thumbReady && past && !pastGlobe && !dismissed;
 
-  const togglePlay = () => {
+  const openModal = useCallback(() => {
+    setWarm(true);
+    setOpen(true);
+    document.documentElement.style.overflow = "hidden";
+    dialogRef.current?.showModal();
+    /* flush the closed styles first so the transition has a start point */
+    void dialogRef.current?.offsetHeight;
+    setShown(true);
+  }, []);
+
+  /* play as soon as the modal is open — the <video> may only just have mounted
+     (first open), so this runs after render rather than inside the click */
+  useEffect(() => {
     const v = videoRef.current;
-    if (v) {
-      if (v.paused) {
-        void v.play();
-        setPlaying(true);
-      } else {
-        v.pause();
-        setPlaying(false);
-      }
-    } else {
-      setPlaying((p) => !p);
-    }
+    if (!open || !v) return;
+    v.muted = false;
+    void v.play().catch(() => {
+      /* autoplay with sound refused — the native controls are right there */
+    });
+  }, [open]);
+
+  /* final cleanup — idempotent, safe to run from several paths */
+  const onClosed = useCallback(() => {
+    videoRef.current?.pause();
+    document.documentElement.style.overflow = "";
+    setShown(false);
+    setOpen(false);
+    opener.current?.focus({ preventScroll: true });
+  }, []);
+
+  /* animated exit: fade + scale out, then really close the <dialog> */
+  const closing = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closeModal = useCallback(() => {
+    if (closing.current) return;
+    videoRef.current?.pause();
+    if (document.fullscreenElement) void document.exitFullscreen();
+    setShown(false);
+    closing.current = setTimeout(() => {
+      closing.current = null;
+      dialogRef.current?.close();
+      onClosed();
+    }, EXIT_MS);
+  }, [onClosed]);
+
+  /* native listener: the dialog's `close` event fires for Esc, the close button and backdrop clicks */
+  useEffect(() => {
+    const d = dialogRef.current;
+    if (!d) return;
+    /* Esc fires `cancel`: take it over so the exit animates; `close` is the backstop */
+    const onCancel = (e: Event) => {
+      e.preventDefault();
+      closeModal();
+    };
+    d.addEventListener("cancel", onCancel);
+    /* a late `close` from an earlier close must not undo a re-open */
+    const onClose = () => {
+      if (!d.open) onClosed();
+    };
+    d.addEventListener("close", onClose);
+    return () => {
+      d.removeEventListener("cancel", onCancel);
+      d.removeEventListener("close", onClose);
+    };
+  }, [onClosed, closeModal]);
+
+  useEffect(() => () => void (document.documentElement.style.overflow = ""), []);
+
+  useEffect(() => {
+    const sync = () => setFullscreen(document.fullscreenElement === stageRef.current);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, []);
+
+  const toggleFullscreen = () => {
+    const el = stageRef.current;
+    if (!el) return;
+    if (document.fullscreenElement) void document.exitFullscreen();
+    else void el.requestFullscreen?.().catch(() => {});
   };
 
   return (
-    <div
-      aria-hidden={!visible}
-      inert={!visible}
-      className={`fixed bottom-4 right-4 z-30 w-[14rem] transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:bottom-6 md:right-6 md:w-[17rem] ${
-        visible
-          ? "translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-8 opacity-0"
-      }`}
-    >
-      <div className="group relative aspect-video overflow-hidden rounded-2xl bg-ink shadow-[0px_1.25rem_2.5rem_-0.5rem_rgba(0,0,0,0.45)] ring-1 ring-white/10">
-        {VIDEO_SRC ? (
-          <video
-            ref={videoRef}
-            src={VIDEO_SRC}
-            poster={heroBg.src}
-            muted
-            loop
-            playsInline
-            autoPlay
-            className="size-full object-cover"
+    <>
+      <div
+        aria-hidden={!visible}
+        inert={!visible}
+        className={`fixed bottom-4 right-4 z-30 w-[14rem] transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:bottom-6 md:right-6 md:w-[17rem] ${
+          visible
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-8 opacity-0"
+        }`}
+      >
+        <div className="group relative aspect-video overflow-hidden rounded-2xl bg-ink shadow-[0px_1.25rem_2.5rem_-0.5rem_rgba(0,0,0,0.45)] ring-1 ring-white/10">
+          {thumbReady && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={THUMB_SRC}
+              alt=""
+              width={960}
+              height={540}
+              decoding="async"
+              className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10"
           />
-        ) : (
-          <Image src={heroBg} alt="" fill sizes="17rem" className="object-cover" />
-        )}
 
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10"
-        />
-
-        {/* play / pause — covers the poster so a tap anywhere toggles */}
-        <button
-          type="button"
-          onClick={togglePlay}
-          aria-label={playing ? "Pause video" : "Play video"}
-          className="absolute inset-0 flex items-center justify-center focus-visible:outline-white"
-        >
-          <span className="flex size-11 items-center justify-center rounded-full bg-white/90 text-ink shadow-[0px_0.25rem_0.75rem_rgba(0,0,0,0.3)] backdrop-blur transition-transform duration-200 group-hover:scale-105">
-            {playing ? (
-              <svg viewBox="0 0 14 14" className="size-4" fill="currentColor" aria-hidden>
-                <rect x="3" y="2" width="3" height="10" rx="1" />
-                <rect x="8" y="2" width="3" height="10" rx="1" />
+          {/* the whole card opens the modal */}
+          <button
+            ref={opener}
+            type="button"
+            onClick={openModal}
+            onPointerEnter={() => setWarm(true)}
+            onFocus={() => setWarm(true)}
+            onTouchStart={() => setWarm(true)}
+            aria-label="Watch the Stadium film"
+            aria-haspopup="dialog"
+            className="absolute inset-0 flex cursor-pointer items-center justify-center focus-visible:outline-white"
+          >
+            <span className="flex size-11 items-center justify-center rounded-full bg-white/90 text-ink shadow-[0px_0.25rem_0.75rem_rgba(0,0,0,0.3)] backdrop-blur transition-transform duration-200 group-hover:scale-110">
+              <svg viewBox="0 0 14 14" className="size-4" fill="currentColor" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden>
+                <path d="M4.7 2.9v8.2L10.7 7z" />
               </svg>
-            ) : (
-              <svg viewBox="0 0 14 14" className="size-4 translate-x-px" fill="currentColor" aria-hidden>
-                <path d="M3.5 2.3c0-.6.65-.97 1.16-.66l7.06 4.2a.77.77 0 0 1 0 1.32l-7.06 4.2a.77.77 0 0 1-1.16-.66V2.3Z" />
-              </svg>
-            )}
-          </span>
-        </button>
+            </span>
+          </button>
 
-        {/* dismiss */}
-        <button
-          type="button"
-          onClick={() => setDismissed(true)}
-          aria-label="Dismiss video"
-          className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition-colors duration-200 hover:bg-black/60 focus-visible:outline-white"
-        >
-          <svg viewBox="0 0 14 14" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
-            <path d="m3.5 3.5 7 7M10.5 3.5l-7 7" />
-          </svg>
-        </button>
+          <button
+            type="button"
+            onClick={() => setDismissed(true)}
+            aria-label="Dismiss video"
+            className="absolute right-2 top-2 flex size-7 cursor-pointer items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition-colors duration-200 hover:bg-black/60 focus-visible:outline-white"
+          >
+            <svg viewBox="0 0 14 14" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+              <path d="m3.5 3.5 7 7M10.5 3.5l-7 7" />
+            </svg>
+          </button>
 
-        <span className="pointer-events-none absolute bottom-2 left-3 font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white/90">
-          Watch the film
-        </span>
+        </div>
       </div>
-    </div>
+
+      {/* modal player */}
+      <dialog
+        ref={dialogRef}
+        aria-label="Stadium film"
+        onClick={(e) => {
+          /* a click on the dim backdrop lands on the <dialog> itself */
+          if (e.target === dialogRef.current) closeModal();
+        }}
+        data-shown={shown}
+        className="m-auto h-dvh max-h-none w-dvw max-w-none bg-transparent p-4 opacity-0 transition-opacity duration-200 ease-out backdrop:bg-black/80 backdrop:backdrop-blur-sm data-[shown=true]:opacity-100 motion-reduce:transition-none md:p-8"
+      >
+        <div
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+          className="flex size-full items-center justify-center"
+        >
+          <div
+            ref={stageRef}
+            className={`relative aspect-video w-full max-w-[min(100%,calc((100dvh-4rem)*16/9))] origin-center overflow-hidden rounded-2xl transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${shown ? "scale-100" : "scale-90"}  bg-black shadow-[0px_2rem_5rem_rgba(0,0,0,0.6)] ring-1 ring-white/10 fullscreen:max-w-none fullscreen:rounded-none fullscreen:ring-0`}
+          >
+            {(warm || open) && (
+              <video
+                ref={videoRef}
+                src={VIDEO_SRC}
+                poster={THUMB_SRC}
+                preload={open ? "auto" : "metadata"}
+                playsInline
+                controls
+                controlsList="nodownload nofullscreen"
+                onClick={(e) => {
+                  /* click the picture to play / pause (the native control bar keeps its own clicks) */
+                  const v = e.currentTarget;
+                  const r = v.getBoundingClientRect();
+                  if (e.clientY > r.bottom - 64) return;
+                  if (v.paused) void v.play();
+                  else v.pause();
+                }}
+                disablePictureInPicture
+                className="size-full cursor-pointer bg-black object-contain"
+              />
+            )}
+
+            <div className="pointer-events-none absolute right-3 top-3 flex gap-2">
+              <button
+                type="button"
+                onClick={toggleFullscreen}
+                aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+                className="pointer-events-auto flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/55 text-white backdrop-blur transition-colors duration-200 hover:bg-black/75 focus-visible:outline-white"
+              >
+                {fullscreen ? (
+                  <svg viewBox="0 0 20 20" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M7.5 3v3.5H4M12.5 3v3.5H16M7.5 17v-3.5H4M12.5 17v-3.5H16" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 20 20" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M3.5 7.5v-4h4M16.5 7.5v-4h-4M3.5 12.5v4h4M16.5 12.5v4h-4" />
+                  </svg>
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={closeModal}
+                aria-label="Close video"
+                className="pointer-events-auto flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/55 text-white backdrop-blur transition-colors duration-200 hover:bg-black/75 focus-visible:outline-white"
+              >
+                <svg viewBox="0 0 14 14" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+                  <path d="m3.5 3.5 7 7M10.5 3.5l-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </>
   );
 }

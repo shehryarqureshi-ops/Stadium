@@ -2520,3 +2520,9 @@ SNW-4 decision (2026-11-06): keep the teambuilds-branded Swag Kits image from Fi
 `public/recognition/programs/{kudos,milestone,incentives,service}.webp` (1160×740, q86) replace the PNGs, rendered from the four
 image frames at 3× with their UI toasts baked in (Maya→Daniel kudos, 1 year anniversary, Tier 2 reward, 5 year service award).
 Imports updated in `RecogOfferings.tsx`; old PNGs deleted.
+
+## Home "Global Engagement Infrastructure" diagram sync (Figma 7505:33056)
+
+`SystemRail.tsx`: HRIS card gets a fourth pill, "Recruiting"; the GEI↔CRM connector is now a two-way pair
+(← over →, `MoveLeft` + `MoveRight`, 32px icons overlapped 0.625rem, Figma 7507:76387) instead of one flipped arrow.
+On <xl the pair rotates 90° like the single arrow. Copy, cards and layout already matched the frame.

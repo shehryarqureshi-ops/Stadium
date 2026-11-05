@@ -1,14 +1,14 @@
-import { Handshake, MoveRight, User } from "lucide-react";
+import { Handshake, MoveLeft, MoveRight, User } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
 /* GEI diagram — "HRIS / GEI / CRM" (Figma 7505:33056). Header (eyebrow · headline · one-liner), then
-   three cards: HRIS (people) → GEI (engagement) ← CRM (customers). HRIS and CRM are flat white cards (no
+   three cards: HRIS (people) → GEI (engagement) ⇄ CRM (customers). HRIS and CRM are flat white cards (no
    shadow), GEI is the lifted centre card with the Stadium symbol and the five programs. A soft rotated,
    blurred symbol glow sits behind the row. From xl (1280) it is the drawn 1106×366 row; below that the
    cards stack and the arrows turn to point down. Layout in rem (Figma px ÷ 16). */
 
-const HRIS_TAGS = ["Payroll", "Benefits", "Org data"];
+const HRIS_TAGS = ["Payroll", "Benefits", "Org data", "Recruiting"];
 const CRM_TAGS = ["Deals", "Pipeline", "Accounts"];
 const PROGRAMS = ["Recognition", "Swag", "Gifting", "Snack Boxes", "Hosted Experiences"];
 
@@ -57,19 +57,24 @@ function SideCard({
   );
 }
 
-/* the round arrow between cards; points down when the cards stack */
-function Connector({ name, flip = false }: { name: string; flip?: boolean }) {
+/* the arrow between cards; points down when the cards stack. `twoWay` stacks a left- and a right-pointing
+   arrow (data flows both ways between GEI and CRM — Figma 7507:76387) */
+function Connector({ name, twoWay = false }: { name: string; twoWay?: boolean }) {
+  const arrow = "size-8 text-black";
   return (
     <span
       role="img"
       aria-label={name}
-      className="relative z-10 flex size-[3.9375rem] shrink-0 items-center justify-center rounded-[1.25rem] gei-arrow-shadow max-xl:rotate-90"
+      className="relative z-10 flex size-[3.9375rem] shrink-0 flex-col items-center justify-center rounded-[1.25rem] gei-arrow-shadow max-xl:rotate-90"
     >
-      <MoveRight
-        aria-hidden
-        className={`size-8 text-black ${flip ? "rotate-180" : ""}`}
-        strokeWidth={2}
-      />
+      {twoWay ? (
+        <>
+          <MoveLeft aria-hidden className={arrow} strokeWidth={2} />
+          <MoveRight aria-hidden className={`${arrow} -mt-2.5`} strokeWidth={2} />
+        </>
+      ) : (
+        <MoveRight aria-hidden className={arrow} strokeWidth={2} />
+      )}
     </span>
   );
 }
@@ -138,7 +143,7 @@ export default function SystemRail() {
           </ul>
         </div>
 
-        <Connector name="Customer data flows in" flip />
+        <Connector name="Data flows both ways between GEI and your CRM" twoWay />
 
         <SideCard
           eyebrow="customers"
