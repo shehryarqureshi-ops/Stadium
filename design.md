@@ -2526,3 +2526,9 @@ Imports updated in `RecogOfferings.tsx`; old PNGs deleted.
 `SystemRail.tsx`: HRIS card gets a fourth pill, "Recruiting"; the GEI↔CRM connector is now a two-way pair
 (← over →, `MoveLeft` + `MoveRight`, 32px icons overlapped 0.625rem, Figma 7507:76387) instead of one flipped arrow.
 On <xl the pair rotates 90° like the single arrow. Copy, cards and layout already matched the frame.
+
+## Open Graph / Twitter share image (Figma 7546:76563 "og image")
+
+`public/og/stadium-og.jpg` (1200×630, JPEG q92 ≈170 KB so WhatsApp/iMessage accept it; exported from the Figma frame). Wired in `app/lib/seo/metadata.ts` (`OG_IMAGE`, used by `seoMetadata()` for every
+SEO-sheet page) and as the default in `app/layout.tsx`. Twitter card is now `summary_large_image`. URLs resolve against `metadataBase`
+(`SITE_URL`), so the tags are absolute: https://www.bystadium.com/og/stadium-og.jpg. The image only resolves in production once deployed.

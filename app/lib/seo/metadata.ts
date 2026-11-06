@@ -19,6 +19,16 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bystadium.com"
 ).replace(/\/$/, "");
 
+/* Default share image (Figma "og image", 1200×630) — used by every page's Open Graph and Twitter card.
+   Resolved against metadataBase, so it becomes an absolute URL in the tags. */
+export const OG_IMAGE = {
+  url: "/og/stadium-og.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Stadium — Celebrate people, wherever they are. Global engagement infrastructure.",
+  type: "image/jpeg",
+};
+
 type SeoEntry = {
   title: string;
   description: string;
@@ -52,8 +62,15 @@ export function seoMetadata(path: string): Metadata {
       url: path,
       title,
       description,
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary", site: "@bystadium", title, description },
+    twitter: {
+      card: "summary_large_image",
+      site: "@bystadium",
+      title,
+      description,
+      images: [{ url: OG_IMAGE.url, alt: OG_IMAGE.alt }],
+    },
   };
 }
 
