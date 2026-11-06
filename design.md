@@ -2532,3 +2532,9 @@ On <xl the pair rotates 90° like the single arrow. Copy, cards and layout alrea
 `public/og/stadium-og.jpg` (1200×630, JPEG q92 ≈170 KB so WhatsApp/iMessage accept it; exported from the Figma frame). Wired in `app/lib/seo/metadata.ts` (`OG_IMAGE`, used by `seoMetadata()` for every
 SEO-sheet page) and as the default in `app/layout.tsx`. Twitter card is now `summary_large_image`. URLs resolve against `metadataBase`
 (`SITE_URL`), so the tags are absolute: https://www.bystadium.com/og/stadium-og.jpg. The image only resolves in production once deployed.
+
+### Share image on staging (2026-11-06)
+`app/lib/seo/origin.ts` splits two origins: `SITE_URL` (production; canonicals only) and `SHARE_ORIGIN` (`metadataBase`: og:url / og:image / twitter:image).
+`SHARE_ORIGIN` = `NEXT_PUBLIC_SHARE_ORIGIN`, else on `NEXT_PUBLIC_APP_ENV=staging` the first host of `NEXT_PUBLIC_ANALYTICS_HOSTS`, else `SITE_URL`.
+Verified with a staging-mode production build: og:image = https://stadium-rho.vercel.app/og/stadium-og.jpg, canonical still https://www.bystadium.com/….
+Image switched to JPEG (≈170 KB) so WhatsApp/iMessage accept it. Share-preview caches need a "Scrape again" in each platform debugger after deploy.

@@ -13,14 +13,14 @@ import seoData from "./seo-data.json";
      <JsonLd path="/swag" />            (app/components/seo/JsonLd.tsx)
 
    Canonicals are always the production URL (SITE_URL), also on staging, so a
-   staging copy never competes with the live page. */
+   staging copy never competes with the live page. Share tags (og:url / og:image /
+   twitter:image) resolve against SHARE_ORIGIN instead — see ./origin.ts. */
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bystadium.com"
-).replace(/\/$/, "");
+export { SHARE_ORIGIN, SITE_URL } from "./origin";
+import { SITE_URL } from "./origin";
 
 /* Default share image (Figma "og image", 1200×630) — used by every page's Open Graph and Twitter card.
-   Resolved against metadataBase, so it becomes an absolute URL in the tags. */
+   Resolved against metadataBase (SHARE_ORIGIN), so it becomes an absolute URL on the host that was shared. */
 export const OG_IMAGE = {
   url: "/og/stadium-og.jpg",
   width: 1200,
@@ -54,7 +54,7 @@ export function seoMetadata(path: string): Metadata {
     title,
     description,
     keywords,
-    alternates: { canonical: path },
+    alternates: { canonical: `${SITE_URL}${path}` },
     openGraph: {
       type: "website",
       siteName: "Stadium",
