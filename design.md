@@ -2538,3 +2538,8 @@ SEO-sheet page) and as the default in `app/layout.tsx`. Twitter card is now `sum
 `SHARE_ORIGIN` = `NEXT_PUBLIC_SHARE_ORIGIN`, else on `NEXT_PUBLIC_APP_ENV=staging` the first host of `NEXT_PUBLIC_ANALYTICS_HOSTS`, else `SITE_URL`.
 Verified with a staging-mode production build: og:image = https://stadium-rho.vercel.app/og/stadium-og.jpg, canonical still https://www.bystadium.com/….
 Image switched to JPEG (≈170 KB) so WhatsApp/iMessage accept it. Share-preview caches need a "Scrape again" in each platform debugger after deploy.
+
+## CTA & link audit fixes (2026-11-25) — full table in `cta-audit-status.md`
+Site-wide decision: CTAs say "Talk to sales". Changed: /catalog hero, pill, product/diet/deco modals (were "Book a call"); Recognition inline link ("book a demo"); `Occasions` default label, /reviews and /old-home closing CTA ("Book a demo"); /swag "Order Swag Yourself" card → "Shop Swagmagic" → swagmagic.com catalog (was /catalog#swag).
+Verified by re-crawling 18 pages: no `#` placeholder links remain. The audit ran against an older staging build, so the placeholder rows were already fixed in code and need a staging redeploy.
+Pricing keeps its in-page `#book-a-demo` form (package prefilled) — decided 2026-11-25: intentional, not a bug.

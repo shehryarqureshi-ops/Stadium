@@ -81,7 +81,7 @@ export default function Occasions({
   eyebrow,
   title = "100+ use cases and counting",
   description = "Get a 15-minute walkthrough. We\u2019ll show you live campaigns, sample boxes, and how teams use Stadium at scale.",
-  cta = { label: "Book a demo", href: "/book-a-call" },
+  cta = { label: "Talk to sales", href: "/book-a-call" },
 }: OccasionsProps = {}) {
   // Three distinct rows (Figma 803:48505); each scrolls horizontally.
   const rows = [

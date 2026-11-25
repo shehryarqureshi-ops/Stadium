@@ -98,7 +98,7 @@ export default function ReviewsPage() {
           </>
         }
         description="Save big on $ and headaches."
-        ctaOneLabel="Book a demo"
+        ctaOneLabel="Talk to sales"
         ctaOneLink={LINKS.sales}
         ctaOneVariant="primary"
         ctaTwoLabel="Talk to sales"

@@ -65,7 +65,7 @@ export default function CatalogHero() {
                 href={BOOK_A_CALL_HREF}
                 className="inline-flex h-12 items-center justify-center rounded-full bg-catalog-cta px-[1.375rem] font-sans text-button-primary uppercase text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-white"
               >
-                <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Book a call</span>
+                <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Talk to sales</span>
               </a>
               <a
                 href="#swag"

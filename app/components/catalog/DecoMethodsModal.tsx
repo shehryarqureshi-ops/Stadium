@@ -137,7 +137,7 @@ export default function DecoMethodsModal({
             href={BOOK_A_CALL_HREF}
             className="inline-flex h-[3.75rem] sm:flex-1 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-black px-10 font-sans text-catalog-button-lg uppercase text-white transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
-            <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Book a call</span>
+            <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Talk to sales</span>
           </a>
           <a
             href={section.catalogHref}

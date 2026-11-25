@@ -509,7 +509,7 @@ export default function RecogImpact() {
                   href="/book-a-call"
                   className="inline-flex items-start gap-2 border-b border-black pb-0.5 font-sans text-[0.75rem] font-bold uppercase leading-4 tracking-[0.0625rem] text-[#16171b] transition-all duration-200 hover:border-[#8d12e7] hover:text-[#8d12e7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#16171b] active:scale-[0.98]"
                 >
-                  <span className="whitespace-nowrap">book a demo</span>
+                  <span className="whitespace-nowrap">talk to sales</span>
                   <ArrowUpRightIcon />
                 </a>
               </div>

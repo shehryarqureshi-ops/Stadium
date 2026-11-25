@@ -162,7 +162,7 @@ export default function CatalogProductModal({
               href={BOOK_A_CALL_HREF}
               className="inline-flex h-[3.75rem] shrink-0 items-center sm:flex-1 justify-center whitespace-nowrap rounded-full bg-black px-6 font-sans text-catalog-button-lg uppercase text-white transition-all duration-200 hover:bg-grey-700 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
-              <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Book a call</span>
+              <span className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]">Talk to sales</span>
             </a>
             <a
               href={section.catalogHref}

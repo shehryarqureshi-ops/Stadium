@@ -93,9 +93,9 @@ export default function SwagmagicSolution() {
               ]}
             />
           ),
-          ctaLabel: "Shop Swag",
+          ctaLabel: "Shop Swagmagic",
           ctaVariant: "light",
-          ctaLink: "/catalog#swag",
+          ctaLink: "https://www.swagmagic.com/us-en/s/promotional-products/catalog",
         },
       ]}
     />

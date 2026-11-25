@@ -124,7 +124,7 @@ function CtaPill({ section, show, ended }: { section: SectionData; show: boolean
       className="inline-grid auto-cols-fr grid-flow-col gap-2.5 rounded-full bg-catalog-ink p-2.5 shadow-catalog-pill"
     >
       <a href={BOOK_A_CALL_HREF} className={btn}>
-        Book a call
+        Talk to sales
       </a>
       <a
         href={section.catalogHref}
